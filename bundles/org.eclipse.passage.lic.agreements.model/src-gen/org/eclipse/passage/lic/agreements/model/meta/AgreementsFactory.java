@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.agreements.model.meta;
 import org.eclipse.emf.ecore.EFactory;
 
 import org.eclipse.passage.lic.agreements.model.api.Agreement;
+import org.eclipse.passage.lic.agreements.model.api.AgreementsRegistry;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,6 +42,15 @@ public interface AgreementsFactory extends EFactory {
 	 * @generated
 	 */
 	Agreement createAgreement();
+
+	/**
+	 * Returns a new object of class '<em>Registry</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Registry</em>'.
+	 * @generated
+	 */
+	AgreementsRegistry createAgreementsRegistry();
 
 	/**
 	 * Returns the package supported by this factory.

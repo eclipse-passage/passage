@@ -18,6 +18,8 @@
       classPackageSuffix="model.impl" utilityPackageSuffix="model.util" providerPackageSuffix="edit.providers"
       presentationPackageSuffix="editor" testsPackageSuffix="model.tests" literalsInterface="false"
       ecorePackage="../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#/">
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//AgreementDescriptor"/>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//AgreementsRegistryDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//Agreement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//Agreement/identifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//Agreement/spdx"/>
@@ -25,6 +27,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//Agreement/file"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//Agreement/mime"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//AgreementDescriptor"/>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//AgreementsRegistry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//AgreementsRegistry/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//AgreementsRegistry/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//AgreementsRegistry/agreements"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

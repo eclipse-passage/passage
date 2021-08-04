@@ -16,12 +16,15 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.passage.lic.agreements.AgreementDescriptor;
 
+import org.eclipse.passage.lic.agreements.AgreementsRegistryDescriptor;
 import org.eclipse.passage.lic.agreements.model.api.Agreement;
 
+import org.eclipse.passage.lic.agreements.model.api.AgreementsRegistry;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsFactory;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 
@@ -44,7 +47,21 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass agreementsRegistryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass agreementDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass agreementsRegistryDescriptorEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -176,8 +193,58 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 	 * @generated
 	 */
 	@Override
+	public EClass getAgreementsRegistry() {
+		return agreementsRegistryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAgreementsRegistry_Name() {
+		return (EAttribute) agreementsRegistryEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAgreementsRegistry_Description() {
+		return (EAttribute) agreementsRegistryEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAgreementsRegistry_Agreements() {
+		return (EReference) agreementsRegistryEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getAgreementDescriptor() {
 		return agreementDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getAgreementsRegistryDescriptor() {
+		return agreementsRegistryDescriptorEClass;
 	}
 
 	/**
@@ -210,6 +277,10 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 		isCreated = true;
 
 		// Create classes and their features
+		agreementDescriptorEClass = createEClass(AGREEMENT_DESCRIPTOR);
+
+		agreementsRegistryDescriptorEClass = createEClass(AGREEMENTS_REGISTRY_DESCRIPTOR);
+
 		agreementEClass = createEClass(AGREEMENT);
 		createEAttribute(agreementEClass, AGREEMENT__IDENTIFIER);
 		createEAttribute(agreementEClass, AGREEMENT__SPDX);
@@ -217,7 +288,10 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 		createEAttribute(agreementEClass, AGREEMENT__FILE);
 		createEAttribute(agreementEClass, AGREEMENT__MIME);
 
-		agreementDescriptorEClass = createEClass(AGREEMENT_DESCRIPTOR);
+		agreementsRegistryEClass = createEClass(AGREEMENTS_REGISTRY);
+		createEAttribute(agreementsRegistryEClass, AGREEMENTS_REGISTRY__NAME);
+		createEAttribute(agreementsRegistryEClass, AGREEMENTS_REGISTRY__DESCRIPTION);
+		createEReference(agreementsRegistryEClass, AGREEMENTS_REGISTRY__AGREEMENTS);
 	}
 
 	/**
@@ -250,8 +324,15 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 
 		// Add supertypes to classes
 		agreementEClass.getESuperTypes().add(this.getAgreementDescriptor());
+		agreementsRegistryEClass.getESuperTypes().add(this.getAgreementsRegistryDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
+		initEClass(agreementDescriptorEClass, AgreementDescriptor.class, "AgreementDescriptor", IS_ABSTRACT, //$NON-NLS-1$
+				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(agreementsRegistryDescriptorEClass, AgreementsRegistryDescriptor.class,
+				"AgreementsRegistryDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
 		initEClass(agreementEClass, Agreement.class, "Agreement", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAgreement_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, Agreement.class, //$NON-NLS-1$
@@ -265,8 +346,17 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 		initEAttribute(getAgreement_Mime(), ecorePackage.getEString(), "mime", null, 1, 1, Agreement.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(agreementDescriptorEClass, AgreementDescriptor.class, "AgreementDescriptor", IS_ABSTRACT, //$NON-NLS-1$
-				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEClass(agreementsRegistryEClass, AgreementsRegistry.class, "AgreementsRegistry", !IS_ABSTRACT, //$NON-NLS-1$
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAgreementsRegistry_Name(), ecorePackage.getEString(), "name", null, 1, 1, //$NON-NLS-1$
+				AgreementsRegistry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAgreementsRegistry_Description(), ecorePackage.getEString(), "description", null, 1, 1, //$NON-NLS-1$
+				AgreementsRegistry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getAgreementsRegistry_Agreements(), this.getAgreement(), null, "agreements", null, 0, -1, //$NON-NLS-1$
+				AgreementsRegistry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -105,6 +105,29 @@ public class AgreementsItemProviderAdapterFactory extends AgreementsAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.agreements.model.api.AgreementsRegistry} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AgreementsRegistryItemProvider agreementsRegistryItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.agreements.model.api.AgreementsRegistry}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAgreementsRegistryAdapter() {
+		if (agreementsRegistryItemProvider == null) {
+			agreementsRegistryItemProvider = new AgreementsRegistryItemProvider(this);
+		}
+
+		return agreementsRegistryItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -211,6 +234,8 @@ public class AgreementsItemProviderAdapterFactory extends AgreementsAdapterFacto
 	public void dispose() {
 		if (agreementItemProvider != null)
 			agreementItemProvider.dispose();
+		if (agreementsRegistryItemProvider != null)
+			agreementsRegistryItemProvider.dispose();
 	}
 
 }

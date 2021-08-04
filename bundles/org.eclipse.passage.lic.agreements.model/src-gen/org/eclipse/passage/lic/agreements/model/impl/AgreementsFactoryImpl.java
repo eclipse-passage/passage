@@ -71,6 +71,8 @@ public class AgreementsFactoryImpl extends EFactoryImpl implements AgreementsFac
 		switch (eClass.getClassifierID()) {
 		case AgreementsPackage.AGREEMENT:
 			return createAgreement();
+		case AgreementsPackage.AGREEMENTS_REGISTRY:
+			return createAgreementsRegistry();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -85,6 +87,17 @@ public class AgreementsFactoryImpl extends EFactoryImpl implements AgreementsFac
 	public Agreement createAgreement() {
 		AgreementImpl agreement = new AgreementImpl();
 		return agreement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AgreementsRegistry createAgreementsRegistry() {
+		AgreementsRegistryImpl agreementsRegistry = new AgreementsRegistryImpl();
+		return agreementsRegistry;
 	}
 
 	/**

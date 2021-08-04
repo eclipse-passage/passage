@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.passage.lic.agreements.AgreementDescriptor;
 
+import org.eclipse.passage.lic.agreements.AgreementsRegistryDescriptor;
 import org.eclipse.passage.lic.agreements.model.api.*;
 
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
@@ -81,13 +82,23 @@ public class AgreementsAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected AgreementsSwitch<Adapter> modelSwitch = new AgreementsSwitch<Adapter>() {
 		@Override
+		public Adapter caseAgreementDescriptor(AgreementDescriptor object) {
+			return createAgreementDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseAgreementsRegistryDescriptor(AgreementsRegistryDescriptor object) {
+			return createAgreementsRegistryDescriptorAdapter();
+		}
+
+		@Override
 		public Adapter caseAgreement(Agreement object) {
 			return createAgreementAdapter();
 		}
 
 		@Override
-		public Adapter caseAgreementDescriptor(AgreementDescriptor object) {
-			return createAgreementDescriptorAdapter();
+		public Adapter caseAgreementsRegistry(AgreementsRegistry object) {
+			return createAgreementsRegistryAdapter();
 		}
 
 		@Override
@@ -124,6 +135,20 @@ public class AgreementsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.agreements.model.api.AgreementsRegistry <em>Registry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.agreements.model.api.AgreementsRegistry
+	 * @generated
+	 */
+	public Adapter createAgreementsRegistryAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.agreements.AgreementDescriptor <em>Agreement Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -134,6 +159,20 @@ public class AgreementsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAgreementDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.agreements.AgreementsRegistryDescriptor <em>Registry Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.agreements.AgreementsRegistryDescriptor
+	 * @generated
+	 */
+	public Adapter createAgreementsRegistryDescriptorAdapter() {
 		return null;
 	}
 
