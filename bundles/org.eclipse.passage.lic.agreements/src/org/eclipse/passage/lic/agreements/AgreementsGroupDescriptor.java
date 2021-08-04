@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.agreements;
 
 import java.util.List;
 
-public interface AgreementsRegistryDescriptor {
+public interface AgreementsGroupDescriptor {
 
 	String getName();
 

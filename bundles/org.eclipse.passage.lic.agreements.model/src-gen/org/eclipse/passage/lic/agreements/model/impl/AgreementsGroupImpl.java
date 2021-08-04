@@ -14,38 +14,42 @@ package org.eclipse.passage.lic.agreements.model.impl;
 
 import java.util.Collection;
 import java.util.Objects;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.passage.lic.agreements.model.api.Agreement;
-import org.eclipse.passage.lic.agreements.model.api.AgreementsRegistry;
+import org.eclipse.passage.lic.agreements.model.api.AgreementsGroup;
 
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Registry</b></em>'.
+ * An implementation of the model object '<em><b>Group</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.passage.lic.agreements.model.impl.AgreementsRegistryImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.agreements.model.impl.AgreementsRegistryImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.agreements.model.impl.AgreementsRegistryImpl#getAgreements <em>Agreements</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.agreements.model.impl.AgreementsGroupImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.agreements.model.impl.AgreementsGroupImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.agreements.model.impl.AgreementsGroupImpl#getAgreements <em>Agreements</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class AgreementsRegistryImpl extends MinimalEObjectImpl.Container implements AgreementsRegistry {
+public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements AgreementsGroup {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -55,6 +59,7 @@ public class AgreementsRegistryImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -64,6 +69,7 @@ public class AgreementsRegistryImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	private String name = NAME_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -73,6 +79,7 @@ public class AgreementsRegistryImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	protected static final String DESCRIPTION_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -82,6 +89,7 @@ public class AgreementsRegistryImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	private String description = DESCRIPTION_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getAgreements() <em>Agreements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -97,7 +105,7 @@ public class AgreementsRegistryImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AgreementsRegistryImpl() {
+	protected AgreementsGroupImpl() {
 		super();
 	}
 
@@ -108,7 +116,7 @@ public class AgreementsRegistryImpl extends MinimalEObjectImpl.Container impleme
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AgreementsPackage.eINSTANCE.getAgreementsRegistry();
+		return AgreementsPackage.eINSTANCE.getAgreementsGroup();
 	}
 
 	/**
@@ -131,7 +139,7 @@ public class AgreementsRegistryImpl extends MinimalEObjectImpl.Container impleme
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, AgreementsPackage.AGREEMENTS_REGISTRY__NAME, oldName,
+			eNotify(new ENotificationImpl(this, Notification.SET, AgreementsPackage.AGREEMENTS_GROUP__NAME, oldName,
 					name));
 		}
 	}
@@ -156,7 +164,7 @@ public class AgreementsRegistryImpl extends MinimalEObjectImpl.Container impleme
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, AgreementsPackage.AGREEMENTS_REGISTRY__DESCRIPTION,
+			eNotify(new ENotificationImpl(this, Notification.SET, AgreementsPackage.AGREEMENTS_GROUP__DESCRIPTION,
 					oldDescription, description));
 		}
 	}
@@ -170,7 +178,7 @@ public class AgreementsRegistryImpl extends MinimalEObjectImpl.Container impleme
 	public EList<Agreement> getAgreements() {
 		if (agreements == null) {
 			agreements = new EObjectContainmentEList<Agreement>(Agreement.class, this,
-					AgreementsPackage.AGREEMENTS_REGISTRY__AGREEMENTS);
+					AgreementsPackage.AGREEMENTS_GROUP__AGREEMENTS);
 		}
 		return agreements;
 	}
@@ -183,7 +191,7 @@ public class AgreementsRegistryImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case AgreementsPackage.AGREEMENTS_REGISTRY__AGREEMENTS:
+		case AgreementsPackage.AGREEMENTS_GROUP__AGREEMENTS:
 			return ((InternalEList<?>) getAgreements()).basicRemove(otherEnd, msgs);
 		default:
 			return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -198,11 +206,11 @@ public class AgreementsRegistryImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case AgreementsPackage.AGREEMENTS_REGISTRY__NAME:
+		case AgreementsPackage.AGREEMENTS_GROUP__NAME:
 			return getName();
-		case AgreementsPackage.AGREEMENTS_REGISTRY__DESCRIPTION:
+		case AgreementsPackage.AGREEMENTS_GROUP__DESCRIPTION:
 			return getDescription();
-		case AgreementsPackage.AGREEMENTS_REGISTRY__AGREEMENTS:
+		case AgreementsPackage.AGREEMENTS_GROUP__AGREEMENTS:
 			return getAgreements();
 		default:
 			return super.eGet(featureID, resolve, coreType);
@@ -218,13 +226,13 @@ public class AgreementsRegistryImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case AgreementsPackage.AGREEMENTS_REGISTRY__NAME:
+		case AgreementsPackage.AGREEMENTS_GROUP__NAME:
 			setName((String) newValue);
 			return;
-		case AgreementsPackage.AGREEMENTS_REGISTRY__DESCRIPTION:
+		case AgreementsPackage.AGREEMENTS_GROUP__DESCRIPTION:
 			setDescription((String) newValue);
 			return;
-		case AgreementsPackage.AGREEMENTS_REGISTRY__AGREEMENTS:
+		case AgreementsPackage.AGREEMENTS_GROUP__AGREEMENTS:
 			getAgreements().clear();
 			getAgreements().addAll((Collection<? extends Agreement>) newValue);
 			return;
@@ -242,13 +250,13 @@ public class AgreementsRegistryImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case AgreementsPackage.AGREEMENTS_REGISTRY__NAME:
+		case AgreementsPackage.AGREEMENTS_GROUP__NAME:
 			setName(NAME_EDEFAULT);
 			return;
-		case AgreementsPackage.AGREEMENTS_REGISTRY__DESCRIPTION:
+		case AgreementsPackage.AGREEMENTS_GROUP__DESCRIPTION:
 			setDescription(DESCRIPTION_EDEFAULT);
 			return;
-		case AgreementsPackage.AGREEMENTS_REGISTRY__AGREEMENTS:
+		case AgreementsPackage.AGREEMENTS_GROUP__AGREEMENTS:
 			getAgreements().clear();
 			return;
 		default:
@@ -265,11 +273,11 @@ public class AgreementsRegistryImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case AgreementsPackage.AGREEMENTS_REGISTRY__NAME:
+		case AgreementsPackage.AGREEMENTS_GROUP__NAME:
 			return !Objects.equals(NAME_EDEFAULT, name);
-		case AgreementsPackage.AGREEMENTS_REGISTRY__DESCRIPTION:
+		case AgreementsPackage.AGREEMENTS_GROUP__DESCRIPTION:
 			return !Objects.equals(DESCRIPTION_EDEFAULT, description);
-		case AgreementsPackage.AGREEMENTS_REGISTRY__AGREEMENTS:
+		case AgreementsPackage.AGREEMENTS_GROUP__AGREEMENTS:
 			return agreements != null && !agreements.isEmpty();
 		default:
 			return super.eIsSet(featureID);
@@ -295,4 +303,4 @@ public class AgreementsRegistryImpl extends MinimalEObjectImpl.Container impleme
 		return result.toString();
 	}
 
-} //AgreementsRegistryImpl
+} //AgreementsGroupImpl

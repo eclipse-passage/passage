@@ -13,44 +13,45 @@
 package org.eclipse.passage.lic.agreements.model.api;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Registry</b></em>'.
+ * A representation of the model object '<em><b>Group</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.passage.lic.agreements.model.api.AgreementsRegistry#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.agreements.model.api.AgreementsRegistry#getDescription <em>Description</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.agreements.model.api.AgreementsRegistry#getAgreements <em>Agreements</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup#getAgreements <em>Agreements</em>}</li>
  * </ul>
  *
- * @see org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage#getAgreementsRegistry()
- * @model superTypes="org.eclipse.passage.lic.agreements.model.api.AgreementsRegistryDescriptor"
+ * @see org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage#getAgreementsGroup()
+ * @model superTypes="org.eclipse.passage.lic.agreements.model.api.AgreementsGroupDescriptor"
  * @generated
  */
-public interface AgreementsRegistry extends EObject, AgreementsGroupDescriptor {
-
+public interface AgreementsGroup extends EObject, AgreementsGroupDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage#getAgreementsRegistry_Name()
+	 * @see org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage#getAgreementsGroup_Name()
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.agreements.model.api.AgreementsRegistry#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -65,14 +66,15 @@ public interface AgreementsRegistry extends EObject, AgreementsGroupDescriptor {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
-	 * @see org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage#getAgreementsRegistry_Description()
+	 * @see org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage#getAgreementsGroup_Description()
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getDescription();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.agreements.model.api.AgreementsRegistry#getDescription <em>Description</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup#getDescription <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Description</em>' attribute.
@@ -87,10 +89,11 @@ public interface AgreementsRegistry extends EObject, AgreementsGroupDescriptor {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Agreements</em>' containment reference list.
-	 * @see org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage#getAgreementsRegistry_Agreements()
+	 * @see org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage#getAgreementsGroup_Agreements()
 	 * @model containment="true"
 	 * @generated
 	 */
 	@Override
 	EList<Agreement> getAgreements();
-} // AgreementsRegistry
+
+} // AgreementsGroup

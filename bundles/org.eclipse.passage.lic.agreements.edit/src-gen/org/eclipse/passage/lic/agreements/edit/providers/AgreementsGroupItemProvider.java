@@ -30,17 +30,17 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.passage.lic.agreements.edit.AgreementsEditPlugin;
-import org.eclipse.passage.lic.agreements.model.api.AgreementsRegistry;
+import org.eclipse.passage.lic.agreements.model.api.AgreementsGroup;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsFactory;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.passage.lic.agreements.model.api.AgreementsRegistry} object.
+ * This is the item provider adapter for a {@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AgreementsRegistryItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+public class AgreementsGroupItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -48,7 +48,7 @@ public class AgreementsRegistryItemProvider extends ItemProviderAdapter implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AgreementsRegistryItemProvider(AdapterFactory adapterFactory) {
+	public AgreementsGroupItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -78,10 +78,10 @@ public class AgreementsRegistryItemProvider extends ItemProviderAdapter implemen
 	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_AgreementsRegistry_name_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_AgreementsRegistry_name_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_AgreementsRegistry_type"), //$NON-NLS-1$
-						AgreementsPackage.eINSTANCE.getAgreementsRegistry_Name(), true, false, false,
+						getResourceLocator(), getString("_UI_AgreementsGroup_name_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_AgreementsGroup_name_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_AgreementsGroup_type"), //$NON-NLS-1$
+						AgreementsPackage.eINSTANCE.getAgreementsGroup_Name(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -94,10 +94,10 @@ public class AgreementsRegistryItemProvider extends ItemProviderAdapter implemen
 	protected void addDescriptionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_AgreementsRegistry_description_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_AgreementsRegistry_description_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_AgreementsRegistry_type"), //$NON-NLS-1$
-						AgreementsPackage.eINSTANCE.getAgreementsRegistry_Description(), true, false, false,
+						getResourceLocator(), getString("_UI_AgreementsGroup_description_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_AgreementsGroup_description_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_AgreementsGroup_type"), //$NON-NLS-1$
+						AgreementsPackage.eINSTANCE.getAgreementsGroup_Description(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -113,7 +113,7 @@ public class AgreementsRegistryItemProvider extends ItemProviderAdapter implemen
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(AgreementsPackage.eINSTANCE.getAgreementsRegistry_Agreements());
+			childrenFeatures.add(AgreementsPackage.eINSTANCE.getAgreementsGroup_Agreements());
 		}
 		return childrenFeatures;
 	}
@@ -132,7 +132,7 @@ public class AgreementsRegistryItemProvider extends ItemProviderAdapter implemen
 	}
 
 	/**
-	 * This returns generat 'agreement' image
+	 * This returns general 'agreement' image
 	 * 
 	 * <!-- begin-user-doc -->
 	 * 
@@ -163,9 +163,9 @@ public class AgreementsRegistryItemProvider extends ItemProviderAdapter implemen
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((AgreementsRegistry) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_AgreementsRegistry_type") : //$NON-NLS-1$
-				getString("_UI_AgreementsRegistry_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		String label = ((AgreementsGroup) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_AgreementsGroup_type") : //$NON-NLS-1$
+				getString("_UI_AgreementsGroup_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -179,12 +179,12 @@ public class AgreementsRegistryItemProvider extends ItemProviderAdapter implemen
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AgreementsRegistry.class)) {
-		case AgreementsPackage.AGREEMENTS_REGISTRY__NAME:
-		case AgreementsPackage.AGREEMENTS_REGISTRY__DESCRIPTION:
+		switch (notification.getFeatureID(AgreementsGroup.class)) {
+		case AgreementsPackage.AGREEMENTS_GROUP__NAME:
+		case AgreementsPackage.AGREEMENTS_GROUP__DESCRIPTION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case AgreementsPackage.AGREEMENTS_REGISTRY__AGREEMENTS:
+		case AgreementsPackage.AGREEMENTS_GROUP__AGREEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		default:
@@ -204,7 +204,7 @@ public class AgreementsRegistryItemProvider extends ItemProviderAdapter implemen
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(AgreementsPackage.eINSTANCE.getAgreementsRegistry_Agreements(),
+		newChildDescriptors.add(createChildParameter(AgreementsPackage.eINSTANCE.getAgreementsGroup_Agreements(),
 				AgreementsFactory.eINSTANCE.createAgreement()));
 	}
 

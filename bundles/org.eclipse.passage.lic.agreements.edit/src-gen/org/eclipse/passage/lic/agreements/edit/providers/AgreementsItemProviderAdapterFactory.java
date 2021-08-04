@@ -105,26 +105,26 @@ public class AgreementsItemProviderAdapterFactory extends AgreementsAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.agreements.model.api.AgreementsRegistry} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AgreementsRegistryItemProvider agreementsRegistryItemProvider;
+	protected AgreementsGroupItemProvider agreementsGroupItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.passage.lic.agreements.model.api.AgreementsRegistry}.
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createAgreementsRegistryAdapter() {
-		if (agreementsRegistryItemProvider == null) {
-			agreementsRegistryItemProvider = new AgreementsRegistryItemProvider(this);
+	public Adapter createAgreementsGroupAdapter() {
+		if (agreementsGroupItemProvider == null) {
+			agreementsGroupItemProvider = new AgreementsGroupItemProvider(this);
 		}
 
-		return agreementsRegistryItemProvider;
+		return agreementsGroupItemProvider;
 	}
 
 	/**
@@ -234,8 +234,8 @@ public class AgreementsItemProviderAdapterFactory extends AgreementsAdapterFacto
 	public void dispose() {
 		if (agreementItemProvider != null)
 			agreementItemProvider.dispose();
-		if (agreementsRegistryItemProvider != null)
-			agreementsRegistryItemProvider.dispose();
+		if (agreementsGroupItemProvider != null)
+			agreementsGroupItemProvider.dispose();
 	}
 
 }
