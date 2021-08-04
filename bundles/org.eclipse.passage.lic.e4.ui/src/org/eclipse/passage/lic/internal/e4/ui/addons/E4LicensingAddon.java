@@ -21,6 +21,7 @@ import org.eclipse.e4.ui.workbench.UIEvents;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
+import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.equinox.LicensedProductFromContext;
 import org.eclipse.passage.lic.internal.e4.ui.restrictions.WorkbenchShutdown;
@@ -52,6 +53,8 @@ public final class E4LicensingAddon {
 		if (grantAcquired(response)) {
 			grant = response.data();
 		} else {
+			System.err.printf("License grant has not been acquired on startup, shutdown initated: \n%s\n", //$NON-NLS-1$
+					new DiagnosticExplained(response.diagnostic()).get());
 			new WorkbenchShutdown().run();
 		}
 	}
