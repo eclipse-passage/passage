@@ -23,6 +23,7 @@ import org.eclipse.passage.lic.base.diagnostic.TroubleHasException;
 import org.eclipse.passage.lic.internal.jface.i18n.DiagnosticDialogMessages;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 public final class DiagnosticDialog extends NotificationDialog {
@@ -34,7 +35,7 @@ public final class DiagnosticDialog extends NotificationDialog {
 	public DiagnosticDialog(Shell shell, Diagnostic diagnostic) {
 		super(shell);
 		this.diagnostic = diagnostic;
-		this.colors = new DiagnosticColors(shell.getDisplay());
+		this.colors = new DiagnosticColors(shell == null ? Display.getCurrent() : shell.getDisplay());
 	}
 
 	@Override
