@@ -67,8 +67,8 @@
 		<module>../../features/org.eclipse.passage.loc.users.feature</module>
 
 		<module>../../bundles/org.eclipse.passage.loc.agreements.core</module>
-		<!--<module>../../bundles/org.eclipse.passage.loc.agreements.ui</module>
-		<module>../../bundles/org.eclipse.passage.loc.agreements.emfforms</module>
+		<module>../../bundles/org.eclipse.passage.loc.agreements.ui</module>
+		<!--<module>../../bundles/org.eclipse.passage.loc.agreements.emfforms</module>
 		<module>../../features/org.eclipse.passage.loc.agreements.feature</module>
 		-->
 		<module>../../bundles/org.eclipse.passage.loc.workspace</module>
