@@ -13,6 +13,7 @@
 package org.eclipse.passage.loc.dashboard.ui.panel;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.passage.loc.internal.agreements.AgreementRegistry;
 import org.eclipse.passage.loc.internal.features.FeatureRegistry;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
@@ -25,21 +26,25 @@ public interface DashboardPanelAdvisor {
 
 	void createHeaderInfo(Composite parent);
 
-	void createFeatureInfo(Composite parent, FeatureRegistry featureRegistry);
+	void createFeatureInfo(Composite parent, FeatureRegistry registry);
 
-	void updateFeatureInfo(FeatureRegistry featureRegistry);
+	void updateFeatureInfo(FeatureRegistry registry);
 
-	void createProductInfo(Composite parent, ProductRegistry productRegistry);
+	void createProductInfo(Composite parent, ProductRegistry registry);
 
-	void updateProductInfo(ProductRegistry productRegistry);
+	void updateProductInfo(ProductRegistry registry);
 
-	void createUserInfo(Composite parent, UserRegistry userRegistry);
+	void createUserInfo(Composite parent, UserRegistry registry);
 
-	void updateUserInfo(UserRegistry userRegistry);
+	void updateUserInfo(UserRegistry registry);
 
-	void createLicenseInfo(Composite parent, LicenseRegistry licenseRegistry);
+	void createLicenseInfo(Composite parent, LicenseRegistry registry);
 
-	void updateLicenseInfo(LicenseRegistry licenseRegistry);
+	void updateLicenseInfo(LicenseRegistry registry);
+
+	void createAgreementInfo(Composite parent, AgreementRegistry registry);
+
+	void updateAgreementInfo(AgreementRegistry registry);
 
 	void createFooterInfo(Composite parent);
 

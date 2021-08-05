@@ -97,6 +97,16 @@ public class DashboardUiMessages extends NLS {
 	public static String DefaultDashboardPanelAdvisor_user_title;
 	public static String DefaultDashboardPanelAdvisor_user_warning;
 
+	public static String DefaultDashboardPanelAdvisor_agreement_group;
+	public static String DefaultDashboardPanelAdvisor_agreement_group_show;
+	public static String DefaultDashboardPanelAdvisor_agreement_group_info;
+	public static String DefaultDashboardPanelAdvisor_agreement_group_title;
+	public static String DefaultDashboardPanelAdvisor_agreement_group_warning;
+	public static String DefaultDashboardPanelAdvisor_agreement_show;
+	public static String DefaultDashboardPanelAdvisor_agreement_info;
+	public static String DefaultDashboardPanelAdvisor_agreement_title;
+	public static String DefaultDashboardPanelAdvisor_agreement_warning;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, DashboardUiMessages.class);
