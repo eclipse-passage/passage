@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.internal.e4.core.commands.ExecuteCommand;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
@@ -26,6 +27,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.loc.dashboard.ui.DashboardUi;
+import org.eclipse.passage.loc.internal.agreements.AgreementRegistry;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.DashboardUiMessages;
 import org.eclipse.passage.loc.internal.features.FeatureRegistry;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
@@ -59,6 +61,9 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	private DashboardPanelBlock users;
 
 	private DashboardPanelBlock licensePlans;
+
+	private DashboardPanelBlock agreementsGroups;
+	private DashboardPanelBlock agreements;
 
 	@Override
 	public void init(IEclipseContext context) {
@@ -265,6 +270,44 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	@Override
 	public void updateLicenseInfo(LicenseRegistry licenseRegistry) {
 		licensePlans.update(licenseRegistry.getLicensePlans());
+	}
+
+	@Override
+	public void createAgreementInfo(Composite parent, AgreementRegistry registry) {
+		Group group = new Group(parent, SWT.NONE);
+		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
+		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
+		group.setText(DashboardUiMessages.DefaultDashboardPanelAdvisor_agreement_group);
+		createLinks(group, AgreementsPackage.eNAME);
+		agreementsGroups = createAgreementsGroupBlock(group);
+		agreements = createAgreementsBlock(group);
+		updateAgreementInfo(registry);
+	}
+
+	@Override
+	public void updateAgreementInfo(AgreementRegistry registry) {
+		agreementsGroups.update(registry.groups());
+		agreements.update(registry.agreements());
+	}
+
+	protected DashboardPanelBlock createAgreementsGroupBlock(Composite parent) {
+		String domain = AgreementsPackage.eNAME;
+		EClass eClass = AgreementsPackage.eINSTANCE.getAgreementsGroup();
+		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_agreement_group_title;
+		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_agreement_group_info;
+		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_agreement_group_warning;
+		String show = DashboardUiMessages.DefaultDashboardPanelAdvisor_agreement_group_show;
+		return createBlock(parent, domain, eClass, label, info, warning, show);
+	}
+
+	protected DashboardPanelBlock createAgreementsBlock(Composite parent) {
+		String domain = AgreementsPackage.eNAME;
+		EClass eClass = AgreementsPackage.eINSTANCE.getAgreement();
+		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_agreement_title;
+		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_agreement_info;
+		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_agreement_warning;
+		String show = DashboardUiMessages.DefaultDashboardPanelAdvisor_agreement_show;
+		return createBlock(parent, domain, eClass, label, info, warning, show);
 	}
 
 	@Override

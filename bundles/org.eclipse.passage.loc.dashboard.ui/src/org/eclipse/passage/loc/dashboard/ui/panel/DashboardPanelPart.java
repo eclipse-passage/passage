@@ -24,6 +24,8 @@ import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.passage.lic.agreements.AgreementDescriptor;
+import org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor;
 import org.eclipse.passage.lic.emf.meta.ComposableClassMetadata;
 import org.eclipse.passage.lic.features.FeatureDescriptor;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
@@ -39,6 +41,8 @@ import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.loc.internal.agreements.AgreementRegistry;
+import org.eclipse.passage.loc.internal.agreements.AgreementRegistryEvents;
 import org.eclipse.passage.loc.internal.features.FeatureRegistry;
 import org.eclipse.passage.loc.internal.features.FeatureRegistryEvents;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
@@ -51,30 +55,37 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.osgi.framework.FrameworkUtil;
 
+@SuppressWarnings("unused")
 public class DashboardPanelPart {
 
-	private final FeatureRegistry featureRegistry;
-	private final ProductRegistry productRegistry;
-	private final UserRegistry userRegistry;
-	private final LicenseRegistry licenseRegistry;
-	private final DashboardPanelAdvisor dashboardAdvisor;
+	private final FeatureRegistry features;
+	private final ProductRegistry products;
+	private final UserRegistry users;
+	private final AgreementRegistry agreements;
+	private final LicenseRegistry licenses;
+	private final DashboardPanelAdvisor dashboard;
 
 	@Inject
 	public DashboardPanelPart(IEclipseContext context) {
-		this.featureRegistry = context.get(FeatureRegistry.class);
-		this.productRegistry = context.get(ProductRegistry.class);
-		this.userRegistry = context.get(UserRegistry.class);
-		this.licenseRegistry = context.get(LicenseRegistry.class);
+		this.features = context.get(FeatureRegistry.class);
+		this.products = context.get(ProductRegistry.class);
+		this.users = context.get(UserRegistry.class);
+		this.agreements = context.get(AgreementRegistry.class);
+		this.licenses = context.get(LicenseRegistry.class);
+		this.dashboard = dashboard(context);
+	}
+
+	private DashboardPanelAdvisor dashboard(IEclipseContext context) {
 		DashboardPanelAdvisor advisor = context.get(DashboardPanelAdvisor.class);
 		if (advisor == null) {
 			advisor = new DefaultDashboardPanelAdvisor();
 		}
-		this.dashboardAdvisor = advisor;
+		return advisor;
 	}
 
 	@PostConstruct
 	public void postConstruct(Composite parent, IEclipseContext context) {
-		dashboardAdvisor.init(context);
+		dashboard.init(context);
 		Composite area = new Composite(parent, SWT.NONE);
 		area.setLayoutData(GridDataFactory.fillDefaults().grab(true, true).create());
 		area.setLayout(GridLayoutFactory.swtDefaults().create());
@@ -82,6 +93,7 @@ public class DashboardPanelPart {
 		createFeatureInfo(area);
 		createProductInfo(area);
 		createUserInfo(area);
+		createAgreementInfo(area);
 		createLicenseInfo(area);
 		createFooterInfo(area);
 		// FIXME: replace this with OSGi component registration
@@ -91,166 +103,197 @@ public class DashboardPanelPart {
 		metadata.consider(new FeaturesClassMetadata());
 		metadata.consider(new ProductsClassMetadata());
 		metadata.consider(new UsersClassMetadata());
+		// metadata.consider(new AgreementsClassMetadata());
 		metadata.consider(new LicensesClassMetadata());
 	}
 
 	protected void createHeaderInfo(Composite parent) {
-		dashboardAdvisor.createHeaderInfo(parent);
+		dashboard.createHeaderInfo(parent);
 	}
 
 	protected void createFeatureInfo(Composite parent) {
-		dashboardAdvisor.createFeatureInfo(parent, featureRegistry);
+		dashboard.createFeatureInfo(parent, features);
 	}
 
 	protected void createProductInfo(Composite parent) {
-		dashboardAdvisor.createProductInfo(parent, productRegistry);
+		dashboard.createProductInfo(parent, products);
 	}
 
 	protected void createUserInfo(Composite parent) {
-		dashboardAdvisor.createUserInfo(parent, userRegistry);
+		dashboard.createUserInfo(parent, users);
+	}
+
+	protected void createAgreementInfo(Composite parent) {
+		dashboard.createAgreementInfo(parent, agreements);
 	}
 
 	protected void createLicenseInfo(Composite parent) {
-		dashboardAdvisor.createLicenseInfo(parent, licenseRegistry);
+		dashboard.createLicenseInfo(parent, licenses);
 	}
 
 	protected void createFooterInfo(Composite parent) {
-		dashboardAdvisor.createFooterInfo(parent);
+		dashboard.createFooterInfo(parent);
 	}
 
 	@Inject
 	@Optional
 	public void createdFeatureSet(@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_CREATE) FeatureSetDescriptor input) {
-		dashboardAdvisor.updateFeatureInfo(featureRegistry);
+		dashboard.updateFeatureInfo(features);
 	}
 
 	@Inject
 	@Optional
 	public void deletedFeatureSet(@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_DELETE) FeatureSetDescriptor input) {
-		dashboardAdvisor.updateFeatureInfo(featureRegistry);
+		dashboard.updateFeatureInfo(features);
 	}
 
 	@Inject
 	@Optional
 	public void createdFeature(@UIEventTopic(FeatureRegistryEvents.FEATURE_CREATE) FeatureDescriptor input) {
-		dashboardAdvisor.updateFeatureInfo(featureRegistry);
+		dashboard.updateFeatureInfo(features);
 	}
 
 	@Inject
 	@Optional
 	public void deletedFeature(@UIEventTopic(FeatureRegistryEvents.FEATURE_DELETE) FeatureDescriptor input) {
-		dashboardAdvisor.updateFeatureInfo(featureRegistry);
+		dashboard.updateFeatureInfo(features);
 	}
 
 	@Inject
 	@Optional
 	public void createdFeatureVersion(
 			@UIEventTopic(FeatureRegistryEvents.FEATURE_VERSION_CREATE) FeatureVersionDescriptor input) {
-		dashboardAdvisor.updateFeatureInfo(featureRegistry);
+		dashboard.updateFeatureInfo(features);
 	}
 
 	@Inject
 	@Optional
 	public void deletedFeatureVersion(
 			@UIEventTopic(FeatureRegistryEvents.FEATURE_VERSION_DELETE) FeatureVersionDescriptor input) {
-		dashboardAdvisor.updateFeatureInfo(featureRegistry);
+		dashboard.updateFeatureInfo(features);
 	}
 
 	@Inject
 	@Optional
 	public void createdProductLine(
 			@UIEventTopic(ProductRegistryEvents.PRODUCT_LINE_CREATE) ProductLineDescriptor input) {
-		dashboardAdvisor.updateProductInfo(productRegistry);
+		dashboard.updateProductInfo(products);
 	}
 
 	@Inject
 	@Optional
 	public void deletedProductLine(
 			@UIEventTopic(ProductRegistryEvents.PRODUCT_LINE_DELETE) ProductLineDescriptor input) {
-		dashboardAdvisor.updateProductInfo(productRegistry);
+		dashboard.updateProductInfo(products);
 	}
 
 	@Inject
 	@Optional
 	public void createdProduct(@UIEventTopic(ProductRegistryEvents.PRODUCT_CREATE) ProductDescriptor input) {
-		dashboardAdvisor.updateProductInfo(productRegistry);
+		dashboard.updateProductInfo(products);
 	}
 
 	@Inject
 	@Optional
 	public void deletedProduct(@UIEventTopic(ProductRegistryEvents.PRODUCT_DELETE) ProductDescriptor input) {
-		dashboardAdvisor.updateProductInfo(productRegistry);
+		dashboard.updateProductInfo(products);
 	}
 
 	@Inject
 	@Optional
 	public void createdProductVersion(
 			@UIEventTopic(ProductRegistryEvents.PRODUCT_VERSION_CREATE) ProductVersionDescriptor input) {
-		dashboardAdvisor.updateProductInfo(productRegistry);
+		dashboard.updateProductInfo(products);
 	}
 
 	@Inject
 	@Optional
 	public void deletedProductVersion(
 			@UIEventTopic(ProductRegistryEvents.PRODUCT_VERSION_DELETE) ProductVersionDescriptor input) {
-		dashboardAdvisor.updateProductInfo(productRegistry);
+		dashboard.updateProductInfo(products);
 	}
 
 	@Inject
 	@Optional
 	public void createdProductVersionFeature(
 			@UIEventTopic(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_CREATE) ProductVersionFeatureDescriptor input) {
-		dashboardAdvisor.updateProductInfo(productRegistry);
+		dashboard.updateProductInfo(products);
 	}
 
 	@Inject
 	@Optional
 	public void deletedProductVersionFeature(
 			@UIEventTopic(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_DELETE) ProductVersionFeatureDescriptor input) {
-		dashboardAdvisor.updateProductInfo(productRegistry);
+		dashboard.updateProductInfo(products);
 	}
 
 	@Inject
 	@Optional
 	public void createdUserOrigin(@UIEventTopic(UserRegistryEvents.USER_ORIGIN_CREATE) UserOriginDescriptor input) {
-		dashboardAdvisor.updateUserInfo(userRegistry);
+		dashboard.updateUserInfo(users);
 	}
 
 	@Inject
 	@Optional
 	public void deletedUserOrigin(@UIEventTopic(UserRegistryEvents.USER_ORIGIN_DELETE) UserOriginDescriptor input) {
-		dashboardAdvisor.updateUserInfo(userRegistry);
+		dashboard.updateUserInfo(users);
 	}
 
 	@Inject
 	@Optional
 	public void createdUser(@UIEventTopic(UserRegistryEvents.USER_CREATE) UserDescriptor input) {
-		dashboardAdvisor.updateUserInfo(userRegistry);
+		dashboard.updateUserInfo(users);
 	}
 
 	@Inject
 	@Optional
 	public void deletedUser(@UIEventTopic(UserRegistryEvents.USER_DELETE) UserDescriptor input) {
-		dashboardAdvisor.updateUserInfo(userRegistry);
+		dashboard.updateUserInfo(users);
+	}
+
+	@Inject
+	@Optional
+	public void createdAgreementsGroup(
+			@UIEventTopic(AgreementRegistryEvents.AGREEMENTS_GROUP_CREATE) AgreementsGroupDescriptor input) {
+		dashboard.updateAgreementInfo(agreements);
+	}
+
+	@Inject
+	@Optional
+	public void deletedAgreementsGroup(
+			@UIEventTopic(AgreementRegistryEvents.AGREEMENTS_GROUP_DELETE) AgreementsGroupDescriptor input) {
+		dashboard.updateAgreementInfo(agreements);
+	}
+
+	@Inject
+	@Optional
+	public void createdAgreement(@UIEventTopic(AgreementRegistryEvents.AGREEMENT_CREATE) AgreementDescriptor input) {
+		dashboard.updateAgreementInfo(agreements);
+	}
+
+	@Inject
+	@Optional
+	public void deletedAgreement(@UIEventTopic(AgreementRegistryEvents.AGREEMENT_DELETE) AgreementDescriptor input) {
+		dashboard.updateAgreementInfo(agreements);
 	}
 
 	@Inject
 	@Optional
 	public void createdLicensePlan(
 			@UIEventTopic(LicenseRegistryEvents.LICENSE_PLAN_CREATE) LicensePlanDescriptor input) {
-		dashboardAdvisor.updateLicenseInfo(licenseRegistry);
+		dashboard.updateLicenseInfo(licenses);
 	}
 
 	@Inject
 	@Optional
 	public void deletedLicensePlan(
 			@UIEventTopic(LicenseRegistryEvents.LICENSE_PLAN_DELETE) LicensePlanDescriptor input) {
-		dashboardAdvisor.updateLicenseInfo(licenseRegistry);
+		dashboard.updateLicenseInfo(licenses);
 	}
 
 	@PreDestroy
 	public void preDestroy(IEclipseContext context) {
-		dashboardAdvisor.dispose(context);
+		dashboard.dispose(context);
 	}
 
 	@Focus
