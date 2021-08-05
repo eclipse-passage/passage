@@ -30,6 +30,7 @@ import org.eclipse.passage.lic.emf.meta.ComposableClassMetadata;
 import org.eclipse.passage.lic.features.FeatureDescriptor;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
+import org.eclipse.passage.lic.internal.agreements.model.AgreementsClassMetadata;
 import org.eclipse.passage.lic.internal.features.model.FeaturesClassMetadata;
 import org.eclipse.passage.lic.internal.licenses.model.LicensesClassMetadata;
 import org.eclipse.passage.lic.internal.products.model.ProductsClassMetadata;
@@ -103,7 +104,7 @@ public class DashboardPanelPart {
 		metadata.consider(new FeaturesClassMetadata());
 		metadata.consider(new ProductsClassMetadata());
 		metadata.consider(new UsersClassMetadata());
-		// metadata.consider(new AgreementsClassMetadata());
+		metadata.consider(new AgreementsClassMetadata());
 		metadata.consider(new LicensesClassMetadata());
 	}
 
