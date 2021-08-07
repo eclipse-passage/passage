@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmi:id="_Nvg8QOjbEeirQd2CUcYMjQ">
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_cxhDEAhSEemX0JS0sOPu6Q" featurename="children" parentElementId="org.eclipse.passage.loc.agreements.ui.partstack.details">
+    <elements xsi:type="basic:Part" xmi:id="_uDIx4AhSEemX0JS0sOPu6Q" elementId="org.eclipse.passage.loc.agreements.emfforms.part.details" containerData="70" contributionURI="bundleclass://org.eclipse.passage.loc.agreements.emfforms/org.eclipse.passage.loc.agreements.emfforms.parts.AgreementsDetailsPart" label="Agreements" iconURI="platform:/plugin/org.eclipse.passage.loc.workbench/images/edit.png"/>
+  </fragments>
+</fragment:ModelFragments>

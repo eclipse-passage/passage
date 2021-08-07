@@ -114,7 +114,7 @@ public class AgreementsGroupItemProvider extends ItemProviderAdapter implements 
 						getResourceLocator(), getString("_UI_AgreementsGroup_description_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_AgreementsGroup_description_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_AgreementsGroup_type"), //$NON-NLS-1$
-						AgreementsPackage.eINSTANCE.getAgreementsGroup_Description(), true, false, false,
+						AgreementsPackage.eINSTANCE.getAgreementsGroup_Description(), true, true, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
