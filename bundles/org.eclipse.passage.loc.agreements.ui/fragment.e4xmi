@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:commands="http://www.eclipse.org/ui/2010/UIModel/application/commands" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_vfDNEPXbEeu-M8cphZlPaA">
+  <imports xsi:type="commands:Command" xmi:id="_gTX60PXgEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.workbench.command.file.open"/>
+  <imports xsi:type="commands:Command" xmi:id="_gMIVQPXeEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.workbench.command.view.perspective"/>
+  <imports xsi:type="commands:Parameter" xmi:id="_lkI7wPXeEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.workbench.commandparameter.perspective.id"/>
+  <imports xsi:type="basic:PartSashContainer" xmi:id="_1KBy4PXbEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.workbench.partsashcontainer.explore"/>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_tkJKIPXcEeu-M8cphZlPaA" featurename="commands" parentElementId="org.eclipse.passage.loc.workbench.application">
+    <elements xsi:type="commands:Command" xmi:id="_tkJKIfXcEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.agreements.ui.command.agreementsgroup.create" commandName="Group of Agreements" description="New Group of Agreements"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_BG_esPXdEeu-M8cphZlPaA" featurename="handlers" parentElementId="org.eclipse.passage.loc.workbench.application">
+    <elements xsi:type="commands:Handler" xmi:id="_BG_esfXdEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.agreements.ui.handler.agreementsgroup.create" contributionURI="bundleclass://org.eclipse.passage.loc.agreements.ui/org.eclipse.passage.loc.agreements.ui.handlers.CreateAgreementsGroupHandler" command="_tkJKIfXcEeu-M8cphZlPaA"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_Nsx6gPXdEeu-M8cphZlPaA" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.perspectivestack.main">
+    <elements xsi:type="advanced:Perspective" xmi:id="_NsyhkPXdEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.agreements.ui.perspective.main" label="License Agreements" iconURI="platform:/plugin/org.eclipse.passage.lic.agreements.edit/icons/full/obj16/agreement.png">
+      <children xsi:type="basic:PartSashContainer" xmi:id="_NsyhkfXdEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.agreements.ui.partsashcontainer.main" selectedElement="_Nsyhk_XdEeu-M8cphZlPaA" horizontal="true">
+        <children xsi:type="advanced:Placeholder" xmi:id="_NsyhkvXdEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.agreements.ui.placeholder.explore" containerData="30" ref="_1KBy4PXbEeu-M8cphZlPaA"/>
+        <children xsi:type="basic:PartStack" xmi:id="_Nsyhk_XdEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.agreements.ui.partstack.details" containerData="70"/>
+      </children>
+      <handlers xmi:id="_NsyhlPXdEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.agreements.ui.handler.file.open" contributionURI="bundleclass://org.eclipse.passage.loc.agreements.ui/org.eclipse.passage.loc.agreements.ui.handlers.LoadAgreementsGroupHandler" command="_gTX60PXgEeu-M8cphZlPaA"/>
+    </elements>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_kpCa4PXdEeu-M8cphZlPaA" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.menu.view">
+    <elements xsi:type="menu:HandledMenuItem" xmi:id="_kpCa4fXdEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.agreements.ui.handledmenuitem.agreements" label="Agreements" iconURI="platform:/plugin/org.eclipse.passage.lic.agreements.edit/icons/full/obj16/agreement.png" command="_gMIVQPXeEeu-M8cphZlPaA">
+      <parameters xmi:id="_kpCa4vXdEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.agreements.ui.parameter.view.perspective" name="org.eclipse.passage.loc.workbench.commandparameter.perspective.id" value="org.eclipse.passage.loc.agreements.ui.perspective.main"/>
+    </elements>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_vWPkcPXdEeu-M8cphZlPaA" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.menu.file.new">
+    <elements xsi:type="menu:HandledMenuItem" xmi:id="_vWPkcfXdEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.agreements.ui.handledmenuitem.agreementsgroup" label="Group of Agreements" iconURI="platform:/plugin/org.eclipse.passage.lic.agreements.edit/icons/full/obj16/agreement.png" tooltip="Compose new Group of Agreements" command="_tkJKIfXcEeu-M8cphZlPaA"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_FwrKIPXeEeu-M8cphZlPaA" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.toolbar.main" positionInList="after:org.eclipse.passage.loc.users.ui.handledtoolitem.view">
+    <elements xsi:type="menu:HandledToolItem" xmi:id="_FwrKIfXeEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.agreements.ui.handledtoolitem.view" label="Agreements" iconURI="platform:/plugin/org.eclipse.passage.lic.agreements.edit/icons/full/obj16/agreement.png" tooltip="View License Agreements" command="_gMIVQPXeEeu-M8cphZlPaA">
+      <tags>FORCE_TEXT</tags>
+      <parameters xmi:id="_FwrKIvXeEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.agreements.ui.parameter.view.perspective" name="org.eclipse.passage.loc.workbench.commandparameter.perspective.id" value="org.eclipse.passage.loc.agreements.ui.perspective.main"/>
+    </elements>
+  </fragments>
+</fragment:ModelFragments>

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -18,11 +18,13 @@ import java.util.Map;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.services.events.IEventBroker;
+import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.internal.e4.core.commands.ExecuteCommand;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
+import org.eclipse.passage.loc.agreements.ui.AgreementsUi;
 import org.eclipse.passage.loc.features.ui.FeaturesUi;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistryAccess;
 import org.eclipse.passage.loc.internal.emf.SelectionCommandAdvisor;
@@ -83,6 +85,8 @@ public class DashboardUi {
 			return null;
 		}
 		switch (domain) {
+		case AgreementsPackage.eNAME:
+			return AgreementsUi.PERSPECTIVE_MAIN;
 		case FeaturesPackage.eNAME:
 			return FeaturesUi.PERSPECTIVE_MAIN;
 		case ProductsPackage.eNAME:
