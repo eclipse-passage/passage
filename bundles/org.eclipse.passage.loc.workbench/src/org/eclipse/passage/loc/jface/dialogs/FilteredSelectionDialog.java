@@ -72,6 +72,7 @@ public class FilteredSelectionDialog<T> extends ObjectSelectionStatusDialog<T> {
 
 	@Override
 	protected void computeResult() {
+		@SuppressWarnings("unchecked")
 		List<T> selectedElements = tableViewItems.getStructuredSelection().toList();
 		setResult(selectedElements);
 	}
