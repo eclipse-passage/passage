@@ -179,7 +179,9 @@ abstract class TestLicenses extends TestData<LicenseStorage> {
 			pack.getLicense().getProduct().setIdentifier(product.identifier());
 			pack.getLicense().getProduct().setVersion(product.version());
 			pack.getLicense().setIssueDate(issued);
-			((List<PersonalLicensePackDescriptor>) plan.getPersonal()).add(pack);
+			@SuppressWarnings("unchecked")
+			List<PersonalLicensePackDescriptor> personal = (List<PersonalLicensePackDescriptor>) plan.getPersonal();
+			personal.add(pack);
 		}
 	}
 }

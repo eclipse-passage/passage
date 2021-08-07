@@ -13,9 +13,7 @@
 package org.eclipse.passage.lic.agreements.model.api;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor;
 
 /**
@@ -48,6 +46,7 @@ public interface AgreementsGroup extends EObject, AgreementsGroupDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getIdentifier();
 
 	/**
