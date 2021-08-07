@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.internal.agreements.ui;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor;
+import org.eclipse.passage.lic.agreements.AgreementGroupDescriptor;
 import org.eclipse.passage.lic.api.MandatoryService;
 import org.eclipse.passage.loc.internal.api.ClassSupply;
 import org.eclipse.passage.loc.internal.api.InstanceSupply;
@@ -26,7 +26,7 @@ public final class AgreementsInstanceSupply implements ClassSupply {
 
 	@Override
 	public Optional<InstanceSupply<?>> find(Class<?> clazz, MandatoryService context) {
-		if (AgreementsGroupDescriptor.class.isAssignableFrom(clazz)) {
+		if (AgreementGroupDescriptor.class.isAssignableFrom(clazz)) {
 			return Optional.of(new SupplyAgreementsGroup(context));
 		}
 		return Optional.empty();

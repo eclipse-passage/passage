@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.loc.internal.agreements.core.AgreementsSelectionCommandAdvisor">
+   <property name="org.eclipse.passage.lic.emf.edit.domain.name" value="agreements"/>
+   <service>
+      <provide interface="org.eclipse.passage.loc.internal.emf.SelectionCommandAdvisor"/>
+   </service>
+   <reference bind="bindDomainRegistry" interface="org.eclipse.passage.loc.internal.agreements.AgreementRegistry" name="DomainRegistry" unbind="unbindDomainRegistry"/>
+   <implementation class="org.eclipse.passage.loc.internal.agreements.core.AgreementsSelectionCommandAdvisor"/>
+</scr:component>

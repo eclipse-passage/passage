@@ -43,7 +43,7 @@ public class AgreementsE4UiProcessor {
 		Map<String, String> paths = new HashMap<String, String>();
 		AgreementsPackage agreements = AgreementsPackage.eINSTANCE;
 		paths.put(agreements.getName(), String.format(pattern, "agreement.png")); //$NON-NLS-1$
-		paths.put(agreements.getAgreementsGroup().getName(), String.format(pattern, "agreement.png")); //$NON-NLS-1$
+		paths.put(agreements.getAgreementGroup().getName(), String.format(pattern, "agreement.png")); //$NON-NLS-1$
 		paths.put(agreements.getAgreement().getName(), String.format(pattern, "agreement.png")); //$NON-NLS-1$
 		LicensingImages.declareImages(AgreementsEditPlugin.class, paths);
 	}

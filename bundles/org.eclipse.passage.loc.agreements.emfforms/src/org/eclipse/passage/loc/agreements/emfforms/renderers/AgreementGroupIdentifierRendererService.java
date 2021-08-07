@@ -27,7 +27,7 @@ public class AgreementGroupIdentifierRendererService extends StructuredFeatureRe
 		implements EMFFormsDIRendererService<VControl> {
 
 	public AgreementGroupIdentifierRendererService() {
-		super(ValidatedTextRenderer.class, AgreementsPackage.eINSTANCE.getAgreementsGroup_Identifier());
+		super(ValidatedTextRenderer.class, AgreementsPackage.eINSTANCE.getAgreementGroup_Identifier());
 	}
 
 	@Reference

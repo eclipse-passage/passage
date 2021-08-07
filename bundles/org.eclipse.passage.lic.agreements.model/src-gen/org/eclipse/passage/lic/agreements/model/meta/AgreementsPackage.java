@@ -95,32 +95,32 @@ public interface AgreementsPackage extends EPackage {
 	int AGREEMENT_DESCRIPTOR_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor <em>Group Descriptor</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.passage.lic.agreements.AgreementGroupDescriptor <em>Agreement Group Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor
-	 * @see org.eclipse.passage.lic.agreements.model.impl.AgreementsPackageImpl#getAgreementsGroupDescriptor()
+	 * @see org.eclipse.passage.lic.agreements.AgreementGroupDescriptor
+	 * @see org.eclipse.passage.lic.agreements.model.impl.AgreementsPackageImpl#getAgreementGroupDescriptor()
 	 * @generated
 	 */
-	int AGREEMENTS_GROUP_DESCRIPTOR = 1;
+	int AGREEMENT_GROUP_DESCRIPTOR = 1;
 
 	/**
-	 * The number of structural features of the '<em>Group Descriptor</em>' class.
+	 * The number of structural features of the '<em>Agreement Group Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENTS_GROUP_DESCRIPTOR_FEATURE_COUNT = 0;
+	int AGREEMENT_GROUP_DESCRIPTOR_FEATURE_COUNT = 0;
 
 	/**
-	 * The number of operations of the '<em>Group Descriptor</em>' class.
+	 * The number of operations of the '<em>Agreement Group Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENTS_GROUP_DESCRIPTOR_OPERATION_COUNT = 0;
+	int AGREEMENT_GROUP_DESCRIPTOR_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.agreements.model.impl.AgreementImpl <em>Agreement</em>}' class.
@@ -196,14 +196,14 @@ public interface AgreementsPackage extends EPackage {
 	int AGREEMENT_OPERATION_COUNT = AGREEMENT_DESCRIPTOR_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.agreements.model.impl.AgreementsGroupImpl <em>Group</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.passage.lic.agreements.model.impl.AgreementGroupImpl <em>Agreement Group</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.agreements.model.impl.AgreementsGroupImpl
-	 * @see org.eclipse.passage.lic.agreements.model.impl.AgreementsPackageImpl#getAgreementsGroup()
+	 * @see org.eclipse.passage.lic.agreements.model.impl.AgreementGroupImpl
+	 * @see org.eclipse.passage.lic.agreements.model.impl.AgreementsPackageImpl#getAgreementGroup()
 	 * @generated
 	 */
-	int AGREEMENTS_GROUP = 3;
+	int AGREEMENT_GROUP = 3;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -212,7 +212,7 @@ public interface AgreementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENTS_GROUP__IDENTIFIER = AGREEMENTS_GROUP_DESCRIPTOR_FEATURE_COUNT + 0;
+	int AGREEMENT_GROUP__IDENTIFIER = AGREEMENT_GROUP_DESCRIPTOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -221,7 +221,7 @@ public interface AgreementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENTS_GROUP__NAME = AGREEMENTS_GROUP_DESCRIPTOR_FEATURE_COUNT + 1;
+	int AGREEMENT_GROUP__NAME = AGREEMENT_GROUP_DESCRIPTOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -230,7 +230,7 @@ public interface AgreementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENTS_GROUP__DESCRIPTION = AGREEMENTS_GROUP_DESCRIPTOR_FEATURE_COUNT + 2;
+	int AGREEMENT_GROUP__DESCRIPTION = AGREEMENT_GROUP_DESCRIPTOR_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Agreements</b></em>' containment reference list.
@@ -239,25 +239,25 @@ public interface AgreementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENTS_GROUP__AGREEMENTS = AGREEMENTS_GROUP_DESCRIPTOR_FEATURE_COUNT + 3;
+	int AGREEMENT_GROUP__AGREEMENTS = AGREEMENT_GROUP_DESCRIPTOR_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the '<em>Group</em>' class.
+	 * The number of structural features of the '<em>Agreement Group</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENTS_GROUP_FEATURE_COUNT = AGREEMENTS_GROUP_DESCRIPTOR_FEATURE_COUNT + 4;
+	int AGREEMENT_GROUP_FEATURE_COUNT = AGREEMENT_GROUP_DESCRIPTOR_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of operations of the '<em>Group</em>' class.
+	 * The number of operations of the '<em>Agreement Group</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENTS_GROUP_OPERATION_COUNT = AGREEMENTS_GROUP_DESCRIPTOR_OPERATION_COUNT + 0;
+	int AGREEMENT_GROUP_OPERATION_COUNT = AGREEMENT_GROUP_DESCRIPTOR_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.agreements.model.api.Agreement <em>Agreement</em>}'.
@@ -325,58 +325,58 @@ public interface AgreementsPackage extends EPackage {
 	EAttribute getAgreement_Mime();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup <em>Group</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.agreements.model.api.AgreementGroup <em>Agreement Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Group</em>'.
-	 * @see org.eclipse.passage.lic.agreements.model.api.AgreementsGroup
+	 * @return the meta object for class '<em>Agreement Group</em>'.
+	 * @see org.eclipse.passage.lic.agreements.model.api.AgreementGroup
 	 * @generated
 	 */
-	EClass getAgreementsGroup();
+	EClass getAgreementGroup();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup#getIdentifier <em>Identifier</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.agreements.model.api.AgreementGroup#getIdentifier <em>Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Identifier</em>'.
-	 * @see org.eclipse.passage.lic.agreements.model.api.AgreementsGroup#getIdentifier()
-	 * @see #getAgreementsGroup()
+	 * @see org.eclipse.passage.lic.agreements.model.api.AgreementGroup#getIdentifier()
+	 * @see #getAgreementGroup()
 	 * @generated
 	 */
-	EAttribute getAgreementsGroup_Identifier();
+	EAttribute getAgreementGroup_Identifier();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.agreements.model.api.AgreementGroup#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipse.passage.lic.agreements.model.api.AgreementsGroup#getName()
-	 * @see #getAgreementsGroup()
+	 * @see org.eclipse.passage.lic.agreements.model.api.AgreementGroup#getName()
+	 * @see #getAgreementGroup()
 	 * @generated
 	 */
-	EAttribute getAgreementsGroup_Name();
+	EAttribute getAgreementGroup_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup#getDescription <em>Description</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.agreements.model.api.AgreementGroup#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Description</em>'.
-	 * @see org.eclipse.passage.lic.agreements.model.api.AgreementsGroup#getDescription()
-	 * @see #getAgreementsGroup()
+	 * @see org.eclipse.passage.lic.agreements.model.api.AgreementGroup#getDescription()
+	 * @see #getAgreementGroup()
 	 * @generated
 	 */
-	EAttribute getAgreementsGroup_Description();
+	EAttribute getAgreementGroup_Description();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup#getAgreements <em>Agreements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.passage.lic.agreements.model.api.AgreementGroup#getAgreements <em>Agreements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Agreements</em>'.
-	 * @see org.eclipse.passage.lic.agreements.model.api.AgreementsGroup#getAgreements()
-	 * @see #getAgreementsGroup()
+	 * @see org.eclipse.passage.lic.agreements.model.api.AgreementGroup#getAgreements()
+	 * @see #getAgreementGroup()
 	 * @generated
 	 */
-	EReference getAgreementsGroup_Agreements();
+	EReference getAgreementGroup_Agreements();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.agreements.AgreementDescriptor <em>Agreement Descriptor</em>}'.
@@ -390,15 +390,15 @@ public interface AgreementsPackage extends EPackage {
 	EClass getAgreementDescriptor();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor <em>Group Descriptor</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.agreements.AgreementGroupDescriptor <em>Agreement Group Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Group Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor"
+	 * @return the meta object for class '<em>Agreement Group Descriptor</em>'.
+	 * @see org.eclipse.passage.lic.agreements.AgreementGroupDescriptor
+	 * @model instanceClass="org.eclipse.passage.lic.agreements.AgreementGroupDescriptor"
 	 * @generated
 	 */
-	EClass getAgreementsGroupDescriptor();
+	EClass getAgreementGroupDescriptor();
 
 	/**
 	 * Returns the factory that creates the instances of the model.

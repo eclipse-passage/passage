@@ -13,15 +13,15 @@
 package org.eclipse.passage.loc.internal.agreements.core;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor;
+import org.eclipse.passage.lic.agreements.AgreementGroupDescriptor;
 import org.eclipse.passage.lic.agreements.model.api.Agreement;
-import org.eclipse.passage.lic.agreements.model.api.AgreementsGroup;
+import org.eclipse.passage.lic.agreements.model.api.AgreementGroup;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 import org.eclipse.passage.loc.internal.emf.DomainContentAdapter;
 
 @SuppressWarnings("restriction")
 public class AgreementsDomainRegistryTracker
-		extends DomainContentAdapter<AgreementsGroupDescriptor, AgreementDomainRegistry> {
+		extends DomainContentAdapter<AgreementGroupDescriptor, AgreementDomainRegistry> {
 
 	public AgreementsDomainRegistryTracker(AgreementDomainRegistry registry) {
 		super(registry);
@@ -30,14 +30,14 @@ public class AgreementsDomainRegistryTracker
 	@Override
 	public void notifyChanged(Notification notification) {
 		Object notifier = notification.getNotifier();
-		if (notifier instanceof AgreementsGroup) {
-			AgreementsGroup group = (AgreementsGroup) notifier;
-			switch (notification.getFeatureID(AgreementsGroup.class)) {
-			case AgreementsPackage.AGREEMENTS_GROUP__IDENTIFIER:
-				processAgreementsGroupIdentifier(group, notification);
+		if (notifier instanceof AgreementGroup) {
+			AgreementGroup group = (AgreementGroup) notifier;
+			switch (notification.getFeatureID(AgreementGroup.class)) {
+			case AgreementsPackage.AGREEMENT_GROUP__IDENTIFIER:
+				processAgreementGroupIdentifier(group, notification);
 				break;
-			case AgreementsPackage.AGREEMENTS_GROUP__AGREEMENTS:
-				processAgreementsGroupContent(notification);
+			case AgreementsPackage.AGREEMENT_GROUP__AGREEMENTS:
+				processAgreementGroupContent(notification);
 				break;
 			default:
 				break;
@@ -55,15 +55,15 @@ public class AgreementsDomainRegistryTracker
 		super.notifyChanged(notification);
 	}
 
-	protected void processAgreementsGroupIdentifier(AgreementsGroup group, Notification notification) {
+	protected void processAgreementGroupIdentifier(AgreementGroup group, Notification notification) {
 		String old = notification.getOldStringValue();
 		switch (notification.getEventType()) {
 		case Notification.SET:
 			if (old != null) {
-				registry.unregisterAgreementsGroup(old);
+				registry.unregisterAgreementGroup(old);
 			}
 			if (notification.getNewStringValue() != null) {
-				registry.registerAgreementsGroup(group);
+				registry.registerAgreementGroup(group);
 			}
 			break;
 		default:
@@ -71,12 +71,17 @@ public class AgreementsDomainRegistryTracker
 		}
 	}
 
-	protected void processAgreementsGroupContent(Notification notification) {
+	protected void processAgreementGroupContent(Notification notification) {
 		Object oldValue = notification.getOldValue();
 		Object newValue = notification.getNewValue();
 		switch (notification.getEventType()) {
 		case Notification.ADD:
 			if (newValue instanceof Agreement) {
+				Agreement agreement = (Agreement) newValue;
+				String identifier = agreement.getIdentifier();
+				if (identifier != null) {
+					registry.registerAgreement(agreement);
+				}
 			}
 			break;
 		case Notification.REMOVE:

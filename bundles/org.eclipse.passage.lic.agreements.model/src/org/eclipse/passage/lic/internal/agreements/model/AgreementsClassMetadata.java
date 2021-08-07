@@ -17,9 +17,9 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.eclipse.passage.lic.agreements.AgreementDescriptor;
-import org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor;
+import org.eclipse.passage.lic.agreements.AgreementGroupDescriptor;
 import org.eclipse.passage.lic.agreements.model.api.Agreement;
-import org.eclipse.passage.lic.agreements.model.api.AgreementsGroup;
+import org.eclipse.passage.lic.agreements.model.api.AgreementGroup;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 import org.eclipse.passage.lic.emf.meta.ClassMetadata;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
@@ -33,12 +33,12 @@ public final class AgreementsClassMetadata implements ClassMetadata {
 	public AgreementsClassMetadata() {
 		meta = AgreementsPackage.eINSTANCE;
 		map = new HashMap<Class<?>, EntityMetadata>();
-		map.put(AgreementsGroupDescriptor.class, //
+		map.put(AgreementGroupDescriptor.class, //
 				new PlainEntityMetadata(//
-						meta.getAgreementsGroup(), //
-						meta.getAgreementsGroup_Identifier(), //
-						meta.getAgreementsGroup_Name()));
-		map.put(AgreementsGroup.class, map.get(AgreementsGroupDescriptor.class));
+						meta.getAgreementGroup(), //
+						meta.getAgreementGroup_Identifier(), //
+						meta.getAgreementGroup_Name()));
+		map.put(AgreementGroup.class, map.get(AgreementGroupDescriptor.class));
 		map.put(AgreementDescriptor.class, //
 				new PlainEntityMetadata(//
 						meta.getAgreement(), //

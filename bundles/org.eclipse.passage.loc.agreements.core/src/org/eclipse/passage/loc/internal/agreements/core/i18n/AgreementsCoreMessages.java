@@ -16,9 +16,12 @@ import org.eclipse.osgi.util.NLS;
 
 public final class AgreementsCoreMessages extends NLS {
 
-	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.users.core.i18n.AgreementsCoreMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.agreements.core.i18n.AgreementsCoreMessages"; //$NON-NLS-1$
 
 	public static String AgreementDomain_instance_duplication_message;
+	public static String AgreementsSelectionCommandAdvisor_select_agreement;
+	public static String AgreementsSelectionCommandAdvisor_select_agreement_group;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, AgreementsCoreMessages.class);

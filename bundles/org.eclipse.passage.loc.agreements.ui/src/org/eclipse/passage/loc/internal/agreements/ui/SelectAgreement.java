@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.agreements.AgreementDescriptor;
-import org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor;
+import org.eclipse.passage.lic.agreements.AgreementGroupDescriptor;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 import org.eclipse.passage.lic.api.MandatoryService;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
@@ -27,7 +27,7 @@ import org.eclipse.passage.loc.internal.workbench.SupplySelectRequest;
 import org.eclipse.passage.loc.jface.dialogs.Appearance;
 
 /**
- * Creates {@link SelectRequest} for {@link AgreementsGroupDescriptor} from the
+ * Creates {@link SelectRequest} for {@link AgreementGroupDescriptor} from the
  * given {@link MandatoryService}.
  * 
  */

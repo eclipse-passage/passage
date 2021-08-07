@@ -21,10 +21,10 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.passage.lic.agreements.AgreementDescriptor;
 
-import org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor;
+import org.eclipse.passage.lic.agreements.AgreementGroupDescriptor;
 import org.eclipse.passage.lic.agreements.model.api.Agreement;
 
-import org.eclipse.passage.lic.agreements.model.api.AgreementsGroup;
+import org.eclipse.passage.lic.agreements.model.api.AgreementGroup;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsFactory;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 
@@ -47,7 +47,7 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass agreementsGroupEClass = null;
+	private EClass agreementGroupEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -61,7 +61,7 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass agreementsGroupDescriptorEClass = null;
+	private EClass agreementGroupDescriptorEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -193,8 +193,8 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 	 * @generated
 	 */
 	@Override
-	public EClass getAgreementsGroup() {
-		return agreementsGroupEClass;
+	public EClass getAgreementGroup() {
+		return agreementGroupEClass;
 	}
 
 	/**
@@ -203,8 +203,8 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAgreementsGroup_Identifier() {
-		return (EAttribute) agreementsGroupEClass.getEStructuralFeatures().get(0);
+	public EAttribute getAgreementGroup_Identifier() {
+		return (EAttribute) agreementGroupEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -213,8 +213,8 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAgreementsGroup_Name() {
-		return (EAttribute) agreementsGroupEClass.getEStructuralFeatures().get(1);
+	public EAttribute getAgreementGroup_Name() {
+		return (EAttribute) agreementGroupEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -223,8 +223,8 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAgreementsGroup_Description() {
-		return (EAttribute) agreementsGroupEClass.getEStructuralFeatures().get(2);
+	public EAttribute getAgreementGroup_Description() {
+		return (EAttribute) agreementGroupEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -233,8 +233,8 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 	 * @generated
 	 */
 	@Override
-	public EReference getAgreementsGroup_Agreements() {
-		return (EReference) agreementsGroupEClass.getEStructuralFeatures().get(3);
+	public EReference getAgreementGroup_Agreements() {
+		return (EReference) agreementGroupEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -253,8 +253,8 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 	 * @generated
 	 */
 	@Override
-	public EClass getAgreementsGroupDescriptor() {
-		return agreementsGroupDescriptorEClass;
+	public EClass getAgreementGroupDescriptor() {
+		return agreementGroupDescriptorEClass;
 	}
 
 	/**
@@ -289,7 +289,7 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 		// Create classes and their features
 		agreementDescriptorEClass = createEClass(AGREEMENT_DESCRIPTOR);
 
-		agreementsGroupDescriptorEClass = createEClass(AGREEMENTS_GROUP_DESCRIPTOR);
+		agreementGroupDescriptorEClass = createEClass(AGREEMENT_GROUP_DESCRIPTOR);
 
 		agreementEClass = createEClass(AGREEMENT);
 		createEAttribute(agreementEClass, AGREEMENT__IDENTIFIER);
@@ -298,11 +298,11 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 		createEAttribute(agreementEClass, AGREEMENT__FILE);
 		createEAttribute(agreementEClass, AGREEMENT__MIME);
 
-		agreementsGroupEClass = createEClass(AGREEMENTS_GROUP);
-		createEAttribute(agreementsGroupEClass, AGREEMENTS_GROUP__IDENTIFIER);
-		createEAttribute(agreementsGroupEClass, AGREEMENTS_GROUP__NAME);
-		createEAttribute(agreementsGroupEClass, AGREEMENTS_GROUP__DESCRIPTION);
-		createEReference(agreementsGroupEClass, AGREEMENTS_GROUP__AGREEMENTS);
+		agreementGroupEClass = createEClass(AGREEMENT_GROUP);
+		createEAttribute(agreementGroupEClass, AGREEMENT_GROUP__IDENTIFIER);
+		createEAttribute(agreementGroupEClass, AGREEMENT_GROUP__NAME);
+		createEAttribute(agreementGroupEClass, AGREEMENT_GROUP__DESCRIPTION);
+		createEReference(agreementGroupEClass, AGREEMENT_GROUP__AGREEMENTS);
 	}
 
 	/**
@@ -335,13 +335,13 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 
 		// Add supertypes to classes
 		agreementEClass.getESuperTypes().add(this.getAgreementDescriptor());
-		agreementsGroupEClass.getESuperTypes().add(this.getAgreementsGroupDescriptor());
+		agreementGroupEClass.getESuperTypes().add(this.getAgreementGroupDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(agreementDescriptorEClass, AgreementDescriptor.class, "AgreementDescriptor", IS_ABSTRACT, //$NON-NLS-1$
 				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(agreementsGroupDescriptorEClass, AgreementsGroupDescriptor.class, "AgreementsGroupDescriptor", //$NON-NLS-1$
+		initEClass(agreementGroupDescriptorEClass, AgreementGroupDescriptor.class, "AgreementGroupDescriptor", //$NON-NLS-1$
 				IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(agreementEClass, Agreement.class, "Agreement", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
@@ -357,18 +357,18 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 		initEAttribute(getAgreement_Mime(), ecorePackage.getEString(), "mime", null, 1, 1, Agreement.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(agreementsGroupEClass, AgreementsGroup.class, "AgreementsGroup", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+		initEClass(agreementGroupEClass, AgreementGroup.class, "AgreementGroup", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAgreementsGroup_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, //$NON-NLS-1$
-				AgreementsGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+		initEAttribute(getAgreementGroup_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, //$NON-NLS-1$
+				AgreementGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAgreementsGroup_Name(), ecorePackage.getEString(), "name", null, 1, 1, AgreementsGroup.class, //$NON-NLS-1$
+		initEAttribute(getAgreementGroup_Name(), ecorePackage.getEString(), "name", null, 1, 1, AgreementGroup.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAgreementsGroup_Description(), ecorePackage.getEString(), "description", null, 1, 1, //$NON-NLS-1$
-				AgreementsGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+		initEAttribute(getAgreementGroup_Description(), ecorePackage.getEString(), "description", null, 1, 1, //$NON-NLS-1$
+				AgreementGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEReference(getAgreementsGroup_Agreements(), this.getAgreement(), null, "agreements", null, 0, -1, //$NON-NLS-1$
-				AgreementsGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+		initEReference(getAgreementGroup_Agreements(), this.getAgreement(), null, "agreements", null, 0, -1, //$NON-NLS-1$
+				AgreementGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource

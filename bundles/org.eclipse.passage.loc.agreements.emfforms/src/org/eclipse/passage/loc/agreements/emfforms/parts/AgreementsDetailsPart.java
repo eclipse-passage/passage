@@ -20,7 +20,7 @@ import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.emfforms.spi.swt.treemasterdetail.util.CreateElementCallback;
-import org.eclipse.passage.lic.agreements.model.api.AgreementsGroup;
+import org.eclipse.passage.lic.agreements.model.api.AgreementGroup;
 import org.eclipse.passage.loc.internal.agreements.AgreementRegistryEvents;
 import org.eclipse.passage.loc.workbench.emfforms.parts.DetailsView;
 
@@ -33,7 +33,7 @@ public class AgreementsDetailsPart extends DetailsView {
 
 	@Inject
 	@Optional
-	public void showFeatureSet(@UIEventTopic(AgreementRegistryEvents.AGREEMENTS_GROUP_CREATE) AgreementsGroup input,
+	public void showFeatureSet(@UIEventTopic(AgreementRegistryEvents.AGREEMENT_GROUP_CREATE) AgreementGroup input,
 			IEclipseContext context) {
 		show(input, context);
 	}

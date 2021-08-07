@@ -32,27 +32,27 @@ public final class AgreementRegistryEvents {
 	/**
 	 * Base name of all AgreementsGroup events
 	 */
-	public static final String AGREEMENTS_GROUP_TOPIC_BASE = AGREEMENTS_TOPIC_BASE + TOPIC_SEP + "AgreementsGroup"; //$NON-NLS-1$
+	public static final String AGREEMENT_GROUP_TOPIC_BASE = AGREEMENTS_TOPIC_BASE + TOPIC_SEP + "AgreementGroup"; //$NON-NLS-1$
 
 	/**
 	 * AgreementsGroup <code>create</code> event
 	 */
-	public static final String AGREEMENTS_GROUP_CREATE = AGREEMENTS_GROUP_TOPIC_BASE + TOPIC_SEP + CREATE;
+	public static final String AGREEMENT_GROUP_CREATE = AGREEMENT_GROUP_TOPIC_BASE + TOPIC_SEP + CREATE;
 
 	/**
 	 * AgreementsGroup <code>read</code> event
 	 */
-	public static final String AGREEMENTS_GROUP_READ = AGREEMENTS_GROUP_TOPIC_BASE + TOPIC_SEP + READ;
+	public static final String AGREEMENT_GROUP_READ = AGREEMENT_GROUP_TOPIC_BASE + TOPIC_SEP + READ;
 
 	/**
 	 * AgreementsGroup<code>update</code> event
 	 */
-	public static final String AGREEMENTS_GROUP_UPDATE = AGREEMENTS_GROUP_TOPIC_BASE + TOPIC_SEP + UPDATE;
+	public static final String AGREEMENT_GROUP_UPDATE = AGREEMENT_GROUP_TOPIC_BASE + TOPIC_SEP + UPDATE;
 
 	/**
 	 * AgreementsGroup<code>delete</code> event
 	 */
-	public static final String AGREEMENTS_GROUP_DELETE = AGREEMENTS_GROUP_TOPIC_BASE + TOPIC_SEP + DELETE;
+	public static final String AGREEMENT_GROUP_DELETE = AGREEMENT_GROUP_TOPIC_BASE + TOPIC_SEP + DELETE;
 
 	/**
 	 * Base name of all Agreement events
