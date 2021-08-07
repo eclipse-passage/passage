@@ -292,7 +292,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createAgreementsGroupBlock(Composite parent) {
 		String domain = AgreementsPackage.eNAME;
-		EClass eClass = AgreementsPackage.eINSTANCE.getAgreementsGroup();
+		EClass eClass = AgreementsPackage.eINSTANCE.getAgreementGroup();
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_agreement_group_title;
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_agreement_group_info;
 		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_agreement_group_warning;

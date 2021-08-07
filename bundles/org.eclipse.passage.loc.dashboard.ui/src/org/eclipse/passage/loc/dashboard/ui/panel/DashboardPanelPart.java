@@ -25,7 +25,7 @@ import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.passage.lic.agreements.AgreementDescriptor;
-import org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor;
+import org.eclipse.passage.lic.agreements.AgreementGroupDescriptor;
 import org.eclipse.passage.lic.emf.meta.ComposableClassMetadata;
 import org.eclipse.passage.lic.features.FeatureDescriptor;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
@@ -255,14 +255,14 @@ public class DashboardPanelPart {
 	@Inject
 	@Optional
 	public void createdAgreementsGroup(
-			@UIEventTopic(AgreementRegistryEvents.AGREEMENTS_GROUP_CREATE) AgreementsGroupDescriptor input) {
+			@UIEventTopic(AgreementRegistryEvents.AGREEMENT_GROUP_CREATE) AgreementGroupDescriptor input) {
 		dashboard.updateAgreementInfo(agreements);
 	}
 
 	@Inject
 	@Optional
 	public void deletedAgreementsGroup(
-			@UIEventTopic(AgreementRegistryEvents.AGREEMENTS_GROUP_DELETE) AgreementsGroupDescriptor input) {
+			@UIEventTopic(AgreementRegistryEvents.AGREEMENT_GROUP_DELETE) AgreementGroupDescriptor input) {
 		dashboard.updateAgreementInfo(agreements);
 	}
 

@@ -30,17 +30,17 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.passage.lic.agreements.edit.AgreementsEditPlugin;
-import org.eclipse.passage.lic.agreements.model.api.AgreementsGroup;
+import org.eclipse.passage.lic.agreements.model.api.AgreementGroup;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsFactory;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup} object.
+ * This is the item provider adapter for a {@link org.eclipse.passage.lic.agreements.model.api.AgreementGroup} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AgreementsGroupItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+public class AgreementGroupItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -48,7 +48,7 @@ public class AgreementsGroupItemProvider extends ItemProviderAdapter implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AgreementsGroupItemProvider(AdapterFactory adapterFactory) {
+	public AgreementGroupItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -79,10 +79,10 @@ public class AgreementsGroupItemProvider extends ItemProviderAdapter implements 
 	protected void addIdentifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_AgreementsGroup_identifier_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_AgreementsGroup_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_AgreementsGroup_type"), //$NON-NLS-1$
-						AgreementsPackage.eINSTANCE.getAgreementsGroup_Identifier(), true, false, false,
+						getResourceLocator(), getString("_UI_AgreementGroup_identifier_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_AgreementGroup_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_AgreementGroup_type"), //$NON-NLS-1$
+						AgreementsPackage.eINSTANCE.getAgreementGroup_Identifier(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -95,10 +95,10 @@ public class AgreementsGroupItemProvider extends ItemProviderAdapter implements 
 	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_AgreementsGroup_name_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_AgreementsGroup_name_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_AgreementsGroup_type"), //$NON-NLS-1$
-						AgreementsPackage.eINSTANCE.getAgreementsGroup_Name(), true, false, false,
+						getResourceLocator(), getString("_UI_AgreementGroup_name_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_AgreementGroup_name_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_AgreementGroup_type"), //$NON-NLS-1$
+						AgreementsPackage.eINSTANCE.getAgreementGroup_Name(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -111,10 +111,10 @@ public class AgreementsGroupItemProvider extends ItemProviderAdapter implements 
 	protected void addDescriptionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_AgreementsGroup_description_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_AgreementsGroup_description_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_AgreementsGroup_type"), //$NON-NLS-1$
-						AgreementsPackage.eINSTANCE.getAgreementsGroup_Description(), true, true, false,
+						getResourceLocator(), getString("_UI_AgreementGroup_description_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_AgreementGroup_description_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_AgreementGroup_type"), //$NON-NLS-1$
+						AgreementsPackage.eINSTANCE.getAgreementGroup_Description(), true, true, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -130,7 +130,7 @@ public class AgreementsGroupItemProvider extends ItemProviderAdapter implements 
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(AgreementsPackage.eINSTANCE.getAgreementsGroup_Agreements());
+			childrenFeatures.add(AgreementsPackage.eINSTANCE.getAgreementGroup_Agreements());
 		}
 		return childrenFeatures;
 	}
@@ -180,9 +180,9 @@ public class AgreementsGroupItemProvider extends ItemProviderAdapter implements 
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((AgreementsGroup) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_AgreementsGroup_type") : //$NON-NLS-1$
-				getString("_UI_AgreementsGroup_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		String label = ((AgreementGroup) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_AgreementGroup_type") : //$NON-NLS-1$
+				getString("_UI_AgreementGroup_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -196,13 +196,13 @@ public class AgreementsGroupItemProvider extends ItemProviderAdapter implements 
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AgreementsGroup.class)) {
-		case AgreementsPackage.AGREEMENTS_GROUP__IDENTIFIER:
-		case AgreementsPackage.AGREEMENTS_GROUP__NAME:
-		case AgreementsPackage.AGREEMENTS_GROUP__DESCRIPTION:
+		switch (notification.getFeatureID(AgreementGroup.class)) {
+		case AgreementsPackage.AGREEMENT_GROUP__IDENTIFIER:
+		case AgreementsPackage.AGREEMENT_GROUP__NAME:
+		case AgreementsPackage.AGREEMENT_GROUP__DESCRIPTION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case AgreementsPackage.AGREEMENTS_GROUP__AGREEMENTS:
+		case AgreementsPackage.AGREEMENT_GROUP__AGREEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		default:
@@ -222,7 +222,7 @@ public class AgreementsGroupItemProvider extends ItemProviderAdapter implements 
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(AgreementsPackage.eINSTANCE.getAgreementsGroup_Agreements(),
+		newChildDescriptors.add(createChildParameter(AgreementsPackage.eINSTANCE.getAgreementGroup_Agreements(),
 				AgreementsFactory.eINSTANCE.createAgreement()));
 	}
 

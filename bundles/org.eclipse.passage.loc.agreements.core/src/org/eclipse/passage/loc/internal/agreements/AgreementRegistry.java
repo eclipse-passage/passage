@@ -15,13 +15,13 @@ package org.eclipse.passage.loc.internal.agreements;
 import java.util.Collection;
 
 import org.eclipse.passage.lic.agreements.AgreementDescriptor;
-import org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor;
+import org.eclipse.passage.lic.agreements.AgreementGroupDescriptor;
 
 public interface AgreementRegistry {
 
-	Collection<AgreementsGroupDescriptor> groups();
+	Collection<AgreementGroupDescriptor> groups();
 
-	AgreementsGroupDescriptor group(String id);
+	AgreementGroupDescriptor group(String id);
 
 	Collection<AgreementDescriptor> agreements();
 

@@ -18,7 +18,6 @@ import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 import org.eclipse.passage.loc.agreements.ui.AgreementsUi;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
-@SuppressWarnings("restriction")
 public class LoadAgreementsGroupHandler {
 
 	@Execute

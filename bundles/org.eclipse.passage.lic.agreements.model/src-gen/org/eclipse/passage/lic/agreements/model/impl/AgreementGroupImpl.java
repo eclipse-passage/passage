@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.passage.lic.agreements.model.api.Agreement;
-import org.eclipse.passage.lic.agreements.model.api.AgreementsGroup;
+import org.eclipse.passage.lic.agreements.model.api.AgreementGroup;
 
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 
@@ -42,15 +42,15 @@ import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.passage.lic.agreements.model.impl.AgreementsGroupImpl#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.agreements.model.impl.AgreementsGroupImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.agreements.model.impl.AgreementsGroupImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.agreements.model.impl.AgreementsGroupImpl#getAgreements <em>Agreements</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.agreements.model.impl.AgreementGroupImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.agreements.model.impl.AgreementGroupImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.agreements.model.impl.AgreementGroupImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.agreements.model.impl.AgreementGroupImpl#getAgreements <em>Agreements</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements AgreementsGroup {
+public class AgreementGroupImpl extends MinimalEObjectImpl.Container implements AgreementGroup {
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -126,7 +126,7 @@ public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AgreementsGroupImpl() {
+	protected AgreementGroupImpl() {
 		super();
 	}
 
@@ -137,7 +137,7 @@ public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AgreementsPackage.eINSTANCE.getAgreementsGroup();
+		return AgreementsPackage.eINSTANCE.getAgreementGroup();
 	}
 
 	/**
@@ -160,7 +160,7 @@ public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, AgreementsPackage.AGREEMENTS_GROUP__IDENTIFIER,
+			eNotify(new ENotificationImpl(this, Notification.SET, AgreementsPackage.AGREEMENT_GROUP__IDENTIFIER,
 					oldIdentifier, identifier));
 		}
 	}
@@ -185,7 +185,7 @@ public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, AgreementsPackage.AGREEMENTS_GROUP__NAME, oldName,
+			eNotify(new ENotificationImpl(this, Notification.SET, AgreementsPackage.AGREEMENT_GROUP__NAME, oldName,
 					name));
 		}
 	}
@@ -210,7 +210,7 @@ public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, AgreementsPackage.AGREEMENTS_GROUP__DESCRIPTION,
+			eNotify(new ENotificationImpl(this, Notification.SET, AgreementsPackage.AGREEMENT_GROUP__DESCRIPTION,
 					oldDescription, description));
 		}
 	}
@@ -224,7 +224,7 @@ public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements
 	public EList<Agreement> getAgreements() {
 		if (agreements == null) {
 			agreements = new EObjectContainmentEList<Agreement>(Agreement.class, this,
-					AgreementsPackage.AGREEMENTS_GROUP__AGREEMENTS);
+					AgreementsPackage.AGREEMENT_GROUP__AGREEMENTS);
 		}
 		return agreements;
 	}
@@ -237,7 +237,7 @@ public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case AgreementsPackage.AGREEMENTS_GROUP__AGREEMENTS:
+		case AgreementsPackage.AGREEMENT_GROUP__AGREEMENTS:
 			return ((InternalEList<?>) getAgreements()).basicRemove(otherEnd, msgs);
 		default:
 			return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -252,13 +252,13 @@ public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case AgreementsPackage.AGREEMENTS_GROUP__IDENTIFIER:
+		case AgreementsPackage.AGREEMENT_GROUP__IDENTIFIER:
 			return getIdentifier();
-		case AgreementsPackage.AGREEMENTS_GROUP__NAME:
+		case AgreementsPackage.AGREEMENT_GROUP__NAME:
 			return getName();
-		case AgreementsPackage.AGREEMENTS_GROUP__DESCRIPTION:
+		case AgreementsPackage.AGREEMENT_GROUP__DESCRIPTION:
 			return getDescription();
-		case AgreementsPackage.AGREEMENTS_GROUP__AGREEMENTS:
+		case AgreementsPackage.AGREEMENT_GROUP__AGREEMENTS:
 			return getAgreements();
 		default:
 			return super.eGet(featureID, resolve, coreType);
@@ -274,16 +274,16 @@ public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case AgreementsPackage.AGREEMENTS_GROUP__IDENTIFIER:
+		case AgreementsPackage.AGREEMENT_GROUP__IDENTIFIER:
 			setIdentifier((String) newValue);
 			return;
-		case AgreementsPackage.AGREEMENTS_GROUP__NAME:
+		case AgreementsPackage.AGREEMENT_GROUP__NAME:
 			setName((String) newValue);
 			return;
-		case AgreementsPackage.AGREEMENTS_GROUP__DESCRIPTION:
+		case AgreementsPackage.AGREEMENT_GROUP__DESCRIPTION:
 			setDescription((String) newValue);
 			return;
-		case AgreementsPackage.AGREEMENTS_GROUP__AGREEMENTS:
+		case AgreementsPackage.AGREEMENT_GROUP__AGREEMENTS:
 			getAgreements().clear();
 			getAgreements().addAll((Collection<? extends Agreement>) newValue);
 			return;
@@ -301,16 +301,16 @@ public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case AgreementsPackage.AGREEMENTS_GROUP__IDENTIFIER:
+		case AgreementsPackage.AGREEMENT_GROUP__IDENTIFIER:
 			setIdentifier(IDENTIFIER_EDEFAULT);
 			return;
-		case AgreementsPackage.AGREEMENTS_GROUP__NAME:
+		case AgreementsPackage.AGREEMENT_GROUP__NAME:
 			setName(NAME_EDEFAULT);
 			return;
-		case AgreementsPackage.AGREEMENTS_GROUP__DESCRIPTION:
+		case AgreementsPackage.AGREEMENT_GROUP__DESCRIPTION:
 			setDescription(DESCRIPTION_EDEFAULT);
 			return;
-		case AgreementsPackage.AGREEMENTS_GROUP__AGREEMENTS:
+		case AgreementsPackage.AGREEMENT_GROUP__AGREEMENTS:
 			getAgreements().clear();
 			return;
 		default:
@@ -327,13 +327,13 @@ public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case AgreementsPackage.AGREEMENTS_GROUP__IDENTIFIER:
+		case AgreementsPackage.AGREEMENT_GROUP__IDENTIFIER:
 			return !Objects.equals(IDENTIFIER_EDEFAULT, identifier);
-		case AgreementsPackage.AGREEMENTS_GROUP__NAME:
+		case AgreementsPackage.AGREEMENT_GROUP__NAME:
 			return !Objects.equals(NAME_EDEFAULT, name);
-		case AgreementsPackage.AGREEMENTS_GROUP__DESCRIPTION:
+		case AgreementsPackage.AGREEMENT_GROUP__DESCRIPTION:
 			return !Objects.equals(DESCRIPTION_EDEFAULT, description);
-		case AgreementsPackage.AGREEMENTS_GROUP__AGREEMENTS:
+		case AgreementsPackage.AGREEMENT_GROUP__AGREEMENTS:
 			return agreements != null && !agreements.isEmpty();
 		default:
 			return super.eIsSet(featureID);

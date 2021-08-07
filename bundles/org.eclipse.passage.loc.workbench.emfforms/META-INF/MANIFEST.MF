@@ -45,7 +45,8 @@ Export-Package: org.eclipse.passage.loc.internal.workbench.emfforms;x-internal:=
    org.eclipse.passage.loc.floating.emfforms,
    org.eclipse.passage.loc.licenses.emfforms,
    org.eclipse.passage.loc.products.emfforms,
-   org.eclipse.passage.loc.users.emfforms",
+   org.eclipse.passage.loc.users.emfforms,
+   org.eclipse.passage.loc.agreements.emfforms",
  org.eclipse.passage.loc.workbench.emfforms.renderers;
   x-friends:="org.eclipse.passage.loc.floating.emfforms,
    org.eclipse.passage.loc.licenses.emfforms,

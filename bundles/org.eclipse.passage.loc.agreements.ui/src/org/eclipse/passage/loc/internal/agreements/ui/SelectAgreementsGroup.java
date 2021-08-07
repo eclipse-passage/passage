@@ -15,7 +15,7 @@ package org.eclipse.passage.loc.internal.agreements.ui;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor;
+import org.eclipse.passage.lic.agreements.AgreementGroupDescriptor;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 import org.eclipse.passage.lic.api.MandatoryService;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
@@ -26,29 +26,29 @@ import org.eclipse.passage.loc.internal.workbench.SupplySelectRequest;
 import org.eclipse.passage.loc.jface.dialogs.Appearance;
 
 /**
- * Creates {@link SelectRequest} for {@link AgreementsGroupDescriptor} from the
+ * Creates {@link SelectRequest} for {@link AgreementGroupDescriptor} from the
  * given {@link MandatoryService}.
  * 
  */
 @SuppressWarnings("restriction")
-public final class SelectAgreementsGroup extends SupplySelectRequest<AgreementsGroupDescriptor> {
+public final class SelectAgreementsGroup extends SupplySelectRequest<AgreementGroupDescriptor> {
 
 	public SelectAgreementsGroup(MandatoryService context) {
 		super(context);
 	}
 
 	@Override
-	public SelectRequest<AgreementsGroupDescriptor> get() {
-		return new SelectRequest<>(AgreementsGroupDescriptor.class, domain(), input(), appearance());
+	public SelectRequest<AgreementGroupDescriptor> get() {
+		return new SelectRequest<>(AgreementGroupDescriptor.class, domain(), input(), appearance());
 	}
 
-	private Supplier<Iterable<AgreementsGroupDescriptor>> input() {
+	private Supplier<Iterable<AgreementGroupDescriptor>> input() {
 		return () -> new ArrayList<>(context.get(AgreementRegistry.class).groups());
 	}
 
 	private Appearance appearance() {
-		return new Appearance(AgreementsUiMessages.SelectAgreementsGroup_title, //
-				() -> LicensingImages.getImage(AgreementsPackage.eINSTANCE.getAgreementsGroup().getName()), labels());
+		return new Appearance(AgreementsUiMessages.SelectAgreementGroup_title, //
+				() -> LicensingImages.getImage(AgreementsPackage.eINSTANCE.getAgreementGroup().getName()), labels());
 	}
 
 	private String domain() {

@@ -14,13 +14,13 @@ package org.eclipse.passage.loc.internal.agreements.ui;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor;
+import org.eclipse.passage.lic.agreements.AgreementGroupDescriptor;
 import org.eclipse.passage.lic.api.MandatoryService;
 import org.eclipse.passage.loc.internal.api.InstanceSupply;
 import org.eclipse.passage.loc.internal.workbench.SelectRoot;
 
 @SuppressWarnings("restriction")
-public final class SupplyAgreementsGroup implements InstanceSupply<AgreementsGroupDescriptor> {
+public final class SupplyAgreementsGroup implements InstanceSupply<AgreementGroupDescriptor> {
 
 	private final MandatoryService context;
 
@@ -29,8 +29,8 @@ public final class SupplyAgreementsGroup implements InstanceSupply<AgreementsGro
 	}
 
 	@Override
-	public Optional<AgreementsGroupDescriptor> supply() {
-		return new SelectRoot<AgreementsGroupDescriptor>(new SelectAgreementsGroup(context).get(), context).get();
+	public Optional<AgreementGroupDescriptor> supply() {
+		return new SelectRoot<AgreementGroupDescriptor>(new SelectAgreementsGroup(context).get(), context).get();
 	}
 
 }

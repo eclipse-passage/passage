@@ -21,7 +21,7 @@ public final class AgreementsUiMessages extends NLS {
 	public static String ExportCustomersHandler_unavailableMessage;
 	public static String ExportCustomersHandler_unavailableTitle;
 	public static String SelectAgreement_title;
-	public static String SelectAgreementsGroup_title;
+	public static String SelectAgreementGroup_title;
 	public static String AgreementsUi_select_agreement;
 
 	static {
