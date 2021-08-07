@@ -59,6 +59,10 @@
          id="org.eclipse.passage.loc.licenses.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.passage.loc.agreements.feature"
+         version="0.0.0"/>
+
    <requires>
       <import feature="org.eclipse.passage.lic.define.feature" version="0.0.0" match="equivalent"/>
    </requires>
