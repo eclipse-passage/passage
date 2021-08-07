@@ -31,6 +31,7 @@ Export-Package: org.eclipse.passage.lic.internal.jface;x-friends:="org.eclipse.p
    org.eclipse.passage.loc.workbench.emfforms,
    org.eclipse.passage.loc.products.ui,
    org.eclipse.passage.loc.licenses.ui,
-   org.eclipse.passage.loc.edit.ui",
+   org.eclipse.passage.loc.edit.ui,
+   org.eclipse.passage.lic.agreements.e4.ui",
  org.eclipse.passage.lic.jface.widgets;x-friends:="org.eclipse.passage.loc.workbench"
 Bundle-ActivationPolicy: lazy

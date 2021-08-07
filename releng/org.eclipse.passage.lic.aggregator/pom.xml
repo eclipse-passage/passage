@@ -120,6 +120,7 @@
 		<module>../../bundles/org.eclipse.passage.lic.agreements.ecore</module>
 		<module>../../bundles/org.eclipse.passage.lic.agreements.model</module>
 		<module>../../bundles/org.eclipse.passage.lic.agreements.edit</module>
+		<module>../../bundles/org.eclipse.passage.lic.agreements.e4.ui</module>
 		<module>../../features/org.eclipse.passage.lic.agreements.feature</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.compile.branding</module>
