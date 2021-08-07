@@ -30,8 +30,6 @@ import org.eclipse.passage.lic.base.NamedData;
  * <span> new NamedData.Writable&lt;List&lt;Requirement&gt;&gt;(new
  * RequirementsToBundle(requirements)).write(target); </span>
  * 
- * Á
- * 
  * @see NamedData.Writable
  * @since 2.1
  */
