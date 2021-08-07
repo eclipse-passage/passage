@@ -28,5 +28,5 @@ Export-Package: org.eclipse.passage.loc.internal.agreements.ui;x-friends:="org.e
  org.eclipse.passage.loc.agreements.ui;x-friends:="org.eclipse.passage.loc.licenses.ui,org.eclipse.passage.loc.dashboard.ui",
  org.eclipse.passage.loc.agreements.ui.handlers;x-internal:=true
 Bundle-ActivationPolicy: lazy
-Service-Component: OSGI-INF/*
+Service-Component: OSGI-INF/org.eclipse.passage.loc.internal.agreements.ui.AgreementsInstanceSupply.xml
 

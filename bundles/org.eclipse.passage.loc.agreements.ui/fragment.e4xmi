@@ -16,9 +16,7 @@
         <children xsi:type="advanced:Placeholder" xmi:id="_NsyhkvXdEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.agreements.ui.placeholder.explore" containerData="30" ref="_1KBy4PXbEeu-M8cphZlPaA"/>
         <children xsi:type="basic:PartStack" xmi:id="_Nsyhk_XdEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.agreements.ui.partstack.details" containerData="70"/>
       </children>
-      <handlers xmi:id="_NsyhlPXdEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.agreements.ui.handler.file.open" contributionURI="bundleclass://org.eclipse.passage.loc.agreements.ui/org.eclipse.passage.loc.agreements.ui.handlers.LoadAgreementsGroupHandler">
-        <command href="_gTX60PXgEeu-M8cphZlPaA"/>
-      </handlers>
+      <handlers xmi:id="_NsyhlPXdEeu-M8cphZlPaA" elementId="org.eclipse.passage.loc.agreements.ui.handler.file.open" contributionURI="bundleclass://org.eclipse.passage.loc.agreements.ui/org.eclipse.passage.loc.agreements.ui.handlers.LoadAgreementsGroupHandler" command="_gTX60PXgEeu-M8cphZlPaA"/>
     </elements>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_kpCa4PXdEeu-M8cphZlPaA" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.menu.view">
