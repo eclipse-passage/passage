@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.agreements.emfforms.renderers;
 
+import java.util.Optional;
+
 import javax.inject.Inject;
 
 import org.eclipse.emf.ecp.view.spi.context.ViewModelContext;
@@ -23,7 +25,7 @@ import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedRepor
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 import org.eclipse.passage.lic.agreements.AgreementDescriptor;
-import org.eclipse.passage.loc.agreements.ui.AgreementsUi;
+import org.eclipse.passage.loc.agreements.ui.SelectedAgreement;
 import org.eclipse.passage.loc.internal.agreements.AgreementRegistry;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.TextWithButtonRenderer;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -78,9 +80,9 @@ public class AgreementIdentifierRenderer extends TextWithButtonRenderer {
 		} catch (DatabindingFailedException e) {
 			getReportService().report(new DatabindingFailedReport(e));
 		}
-		AgreementDescriptor descriptor = AgreementsUi.selectAgreementDescriptor(shell, registry, initial);
-		if (descriptor != null) {
-			String identifier = descriptor.getIdentifier();
+		Optional<AgreementDescriptor> descriptor = new SelectedAgreement(shell, registry, initial).get();
+		if (descriptor.isPresent()) {
+			String identifier = descriptor.get().getIdentifier();
 			if (identifier != null) {
 				text.setText(identifier);
 			}
