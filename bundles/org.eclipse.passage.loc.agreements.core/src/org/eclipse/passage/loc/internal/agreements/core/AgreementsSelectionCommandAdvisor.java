@@ -22,6 +22,7 @@ import org.eclipse.passage.loc.internal.emf.SelectionCommandAdvisor;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+@SuppressWarnings("restriction")
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + AgreementsPackage.eNAME })
 public class AgreementsSelectionCommandAdvisor implements SelectionCommandAdvisor {
 

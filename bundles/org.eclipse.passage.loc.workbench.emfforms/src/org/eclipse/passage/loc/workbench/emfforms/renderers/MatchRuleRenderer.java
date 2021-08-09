@@ -36,13 +36,13 @@ import org.eclipse.passage.lic.base.conditions.MatchingRuleGreaterOrEqual;
 import org.eclipse.passage.lic.base.conditions.MatchingRulePerfect;
 import org.eclipse.passage.lic.base.version.BaseSemanticVersion;
 import org.eclipse.passage.lic.base.version.SafeVersion;
-import org.eclipse.passage.lic.licenses.PersonalFeatureGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalFeatureGrantDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyleRange;
 
-public class MatchRuleRenderer extends ExplainedComboControlRenderer {
+public final class MatchRuleRenderer extends ExplainedComboControlRenderer {
 
 	private final List<MatchingRule> values;
 	private final List<String> names;
@@ -122,9 +122,11 @@ public class MatchRuleRenderer extends ExplainedComboControlRenderer {
 	private Optional<String> guide() {
 		EObject owner = getViewModelContext().getDomainModel();
 		if (owner instanceof LicensePlanFeatureDescriptor) {
-			return Optional.ofNullable(((LicensePlanFeatureDescriptor) owner).getFeature().getVersionMatch().getVersion());
+			return Optional
+					.ofNullable(((LicensePlanFeatureDescriptor) owner).getFeature().getVersionMatch().getVersion());
 		} else if (owner instanceof PersonalFeatureGrantDescriptor) {
-			return Optional.ofNullable(((PersonalFeatureGrantDescriptor) owner).getFeature().getVersionMatch().getVersion());
+			return Optional
+					.ofNullable(((PersonalFeatureGrantDescriptor) owner).getFeature().getVersionMatch().getVersion());
 		} else if (owner instanceof VersionMatch) {
 			return Optional.ofNullable(((VersionMatch) owner).getVersion());
 		}
