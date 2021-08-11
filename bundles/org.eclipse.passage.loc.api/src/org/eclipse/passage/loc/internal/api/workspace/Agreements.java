@@ -12,10 +12,16 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.api.workspace;
 
-public interface OperatorWorkspace {
+public interface Agreements {
 
-	Keys keys();
+	/**
+	 * Locate a handle for the given file under the common agreements residence
+	 * 
+	 * @param file name of an agreement file
+	 * @return handle to be used for agreement content writing
+	 */
+	ResourceHandle located(String file);
 
-	Agreements agreements();
+	boolean exists(String file);
 
 }

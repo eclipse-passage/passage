@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.agreements.AgreementDescriptor;
 import org.eclipse.passage.lic.agreements.AgreementGroupDescriptor;
+import org.eclipse.passage.lic.agreements.model.api.AgreementGroup;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 import org.eclipse.passage.lic.agreements.model.util.AgreementsResourceImpl;
 import org.eclipse.passage.lic.equinox.io.InstallationPath;
@@ -128,14 +129,20 @@ public final class AgreementDomainRegistry extends BaseDomainRegistry<AgreementG
 	}
 
 	public void registerAgreementGroup(AgreementGroupDescriptor group) {
-		String identifier = group.getIdentifier();
-		AgreementGroupDescriptor existing = groups.put(identifier, group);
+		AgreementGroupDescriptor existing = groups.put(group.getIdentifier(), group);
 		if (existing != null) {
 			String msg = NLS.bind(AgreementsCoreMessages.AgreementDomain_instance_duplication_message, existing, group);
 			Platform.getLog(getClass()).warn(msg);
 		}
+		brush(group);
 		events.postEvent(new EquinoxEvent(AgreementRegistryEvents.AGREEMENT_GROUP_CREATE, group).get());
 		group.getAgreements().forEach(u -> registerAgreement(u));
+	}
+
+	private void brush(AgreementGroupDescriptor group) {
+		if (group.getDescription() == null) {
+			((AgreementGroup) group).setDescription(""); //$NON-NLS-1$
+		}
 	}
 
 	public void registerAgreement(AgreementDescriptor agreement) {

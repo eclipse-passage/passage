@@ -19,7 +19,7 @@ import org.eclipse.emfforms.spi.swt.treemasterdetail.util.CreateElementCallback;
 public class AgreementsCreateElementCallback implements CreateElementCallback {
 
 	@Override
-	public void initElement(EObject parent, EReference reference, EObject newObject) {
+	public void initElement(EObject parent, EReference reference, EObject agreement) {
 	}
 
 	@Override
