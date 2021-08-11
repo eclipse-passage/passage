@@ -14,29 +14,30 @@ package org.eclipse.passage.loc.agreements.emfforms.renderers;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 final class AgreementFormat {
 
-	private final String name;
 	private final String extention;
+	private final String description;
 	private final String mime;
 
 	AgreementFormat(String name, String extention, String mime) {
-		this.name = name;
-		this.extention = extention;
+		this.extention = name;
+		this.description = extention;
 		this.mime = mime;
-	}
-
-	String name() {
-		return name;
 	}
 
 	String extention() {
 		return extention;
 	}
 
-	String extentionFilter() {
+	String description() {
+		return description;
+	}
+
+	String name() {
 		return '*' + extention;
 	}
 
@@ -45,12 +46,21 @@ final class AgreementFormat {
 	}
 
 	static class Supported implements Supplier<List<AgreementFormat>> {
+		// TODO: get rid of the code in constructor: use CashingFunction from
+		// ru.arsysop.lang
+		private final List<AgreementFormat> supported = Arrays.asList(//
+				new AgreementFormat(".txt", "Text file (*.txt)", "text/plain") //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+		);
 
 		@Override
 		public List<AgreementFormat> get() {
-			return Arrays.asList(//
-					new AgreementFormat(".txt", "Text file (*.txt)", "text/plain") //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
-			);
+			return supported;
+		}
+
+		public Optional<AgreementFormat> forFile(String name) {
+			return supported.stream()//
+					.filter(format -> name.endsWith(format.extention))//
+					.findAny();
 		}
 
 	}
