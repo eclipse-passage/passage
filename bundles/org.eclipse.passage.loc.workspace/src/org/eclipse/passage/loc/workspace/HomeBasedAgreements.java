@@ -12,28 +12,30 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.workspace;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import org.eclipse.passage.lic.base.io.LicensingFolder;
+import org.eclipse.passage.lic.base.io.UserHomePath;
 import org.eclipse.passage.loc.internal.api.workspace.Agreements;
-import org.eclipse.passage.loc.internal.api.workspace.Keys;
-import org.eclipse.passage.loc.internal.api.workspace.OperatorWorkspace;
+import org.eclipse.passage.loc.internal.api.workspace.ResourceHandle;
 
-public final class CollectiveWorkspace implements OperatorWorkspace {
+final class HomeBasedAgreements implements Agreements {
 
-	private final Keys keys;
-	private final Agreements agreements;
+	private final Path residence;
 
-	public CollectiveWorkspace() {
-		this.keys = new HomeBasedKeys();
-		this.agreements = new HomeBasedAgreements();
+	HomeBasedAgreements() {
+		this.residence = new LicensingFolder(new UserHomePath()).get().resolve("agreements"); //$NON-NLS-1$
 	}
 
 	@Override
-	public Keys keys() {
-		return keys;
+	public ResourceHandle located(String file) {
+		return new LocalFileHandle(residence.resolve(file));
 	}
 
 	@Override
-	public Agreements agreements() {
-		return agreements;
+	public boolean exists(String file) {
+		return Files.exists(residence.resolve(file));
 	}
 
 }
