@@ -32,9 +32,7 @@ import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedRepor
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 import org.eclipse.passage.lic.agreements.model.api.Agreement;
-import org.eclipse.passage.lic.api.LicensingException;
-import org.eclipse.passage.loc.internal.api.workspace.Agreements;
-import org.eclipse.passage.loc.internal.equinox.OperatorGearAware;
+import org.eclipse.passage.loc.internal.equinox.AgreementsService;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.TextWithButtonRenderer;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -90,7 +88,7 @@ public final class AgreementFileRenderer extends TextWithButtonRenderer {
 		// rename in already defined name if any:
 		// String name = definedName().orElse(file.getName());
 		String name = file.getName();
-		agreements().located(name).write(Files.readAllBytes(file.toPath()));
+		new AgreementsService().get().located(name).write(Files.readAllBytes(file.toPath()));
 		return name;
 	}
 
@@ -125,15 +123,6 @@ public final class AgreementFileRenderer extends TextWithButtonRenderer {
 		} catch (DatabindingFailedException e) {
 			return Optional.empty();
 		}
-	}
-
-	private Agreements agreements() throws LicensingException {
-		Optional<Agreements> service = new OperatorGearAware()
-				.withGear(gear -> Optional.of(gear.workspace().agreements()));
-		if (!service.isPresent()) {
-			throw new LicensingException("There is no Agreements service supplied by Operator Workspace"); //$NON-NLS-1$
-		}
-		return service.get();
 	}
 
 	private Optional<Agreement> agreement() {
