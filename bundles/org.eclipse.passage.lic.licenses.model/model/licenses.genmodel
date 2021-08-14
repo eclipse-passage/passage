@@ -114,6 +114,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePlanFeature/plan"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePlanFeature/vivid"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePlanFeature/capacity"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePlanFeature/agreements"/>
     </genClasses>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseRequisites">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseRequisites/identifier"/>

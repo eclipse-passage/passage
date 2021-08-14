@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.model.api;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
@@ -29,6 +30,7 @@ import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getPlan <em>Plan</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getVivid <em>Vivid</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getCapacity <em>Capacity</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getAgreements <em>Agreements</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlanFeature()
@@ -145,5 +147,21 @@ public interface LicensePlanFeature extends EObject, LicensePlanFeatureDescripto
 	 * @generated
 	 */
 	void setCapacity(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Agreements</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * @since 2.1
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Agreements</em>' attribute list.
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlanFeature_Agreements()
+	 * @model
+	 * @generated
+	 */
+	@Override
+	EList<String> getAgreements();
 
 } // LicensePlanFeature

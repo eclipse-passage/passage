@@ -972,6 +972,17 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EAttribute getLicensePlanFeature_Agreements() {
+		return (EAttribute) licensePlanFeatureEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @since 2.0
 	 * @generated
 	 */
@@ -2052,6 +2063,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		createEReference(licensePlanFeatureEClass, LICENSE_PLAN_FEATURE__PLAN);
 		createEAttribute(licensePlanFeatureEClass, LICENSE_PLAN_FEATURE__VIVID);
 		createEAttribute(licensePlanFeatureEClass, LICENSE_PLAN_FEATURE__CAPACITY);
+		createEAttribute(licensePlanFeatureEClass, LICENSE_PLAN_FEATURE__AGREEMENTS);
 
 		licenseRequisitesEClass = createEClass(LICENSE_REQUISITES);
 		createEAttribute(licenseRequisitesEClass, LICENSE_REQUISITES__IDENTIFIER);
@@ -2407,6 +2419,9 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 				LicensePlanFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLicensePlanFeature_Capacity(), ecorePackage.getEInt(), "capacity", null, 1, 1, //$NON-NLS-1$
+				LicensePlanFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLicensePlanFeature_Agreements(), ecorePackage.getEString(), "agreements", null, 0, -1, //$NON-NLS-1$
 				LicensePlanFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 

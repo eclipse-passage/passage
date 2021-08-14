@@ -1780,13 +1780,23 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_PLAN_FEATURE__CAPACITY = LICENSE_PLAN_FEATURE_DESCRIPTOR_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Agreements</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN_FEATURE__AGREEMENTS = LICENSE_PLAN_FEATURE_DESCRIPTOR_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>License Plan Feature</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_PLAN_FEATURE_FEATURE_COUNT = LICENSE_PLAN_FEATURE_DESCRIPTOR_FEATURE_COUNT + 4;
+	int LICENSE_PLAN_FEATURE_FEATURE_COUNT = LICENSE_PLAN_FEATURE_DESCRIPTOR_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>License Plan Feature</em>' class.
@@ -3435,6 +3445,18 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLicensePlanFeature_Capacity();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getAgreements <em>Agreements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Agreements</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getAgreements()
+	 * @see #getLicensePlanFeature()
+	 * @since 2.1
+	 * @generated
+	 */
+	EAttribute getLicensePlanFeature_Agreements();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant <em>Personal Feature Grant</em>}'.

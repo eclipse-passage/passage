@@ -134,6 +134,7 @@ public class LicensePlanFeatureItemProvider extends ItemProviderAdapter implemen
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicensePlanFeature_Feature());
+			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicensePlanFeature_Agreements());
 		}
 		return childrenFeatures;
 	}
@@ -216,6 +217,7 @@ public class LicensePlanFeatureItemProvider extends ItemProviderAdapter implemen
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE:
+		case LicensesPackage.LICENSE_PLAN_FEATURE__AGREEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		default:
@@ -237,6 +239,8 @@ public class LicensePlanFeatureItemProvider extends ItemProviderAdapter implemen
 
 		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicensePlanFeature_Feature(),
 				LicensesFactory.eINSTANCE.createFeatureRef()));
+
+		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicensePlanFeature_Agreements(), "")); //$NON-NLS-1$
 	}
 
 	/**

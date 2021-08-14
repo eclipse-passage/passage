@@ -296,6 +296,12 @@
         <details key="documentation" value="@since 2.0"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="agreements" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="@since 2.1"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LicenseRequisites" abstract="true" eSuperTypes="#//LicenseRequisitesDescriptor">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

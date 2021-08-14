@@ -12,15 +12,18 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.model.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.passage.lic.licenses.model.api.FeatureRef;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
@@ -40,6 +43,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl#getPlan <em>Plan</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl#getVivid <em>Vivid</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl#getCapacity <em>Capacity</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl#getAgreements <em>Agreements</em>}</li>
  * </ul>
  *
  * @generated
@@ -96,6 +100,17 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	private int capacity = CAPACITY_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getAgreements() <em>Agreements</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAgreements()
+	 * @since 2.1
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> agreements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -283,6 +298,21 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EList<String> getAgreements() {
+		if (agreements == null) {
+			agreements = new EDataTypeUniqueEList<String>(String.class, this,
+					LicensesPackage.LICENSE_PLAN_FEATURE__AGREEMENTS);
+		}
+		return agreements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -347,6 +377,8 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 			return getVivid();
 		case LicensesPackage.LICENSE_PLAN_FEATURE__CAPACITY:
 			return getCapacity();
+		case LicensesPackage.LICENSE_PLAN_FEATURE__AGREEMENTS:
+			return getAgreements();
 		default:
 			return super.eGet(featureID, resolve, coreType);
 		}
@@ -357,6 +389,7 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -371,6 +404,10 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 			return;
 		case LicensesPackage.LICENSE_PLAN_FEATURE__CAPACITY:
 			setCapacity((Integer) newValue);
+			return;
+		case LicensesPackage.LICENSE_PLAN_FEATURE__AGREEMENTS:
+			getAgreements().clear();
+			getAgreements().addAll((Collection<? extends String>) newValue);
 			return;
 		default:
 			super.eSet(featureID, newValue);
@@ -398,6 +435,9 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 		case LicensesPackage.LICENSE_PLAN_FEATURE__CAPACITY:
 			setCapacity(CAPACITY_EDEFAULT);
 			return;
+		case LicensesPackage.LICENSE_PLAN_FEATURE__AGREEMENTS:
+			getAgreements().clear();
+			return;
 		default:
 			super.eUnset(featureID);
 			return;
@@ -420,6 +460,8 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 			return vivid != VIVID_EDEFAULT;
 		case LicensesPackage.LICENSE_PLAN_FEATURE__CAPACITY:
 			return capacity != CAPACITY_EDEFAULT;
+		case LicensesPackage.LICENSE_PLAN_FEATURE__AGREEMENTS:
+			return agreements != null && !agreements.isEmpty();
 		default:
 			return super.eIsSet(featureID);
 		}
@@ -440,6 +482,8 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 		result.append(vivid);
 		result.append(", capacity: "); //$NON-NLS-1$
 		result.append(capacity);
+		result.append(", agreements: "); //$NON-NLS-1$
+		result.append(agreements);
 		result.append(')');
 		return result.toString();
 	}

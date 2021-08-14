@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses;
 
+import java.util.List;
+
 /**
  * <p>
  * A <code>"License Pack Feature"</code> is a unit inside a
@@ -28,6 +30,11 @@ public interface LicensePlanFeatureDescriptor {
 	 * @since 2.0
 	 */
 	FeatureRefDescriptor getFeature();
+
+	/**
+	 * @since 2.1
+	 */
+	List<String> getAgreements();
 
 	/**
 	 * @since 2.0
