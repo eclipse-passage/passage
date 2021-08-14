@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.passage.lic.licenses.model.api.*;
 import org.eclipse.passage.lic.licenses.model.api.CompanyRef;
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
@@ -84,6 +85,8 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+		case LicensesPackage.AGREEMENT_DATA:
+			return createAgreementData();
 		case LicensesPackage.COMPANY_REF:
 			return createCompanyRef();
 		case LicensesPackage.EVALUATION_INSTRUCTIONS:
@@ -131,6 +134,18 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public AgreementData createAgreementData() {
+		AgreementDataImpl agreementData = new AgreementDataImpl();
+		return agreementData;
 	}
 
 	/**

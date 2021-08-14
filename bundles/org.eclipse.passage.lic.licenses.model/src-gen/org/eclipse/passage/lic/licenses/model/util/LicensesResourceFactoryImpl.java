@@ -13,24 +13,22 @@
 package org.eclipse.passage.lic.licenses.model.util;
 
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 
 /**
- * <!-- begin-user-doc -->
- * The <b>Resource Factory</b> associated with the package.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Resource Factory</b> associated with the
+ * package. <!-- end-user-doc -->
+ * 
  * @see org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl
- * @since 2.0
+ * @since 2.1
  * @generated NOT
  */
 public class LicensesResourceFactoryImpl extends ResourceFactoryImpl {
 	/**
-	 * Creates an instance of the resource factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the resource factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public LicensesResourceFactoryImpl() {
@@ -38,9 +36,9 @@ public class LicensesResourceFactoryImpl extends ResourceFactoryImpl {
 	}
 
 	/**
-	 * Creates an instance of the resource.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the resource. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -49,4 +47,4 @@ public class LicensesResourceFactoryImpl extends ResourceFactoryImpl {
 		return result;
 	}
 
-} //LicensesResourceFactoryImpl
+} // LicensesResourceFactoryImpl

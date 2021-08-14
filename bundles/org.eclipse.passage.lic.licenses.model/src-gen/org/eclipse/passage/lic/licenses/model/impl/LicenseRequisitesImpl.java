@@ -12,18 +12,23 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.model.impl;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.passage.lic.licenses.model.api.AgreementData;
 import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.api.Signature;
@@ -45,9 +50,10 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseRequisitesImpl#getProduct <em>Product</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseRequisitesImpl#getValid <em>Valid</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseRequisitesImpl#getSignature <em>Signature</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseRequisitesImpl#getAgreements <em>Agreements</em>}</li>
  * </ul>
  *
- * @since 2.0
+ * @since 2.1
  * @generated
  */
 public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implements LicenseRequisites {
@@ -140,6 +146,16 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 	 * @ordered
 	 */
 	protected Signature signature;
+
+	/**
+	 * The cached value of the '{@link #getAgreements() <em>Agreements</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAgreements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AgreementData> agreements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -400,6 +416,20 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
+	public EList<AgreementData> getAgreements() {
+		if (agreements == null) {
+			agreements = new EObjectContainmentEList<AgreementData>(AgreementData.class, this,
+					LicensesPackage.LICENSE_REQUISITES__AGREEMENTS);
+		}
+		return agreements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case LicensesPackage.LICENSE_REQUISITES__PRODUCT:
@@ -408,6 +438,8 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 			return basicSetValid(null, msgs);
 		case LicensesPackage.LICENSE_REQUISITES__SIGNATURE:
 			return basicSetSignature(null, msgs);
+		case LicensesPackage.LICENSE_REQUISITES__AGREEMENTS:
+			return ((InternalEList<?>) getAgreements()).basicRemove(otherEnd, msgs);
 		default:
 			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
@@ -433,6 +465,8 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 			return getValid();
 		case LicensesPackage.LICENSE_REQUISITES__SIGNATURE:
 			return getSignature();
+		case LicensesPackage.LICENSE_REQUISITES__AGREEMENTS:
+			return getAgreements();
 		default:
 			return super.eGet(featureID, resolve, coreType);
 		}
@@ -443,6 +477,7 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -463,6 +498,10 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 			return;
 		case LicensesPackage.LICENSE_REQUISITES__SIGNATURE:
 			setSignature((Signature) newValue);
+			return;
+		case LicensesPackage.LICENSE_REQUISITES__AGREEMENTS:
+			getAgreements().clear();
+			getAgreements().addAll((Collection<? extends AgreementData>) newValue);
 			return;
 		default:
 			super.eSet(featureID, newValue);
@@ -496,6 +535,9 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 		case LicensesPackage.LICENSE_REQUISITES__SIGNATURE:
 			setSignature((Signature) null);
 			return;
+		case LicensesPackage.LICENSE_REQUISITES__AGREEMENTS:
+			getAgreements().clear();
+			return;
 		default:
 			super.eUnset(featureID);
 			return;
@@ -522,6 +564,8 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 			return valid != null;
 		case LicensesPackage.LICENSE_REQUISITES__SIGNATURE:
 			return signature != null;
+		case LicensesPackage.LICENSE_REQUISITES__AGREEMENTS:
+			return agreements != null && !agreements.isEmpty();
 		default:
 			return super.eIsSet(featureID);
 		}

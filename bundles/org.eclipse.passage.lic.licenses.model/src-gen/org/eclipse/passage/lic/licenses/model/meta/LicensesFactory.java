@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.licenses.model.meta;
 
 import org.eclipse.emf.ecore.EFactory;
 
+import org.eclipse.passage.lic.licenses.model.api.AgreementData;
 import org.eclipse.passage.lic.licenses.model.api.CompanyRef;
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
@@ -53,6 +54,16 @@ public interface LicensesFactory extends EFactory {
 	 * @generated
 	 */
 	LicensesFactory eINSTANCE = org.eclipse.passage.lic.licenses.model.impl.LicensesFactoryImpl.init();
+
+	/**
+	 * Returns a new object of class '<em>Agreement Data</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Agreement Data</em>'.
+	 * @since 2.1
+	 * @generated
+	 */
+	AgreementData createAgreementData();
 
 	/**
 	 * Returns a new object of class '<em>License Plan</em>'.

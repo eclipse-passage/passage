@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.licenses.model.api;
 
 import java.util.Date;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
@@ -24,7 +25,7 @@ import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * @since 2.0
+ * @since 2.1
  * <!-- end-model-doc -->
  *
  * <p>
@@ -37,6 +38,7 @@ import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites#getProduct <em>Product</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites#getValid <em>Valid</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites#getSignature <em>Signature</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites#getAgreements <em>Agreements</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseRequisites()
@@ -181,5 +183,18 @@ public interface LicenseRequisites extends EObject, LicenseRequisitesDescriptor 
 	 * @generated
 	 */
 	void setSignature(Signature value);
+
+	/**
+	 * Returns the value of the '<em><b>Agreements</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.passage.lic.licenses.model.api.AgreementData}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Agreements</em>' containment reference list.
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseRequisites_Agreements()
+	 * @model containment="true"
+	 * @generated
+	 */
+	@Override
+	EList<AgreementData> getAgreements();
 
 } // LicenseRequisites

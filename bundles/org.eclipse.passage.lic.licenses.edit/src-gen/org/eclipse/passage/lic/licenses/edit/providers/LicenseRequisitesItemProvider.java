@@ -38,7 +38,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * This is the item provider adapter for a {@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * @since 2.0
+ * @since 2.1
  * @generated
  */
 public class LicenseRequisitesItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
@@ -134,6 +134,7 @@ public class LicenseRequisitesItemProvider extends ItemProviderAdapter implement
 			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicenseRequisites_Product());
 			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicenseRequisites_Valid());
 			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicenseRequisites_Signature());
+			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicenseRequisites_Agreements());
 		}
 		return childrenFeatures;
 	}
@@ -205,6 +206,7 @@ public class LicenseRequisitesItemProvider extends ItemProviderAdapter implement
 		case LicensesPackage.LICENSE_REQUISITES__PRODUCT:
 		case LicensesPackage.LICENSE_REQUISITES__VALID:
 		case LicensesPackage.LICENSE_REQUISITES__SIGNATURE:
+		case LicensesPackage.LICENSE_REQUISITES__AGREEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		default:
@@ -232,6 +234,9 @@ public class LicenseRequisitesItemProvider extends ItemProviderAdapter implement
 
 		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicenseRequisites_Signature(),
 				LicensesFactory.eINSTANCE.createSignature()));
+
+		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicenseRequisites_Agreements(),
+				LicensesFactory.eINSTANCE.createAgreementData()));
 	}
 
 	/**
