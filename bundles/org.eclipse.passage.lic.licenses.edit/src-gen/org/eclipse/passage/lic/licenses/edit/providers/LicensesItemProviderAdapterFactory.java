@@ -86,6 +86,31 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.AgreementData} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	protected AgreementDataItemProvider agreementDataItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.AgreementData}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public Adapter createAgreementDataAdapter() {
+		if (agreementDataItemProvider == null) {
+			agreementDataItemProvider = new AgreementDataItemProvider(this);
+		}
+
+		return agreementDataItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.LicensePlan} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -745,6 +770,8 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 */
 	@Override
 	public void dispose() {
+		if (agreementDataItemProvider != null)
+			agreementDataItemProvider.dispose();
 		if (companyRefItemProvider != null)
 			companyRefItemProvider.dispose();
 		if (evaluationInstructionsItemProvider != null)

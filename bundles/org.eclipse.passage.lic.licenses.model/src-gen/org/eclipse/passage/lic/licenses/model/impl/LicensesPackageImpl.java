@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.eclipse.passage.lic.licenses.AgreementDataDescriptor;
 import org.eclipse.passage.lic.licenses.CompanyRefDescriptor;
 import org.eclipse.passage.lic.licenses.EvaluationInstructionsDescriptor;
 import org.eclipse.passage.lic.licenses.FeatureGrantDescriptor;
@@ -41,6 +42,7 @@ import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
 import org.eclipse.passage.lic.licenses.ValidityPeriodDescriptor;
 import org.eclipse.passage.lic.licenses.VersionMatchDescriptor;
 
+import org.eclipse.passage.lic.licenses.model.api.AgreementData;
 import org.eclipse.passage.lic.licenses.model.api.CompanyRef;
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
@@ -76,6 +78,14 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * @generated
  */
 public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	private EClass agreementDataDescriptorEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -229,6 +239,14 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	private EClass agreementDataEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @since 2.0
 	 * @generated
 	 */
@@ -283,7 +301,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
+	 * @since 2.1
 	 * @generated
 	 */
 	private EClass licenseRequisitesEClass = null;
@@ -499,6 +517,17 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EClass getAgreementDataDescriptor() {
+		return agreementDataDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -701,6 +730,94 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	@Override
 	public EClass getVersionMatchDescriptor() {
 		return versionMatchDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EClass getAgreementData() {
+		return agreementDataEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAgreementData_Identifier() {
+		return (EAttribute) agreementDataEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAgreementData_Name() {
+		return (EAttribute) agreementDataEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAgreementData_File() {
+		return (EAttribute) agreementDataEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAgreementData_HashAlgo() {
+		return (EAttribute) agreementDataEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAgreementData_Hash() {
+		return (EAttribute) agreementDataEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAgreementData_Content() {
+		return (EAttribute) agreementDataEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAgreementData_ContentType() {
+		return (EAttribute) agreementDataEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1031,7 +1148,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
+	 * @since 2.1
 	 * @generated
 	 */
 	@Override
@@ -1042,7 +1159,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
+	 * @since 2.1
 	 * @generated
 	 */
 	@Override
@@ -1053,7 +1170,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
+	 * @since 2.1
 	 * @generated
 	 */
 	@Override
@@ -1064,7 +1181,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
+	 * @since 2.1
 	 * @generated
 	 */
 	@Override
@@ -1075,7 +1192,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
+	 * @since 2.1
 	 * @generated
 	 */
 	@Override
@@ -1086,7 +1203,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
+	 * @since 2.1
 	 * @generated
 	 */
 	@Override
@@ -1097,12 +1214,23 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
+	 * @since 2.1
 	 * @generated
 	 */
 	@Override
 	public EReference getLicenseRequisites_Signature() {
 		return (EReference) licenseRequisitesEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EReference getLicenseRequisites_Agreements() {
+		return (EReference) licenseRequisitesEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1806,6 +1934,8 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		isCreated = true;
 
 		// Create classes and their features
+		agreementDataDescriptorEClass = createEClass(AGREEMENT_DATA_DESCRIPTOR);
+
 		companyRefDescriptorEClass = createEClass(COMPANY_REF_DESCRIPTOR);
 
 		evaluationInstructionsDescriptorEClass = createEClass(EVALUATION_INSTRUCTIONS_DESCRIPTOR);
@@ -1847,6 +1977,15 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		validityPeriodDescriptorEClass = createEClass(VALIDITY_PERIOD_DESCRIPTOR);
 
 		versionMatchDescriptorEClass = createEClass(VERSION_MATCH_DESCRIPTOR);
+
+		agreementDataEClass = createEClass(AGREEMENT_DATA);
+		createEAttribute(agreementDataEClass, AGREEMENT_DATA__IDENTIFIER);
+		createEAttribute(agreementDataEClass, AGREEMENT_DATA__NAME);
+		createEAttribute(agreementDataEClass, AGREEMENT_DATA__FILE);
+		createEAttribute(agreementDataEClass, AGREEMENT_DATA__HASH_ALGO);
+		createEAttribute(agreementDataEClass, AGREEMENT_DATA__HASH);
+		createEAttribute(agreementDataEClass, AGREEMENT_DATA__CONTENT);
+		createEAttribute(agreementDataEClass, AGREEMENT_DATA__CONTENT_TYPE);
 
 		companyRefEClass = createEClass(COMPANY_REF);
 		createEAttribute(companyRefEClass, COMPANY_REF__IDENTIFIER);
@@ -1921,6 +2060,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		createEReference(licenseRequisitesEClass, LICENSE_REQUISITES__PRODUCT);
 		createEReference(licenseRequisitesEClass, LICENSE_REQUISITES__VALID);
 		createEReference(licenseRequisitesEClass, LICENSE_REQUISITES__SIGNATURE);
+		createEReference(licenseRequisitesEClass, LICENSE_REQUISITES__AGREEMENTS);
 
 		personalFeatureGrantEClass = createEClass(PERSONAL_FEATURE_GRANT);
 		createEAttribute(personalFeatureGrantEClass, PERSONAL_FEATURE_GRANT__IDENTIFIER);
@@ -2000,6 +2140,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		// Add supertypes to classes
 		floatingLicenseRequisitesDescriptorEClass.getESuperTypes().add(this.getLicenseRequisitesDescriptor());
 		personalLicenseRequisitesDescriptorEClass.getESuperTypes().add(this.getLicenseRequisitesDescriptor());
+		agreementDataEClass.getESuperTypes().add(this.getAgreementDataDescriptor());
 		companyRefEClass.getESuperTypes().add(this.getCompanyRefDescriptor());
 		evaluationInstructionsEClass.getESuperTypes().add(this.getEvaluationInstructionsDescriptor());
 		featureGrantEClass.getESuperTypes().add(this.getFeatureGrantDescriptor());
@@ -2026,6 +2167,9 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		versionMatchEClass.getESuperTypes().add(this.getVersionMatchDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
+		initEClass(agreementDataDescriptorEClass, AgreementDataDescriptor.class, "AgreementDataDescriptor", IS_ABSTRACT, //$NON-NLS-1$
+				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(companyRefDescriptorEClass, CompanyRefDescriptor.class, "CompanyRefDescriptor", IS_ABSTRACT, //$NON-NLS-1$
 				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
@@ -2088,6 +2232,27 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 		initEClass(versionMatchDescriptorEClass, VersionMatchDescriptor.class, "VersionMatchDescriptor", IS_ABSTRACT, //$NON-NLS-1$
 				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(agreementDataEClass, AgreementData.class, "AgreementData", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAgreementData_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, //$NON-NLS-1$
+				AgreementData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAgreementData_Name(), ecorePackage.getEString(), "name", null, 1, 1, AgreementData.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAgreementData_File(), ecorePackage.getEString(), "file", null, 1, 1, AgreementData.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAgreementData_HashAlgo(), ecorePackage.getEString(), "hashAlgo", null, 1, 1, //$NON-NLS-1$
+				AgreementData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAgreementData_Hash(), ecorePackage.getEString(), "hash", null, 1, 1, AgreementData.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAgreementData_Content(), ecorePackage.getEByteArray(), "content", null, 1, 1, //$NON-NLS-1$
+				AgreementData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
+				!IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAgreementData_ContentType(), ecorePackage.getEString(), "contentType", null, 1, 1, //$NON-NLS-1$
+				AgreementData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(companyRefEClass, CompanyRef.class, "CompanyRef", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
@@ -2263,6 +2428,9 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 				LicenseRequisites.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLicenseRequisites_Signature(), this.getSignature(), null, "signature", null, 0, 1, //$NON-NLS-1$
+				LicenseRequisites.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLicenseRequisites_Agreements(), this.getAgreementData(), null, "agreements", null, 0, -1, //$NON-NLS-1$
 				LicenseRequisites.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

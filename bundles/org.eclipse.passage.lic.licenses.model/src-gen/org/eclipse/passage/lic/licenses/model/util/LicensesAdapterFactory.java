@@ -19,6 +19,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.passage.lic.licenses.AgreementDataDescriptor;
 import org.eclipse.passage.lic.licenses.CompanyRefDescriptor;
 import org.eclipse.passage.lic.licenses.EvaluationInstructionsDescriptor;
 import org.eclipse.passage.lic.licenses.FeatureGrantDescriptor;
@@ -100,6 +101,11 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected LicensesSwitch<Adapter> modelSwitch = new LicensesSwitch<Adapter>() {
+		@Override
+		public Adapter caseAgreementDataDescriptor(AgreementDataDescriptor object) {
+			return createAgreementDataDescriptorAdapter();
+		}
+
 		@Override
 		public Adapter caseCompanyRefDescriptor(CompanyRefDescriptor object) {
 			return createCompanyRefDescriptorAdapter();
@@ -203,6 +209,11 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseVersionMatchDescriptor(VersionMatchDescriptor object) {
 			return createVersionMatchDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseAgreementData(AgreementData object) {
+			return createAgreementDataAdapter();
 		}
 
 		@Override
@@ -342,6 +353,21 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	@Override
 	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.AgreementDataDescriptor <em>Agreement Data Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.AgreementDataDescriptor
+	 * @since 2.1
+	 * @generated
+	 */
+	public Adapter createAgreementDataDescriptorAdapter() {
+		return null;
 	}
 
 	/**
@@ -628,6 +654,21 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.AgreementData <em>Agreement Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.AgreementData
+	 * @since 2.1
+	 * @generated
+	 */
+	public Adapter createAgreementDataAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.SignatureDescriptor <em>Signature Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -738,7 +779,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicenseRequisites
-	 * @since 2.0
+	 * @since 2.1
 	 * @generated
 	 */
 	public Adapter createLicenseRequisitesAdapter() {

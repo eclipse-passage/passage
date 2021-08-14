@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.eclipse.passage.lic.licenses.AgreementDataDescriptor;
 import org.eclipse.passage.lic.licenses.CompanyRefDescriptor;
 import org.eclipse.passage.lic.licenses.EvaluationInstructionsDescriptor;
 import org.eclipse.passage.lic.licenses.FeatureGrantDescriptor;
@@ -100,6 +101,13 @@ public class LicensesSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+		case LicensesPackage.AGREEMENT_DATA_DESCRIPTOR: {
+			AgreementDataDescriptor agreementDataDescriptor = (AgreementDataDescriptor) theEObject;
+			T result = caseAgreementDataDescriptor(agreementDataDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case LicensesPackage.COMPANY_REF_DESCRIPTOR: {
 			CompanyRefDescriptor companyRefDescriptor = (CompanyRefDescriptor) theEObject;
 			T result = caseCompanyRefDescriptor(companyRefDescriptor);
@@ -247,6 +255,15 @@ public class LicensesSwitch<T> extends Switch<T> {
 		case LicensesPackage.VERSION_MATCH_DESCRIPTOR: {
 			VersionMatchDescriptor versionMatchDescriptor = (VersionMatchDescriptor) theEObject;
 			T result = caseVersionMatchDescriptor(versionMatchDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.AGREEMENT_DATA: {
+			AgreementData agreementData = (AgreementData) theEObject;
+			T result = caseAgreementData(agreementData);
+			if (result == null)
+				result = caseAgreementDataDescriptor(agreementData);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -476,6 +493,22 @@ public class LicensesSwitch<T> extends Switch<T> {
 		default:
 			return defaultCase(theEObject);
 		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Agreement Data Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Agreement Data Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.1
+	 * @generated
+	 */
+	public T caseAgreementDataDescriptor(AgreementDataDescriptor object) {
+		return null;
 	}
 
 	/**
@@ -781,6 +814,22 @@ public class LicensesSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Agreement Data</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Agreement Data</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.1
+	 * @generated
+	 */
+	public T caseAgreementData(AgreementData object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Signature Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -899,7 +948,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>License Requisites</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @since 2.0
+	 * @since 2.1
 	 * @generated
 	 */
 	public T caseLicenseRequisites(LicenseRequisites object) {

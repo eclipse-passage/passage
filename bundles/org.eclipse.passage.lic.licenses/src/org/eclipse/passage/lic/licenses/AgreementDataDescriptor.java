@@ -12,26 +12,22 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses;
 
-import java.util.Date;
-import java.util.List;
-
 /**
  * @since 2.1
  */
-public interface LicenseRequisitesDescriptor {
+public interface AgreementDataDescriptor {
 
 	String getIdentifier();
 
-	Date getIssueDate();
+	String getName();
 
-	String getPlan();
+	String getFile();
 
-	ProductRefDescriptor getProduct();
+	String getHashAlgo();
 
-	ValidityPeriodDescriptor getValid();
+	String getHash();
 
-	SignatureDescriptor getSignature();
+	byte[] getContent();
 
-	List<? extends AgreementDataDescriptor> getAgreements();
-
+	String getContentType();
 }
