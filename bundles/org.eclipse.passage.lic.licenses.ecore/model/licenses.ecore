@@ -2,6 +2,12 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="licenses" nsURI="http://www.eclipse.org/passage/lic/licenses/2.0.0"
     nsPrefix="org.eclipse.passage.lic">
+  <eClassifiers xsi:type="ecore:EClass" name="AgreementDataDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.AgreementDataDescriptor"
+      abstract="true" interface="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="@since 2.1"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompanyRefDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.CompanyRefDescriptor"
       abstract="true" interface="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -121,6 +127,22 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AgreementData" eSuperTypes="#//AgreementDataDescriptor">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="@since 2.1"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="file" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hashAlgo" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hash" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="contentType" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompanyRef" eSuperTypes="#//CompanyRefDescriptor">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -277,7 +299,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LicenseRequisites" abstract="true" eSuperTypes="#//LicenseRequisitesDescriptor">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
+      <details key="documentation" value="@since 2.1"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
@@ -290,6 +312,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="signature" eType="#//Signature"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="agreements" upperBound="-1"
+        eType="#//AgreementData" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PersonalFeatureGrant" eSuperTypes="#//PersonalFeatureGrantDescriptor">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
