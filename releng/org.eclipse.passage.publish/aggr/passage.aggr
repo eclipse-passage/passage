@@ -24,16 +24,18 @@
 				<bundles name="org.eclipse.passage.lic.api.source" />
 				<bundles name="org.eclipse.passage.lic.base" />
 				<bundles name="org.eclipse.passage.lic.base.source" />
-				<bundles name="org.eclipse.passage.lic.licenses.model" />
-				<bundles name="org.eclipse.passage.lic.licenses.model.source" />
-				<bundles name="org.eclipse.passage.lic.equinox" />
-				<bundles name="org.eclipse.passage.lic.equinox.source" />
-				<bundles name="org.eclipse.passage.lic.hc" />
-				<bundles name="org.eclipse.passage.lic.hc.source" />
 				<bundles name="org.eclipse.passage.lic.bc" />
 				<bundles name="org.eclipse.passage.lic.bc.source" />
 				<bundles name="org.eclipse.passage.lic.oshi" />
 				<bundles name="org.eclipse.passage.lic.oshi.source" />
+				<bundles name="org.eclipse.passage.lic.emf" />
+				<bundles name="org.eclipse.passage.lic.emf.source" />
+				<bundles name="org.eclipse.passage.lic.licenses" />
+				<bundles name="org.eclipse.passage.lic.licenses.source" />
+				<bundles name="org.eclipse.passage.lic.licenses.model" />
+				<bundles name="org.eclipse.passage.lic.licenses.model.source" />
+				<bundles name="org.eclipse.passage.lic.equinox" />
+				<bundles name="org.eclipse.passage.lic.equinox.source" />
 			</repositories>
 			<mavenMappings namePattern="org.eclipse.ant.core"
 				groupId="org.eclipse.platform" artifactId="org.eclipse.ant.core" />
