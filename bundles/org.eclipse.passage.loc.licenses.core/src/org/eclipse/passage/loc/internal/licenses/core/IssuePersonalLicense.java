@@ -58,7 +58,12 @@ final class IssuePersonalLicense {
 	}
 
 	ServiceInvocationResult<IssuedLicense> issue(Supplier<PersonalLicensePack> template) {
-		PersonalLicensePack license = adjsut(signed(EcoreUtil.copy(template.get())));
+		PersonalLicensePack license = new Builder(template.get())//
+				.adjusted()//
+				.guarded()//
+				.withSignature()//
+				.withAgreements()//
+				.build();
 		Optional<String> errors = new ErrorMessages().apply(license);
 		if (errors.isPresent()) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseValidationFailed(), errors.get()));
@@ -69,16 +74,12 @@ final class IssuePersonalLicense {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(),
 					LicensesCoreMessages.LicenseOperatorServiceImpl_error_io, e));
 		}
-		LicensedProduct product = new BaseLicensedProduct(//
-				license.getLicense().getProduct().getIdentifier(), //
-				license.getLicense().getProduct().getVersion());
+		LicensedProduct product = product(license);
 		Path path = new UserHomeProductResidence(product).get();
 
 		Path decrypted;
 		try {
-			decrypted = new PersistedDecoded(path, license)//
-					.write(license.getLicense().getIdentifier() + new PassageFileExtension.LicenseDecrypted().get());
-			events.postEvent(OperatorLicenseEvents.decodedIssued(decrypted.toString()));
+			decrypted = decrypted(license, path);
 		} catch (LicensingException e) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(),
 					LicensesCoreMessages.LicenseOperatorServiceImpl_failed_to_save_decoded, e));
@@ -86,28 +87,73 @@ final class IssuePersonalLicense {
 
 		Path encrypted;
 		try {
-			encrypted = new PersistedEncoded(product, decrypted, new ProductPassword(products, operator))//
-					.write(license.getLicense().getIdentifier() + new PassageFileExtension.LicenseEncrypted().get());
+			encrypted = encrypted(license, product, decrypted);
 		} catch (LicensingException e) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(),
 					LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, e));
 		}
-		events.postEvent(OperatorLicenseEvents.encodedIssued(encrypted.toString()));
+		return result(license, decrypted, encrypted);
+	}
+
+	private BaseServiceInvocationResult<IssuedLicense> result(PersonalLicensePack license, Path decrypted,
+			Path encrypted) {
 		return new BaseServiceInvocationResult<>(new BaseIssuedLicense(license, encrypted, decrypted));
 	}
 
-	private PersonalLicensePack adjsut(PersonalLicensePack license) {
-		Date issueDate = new Date();
-		license.getLicense().setIdentifier(UUID.randomUUID().toString());
-		license.getLicense().setIssueDate(issueDate);
-		new AssignGrantIdentifiers().accept(license);
-		new PersonalLicenseIssuingProtection().accept(license);
-		return license;
+	private Path encrypted(PersonalLicensePack license, LicensedProduct product, Path decrypted)
+			throws LicensingException {
+		Path encrypted = new PersistedEncoded(product, decrypted, new ProductPassword(products, operator))//
+				.write(license.getLicense().getIdentifier() + new PassageFileExtension.LicenseEncrypted().get());
+		events.postEvent(OperatorLicenseEvents.encodedIssued(encrypted.toString()));
+		return encrypted;
 	}
 
-	private PersonalLicensePack signed(PersonalLicensePack pack) {
-		new LicenseSignature().accept(pack.getLicense());
-		return pack;
+	private Path decrypted(PersonalLicensePack license, Path path) throws LicensingException {
+		Path decrypted = new PersistedDecoded(path, license)//
+				.write(license.getLicense().getIdentifier() + new PassageFileExtension.LicenseDecrypted().get());
+		events.postEvent(OperatorLicenseEvents.decodedIssued(decrypted.toString()));
+		return decrypted;
 	}
 
+	private BaseLicensedProduct product(PersonalLicensePack license) {
+		return new BaseLicensedProduct(//
+				license.getLicense().getProduct().getIdentifier(), //
+				license.getLicense().getProduct().getVersion());
+	}
+
+	private static final class Builder {
+
+		private final PersonalLicensePack pack;
+
+		Builder(PersonalLicensePack template) {
+			this.pack = EcoreUtil.copy(template);
+		}
+
+		Builder withSignature() {
+			new LicenseSignature().accept(pack.getLicense());
+			return this;
+		}
+
+		Builder withAgreements() {
+
+			// TODO
+			return this;
+		}
+
+		Builder adjusted() {
+			pack.getLicense().setIdentifier(UUID.randomUUID().toString());
+			pack.getLicense().setIssueDate(new Date());
+			new AssignGrantIdentifiers().accept(pack);
+			return this;
+		}
+
+		Builder guarded() {
+			new PersonalLicenseIssuingProtection().accept(pack);
+			return this;
+		}
+
+		PersonalLicensePack build() {
+			return pack;
+		}
+	}
 }
