@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.features.model.api;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
@@ -30,7 +28,6 @@ import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
  *   <li>{@link org.eclipse.passage.lic.features.model.api.FeatureVersion#getVersion <em>Version</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.features.model.api.FeatureVersion#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.features.model.api.FeatureVersion#getNews <em>News</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.features.model.api.FeatureVersion#getAgreements <em>Agreements</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.features.model.meta.FeaturesPackage#getFeatureVersion()
@@ -108,21 +105,5 @@ public interface FeatureVersion extends EObject, FeatureVersionDescriptor {
 	 * @generated
 	 */
 	void setNews(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Agreements</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * @since 2.0
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Agreements</em>' attribute list.
-	 * @see org.eclipse.passage.lic.features.model.meta.FeaturesPackage#getFeatureVersion_Agreements()
-	 * @model
-	 * @generated
-	 */
-	@Override
-	EList<String> getAgreements();
 
 } // FeatureVersion

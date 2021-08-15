@@ -12,21 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.features.model.impl;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import org.eclipse.passage.lic.features.model.api.Feature;
@@ -45,7 +39,6 @@ import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
  *   <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureVersionImpl#getVersion <em>Version</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureVersionImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureVersionImpl#getNews <em>News</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureVersionImpl#getAgreements <em>Agreements</em>}</li>
  * </ul>
  *
  * @generated
@@ -90,17 +83,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	private String news = NEWS_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getAgreements() <em>Agreements</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAgreements()
-	 * @since 2.0
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> agreements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -225,21 +207,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EList<String> getAgreements() {
-		if (agreements == null) {
-			agreements = new EDataTypeUniqueEList<String>(String.class, this,
-					FeaturesPackage.FEATURE_VERSION__AGREEMENTS);
-		}
-		return agreements;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -300,8 +267,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 			return getFeature();
 		case FeaturesPackage.FEATURE_VERSION__NEWS:
 			return getNews();
-		case FeaturesPackage.FEATURE_VERSION__AGREEMENTS:
-			return getAgreements();
 		default:
 			return super.eGet(featureID, resolve, coreType);
 		}
@@ -324,10 +289,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 			return;
 		case FeaturesPackage.FEATURE_VERSION__NEWS:
 			setNews((String) newValue);
-			return;
-		case FeaturesPackage.FEATURE_VERSION__AGREEMENTS:
-			getAgreements().clear();
-			getAgreements().addAll((Collection<? extends String>) newValue);
 			return;
 		default:
 			super.eSet(featureID, newValue);
@@ -352,9 +313,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 		case FeaturesPackage.FEATURE_VERSION__NEWS:
 			setNews(NEWS_EDEFAULT);
 			return;
-		case FeaturesPackage.FEATURE_VERSION__AGREEMENTS:
-			getAgreements().clear();
-			return;
 		default:
 			super.eUnset(featureID);
 			return;
@@ -375,8 +333,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 			return getFeature() != null;
 		case FeaturesPackage.FEATURE_VERSION__NEWS:
 			return !Objects.equals(NEWS_EDEFAULT, news);
-		case FeaturesPackage.FEATURE_VERSION__AGREEMENTS:
-			return agreements != null && !agreements.isEmpty();
 		default:
 			return super.eIsSet(featureID);
 		}
@@ -397,8 +353,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 		result.append(version);
 		result.append(", news: "); //$NON-NLS-1$
 		result.append(news);
-		result.append(", agreements: "); //$NON-NLS-1$
-		result.append(agreements);
 		result.append(')');
 		return result.toString();
 	}

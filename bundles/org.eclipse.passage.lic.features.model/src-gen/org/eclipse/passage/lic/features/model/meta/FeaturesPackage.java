@@ -334,23 +334,13 @@ public interface FeaturesPackage extends EPackage {
 	int FEATURE_VERSION__NEWS = FEATURE_VERSION_DESCRIPTOR_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Agreements</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_VERSION__AGREEMENTS = FEATURE_VERSION_DESCRIPTOR_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Feature Version</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_VERSION_FEATURE_COUNT = FEATURE_VERSION_DESCRIPTOR_FEATURE_COUNT + 4;
+	int FEATURE_VERSION_FEATURE_COUNT = FEATURE_VERSION_DESCRIPTOR_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Feature Version</em>' class.
@@ -566,18 +556,6 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFeatureVersion_News();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.passage.lic.features.model.api.FeatureVersion#getAgreements <em>Agreements</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Agreements</em>'.
-	 * @see org.eclipse.passage.lic.features.model.api.FeatureVersion#getAgreements()
-	 * @see #getFeatureVersion()
-	 * @since 2.0
-	 * @generated
-	 */
-	EAttribute getFeatureVersion_Agreements();
 
 	/**
 	 * Returns the factory that creates the instances of the model.

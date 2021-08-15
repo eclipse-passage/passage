@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.internal.features.model.migration.FeaturesResourc
  * 
  * @see org.eclipse.passage.lic.features.model.util.FeaturesResourceFactoryImpl
  * @generated NOT
- * @since 1.1
+ * @since 2.0
  */
 public class FeaturesResourceImpl extends XMIResourceImpl {
 	/**
