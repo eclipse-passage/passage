@@ -134,7 +134,7 @@ public class AgreementDataImpl extends MinimalEObjectImpl.Container implements A
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String HASH_EDEFAULT = null;
+	protected static final byte[] HASH_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getHash() <em>Hash</em>}' attribute.
@@ -144,7 +144,7 @@ public class AgreementDataImpl extends MinimalEObjectImpl.Container implements A
 	 * @generated
 	 * @ordered
 	 */
-	private String hash = HASH_EDEFAULT;
+	private byte[] hash = HASH_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getContent() <em>Content</em>}' attribute.
@@ -309,7 +309,7 @@ public class AgreementDataImpl extends MinimalEObjectImpl.Container implements A
 	 * @generated
 	 */
 	@Override
-	public String getHash() {
+	public byte[] getHash() {
 		return hash;
 	}
 
@@ -319,8 +319,8 @@ public class AgreementDataImpl extends MinimalEObjectImpl.Container implements A
 	 * @generated
 	 */
 	@Override
-	public void setHash(String newHash) {
-		String oldHash = hash;
+	public void setHash(byte[] newHash) {
+		byte[] oldHash = hash;
 		hash = newHash;
 		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.AGREEMENT_DATA__HASH, oldHash, hash));
@@ -425,7 +425,7 @@ public class AgreementDataImpl extends MinimalEObjectImpl.Container implements A
 			setHashAlgo((String) newValue);
 			return;
 		case LicensesPackage.AGREEMENT_DATA__HASH:
-			setHash((String) newValue);
+			setHash((byte[]) newValue);
 			return;
 		case LicensesPackage.AGREEMENT_DATA__CONTENT:
 			setContent((byte[]) newValue);

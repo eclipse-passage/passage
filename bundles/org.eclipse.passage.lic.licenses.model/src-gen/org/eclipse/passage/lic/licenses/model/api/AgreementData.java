@@ -140,13 +140,13 @@ public interface AgreementData extends EObject, AgreementDataDescriptor {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Hash</em>' attribute.
-	 * @see #setHash(String)
+	 * @see #setHash(byte[])
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getAgreementData_Hash()
 	 * @model required="true"
 	 * @generated
 	 */
 	@Override
-	String getHash();
+	byte[] getHash();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.AgreementData#getHash <em>Hash</em>}' attribute.
@@ -156,7 +156,7 @@ public interface AgreementData extends EObject, AgreementDataDescriptor {
 	 * @see #getHash()
 	 * @generated
 	 */
-	void setHash(String value);
+	void setHash(byte[] value);
 
 	/**
 	 * Returns the value of the '<em><b>Content</b></em>' attribute.

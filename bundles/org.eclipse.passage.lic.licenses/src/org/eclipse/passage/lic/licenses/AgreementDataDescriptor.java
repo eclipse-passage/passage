@@ -25,7 +25,7 @@ public interface AgreementDataDescriptor {
 
 	String getHashAlgo();
 
-	String getHash();
+	byte[] getHash();
 
 	byte[] getContent();
 
