@@ -2257,7 +2257,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		initEAttribute(getAgreementData_HashAlgo(), ecorePackage.getEString(), "hashAlgo", null, 1, 1, //$NON-NLS-1$
 				AgreementData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAgreementData_Hash(), ecorePackage.getEString(), "hash", null, 1, 1, AgreementData.class, //$NON-NLS-1$
+		initEAttribute(getAgreementData_Hash(), ecorePackage.getEByteArray(), "hash", null, 1, 1, AgreementData.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAgreementData_Content(), ecorePackage.getEByteArray(), "content", null, 1, 1, //$NON-NLS-1$
 				AgreementData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE,
