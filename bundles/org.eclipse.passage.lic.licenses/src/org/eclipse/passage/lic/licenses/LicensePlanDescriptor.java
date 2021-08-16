@@ -51,6 +51,11 @@ public interface LicensePlanDescriptor {
 	String getDescription();
 
 	/**
+	 * @since 2.1
+	 */
+	List<String> getAgreements();
+
+	/**
 	 * Returns the <code>"License Plan Features"</code>(s) contained in this license
 	 * plan. This is the value of its <code>"licensePlanFeatures"</code> reference.
 	 *

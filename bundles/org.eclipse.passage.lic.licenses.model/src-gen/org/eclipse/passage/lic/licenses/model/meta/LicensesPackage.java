@@ -1682,6 +1682,16 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_PLAN__DESCRIPTION = LICENSE_PLAN_DESCRIPTOR_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Agreements</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN__AGREEMENTS = LICENSE_PLAN_DESCRIPTOR_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Features</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1689,7 +1699,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_PLAN__FEATURES = LICENSE_PLAN_DESCRIPTOR_FEATURE_COUNT + 3;
+	int LICENSE_PLAN__FEATURES = LICENSE_PLAN_DESCRIPTOR_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Personal</b></em>' containment reference list.
@@ -1699,7 +1709,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_PLAN__PERSONAL = LICENSE_PLAN_DESCRIPTOR_FEATURE_COUNT + 4;
+	int LICENSE_PLAN__PERSONAL = LICENSE_PLAN_DESCRIPTOR_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Floating</b></em>' containment reference list.
@@ -1709,7 +1719,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_PLAN__FLOATING = LICENSE_PLAN_DESCRIPTOR_FEATURE_COUNT + 5;
+	int LICENSE_PLAN__FLOATING = LICENSE_PLAN_DESCRIPTOR_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>License Plan</em>' class.
@@ -1718,7 +1728,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_PLAN_FEATURE_COUNT = LICENSE_PLAN_DESCRIPTOR_FEATURE_COUNT + 6;
+	int LICENSE_PLAN_FEATURE_COUNT = LICENSE_PLAN_DESCRIPTOR_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>License Plan</em>' class.
@@ -3341,6 +3351,18 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLicensePlan_Description();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getAgreements <em>Agreements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Agreements</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlan#getAgreements()
+	 * @see #getLicensePlan()
+	 * @since 2.1
+	 * @generated
+	 */
+	EAttribute getLicensePlan_Agreements();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getFeatures <em>Features</em>}'.
