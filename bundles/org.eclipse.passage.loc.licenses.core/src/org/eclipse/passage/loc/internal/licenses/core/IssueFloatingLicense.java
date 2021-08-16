@@ -20,6 +20,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BinaryOperator;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -35,11 +36,13 @@ import org.eclipse.passage.lic.base.diagnostic.SumOfLists;
 import org.eclipse.passage.lic.base.io.FloatingFileExtension;
 import org.eclipse.passage.lic.base.io.UserHomeProductResidence;
 import org.eclipse.passage.lic.emf.validation.ErrorMessages;
+import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.api.UserGrant;
+import org.eclipse.passage.loc.internal.agreements.AgreementRegistry;
 import org.eclipse.passage.loc.internal.api.IssuedFloatingLicense;
 import org.eclipse.passage.loc.internal.api.OperatorProductService;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
@@ -47,6 +50,7 @@ import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 import org.eclipse.passage.loc.internal.licenses.core.issue.FloatingLicenseIssuingProtection;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
 import org.eclipse.passage.loc.internal.products.core.PublicKeyReplcated;
+import org.eclipse.passage.loc.licenses.trouble.code.LicenseAgreementsAttachFailed;
 import org.eclipse.passage.loc.licenses.trouble.code.LicenseIssuingFailed;
 import org.eclipse.passage.loc.licenses.trouble.code.LicenseValidationFailed;
 
@@ -54,18 +58,31 @@ import org.eclipse.passage.loc.licenses.trouble.code.LicenseValidationFailed;
 final class IssueFloatingLicense {
 
 	private final LicenseRegistry licenses;
+	private final AgreementRegistry agreements;
 	private final ProductRegistry products;
 	private final OperatorProductService operator;
 
-	IssueFloatingLicense(LicenseRegistry licenses, ProductRegistry products, OperatorProductService operator) {
+	IssueFloatingLicense(LicenseRegistry licenses, AgreementRegistry agreements, ProductRegistry products,
+			OperatorProductService operator) {
 		this.licenses = licenses;
+		this.agreements = agreements;
 		this.products = products;
 		this.operator = operator;
 	}
 
 	ServiceInvocationResult<IssuedFloatingLicense> issue(FloatingLicensePack pack,
 			Collection<FloatingLicenseAccess> configs) {
-		FloatingLicensePack license = shielded(signed(EcoreUtil.copy(pack)), configs);
+		FloatingLicensePack license;
+		try {
+			license = new Builder(pack, configs)//
+					.signed()//
+					.shielded()//
+					.withAgreements()//
+					.get();
+		} catch (LicensingException e) {
+			return new BaseServiceInvocationResult<>(
+					new Trouble(new LicenseAgreementsAttachFailed(), e.getMessage(), e));
+		}
 		try {
 			new UpdateLicensePlan(licenses).withFloating(license);
 		} catch (IOException e) {
@@ -73,22 +90,6 @@ final class IssueFloatingLicense {
 					LicensesCoreMessages.LicenseOperatorServiceImpl_error_io, e));
 		}
 		return persistLicenseFiles(EcoreUtil.copy(license), configs);
-	}
-
-	private FloatingLicensePack shielded(FloatingLicensePack pack, Collection<FloatingLicenseAccess> configs) {
-		new FloatingLicenseIssuingProtection().accept(pack);
-		Collection<String> users = pack.getUsers().stream()//
-				.map(UserGrant::getUser)//
-				.collect(Collectors.toSet());
-		Collection<FloatingLicenseAccess> redundant = configs.stream()//
-				.filter(c -> !users.contains(c.getUser())).collect(Collectors.toSet());
-		configs.removeAll(redundant);
-		return pack;
-	}
-
-	private FloatingLicensePack signed(FloatingLicensePack pack) {
-		new LicenseSignature().accept(pack.getLicense());
-		return pack;
 	}
 
 	private ServiceInvocationResult<IssuedFloatingLicense> persistLicenseFiles(FloatingLicensePack pack,
@@ -180,5 +181,47 @@ final class IssueFloatingLicense {
 				access.getOriginLicensePack(), //
 				access.getUser(), //
 				ext.get());
+	}
+
+	private final class Builder implements Supplier<FloatingLicensePack> {
+
+		private final FloatingLicensePack pack;
+		private final Collection<FloatingLicenseAccess> configs;
+
+		Builder(FloatingLicensePack template, Collection<FloatingLicenseAccess> configs) {
+			this.pack = EcoreUtil.copy(template);
+			this.configs = configs;
+		}
+
+		Builder shielded() {
+			new FloatingLicenseIssuingProtection().accept(pack);
+			Collection<String> users = pack.getUsers().stream()//
+					.map(UserGrant::getUser)//
+					.collect(Collectors.toSet());
+			Collection<FloatingLicenseAccess> redundant = configs.stream()//
+					.filter(c -> !users.contains(c.getUser())).collect(Collectors.toSet());
+			configs.removeAll(redundant);
+			return this;
+		}
+
+		Builder signed() {
+			new LicenseSignature().accept(pack.getLicense());
+			return this;
+		}
+
+		Builder withAgreements() throws LicensingException {
+			new LicenseAgreements(agreements).install(plan(), pack.getLicense());
+			return this;
+		}
+
+		@Override
+		public FloatingLicensePack get() {
+			return pack;
+		}
+
+		private LicensePlanDescriptor plan() {
+			return licenses.getLicensePlan(pack.getLicense().getPlan());
+		}
+
 	}
 }
