@@ -3,6 +3,7 @@
    <service>
       <provide interface="org.eclipse.passage.loc.internal.api.OperatorLicenseService"/>
    </service>
+   <reference bind="bindAgreementRegistry" interface="org.eclipse.passage.loc.internal.agreements.AgreementRegistry" name="AgreementRegistry" unbind="unbindAgreementRegistry"/>
    <reference bind="bindEnvironmentInfo" interface="org.eclipse.osgi.service.environment.EnvironmentInfo" name="EnvironmentInfo" unbind="unbindEnvironmentInfo"/>
    <reference bind="bindEventAdmin" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" unbind="unbindEventAdmin"/>
    <reference bind="bindLicenseRegistry" interface="org.eclipse.passage.loc.internal.licenses.LicenseRegistry" name="LicenseRegistry" unbind="unbindLicenseRegistry"/>
