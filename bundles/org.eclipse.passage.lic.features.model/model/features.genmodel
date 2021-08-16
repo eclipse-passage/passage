@@ -39,7 +39,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureVersion/version"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureVersion/feature"/>
       <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureVersion/news"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureVersion/agreements"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

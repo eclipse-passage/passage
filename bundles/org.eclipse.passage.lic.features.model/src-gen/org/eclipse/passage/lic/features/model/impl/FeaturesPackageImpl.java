@@ -336,17 +336,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFeatureVersion_Agreements() {
-		return (EAttribute) featureVersionEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -398,7 +387,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 		createEAttribute(featureVersionEClass, FEATURE_VERSION__VERSION);
 		createEReference(featureVersionEClass, FEATURE_VERSION__FEATURE);
 		createEAttribute(featureVersionEClass, FEATURE_VERSION__NEWS);
-		createEAttribute(featureVersionEClass, FEATURE_VERSION__AGREEMENTS);
 	}
 
 	/**
@@ -484,9 +472,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFeatureVersion_News(), ecorePackage.getEString(), "news", null, 0, 1, FeatureVersion.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFeatureVersion_Agreements(), ecorePackage.getEString(), "agreements", null, 0, -1, //$NON-NLS-1$
-				FeatureVersion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

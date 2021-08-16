@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.features;
 
-import java.util.List;
-
 /**
  * <p>
  * The <code>"Feature Version"</code> is a state of your <code>"Feature"</code>
@@ -42,10 +40,5 @@ public interface FeatureVersionDescriptor {
 	String getNews();
 
 	FeatureDescriptor getFeature();
-
-	/**
-	 * @since 2.0
-	 */
-	List<String> getAgreements();
 
 }
