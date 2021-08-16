@@ -68,9 +68,9 @@ final class IssuePersonalLicense {
 			license = new Builder(template.get())//
 					.adjusted()//
 					.guarded()//
-					.withSignature()//
+					.signed()//
 					.withAgreements()//
-					.build();
+					.get();
 		} catch (LicensingException e) {
 			return new BaseServiceInvocationResult<>(
 					new Trouble(new LicenseAgreementsAttachFailed(), e.getMessage(), e));
@@ -132,7 +132,7 @@ final class IssuePersonalLicense {
 				license.getLicense().getProduct().getVersion());
 	}
 
-	private final class Builder {
+	private final class Builder implements Supplier<PersonalLicensePack> {
 
 		private final PersonalLicensePack pack;
 
@@ -140,13 +140,13 @@ final class IssuePersonalLicense {
 			this.pack = EcoreUtil.copy(template);
 		}
 
-		Builder withSignature() {
+		Builder signed() {
 			new LicenseSignature().accept(pack.getLicense());
 			return this;
 		}
 
 		Builder withAgreements() throws LicensingException {
-			new LiecnseAgreements(agreements).install(plan(), pack.getLicense());
+			new LicenseAgreements(agreements).install(plan(), pack.getLicense());
 			return this;
 		}
 
@@ -162,7 +162,8 @@ final class IssuePersonalLicense {
 			return this;
 		}
 
-		PersonalLicensePack build() {
+		@Override
+		public PersonalLicensePack get() {
 			return pack;
 		}
 
