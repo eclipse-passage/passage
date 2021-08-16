@@ -30,6 +30,7 @@ import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getAgreements <em>Agreements</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getFeatures <em>Features</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getPersonal <em>Personal</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getFloating <em>Floating</em>}</li>
@@ -108,6 +109,22 @@ public interface LicensePlan extends EObject, LicensePlanDescriptor {
 	 * @generated
 	 */
 	void setDescription(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Agreements</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * @since 2.1
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Agreements</em>' attribute list.
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlan_Agreements()
+	 * @model
+	 * @generated
+	 */
+	@Override
+	EList<String> getAgreements();
 
 	/**
 	 * Returns the value of the '<em><b>Features</b></em>' containment reference list.

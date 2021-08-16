@@ -885,12 +885,12 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
+	 * @since 2.1
 	 * @generated
 	 */
 	@Override
-	public EReference getLicensePlan_Features() {
-		return (EReference) licensePlanEClass.getEStructuralFeatures().get(3);
+	public EAttribute getLicensePlan_Agreements() {
+		return (EAttribute) licensePlanEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -900,7 +900,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getLicensePlan_Personal() {
+	public EReference getLicensePlan_Features() {
 		return (EReference) licensePlanEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -911,8 +911,19 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getLicensePlan_Floating() {
+	public EReference getLicensePlan_Personal() {
 		return (EReference) licensePlanEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EReference getLicensePlan_Floating() {
+		return (EReference) licensePlanEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -2043,6 +2054,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		createEAttribute(licensePlanEClass, LICENSE_PLAN__IDENTIFIER);
 		createEAttribute(licensePlanEClass, LICENSE_PLAN__NAME);
 		createEAttribute(licensePlanEClass, LICENSE_PLAN__DESCRIPTION);
+		createEAttribute(licensePlanEClass, LICENSE_PLAN__AGREEMENTS);
 		createEReference(licensePlanEClass, LICENSE_PLAN__FEATURES);
 		createEReference(licensePlanEClass, LICENSE_PLAN__PERSONAL);
 		createEReference(licensePlanEClass, LICENSE_PLAN__FLOATING);
@@ -2383,6 +2395,9 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		initEAttribute(getLicensePlan_Name(), ecorePackage.getEString(), "name", null, 0, 1, LicensePlan.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLicensePlan_Description(), ecorePackage.getEString(), "description", null, 0, 1, //$NON-NLS-1$
+				LicensePlan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLicensePlan_Agreements(), ecorePackage.getEString(), "agreements", null, 0, -1, //$NON-NLS-1$
 				LicensePlan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEReference(getLicensePlan_Features(), this.getLicensePlanFeature(), this.getLicensePlanFeature_Plan(),

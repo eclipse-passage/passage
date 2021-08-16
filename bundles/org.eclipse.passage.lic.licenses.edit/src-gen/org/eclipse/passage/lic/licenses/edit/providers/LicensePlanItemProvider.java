@@ -66,6 +66,7 @@ public class LicensePlanItemProvider extends ItemProviderAdapter implements IEdi
 			addIdentifierPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
+			addAgreementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -115,6 +116,23 @@ public class LicensePlanItemProvider extends ItemProviderAdapter implements IEdi
 						getString("_UI_PropertyDescriptor_description", "_UI_LicensePlan_description_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_LicensePlan_type"), //$NON-NLS-1$
 						LicensesPackage.eINSTANCE.getLicensePlan_Description(), true, true, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Agreements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	protected void addAgreementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LicensePlan_agreements_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_LicensePlan_agreements_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_LicensePlan_type"), //$NON-NLS-1$
+						LicensesPackage.eINSTANCE.getLicensePlan_Agreements(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -209,6 +227,7 @@ public class LicensePlanItemProvider extends ItemProviderAdapter implements IEdi
 		case LicensesPackage.LICENSE_PLAN__IDENTIFIER:
 		case LicensesPackage.LICENSE_PLAN__NAME:
 		case LicensesPackage.LICENSE_PLAN__DESCRIPTION:
+		case LicensesPackage.LICENSE_PLAN__AGREEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case LicensesPackage.LICENSE_PLAN__FEATURES:

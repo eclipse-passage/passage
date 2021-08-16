@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -47,6 +48,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanImpl#getAgreements <em>Agreements</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanImpl#getFeatures <em>Features</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanImpl#getPersonal <em>Personal</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanImpl#getFloating <em>Floating</em>}</li>
@@ -114,6 +116,17 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 	 * @ordered
 	 */
 	private String description = DESCRIPTION_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getAgreements() <em>Agreements</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAgreements()
+	 * @since 2.1
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> agreements;
 
 	/**
 	 * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
@@ -244,6 +257,20 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EList<String> getAgreements() {
+		if (agreements == null) {
+			agreements = new EDataTypeUniqueEList<String>(String.class, this, LicensesPackage.LICENSE_PLAN__AGREEMENTS);
+		}
+		return agreements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @since 2.0
 	 * @generated
 	 */
@@ -335,6 +362,8 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 			return getName();
 		case LicensesPackage.LICENSE_PLAN__DESCRIPTION:
 			return getDescription();
+		case LicensesPackage.LICENSE_PLAN__AGREEMENTS:
+			return getAgreements();
 		case LicensesPackage.LICENSE_PLAN__FEATURES:
 			return getFeatures();
 		case LicensesPackage.LICENSE_PLAN__PERSONAL:
@@ -363,6 +392,10 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 			return;
 		case LicensesPackage.LICENSE_PLAN__DESCRIPTION:
 			setDescription((String) newValue);
+			return;
+		case LicensesPackage.LICENSE_PLAN__AGREEMENTS:
+			getAgreements().clear();
+			getAgreements().addAll((Collection<? extends String>) newValue);
 			return;
 		case LicensesPackage.LICENSE_PLAN__FEATURES:
 			getFeatures().clear();
@@ -399,6 +432,9 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 		case LicensesPackage.LICENSE_PLAN__DESCRIPTION:
 			setDescription(DESCRIPTION_EDEFAULT);
 			return;
+		case LicensesPackage.LICENSE_PLAN__AGREEMENTS:
+			getAgreements().clear();
+			return;
 		case LicensesPackage.LICENSE_PLAN__FEATURES:
 			getFeatures().clear();
 			return;
@@ -428,6 +464,8 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 			return !Objects.equals(NAME_EDEFAULT, name);
 		case LicensesPackage.LICENSE_PLAN__DESCRIPTION:
 			return !Objects.equals(DESCRIPTION_EDEFAULT, description);
+		case LicensesPackage.LICENSE_PLAN__AGREEMENTS:
+			return agreements != null && !agreements.isEmpty();
 		case LicensesPackage.LICENSE_PLAN__FEATURES:
 			return features != null && !features.isEmpty();
 		case LicensesPackage.LICENSE_PLAN__PERSONAL:
@@ -456,6 +494,8 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 		result.append(name);
 		result.append(", description: "); //$NON-NLS-1$
 		result.append(description);
+		result.append(", agreements: "); //$NON-NLS-1$
+		result.append(agreements);
 		result.append(')');
 		return result.toString();
 	}
