@@ -16,5 +16,10 @@
       <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicensePlan/description"/>
     </domainModelReference>
   </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_9cX1gP6MEeuGytDyYvaNeQ" name="agreements">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_DSQq0P6NEeuGytDyYvaNeQ">
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicensePlan/agreements"/>
+    </domainModelReference>
+  </children>
   <ecorePaths>/org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore</ecorePaths>
 </org.eclipse.emf.ecp.view.model:View>
