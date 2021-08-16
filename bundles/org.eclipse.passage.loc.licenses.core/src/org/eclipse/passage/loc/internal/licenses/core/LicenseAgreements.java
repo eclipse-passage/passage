@@ -30,11 +30,11 @@ import org.eclipse.passage.loc.internal.equinox.OperatorGearAware;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 
 @SuppressWarnings("restriction")
-final class LiecnseAgreements {
+final class LicenseAgreements {
 
 	private final AgreementRegistry registry;
 
-	LiecnseAgreements(AgreementRegistry registry) {
+	LicenseAgreements(AgreementRegistry registry) {
 		this.registry = registry;
 	}
 
