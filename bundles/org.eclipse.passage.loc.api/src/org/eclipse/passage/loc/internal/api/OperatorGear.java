@@ -17,6 +17,7 @@ import java.util.Optional;
 import org.eclipse.passage.lic.api.Gear;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironmentRegistry;
+import org.eclipse.passage.lic.api.io.HashesRegistry;
 import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.loc.internal.api.workspace.OperatorWorkspace;
 
@@ -25,6 +26,8 @@ public interface OperatorGear extends Gear {
 	Optional<StreamCodec> codec(LicensedProduct product);
 
 	RuntimeEnvironmentRegistry environments();
+
+	HashesRegistry hashes();
 
 	OperatorWorkspace workspace();
 
