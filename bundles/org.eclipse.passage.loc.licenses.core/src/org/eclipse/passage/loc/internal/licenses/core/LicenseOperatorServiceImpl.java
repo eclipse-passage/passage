@@ -23,6 +23,7 @@ import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
+import org.eclipse.passage.loc.internal.agreements.AgreementRegistry;
 import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
 import org.eclipse.passage.loc.internal.api.IssuedFloatingLicense;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
@@ -44,6 +45,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 	private ProductRegistry products;
 	private UserRegistry users;
 	private LicenseRegistry licenses;
+	private AgreementRegistry agreements;
 	private OperatorProductService operator;
 
 	@Reference
@@ -91,6 +93,17 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 	}
 
 	@Reference
+	public void bindAgreementRegistry(AgreementRegistry registry) {
+		this.agreements = registry;
+	}
+
+	public void unbindAgreementRegistry(AgreementRegistry registry) {
+		if (Objects.equals(this.agreements, registry)) {
+			this.agreements = null;
+		}
+	}
+
+	@Reference
 	public void bindUserRegistry(UserRegistry registry) {
 		this.users = registry;
 	}
@@ -125,7 +138,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		Supplier<PersonalLicensePack> pack = (template instanceof PersonalLicensePack) //
 				? () -> PersonalLicensePack.class.cast(template)//
 				: () -> createLicensePack(request);
-		return new IssuePersonalLicense(licenses, products, operator, events).issue(pack);
+		return new IssuePersonalLicense(licenses, agreements, products, operator, events).issue(pack);
 	}
 
 	@Override

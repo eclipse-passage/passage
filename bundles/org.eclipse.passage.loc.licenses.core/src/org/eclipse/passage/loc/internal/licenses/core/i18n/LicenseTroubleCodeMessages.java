@@ -20,6 +20,7 @@ public final class LicenseTroubleCodeMessages extends NLS {
 	public static String LicenseValidationFailed_explanation;
 	public static String LicenseIssuingFailed_explanation;
 	public static String LicenseIssuingIsPartial_explanation;
+	public static String LicenseAgreementAttachFailed_explanation;
 
 	static {
 		// initialize resource bundle

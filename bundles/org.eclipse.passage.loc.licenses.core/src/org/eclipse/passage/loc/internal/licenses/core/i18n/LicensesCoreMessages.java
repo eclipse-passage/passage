@@ -48,6 +48,8 @@ public final class LicensesCoreMessages extends NLS {
 	public static String LicenseOperatorServiceImpl_floating_save_encoded_failed;
 	public static String LicenseOperatorServiceImpl_floating_save_product_key;
 	public static String LicenseOperatorServiceImpl_floating_save_encoded_file_error;
+	public static String LicenseOperatorServiceImpl_failed_to_find_agreement_file;
+	public static String LicenseOperatorServiceImpl_failed_to_attach_agreement;
 
 	static {
 		// initialize resource bundle

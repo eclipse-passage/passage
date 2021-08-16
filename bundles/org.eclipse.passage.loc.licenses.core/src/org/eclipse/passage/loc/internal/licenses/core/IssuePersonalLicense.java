@@ -30,7 +30,9 @@ import org.eclipse.passage.lic.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.base.io.UserHomeProductResidence;
 import org.eclipse.passage.lic.emf.validation.ErrorMessages;
 import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
+import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
+import org.eclipse.passage.loc.internal.agreements.AgreementRegistry;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseEvents;
 import org.eclipse.passage.loc.internal.api.OperatorProductService;
@@ -38,6 +40,7 @@ import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 import org.eclipse.passage.loc.internal.licenses.core.issue.PersonalLicenseIssuingProtection;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
+import org.eclipse.passage.loc.licenses.trouble.code.LicenseAgreementsAttachFailed;
 import org.eclipse.passage.loc.licenses.trouble.code.LicenseIssuingFailed;
 import org.eclipse.passage.loc.licenses.trouble.code.LicenseValidationFailed;
 import org.osgi.service.event.EventAdmin;
@@ -45,25 +48,33 @@ import org.osgi.service.event.EventAdmin;
 final class IssuePersonalLicense {
 
 	private final LicenseRegistry licenses;
+	private final AgreementRegistry agreements;
 	private final ProductRegistry products;
 	private final OperatorProductService operator;
 	private final EventAdmin events;
 
-	IssuePersonalLicense(LicenseRegistry licenses, ProductRegistry products, OperatorProductService operator,
-			EventAdmin events) {
+	IssuePersonalLicense(LicenseRegistry licenses, AgreementRegistry agreements, ProductRegistry products,
+			OperatorProductService operator, EventAdmin events) {
 		this.licenses = licenses;
+		this.agreements = agreements;
 		this.products = products;
 		this.operator = operator;
 		this.events = events;
 	}
 
 	ServiceInvocationResult<IssuedLicense> issue(Supplier<PersonalLicensePack> template) {
-		PersonalLicensePack license = new Builder(template.get())//
-				.adjusted()//
-				.guarded()//
-				.withSignature()//
-				.withAgreements()//
-				.build();
+		PersonalLicensePack license;
+		try {
+			license = new Builder(template.get())//
+					.adjusted()//
+					.guarded()//
+					.signed()//
+					.withAgreements()//
+					.get();
+		} catch (LicensingException e) {
+			return new BaseServiceInvocationResult<>(
+					new Trouble(new LicenseAgreementsAttachFailed(), e.getMessage(), e));
+		}
 		Optional<String> errors = new ErrorMessages().apply(license);
 		if (errors.isPresent()) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseValidationFailed(), errors.get()));
@@ -121,7 +132,7 @@ final class IssuePersonalLicense {
 				license.getLicense().getProduct().getVersion());
 	}
 
-	private static final class Builder {
+	private final class Builder implements Supplier<PersonalLicensePack> {
 
 		private final PersonalLicensePack pack;
 
@@ -129,14 +140,13 @@ final class IssuePersonalLicense {
 			this.pack = EcoreUtil.copy(template);
 		}
 
-		Builder withSignature() {
+		Builder signed() {
 			new LicenseSignature().accept(pack.getLicense());
 			return this;
 		}
 
-		Builder withAgreements() {
-
-			// TODO
+		Builder withAgreements() throws LicensingException {
+			new LicenseAgreements(agreements).install(plan(), pack.getLicense());
 			return this;
 		}
 
@@ -152,8 +162,13 @@ final class IssuePersonalLicense {
 			return this;
 		}
 
-		PersonalLicensePack build() {
+		@Override
+		public PersonalLicensePack get() {
 			return pack;
+		}
+
+		private LicensePlanDescriptor plan() {
+			return licenses.getLicensePlan(pack.getLicense().getPlan());
 		}
 	}
 }
