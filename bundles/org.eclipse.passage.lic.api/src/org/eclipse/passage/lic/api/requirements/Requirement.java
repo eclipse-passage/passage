@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.requirements;
 
+import java.util.List;
+
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 
 /**
@@ -38,6 +40,13 @@ public interface Requirement {
 	 * @return restriction level, <code>warn</code> by default
 	 */
 	RestrictionLevel restrictionLevel();
+
+	/**
+	 * @return not-null, can be empty list of bundle-local paths to license
+	 *         agreement content files, that a user must actively accept to be
+	 *         allowed to use the feature
+	 */
+	List<String> agreement();
 
 	/**
 	 * The original physical source under the program installation, where this
