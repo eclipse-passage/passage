@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.requirements;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 import org.eclipse.passage.lic.api.requirements.Feature;
@@ -27,16 +29,23 @@ public final class BaseRequirement implements Requirement {
 
 	private final Feature feature;
 	private final RestrictionLevel restriction;
+	private final List<String> agreements;
 	private final Object source;
 
-	public BaseRequirement(Feature feature, RestrictionLevel restriction, Object source) {
+	public BaseRequirement(Feature feature, RestrictionLevel restriction, List<String> agreements, Object source) {
 		Objects.requireNonNull(feature, "Feature cannot be null on requirement definition"); //$NON-NLS-1$
 		Objects.requireNonNull(restriction,
 				"Restriction cannot be null on requirement definition. Use DefaultrestrictionLevel should the need arise"); //$NON-NLS-1$
+		Objects.requireNonNull(agreements, "Agreements collection cannot be null, but can be empty"); //$NON-NLS-1$
 		Objects.requireNonNull(source, "Source is mandatory for requirement definition"); //$NON-NLS-1$
 		this.feature = feature;
 		this.restriction = restriction;
+		this.agreements = agreements;
 		this.source = source;
+	}
+
+	public BaseRequirement(Feature feature, RestrictionLevel restriction, Object source) {
+		this(feature, restriction, Collections.emptyList(), source);
 	}
 
 	@Override
@@ -75,6 +84,11 @@ public final class BaseRequirement implements Requirement {
 		return "BaseRequirement [feature=" + feature + // //$NON-NLS-1$
 				", restriction=" + restriction + // //$NON-NLS-1$
 				", source=" + source + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+	}
+
+	@Override
+	public List<String> agreements() {
+		return agreements;
 	}
 
 }
