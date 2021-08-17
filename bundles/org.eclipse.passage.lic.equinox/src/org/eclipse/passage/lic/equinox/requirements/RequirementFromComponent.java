@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.requirements;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -68,9 +69,11 @@ final class RequirementFromComponent implements Supplier<Optional<Requirement>> 
 		RestrictionLevel level = new ComponentLicFeatureLevel(properties).get()//
 				.<RestrictionLevel>map(RestrictionLevel.Of::new) //
 				.orElseGet(new DefaultRestrictionLevel());
+		List<String> agreements = new ListOfAgreements().fromSource(new ComponentLicFeatureAgreements(properties));
 		return new BaseRequirement(//
 				new BaseFeature(feature, version, name, provider), //
 				level, //
+				agreements, //
 				component.name);
 	}
 

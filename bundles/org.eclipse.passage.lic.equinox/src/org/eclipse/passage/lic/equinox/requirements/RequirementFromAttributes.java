@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.equinox.requirements;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -71,9 +72,11 @@ final class RequirementFromAttributes implements Supplier<ServiceInvocationResul
 		RestrictionLevel level = new CapabilityLicFeatureLevel(attributes).get()//
 				.<RestrictionLevel>map(RestrictionLevel.Of::new) //
 				.orElseGet(new DefaultRestrictionLevel());
+		List<String> agreements = new ListOfAgreements().fromSource(new CapabilityLicFeatureAgreements(attributes));
 		BaseRequirement requirement = new BaseRequirement(//
 				new BaseFeature(feature, version, name, provider), //
 				level, //
+				agreements, //
 				bundle.getSymbolicName());
 		return requirement;
 	}
