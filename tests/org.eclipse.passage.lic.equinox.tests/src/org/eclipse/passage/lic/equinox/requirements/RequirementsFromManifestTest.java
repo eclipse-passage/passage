@@ -16,6 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.requirements.Requirement;
@@ -42,11 +43,22 @@ public class RequirementsFromManifestTest {
 		assertTrue(new NoSevereErrors().test(response.diagnostic()));
 		assertTrue(response.data().isPresent());
 		assertEquals(3, response.data().get().size());
+		assertE(response.data().get());
 	}
 
 	@Test(expected = NullPointerException.class)
 	public void sourceIsMandatory() {
 		new RequirementsFromManifest(null);
+	}
+
+	private void assertE(Collection<Requirement> requirements) {
+		Optional<Requirement> e = requirements.stream()//
+				.filter(r -> "E".equals(r.feature().identifier())) //$NON-NLS-1$
+				.findAny();//
+		assertTrue(e.isPresent());
+		assertEquals(2, e.get().agreements().size());
+		assertTrue(e.get().agreements().contains("Honor Euler.txt")); //$NON-NLS-1$
+		assertTrue(e.get().agreements().contains("comp_lics/EULERS IDENTITY")); //$NON-NLS-1$
 	}
 
 }

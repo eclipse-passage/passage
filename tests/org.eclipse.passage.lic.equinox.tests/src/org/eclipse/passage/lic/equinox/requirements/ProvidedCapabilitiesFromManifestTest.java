@@ -96,6 +96,7 @@ public final class ProvidedCapabilitiesFromManifestTest {
 		assertTrue(declarations.get().startsWith("licensing.feature;")); //$NON-NLS-1$
 		assertTrue(declarations.get().contains("\"Euler number\"")); //$NON-NLS-1$
 		assertTrue(declarations.get().contains(";level=\"error\"")); //$NON-NLS-1$
+		assertTrue(declarations.get().contains(";agreements=\"Honor Euler.txt::comp_lics/EULERS IDENTITY\"")); //$NON-NLS-1$
 	}
 
 	private String manifest(String ending) {
@@ -110,7 +111,7 @@ public final class ProvidedCapabilitiesFromManifestTest {
 				+ "Bundle-Copyright: %Bundle-Copyright" + ending //$NON-NLS-1$
 				+ "Provide-Capability: licensing.feature;licensing.feature=\"PI\";version=\"3.14.15\";name=\"PI of version PI\";level=\"error\"," //$NON-NLS-1$
 				+ ending
-				+ " licensing.feature;licensing.feature=\"E\";version=\"2.71.82\";name=\"Euler number\";level=\"info\";provider=\"Euler\"," //$NON-NLS-1$
+				+ " licensing.feature;licensing.feature=\"E\";version=\"2.71.82\";name=\"Euler number\";level=\"info\";provider=\"Euler\";agreements=\"Honor Euler.txt::comp_lics/EULERS IDENTITY\"," //$NON-NLS-1$
 				+ ending + " licensing.feature;licensing.feature=\"Incomplete\"," + ending //$NON-NLS-1$
 				+ " licensing.feature" + ending //$NON-NLS-1$
 				+ "Service-Component: OSGI-INF/*.xml" + ending //$NON-NLS-1$

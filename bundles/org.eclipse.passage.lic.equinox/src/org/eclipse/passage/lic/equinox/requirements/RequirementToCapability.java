@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.requirements;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -74,13 +75,18 @@ public final class RequirementToCapability implements NamedData<Requirement> {
 	}
 
 	private List<StringNamedData> attributes() {
-		return Arrays.asList(//
+		List<StringNamedData> mandatory = Arrays.asList(//
 				new CapabilityLicFeatureId(requirement), //
 				new CapabilityLicFeatureName(requirement), //
 				new CapabilityLicFeatureVersion(requirement), //
 				new CapabilityLicFeatureProvider(requirement), //
-				new CapabilityLicFeatureLevel(requirement) //
-		);
+				new CapabilityLicFeatureLevel(requirement)); //
+		if (requirement.agreements().isEmpty()) {
+			return mandatory;
+		}
+		List<StringNamedData> full = new ArrayList<>(mandatory);
+		full.add(new CapabilityLicFeatureAgreements(requirement));
+		return full;
 	}
 
 }
