@@ -42,7 +42,7 @@ public final class LicCapabilityAttributesFromDeclarationTest {
 	public void several() {
 		Collection<Map<String, Object>> packs = packs(
 				"licensing.feature;licensing.feature=\"PI\";version=\"3.14.15\";name=\"PI of version PI\";level=\"error\",\r\n" //$NON-NLS-1$
-						+ " licensing.feature;licensing.feature=\"E\";version=\"2.71.82\";name=\"Euler number\";level=\"info\";provider=\"Euler\",\r\n" //$NON-NLS-1$
+						+ " licensing.feature;licensing.feature=\"E\";version=\"2.71.82\";name=\"Euler number\";level=\"info\";provider=\"Euler\";agreements=\"Honor Euler.txt::comp_lics/EULERS IDENTITY\",\r\n" //$NON-NLS-1$
 						+ " licensing.feature;licensing.feature=\"Incomplete\",\r\n" //$NON-NLS-1$
 						+ " licensing.feature"); //$NON-NLS-1$
 		assertEquals(4, packs.size()); // all read
@@ -54,6 +54,11 @@ public final class LicCapabilityAttributesFromDeclarationTest {
 		assertEquals("3.14.15", pi.get().get("version")); //$NON-NLS-1$//$NON-NLS-2$
 		assertEquals("PI of version PI", pi.get().get("name")); //$NON-NLS-1$//$NON-NLS-2$
 		assertEquals("error", pi.get().get("level")); //$NON-NLS-1$//$NON-NLS-2$
+		Optional<Map<String, Object>> e = packs.stream()//
+				.filter(map -> "E".equals(map.get("licensing.feature"))) //$NON-NLS-1$ //$NON-NLS-2$
+				.findFirst();
+		assertTrue(e.isPresent());
+		assertEquals("Honor Euler.txt::comp_lics/EULERS IDENTITY", e.get().get("agreements")); //$NON-NLS-1$//$NON-NLS-2$
 	}
 
 	@Test(expected = NullPointerException.class)

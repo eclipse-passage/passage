@@ -23,7 +23,7 @@ import org.junit.Test;
 
 public final class WriteLicCapablitiesTest {
 	private final String expectation = "Provide-Capability: " //$NON-NLS-1$
-			+ "licensing.feature;licensing.feature=\"E\";name=\"Euler number\";version=\"2.71.82\";provider=\"Euler\";level=\"info\"," //$NON-NLS-1$
+			+ "licensing.feature;licensing.feature=\"E\";name=\"Euler number\";version=\"2.71.82\";provider=\"Euler\";level=\"info\";agreements=\"Honor Euler.txt::comp_lics/EULERS IDENTITY\"," //$NON-NLS-1$
 			+ "licensing.feature;licensing.feature=\"PI\";name=\"PI of version PI\";version=\"3.14.15\";provider=\"Eclipse Passage\";level=\"error\"," //$NON-NLS-1$
 			+ "licensing.feature;licensing.feature=\"Incomplete\";name=\"Incomplete\";version=\"0.0.0\";provider=\"Eclipse Passage\";level=\"warn\""; //$NON-NLS-1$
 
