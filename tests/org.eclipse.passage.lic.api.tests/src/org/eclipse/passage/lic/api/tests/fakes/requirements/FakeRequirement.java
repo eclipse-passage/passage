@@ -52,7 +52,7 @@ public final class FakeRequirement implements Requirement {
 	}
 
 	@Override
-	public List<String> agreement() {
+	public List<String> agreements() {
 		return Collections.emptyList();
 	}
 
