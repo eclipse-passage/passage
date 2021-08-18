@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
@@ -57,15 +58,28 @@ public final class BasePermissionsExaminationService implements PermissionsExami
 
 	private Collection<Restriction> examineFeature(Collection<Requirement> requirements,
 			Collection<Permission> permissions, LicensedProduct product, Map<Requirement, Permission> active) {
+		Collection<Restriction> coverage = insufficientLicenseCoverage(requirements, permissions, product, active);
+		AgreementState acceptance = agreementState(requirements, product);
+		return Stream.concat(coverage.stream(), acceptance.restrictions().stream()).collect(Collectors.toList());
+	}
+
+	private Collection<Restriction> insufficientLicenseCoverage(Collection<Requirement> requirements,
+			Collection<Permission> permissions, LicensedProduct product, Map<Requirement, Permission> active) {
 		return requirements.stream()//
-				.filter(requirement -> !covered(requirement, permissions, active))//
-				.map(requirement -> restriction(requirement, product)) //
+				.filter(requirement -> notCovered(requirement, permissions, active))//
+				.map(requirement -> insufficientLicenseCoverage(requirement, product)) //
 				.collect(Collectors.toList());
 	}
 
-	private boolean covered(Requirement requirement, Collection<Permission> permissions,
+	private AgreementState agreementState(Collection<Requirement> requirements, LicensedProduct product) {
+		return requirements.stream()//
+				.map(requirement -> new AgreementState(product, requirement))//
+				.reduce(new AgreementState(product), new AgreementState.Sum());
+	}
+
+	private boolean notCovered(Requirement requirement, Collection<Permission> permissions,
 			Map<Requirement, Permission> active) {
-		return permissions.stream() //
+		return !permissions.stream() //
 				.filter(permission -> sameFeature(requirement, permission)) //
 				.filter(permission -> versionMatches(requirement, permission)) //
 				// keep an eye on each permission that played active role in examination
@@ -84,7 +98,7 @@ public final class BasePermissionsExaminationService implements PermissionsExami
 				permission.condition().versionMatch().version());
 	}
 
-	private Restriction restriction(Requirement requirement, LicensedProduct product) {
+	private Restriction insufficientLicenseCoverage(Requirement requirement, LicensedProduct product) {
 		return new BaseRestriction(product, requirement, new InsufficientLicenseCoverage());
 	}
 

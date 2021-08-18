@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.passage.lic.api.requirements.Feature;
 import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.api.requirements.ResolvedAgreement;
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 
 public final class FakeRequirement implements Requirement {
@@ -52,7 +53,7 @@ public final class FakeRequirement implements Requirement {
 	}
 
 	@Override
-	public List<String> agreements() {
+	public List<ResolvedAgreement> agreements() {
 		return Collections.emptyList();
 	}
 

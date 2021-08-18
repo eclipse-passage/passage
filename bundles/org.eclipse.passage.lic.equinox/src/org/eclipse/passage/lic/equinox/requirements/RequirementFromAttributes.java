@@ -23,6 +23,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.api.requirements.ResolvedAgreement;
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.base.diagnostic.code.ServiceFailedOnMorsel;
@@ -72,7 +73,10 @@ final class RequirementFromAttributes implements Supplier<ServiceInvocationResul
 		RestrictionLevel level = new CapabilityLicFeatureLevel(attributes).get()//
 				.<RestrictionLevel>map(RestrictionLevel.Of::new) //
 				.orElseGet(new DefaultRestrictionLevel());
-		List<String> agreements = new ListOfAgreements().fromSource(new CapabilityLicFeatureAgreements(attributes));
+		List<ResolvedAgreement> agreements = new BundleResidentAgreement.Pack(//
+				bundle, //
+				new ListOfAgreements().fromSource(new ComponentLicFeatureAgreements(attributes))//
+		).get();
 		BaseRequirement requirement = new BaseRequirement(//
 				new BaseFeature(feature, version, name, provider), //
 				level, //

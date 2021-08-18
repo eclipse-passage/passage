@@ -21,24 +21,28 @@ import org.eclipse.passage.lic.api.requirements.Requirement;
 /**
  * <p>
  * {@linkplain Permission}s-against-{@linkplain Requirement}s examination boils
- * down to the instance of this certificate.
+ * down to the instance of the Certificate.
  * </p>
  * <p>
  * During the examinations some of the given {@code requirements} are satisfied,
  * and some can stay unsatisfied.
  * </p>
  * <p>
- * For the satisfied {@code requirements} here we keep all the
- * {@code permissions} that participated in this satisfaction. Use
- * {@code participants()} to get'em.
+ * For the satisfied {@code requirements} here we keep the {@code Permission}
+ * that facilitated the satisfaction. Use {@code satisfaction()} to get it.
  * </p>
  * <p>
  * For each unsatisfied {@code requirement} a {@linkplain Restriction} is
- * produced. Here is {@code restrictions()} method to access these ones.
+ * produced. Here is {@code restrictions()} method to access all of them.
  * </p>
  * <p>
- * If the examination produced no {@linkplain Restriction}s, then it is treated
- * as successful ({@code examinationPassed()})
+ * If the examination produced no severe {@linkplain Restriction}s, then it is
+ * treated as successful.
+ * </p>
+ * 
+ * @see Requirement
+ * @see Permission
+ * @see Restriction
  * 
  * @since 2.1
  */

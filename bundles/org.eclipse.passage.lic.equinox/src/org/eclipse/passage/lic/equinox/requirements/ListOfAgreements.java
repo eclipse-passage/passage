@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.api.requirements.ResolvedAgreement;
 import org.eclipse.passage.lic.base.StringNamedData;
 import org.osgi.service.component.runtime.dto.ComponentDescriptionDTO;
 
@@ -38,8 +39,10 @@ final class ListOfAgreements {
 				.collect(Collectors.toList());
 	}
 
-	String toSource(List<String> data) {
-		return data.stream().collect(Collectors.joining(separator));
+	String toSource(List<ResolvedAgreement> agreements) {
+		return agreements.stream()//
+				.map(ResolvedAgreement::path)//
+				.collect(Collectors.joining(separator));
 	}
 
 	private String value(StringNamedData data) {

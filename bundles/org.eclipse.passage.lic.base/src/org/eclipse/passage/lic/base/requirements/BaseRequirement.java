@@ -18,6 +18,7 @@ import java.util.Objects;
 
 import org.eclipse.passage.lic.api.requirements.Feature;
 import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.api.requirements.ResolvedAgreement;
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 
 /**
@@ -29,10 +30,11 @@ public final class BaseRequirement implements Requirement {
 
 	private final Feature feature;
 	private final RestrictionLevel restriction;
-	private final List<String> agreements;
+	private final List<ResolvedAgreement> agreements;
 	private final Object source;
 
-	public BaseRequirement(Feature feature, RestrictionLevel restriction, List<String> agreements, Object source) {
+	public BaseRequirement(Feature feature, RestrictionLevel restriction, List<ResolvedAgreement> agreements,
+			Object source) {
 		Objects.requireNonNull(feature, "Feature cannot be null on requirement definition"); //$NON-NLS-1$
 		Objects.requireNonNull(restriction,
 				"Restriction cannot be null on requirement definition. Use DefaultrestrictionLevel should the need arise"); //$NON-NLS-1$
@@ -87,7 +89,7 @@ public final class BaseRequirement implements Requirement {
 	}
 
 	@Override
-	public List<String> agreements() {
+	public List<ResolvedAgreement> agreements() {
 		return agreements;
 	}
 
