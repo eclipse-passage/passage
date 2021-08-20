@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,20 +19,15 @@ import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
  * 
  * @since 2.1
  */
-public final class ServiceFailedOnMorsel extends TroubleCode {
+public final class AgreementNotAccessible extends TroubleCode {
 
-	public ServiceFailedOnMorsel() {
-		super(103, DiagnosticCodeMessages.getString("ServiceFailedOnMorsel.explanation")); //$NON-NLS-1$
-	}
-
-	public ServiceFailedOnMorsel(String message) {
-		super(103, String.format(//
-				DiagnosticCodeMessages.getString("ServiceFailedOnMorsel.explanation_wide"), //$NON-NLS-1$
+	public AgreementNotAccessible(String agreement, String origin, String message) {
+		super(413, String.format(//
+				DiagnosticCodeMessages.getString("AgreementNotAccessible.explanation"), //$NON-NLS-1$
+				agreement, //
+				origin, //
 				message)//
 		);
 	}
 
-	public ServiceFailedOnMorsel(Throwable thro) {
-		this(thro.getClass().getName() + ':' + thro.getMessage());
-	}
 }

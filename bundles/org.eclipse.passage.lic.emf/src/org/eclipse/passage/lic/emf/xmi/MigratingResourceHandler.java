@@ -30,7 +30,7 @@ import org.eclipse.passage.lic.internal.emf.migration.RecognizeFeatures;
 /**
  * Adds hooks for migrating legacy data
  * 
- * @since 2.0
+ * @since 2.1
  */
 public abstract class MigratingResourceHandler extends BasicResourceHandler {
 
@@ -57,7 +57,12 @@ public abstract class MigratingResourceHandler extends BasicResourceHandler {
 				throw new RuntimeException(message, e);
 			}
 		}
+		evaporizeUnknownParticles(resource);
 		complete(resource);
+	}
+
+	private void evaporizeUnknownParticles(XMLResource resource) {
+
 	}
 
 	protected void convertEntry(Entry<EObject, AnyType> entry) throws MigrationException {

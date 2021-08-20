@@ -29,6 +29,7 @@ import org.eclipse.passage.lic.equinox.acquire.ConfigurationLicenseAcquisitionSe
 import org.eclipse.passage.lic.equinox.acquire.InstallationLicenseAcquisitionService;
 import org.eclipse.passage.lic.equinox.conditions.ConfigurationResidentConditions;
 import org.eclipse.passage.lic.equinox.conditions.InstallationResidentConditions;
+import org.eclipse.passage.lic.execute.BaseAccessCycleConfiguration;
 import org.osgi.framework.FrameworkUtil;
 
 final class SealedAccessCycleConfiguration extends BaseAccessCycleConfiguration {

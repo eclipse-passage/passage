@@ -10,23 +10,11 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.base.diagnostic.code;
-
-import org.eclipse.passage.lic.api.diagnostic.TroubleCode;
-import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
+package org.eclipse.passage.lic.api.restrictions;
 
 /**
- * 
  * @since 2.1
  */
-public final class AgreementNotAccepted extends TroubleCode {
-
-	public AgreementNotAccepted(String agreement, String origin) {
-		super(412, String.format(//
-				DiagnosticCodeMessages.getString("AgreementNotAccepted.explanation"), //$NON-NLS-1$
-				agreement, //
-				origin)//
-		);
-	}
+public interface AgreementState {
 
 }

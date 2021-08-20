@@ -1,5 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2020, 2021 ArSysOp
+
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,15 +15,17 @@ package org.eclipse.passage.lic.base.restrictions;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
+import org.eclipse.passage.lic.api.io.HashesRegistry;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.api.restrictions.AgreementState;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.api.restrictions.PermissionsExaminationService;
 import org.eclipse.passage.lic.api.restrictions.Restriction;
@@ -35,6 +38,11 @@ import org.eclipse.passage.lic.base.diagnostic.code.InsufficientLicenseCoverage;
 public final class BasePermissionsExaminationService implements PermissionsExaminationService {
 
 	private final StringServiceId id = new StringServiceId("base-permissions-examination-service"); //$NON-NLS-1$
+	private final HashesRegistry hashes;
+
+	public BasePermissionsExaminationService(HashesRegistry hashes) {
+		this.hashes = hashes;
+	}
 
 	@Override
 	public StringServiceId id() {
@@ -48,19 +56,18 @@ public final class BasePermissionsExaminationService implements PermissionsExami
 		Objects.requireNonNull(permissions);
 		Objects.requireNonNull(product);
 		Map<Requirement, Permission> active = new HashMap<>();
-		Collection<Restriction> restrictions = requirements.stream() //
-				.collect(Collectors.groupingBy(Requirement::feature)).entrySet().stream()//
-				.map(e -> examineFeature(e.getValue(), permissions, product, active))//
-				.flatMap(Collection::stream)//
-				.collect(Collectors.toList());
-		return new BaseExaminationCertificate(active, restrictions);
+		return new BaseExaminationCertificate(active, //
+				insufficientCoverage(requirements, permissions, product, active), //
+				agreementState(requirements, product));
 	}
 
-	private Collection<Restriction> examineFeature(Collection<Requirement> requirements,
+	private List<Restriction> insufficientCoverage(Collection<Requirement> requirements,
 			Collection<Permission> permissions, LicensedProduct product, Map<Requirement, Permission> active) {
-		Collection<Restriction> coverage = insufficientLicenseCoverage(requirements, permissions, product, active);
-		AgreementState acceptance = agreementState(requirements, product);
-		return Stream.concat(coverage.stream(), acceptance.restrictions().stream()).collect(Collectors.toList());
+		return requirements.stream() //
+				.collect(Collectors.groupingBy(Requirement::feature)).entrySet().stream()//
+				.map(e -> insufficientLicenseCoverage(e.getValue(), permissions, product, active))//
+				.flatMap(Collection::stream)//
+				.collect(Collectors.toList());
 	}
 
 	private Collection<Restriction> insufficientLicenseCoverage(Collection<Requirement> requirements,
@@ -72,9 +79,7 @@ public final class BasePermissionsExaminationService implements PermissionsExami
 	}
 
 	private AgreementState agreementState(Collection<Requirement> requirements, LicensedProduct product) {
-		return requirements.stream()//
-				.map(requirement -> new AgreementState(product, requirement))//
-				.reduce(new AgreementState(product), new AgreementState.Sum());
+		return new AgreementAssessmentService(product, requirements, hashes).assessment();
 	}
 
 	private boolean notCovered(Requirement requirement, Collection<Permission> permissions,
