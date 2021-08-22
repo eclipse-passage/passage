@@ -12,9 +12,43 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.restrictions;
 
+import java.util.Optional;
+
+import org.eclipse.passage.lic.api.diagnostic.Trouble;
+
 /**
  * @since 2.1
  */
 public interface AgreementState {
+
+	/**
+	 * Sort of identifier for agreement. Does not have semantics, used only to
+	 * distinguish agreements on exposing to the end user.
+	 */
+	String name();
+
+	/**
+	 * @return is the agreement has been actively accepted by the end user or not.
+	 */
+	boolean accepted();
+
+	/**
+	 * Agreement text, stored in an encoding-unaware structure.
+	 */
+	byte[] content();
+
+	/**
+	 * Path to the agreement content file deployed.
+	 * 
+	 * @return
+	 */
+	// Path located();
+
+	/**
+	 * Agreement acceptance check could possible fail due to a wide variety of
+	 * reasons, not only because the agreement has not indeed be accepted. Is the
+	 * case state is still 'not accepted' and diagnostic is supplied
+	 */
+	Optional<Trouble> error();
 
 }

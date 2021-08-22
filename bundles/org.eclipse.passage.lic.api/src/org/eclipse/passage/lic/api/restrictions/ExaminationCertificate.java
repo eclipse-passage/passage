@@ -54,7 +54,7 @@ public interface ExaminationCertificate {
 
 	Permission satisfaction(Requirement satisfied);
 
-	AgreementState agreementState();
+	Collection<AgreementToAccept> agreements();
 
 	ZonedDateTime stamp();
 

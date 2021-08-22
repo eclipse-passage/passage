@@ -12,10 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
+import java.util.Collection;
 import java.util.function.Supplier;
 
 import org.eclipse.jface.window.Window;
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
+import org.eclipse.passage.lic.api.restrictions.AgreementToAccept;
 import org.eclipse.swt.widgets.Shell;
 
 public abstract class GoodIntention {
@@ -78,6 +80,24 @@ public abstract class GoodIntention {
 			new DiagnosticDialog(shell.get(), diagnostic).open();
 			return false;
 		}
+	}
+
+	final static class ExposeLicenseAgreements extends GoodIntention {
+
+		private final Supplier<Shell> shell;
+		private final Collection<AgreementToAccept> agreements;
+
+		ExposeLicenseAgreements(Supplier<Shell> shell, Collection<AgreementToAccept> agreements) {
+			this.shell = shell;
+			this.agreements = agreements;
+		}
+
+		@Override
+		public boolean paveTheWay() {
+			int result = new AgreementsWizardDialog(shell.get(), agreements).open();
+			return result == Window.OK;
+		}
+
 	}
 
 }

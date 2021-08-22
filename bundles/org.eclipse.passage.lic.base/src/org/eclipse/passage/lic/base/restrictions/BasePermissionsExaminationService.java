@@ -25,11 +25,12 @@ import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.api.io.HashesRegistry;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.api.restrictions.AgreementState;
+import org.eclipse.passage.lic.api.restrictions.AgreementToAccept;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.api.restrictions.PermissionsExaminationService;
 import org.eclipse.passage.lic.api.restrictions.Restriction;
 import org.eclipse.passage.lic.base.diagnostic.code.InsufficientLicenseCoverage;
+import org.eclipse.passage.lic.internal.base.restrictions.AgreementAssessmentService;
 
 /**
  * 
@@ -58,7 +59,7 @@ public final class BasePermissionsExaminationService implements PermissionsExami
 		Map<Requirement, Permission> active = new HashMap<>();
 		return new BaseExaminationCertificate(active, //
 				insufficientCoverage(requirements, permissions, product, active), //
-				agreementState(requirements, product));
+				agreements(requirements, product)); // TODO: add 'not accepted' restrictions?
 	}
 
 	private List<Restriction> insufficientCoverage(Collection<Requirement> requirements,
@@ -78,7 +79,7 @@ public final class BasePermissionsExaminationService implements PermissionsExami
 				.collect(Collectors.toList());
 	}
 
-	private AgreementState agreementState(Collection<Requirement> requirements, LicensedProduct product) {
+	private Collection<AgreementToAccept> agreements(Collection<Requirement> requirements, LicensedProduct product) {
 		return new AgreementAssessmentService(product, requirements, hashes).assessment();
 	}
 

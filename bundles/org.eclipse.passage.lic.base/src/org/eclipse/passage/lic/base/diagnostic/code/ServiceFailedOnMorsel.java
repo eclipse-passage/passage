@@ -25,14 +25,4 @@ public final class ServiceFailedOnMorsel extends TroubleCode {
 		super(103, DiagnosticCodeMessages.getString("ServiceFailedOnMorsel.explanation")); //$NON-NLS-1$
 	}
 
-	public ServiceFailedOnMorsel(String message) {
-		super(103, String.format(//
-				DiagnosticCodeMessages.getString("ServiceFailedOnMorsel.explanation_wide"), //$NON-NLS-1$
-				message)//
-		);
-	}
-
-	public ServiceFailedOnMorsel(Throwable thro) {
-		this(thro.getClass().getName() + ':' + thro.getMessage());
-	}
 }

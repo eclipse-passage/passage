@@ -12,7 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
+import org.eclipse.passage.lic.api.restrictions.AgreementToAccept;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.base.diagnostic.LicensingStatus;
@@ -84,8 +88,12 @@ public final class LicenseStatusDialog extends NotificationDialog {
 				LicenseStatusDialogMessages.LicenseStatusDialog_intention_copy,
 				LicenseStatusDialogMessages.LicenseStatusDialog_intention_copy_tooltip, "") //$NON-NLS-1$
 						.reside(buttons);
+		new ButtonConfig(4, this::exposeAgreements, //
+				LicenseStatusDialogMessages.LicenseStatusDialog_intention_accept,
+				LicenseStatusDialogMessages.LicenseStatusDialog_intention_accept_tooltip, "") //$NON-NLS-1$
+						.reside(buttons);
 		if (!new NoErrors().test(diagnostic)) {
-			new ButtonConfig(4, this::diagnose, //
+			new ButtonConfig(5, this::diagnose, //
 					LicenseStatusDialogMessages.LicenseStatusDialog_intention_diagnose,
 					LicenseStatusDialogMessages.LicenseStatusDialog_intention_diagnose_tooltip, "") //$NON-NLS-1$
 							.reside(buttons);
@@ -115,6 +123,21 @@ public final class LicenseStatusDialog extends NotificationDialog {
 	private void diagnose() {
 		intention = new GoodIntention.Diagnose(this::getShell, diagnostic);
 		super.okPressed();
+	}
+
+	private void exposeAgreements() {
+		intention = new GoodIntention.ExposeLicenseAgreements(this::getShell, toExpose(certificate.agreements()));
+		super.okPressed();
+	}
+
+	private Collection<AgreementToAccept> toExpose(Collection<AgreementToAccept> agreements) {
+		return agreements.stream()//
+				.filter(this::toExpose)//
+				.collect(Collectors.toList());
+	}
+
+	private boolean toExpose(AgreementToAccept agreement) {
+		return !agreement.acceptance().accepted() && !agreement.acceptance().error().isPresent();
 	}
 
 	private Runnable copy() {

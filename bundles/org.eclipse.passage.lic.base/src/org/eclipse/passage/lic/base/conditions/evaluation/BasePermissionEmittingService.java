@@ -125,8 +125,8 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 							new BasePermission(//
 									product, //
 									condition, //
-									from(condition.validityPeriod()), expiration(condition.validityPeriod()), // FIXME:
-																												// #566015
+									// FIXME:#566015
+									from(condition.validityPeriod()), expiration(condition.validityPeriod()), //
 									pack.origin())//
 					));
 		} catch (Exception e) {

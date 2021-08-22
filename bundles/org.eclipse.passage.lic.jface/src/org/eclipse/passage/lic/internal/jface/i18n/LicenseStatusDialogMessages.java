@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -24,6 +24,8 @@ public class LicenseStatusDialogMessages extends NLS {
 	public static String LicenseStatusDialog_intention_import_tooltip;
 	public static String LicenseStatusDialog_intention_request;
 	public static String LicenseStatusDialog_intention_request_tooltip;
+	public static String LicenseStatusDialog_intention_accept;
+	public static String LicenseStatusDialog_intention_accept_tooltip;
 	public static String LicenseStatusDialog_intention_diagnose;
 	public static String LicenseStatusDialog_intention_diagnose_tooltip;
 	public static String LicenseStatusDialog_title;
