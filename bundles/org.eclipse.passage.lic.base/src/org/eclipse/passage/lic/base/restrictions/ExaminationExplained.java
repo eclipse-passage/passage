@@ -23,9 +23,11 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.api.restrictions.AgreementToAccept;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.api.restrictions.Restriction;
 import org.eclipse.passage.lic.base.diagnostic.SumOfLists;
+import org.eclipse.passage.lic.base.diagnostic.TroubleExplained;
 import org.eclipse.passage.lic.internal.base.i18n.ExaminationExplanedMessages;
 
 //FIXME: work for CachingSupplier
@@ -55,6 +57,7 @@ public final class ExaminationExplained implements Supplier<String> {
 		appendFeatures(features, out);
 		appendRestriction(out);
 		appendPermissions(out);
+		appendAgreements(out);
 		return out.toString();
 	}
 
@@ -123,6 +126,25 @@ public final class ExaminationExplained implements Supplier<String> {
 				.append("] ") //$NON-NLS-1$
 				.append("\r\n") //$NON-NLS-1$
 		);
+	}
+
+	private void appendAgreements(StringBuilder out) {
+		Collection<AgreementToAccept> agreements = certificate.agreements();
+		out.append(String.format("Agreements state contains %d entries.\r\n", agreements.size())); //$NON-NLS-1$
+		agreements.forEach(agreement -> {
+			out.append("\tagreement [") //$NON-NLS-1$
+					.append(agreement.definition().path())//
+					.append("]\r\n\tdeclared by [") //$NON-NLS-1$
+					.append(agreement.origin())//
+					.append("]\r\n\t has [") //$NON-NLS-1$
+					.append(agreement.acceptance().accepted() ? "accepted" : "not accepted") //$NON-NLS-1$//$NON-NLS-2$
+					.append("] state.\r\n"); //$NON-NLS-1$
+			if (agreement.acceptance().error().isPresent()) {
+				out.append("\terror:\r\n\t") //$NON-NLS-1$
+						.append(new TroubleExplained(agreement.acceptance().error().get()).get())//
+						.append("\r\n"); //$NON-NLS-1$
+			}
+		});
 	}
 
 	private List<String> features() {
