@@ -33,6 +33,8 @@ import org.eclipse.passage.lic.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.api.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironmentRegistry;
+import org.eclipse.passage.lic.api.io.Hashes;
+import org.eclipse.passage.lic.api.io.HashesRegistry;
 import org.eclipse.passage.lic.api.io.KeyKeeper;
 import org.eclipse.passage.lic.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.api.io.StreamCodec;
@@ -47,6 +49,7 @@ import org.eclipse.passage.lic.base.conditions.evaluation.BasePermissionEmitting
 import org.eclipse.passage.lic.base.conditions.evaluation.BerlinProtocolExpressionParseService;
 import org.eclipse.passage.lic.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
 import org.eclipse.passage.lic.base.conditions.mining.PersonalLicenseMiningEquipment;
+import org.eclipse.passage.lic.base.io.MD5Hashes;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.base.restrictions.BasePermissionsExaminationService;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
@@ -59,12 +62,13 @@ import org.eclipse.passage.lic.oshi.HardwareEnvironment;
 import org.osgi.framework.Bundle;
 
 @SuppressWarnings("restriction")
-abstract class BaseAccessCycleConfiguration implements AccessCycleConfiguration {
+public abstract class BaseAccessCycleConfiguration implements AccessCycleConfiguration {
 
 	private final Registry<StringServiceId, ResolvedRequirements> requirements;
 	private final Registry<ContentType, ConditionTransport> transports;
 	private final Registry<LicensedProduct, StreamCodec> codecs;
 	private final Registry<LicensedProduct, KeyKeeper> keys;
+	private final Registry<StringServiceId, Hashes> hashes;
 	private final Registry<StringServiceId, PermissionEmittingService> emitters;
 	private final Registry<ExpressionProtocol, ExpressionParsingService> expressionParsers;
 	private final Registry<ExpressionProtocol, ExpressionEvaluationService> expressionEvaluators;
@@ -86,6 +90,7 @@ abstract class BaseAccessCycleConfiguration implements AccessCycleConfiguration 
 		keys = new ReadOnlyRegistry<>(Arrays.asList(//
 				new BundleKeyKeeper(product, bundle.get()) //
 		));
+		hashes = new ReadOnlyRegistry<>(new MD5Hashes());
 		emitters = new ReadOnlyRegistry<>(Arrays.asList(//
 				new BasePermissionEmittingService(//
 						expressionParsers(), //
@@ -105,7 +110,7 @@ abstract class BaseAccessCycleConfiguration implements AccessCycleConfiguration 
 				new HardwareEnvironment() //
 		));
 		examinators = new ReadOnlyRegistry<>(Arrays.asList(//
-				new BasePermissionsExaminationService()//
+				new BasePermissionsExaminationService(hashes())//
 		));
 	}
 
@@ -162,6 +167,11 @@ abstract class BaseAccessCycleConfiguration implements AccessCycleConfiguration 
 	@Override
 	public final PermissionsExaminationServicesRegistry examinators() {
 		return () -> examinators;
+	}
+
+	@Override
+	public final HashesRegistry hashes() {
+		return () -> hashes;
 	}
 
 }

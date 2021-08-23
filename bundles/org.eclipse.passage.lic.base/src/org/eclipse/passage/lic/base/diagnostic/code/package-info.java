@@ -38,7 +38,8 @@
  * <li>3xx - reserved</li>
  * <li>4xx - errors begotten by user data (license internals, credentials,
  * settings, etc) - the things a user of a product-under-licensing can change,
- * usually by requesting/purchasing new valid license packs.
+ * usually by requesting/purchasing new valid license packs, accepting demanded
+ * license agreements, etc.
  * <ul>
  * <li>401 - invalid license: a license cannot be applied as contains corrupted
  * data or data that are not readable with the active access cycle

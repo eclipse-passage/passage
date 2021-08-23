@@ -46,7 +46,7 @@ public interface Requirement {
 	 *         agreement content files, that a user must actively accept to be
 	 *         allowed to use the feature
 	 */
-	List<String> agreements();
+	List<ResolvedAgreement> agreements();
 
 	/**
 	 * The original physical source under the program installation, where this

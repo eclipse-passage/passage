@@ -17,7 +17,6 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.api.conditions.mining.MinedConditionsRegistry;
-import org.eclipse.passage.lic.api.io.HashesRegistry;
 import org.osgi.framework.FrameworkUtil;
 
 abstract class FocusedAccessCycleConfiguration extends BaseAccessCycleConfiguration {
@@ -36,11 +35,6 @@ abstract class FocusedAccessCycleConfiguration extends BaseAccessCycleConfigurat
 	@Override
 	public LicenseAcquisitionServicesRegistry acquirers() {
 		return delegate.acquirers();
-	}
-
-	@Override
-	public HashesRegistry hashes() {
-		return delegate.hashes();
 	}
 
 	/**

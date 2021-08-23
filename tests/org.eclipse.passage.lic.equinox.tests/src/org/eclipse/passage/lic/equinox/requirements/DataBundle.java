@@ -57,7 +57,9 @@ final class DataBundle {
 						"Euler number", //$NON-NLS-1$
 						"Euler"), //$NON-NLS-1$
 				new RestrictionLevel.Info(), //
-				Arrays.asList("Honor Euler.txt", "comp_lics/EULERS IDENTITY"), // //$NON-NLS-1$//$NON-NLS-2$
+				Arrays.asList(//
+						new BundleResidentAgreement(bundle.get(), "Honor Euler.txt"), //$NON-NLS-1$
+						new BundleResidentAgreement(bundle.get(), "comp_lics/EULERS IDENTITY")), //$NON-NLS-1$
 				id);
 	}
 

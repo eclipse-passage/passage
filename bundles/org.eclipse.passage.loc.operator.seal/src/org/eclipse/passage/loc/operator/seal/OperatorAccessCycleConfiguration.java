@@ -56,6 +56,7 @@ import org.eclipse.passage.lic.base.conditions.evaluation.BerlinProtocolExpressi
 import org.eclipse.passage.lic.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
 import org.eclipse.passage.lic.base.conditions.mining.PersonalLicenseMiningEquipment;
 import org.eclipse.passage.lic.base.conditions.mining.UserHomeResidentConditions;
+import org.eclipse.passage.lic.base.io.MD5Hashes;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.base.restrictions.BasePermissionsExaminationService;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
@@ -79,6 +80,7 @@ final class OperatorAccessCycleConfiguration implements AccessCycleConfiguration
 	private final Registry<ContentType, ConditionTransport> transports;
 	private final Registry<LicensedProduct, StreamCodec> codecs;
 	private final Registry<LicensedProduct, KeyKeeper> keys;
+	private final Registry<StringServiceId, Hashes> hashes;
 	private final Registry<ConditionMiningTarget, MinedConditions> conditions;
 	private final Registry<StringServiceId, PermissionEmittingService> emitters;
 	private final Registry<ExpressionProtocol, ExpressionParsingService> expressionParsers;
@@ -102,6 +104,7 @@ final class OperatorAccessCycleConfiguration implements AccessCycleConfiguration
 		keys = new ReadOnlyRegistry<>(Arrays.asList(//
 				new BundleKeyKeeper(product, bundle()) //
 		));
+		hashes = new ReadOnlyRegistry<>(new MD5Hashes());
 		conditions = new ReadOnlyRegistry<>(Arrays.asList(//
 				new UserHomeResidentConditions(miningEquipment()), //
 				new InstallationResidentConditions(miningEquipment()), //
@@ -131,7 +134,7 @@ final class OperatorAccessCycleConfiguration implements AccessCycleConfiguration
 				new HardwareEnvironment() //
 		));
 		examinators = new ReadOnlyRegistry<>(Arrays.asList(//
-				new BasePermissionsExaminationService()//
+				new BasePermissionsExaminationService(hashes())//
 		));
 	}
 
@@ -202,7 +205,7 @@ final class OperatorAccessCycleConfiguration implements AccessCycleConfiguration
 
 	@Override
 	public HashesRegistry hashes() {
-		return () -> new ReadOnlyRegistry<StringServiceId, Hashes>();
+		return () -> hashes;
 	}
 
 	private Bundle bundle() {

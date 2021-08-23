@@ -18,12 +18,14 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.api.requirements.ResolvedAgreement;
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.base.requirements.BaseRequirement;
 import org.eclipse.passage.lic.base.restrictions.DefaultRestrictionLevel;
 import org.eclipse.passage.lic.base.version.DefaultVersion;
 import org.eclipse.passage.lic.base.version.SafeVersion;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.runtime.dto.ComponentDescriptionDTO;
 
@@ -64,12 +66,16 @@ final class RequirementFromComponent implements Supplier<Optional<Requirement>> 
 				.orElse(new DefaultVersion().value());
 		String name = new ComponentLicFeatureName(properties).get()//
 				.orElse(feature);
+		Bundle bundle = context.getBundle(component.bundle.id);
 		String provider = new ComponentLicFeatureProvider(properties).get()//
-				.orElseGet(new BundleVendor(context.getBundle(component.bundle.id)));
+				.orElseGet(new BundleVendor(bundle));
 		RestrictionLevel level = new ComponentLicFeatureLevel(properties).get()//
 				.<RestrictionLevel>map(RestrictionLevel.Of::new) //
 				.orElseGet(new DefaultRestrictionLevel());
-		List<String> agreements = new ListOfAgreements().fromSource(new ComponentLicFeatureAgreements(properties));
+		List<ResolvedAgreement> agreements = new BundleResidentAgreement.Pack(//
+				bundle, //
+				new ListOfAgreements().fromSource(new ComponentLicFeatureAgreements(properties))//
+		).get();
 		return new BaseRequirement(//
 				new BaseFeature(feature, version, name, provider), //
 				level, //

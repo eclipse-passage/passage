@@ -16,10 +16,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.api.requirements.ResolvedAgreement;
 import org.eclipse.passage.lic.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
 import org.junit.Test;
@@ -57,8 +60,11 @@ public class RequirementsFromManifestTest {
 				.findAny();//
 		assertTrue(e.isPresent());
 		assertEquals(2, e.get().agreements().size());
-		assertTrue(e.get().agreements().contains("Honor Euler.txt")); //$NON-NLS-1$
-		assertTrue(e.get().agreements().contains("comp_lics/EULERS IDENTITY")); //$NON-NLS-1$
+		List<String> paths = e.get().agreements().stream()//
+				.map(ResolvedAgreement::path)//
+				.collect(Collectors.toList());
+		assertTrue(paths.contains("Honor Euler.txt")); //$NON-NLS-1$
+		assertTrue(paths.contains("comp_lics/EULERS IDENTITY")); //$NON-NLS-1$
 	}
 
 }
