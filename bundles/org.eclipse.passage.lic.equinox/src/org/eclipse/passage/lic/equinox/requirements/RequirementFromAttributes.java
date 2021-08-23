@@ -75,7 +75,7 @@ final class RequirementFromAttributes implements Supplier<ServiceInvocationResul
 				.orElseGet(new DefaultRestrictionLevel());
 		List<ResolvedAgreement> agreements = new BundleResidentAgreement.Pack(//
 				bundle, //
-				new ListOfAgreements().fromSource(new ComponentLicFeatureAgreements(attributes))//
+				new ListOfAgreements().fromSource(new CapabilityLicFeatureAgreements(attributes))//
 		).get();
 		BaseRequirement requirement = new BaseRequirement(//
 				new BaseFeature(feature, version, name, provider), //

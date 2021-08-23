@@ -22,12 +22,15 @@ import org.eclipse.passage.lic.api.requirements.ResolvedAgreement;
 import org.eclipse.passage.lic.equinox.io.FileFromBundle;
 import org.osgi.framework.Bundle;
 
-final class BundleResidentAgreement implements ResolvedAgreement {
+/**
+ * @since 2.1
+ */
+public final class BundleResidentAgreement implements ResolvedAgreement {
 
 	private final Bundle bundle;
 	private final String path;
 
-	BundleResidentAgreement(Bundle bundle, String path) {
+	public BundleResidentAgreement(Bundle bundle, String path) {
 		this.bundle = bundle;
 		this.path = path;
 	}
