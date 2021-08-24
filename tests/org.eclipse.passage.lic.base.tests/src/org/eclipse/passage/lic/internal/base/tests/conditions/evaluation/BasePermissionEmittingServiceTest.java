@@ -208,6 +208,6 @@ public final class BasePermissionEmittingServiceTest {
 	private Collection<ConditionPack> packOf(Condition... conditions) {
 		return Collections.singleton(//
 				new BaseConditionPack(//
-						new UnknownConditionOrigin(), Arrays.asList(conditions)));
+						new UnknownConditionOrigin(), Arrays.asList(conditions), Collections.emptyList()));
 	}
 }
