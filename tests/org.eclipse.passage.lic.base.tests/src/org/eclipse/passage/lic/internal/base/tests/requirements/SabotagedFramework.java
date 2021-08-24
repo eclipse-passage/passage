@@ -18,6 +18,7 @@ import org.eclipse.passage.lic.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
+import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionPasringRegistry;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
@@ -52,7 +53,7 @@ final class SabotagedFramework implements Framework {
 		return config;
 	}
 
-	private static class SabotagedAccessCycleConfiguration implements AccessCycleConfiguration {
+	private static final class SabotagedAccessCycleConfiguration implements AccessCycleConfiguration {
 
 		private <I extends ServiceId, S extends Service<I>> Registry<I, S> noService() {
 			return new ReadOnlyRegistry<I, S>(new ArrayList<>());
@@ -126,6 +127,11 @@ final class SabotagedFramework implements Framework {
 		@Override
 		public HashesRegistry hashes() {
 			return () -> noService();
+		}
+
+		@Override
+		public AgreementAcceptanceService acceptance() {
+			return null;
 		}
 
 	}

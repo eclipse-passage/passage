@@ -29,7 +29,9 @@ import org.eclipse.passage.lic.api.restrictions.PermissionsExaminationService;
 import org.eclipse.passage.lic.api.restrictions.Restriction;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeLicensedProduct;
 import org.eclipse.passage.lic.api.tests.resrictions.PermissionsExaminationServiceContractTest;
+import org.eclipse.passage.lic.base.agreements.BaseAgreementAcceptanceService;
 import org.eclipse.passage.lic.base.diagnostic.code.InsufficientLicenseCoverage;
+import org.eclipse.passage.lic.base.io.MD5Hashes;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.base.restrictions.BasePermissionsExaminationService;
 import org.eclipse.passage.lic.base.restrictions.CertificateIsRestrictive;
@@ -118,7 +120,9 @@ public final class BasePermissionsExaminationServiceTest extends PermissionsExam
 
 	@Override
 	protected PermissionsExaminationService examiner() {
-		return new BasePermissionsExaminationService(() -> new ReadOnlyRegistry<>());
+		return new BasePermissionsExaminationService(new BaseAgreementAcceptanceService(//
+				() -> new ReadOnlyRegistry<>(new MD5Hashes()), //
+				FakeLicensedProduct::new));
 	}
 
 	private void testSuccess(//
