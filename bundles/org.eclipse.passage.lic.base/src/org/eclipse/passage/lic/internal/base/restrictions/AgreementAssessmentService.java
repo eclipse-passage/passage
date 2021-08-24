@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.restrictions;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 import java.util.Optional;
@@ -60,7 +59,7 @@ public final class AgreementAssessmentService {
 	private AgreementState assessment(ResolvedAgreement agreement, Requirement requirement) {
 		try (InputStream content = agreement.content()) {
 			return contentAssessment(content, agreement, requirement);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			String name = origin(agreement, requirement);
 			return new Assessment(name, cannotBeRead(e, name));
 		}
@@ -81,7 +80,7 @@ public final class AgreementAssessmentService {
 		return requirement.source().toString() + ':' + agreement.path();
 	}
 
-	private Trouble cannotBeRead(IOException e, String location) {
+	private Trouble cannotBeRead(Exception e, String location) {
 		return new Trouble(//
 				new ServiceFailedOnMorsel(), //
 				String.format("Failed to read content of agreement [%s]", location), //$NON-NLS-1$

@@ -22,6 +22,7 @@ import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
+import org.eclipse.passage.lic.base.restrictions.ExaminationExplained;
 import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.equinox.LicensedProductFromContext;
 import org.eclipse.passage.lic.internal.e4.ui.restrictions.WorkbenchShutdown;
@@ -53,8 +54,8 @@ public final class E4LicensingAddon {
 		if (grantAcquired(response)) {
 			grant = response.data();
 		} else {
-			System.err.printf("License grant has not been acquired on startup, shutdown initated: \n%s\n", //$NON-NLS-1$
-					new DiagnosticExplained(response.diagnostic()).get());
+			System.err.printf("License grant has not been acquired on startup, shutdown initated: \n%s\n%s\n", //$NON-NLS-1$
+					new DiagnosticExplained(response.diagnostic()).get(), explainExamination(response));
 			new WorkbenchShutdown().run();
 		}
 	}
@@ -85,4 +86,12 @@ public final class E4LicensingAddon {
 			grant = java.util.Optional.empty();
 		}
 	}
+
+	private String explainExamination(ServiceInvocationResult<GrantLockAttempt> response) {
+		if (!response.data().isPresent()) {
+			return ""; //$NON-NLS-1$
+		}
+		return new ExaminationExplained(response.data().get().certificate()).get();
+	}
+
 }

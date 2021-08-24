@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.diagnostic;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
@@ -58,28 +56,7 @@ public final class DiagnosticExplained implements Supplier<String> {
 			return;
 		}
 		out.append(name).append("\r\n"); //$NON-NLS-1$
-		troubles.forEach(trouble -> append(trouble, out));
-	}
-
-	private void append(Trouble trouble, StringBuilder out) {
-		out.append("\r\n\t> ") //$NON-NLS-1$
-				.append(trouble.details()) //
-				.append("\n\t\t(") //$NON-NLS-1$
-				.append(trouble.code().code()) //
-				.append(": ") //$NON-NLS-1$
-				.append(trouble.code().explanation())//
-				.append(")") //$NON-NLS-1$
-				.append(trouble.exception().isPresent()
-						? DiagnosticExplainedMessages.getString("DiagnosticExplained.failure") //$NON-NLS-1$
-						: ""); //$NON-NLS-1$
-		if (trouble.exception().isPresent()) {
-			StringWriter media = new StringWriter();
-			trouble.exception().get().printStackTrace(new PrintWriter(media));
-			out//
-					.append("\r\n----\r\n") //$NON-NLS-1$
-					.append(media.toString())//
-					.append("----\r\n"); //$NON-NLS-1$
-		}
+		troubles.forEach(trouble -> out.append(new TroubleExplained(trouble).get()));
 	}
 
 }

@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.api.restrictions.AgreementToAccept;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.api.restrictions.Restriction;
 import org.eclipse.passage.lic.base.SumOfCollections;
@@ -35,7 +36,8 @@ public final class SumOfCertificates implements BinaryOperator<ExaminationCertif
 
 		return new BaseExaminationCertificate(//
 				new SumOfMaps<Requirement, Permission>().apply(satisfied(first), satisfied(second)), //
-				new SumOfCollections<Restriction>().apply(first.restrictions(), second.restrictions())//
+				new SumOfCollections<Restriction>().apply(first.restrictions(), second.restrictions()), //
+				new SumOfCollections<AgreementToAccept>().apply(first.agreements(), second.agreements())//
 		);
 
 	}

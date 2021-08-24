@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Base64;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.diagnostic.Trouble;
@@ -68,7 +69,11 @@ public final class AgreementAcceptanceService {
 	}
 
 	private String hash(byte[] content) throws Exception {
-		return new String(hashes.get(content), "UTF-8"); //$NON-NLS-1$
+		return base64(hashes.get(content));
+	}
+
+	private String base64(byte[] bytes) {
+		return Base64.getEncoder().encodeToString(bytes);
 	}
 
 	/**

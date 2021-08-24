@@ -25,7 +25,7 @@ public final class CertificateWorthAttention implements Predicate<Optional<Exami
 
 	@Override
 	public boolean test(Optional<ExaminationCertificate> certificate) {
-		if (!certificate.isPresent()) {
+		if (new CertificateIsRestrictive().test(certificate)) {
 			return true;
 		}
 		if (certificate.get().restrictions().stream().anyMatch(new RestrictionMustPauseExecution())) {
