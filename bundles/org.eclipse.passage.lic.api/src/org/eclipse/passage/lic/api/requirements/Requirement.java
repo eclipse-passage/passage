@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.api.requirements;
 
 import java.util.List;
 
+import org.eclipse.passage.lic.api.agreements.ResolvedAgreement;
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 
 /**

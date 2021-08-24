@@ -10,18 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.requirements;
+package org.eclipse.passage.lic.api.agreements;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.function.Supplier;
 
-/**
- * @since 2.1
- */
-public interface ResolvedAgreement {
+public interface AgreementAcceptanceService {
 
-	InputStream content() throws IOException;
+	void accept(Supplier<byte[]> agreement) throws Exception;
 
-	String path();
+	AgreementState accepted(byte[] content, String name);
 
 }

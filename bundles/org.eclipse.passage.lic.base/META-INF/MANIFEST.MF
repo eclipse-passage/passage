@@ -12,6 +12,7 @@ Require-Bundle: org.eclipse.passage.lic.api;bundle-version="1.0.0";visibility:=r
 Export-Package: org.eclipse.passage.lic.base,
  org.eclipse.passage.lic.base.access,
  org.eclipse.passage.lic.base.acquire,
+ org.eclipse.passage.lic.base.agreements;x-friends:="org.eclipse.passage.lic.execute",
  org.eclipse.passage.lic.base.conditions,
  org.eclipse.passage.lic.base.conditions.evaluation,
  org.eclipse.passage.lic.base.conditions.mining,
@@ -28,5 +29,4 @@ Export-Package: org.eclipse.passage.lic.base,
  org.eclipse.passage.lic.internal.base.inspection.hardware;x-friends:="org.eclipse.passage.loc.licenses.core,org.eclipse.passage.lic.oshi",
  org.eclipse.passage.lic.internal.base.logging;x-friends:="org.eclipse.passage.lic.jetty",
  org.eclipse.passage.lic.internal.base.observatory;x-internal:=true,
- org.eclipse.passage.lic.internal.base.restrictions;x-internal:=true,
  org.eclipse.passage.lic.internal.base.time;x-friends:="org.eclipse.passage.lic.base.tests"

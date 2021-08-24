@@ -15,8 +15,8 @@ package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
-import org.eclipse.passage.lic.api.restrictions.AgreementToAccept;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.base.diagnostic.LicensingStatus;
@@ -53,14 +53,14 @@ public final class LicenseStatusDialog extends NotificationDialog {
 		super.configureShell(shell);
 		shell.setText(LicenseStatusDialogMessages.LicenseStatusDialog_title);
 		shell.setImage(getDefaultImage());
-		shell.setSize(740, 600);
+		shell.setSize(840, 600);
 	}
 
 	@Override
 	protected void buildUI(Composite parent) {
 		viewer = new HereTable<RequirementStatus>(parent, RequirementStatus.class) //
 				.withColumn(LicenseStatusDialogMessages.LicenseStatusDialog_column_id, //
-						500, RequirementStatus::feature)
+						600, RequirementStatus::feature)
 				.withColumn(LicenseStatusDialogMessages.LicenseStatusDialog_column_status, //
 						200, RequirementStatus::status)
 				.viewer();

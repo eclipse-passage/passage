@@ -10,12 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.restrictions;
+package org.eclipse.passage.lic.base.agreements;
 
 import java.util.Optional;
 
+import org.eclipse.passage.lic.api.agreements.AgreementState;
 import org.eclipse.passage.lic.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.api.restrictions.AgreementState;
 
 final class Assessment implements AgreementState {
 

@@ -10,12 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.restrictions;
+package org.eclipse.passage.lic.base.agreements;
 
+import org.eclipse.passage.lic.api.agreements.AgreementState;
+import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
+import org.eclipse.passage.lic.api.agreements.ResolvedAgreement;
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.api.requirements.ResolvedAgreement;
-import org.eclipse.passage.lic.api.restrictions.AgreementState;
-import org.eclipse.passage.lic.api.restrictions.AgreementToAccept;
 
 public final class BaseAgreementToAccept implements AgreementToAccept {
 

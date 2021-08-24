@@ -8,4 +8,13 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="src/org/eclipse/passage/lic/base/restrictions/BasePermissionsExaminationService.java" type="org.eclipse.passage.lic.base.restrictions.BasePermissionsExaminationService">
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="AgreementAcceptanceService"/>
+                <message_argument value="BasePermissionsExaminationService"/>
+                <message_argument value="BasePermissionsExaminationService(AgreementAcceptanceService)"/>
+            </message_arguments>
+        </filter>
+    </resource>
 </component>

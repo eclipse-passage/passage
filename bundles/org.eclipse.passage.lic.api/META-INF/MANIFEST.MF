@@ -10,6 +10,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.eclipse.passage.lic.api,
  org.eclipse.passage.lic.api.access,
  org.eclipse.passage.lic.api.acquire,
+ org.eclipse.passage.lic.api.agreements;x-friends:="org.eclipse.passage.lic.base,org.eclipse.passage.lic.base.tests,org.eclipse.passage.lic.jface",
  org.eclipse.passage.lic.api.conditions,
  org.eclipse.passage.lic.api.conditions.evaluation,
  org.eclipse.passage.lic.api.conditions.mining,

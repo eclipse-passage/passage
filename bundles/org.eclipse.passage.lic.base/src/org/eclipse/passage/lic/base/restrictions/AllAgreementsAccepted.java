@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.base.restrictions;
 
 import java.util.function.Predicate;
 
-import org.eclipse.passage.lic.api.restrictions.AgreementToAccept;
+import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 
 /**

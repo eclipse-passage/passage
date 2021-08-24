@@ -8,4 +8,13 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="src/org/eclipse/passage/lic/api/AccessCycleConfiguration.java" type="org.eclipse.passage.lic.api.AccessCycleConfiguration">
+        <filter id="643842064">
+            <message_arguments>
+                <message_argument value="AgreementAcceptanceService"/>
+                <message_argument value="AccessCycleConfiguration"/>
+                <message_argument value="acceptance()"/>
+            </message_arguments>
+        </filter>
+    </resource>
 </component>
