@@ -61,7 +61,8 @@ final class PersonalLicenseMiningTool extends ArmedMiningTool {
 					Collections.singleton(//
 							new BaseConditionPack(//
 									new BaseConditionOrigin(miner, source(source), data.signature()), //
-									data.conditions())//
+									data.conditions(), //
+									data.agreements())//
 					));
 		} catch (IOException | LicensingException e) {
 			return new BaseServiceInvocationResult<>(//

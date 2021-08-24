@@ -18,6 +18,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 
+import org.eclipse.passage.lic.api.agreements.GlobalAgreement;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.IssuerSignature;
 import org.eclipse.passage.lic.api.registry.Service;
@@ -39,23 +40,30 @@ public interface ConditionTransport extends Service<ContentType> {
 	public static final class Data {
 
 		private final Collection<Condition> conditions;
+		private final Collection<GlobalAgreement> agreements;
 		private final Optional<IssuerSignature> signature;
 
 		public Data() {
-			this(Collections.emptyList(), Optional.empty());
+			this(Collections.emptyList(), Collections.emptyList(), Optional.empty());
 		}
 
 		public Data(Collection<Condition> conditions) {
-			this(conditions, Optional.empty());
+			this(conditions, Collections.emptyList(), Optional.empty());
 		}
 
-		public Data(Collection<Condition> conditions, Optional<IssuerSignature> signature) {
+		public Data(Collection<Condition> conditions, Collection<GlobalAgreement> agreements,
+				Optional<IssuerSignature> signature) {
 			this.conditions = conditions;
 			this.signature = signature;
+			this.agreements = agreements;
 		}
 
 		public Collection<Condition> conditions() {
 			return conditions;
+		}
+
+		public Collection<GlobalAgreement> agreements() {
+			return agreements;
 		}
 
 		public Optional<IssuerSignature> signature() {

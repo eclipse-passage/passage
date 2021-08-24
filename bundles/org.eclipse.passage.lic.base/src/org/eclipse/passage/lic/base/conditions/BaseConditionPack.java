@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
+import org.eclipse.passage.lic.api.agreements.GlobalAgreement;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ConditionOrigin;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
@@ -27,12 +28,16 @@ public final class BaseConditionPack implements ConditionPack {
 
 	private final ConditionOrigin origin;
 	private final Collection<Condition> conditions;
+	private final Collection<GlobalAgreement> agreements;
 
-	public BaseConditionPack(ConditionOrigin origin, Collection<Condition> conditions) {
+	public BaseConditionPack(ConditionOrigin origin, Collection<Condition> conditions,
+			Collection<GlobalAgreement> agreements) {
 		Objects.requireNonNull(origin, "BaseConditionPack::origin"); //$NON-NLS-1$
 		Objects.requireNonNull(conditions, "BaseConditionPack::conditions"); //$NON-NLS-1$
+		Objects.requireNonNull(agreements, "BaseConditionPack::agreements"); //$NON-NLS-1$
 		this.origin = origin;
 		this.conditions = new ArrayList<>(conditions);
+		this.agreements = new ArrayList<>(agreements);
 	}
 
 	@Override
@@ -43,6 +48,11 @@ public final class BaseConditionPack implements ConditionPack {
 	@Override
 	public Collection<Condition> conditions() {
 		return conditions;
+	}
+
+	@Override
+	public Collection<GlobalAgreement> agreements() {
+		return agreements;
 	}
 
 }
