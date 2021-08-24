@@ -56,7 +56,8 @@ final class DecryptedConditions implements ResponseHandler<Collection<ConditionP
 			return Collections.singleton(//
 					new BaseConditionPack(//
 							new BaseConditionOrigin(target, source(), data.signature()), //
-							data.conditions() //
+							data.conditions(), //
+							data.agreements()//
 					));
 		} catch (IOException e) {
 			throw new LicensingException(MineMessages.DecryptedConditions_reading_error, e);

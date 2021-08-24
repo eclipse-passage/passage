@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.passage.lic.api.EvaluationType;
+import org.eclipse.passage.lic.api.agreements.GlobalAgreement;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.IssuerSignature;
 import org.eclipse.passage.lic.api.conditions.mining.ConditionTransport;
@@ -34,6 +35,7 @@ import org.eclipse.passage.lic.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.base.conditions.BaseCondition;
 import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
+import org.eclipse.passage.lic.internal.licenses.convert.PAgreements;
 import org.eclipse.passage.lic.internal.licenses.convert.PIssuerSignature;
 import org.eclipse.passage.lic.internal.licenses.convert.PVersionMatch;
 import org.eclipse.passage.lic.internal.licenses.model.migration.LicensesResourceHandler;
@@ -43,6 +45,7 @@ import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 
+@SuppressWarnings("restriction")
 abstract class BaseXmiConditionTransport implements ConditionTransport {
 
 	private final ContentType type = new ContentType.Xml();
@@ -74,7 +77,11 @@ abstract class BaseXmiConditionTransport implements ConditionTransport {
 		if (!license.isPresent()) {
 			return new Data();
 		}
-		return new Data(conditions(license.get()), signature(license.get()));
+		return new Data(conditions(license.get()), agreements(license.get()), signature(license.get()));
+	}
+
+	private Collection<GlobalAgreement> agreements(PersonalLicensePack pack) {
+		return new PAgreements(pack.getLicense().getAgreements()).get();
 	}
 
 	private Optional<IssuerSignature> signature(PersonalLicensePack pack) {

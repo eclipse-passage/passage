@@ -14,6 +14,8 @@ package org.eclipse.passage.lic.api.conditions;
 
 import java.util.Collection;
 
+import org.eclipse.passage.lic.api.agreements.GlobalAgreement;
+
 /**
  * <p>
  * Set of conditions of a common origin.
@@ -32,5 +34,7 @@ public interface ConditionPack {
 	ConditionOrigin origin();
 
 	Collection<Condition> conditions();
+
+	Collection<GlobalAgreement> agreements();
 
 }

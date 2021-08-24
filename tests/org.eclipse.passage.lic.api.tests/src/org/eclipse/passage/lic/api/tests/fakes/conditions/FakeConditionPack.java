@@ -14,11 +14,18 @@ package org.eclipse.passage.lic.api.tests.fakes.conditions;
 
 import java.util.Collection;
 
+import org.eclipse.passage.lic.api.agreements.GlobalAgreement;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ConditionOrigin;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
 
+@SuppressWarnings("restriction")
 public final class FakeConditionPack implements ConditionPack {
+
+	@Override
+	public Collection<GlobalAgreement> agreements() {
+		throw new UnsupportedOperationException();
+	}
 
 	@Override
 	public ConditionOrigin origin() {
