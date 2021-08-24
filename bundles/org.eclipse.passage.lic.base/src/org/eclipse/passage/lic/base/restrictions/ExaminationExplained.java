@@ -20,10 +20,10 @@ import java.util.Objects;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.api.restrictions.AgreementToAccept;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.api.restrictions.Restriction;
 import org.eclipse.passage.lic.base.diagnostic.SumOfLists;
@@ -136,7 +136,7 @@ public final class ExaminationExplained implements Supplier<String> {
 					.append(agreement.definition().path())//
 					.append("]\r\n\tdeclared by [") //$NON-NLS-1$
 					.append(agreement.origin())//
-					.append("]\r\n\t has [") //$NON-NLS-1$
+					.append("]\r\n\thas [") //$NON-NLS-1$
 					.append(agreement.acceptance().accepted() ? "accepted" : "not accepted") //$NON-NLS-1$//$NON-NLS-2$
 					.append("] state.\r\n"); //$NON-NLS-1$
 			if (agreement.acceptance().error().isPresent()) {

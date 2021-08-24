@@ -17,8 +17,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.agreements.ResolvedAgreement;
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.api.requirements.ResolvedAgreement;
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.base.requirements.BaseRequirement;
@@ -36,6 +36,7 @@ import org.osgi.service.component.runtime.dto.ComponentDescriptionDTO;
  * @see RequirementFromCapability
  * @see BundleRequirements
  */
+@SuppressWarnings("restriction")
 final class RequirementFromComponent implements Supplier<Optional<Requirement>> {
 
 	private final ComponentDescriptionDTO component;

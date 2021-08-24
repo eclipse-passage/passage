@@ -10,15 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.restrictions;
+package org.eclipse.passage.lic.api.agreements;
 
 import java.util.Optional;
 
 import org.eclipse.passage.lic.api.diagnostic.Trouble;
 
-/**
- * @since 2.1
- */
 public interface AgreementState {
 
 	/**

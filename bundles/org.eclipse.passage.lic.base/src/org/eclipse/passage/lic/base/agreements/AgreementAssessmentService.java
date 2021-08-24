@@ -10,37 +10,28 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.restrictions;
+package org.eclipse.passage.lic.base.agreements;
 
 import java.io.InputStream;
 import java.util.Collection;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
+import org.eclipse.passage.lic.api.agreements.AgreementState;
+import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
+import org.eclipse.passage.lic.api.agreements.ResolvedAgreement;
 import org.eclipse.passage.lic.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.api.io.Hashes;
-import org.eclipse.passage.lic.api.io.HashesRegistry;
-import org.eclipse.passage.lic.api.registry.Registry;
-import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.api.requirements.ResolvedAgreement;
-import org.eclipse.passage.lic.api.restrictions.AgreementState;
-import org.eclipse.passage.lic.api.restrictions.AgreementToAccept;
-import org.eclipse.passage.lic.base.diagnostic.code.NoServicesOfType;
 import org.eclipse.passage.lic.base.diagnostic.code.ServiceFailedOnMorsel;
 
 public final class AgreementAssessmentService {
 
-	private final LicensedProduct product;
 	private final Collection<Requirement> requirements;
-	private final HashesRegistry hashes;
+	private final BaseAgreementAcceptanceService.Smart acceptance;
 
-	public AgreementAssessmentService(LicensedProduct product, Collection<Requirement> requirements,
-			HashesRegistry hashes) {
-		this.product = product;
+	public AgreementAssessmentService(Collection<Requirement> requirements, AgreementAcceptanceService acceptance) {
 		this.requirements = requirements;
-		this.hashes = hashes;
+		this.acceptance = new BaseAgreementAcceptanceService.Smart(acceptance);
 	}
 
 	public Collection<AgreementToAccept> assessment() {
@@ -67,13 +58,7 @@ public final class AgreementAssessmentService {
 
 	private AgreementState contentAssessment(InputStream content, ResolvedAgreement agreement,
 			Requirement requirement) {
-		@SuppressWarnings("hiding")
-		Optional<Hashes> hashes = hashingService();
-		String name = origin(agreement, requirement);
-		if (!hashes.isPresent()) {
-			return new Assessment(name, noHashingService());
-		}
-		return new AgreementAcceptanceService(hashes.get(), product).accepted(content, name);
+		return acceptance.accepted(content, origin(agreement, requirement));
 	}
 
 	private String origin(ResolvedAgreement agreement, Requirement requirement) {
@@ -85,20 +70,6 @@ public final class AgreementAssessmentService {
 				new ServiceFailedOnMorsel(), //
 				String.format("Failed to read content of agreement [%s]", location), //$NON-NLS-1$
 				e);
-	}
-
-	private Trouble noHashingService() {
-		return new Trouble(//
-				new NoServicesOfType("hash calculator"), //$NON-NLS-1$
-				"Any agreement assessment is impossible."); //$NON-NLS-1$
-	}
-
-	private Optional<Hashes> hashingService() {
-		Registry<StringServiceId, Hashes> registry = hashes.get();
-		if (registry.services().isEmpty()) {
-			return Optional.empty();
-		}
-		return Optional.of(registry.services().iterator().next());
 	}
 
 }

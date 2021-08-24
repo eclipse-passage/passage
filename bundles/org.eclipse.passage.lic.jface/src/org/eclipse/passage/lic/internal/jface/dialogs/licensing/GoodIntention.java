@@ -16,8 +16,8 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import org.eclipse.jface.window.Window;
+import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
-import org.eclipse.passage.lic.api.restrictions.AgreementToAccept;
 import org.eclipse.swt.widgets.Shell;
 
 public abstract class GoodIntention {

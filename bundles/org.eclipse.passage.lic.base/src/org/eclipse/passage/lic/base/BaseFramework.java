@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base;
 
-import org.eclipse.passage.lic.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.LicensedProduct;
 
@@ -22,12 +21,10 @@ import org.eclipse.passage.lic.api.LicensedProduct;
  */
 public abstract class BaseFramework implements Framework {
 
-	private final AccessCycleConfiguration access;
 	private final LicensedProduct product;
 
 	protected BaseFramework() {
 		this.product = productRead();
-		this.access = configuration(product);
 	}
 
 	@Override
@@ -35,13 +32,6 @@ public abstract class BaseFramework implements Framework {
 		return product;
 	}
 
-	@Override
-	public final AccessCycleConfiguration accessCycleConfiguration() {
-		return access;
-	}
-
 	protected abstract LicensedProduct productRead();
-
-	protected abstract AccessCycleConfiguration configuration(LicensedProduct prod);
 
 }

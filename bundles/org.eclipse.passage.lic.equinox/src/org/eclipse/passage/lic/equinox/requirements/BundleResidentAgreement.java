@@ -18,13 +18,14 @@ import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lic.api.requirements.ResolvedAgreement;
+import org.eclipse.passage.lic.api.agreements.ResolvedAgreement;
 import org.eclipse.passage.lic.equinox.io.FileFromBundle;
 import org.osgi.framework.Bundle;
 
 /**
  * @since 2.1
  */
+@SuppressWarnings("restriction")
 public final class BundleResidentAgreement implements ResolvedAgreement {
 
 	private final Bundle bundle;

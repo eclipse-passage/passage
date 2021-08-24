@@ -13,11 +13,11 @@
 package org.eclipse.passage.lic.execute;
 
 import java.io.InputStream;
+import java.util.function.Supplier;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lic.api.AccessCycleConfiguration;
-import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.base.BaseFramework;
@@ -31,14 +31,14 @@ import org.osgi.framework.FrameworkUtil;
 @SuppressWarnings("restriction")
 public final class DefaultFramework extends BaseFramework {
 
-	public static final Framework framework = new DefaultFramework();
-
 	private final Logger log;
+	private final AccessCycleConfiguration configuration;
 
-	private DefaultFramework() {
+	public DefaultFramework(Supplier<Bundle> bundle) {
 		configureLogging();
 		this.log = LogManager.getLogger(getClass());
 		logConfiguration();
+		this.configuration = new FocusedAccessCycleConfiguration.Wide(this::product, bundle);
 	}
 
 	@Override
@@ -53,8 +53,8 @@ public final class DefaultFramework extends BaseFramework {
 	}
 
 	@Override
-	protected AccessCycleConfiguration configuration(LicensedProduct product) {
-		return new FocusedAccessCycleConfiguration.Wide(() -> product);
+	public AccessCycleConfiguration accessCycleConfiguration() {
+		return configuration;
 	}
 
 	private void configureLogging() {
@@ -62,8 +62,10 @@ public final class DefaultFramework extends BaseFramework {
 	}
 
 	private InputStream logConfig() throws Exception {
-		Bundle bundle = FrameworkUtil.getBundle(getClass());
-		return new FileFromBundle(bundle, "config/log4j2.xml").get(); //$NON-NLS-1$
+		return new FileFromBundle(//
+				FrameworkUtil.getBundle(getClass()), //
+				"config/log4j2.xml")//$NON-NLS-1$
+						.get();
 	}
 
 	private void logConfiguration() {

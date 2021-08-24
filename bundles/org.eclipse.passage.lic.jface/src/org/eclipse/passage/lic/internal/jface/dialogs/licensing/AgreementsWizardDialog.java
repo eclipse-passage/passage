@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 import java.util.Collection;
 
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.passage.lic.api.restrictions.AgreementToAccept;
+import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
 import org.eclipse.swt.widgets.Shell;
 
 final class AgreementsWizardDialog extends WizardDialog {
@@ -24,4 +24,11 @@ final class AgreementsWizardDialog extends WizardDialog {
 		super(shell, new AgreementsWizard(agreements));
 	}
 
+	@Override
+	protected void configureShell(Shell shell) {
+		super.configureShell(shell);
+		shell.setText("Licensing agreements demanded for acceptance"); //$NON-NLS-1$
+		shell.setImage(getDefaultImage());
+		shell.setSize(840, 600);
+	}
 }

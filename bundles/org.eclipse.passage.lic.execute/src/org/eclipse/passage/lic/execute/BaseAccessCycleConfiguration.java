@@ -18,6 +18,7 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationService;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionParsingService;
@@ -45,6 +46,7 @@ import org.eclipse.passage.lic.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.api.requirements.ResolvedRequirementsRegistry;
 import org.eclipse.passage.lic.api.restrictions.PermissionsExaminationService;
 import org.eclipse.passage.lic.api.restrictions.PermissionsExaminationServicesRegistry;
+import org.eclipse.passage.lic.base.agreements.BaseAgreementAcceptanceService;
 import org.eclipse.passage.lic.base.conditions.evaluation.BasePermissionEmittingService;
 import org.eclipse.passage.lic.base.conditions.evaluation.BerlinProtocolExpressionParseService;
 import org.eclipse.passage.lic.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
@@ -75,6 +77,7 @@ public abstract class BaseAccessCycleConfiguration implements AccessCycleConfigu
 	private final Registry<EvaluationType, ExpressionTokenAssessmentService> tokenAssessors;
 	private final Registry<EvaluationType, RuntimeEnvironment> environments;
 	private final Registry<StringServiceId, PermissionsExaminationService> examinators;
+	private final AgreementAcceptanceService acceptance;
 
 	protected BaseAccessCycleConfiguration(Supplier<LicensedProduct> product, Supplier<Bundle> bundle) {
 		requirements = new ReadOnlyRegistry<>(Arrays.asList(//
@@ -109,9 +112,8 @@ public abstract class BaseAccessCycleConfiguration implements AccessCycleConfigu
 		environments = new ReadOnlyRegistry<>(Arrays.asList(//
 				new HardwareEnvironment() //
 		));
-		examinators = new ReadOnlyRegistry<>(Arrays.asList(//
-				new BasePermissionsExaminationService(hashes())//
-		));
+		acceptance = new BaseAgreementAcceptanceService(hashes(), product);
+		examinators = new ReadOnlyRegistry<>(new BasePermissionsExaminationService(acceptance, product));
 	}
 
 	@Override
@@ -172,6 +174,11 @@ public abstract class BaseAccessCycleConfiguration implements AccessCycleConfigu
 	@Override
 	public final HashesRegistry hashes() {
 		return () -> hashes;
+	}
+
+	@Override
+	public AgreementAcceptanceService acceptance() {
+		return acceptance;
 	}
 
 }

@@ -63,6 +63,8 @@
  * <li>409 - a license source does not provide relevant conditions (info)</li>
  * <li>410 - no licenses found in a source directory (info)</li>
  * <li>411 - no data of a particular type found (info)</li>
+ * <li>412 - a licensing agreement has not been actively accepted by the product
+ * user</li>
  * </ul>
  * </li>
  * <li>5xx - reserved</li>

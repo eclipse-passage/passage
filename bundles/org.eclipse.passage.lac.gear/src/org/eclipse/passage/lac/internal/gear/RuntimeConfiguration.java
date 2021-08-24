@@ -22,6 +22,7 @@ import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
+import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationService;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
@@ -192,6 +193,11 @@ public final class RuntimeConfiguration implements AccessCycleConfiguration {
 	@Override
 	public HashesRegistry hashes() {
 		return () -> new ReadOnlyRegistry<StringServiceId, Hashes>();
+	}
+
+	@Override
+	public AgreementAcceptanceService acceptance() {
+		throw new UnsupportedOperationException();
 	}
 
 }

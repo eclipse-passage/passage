@@ -16,8 +16,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.agreements.ResolvedAgreement;
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.api.requirements.ResolvedAgreement;
 import org.eclipse.passage.lic.base.StringNamedData;
 import org.osgi.service.component.runtime.dto.ComponentDescriptionDTO;
 
@@ -28,6 +28,7 @@ import org.osgi.service.component.runtime.dto.ComponentDescriptionDTO;
  * @see RequirementFromCapability
  * @see BundleRequirements
  */
+@SuppressWarnings("restriction")
 final class ListOfAgreements {
 
 	private final String separator = "::"; //$NON-NLS-1$

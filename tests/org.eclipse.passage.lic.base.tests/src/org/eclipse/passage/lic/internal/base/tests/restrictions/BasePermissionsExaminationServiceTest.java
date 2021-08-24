@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
@@ -29,7 +30,9 @@ import org.eclipse.passage.lic.api.restrictions.PermissionsExaminationService;
 import org.eclipse.passage.lic.api.restrictions.Restriction;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeLicensedProduct;
 import org.eclipse.passage.lic.api.tests.resrictions.PermissionsExaminationServiceContractTest;
+import org.eclipse.passage.lic.base.agreements.BaseAgreementAcceptanceService;
 import org.eclipse.passage.lic.base.diagnostic.code.InsufficientLicenseCoverage;
+import org.eclipse.passage.lic.base.io.MD5Hashes;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.base.restrictions.BasePermissionsExaminationService;
 import org.eclipse.passage.lic.base.restrictions.CertificateIsRestrictive;
@@ -61,10 +64,9 @@ public final class BasePermissionsExaminationServiceTest extends PermissionsExam
 		// given
 		TestState state = new TestState();
 		// when examine two requirements against one permission for the requirement2
-		ExaminationCertificate certificate = examiner().examine(//
+		ExaminationCertificate certificate = examiner(state::product).examine(//
 				Arrays.asList(state.requirementFirst(), state.requirementSecond()), //
-				Arrays.asList(state.permissionSecond()), //
-				state.product());
+				Arrays.asList(state.permissionSecond()));
 		// then: examination is failed
 		assertTrue(new CertificateIsRestrictive().test(Optional.of(certificate)));
 		// then: the first of the requirement stays unsatisfied
@@ -89,10 +91,9 @@ public final class BasePermissionsExaminationServiceTest extends PermissionsExam
 	@Test
 	public void detectsRequirementUnsatisfactionOnObsoleteCondition() {
 		TestState state = new TestState();
-		Collection<Restriction> restrictions = examiner().examine(//
+		Collection<Restriction> restrictions = examiner(state::product).examine(//
 				Arrays.asList(state.requirementSecond()), //
-				Arrays.asList(state.permissionSecondObsolete()), //
-				state.product())//
+				Arrays.asList(state.permissionSecondObsolete()))//
 				.restrictions();
 		assertNotNull(restrictions);
 		assertEquals(1, restrictions.size());
@@ -117,15 +118,17 @@ public final class BasePermissionsExaminationServiceTest extends PermissionsExam
 	}
 
 	@Override
-	protected PermissionsExaminationService examiner() {
-		return new BasePermissionsExaminationService(() -> new ReadOnlyRegistry<>());
+	protected PermissionsExaminationService examiner(Supplier<LicensedProduct> product) {
+		return new BasePermissionsExaminationService(//
+				new BaseAgreementAcceptanceService(() -> new ReadOnlyRegistry<>(new MD5Hashes()), product), //
+				product);
 	}
 
 	private void testSuccess(//
 			Collection<Requirement> requirements, //
 			Collection<Permission> permissions, //
 			LicensedProduct product) {
-		ExaminationCertificate certificate = examiner().examine(requirements, permissions, product);
+		ExaminationCertificate certificate = examiner(() -> product).examine(requirements, permissions);
 		assertNotNull(certificate);
 		assertTrue(certificate.restrictions().isEmpty());
 	}

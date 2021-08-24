@@ -13,24 +13,27 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.restrictions;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
+import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
-import org.eclipse.passage.lic.api.io.HashesRegistry;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.api.restrictions.AgreementToAccept;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.api.restrictions.PermissionsExaminationService;
 import org.eclipse.passage.lic.api.restrictions.Restriction;
+import org.eclipse.passage.lic.base.agreements.AgreementAssessmentService;
+import org.eclipse.passage.lic.base.diagnostic.code.AgreementNotAccepted;
 import org.eclipse.passage.lic.base.diagnostic.code.InsufficientLicenseCoverage;
-import org.eclipse.passage.lic.internal.base.restrictions.AgreementAssessmentService;
 
 /**
  * 
@@ -39,10 +42,12 @@ import org.eclipse.passage.lic.internal.base.restrictions.AgreementAssessmentSer
 public final class BasePermissionsExaminationService implements PermissionsExaminationService {
 
 	private final StringServiceId id = new StringServiceId("base-permissions-examination-service"); //$NON-NLS-1$
-	private final HashesRegistry hashes;
+	private final AgreementAcceptanceService acceptance;
+	private final LicensedProduct product;
 
-	public BasePermissionsExaminationService(HashesRegistry hashes) {
-		this.hashes = hashes;
+	public BasePermissionsExaminationService(AgreementAcceptanceService acceptance, Supplier<LicensedProduct> product) {
+		this.acceptance = acceptance;
+		this.product = product.get();
 	}
 
 	@Override
@@ -51,36 +56,46 @@ public final class BasePermissionsExaminationService implements PermissionsExami
 	}
 
 	@Override
-	public ExaminationCertificate examine(Collection<Requirement> requirements, Collection<Permission> permissions,
-			LicensedProduct product) {
+	public ExaminationCertificate examine(Collection<Requirement> requirements, Collection<Permission> permissions) {
 		Objects.requireNonNull(requirements);
 		Objects.requireNonNull(permissions);
 		Objects.requireNonNull(product);
 		Map<Requirement, Permission> active = new HashMap<>();
+		Collection<AgreementToAccept> agreements = agreements(requirements);
 		return new BaseExaminationCertificate(active, //
-				insufficientCoverage(requirements, permissions, product, active), //
-				agreements(requirements, product)); // TODO: add 'not accepted' restrictions?
+				assessFeature(requirements, permissions, agreements, active), //
+				agreements);
+	}
+
+	private Collection<AgreementToAccept> agreements(Collection<Requirement> requirements) {
+		return new AgreementAssessmentService(requirements, acceptance).assessment();
+	}
+
+	private List<Restriction> assessFeature(Collection<Requirement> requirements, Collection<Permission> permissions,
+			Collection<AgreementToAccept> agreements, Map<Requirement, Permission> active) {
+		List<Restriction> uncovered = insufficientCoverage(requirements, permissions, active);
+		List<Restriction> unaccepted = unacceptedAgreements(agreements);
+		return Arrays.asList(uncovered, unaccepted).stream()//
+				.flatMap(List::stream)//
+				.collect(Collectors.toList());
+
 	}
 
 	private List<Restriction> insufficientCoverage(Collection<Requirement> requirements,
-			Collection<Permission> permissions, LicensedProduct product, Map<Requirement, Permission> active) {
+			Collection<Permission> permissions, Map<Requirement, Permission> active) {
 		return requirements.stream() //
 				.collect(Collectors.groupingBy(Requirement::feature)).entrySet().stream()//
-				.map(e -> insufficientLicenseCoverage(e.getValue(), permissions, product, active))//
+				.map(e -> insufficientLicenseCoverage(e.getValue(), permissions, active))//
 				.flatMap(Collection::stream)//
 				.collect(Collectors.toList());
 	}
 
 	private Collection<Restriction> insufficientLicenseCoverage(Collection<Requirement> requirements,
-			Collection<Permission> permissions, LicensedProduct product, Map<Requirement, Permission> active) {
+			Collection<Permission> permissions, Map<Requirement, Permission> active) {
 		return requirements.stream()//
 				.filter(requirement -> notCovered(requirement, permissions, active))//
-				.map(requirement -> insufficientLicenseCoverage(requirement, product)) //
+				.map(requirement -> insufficientLicenseCoverage(requirement)) //
 				.collect(Collectors.toList());
-	}
-
-	private Collection<AgreementToAccept> agreements(Collection<Requirement> requirements, LicensedProduct product) {
-		return new AgreementAssessmentService(product, requirements, hashes).assessment();
 	}
 
 	private boolean notCovered(Requirement requirement, Collection<Permission> permissions,
@@ -104,8 +119,19 @@ public final class BasePermissionsExaminationService implements PermissionsExami
 				permission.condition().versionMatch().version());
 	}
 
-	private Restriction insufficientLicenseCoverage(Requirement requirement, LicensedProduct product) {
+	private Restriction insufficientLicenseCoverage(Requirement requirement) {
 		return new BaseRestriction(product, requirement, new InsufficientLicenseCoverage());
+	}
+
+	private List<Restriction> unacceptedAgreements(Collection<AgreementToAccept> agreements) {
+		return agreements.stream()// .
+				.filter(agreement -> !agreement.acceptance().accepted())//
+				.map(this::restrictionForUnacceptedAgreement)//
+				.collect(Collectors.toList());
+	}
+
+	private Restriction restrictionForUnacceptedAgreement(AgreementToAccept agreement) {
+		return new BaseRestriction(product, agreement.origin(), new AgreementNotAccepted());
 	}
 
 }

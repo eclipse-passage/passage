@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.api.restrictions;
 import java.time.ZonedDateTime;
 import java.util.Collection;
 
+import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.api.requirements.Requirement;
 

@@ -10,18 +10,19 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.requirements;
+package org.eclipse.passage.lic.base.diagnostic.code;
 
-import java.io.IOException;
-import java.io.InputStream;
+import org.eclipse.passage.lic.api.diagnostic.TroubleCode;
+import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
 
 /**
+ * 
  * @since 2.1
  */
-public interface ResolvedAgreement {
+public final class AgreementNotAccepted extends TroubleCode {
 
-	InputStream content() throws IOException;
-
-	String path();
+	public AgreementNotAccepted() {
+		super(412, DiagnosticCodeMessages.getString("AgreementNotAccepted.explanation")); //$NON-NLS-1$
+	}
 
 }

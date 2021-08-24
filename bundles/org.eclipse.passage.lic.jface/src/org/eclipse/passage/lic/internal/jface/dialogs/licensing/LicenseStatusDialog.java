@@ -15,8 +15,8 @@ package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
-import org.eclipse.passage.lic.api.restrictions.AgreementToAccept;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.base.diagnostic.LicensingStatus;
@@ -53,14 +53,14 @@ public final class LicenseStatusDialog extends NotificationDialog {
 		super.configureShell(shell);
 		shell.setText(LicenseStatusDialogMessages.LicenseStatusDialog_title);
 		shell.setImage(getDefaultImage());
-		shell.setSize(740, 600);
+		shell.setSize(840, 600);
 	}
 
 	@Override
 	protected void buildUI(Composite parent) {
 		viewer = new HereTable<RequirementStatus>(parent, RequirementStatus.class) //
 				.withColumn(LicenseStatusDialogMessages.LicenseStatusDialog_column_id, //
-						500, RequirementStatus::feature)
+						600, RequirementStatus::feature)
 				.withColumn(LicenseStatusDialogMessages.LicenseStatusDialog_column_status, //
 						200, RequirementStatus::status)
 				.viewer();
@@ -76,24 +76,27 @@ public final class LicenseStatusDialog extends NotificationDialog {
 
 	@Override
 	protected void initButtons() {
-		new ButtonConfig(1, this::requestLicense, //
+		int button = 1;
+		new ButtonConfig(button++, this::requestLicense, //
 				LicenseStatusDialogMessages.LicenseStatusDialog_intention_request, //
 				LicenseStatusDialogMessages.LicenseStatusDialog_intention_request_tooltip, "")//$NON-NLS-1$
 						.reside(buttons);
-		new ButtonConfig(2, this::importLicense, //
+		new ButtonConfig(button++, this::importLicense, //
 				LicenseStatusDialogMessages.LicenseStatusDialog_intention_import, //
 				LicenseStatusDialogMessages.LicenseStatusDialog_intention_import_tooltip, "") //$NON-NLS-1$
 						.reside(buttons);
-		new ButtonConfig(3, copy(), //
+		new ButtonConfig(button++, copy(), //
 				LicenseStatusDialogMessages.LicenseStatusDialog_intention_copy,
 				LicenseStatusDialogMessages.LicenseStatusDialog_intention_copy_tooltip, "") //$NON-NLS-1$
 						.reside(buttons);
-		new ButtonConfig(4, this::exposeAgreements, //
-				LicenseStatusDialogMessages.LicenseStatusDialog_intention_accept,
-				LicenseStatusDialogMessages.LicenseStatusDialog_intention_accept_tooltip, "") //$NON-NLS-1$
-						.reside(buttons);
+		if (haveUnacceptedAgreements()) {
+			new ButtonConfig(button++, this::exposeAgreements, //
+					LicenseStatusDialogMessages.LicenseStatusDialog_intention_accept,
+					LicenseStatusDialogMessages.LicenseStatusDialog_intention_accept_tooltip, "") //$NON-NLS-1$
+							.reside(buttons);
+		}
 		if (!new NoErrors().test(diagnostic)) {
-			new ButtonConfig(5, this::diagnose, //
+			new ButtonConfig(button++, this::diagnose, //
 					LicenseStatusDialogMessages.LicenseStatusDialog_intention_diagnose,
 					LicenseStatusDialogMessages.LicenseStatusDialog_intention_diagnose_tooltip, "") //$NON-NLS-1$
 							.reside(buttons);
@@ -138,6 +141,13 @@ public final class LicenseStatusDialog extends NotificationDialog {
 
 	private boolean toExpose(AgreementToAccept agreement) {
 		return !agreement.acceptance().accepted() && !agreement.acceptance().error().isPresent();
+	}
+
+	private boolean haveUnacceptedAgreements() {
+		return certificate.agreements().stream()//
+				.filter(this::toExpose)//
+				.findAny()//
+				.isPresent();
 	}
 
 	private Runnable copy() {

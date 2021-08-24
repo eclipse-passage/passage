@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.api;
 
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
+import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionPasringRegistry;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
@@ -61,5 +62,7 @@ public interface AccessCycleConfiguration {
 	LicenseAcquisitionServicesRegistry acquirers();
 
 	HashesRegistry hashes();
+
+	AgreementAcceptanceService acceptance();
 
 }

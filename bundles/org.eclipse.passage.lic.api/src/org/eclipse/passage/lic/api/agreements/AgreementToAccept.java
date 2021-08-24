@@ -10,14 +10,10 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.restrictions;
+package org.eclipse.passage.lic.api.agreements;
 
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.api.requirements.ResolvedAgreement;
 
-/**
- * @since 2.1
- */
 public interface AgreementToAccept {
 
 	Requirement origin();

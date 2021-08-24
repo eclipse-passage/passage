@@ -23,6 +23,11 @@ import org.eclipse.passage.lic.equinox.LicensedApplication;
 public class FlsFramework extends BaseFramework {
 
 	static final Framework instance = new FlsFramework();
+	private final AccessCycleConfiguration configuration;
+
+	public FlsFramework() {
+		this.configuration = new SealedAccessCycleConfiguration(super::product);
+	}
 
 	@Override
 	protected final LicensedProduct productRead() {
@@ -36,8 +41,8 @@ public class FlsFramework extends BaseFramework {
 	}
 
 	@Override
-	protected AccessCycleConfiguration configuration(LicensedProduct product) {
-		return new SealedAccessCycleConfiguration(() -> product);
+	public AccessCycleConfiguration accessCycleConfiguration() {
+		return configuration;
 	}
 
 }
