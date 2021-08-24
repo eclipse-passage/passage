@@ -15,9 +15,9 @@ package org.eclipse.passage.lic.api.tests.fakes.requirements;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.passage.lic.api.agreements.ResolvedAgreement;
 import org.eclipse.passage.lic.api.requirements.Feature;
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.api.requirements.ResolvedAgreement;
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 
 public final class FakeRequirement implements Requirement {
