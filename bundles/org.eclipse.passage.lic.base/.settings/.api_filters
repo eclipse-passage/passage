@@ -13,7 +13,7 @@
             <message_arguments>
                 <message_argument value="AgreementAcceptanceService"/>
                 <message_argument value="BasePermissionsExaminationService"/>
-                <message_argument value="BasePermissionsExaminationService(AgreementAcceptanceService)"/>
+                <message_argument value="BasePermissionsExaminationService(AgreementAcceptanceService, Supplier&lt;LicensedProduct&gt;)"/>
             </message_arguments>
         </filter>
     </resource>

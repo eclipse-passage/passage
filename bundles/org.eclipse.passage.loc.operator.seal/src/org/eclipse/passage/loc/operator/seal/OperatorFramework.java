@@ -24,6 +24,7 @@ import org.eclipse.passage.lic.base.BaseFramework;
 import org.eclipse.passage.lic.base.InvalidLicensedProduct;
 import org.eclipse.passage.lic.equinox.LicensedApplication;
 import org.eclipse.passage.lic.equinox.io.FileFromBundle;
+import org.eclipse.passage.lic.execute.FocusedAccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.base.logging.Logging;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
@@ -34,11 +35,19 @@ final class OperatorFramework extends BaseFramework {
 	static final Framework instance = new OperatorFramework();
 
 	private final Logger log;
+	private final AccessCycleConfiguration configuration;
 
 	private OperatorFramework() {
 		configureLogging();
 		this.log = LogManager.getLogger(getClass());
 		logConfiguration();
+		this.configuration = new FocusedAccessCycleConfiguration.Personal(this::product,
+				() -> FrameworkUtil.getBundle(OperatorFramework.class));
+	}
+
+	@Override
+	public AccessCycleConfiguration accessCycleConfiguration() {
+		return configuration;
 	}
 
 	@Override
@@ -50,11 +59,6 @@ final class OperatorFramework extends BaseFramework {
 			prod = new InvalidLicensedProduct();
 		}
 		return prod;
-	}
-
-	@Override
-	protected AccessCycleConfiguration configuration(LicensedProduct product) {
-		return new OperatorAccessCycleConfiguration(() -> product);
 	}
 
 	private void configureLogging() {

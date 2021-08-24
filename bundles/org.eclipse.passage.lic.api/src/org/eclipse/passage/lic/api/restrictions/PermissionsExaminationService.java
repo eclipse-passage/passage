@@ -14,7 +14,6 @@ package org.eclipse.passage.lic.api.restrictions;
 
 import java.util.Collection;
 
-import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.api.registry.Service;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
@@ -34,7 +33,6 @@ import org.eclipse.passage.lic.api.requirements.Requirement;
  */
 public interface PermissionsExaminationService extends Service<StringServiceId> {
 
-	ExaminationCertificate examine(Collection<Requirement> requirements, Collection<Permission> permissions,
-			LicensedProduct product);
+	ExaminationCertificate examine(Collection<Requirement> requirements, Collection<Permission> permissions);
 
 }

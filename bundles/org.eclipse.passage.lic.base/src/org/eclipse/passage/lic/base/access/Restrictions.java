@@ -15,7 +15,6 @@ package org.eclipse.passage.lic.base.access;
 import java.util.Collection;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.api.diagnostic.Trouble;
@@ -36,14 +35,12 @@ public final class Restrictions implements Supplier<ServiceInvocationResult<Exam
 	private final Registry<StringServiceId, PermissionsExaminationService> registry;
 	private final Collection<Requirement> requirements;
 	private final Collection<Permission> permissions;
-	private final LicensedProduct product;
 
 	public Restrictions(Registry<StringServiceId, PermissionsExaminationService> registry,
-			Collection<Requirement> requirements, Collection<Permission> permissions, LicensedProduct product) {
+			Collection<Requirement> requirements, Collection<Permission> permissions) {
 		this.registry = registry;
 		this.requirements = requirements;
 		this.permissions = permissions;
-		this.product = product;
 	}
 
 	@Override
@@ -56,7 +53,7 @@ public final class Restrictions implements Supplier<ServiceInvocationResult<Exam
 		}
 		return new BaseServiceInvocationResult<ExaminationCertificate>(//
 				registry.services().stream()//
-						.map(service -> service.examine(requirements, permissions, product)) //
+						.map(service -> service.examine(requirements, permissions)) //
 						.reduce(new SumOfCertificates())//
 						.get() // guaranteed to exist as there is at least one service
 		);

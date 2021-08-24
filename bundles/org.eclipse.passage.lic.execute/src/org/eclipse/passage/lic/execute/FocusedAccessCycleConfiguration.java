@@ -17,14 +17,14 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.api.conditions.mining.MinedConditionsRegistry;
-import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.Bundle;
 
-abstract class FocusedAccessCycleConfiguration extends BaseAccessCycleConfiguration {
+public abstract class FocusedAccessCycleConfiguration extends BaseAccessCycleConfiguration {
 
 	protected LicensingDirection delegate; // lateinit, practically final and not null
 
-	FocusedAccessCycleConfiguration(Supplier<LicensedProduct> product) {
-		super(product, () -> FrameworkUtil.getBundle(FocusedAccessCycleConfiguration.class));
+	FocusedAccessCycleConfiguration(Supplier<LicensedProduct> product, Supplier<Bundle> bundle) {
+		super(product, bundle);
 	}
 
 	@Override
@@ -40,10 +40,10 @@ abstract class FocusedAccessCycleConfiguration extends BaseAccessCycleConfigurat
 	/**
 	 * Focuses Access Cycle Configuration on local license mining
 	 */
-	static final class Personal extends FocusedAccessCycleConfiguration {
+	public static final class Personal extends FocusedAccessCycleConfiguration {
 
-		Personal(Supplier<LicensedProduct> product) {
-			super(product);
+		public Personal(Supplier<LicensedProduct> product, Supplier<Bundle> bundle) {
+			super(product, bundle);
 			this.delegate = new PersonalLicensing(super::miningEquipment);
 		}
 
@@ -52,10 +52,10 @@ abstract class FocusedAccessCycleConfiguration extends BaseAccessCycleConfigurat
 	/**
 	 * Focuses Access Cycle Configuration on remote license mining
 	 */
-	static final class Floating extends FocusedAccessCycleConfiguration {
+	public static final class Floating extends FocusedAccessCycleConfiguration {
 
-		Floating(Supplier<LicensedProduct> product) {
-			super(product);
+		public Floating(Supplier<LicensedProduct> product, Supplier<Bundle> bundle) {
+			super(product, bundle);
 			this.delegate = new FloatingLicensing(super.keyKeepers(), super.codecs(), super.transports());
 		}
 
@@ -64,10 +64,10 @@ abstract class FocusedAccessCycleConfiguration extends BaseAccessCycleConfigurat
 	/**
 	 * Adapts Access Cycle Configuration to both local and remote license mining
 	 */
-	static final class Wide extends FocusedAccessCycleConfiguration {
+	public static final class Wide extends FocusedAccessCycleConfiguration {
 
-		Wide(Supplier<LicensedProduct> product) {
-			super(product);
+		public Wide(Supplier<LicensedProduct> product, Supplier<Bundle> bundle) {
+			super(product, bundle);
 			this.delegate = new LicensingDirection.Joint(//
 					new PersonalLicensing(super::miningEquipment), //
 					new FloatingLicensing(super.keyKeepers(), super.codecs(), super.transports()));

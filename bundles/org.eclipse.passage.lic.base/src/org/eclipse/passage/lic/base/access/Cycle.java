@@ -158,8 +158,7 @@ abstract class Cycle<T> {
 		return scan(new Restrictions(//
 				framework.accessCycleConfiguration().examinators().get(), //
 				requirements, //
-				permissions, //
-				framework.product()).get());
+				permissions).get());
 	}
 
 }
