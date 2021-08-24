@@ -29,17 +29,17 @@ final class TestFramework extends BaseFramework {
 		return new BaseLicensedProduct("anti-human-magic.product", "0.2.1"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	@Override
-	protected AccessCycleConfiguration configuration(LicensedProduct prod) {
-		return new DirectedAccessCycleConfiguration(() -> prod, source(), this::bundle);
-	}
-
 	private Bundle bundle() {
 		return FrameworkUtil.getBundle(TestFramework.class);
 	}
 
 	private Path source() {
 		return new TestLicFolder().get();
+	}
+
+	@Override
+	public AccessCycleConfiguration accessCycleConfiguration() {
+		return new DirectedAccessCycleConfiguration(this::product, source(), this::bundle);
 	}
 
 }
