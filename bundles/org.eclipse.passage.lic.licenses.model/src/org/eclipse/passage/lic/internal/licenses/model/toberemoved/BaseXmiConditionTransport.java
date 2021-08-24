@@ -32,15 +32,14 @@ import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.IssuerSignature;
 import org.eclipse.passage.lic.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.api.conditions.mining.ContentType;
-import org.eclipse.passage.lic.base.agreements.BaseGlobalAgreement;
 import org.eclipse.passage.lic.base.conditions.BaseCondition;
 import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
+import org.eclipse.passage.lic.internal.licenses.convert.PAgreements;
 import org.eclipse.passage.lic.internal.licenses.convert.PIssuerSignature;
 import org.eclipse.passage.lic.internal.licenses.convert.PVersionMatch;
 import org.eclipse.passage.lic.internal.licenses.model.migration.LicensesResourceHandler;
 import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
-import org.eclipse.passage.lic.licenses.model.api.AgreementData;
 import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
@@ -82,19 +81,7 @@ abstract class BaseXmiConditionTransport implements ConditionTransport {
 	}
 
 	private Collection<GlobalAgreement> agreements(PersonalLicensePack pack) {
-		return pack.getLicense().getAgreements().stream()//
-				.map(this::agreement)//
-				.collect(Collectors.toList());
-	}
-
-	private GlobalAgreement agreement(AgreementData agreement) {
-		return new BaseGlobalAgreement(//
-				agreement.getIdentifier(), //
-				agreement.getName(), //
-				agreement.getFile(), //
-				agreement.getHashAlgo(), //
-				agreement.getHash(), //
-				agreement.getContent());
+		return new PAgreements(pack.getLicense().getAgreements()).get();
 	}
 
 	private Optional<IssuerSignature> signature(PersonalLicensePack pack) {

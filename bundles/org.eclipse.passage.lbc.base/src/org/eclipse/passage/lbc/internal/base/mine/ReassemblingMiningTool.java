@@ -39,11 +39,13 @@ import org.eclipse.passage.lic.base.conditions.mining.ArmedMiningTool;
 import org.eclipse.passage.lic.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
+import org.eclipse.passage.lic.internal.licenses.convert.PAgreements;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 
+@SuppressWarnings("restriction")
 final class ReassemblingMiningTool extends ArmedMiningTool {
 
 	private final String user;
@@ -83,7 +85,8 @@ final class ReassemblingMiningTool extends ArmedMiningTool {
 			return noConditions(license);
 		}
 		Collection<Condition> conditions = new AssembledConditions(pack).forUser(user);
-		return new BaseConditionPack(origin(license), conditions);
+		return new BaseConditionPack(origin(license), conditions,
+				new PAgreements(pack.getLicense().getAgreements()).get());
 	}
 
 	private boolean productFits(ProductRef ref) {
@@ -102,6 +105,7 @@ final class ReassemblingMiningTool extends ArmedMiningTool {
 	private BaseConditionPack noConditions(Path license) {
 		return new BaseConditionPack(//
 				origin(license), //
+				Collections.emptyList(), //
 				Collections.emptyList());
 	}
 
