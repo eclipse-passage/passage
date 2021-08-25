@@ -8,6 +8,15 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="src/org/eclipse/passage/lic/base/access/Restrictions.java" type="org.eclipse.passage.lic.base.access.Restrictions">
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="AgreementAcceptanceService"/>
+                <message_argument value="Restrictions"/>
+                <message_argument value="Restrictions(LicensedProduct, Registry&lt;StringServiceId,PermissionsExaminationService&gt;, AgreementAcceptanceService, Collection&lt;Requirement&gt;, PermissionsAppliedLicenses)"/>
+            </message_arguments>
+        </filter>
+    </resource>
     <resource path="src/org/eclipse/passage/lic/base/restrictions/BasePermissionsExaminationService.java" type="org.eclipse.passage.lic.base.restrictions.BasePermissionsExaminationService">
         <filter id="643850349">
             <message_arguments>

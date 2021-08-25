@@ -32,7 +32,7 @@ import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.api.restrictions.PermissionsExaminationService;
 import org.eclipse.passage.lic.api.restrictions.Restriction;
 import org.eclipse.passage.lic.base.agreements.AgreementAssessmentService;
-import org.eclipse.passage.lic.base.diagnostic.code.AgreementNotAccepted;
+import org.eclipse.passage.lic.base.agreements.UnacceptedAgreementRestriction;
 import org.eclipse.passage.lic.base.diagnostic.code.InsufficientLicenseCoverage;
 
 /**
@@ -126,12 +126,8 @@ public final class BasePermissionsExaminationService implements PermissionsExami
 	private List<Restriction> unacceptedAgreements(Collection<AgreementToAccept> agreements) {
 		return agreements.stream()// .
 				.filter(agreement -> !agreement.acceptance().accepted())//
-				.map(this::restrictionForUnacceptedAgreement)//
+				.map(agreement -> new UnacceptedAgreementRestriction(product, agreement).get())//
 				.collect(Collectors.toList());
-	}
-
-	private Restriction restrictionForUnacceptedAgreement(AgreementToAccept agreement) {
-		return new BaseRestriction(product, agreement.origin(), new AgreementNotAccepted());
 	}
 
 }
