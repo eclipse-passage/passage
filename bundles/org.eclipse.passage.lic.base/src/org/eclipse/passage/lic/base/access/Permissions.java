@@ -18,9 +18,11 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.api.agreements.GlobalAgreement;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.api.conditions.evaluation.Emission;
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
@@ -29,13 +31,14 @@ import org.eclipse.passage.lic.api.registry.Registry;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.base.SumOfCollections;
+import org.eclipse.passage.lic.base.access.Permissions.AppliedLicenses;
 
 /**
  * FIXME: Has public visibility only for testing.
  * 
  * @since 2.1
  */
-public final class Permissions implements Supplier<ServiceInvocationResult<Collection<Permission>>> {
+public final class Permissions implements Supplier<ServiceInvocationResult<AppliedLicenses>> {
 
 	private final Registry<StringServiceId, PermissionEmittingService> registry;
 	private final Collection<ConditionPack> conditions;
@@ -49,7 +52,17 @@ public final class Permissions implements Supplier<ServiceInvocationResult<Colle
 	}
 
 	@Override
-	public ServiceInvocationResult<Collection<Permission>> get() {
+	public ServiceInvocationResult<AppliedLicenses> get() {
+		BaseServiceInvocationResult<Collection<Permission>> permissions = permissions();
+		return new BaseServiceInvocationResult<>(//
+				permissions.diagnostic(), //
+				new AppliedLicenses(//
+						permissions.data().get(), //
+						agreements())//
+		);
+	}
+
+	private BaseServiceInvocationResult<Collection<Permission>> permissions() {
 		return registry.services().stream() //
 				.map(service -> service.emit(conditions, product))//
 				.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<Emission>()))//
@@ -70,6 +83,13 @@ public final class Permissions implements Supplier<ServiceInvocationResult<Colle
 						new SumOfCollections<Permission>());
 	}
 
+	private Collection<GlobalAgreement> agreements() {
+		return conditions.stream()//
+				.map(ConditionPack::agreements)//
+				.flatMap(Collection::stream)//
+				.collect(Collectors.toList());
+	}
+
 	/**
 	 * Here we do not need `ConditionPack` granularity, thus unfold each one to
 	 * amass all the permissions we have.
@@ -83,6 +103,29 @@ public final class Permissions implements Supplier<ServiceInvocationResult<Colle
 			return sum;
 		}
 
+	}
+
+	public static final class AppliedLicenses {
+
+		private final Collection<Permission> permissions;
+		private final Collection<GlobalAgreement> agreements;
+
+		AppliedLicenses() {
+			this(Collections.emptyList(), Collections.emptyList());
+		}
+
+		AppliedLicenses(Collection<Permission> permissions, Collection<GlobalAgreement> agreements) {
+			this.permissions = permissions;
+			this.agreements = agreements;
+		}
+
+		Collection<Permission> permissions() {
+			return permissions;
+		}
+
+		Collection<GlobalAgreement> agreements() {
+			return agreements;
+		}
 	}
 
 }

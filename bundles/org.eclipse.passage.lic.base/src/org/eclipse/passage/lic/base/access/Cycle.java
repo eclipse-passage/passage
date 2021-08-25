@@ -14,7 +14,6 @@ package org.eclipse.passage.lic.base.access;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -23,11 +22,11 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.base.access.Permissions.AppliedLicenses;
 import org.eclipse.passage.lic.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.base.diagnostic.SumOfDiagnostics;
 
@@ -64,7 +63,7 @@ abstract class Cycle<T> {
 	}
 
 	private T examine(Supplier<ServiceInvocationResult<Collection<Requirement>>> requirements, //
-			Supplier<ServiceInvocationResult<Collection<Permission>>> permissions) {
+			Supplier<ServiceInvocationResult<AppliedLicenses>> permissions) {
 		ServiceInvocationResult<Collection<Requirement>> reqs = requirements.get();
 		if (failed(reqs)) {
 			return stop();
@@ -74,7 +73,7 @@ abstract class Cycle<T> {
 			// we just want to avoid heavy operations below
 			return freeWayOut();
 		}
-		ServiceInvocationResult<Collection<Permission>> perms = permissions.get();
+		ServiceInvocationResult<AppliedLicenses> perms = permissions.get();
 		if (failed(perms)) {
 			return stop();
 		}
@@ -141,11 +140,10 @@ abstract class Cycle<T> {
 				filter.conditional()).get());
 	}
 
-	private ServiceInvocationResult<Collection<Permission>> permissions() {
+	private ServiceInvocationResult<Permissions.AppliedLicenses> permissions() {
 		ServiceInvocationResult<Collection<ConditionPack>> conditions = conditions();
 		if (failed(conditions) || empty(conditions)) {
-			return new BaseServiceInvocationResult<Collection<Permission>>(conditions.diagnostic(),
-					Collections.emptyList());
+			return new BaseServiceInvocationResult<AppliedLicenses>(conditions.diagnostic(), new AppliedLicenses());
 		}
 		return scan(new Permissions(//
 				framework.accessCycleConfiguration().permissionEmitters().get(), //
@@ -154,9 +152,11 @@ abstract class Cycle<T> {
 	}
 
 	private ServiceInvocationResult<ExaminationCertificate> restrictions(Collection<Requirement> requirements,
-			Collection<Permission> permissions) {
+			AppliedLicenses permissions) {
 		return scan(new Restrictions(//
+				framework.product(), //
 				framework.accessCycleConfiguration().examinators().get(), //
+				framework.accessCycleConfiguration().acceptance(), //
 				requirements, //
 				permissions).get());
 	}
