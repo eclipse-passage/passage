@@ -53,6 +53,8 @@
 				groupId="net.java.dev.jna" artifactId="jna-platform" />
 			<mavenMappings namePattern="com.sun.jna"
 				groupId="net.java.dev.jna" artifactId="jna" />
+			<mavenMappings namePattern="org.apache.logging.log4j"
+				groupId="org.apache.logging.log4j" artifactId="log4j" />
 		</contributions>
 		<validationRepositories
 			location="https://download.eclipse.org/eclipse/updates/4.14" />
