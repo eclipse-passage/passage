@@ -13,15 +13,26 @@
 package org.eclipse.passage.lic.internal.licenses.convert;
 
 import java.util.Collection;
+import java.util.function.Function;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
-import org.eclipse.passage.lic.api.agreements.GlobalAgreement;
-import org.eclipse.passage.lic.licenses.model.api.AgreementData;
+abstract class ConvertedCollection<S, T> implements Supplier<Collection<T>> {
 
-@SuppressWarnings("restriction")
-public final class PAgreements extends ConvertedCollection<AgreementData, GlobalAgreement> {
+	private final Collection<S> origin;
+	private final Function<S, Supplier<T>> converter;
 
-	public PAgreements(Collection<AgreementData> agreements) {
-		super(agreements, PAgreement::new);
+	protected ConvertedCollection(Collection<S> origin, Function<S, Supplier<T>> converter) {
+		this.origin = origin;
+		this.converter = converter;
+	}
+
+	@Override
+	public final Collection<T> get() {
+		return origin.stream()//
+				.map(converter)//
+				.map(Supplier::get)//
+				.collect(Collectors.toList());
 	}
 
 }

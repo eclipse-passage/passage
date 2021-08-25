@@ -67,7 +67,11 @@ public final class Conditions implements Supplier<NetResponse> {
 				data.user().get(), //
 				conditions.stream()//
 						.flatMap(pack -> pack.conditions().stream())//
+						.collect(Collectors.toList()), //
+				conditions.stream()//
+						.flatMap(pack -> pack.agreements().stream())//
 						.collect(Collectors.toList())//
+
 		).get();
 	}
 
