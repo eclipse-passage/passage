@@ -18,10 +18,10 @@ import org.eclipse.passage.lic.api.agreements.GlobalAgreement;
 import org.eclipse.passage.lic.licenses.model.api.AgreementData;
 
 @SuppressWarnings("restriction")
-public final class PAgreements extends ConvertedCollection<AgreementData, GlobalAgreement> {
+public final class EAgreements extends ConvertedCollection<GlobalAgreement, AgreementData> {
 
-	public PAgreements(Collection<AgreementData> agreements) {
-		super(agreements, PAgreement::new);
+	public EAgreements(Collection<GlobalAgreement> agreements) {
+		super(agreements, EAgreement::new);
 	}
 
 }

@@ -20,8 +20,10 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.agreements.GlobalAgreement;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed;
+import org.eclipse.passage.lic.internal.licenses.convert.EAgreements;
 import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalFeatureGrant;
 import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
@@ -33,11 +35,14 @@ final class PersonalLicenseGenerated implements Supplier<PersonalLicensePack> {
 	private final LicensedProduct product;
 	private final String user;
 	private final Collection<Condition> conditions;
+	private final Collection<GlobalAgreement> agreements;
 
-	PersonalLicenseGenerated(LicensedProduct product, String user, Collection<Condition> conditions) {
+	PersonalLicenseGenerated(LicensedProduct product, String user, Collection<Condition> conditions,
+			Collection<GlobalAgreement> agreements) {
 		this.product = product;
 		this.user = user;
 		this.conditions = conditions;
+		this.agreements = agreements;
 	}
 
 	@Override
@@ -53,6 +58,8 @@ final class PersonalLicenseGenerated implements Supplier<PersonalLicensePack> {
 		conditions.stream()//
 				.map(this::grant)//
 				.forEach(pack.getGrants()::add);
+		new EAgreements(agreements).get()//
+				.forEach(pack.getLicense().getAgreements()::add);
 		return pack;
 	}
 

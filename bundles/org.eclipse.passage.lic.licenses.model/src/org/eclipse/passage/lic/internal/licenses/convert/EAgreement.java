@@ -12,16 +12,31 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.licenses.convert;
 
-import java.util.Collection;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.agreements.GlobalAgreement;
 import org.eclipse.passage.lic.licenses.model.api.AgreementData;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 
 @SuppressWarnings("restriction")
-public final class PAgreements extends ConvertedCollection<AgreementData, GlobalAgreement> {
+public final class EAgreement implements Supplier<AgreementData> {
 
-	public PAgreements(Collection<AgreementData> agreements) {
-		super(agreements, PAgreement::new);
+	private final GlobalAgreement agreement;
+
+	public EAgreement(GlobalAgreement agreement) {
+		this.agreement = agreement;
+	}
+
+	@Override
+	public AgreementData get() {
+		AgreementData data = LicensesFactory.eINSTANCE.createAgreementData();
+		data.setIdentifier(agreement.identifier());
+		data.setName(agreement.name());
+		data.setFile(agreement.file());
+		data.setHashAlgo(agreement.hashAlgo());
+		data.setHash(agreement.hash());
+		data.setContent(agreement.content());
+		return data;
 	}
 
 }
