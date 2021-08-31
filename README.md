@@ -8,7 +8,7 @@
 [![Hits-of-Code](https://hitsofcode.com/github/eclipse-passage/passage?branch=master)](https://hitsofcode.com/github/eclipse-passage/passage?branch=master/view?branch=master)
 
 ###### License 
-Copyright � 2018, 2021 ArSysOp and others
+Copyright © 2018, 2021 ArSysOp and others
 
 [![Eclipse License](https://img.shields.io/badge/License-EPL--2.0-thistle.svg)](https://github.com/eclipse/passage/blob/master/LICENSE) 
 
@@ -16,24 +16,18 @@ Copyright � 2018, 2021 ArSysOp and others
 [![Stable release P2](https://img.shields.io/badge/P2%20Components-2.0.1-lightblue.svg)](https://download.eclipse.org/passage/updates/release/2.0.1/)
 [![Stable release Products](https://img.shields.io/badge/Runnable%20Products-2.0.1-lightblue.svg)](https://download.eclipse.org/passage/downloads/release/2.0.1/)
 
-### About
-[Eclipse Passage](https://projects.eclipse.org/projects/technology.passage) helps to verify that the software has sufficient license grants in accordance with the specified licensing requirements.
+[Eclipse Passage™](https://projects.eclipse.org/projects/technology.passage) helps to verify that the software has sufficient license grants in accordance with the specified licensing requirements.
 The Equinox-based implementation includes various validators for the time-limited, node-locked and other types of licenses.
 
-### How to use
-
-Just include the "org.eclipse.passage.lic.execute.feature" in your product and declare licensing requirement for your features.
-
-### How it works
-
-The Eclipse Passage works inside your product installed on the user side. Its basic steps are as follows:
-1. Get the system configuration specified in the Licensing Operator client: the feature identifiers and the respective usage restrictions.
-2. Get the license conditions. The LIC may be tuned to look through different locations like `user.home` and `osgi.instance.area`.
-3. Compare the license specified configuration with the current system state (the current date, node id, etc) to confirm the license is active and valid.
-4. Use the system configuration and the evaluated license state to make a decision.
-5. If there are uncovered licensing requirements, call the required constraint functions to impose restrictions: limit certain functionality or disable everything.
-
-### Documentation
-
-[Passage Docs](https://eclipse-passage.github.io/passage-docs/)
-
+* 👔 Eclipse project entry: https://projects.eclipse.org/projects/technology.passage
+* 🗒️ Documentation:
+     * [Passage Docs](https://eclipse-passage.github.io/passage-docs/)
+     * [Eclipse Wiki](https://wiki.eclipse.org/Passage)
+* 📢 Release notes: [Release Notes](https://wiki.eclipse.org/Passage/Release_Notes)
+* 🪲 Bug Tracker
+     * [GitHub](https://github.com/eclipse-passage/passage/issues)
+     * [Bugzilla](https://bugs.eclipse.org/bugs/buglist.cgi?product=Passage)
+* ⌨️ How to Contribute: [CONTRIBUTING.md](./CONTRIBUTING.md)
+* 💬 Discussion channels
+     * [Usage assistance](https://github.com/eclipse-passage/passage/discussions)
+     * [Development](https://dev.eclipse.org/mailman/listinfo/passage-dev)
