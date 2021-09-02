@@ -19,7 +19,7 @@ import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
-import org.eclipse.passage.lic.base.diagnostic.LicensingStatus;
+import org.eclipse.passage.lic.base.diagnostic.RequirementsCoverage;
 import org.eclipse.passage.lic.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.base.diagnostic.RequirementStatus;
 import org.eclipse.passage.lic.base.restrictions.ExaminationExplained;
@@ -70,7 +70,7 @@ public final class LicenseStatusDialog extends NotificationDialog {
 
 	@Override
 	protected void inplaceData() {
-		viewer.setInput(new LicensingStatus(certificate).get());
+		viewer.setInput(new RequirementsCoverage(certificate).get());
 		notice.setText(new ProductContacts().get());
 	}
 
