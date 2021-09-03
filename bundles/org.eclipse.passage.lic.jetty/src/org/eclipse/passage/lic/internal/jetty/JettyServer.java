@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.jetty;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.apache.logging.log4j.LogManager;
@@ -25,7 +26,7 @@ public final class JettyServer {
 
 	private final Logger log = LogManager.getLogger(getClass());
 	private final Supplier<JettyHandler> handler;
-	private Server server;
+	private Optional<Server> server = Optional.empty();
 
 	public JettyServer(Supplier<JettyHandler> handler) {
 		Objects.requireNonNull(handler, "JettyServer::handler"); //$NON-NLS-1$
@@ -34,9 +35,9 @@ public final class JettyServer {
 
 	public void launch(Port port) throws JettyException {
 		try {
-			server = new Server(port.get().get());
-			server.setHandler(handler.get());
-			server.start();
+			server = Optional.of(new Server(port.get().get()));
+			server.get().setHandler(handler.get());
+			server.get().start();
 			log.info(String.format(Messages.started, port.get().get()));
 		} catch (Exception e) {
 			logAndRethrow(e, Messages.error_onstart);
@@ -45,7 +46,9 @@ public final class JettyServer {
 
 	public void terminate() throws JettyException {
 		try {
-			server.stop();
+			if (server.isPresent()) {
+				server.get().stop();
+			}
 			log.info(String.format(Messages.stopped));
 		} catch (Exception e) {
 			logAndRethrow(e, Messages.error_onstop);
@@ -54,7 +57,10 @@ public final class JettyServer {
 
 	public String state() throws JettyException {
 		try {
-			return server.getState();
+			if (!server.isPresent()) {
+				return "NOT LAUNCHED"; //$NON-NLS-1$
+			}
+			return server.get().getState();
 		} catch (Exception e) {
 			throw new JettyException(Messages.error_onstate, e);
 		}

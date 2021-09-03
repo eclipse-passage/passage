@@ -19,6 +19,7 @@ import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.lic.equinox.Environments;
 
+//TODO: remove in the favor of OptionRequiest of LicStatus
 final class LicenseRequest extends Command {
 
 	public LicenseRequest() {
