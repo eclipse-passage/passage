@@ -51,7 +51,7 @@ import org.eclipse.passage.lic.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
 import org.eclipse.passage.lic.equinox.io.BundleKeyKeeper;
-import org.eclipse.passage.lic.internal.licenses.model.toberemoved.XmiConditionTransport;
+import org.eclipse.passage.lic.licenses.model.transport.XmiConditionTransport;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
