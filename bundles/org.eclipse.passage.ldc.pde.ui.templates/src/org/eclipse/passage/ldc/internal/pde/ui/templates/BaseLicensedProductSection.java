@@ -55,7 +55,7 @@ public abstract class BaseLicensedProductSection extends BaseLicensingSection {
 	public static final String VALUE_APPLICATION_ID = "application"; //$NON-NLS-1$
 
 	protected static final String VALUE_PROCESSOR_LICENSING_ID = "licensing"; //$NON-NLS-1$
-	protected static final String VALUE_PROCESSOR_LICENSING_CLASS = "org.eclipse.passage.lic.internal.e4.ui.addons.E4LicensingProcessor"; //$NON-NLS-1$
+	protected static final String VALUE_PROCESSOR_LICENSING_CLASS = "org.eclipse.passage.lic.e4.ui.addons.E4LicensingProcessor"; //$NON-NLS-1$
 
 	public BaseLicensedProductSection() {
 		super(BaseLicensedProductSection.class);

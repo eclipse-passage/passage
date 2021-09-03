@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.e4.ui.addons;
+package org.eclipse.passage.lic.e4.ui.addons;
 
 import javax.inject.Inject;
 
@@ -19,6 +19,9 @@ import org.eclipse.e4.ui.model.application.MAddon;
 import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.model.application.MApplicationFactory;
 
+/**
+ * @since 2.1
+ */
 public final class E4LicensingProcessor {
 
 	@Inject
