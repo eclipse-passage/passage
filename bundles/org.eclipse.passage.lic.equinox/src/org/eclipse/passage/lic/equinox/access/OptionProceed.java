@@ -23,7 +23,7 @@ final class OptionProceed extends BaseOption<CoverageCheckOptionDecision> {
 
 	@Override
 	public CoverageCheckOptionDecision run() {
-		interaction.prompt("License coverage is sufficient, proceeding with the server launching..."); //$NON-NLS-1$
+		interaction.prompt("Proceeding with the server launching..."); //$NON-NLS-1$
 		return CoverageCheckOptionDecision.proceed;
 	}
 }
