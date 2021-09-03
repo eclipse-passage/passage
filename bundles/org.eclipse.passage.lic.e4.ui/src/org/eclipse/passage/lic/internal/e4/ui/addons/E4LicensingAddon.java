@@ -26,7 +26,7 @@ import org.eclipse.passage.lic.base.restrictions.ExaminationExplained;
 import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.equinox.LicensedProductFromContext;
 import org.eclipse.passage.lic.internal.e4.ui.restrictions.WorkbenchShutdown;
-import org.eclipse.passage.lic.internal.jface.EquinoxPassageUI;
+import org.eclipse.passage.lic.jface.EquinoxPassageUI;
 import org.eclipse.swt.widgets.Shell;
 import org.osgi.service.event.Event;
 
