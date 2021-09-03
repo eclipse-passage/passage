@@ -19,7 +19,7 @@ import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.lic.equinox.Environments;
 
-final class OptionRequest extends BaseOption {
+final class OptionRequest extends BaseOption<CoverageCheckOptionDecision> {
 
 	OptionRequest(Interaction.Smart interaction) {
 		super('r', //
@@ -29,7 +29,7 @@ final class OptionRequest extends BaseOption {
 	}
 
 	@Override
-	public Decision run() {
+	public CoverageCheckOptionDecision run() {
 		interaction.head("gather environment information"); //$NON-NLS-1$
 		Collection<RuntimeEnvironment> envs = new Environments().get();
 		reportEnvironmentsDiscovered(envs);
@@ -41,7 +41,7 @@ final class OptionRequest extends BaseOption {
 				interaction.swear(e);
 			}
 		}
-		return Decision.reassess;
+		return CoverageCheckOptionDecision.reassess;
 	}
 
 	private void reportEnvironmentsDiscovered(Collection<RuntimeEnvironment> envs) {

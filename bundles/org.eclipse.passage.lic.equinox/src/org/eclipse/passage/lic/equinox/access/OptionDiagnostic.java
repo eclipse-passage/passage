@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.equinox.access;
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 
-final class OptionDiagnostic extends BaseOption {
+final class OptionDiagnostic extends BaseOption<CoverageCheckOptionDecision> {
 
 	private final Diagnostic diagnostic;
 
@@ -28,9 +28,9 @@ final class OptionDiagnostic extends BaseOption {
 	}
 
 	@Override
-	public Decision run() {
+	public CoverageCheckOptionDecision run() {
 		interaction.prompt(new DiagnosticExplained(diagnostic).get());
-		return Decision.reassess;
+		return CoverageCheckOptionDecision.reassess;
 	}
 
 }

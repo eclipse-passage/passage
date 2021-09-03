@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.access;
 
-abstract class BaseOption implements Option {
+abstract class BaseOption<D extends Enum<?>> implements Option<D> {
 
 	private final char key;
 	private final String name;

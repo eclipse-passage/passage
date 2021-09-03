@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.access;
 
-final class OptionImport extends BaseOption {
+final class OptionImport extends BaseOption<CoverageCheckOptionDecision> {
 
 	public OptionImport(Interaction.Smart interaction) {
 		super('i', //
@@ -22,9 +22,9 @@ final class OptionImport extends BaseOption {
 	}
 
 	@Override
-	public Decision run() {// TODO
+	public CoverageCheckOptionDecision run() {// TODO
 		interaction.head("import license"); //$NON-NLS-1$
-		return Decision.reassess;
+		return CoverageCheckOptionDecision.reassess;
 	}
 
 }

@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.access;
 
+import java.util.Optional;
+
 public interface Interaction {
 
 	void prompt(String information);
@@ -28,8 +30,17 @@ public interface Interaction {
 		}
 
 		void head(String title) {
+			head(title, Optional.empty());
+		}
+
+		void head(String title, String message) {
+			head(title, Optional.of(message));
+		}
+
+		private void head(String title, Optional<String> message) {
 			delegate.prompt("------------------------------------"); //$NON-NLS-1$
 			delegate.prompt(String.format("--- %s", title)); //$NON-NLS-1$
+			message.ifPresent(delegate::prompt);
 			delegate.prompt("------------------------------------"); //$NON-NLS-1$
 		}
 

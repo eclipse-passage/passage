@@ -12,11 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.access;
 
-public interface Option {
-
-	public static enum Decision {
-		proceed, quit, reassess;
-	}
+public interface Option<D extends Enum<?>> {
 
 	/**
 	 * a letter, not-localizable
@@ -25,6 +21,6 @@ public interface Option {
 
 	String documentation();
 
-	Decision run();
+	D run();
 
 }

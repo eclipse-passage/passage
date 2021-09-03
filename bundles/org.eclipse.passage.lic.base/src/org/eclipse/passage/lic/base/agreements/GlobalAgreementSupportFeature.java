@@ -23,8 +23,8 @@ public final class GlobalAgreementSupportFeature implements Supplier<Feature> {
 	public Feature get() {
 		return new BaseFeature(//
 				"passage.global-agreement-support.feature", //$NON-NLS-1$
-				"0.0.0", //$NON-NLS-1$
-				"Global Agreements Support", //$NON-NLS-1$
+				"1.0.0", //$NON-NLS-1$
+				"Global Agreements Support by Passage", //$NON-NLS-1$
 				"Eclipse Passage Runtime" //$NON-NLS-1$
 		);
 	}

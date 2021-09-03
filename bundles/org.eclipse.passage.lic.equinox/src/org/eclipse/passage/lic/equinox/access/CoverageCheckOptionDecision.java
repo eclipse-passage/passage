@@ -12,18 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.access;
 
-final class OptionProceed extends BaseOption<CoverageCheckOptionDecision> {
+enum CoverageCheckOptionDecision {
 
-	OptionProceed(Interaction.Smart interaction) {
-		super('p', //
-				"Proceed", //$NON-NLS-1$
-				"Proceed with the application", //$NON-NLS-1$
-				interaction);
-	}
+	proceed, quit, reassess;
 
-	@Override
-	public CoverageCheckOptionDecision run() {
-		interaction.prompt("License coverage is sufficient, proceeding with the server launching..."); //$NON-NLS-1$
-		return CoverageCheckOptionDecision.proceed;
-	}
 }

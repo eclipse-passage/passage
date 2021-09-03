@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.access;
 
-final class OptionQuit extends BaseOption {
+final class OptionQuit extends BaseOption<CoverageCheckOptionDecision> {
 
 	OptionQuit(Interaction.Smart interaction) {
 		super('q', //
@@ -22,9 +22,9 @@ final class OptionQuit extends BaseOption {
 	}
 
 	@Override
-	public Decision run() {
+	public CoverageCheckOptionDecision run() {
 		interaction.prompt("Quitting server launching...\nRun 'fls:start' to repeat the attempt."); //$NON-NLS-1$
-		return Decision.quit;
+		return CoverageCheckOptionDecision.quit;
 	}
 
 }
