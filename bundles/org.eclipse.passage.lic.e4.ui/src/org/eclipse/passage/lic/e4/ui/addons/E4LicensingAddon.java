@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.e4.ui.addons;
+package org.eclipse.passage.lic.e4.ui.addons;
 
 import javax.inject.Inject;
 
@@ -30,6 +30,9 @@ import org.eclipse.passage.lic.jface.EquinoxPassageUI;
 import org.eclipse.swt.widgets.Shell;
 import org.osgi.service.event.Event;
 
+/**
+ * @since 2.1
+ */
 public final class E4LicensingAddon {
 
 	private final IApplicationContext application;
