@@ -15,8 +15,8 @@ package org.eclipse.passage.lic.internal.e4.ui.handlers;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.jface.EquinoxPassageUI;
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
+import org.eclipse.passage.lic.jface.EquinoxPassageUI;
 import org.eclipse.swt.widgets.Shell;
 
 public final class InspectLicenseHandler {

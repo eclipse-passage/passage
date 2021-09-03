@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.jface;
+package org.eclipse.passage.lic.jface;
 
 import java.util.Optional;
 import java.util.function.Function;
