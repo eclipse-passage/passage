@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.internal.jetty.interaction;
 
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.base.diagnostic.RequirementsCoverageExplained;
 import org.eclipse.passage.lic.equinox.EquinoxPassageLicenseCoverage;
 
 final class LicenseStatus extends Command {
@@ -31,7 +32,7 @@ final class LicenseStatus extends Command {
 	}
 
 	private void reportCertificate(ExaminationCertificate certificate) {
-		System.out.printf("\n%s\n", new RequirementsLicensingStatusExplained(certificate).get()); //$NON-NLS-1$
+		System.out.printf("\n%s\n", new RequirementsCoverageExplained(certificate).get()); //$NON-NLS-1$
 	}
 
 }

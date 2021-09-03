@@ -19,14 +19,13 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 
 /**
- * 
  * @since 2.1
  */
-public final class LicensingStatus implements Supplier<List<RequirementStatus>> {
+public final class RequirementsCoverage implements Supplier<List<RequirementStatus>> {
 
 	private final ExaminationCertificate certificate;
 
-	public LicensingStatus(ExaminationCertificate certificate) {
+	public RequirementsCoverage(ExaminationCertificate certificate) {
 		this.certificate = certificate;
 	}
 

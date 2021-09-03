@@ -20,11 +20,11 @@ import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
-import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
-import org.eclipse.passage.lic.base.restrictions.CertificateWorthAttention;
 import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.equinox.LicensedApplication;
+import org.eclipse.passage.lic.equinox.access.ConsoleInteraction;
+import org.eclipse.passage.lic.equinox.access.LicenseCoverageCheck;
 
 final class LicenseProtection {
 
@@ -32,20 +32,26 @@ final class LicenseProtection {
 	private Optional<GrantLockAttempt> lock = Optional.empty();
 
 	boolean check() {
-		lock = acquireLicense();
-		if (!lock.isPresent()) {
+		if (licenseCoverageIsNotSufficient()) {
 			return false;
 		}
-		if (!lock.get().successful()) {
+		return locAcquired();
+	}
+
+	private boolean locAcquired() {
+		Optional<GrantLockAttempt> attempt = acquireLicense();
+		if (!attempt.isPresent()) {
 			return false;
 		}
-		ExaminationCertificate certificate = lock.get().certificate();
-		if (new CertificateWorthAttention().test(Optional.of(certificate))) {
-			log.error(String.format(//
-					"\n---\n%s\n---\n", //$NON-NLS-1$
-					new RequirementsLicensingStatusExplained(certificate).get()));
+		if (!attempt.get().successful()) {
+			return false;
 		}
+		this.lock = attempt;
 		return true;
+	}
+
+	private boolean licenseCoverageIsNotSufficient() {
+		return !LicenseCoverageCheck.Result.proceed.equals(new LicenseCoverageCheck(new ConsoleInteraction()).run());
 	}
 
 	void release() {

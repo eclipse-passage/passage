@@ -10,23 +10,24 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.jetty.interaction;
+package org.eclipse.passage.lic.base.diagnostic;
 
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.base.diagnostic.LicensingStatus;
-import org.eclipse.passage.lic.base.diagnostic.RequirementStatus;
 
-final class RequirementsLicensingStatusExplained {
+/**
+ * @since 2.1
+ */
+public final class RequirementsCoverageExplained {
 
 	private final ExaminationCertificate certificate;
 
-	public RequirementsLicensingStatusExplained(ExaminationCertificate certificate) {
+	public RequirementsCoverageExplained(ExaminationCertificate certificate) {
 		this.certificate = certificate;
 	}
 
 	public String get() {
 		StringBuilder out = new StringBuilder();
-		new LicensingStatus(certificate).get().forEach(status -> append(status, out));
+		new RequirementsCoverage(certificate).get().forEach(status -> append(status, out));
 		return out.toString();
 	}
 

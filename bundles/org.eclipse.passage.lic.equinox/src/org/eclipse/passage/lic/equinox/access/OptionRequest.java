@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.jetty.interaction;
+package org.eclipse.passage.lic.equinox.access;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -19,36 +19,40 @@ import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.lic.equinox.Environments;
 
-//TODO: remove in the favor of OptionRequiest of LicStatus
-final class LicenseRequest extends Command {
+final class OptionRequest extends BaseOption<CoverageCheckOptionDecision> {
 
-	public LicenseRequest() {
-		super(new Scope.Self(), new String[] { "licrequest" });//$NON-NLS-1$
+	OptionRequest(Interaction.Smart interaction) {
+		super('r', //
+				"Request License", //$NON-NLS-1$
+				"Collect information necessary for a license issuing", //$NON-NLS-1$
+				interaction);
 	}
 
-	public void licrequest() {
+	@Override
+	public CoverageCheckOptionDecision run() {
+		interaction.head("gather environment information"); //$NON-NLS-1$
 		Collection<RuntimeEnvironment> envs = new Environments().get();
 		reportEnvironmentsDiscovered(envs);
 		for (RuntimeEnvironment env : envs) {
 			try {
 				reportAssessment(env);
 			} catch (LicensingException e) {
-				System.err.printf("%s environment assessment failed\n", env.id().identifier()); //$NON-NLS-1$
-				e.printStackTrace();
+				interaction.prompt(String.format("%s environment assessment failed", env.id().identifier())); //$NON-NLS-1$
+				interaction.swear(e);
 			}
 		}
-
+		return CoverageCheckOptionDecision.reassess;
 	}
 
 	private void reportEnvironmentsDiscovered(Collection<RuntimeEnvironment> envs) {
-		System.out.printf(
+		interaction.prompt(String.format(
 				"\nTo request a license send demanded particles of these %d environments (%s) assessment to your licensing operator:\n", //$NON-NLS-1$
 				envs.size(), //
-				envs.stream().map(env -> env.id().identifier()).collect(Collectors.joining(", "))); //$NON-NLS-1$
+				envs.stream().map(env -> env.id().identifier()).collect(Collectors.joining(", ")))); //$NON-NLS-1$
 	}
 
 	private void reportAssessment(RuntimeEnvironment env) throws LicensingException {
-		System.out.printf("\n==== %s ====\n%s\n", env.id().identifier(), env.state()); //$NON-NLS-1$
+		interaction.prompt(String.format("\n==== %s ====\n%s\n", env.id().identifier(), env.state())); //$NON-NLS-1$
 	}
 
 }

@@ -26,12 +26,12 @@ import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.api.conditions.ValidityPeriod;
-import org.eclipse.passage.lic.api.conditions.mining.LicenseReadingService;
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.base.io.ExternalLicense;
 import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.equinox.LicenseReadingServiceRequest;
+import org.eclipse.passage.lic.internal.base.conditions.LicenseConditions;
 import org.eclipse.passage.lic.internal.jface.i18n.ImportLicenseDialogMessages;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.swt.SWT;
@@ -44,6 +44,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+@SuppressWarnings("restriction")
 public final class ImportLicenseDialog extends NotificationDialog {
 
 	private final DateTimeFormatter dates = DateTimeFormatter.ofPattern("dd-MM-yyyy"); //$NON-NLS-1$
@@ -137,12 +138,10 @@ public final class ImportLicenseDialog extends NotificationDialog {
 	}
 
 	private void loadLicense(String file) {
-		ServiceInvocationResult<LicenseReadingService> reader = new LicenseReadingServiceRequest().get();
-		if (!reader.data().isPresent()) {
-			reportError(reader.diagnostic());
-			return;
-		}
-		ServiceInvocationResult<Collection<ConditionPack>> packs = reader.data().get().read(Paths.get(file));
+		ServiceInvocationResult<Collection<ConditionPack>> packs = new LicenseConditions(//
+				Paths.get(file), //
+				new LicenseReadingServiceRequest()//
+		).get();
 		if (!packs.data().isPresent()) {
 			reportError(packs.diagnostic());
 			return;
