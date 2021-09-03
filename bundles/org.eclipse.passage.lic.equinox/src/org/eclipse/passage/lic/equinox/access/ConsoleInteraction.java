@@ -12,21 +12,33 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.access;
 
+import java.io.IOException;
+
 public final class ConsoleInteraction implements Interaction {
 
 	@Override
 	public void prompt(String information) {
-		System.console().printf("%s\n", information); //$NON-NLS-1$
+		System.out.printf("%s\n", information); //$NON-NLS-1$
 	}
 
 	@Override
 	public String input() {
-		return System.console().readLine();
+		byte[] bytes = new byte[1024];
+		int length = 0;
+		try {
+			for (int symbol = System.in.read(); symbol != 13; symbol = System.in.read()) {
+				bytes[length++] = (byte) symbol;
+			}
+		} catch (IOException e) {
+			swear(e);
+			return e.getClass().getName();
+		}
+		return new String(bytes, 0, length);
 	}
 
 	@Override
 	public void swear(Throwable thro) {
-		thro.printStackTrace(System.err); // yeah...
+		thro.printStackTrace(System.err);
 	}
 
 }

@@ -12,28 +12,19 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.access;
 
-abstract class BaseOption implements Option {
+final class OptionQuit extends BaseOption {
 
-	private final char key;
-	private final String name;
-	private final String description;
-	protected final Interaction.Smart interaction;
-
-	BaseOption(char key, String name, String description, Interaction.Smart interaction) {
-		this.key = key;
-		this.name = name;
-		this.description = description;
-		this.interaction = interaction;
+	OptionQuit(Interaction.Smart interaction) {
+		super('q', //
+				"Quit", //$NON-NLS-1$
+				"Exit the application", //$NON-NLS-1$
+				interaction);
 	}
 
 	@Override
-	public String documentation() {
-		return String.format("%s (%s): %s", key, name, description); //$NON-NLS-1$
-	}
-
-	@Override
-	public char key() {
-		return key;
+	public Decision run() {
+		interaction.prompt("Quitting server launching...\nRun 'fls:start' to repeat the attempt."); //$NON-NLS-1$
+		return Decision.quit;
 	}
 
 }

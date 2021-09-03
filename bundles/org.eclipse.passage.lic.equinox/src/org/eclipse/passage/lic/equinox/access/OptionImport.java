@@ -14,18 +14,16 @@ package org.eclipse.passage.lic.equinox.access;
 
 final class OptionImport extends BaseOption {
 
-	private final Interaction interaction;
-
-	public OptionImport(Interaction interaction) {
+	public OptionImport(Interaction.Smart interaction) {
 		super('i', //
 				"Import", //$NON-NLS-1$
-				"Import a license for the application"); //$NON-NLS-1$
-		this.interaction = interaction;
+				"Import a license for the application", //$NON-NLS-1$
+				interaction);
 	}
 
 	@Override
 	public Decision run() {// TODO
-		interaction.prompt("do import"); //$NON-NLS-1$
+		interaction.head("import license"); //$NON-NLS-1$
 		return Decision.reassess;
 	}
 

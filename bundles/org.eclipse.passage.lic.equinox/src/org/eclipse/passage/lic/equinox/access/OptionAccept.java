@@ -18,20 +18,19 @@ import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
 
 final class OptionAccept extends BaseOption {
 
-	private final Interaction interaction;
 	private final Collection<AgreementToAccept> agreements;
 
-	public OptionAccept(Interaction interaction, Collection<AgreementToAccept> agreements) {
+	public OptionAccept(Interaction.Smart interaction, Collection<AgreementToAccept> agreements) {
 		super('a', //
 				"Accept", //$NON-NLS-1$
-				"Read and accept license agreements"); //$NON-NLS-1$
-		this.interaction = interaction;
+				"Read and accept license agreements", //$NON-NLS-1$
+				interaction);
 		this.agreements = agreements;
 	}
 
 	@Override
 	public Decision run() {// TODO
-		interaction.prompt("do accept"); //$NON-NLS-1$
+		interaction.head("accept license agreements"); //$NON-NLS-1$
 		return Decision.reassess;
 	}
 

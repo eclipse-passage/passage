@@ -20,4 +20,33 @@ public interface Interaction {
 
 	String input();
 
+	public static final class Smart implements Interaction {
+		private final Interaction delegate;
+
+		public Smart(Interaction delegate) {
+			this.delegate = delegate;
+		}
+
+		void head(String title) {
+			delegate.prompt("------------------------------------"); //$NON-NLS-1$
+			delegate.prompt(String.format("--- %s", title)); //$NON-NLS-1$
+			delegate.prompt("------------------------------------"); //$NON-NLS-1$
+		}
+
+		@Override
+		public void prompt(String information) {
+			delegate.prompt(information);
+		}
+
+		@Override
+		public void swear(Throwable thro) {
+			delegate.swear(thro);
+		}
+
+		@Override
+		public String input() {
+			return delegate.input();
+		}
+	}
+
 }

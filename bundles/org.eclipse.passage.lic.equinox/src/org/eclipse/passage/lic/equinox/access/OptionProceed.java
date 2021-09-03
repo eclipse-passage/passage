@@ -12,28 +12,18 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.access;
 
-abstract class BaseOption implements Option {
+final class OptionProceed extends BaseOption {
 
-	private final char key;
-	private final String name;
-	private final String description;
-	protected final Interaction.Smart interaction;
-
-	BaseOption(char key, String name, String description, Interaction.Smart interaction) {
-		this.key = key;
-		this.name = name;
-		this.description = description;
-		this.interaction = interaction;
+	OptionProceed(Interaction.Smart interaction) {
+		super('p', //
+				"Proceed", //$NON-NLS-1$
+				"Proceed with the application", //$NON-NLS-1$
+				interaction);
 	}
 
 	@Override
-	public String documentation() {
-		return String.format("%s (%s): %s", key, name, description); //$NON-NLS-1$
+	public Decision run() {
+		interaction.prompt("License coverage is sufficient, proceeding with the server launching..."); //$NON-NLS-1$
+		return Decision.proceed;
 	}
-
-	@Override
-	public char key() {
-		return key;
-	}
-
 }

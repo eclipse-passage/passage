@@ -21,17 +21,16 @@ import org.eclipse.passage.lic.equinox.Environments;
 
 final class OptionRequest extends BaseOption {
 
-	private final Interaction interaction;
-
-	OptionRequest(Interaction interaction) {
+	OptionRequest(Interaction.Smart interaction) {
 		super('r', //
 				"Request License", //$NON-NLS-1$
-				"Collect information necessary for a license issuing"); //$NON-NLS-1$
-		this.interaction = interaction;
+				"Collect information necessary for a license issuing", //$NON-NLS-1$
+				interaction);
 	}
 
 	@Override
 	public Decision run() {
+		interaction.head("gather environment information"); //$NON-NLS-1$
 		Collection<RuntimeEnvironment> envs = new Environments().get();
 		reportEnvironmentsDiscovered(envs);
 		for (RuntimeEnvironment env : envs) {

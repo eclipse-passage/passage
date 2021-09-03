@@ -17,14 +17,13 @@ import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 
 final class OptionDiagnostic extends BaseOption {
 
-	private final Interaction interaction;
 	private final Diagnostic diagnostic;
 
-	public OptionDiagnostic(Interaction interaction, Diagnostic diagnostic) {
+	public OptionDiagnostic(Interaction.Smart interaction, Diagnostic diagnostic) {
 		super('d', //
 				"Diagnostic", //$NON-NLS-1$
-				"View diagnostic of the latest license status assessment"); //$NON-NLS-1$
-		this.interaction = interaction;
+				"View diagnostic of the latest license status assessment", //$NON-NLS-1$
+				interaction);
 		this.diagnostic = diagnostic;
 	}
 

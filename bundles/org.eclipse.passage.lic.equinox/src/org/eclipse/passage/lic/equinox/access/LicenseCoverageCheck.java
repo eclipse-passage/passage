@@ -22,14 +22,16 @@ import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.diagnostic.RequirementsCoverageExplained;
 import org.eclipse.passage.lic.base.restrictions.CertificateIsRestrictive;
+import org.eclipse.passage.lic.base.restrictions.CertificateWorthAttention;
 import org.eclipse.passage.lic.equinox.EquinoxPassageLicenseCoverage;
 
-public final class LicenseStatusCheck {
+//TODO i18n
+public final class LicenseCoverageCheck {
 
-	private final Interaction interaction;
+	private final Interaction.Smart interaction;
 
-	public LicenseStatusCheck(Interaction interaction) {
-		this.interaction = interaction;
+	public LicenseCoverageCheck(Interaction interaction) {
+		this.interaction = new Interaction.Smart(interaction);
 	}
 
 	public Result run() {
@@ -51,12 +53,13 @@ public final class LicenseStatusCheck {
 			options.add(new OptionRequest(interaction));
 			agreements(assessment).ifPresent(agreements -> options.add(new OptionAccept(interaction, agreements)));
 			options.add(new OptionDiagnostic(interaction, assessment.diagnostic()));
-			options.add(new BaseOption.Quit());
+			options.add(new OptionQuit(interaction));
+			options.add(new OptionProceed(interaction));
 		} else {
 			options.add(new OptionImport(interaction));
 			options.add(new OptionRequest(interaction));
 			options.add(new OptionDiagnostic(interaction, assessment.diagnostic()));
-			options.add(new BaseOption.Proceed());
+			options.add(new OptionProceed(interaction));
 		}
 		return options;
 	}
@@ -71,11 +74,18 @@ public final class LicenseStatusCheck {
 			return Optional.empty();
 		}
 		return Optional.of(agreements);
-
 	}
 
 	private void reportAssessment(Optional<ExaminationCertificate> certificate) {
+		interaction.head("license coverage assessment"); //$NON-NLS-1$
 		if (certificate.isPresent()) {
+			if (new CertificateIsRestrictive().test(certificate)) {
+				interaction.prompt("License coverage for the product or its features is not sufficient"); //$NON-NLS-1$
+			} else if (new CertificateWorthAttention().test(certificate)) {
+				interaction.prompt("License coverage for the product or its features worth your attention"); //$NON-NLS-1$
+			} else {
+				interaction.prompt("License coverage for the product and all its feature is suffiient"); //$NON-NLS-1$
+			}
 			interaction.prompt(String.format("\n%s", new RequirementsCoverageExplained(certificate.get()).get())); //$NON-NLS-1$
 		} else {
 			interaction.prompt("License status assessment failed"); //$NON-NLS-1$
@@ -90,7 +100,7 @@ public final class LicenseStatusCheck {
 			if (option.isPresent()) {
 				return option.get();
 			}
-			interaction.prompt(String.format("No option has been found for key %s", key)); //$NON-NLS-1$
+			interaction.prompt(String.format("No option has been found for key [%s]", key)); //$NON-NLS-1$
 		}
 	}
 
