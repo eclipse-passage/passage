@@ -25,7 +25,7 @@ import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.base.conditions.MatchingRuleDefault;
-import org.eclipse.passage.lic.internal.licenses.model.toberemoved.XmiConditionTransport;
+import org.eclipse.passage.lic.licenses.model.transport.XmiConditionTransport;
 import org.junit.Ignore;
 
 @Ignore // fix TODOs to make it test something reasonable

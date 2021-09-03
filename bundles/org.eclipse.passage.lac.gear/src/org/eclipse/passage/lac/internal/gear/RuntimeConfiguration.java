@@ -65,9 +65,9 @@ import org.eclipse.passage.lic.bc.BcStreamCodec;
 import org.eclipse.passage.lic.equinox.requirements.BundleRequirements;
 import org.eclipse.passage.lic.equinox.requirements.ComponentRequirements;
 import org.eclipse.passage.lic.internal.json.JsonConditionTransport;
-import org.eclipse.passage.lic.internal.licenses.model.toberemoved.UserFilteringConditionTransport;
 import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
+import org.eclipse.passage.lic.licenses.model.transport.UserFilteringConditionTransport;
 import org.eclipse.passage.lic.oshi.HardwareAssessmentService;
 import org.eclipse.passage.lic.oshi.HardwareEnvironment;
 

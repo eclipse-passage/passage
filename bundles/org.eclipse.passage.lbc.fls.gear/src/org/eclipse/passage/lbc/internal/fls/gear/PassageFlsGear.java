@@ -29,7 +29,7 @@ import org.eclipse.passage.lic.base.io.MD5Hashes;
 import org.eclipse.passage.lic.base.io.PathKeyKeeper;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
-import org.eclipse.passage.lic.internal.licenses.model.toberemoved.XmiConditionTransport;
+import org.eclipse.passage.lic.licenses.model.transport.XmiConditionTransport;
 
 @SuppressWarnings("restriction")
 final class PassageFlsGear implements FlsGear {

@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.licenses.model.toberemoved;
+package org.eclipse.passage.lic.licenses.model.transport;
 
 import java.io.IOException;
 import java.io.InputStream;
