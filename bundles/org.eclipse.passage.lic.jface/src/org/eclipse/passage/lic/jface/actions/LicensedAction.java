@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.jface.actions;
+package org.eclipse.passage.lic.jface.actions;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.widgets.Display;
@@ -18,6 +18,9 @@ import org.eclipse.swt.widgets.Event;
 
 public abstract class LicensedAction extends Action {
 
+	/**
+	 * @since 2.1
+	 */
 	protected abstract void doAction();
 
 	@Override

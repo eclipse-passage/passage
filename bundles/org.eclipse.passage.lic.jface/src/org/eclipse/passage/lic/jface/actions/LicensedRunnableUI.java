@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.jface.actions;
+package org.eclipse.passage.lic.jface.actions;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -22,6 +22,9 @@ import org.eclipse.passage.lic.jface.EquinoxPassageUI;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+/**
+ * @since 2.1
+ */
 public final class LicensedRunnableUI extends LicensedRunnable {
 
 	private final Supplier<Shell> shell;
