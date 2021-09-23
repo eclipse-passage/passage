@@ -41,7 +41,7 @@
 		<eclipse-repo.url>https://repo.eclipse.org/content/repositories/cbi/</eclipse-repo.url>
 		<cbi-snapshots-repo.url>https://repo.eclipse.org/content/repositories/cbi-snapshots/</cbi-snapshots-repo.url>
 
-		<eclipserun-repo>https://download.eclipse.org/eclipse/updates/4.20/R-4.20-202106111600/</eclipserun-repo>
+		<eclipserun-repo>https://download.eclipse.org/eclipse/updates/4.21/R-4.21-202109060500/</eclipserun-repo>
 		<released.baseline>https://download.eclipse.org/passage/updates/release/2.0.1/</released.baseline>
 		<staging.baseline>https://download.eclipse.org/passage/drops/integration/latest/</staging.baseline>
 
