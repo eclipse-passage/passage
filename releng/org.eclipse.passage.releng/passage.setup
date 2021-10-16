@@ -139,6 +139,8 @@
         <requirement
             name="org.bouncycastle.bcprov"/>
         <requirement
+            name="org.bouncycastle.bcutil"/>
+        <requirement
             name="org.eclipse.emf.ecp.emfforms.runtime.feature.feature.group"/>
         <requirement
             name="org.eclipse.emf.query.sdk.feature.group"/>
@@ -281,6 +283,8 @@
             name="org.bouncycastle.bcpkix"/>
         <requirement
             name="org.bouncycastle.bcprov"/>
+        <requirement
+            name="org.bouncycastle.bcutil"/>
         <requirement
             name="org.eclipse.emf.ecp.emfforms.runtime.feature.feature.group"/>
         <requirement
