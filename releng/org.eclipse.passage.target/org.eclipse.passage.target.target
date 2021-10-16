@@ -12,7 +12,7 @@
 	Contributors:
 		ArSysOp - initial API and implementation
 -->
-<target name="org.eclipse.passage.target" sequenceNumber="99">
+<target name="org.eclipse.passage.target" sequenceNumber="100">
 	<locations>
 		<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<repository location="https://download.eclipse.org/cbi/updates/license/"/>
@@ -86,6 +86,7 @@
 			<unit id="org.bouncycastle.bcpg" version="0.0.0"/>
 			<unit id="org.bouncycastle.bcpkix" version="0.0.0"/>
 			<unit id="org.bouncycastle.bcprov" version="0.0.0"/>
+			<unit id="org.bouncycastle.bcutil" version="0.0.0"/>
 			<unit id="org.junit" version="0.0.0"/>
 			<unit id="org.slf4j.api" version="0.0.0"/>
 			<unit id="org.slf4j.apis.log4j" version="0.0.0"/>
