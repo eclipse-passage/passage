@@ -43,20 +43,28 @@
 				<bundles name="org.eclipse.passage.lic.oshi" />
 				<bundles name="org.eclipse.passage.lic.oshi.source" />
 			</repositories>
+			<mavenMappings namePattern="com.sun.jna"
+				groupId="net.java.dev.jna" artifactId="jna" />
+			<mavenMappings namePattern="com.sun.jna.platform"
+				groupId="net.java.dev.jna" artifactId="jna-platform" />
+			<mavenMappings namePattern="org.bouncycastle.bcpg"
+				groupId="org.bouncycastle" artifactId="bcpg-jdk15on" />
+			<mavenMappings namePattern="org.bouncycastle.bcpkix"
+				groupId="org.bouncycastle" artifactId="bcpkix-jdk15on" />
+			<mavenMappings namePattern="org.bouncycastle.bcprov"
+				groupId="org.bouncycastle" artifactId="bcprov-jdk15on" />
+			<mavenMappings namePattern="org.bouncycastle.bcutil"
+				groupId="org.bouncycastle" artifactId="bcutil-jdk15on" />
+			<mavenMappings namePattern="org.apache.log4j"
+				groupId="log4j" artifactId="log4j" />
+			<mavenMappings namePattern="org.apache.logging.log4j"
+				groupId="org.apache.logging.log4j" artifactId="log4j-core" />
 			<mavenMappings namePattern="org.eclipse.core.(.*)"
 				groupId="org.eclipse.platform" artifactId="org.eclipse.core.$1" />
 			<mavenMappings namePattern="org.eclipse.equinox(.*)"
 				groupId="org.eclipse.platform" artifactId="org.eclipse.equinox$1" />
 			<mavenMappings namePattern="org.eclipse.osgi(.*)"
 				groupId="org.eclipse.platform" artifactId="org.eclipse.osgi$1" />
-			<mavenMappings namePattern="org.apache.log4j"
-				groupId="log4j" artifactId="log4j" />
-			<mavenMappings namePattern="com.sun.jna.platform"
-				groupId="net.java.dev.jna" artifactId="jna-platform" />
-			<mavenMappings namePattern="com.sun.jna"
-				groupId="net.java.dev.jna" artifactId="jna" />
-			<mavenMappings namePattern="org.apache.logging.log4j"
-				groupId="org.apache.logging.log4j" artifactId="log4j-core" />
 		</contributions>
 		<validationRepositories
 			location="https://download.eclipse.org/eclipse/updates/4.21" />
