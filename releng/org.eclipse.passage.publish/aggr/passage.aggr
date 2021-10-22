@@ -67,6 +67,8 @@
 				groupId="org.eclipse.platform" artifactId="org.eclipse.equinox$1" />
 			<mavenMappings namePattern="org.eclipse.osgi(.*)"
 				groupId="org.eclipse.platform" artifactId="org.eclipse.osgi$1" />
+			<mavenMappings namePattern="org.slf4j.api"
+				groupId="org.slf4j" artifactId="slf4j-api" />
 		</contributions>
 		<validationRepositories
 			location="https://download.eclipse.org/eclipse/updates/4.21" />
