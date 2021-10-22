@@ -18,7 +18,7 @@
 >
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>org.eclipse.passage.lic.licenses.model</artifactId>
+	<artifactId>org.eclipse.passage.lic.emf</artifactId>
 	<version>2.1.1-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
 
