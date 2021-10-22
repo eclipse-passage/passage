@@ -43,7 +43,7 @@
 				<bundles name="org.eclipse.passage.lic.oshi" />
 				<bundles name="org.eclipse.passage.lic.oshi.source" />
 			</repositories>
-			<mavenMappings namePattern="com.github.oshi"
+			<mavenMappings namePattern="com.github.oshi.oshi-core"
 				groupId="com.github.oshi" artifactId="oshi-core" />
 			<mavenMappings namePattern="com.sun.jna"
 				groupId="net.java.dev.jna" artifactId="jna" />
