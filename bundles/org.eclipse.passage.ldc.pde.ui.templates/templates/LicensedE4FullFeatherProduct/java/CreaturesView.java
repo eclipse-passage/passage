@@ -9,7 +9,7 @@ import $packageName$.magic.Creatures;
 import $packageName$.magic.service.Creature;
 import $packageName$.magic.service.Magic;
 import $packageName$.magic.service.Shape;
-import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
+import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Font;
@@ -22,7 +22,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Text;
 
-@SuppressWarnings("restriction")
 public final class CreaturesView {
 
 	private final Creatures creatures;

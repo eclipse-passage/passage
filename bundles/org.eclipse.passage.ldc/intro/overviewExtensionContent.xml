@@ -18,7 +18,7 @@
 		<group id="passage" style-id="content-group">
 			<link id="passage" style-id="content-link"
 				label="License Management"
-				url="http://org.eclipse.ui.intro/openBrowser?url=https://www.eclipse.org/passage">
+				url="http://org.eclipse.ui.intro/openBrowser?url=https://eclipse-passage.github.io/passage-docs">
 				<text>Learn about Eclipse Passage - License Management solution</text>
 			</link>
 		</group>
