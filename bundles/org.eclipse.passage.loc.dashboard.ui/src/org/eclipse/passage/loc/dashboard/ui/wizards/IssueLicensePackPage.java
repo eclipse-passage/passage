@@ -41,7 +41,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
-public class IssueLicensePackPage extends WizardPage {
+class IssueLicensePackPage extends WizardPage {
 
 	private final IEclipseContext context;
 	private final Supplier<PersonalLicenseRequest> data;
@@ -59,25 +59,21 @@ public class IssueLicensePackPage extends WizardPage {
 		setDescription(IssueLicensePageMessages.IssueLicensePackPage_page_description);
 	}
 
-	public void init() {
+	void init() {
 		PersonalLicenseRequest request = data.get();
 		if (license != null) {
-			license.getLicense().setPlan(request.plan());
-			license.getLicense().getProduct().setIdentifier(request.productIdentifier());
-			license.getLicense().getProduct().setVersion(request.productVersion());
-			license.getLicense().getUser().setIdentifier(request.user());
-			EList<PersonalFeatureGrant> licenseGrants = license.getGrants();
-			for (PersonalFeatureGrant grant : licenseGrants) {
-				ValidityPeriodClosed valid = (ValidityPeriodClosed) grant.getValid();
-				valid.setFrom(request.validFrom());
-				valid.setUntil(request.validUntil());
-			}
-			return;
+			refillFRequest(request);
+		} else {
+			createFormRequest(request);
+			buildPage();
 		}
-		OperatorLicenseService operatorLicenseService = context.get(OperatorLicenseService.class);
-		PersonalLicensePackDescriptor licensePackDescriptor = operatorLicenseService.createLicensePack(request);
-		if (licensePackDescriptor instanceof PersonalLicensePack) {
-			license = (PersonalLicensePack) licensePackDescriptor;
+	}
+
+	private void createFormRequest(PersonalLicenseRequest request) {
+		OperatorLicenseService service = context.get(OperatorLicenseService.class);
+		PersonalLicensePackDescriptor descriptor = service.createLicensePack(request);
+		if (descriptor instanceof PersonalLicensePack) {
+			license = (PersonalLicensePack) descriptor;
 			license.eAdapters().add(new EContentAdapter() {
 				@Override
 				public void notifyChanged(Notification notification) {
@@ -85,7 +81,22 @@ public class IssueLicensePackPage extends WizardPage {
 				}
 			});
 		}
-		updatePage();
+	}
+
+	private void refillFRequest(PersonalLicenseRequest request) {
+		license.getLicense().setPlan(request.plan());
+		license.getLicense().getProduct().setIdentifier(request.productIdentifier());
+		license.getLicense().getProduct().setVersion(request.productVersion());
+		license.getLicense().getUser().setIdentifier(request.user());
+		EList<PersonalFeatureGrant> grants = license.getGrants();
+		for (PersonalFeatureGrant grant : grants) {
+			ValidityPeriodClosed valid = (ValidityPeriodClosed) grant.getValid();
+			valid.setFrom(request.validFrom());
+			valid.setUntil(request.validUntil());
+		}
+		ValidityPeriodClosed valid = (ValidityPeriodClosed) license.getLicense().getValid();
+		valid.setFrom(request.validFrom());
+		valid.setUntil(request.validUntil());
 	}
 
 	@Override
@@ -100,11 +111,11 @@ public class IssueLicensePackPage extends WizardPage {
 		properties = VViewFactory.eINSTANCE.createViewModelLoadingProperties();
 		properties.addInheritableProperty(EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_KEY,
 				EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_VALUE);
-		updatePage();
+		buildPage();
 		Dialog.applyDialogFont(composite);
 	}
 
-	private void updatePage() {
+	private void buildPage() {
 		if (base == null || base.isDisposed()) {
 			setPageComplete(false);
 			return;
@@ -125,7 +136,7 @@ public class IssueLicensePackPage extends WizardPage {
 		return errors.isEmpty();
 	}
 
-	public PersonalLicensePackDescriptor pack() {
+	PersonalLicensePackDescriptor pack() {
 		return license;
 	}
 
