@@ -75,7 +75,7 @@ public final class LicensedE4FullFeatherProductTemplateSection extends BaseLicen
 
 	@Override
 	public IPluginReference[] getDependencies(String schemaVersion) {
-		return getDependencies(getRCP4Dependencies());
+		return getDependencies(getRCP4xDependencies());
 	}
 
 	@Override
@@ -135,10 +135,11 @@ public final class LicensedE4FullFeatherProductTemplateSection extends BaseLicen
 	}
 
 	@Override
-	protected List<String> getRCP4Dependencies() {
+	protected List<String> getRCP4xDependencies() {
 		List<String> result = new ArrayList<>();
 		result.add("javax.annotation"); //$NON-NLS-1$
-		result.addAll(super.getRCP4Dependencies());
+		result.addAll(super.getRCP4xDependencies());
+		result.remove("org.eclipse.passage.seal.demo"); //$NON-NLS-1$
 		return result;
 	}
 

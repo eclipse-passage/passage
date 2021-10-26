@@ -106,7 +106,7 @@ public class LicensedE4ProductTemplateSection extends BaseLicensedProductSection
 
 	@Override
 	public IPluginReference[] getDependencies(String schemaVersion) {
-		return getDependencies(getRCP4Dependencies());
+		return getDependencies(getRCP4xDependencies());
 	}
 
 	@Override
