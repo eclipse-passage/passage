@@ -172,7 +172,7 @@ public abstract class BaseLicensedProductSection extends BaseLicensingSection {
 				"org.eclipse.passage.seal.demo"); //$NON-NLS-1$
 	}
 
-	protected List<String> getRCP4Dependencies() {
+	protected List<String> getRCP4xDependencies() {
 		return Arrays.asList(//
 				"javax.inject", //$NON-NLS-1$
 				"org.eclipse.core.runtime", //$NON-NLS-1$
