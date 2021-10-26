@@ -40,6 +40,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
 class IssueLicensePackPage extends WizardPage {
 
@@ -62,11 +63,11 @@ class IssueLicensePackPage extends WizardPage {
 	void init() {
 		PersonalLicenseRequest request = data.get();
 		if (license != null) {
-			refillFRequest(request);
+			refillFormRequest(request);
 		} else {
 			createFormRequest(request);
-			buildPage();
 		}
+		buildPage();
 	}
 
 	private void createFormRequest(PersonalLicenseRequest request) {
@@ -83,7 +84,7 @@ class IssueLicensePackPage extends WizardPage {
 		}
 	}
 
-	private void refillFRequest(PersonalLicenseRequest request) {
+	private void refillFormRequest(PersonalLicenseRequest request) {
 		license.getLicense().setPlan(request.plan());
 		license.getLicense().getProduct().setIdentifier(request.productIdentifier());
 		license.getLicense().getProduct().setVersion(request.productVersion());
@@ -121,6 +122,12 @@ class IssueLicensePackPage extends WizardPage {
 			return;
 		}
 		if (license != null) {
+			// FIXME: AF: rework this hotfix for
+			// https://bugs.eclipse.org/bugs/show_bug.cgi?id=576904
+			Control[] children = base.getChildren();
+			for (Control control : children) {
+				control.dispose();
+			}
 			try {
 				ECPSWTViewRenderer.INSTANCE.render(base, license, properties);
 				base.layout();
