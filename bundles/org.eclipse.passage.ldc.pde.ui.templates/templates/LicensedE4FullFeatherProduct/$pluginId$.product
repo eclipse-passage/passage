@@ -99,6 +99,7 @@
       <plugin id="org.eclipse.passage.lic.emf"/>
       <plugin id="org.eclipse.passage.lic.emf.meta"/>
       <plugin id="org.eclipse.passage.lic.equinox"/>
+      <plugin id="org.eclipse.passage.lic.execute"/>
       <plugin id="org.eclipse.passage.lic.floating"/>
       <plugin id="org.eclipse.passage.lic.floating.model"/>
       <plugin id="org.eclipse.passage.lic.hc"/>
@@ -109,7 +110,6 @@
       <plugin id="org.eclipse.passage.lic.licenses.model"/>
       <plugin id="org.eclipse.passage.lic.net"/>
       <plugin id="org.eclipse.passage.lic.oshi"/>
-      <plugin id="org.eclipse.passage.seal.demo"/>
       <plugin id="org.eclipse.swt"/>
       <plugin id="org.eclipse.swt.cocoa.macosx.x86_64" fragment="true"/>
       <plugin id="org.eclipse.swt.gtk.linux.ppc64" fragment="true"/>
