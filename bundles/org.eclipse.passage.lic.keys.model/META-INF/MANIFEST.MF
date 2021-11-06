@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.keys.model
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.keys.model;singleton:=true
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.0.1.qualifier
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Copyright: %Bundle-Copyright
@@ -10,7 +10,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0";x-installation:=greedy;resolution:=optional,
  org.eclipse.emf.ecore;bundle-version="0.0.0";visibility:=reexport,
- org.eclipse.passage.lic.emf;bundle-version="2.0.0",
+ org.eclipse.passage.lic.emf;bundle-version="0.0.0",
  org.eclipse.passage.lic.keys;bundle-version="0.0.0";visibility:=reexport
 Export-Package: org.eclipse.passage.lic.keys.model.api,
  org.eclipse.passage.lic.keys.model.impl,

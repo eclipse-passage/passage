@@ -4,7 +4,7 @@
     <semanticResources>model/keys.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_uuEyYDMAEey9s4wFJefMCw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_vvImwDMAEey9s4wFJefMCw" name="keys" repPath="#_vvE8YDMAEey9s4wFJefMCw" changeId="5ee9437b-96b3-42bf-ac7b-3fc922d50123">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_vvImwDMAEey9s4wFJefMCw" name="keys" repPath="#_vvE8YDMAEey9s4wFJefMCw" changeId="ecbcd25d-de8e-47a0-bb3e-2867184e347d">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="model/keys.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -238,6 +238,7 @@
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_zARnYzMAEey9s4wFJefMCw" description="_zARnYDMAEey9s4wFJefMCw" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_zARnZTMAEey9s4wFJefMCw" showIcon="false">
           <customFeatures>labelSize</customFeatures>
+          <labelFormat>bold</labelFormat>
         </centerLabelStyle>
         <endLabelStyle xmi:type="diagram:EndLabelStyle" uid="_zARnZDMAEey9s4wFJefMCw" showIcon="false" labelColor="39,76,114">
           <customFeatures>labelSize</customFeatures>
