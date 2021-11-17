@@ -87,6 +87,9 @@ final class PreviewPage extends WizardPage implements PageObserver {
 	}
 
 	private String companyInfo(UserOriginDescriptor company) {
+		if (company == null) {
+			return "no information provided (not loaded)"; //$NON-NLS-1$
+		}
 		return NLS.bind("{0} ({1})", company.getName(), company.getIdentifier()); //$NON-NLS-1$
 	}
 
