@@ -29,7 +29,6 @@ import org.eclipse.passage.lic.bc.BcStreamCodec;
 import org.eclipse.passage.lic.hc.remote.impl.Equipment;
 import org.eclipse.passage.lic.licenses.model.transport.XmiConditionTransport;
 
-@SuppressWarnings("restriction")
 final class TestEquipment implements Supplier<Equipment> {
 
 	private final LicensedProduct product;

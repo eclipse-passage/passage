@@ -25,7 +25,6 @@ import org.osgi.framework.Bundle;
 /**
  * @since 2.1
  */
-@SuppressWarnings("restriction")
 public final class BundleResidentAgreement implements ResolvedAgreement {
 
 	private final Bundle bundle;
