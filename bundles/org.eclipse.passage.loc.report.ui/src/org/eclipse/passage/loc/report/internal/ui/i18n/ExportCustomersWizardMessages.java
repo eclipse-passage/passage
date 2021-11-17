@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -21,6 +21,7 @@ public class ExportCustomersWizardMessages extends NLS {
 	public static String ExposedExportCustomersWizard_dialogTitle;
 	public static String PreviewPage_description;
 	public static String PreviewPage_title;
+	public static String PreviewPage_noinfo_company;
 	public static String ScopePage_columnProduct;
 	public static String ScopePage_columnSelect;
 	public static String ScopePage_description;

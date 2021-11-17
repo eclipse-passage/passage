@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -22,6 +22,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.passage.loc.report.internal.core.license.LicensePlanReportParameters;
 import org.eclipse.passage.loc.report.internal.core.license.LicenseReportExportService;
 import org.eclipse.passage.loc.report.internal.core.license.LicenseStorage;
+import org.eclipse.passage.loc.report.internal.ui.i18n.ExportLicenseReportWizardMessages;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportWizardMessages;
 import org.eclipse.passage.loc.report.internal.ui.jface.FileForExport;
 import org.eclipse.passage.loc.report.internal.ui.jface.TargetPage;
@@ -52,6 +53,7 @@ final class IssuedLicensesReportWizard extends Wizard {
 		this.scope = new PlansPage(new LicensePlans(storage), preview);
 		this.config = new ConfigPage(preview);
 		this.target = new TargetPage(preview);
+		setWindowTitle(ExportLicenseReportWizardMessages.ExposedIssuedLicensesReportWizard_dialogTitle);
 	}
 
 	@Override
