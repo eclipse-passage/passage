@@ -28,7 +28,6 @@ import org.osgi.service.component.runtime.dto.ComponentDescriptionDTO;
  * @see RequirementFromCapability
  * @see BundleRequirements
  */
-@SuppressWarnings("restriction")
 final class ListOfAgreements {
 
 	private final String separator = "::"; //$NON-NLS-1$

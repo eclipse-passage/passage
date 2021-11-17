@@ -32,7 +32,6 @@ import org.eclipse.passage.loc.dashboard.ui.wizards.floating.IssueFloatingLicens
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
 import org.eclipse.swt.widgets.Shell;
 
-@SuppressWarnings("restriction")
 public class DashboardIssueFloatingLicenseHandler {
 
 	private final String feature = "org.eclipse.passage.loc.operator.issue.floating"; //$NON-NLS-1$
