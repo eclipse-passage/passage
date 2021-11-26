@@ -22,6 +22,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
 import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
 import org.eclipse.passage.lic.equinox.SuppliedFrameworkAware;
+import org.eclipse.passage.lic.internal.jface.i18n.AgreementsDialogMessages;
 
 final class AgreementsWizard extends Wizard {
 
@@ -31,7 +32,7 @@ final class AgreementsWizard extends Wizard {
 
 	AgreementsWizard(Collection<AgreementToAccept> agreements) {
 		this.agreements = agreements;
-		setWindowTitle("Read and accept license agreements"); //$NON-NLS-1$
+		setWindowTitle(AgreementsDialogMessages.AgreementsWizard_description);
 	}
 
 	@Override
@@ -69,13 +70,12 @@ final class AgreementsWizard extends Wizard {
 	}
 
 	private void reportInsufficientConfiguration() {
-		MessageDialog.openError(getShell(), "License acceptance is not possible", //$NON-NLS-1$
-				"The product lacks configuration, thus license acceptance cannot be performed. \n Contact the vendor."); //$NON-NLS-1$
+		MessageDialog.openError(getShell(), AgreementsDialogMessages.AgreementsWizard_error,
+				AgreementsDialogMessages.AgreementsWizard_error_description);
 	}
 
 	private void reportFailure() {
-		MessageDialog.openError(getShell(), "License acceptance failed", //$NON-NLS-1$
-				"License acceptance process failed."); //$NON-NLS-1$
+		MessageDialog.openError(getShell(), AgreementsDialogMessages.AgreementsWizard_failure, AgreementsDialogMessages.AgreementsWizard_failure_description);
 	}
 
 	private Optional<AgreementAcceptanceService> acceptance() {
