@@ -16,6 +16,7 @@ import java.io.UnsupportedEncodingException;
 
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
+import org.eclipse.passage.lic.internal.jface.i18n.AgreementsDialogMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -34,7 +35,7 @@ final class AgreementPage extends WizardPage {
 		this.agreement = agreement;
 		setPageComplete(false);
 		setMessage(
-				"There are licensing agreements, demanded by the product for acceptance. Please read them thoroughly before pressing `I accept`."); //$NON-NLS-1$
+				AgreementsDialogMessages.AgreementPage_title);
 
 	}
 
@@ -66,7 +67,7 @@ final class AgreementPage extends WizardPage {
 	private void installOptions(Composite parent) {
 		Composite options = new Composite(parent, SWT.NONE);
 		options.setLayout(new GridLayout(1, false));
-		Button accept = option(parent, "I have read the agreement. I accept the terms of this agreement."); //$NON-NLS-1$
+		Button accept = option(parent, AgreementsDialogMessages.AgreementPage_accept);
 		accept.addSelectionListener(SelectionListener.widgetSelectedAdapter(this::updatePageComplete));
 	}
 
