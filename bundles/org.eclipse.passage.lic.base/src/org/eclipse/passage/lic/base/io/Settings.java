@@ -70,7 +70,8 @@ public final class Settings {
 		try {
 			Files.walkFileTree(base.get(), hunter);
 		} catch (IOException e) {
-			throw new LicensingException(BaseMessages.getString("Settings.error_on_reading_settings"), e); //$NON-NLS-1$
+			throw new LicensingException(String.format(BaseMessages.getString("Settings.error_on_reading_settings"), //$NON-NLS-1$
+					base.get()), e);
 		}
 		return hunter.findings();
 	}
