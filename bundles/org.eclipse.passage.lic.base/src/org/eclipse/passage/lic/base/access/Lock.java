@@ -122,7 +122,7 @@ final class Lock {
 	private <T> ServiceInvocationResult<T> noService(T data, ConditionMiningTarget target) {
 		return new BaseServiceInvocationResult<T>(//
 				new BaseDiagnostic(new Trouble(//
-						new NoServicesOfType(AccessCycleMessages.getString("Lock.no_service")), //$NON-NLS-1$
+						new NoServicesOfType(AccessCycleMessages.getString("Lock.service_type")), //$NON-NLS-1$
 						String.format(//
 								AccessCycleMessages.getString("Lock.no_service_for_target"), //$NON-NLS-1$
 								target.toString())//
