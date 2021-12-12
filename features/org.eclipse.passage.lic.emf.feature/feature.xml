@@ -14,7 +14,7 @@
 <feature
       id="org.eclipse.passage.lic.emf.feature"
       label="%featureName"
-      version="2.0.200.qualifier"
+      version="2.0.201.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.passage.lic.emf"
       license-feature="org.eclipse.license"
