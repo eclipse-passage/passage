@@ -70,7 +70,7 @@
   <setupTask
       xsi:type="setup:VariableTask"
       name="eclipse.target.platform"
-      value="2021-09"
+      value="2021-12"
       storageURI="scope://Workspace"/>
   <setupTask
       xsi:type="setup.p2:P2Task"
@@ -88,7 +88,7 @@
     <requirement
         name="org.sonatype.tycho.m2e.feature.feature.group"/>
     <repository
-        url="https://download.eclipse.org/releases/2021-09/"/>
+        url="https://download.eclipse.org/releases/2021-12/"/>
     <repository
         url="https://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-tycho/0.9.0/N/LATEST/"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
@@ -187,11 +187,11 @@
         <repositoryList
             name="Passage Latest Released">
           <repository
-              url="https://download.eclipse.org/eclipse/updates/4.21/R-4.21-202109060500/"/>
+              url="https://download.eclipse.org/eclipse/updates/4.22/R-4.22-202111241800/"/>
           <repository
-              url="https://download.eclipse.org/ecp/releases/releases_126/1261_RC1a/"/>
+              url="https://download.eclipse.org/ecp/rt/1261/"/>
           <repository
-              url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.25/"/>
+              url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.28/"/>
           <repository
               url="https://download.eclipse.org/modeling/emf/query/updates/releases/R201805030653/"/>
           <repository
@@ -201,21 +201,19 @@
           <repository
               url="https://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R202004160913/"/>
           <repository
-              url="https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R202004160913/"/>
+              url="https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R202106221344/"/>
           <repository
-              url="https://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.12.0/"/>
+              url="https://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.17.0/"/>
           <repository
               url="https://download.eclipse.org/modeling/mdt/uml2/updates/5.5/"/>
           <repository
-              url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.24/"/>
+              url="https://download.eclipse.org/passage/drops/release/2.2.0/"/>
           <repository
-              url="https://download.eclipse.org/passage/drops/release/stage/"/>
-          <repository
-              url="https://download.eclipse.org/sirius/updates/releases/6.5.0/2020-09/"/>
+              url="https://download.eclipse.org/sirius/updates/releases/6.5.1/2020-09/"/>
           <repository
               url="https://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952/"/>
           <repository
-              url="https://download.eclipse.org/tools/orbit/downloads/2021-09"/>
+              url="https://download.eclipse.org/tools/orbit/downloads/2021-12"/>
         </repositoryList>
       </targlet>
     </setupTask>
@@ -326,6 +324,37 @@
         <sourceLocator
             rootFolder="${git.clone.passage.location}"
             locateNestedProjects="true"/>
+        <repositoryList
+            name="2021-12">
+          <repository
+              url="https://download.eclipse.org/cbi/updates/license/"/>
+          <repository
+              url="https://download.eclipse.org/eclipse/updates/4.22/R-4.22-202111241800/"/>
+          <repository
+              url="https://download.eclipse.org/ecp/rt/1261/"/>
+          <repository
+              url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.28/"/>
+          <repository
+              url="https://download.eclipse.org/modeling/emf/query/updates/releases/R201805030653/"/>
+          <repository
+              url="https://download.eclipse.org/modeling/emf/transaction/updates/releases/R201805140824/"/>
+          <repository
+              url="https://download.eclipse.org/modeling/emf/validation/updates/releases/R202008210805/"/>
+          <repository
+              url="https://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R202004160913/"/>
+          <repository
+              url="https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R202106221344/"/>
+          <repository
+              url="https://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.17.0/"/>
+          <repository
+              url="https://download.eclipse.org/modeling/mdt/uml2/updates/5.5/"/>
+          <repository
+              url="https://download.eclipse.org/sirius/updates/releases/6.5.1/2020-09/"/>
+          <repository
+              url="https://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952/"/>
+          <repository
+              url="https://download.eclipse.org/tools/orbit/downloads/2021-12"/>
+        </repositoryList>
         <repositoryList
             name="2021-09">
           <repository
