@@ -14,7 +14,7 @@
 <feature
       id="org.eclipse.passage.lic.jetty.feature"
       label="%featureName"
-      version="0.1.300.qualifier"
+      version="0.1.301.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.passage.lic.jetty"
       license-feature="org.eclipse.license"
