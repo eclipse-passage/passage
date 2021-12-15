@@ -191,7 +191,7 @@
           <repository
               url="https://download.eclipse.org/ecp/rt/1261/"/>
           <repository
-              url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.28/"/>
+              url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.25/"/>
           <repository
               url="https://download.eclipse.org/modeling/emf/query/updates/releases/R201805030653/"/>
           <repository
@@ -201,7 +201,7 @@
           <repository
               url="https://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R202004160913/"/>
           <repository
-              url="https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R202106221344/"/>
+              url="https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R202004160913/"/>
           <repository
               url="https://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.17.0/"/>
           <repository
