@@ -13,7 +13,7 @@
 	Contributors:
 		ArSysOp - initial API and implementation
 -->
-<product name="Passage Licensing Agent" uid="org.eclipse.passage.lac.server.product" id="org.eclipse.passage.lac.server.product" application="org.eclipse.passage.lac.server.application" version="2.2.1.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="Passage Licensing Agent" uid="org.eclipse.passage.lac.server.product" id="org.eclipse.passage.lac.server.product" application="org.eclipse.passage.lac.server.application" version="2.2.2.qualifier" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
