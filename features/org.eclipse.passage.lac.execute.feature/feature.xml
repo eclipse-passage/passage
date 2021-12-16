@@ -14,7 +14,7 @@
 <feature
       id="org.eclipse.passage.lac.execute.feature"
       label="%featureName"
-      version="0.1.201.qualifier"
+      version="0.1.202.qualifier"
       provider-name="%providerName"
       license-feature="org.eclipse.license"
       license-feature-version="0.0.0">
