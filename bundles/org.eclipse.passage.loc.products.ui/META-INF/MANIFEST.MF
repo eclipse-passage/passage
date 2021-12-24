@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.loc.products.ui
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.loc.products.ui;singleton:=true
-Bundle-Version: 0.7.301.qualifier
+Bundle-Version: 0.7.302.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -23,7 +23,7 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0",
  org.eclipse.passage.loc.products.core;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.loc.workbench;bundle-version="0.0.0",
  org.eclipse.passage.lic.keys.model;bundle-version="0.0.0",
- org.apache.logging.log4j;bundle-version="2.15.0"
+ org.apache.logging.log4j;bundle-version="2.17.0"
 Import-Package: javax.inject;version="1.0.0"
 Export-Package: org.eclipse.passage.loc.internal.products.ui;x-friends:="org.eclipse.passage.loc.dashboard.ui",
  org.eclipse.passage.loc.internal.products.ui.i18n;x-internal:=true,
