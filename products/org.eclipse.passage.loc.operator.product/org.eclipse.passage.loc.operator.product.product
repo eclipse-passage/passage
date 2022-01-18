@@ -2,7 +2,7 @@
 <?pde version="3.5"?>
 
 <!--
-	Copyright (c) 2018, 2021 ArSysOp and others
+	Copyright (c) 2018, 2022 ArSysOp and others
 
 	This program and the accompanying materials are made available under the
 	terms of the Eclipse Public License 2.0 which is available at
@@ -13,7 +13,7 @@
 	Contributors:
 		ArSysOp - initial API and implementation
 -->
-<product name="Passage Licensing Operator Workbench" uid="org.eclipse.passage.loc.operator.product" id="org.eclipse.passage.loc.operator.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="2.2.2.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="Passage Licensing Operator Workbench" uid="org.eclipse.passage.loc.operator.product" id="org.eclipse.passage.loc.operator.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="2.3.0.qualifier" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>

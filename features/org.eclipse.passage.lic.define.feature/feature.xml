@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	Copyright (c) 2019, 2021 ArSysOp and others
+	Copyright (c) 2019, 2022 ArSysOp and others
 
 	This program and the accompanying materials are made available under the
 	terms of the Eclipse Public License 2.0 which is available at
@@ -14,7 +14,7 @@
 <feature
       id="org.eclipse.passage.lic.define.feature"
       label="%featureName"
-      version="2.2.2.qualifier"
+      version="2.3.0.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.passage.lic.define.branding"
       license-feature="org.eclipse.license"
@@ -44,15 +44,15 @@
          id="org.eclipse.passage.lic.products.feature"
          version="0.0.0"/>
 
-  <includes
+   <includes
          id="org.eclipse.passage.lic.users.feature"
          version="0.0.0"/>
 
-  <includes
+   <includes
          id="org.eclipse.passage.lic.keys.feature"
          version="0.0.0"/>
 
-  <includes
+   <includes
          id="org.eclipse.passage.lic.agreements.feature"
          version="0.0.0"/>
 
