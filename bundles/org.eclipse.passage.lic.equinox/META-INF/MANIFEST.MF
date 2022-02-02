@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.osgi;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.core.runtime;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.api;bundle-version="2.3.0";visibility:=reexport,
  org.eclipse.passage.lic.base;bundle-version="2.3.0";visibility:=reexport,
- org.apache.logging.log4j;bundle-version="2.17.0"
+ org.apache.logging.log4j;bundle-version="2.17.1"
 Export-Package: org.eclipse.passage.lic.equinox,
  org.eclipse.passage.lic.equinox.access;x-friends:="org.eclipse.passage.lic.jetty",
  org.eclipse.passage.lic.equinox.acquire,
