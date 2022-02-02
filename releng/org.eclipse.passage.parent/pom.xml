@@ -594,6 +594,7 @@
 						</goals>
 						<configuration>
 							<excludes>
+								<plugin id="javax.mail" />
 								<plugin id="org.eclipse.passage.loc.operator" />
 								<plugin id="org.eclipse.passage.lbc.server" />
 								<plugin id="org.eclipse.passage.ldc" />
