@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,9 +10,10 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.jetty.interaction;
+package org.eclipse.passage.lic.equinox.access;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,19 +24,30 @@ import org.eclipse.passage.lic.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.equinox.LicensedApplication;
-import org.eclipse.passage.lic.equinox.access.ConsoleInteraction;
-import org.eclipse.passage.lic.equinox.access.LicenseCoverageCheck;
 
-final class LicenseProtection {
+public final class LicenseProtection {
 
 	private final Logger log = LogManager.getLogger(getClass());
 	private Optional<GrantLockAttempt> lock = Optional.empty();
+	private final Supplier<Interaction> interaction;
 
-	boolean check() {
+	public LicenseProtection() {
+		this(ConsoleInteraction::new);
+	}
+
+	public LicenseProtection(Supplier<Interaction> interaction) {
+		this.interaction = interaction;
+	}
+
+	public boolean check() {
 		if (licenseCoverageIsNotSufficient()) {
 			return false;
 		}
 		return locAcquired();
+	}
+
+	public void release() {
+		lock.ifPresent(acq -> new EquinoxPassage().releaseLicense(acq));
 	}
 
 	private boolean locAcquired() {
@@ -51,11 +63,7 @@ final class LicenseProtection {
 	}
 
 	private boolean licenseCoverageIsNotSufficient() {
-		return !LicenseCoverageCheck.Result.proceed.equals(new LicenseCoverageCheck(new ConsoleInteraction()).run());
-	}
-
-	void release() {
-		lock.ifPresent(acq -> new EquinoxPassage().releaseLicense(acq));
+		return !LicenseCoverageCheck.Result.proceed.equals(new LicenseCoverageCheck(interaction.get()).run());
 	}
 
 	private Optional<GrantLockAttempt> acquireLicense() {
