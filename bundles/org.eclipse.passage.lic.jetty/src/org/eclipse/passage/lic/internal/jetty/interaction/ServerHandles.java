@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.internal.jetty.interaction;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.eclipse.passage.lic.equinox.access.LicenseProtection;
 import org.eclipse.passage.lic.internal.jetty.JettyException;
 import org.eclipse.passage.lic.internal.jetty.JettyServer;
 import org.eclipse.passage.lic.internal.net.connect.Port;
