@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.passage.lic.net" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter comment="apache logging should not be re-exported" id="923795461">
+            <message_arguments>
+                <message_argument value="2.3.0"/>
+                <message_argument value="2.2.1"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="META-INF/MANIFEST.MF" type="META-INF.versions.9.org.apache.logging.log4j.core.util.SystemClock">
+        <filter comment="apache logging should not be re-exported" id="305422471">
+            <message_arguments>
+                <message_argument value="META-INF.versions.9.org.apache.logging.log4j.core.util.SystemClock"/>
+                <message_argument value="org.eclipse.passage.lic.net_2.2.1"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="META-INF/MANIFEST.MF" type="META-INF.versions.9.org.apache.logging.log4j.util.Base64Util">
+        <filter comment="apache logging should not be re-exported" id="305422471">
+            <message_arguments>
+                <message_argument value="META-INF.versions.9.org.apache.logging.log4j.util.Base64Util"/>
+                <message_argument value="org.eclipse.passage.lic.net_2.2.1"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="META-INF/MANIFEST.MF" type="META-INF.versions.9.org.apache.logging.log4j.util.ProcessIdUtil">
+        <filter comment="apache logging should not be re-exported" id="305422471">
+            <message_arguments>
+                <message_argument value="META-INF.versions.9.org.apache.logging.log4j.util.ProcessIdUtil"/>
+                <message_argument value="org.eclipse.passage.lic.net_2.2.1"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="META-INF/MANIFEST.MF" type="META-INF.versions.9.org.apache.logging.log4j.util.StackLocator">
+        <filter comment="apache logging should not be re-exported" id="305422471">
+            <message_arguments>
+                <message_argument value="META-INF.versions.9.org.apache.logging.log4j.util.StackLocator"/>
+                <message_argument value="org.eclipse.passage.lic.net_2.2.1"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="META-INF/MANIFEST.MF" type="org.apache.logging.log4j.core.util.SetUtils">
+        <filter comment="apache logging should not be re-exported" id="305422471">
+            <message_arguments>
+                <message_argument value="org.apache.logging.log4j.core.util.SetUtils"/>
+                <message_argument value="org.eclipse.passage.lic.net_2.2.1"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

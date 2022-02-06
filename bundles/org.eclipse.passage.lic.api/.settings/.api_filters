@@ -7,6 +7,12 @@
                 <message_argument value="2.1.1"/>
             </message_arguments>
         </filter>
+        <filter comment="intentional version increase" id="926941240">
+            <message_arguments>
+                <message_argument value="2.3.0"/>
+                <message_argument value="2.2.1"/>
+            </message_arguments>
+        </filter>
     </resource>
     <resource path="src/org/eclipse/passage/lic/api/AccessCycleConfiguration.java" type="org.eclipse.passage.lic.api.AccessCycleConfiguration">
         <filter id="643842064">
