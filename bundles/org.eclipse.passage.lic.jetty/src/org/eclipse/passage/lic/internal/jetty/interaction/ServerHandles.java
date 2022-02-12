@@ -12,6 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jetty.interaction;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lic.equinox.access.LicenseProtection;
@@ -27,14 +30,7 @@ final class ServerHandles extends Command {
 	private final LicenseProtection license = new LicenseProtection();
 
 	ServerHandles(JettyServer server, String name) {
-		super(//
-				new Scope.Of(name), //
-				new String[] { //
-						"start", //$NON-NLS-1$
-						"stop", //$NON-NLS-1$
-						"restart", //$NON-NLS-1$
-						"state" //$NON-NLS-1$
-				});
+		super(new Scope.Of(name), new Handlers().get());
 		this.server = server;
 		this.port = new Port(8090);
 	}
@@ -70,6 +66,35 @@ final class ServerHandles extends Command {
 		} catch (JettyException e) {
 			log.error("failed to report state of Jetty server", e); //$NON-NLS-1$
 		}
+	}
+
+	public ServerHandles(Scope scope, String[] names, JettyServer server, Port port) {
+		super(scope, names);
+		this.server = server;
+		this.port = port;
+	}
+
+	@Override
+	protected List<String> commands() {
+		return new Handlers().get();
+	}
+
+	@Override // TODO: l10n
+	public String usage() {
+		return "Change ot report running state of the server"; //$NON-NLS-1$
+	}
+
+	private static final class Handlers extends Name {
+
+		protected Handlers() {
+			super(Arrays.asList( //
+					"start", //$NON-NLS-1$
+					"stop", //$NON-NLS-1$
+					"restart", //$NON-NLS-1$
+					"state" //$NON-NLS-1$
+			));
+		}
+
 	}
 
 }

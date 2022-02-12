@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -31,10 +31,10 @@ final class UploadLicense extends Command {
 	}
 
 	public UploadLicense(String scope, Path storage) {
-		this(new Scope.Of(scope), new String[] { "upload" }, storage); //$NON-NLS-1$
+		this(new Scope.Of(scope), new Upload().get(), storage);
 	}
 
-	private UploadLicense(Scope scope, String[] names, Path storage) {
+	private UploadLicense(Scope scope, List<String> names, Path storage) {
 		super(scope, names);
 		this.storage = storage;
 	}
@@ -57,14 +57,28 @@ final class UploadLicense extends Command {
 		if (args.length == 1) {
 			upload(args[0]);
 		} else {
-			System.out.println(help());
+			System.out.println(usage());
 		}
 	}
 
-	private String help() {
+	@Override
+	protected List<String> commands() {
+		return new Upload().get();
+	}
+
+	@Override
+	public String usage() {
 		return "[fls:upload] scans the given folder for floating licenses and uploads all findings at the Server's disposal.\n" //$NON-NLS-1$
 				+ "Usage:\n\t" //$NON-NLS-1$
 				+ scope.id() + ":upload <path-to-folder>\n\t"; //$NON-NLS-1$
+	}
+
+	private static final class Upload extends Name {
+
+		protected Upload() {
+			super("upload"); //$NON-NLS-1$
+		}
+
 	}
 
 }
