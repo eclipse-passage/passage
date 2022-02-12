@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021, 2022 ArSysOp
+ * Copyright (c) 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,15 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.jetty;
+package org.eclipse.passage.lic.internal.jetty.interaction;
 
-import org.eclipse.passage.lic.internal.net.connect.Storage;
+import java.util.List;
+
 import org.osgi.framework.BundleContext;
 
-public final class FlsCommands {
+public interface JettyCommands {
 
-	public void register(BundleContext context, String name, Storage storage) {
-		new UploadLicense(name, storage.get().get()).register(context);
-	}
+	void register(BundleContext context);
+
+	List<String> names();
+
+	String usage();
 
 }
