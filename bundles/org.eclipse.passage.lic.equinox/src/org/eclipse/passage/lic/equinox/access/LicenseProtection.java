@@ -18,12 +18,10 @@ import java.util.function.Supplier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lic.api.LicensedProduct;
-import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.equinox.EquinoxPassage;
-import org.eclipse.passage.lic.equinox.LicensedApplication;
 
 public final class LicenseProtection {
 
@@ -71,12 +69,14 @@ public final class LicenseProtection {
 	}
 
 	private Optional<LicensedProduct> product() {
-		try {
-			return Optional.of(new LicensedApplication().product());
-		} catch (LicensingException e) {
-			log.error("Failed to read product credentials", e); //$NON-NLS-1$
-			return Optional.empty();
+		ServiceInvocationResult<LicensedProduct> product = new EquinoxPassage().product();
+		if (!product.data().isPresent()) {
+			log.error(String.format(//
+					"Failed to read product credentials:%s", //$NON-NLS-1$
+					new DiagnosticExplained(product.diagnostic()).get()));
+
 		}
+		return product.data();
 	}
 
 	private Optional<GrantLockAttempt> acquireLicense(LicensedProduct product) {
