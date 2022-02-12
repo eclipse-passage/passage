@@ -53,9 +53,9 @@ public abstract class Command implements JettyCommands {
 	}
 
 	@Override
-	public List<String> names() {
+	public final List<String> names() {
 		return commands().stream() //
-				.map(name -> scope + ":" + name)// //$NON-NLS-1$
+				.map(name -> scope.id() + ":" + name)// //$NON-NLS-1$
 				.collect(Collectors.toList());
 	}
 

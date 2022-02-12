@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -20,6 +20,7 @@ import org.eclipse.passage.lbc.internal.base.FlotingRequestHandled;
 import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lbc.internal.base.api.FlsGear;
 import org.eclipse.passage.lbc.internal.base.api.FlsGearAwre;
+import org.eclipse.passage.lbc.jetty.FlsCommandScope;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.equinox.io.FileFromBundle;
 import org.eclipse.passage.lic.internal.jetty.JettyHandler;
@@ -43,7 +44,7 @@ public final class FlsJettyActivator extends LicensedJettyActivator {
 	private FloatingState state() {
 		Optional<FloatingState> mayBeState;
 		try {
-			mayBeState = new FlsGearAwre().withGear(this::freshState);
+			mayBeState = new FlsGearAwre().withGear(this::state);
 		} catch (LicensingException e) {
 			e.printStackTrace();
 			mayBeState = Optional.empty();
@@ -54,17 +55,17 @@ public final class FlsJettyActivator extends LicensedJettyActivator {
 		return mayBeState.get();
 	}
 
-	private Optional<FloatingState> freshState(FlsGear gear) {
+	private Optional<FloatingState> state(FlsGear gear) {
 		Optional<Path> path = storage.get();
 		if (!path.isPresent()) {
 			throw new IllegalStateException("FLS configuration error: storage path is not supplied"); //$NON-NLS-1$
 		}
-		return Optional.ofNullable(gear.freshState(path::get));
+		return Optional.ofNullable(gear.state(path::get));
 	}
 
 	@Override
 	protected String name() {
-		return "fls"; //$NON-NLS-1$
+		return new FlsCommandScope().id();
 	}
 
 	@Override

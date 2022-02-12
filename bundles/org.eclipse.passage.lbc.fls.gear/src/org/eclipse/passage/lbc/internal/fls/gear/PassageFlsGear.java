@@ -67,7 +67,7 @@ final class PassageFlsGear implements FlsGear {
 	}
 
 	@Override
-	public FloatingState freshState(Supplier<Path> storage) {
+	public FloatingState state(Supplier<Path> storage) {
 		return new EagerFloatingState(storage);
 	}
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -27,16 +27,24 @@ import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
 
 public final class AcquiredGrants implements Grants {
 
-	private final AcquiredGrantsStorage storage;
 	private final Supplier<Path> base;
-
-	public AcquiredGrants(Supplier<Path> base) {
-		this.base = base;
-		this.storage = new AcquiredGrantsStorage();
-	}
+	private final GrantsStorage storage;
 
 	public AcquiredGrants() {
 		this(new LicensingFolder(new UserHomePath()));
+	}
+
+	public AcquiredGrants(Supplier<Path> base) {
+		this(base, new FlsGrantsStorage());
+	}
+
+	public AcquiredGrants(Path base, GrantsStorage storage) {
+		this(() -> base, storage);
+	}
+
+	public AcquiredGrants(Supplier<Path> base, GrantsStorage storage) {
+		this.base = base;
+		this.storage = storage;
 	}
 
 	@Override
