@@ -15,6 +15,8 @@ package org.eclipse.passage.lbc.internal.fls.gear;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
+import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lbc.internal.base.api.FlsGear;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.conditions.mining.ConditionTransport;
@@ -62,6 +64,11 @@ final class PassageFlsGear implements FlsGear {
 	@Override
 	public ConditionTransport transport(ContentType contentType) {
 		return new XmiConditionTransport();
+	}
+
+	@Override
+	public FloatingState freshState(Supplier<Path> storage) {
+		return new EagerFloatingState(storage);
 	}
 
 }

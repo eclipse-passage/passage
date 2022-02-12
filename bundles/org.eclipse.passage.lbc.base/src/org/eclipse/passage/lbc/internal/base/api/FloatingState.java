@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,13 +14,6 @@ package org.eclipse.passage.lbc.internal.base.api;
 
 import java.nio.file.Path;
 
-/**
- * FIXME: temporary
- * 
- * Redesign this part. We need a sort of Passage Framework to pull down critical
- * entities through the codebase
- * 
- */
 public interface FloatingState {
 
 	Grants grants();
