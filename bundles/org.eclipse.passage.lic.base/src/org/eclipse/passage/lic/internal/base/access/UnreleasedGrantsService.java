@@ -12,20 +12,41 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.access;
 
+import java.util.List;
+import java.util.function.Supplier;
+
+import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.acquire.ForsakenGrantsService;
 import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
+import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
 
 public final class UnreleasedGrantsService implements ForsakenGrantsService {
 
-	@Override
-	public void takeCare(GrantAcquisition grant) {
-		throw new UnsupportedOperationException();
+	private final Residence residence;
+	private final Storage storage;
+	private final Conduit conduit;
 
+	public UnreleasedGrantsService(Supplier<LicensedProduct> product, LicenseAcquisitionServicesRegistry acquirers) {
+		this.residence = new Residence();
+		this.storage = new Storage(residence.read());
+		this.conduit = new Conduit(product, acquirers);
+	}
+
+	@Override
+	public synchronized void takeCare(GrantAcquisition grant) {
+		synchronized (storage) {
+			storage.oneMoreLeftBehind(grant);
+			residence.write(storage.forsaken());
+		}
 	}
 
 	@Override
 	public void settle() {
-		throw new UnsupportedOperationException();
+		List<GrantAcquisition> forsaken;
+		synchronized (storage) {
+			forsaken = storage.forsaken(); // fresh copy
+		}
+		conduit.release(forsaken);
 	}
 
 }

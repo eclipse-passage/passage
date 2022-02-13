@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.acquire;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
@@ -21,8 +22,9 @@ import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
  * 
  * @since 2.1
  */
-public final class BaseGrantAcquisition implements GrantAcquisition {
+public final class BaseGrantAcquisition implements GrantAcquisition, Serializable {
 
+	private static final long serialVersionUID = 2755031536488685673L;
 	private final String id;
 	private final String grant;
 	private final String feature;

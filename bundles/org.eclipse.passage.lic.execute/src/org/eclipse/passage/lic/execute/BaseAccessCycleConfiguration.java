@@ -119,7 +119,7 @@ public abstract class BaseAccessCycleConfiguration implements AccessCycleConfigu
 		));
 		acceptance = new BaseAgreementAcceptanceService(hashes(), product);
 		examinators = new ReadOnlyRegistry<>(new BasePermissionsExaminationService(acceptance, product));
-		forsakenGrants = new UnreleasedGrantsService();
+		forsakenGrants = new UnreleasedGrantsService(product, acquirers());
 	}
 
 	@Override
