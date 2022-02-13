@@ -17,7 +17,7 @@ import org.eclipse.passage.loc.internal.api.OperatorGearSupplier;
 import org.osgi.service.component.annotations.Component;
 
 @Component
-public final class OperaorGearAvailable implements OperatorGearSupplier {
+public final class OperatorGearAvailable implements OperatorGearSupplier {
 
 	@Override
 	public OperatorGear gear() {
