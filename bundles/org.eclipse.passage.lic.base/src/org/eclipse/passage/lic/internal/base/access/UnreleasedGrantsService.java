@@ -26,7 +26,8 @@ public final class UnreleasedGrantsService implements ForsakenGrantsService {
 	private final Storage storage;
 	private final Conduit conduit;
 
-	public UnreleasedGrantsService(Supplier<LicensedProduct> product, LicenseAcquisitionServicesRegistry acquirers) {
+	public UnreleasedGrantsService(Supplier<LicensedProduct> product,
+			Supplier<LicenseAcquisitionServicesRegistry> acquirers) {
 		this.residence = new Residence();
 		this.storage = new Storage(residence.read());
 		this.conduit = new Conduit(product, acquirers);

@@ -25,9 +25,9 @@ import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
 final class Conduit {
 
 	private final Supplier<LicensedProduct> product;
-	private final LicenseAcquisitionServicesRegistry acquirers;
+	private final Supplier<LicenseAcquisitionServicesRegistry> acquirers;
 
-	Conduit(Supplier<LicensedProduct> product, LicenseAcquisitionServicesRegistry acquirers) {
+	Conduit(Supplier<LicensedProduct> product, Supplier<LicenseAcquisitionServicesRegistry> acquirers) {
 		this.product = product;
 		this.acquirers = acquirers;
 	}
@@ -47,7 +47,7 @@ final class Conduit {
 
 	private boolean release(GrantAcquisition grant) {
 		LicensedProduct licproduct = product.get();
-		for (LicenseAcquisitionService service : acquirers.get().services()) {
+		for (LicenseAcquisitionService service : acquirers.get().get().services()) {
 			ServiceInvocationResult<Boolean> result = service.release(licproduct, grant);
 			if (released(result)) {
 				return true;
