@@ -14,6 +14,9 @@ package org.eclipse.passage.lbc.jetty;
 
 import org.eclipse.passage.lic.internal.jetty.interaction.Scope;
 
+/**
+ * @since 0.7
+ */
 public final class FlsCommandScope extends Scope {
 
 	public FlsCommandScope() {
