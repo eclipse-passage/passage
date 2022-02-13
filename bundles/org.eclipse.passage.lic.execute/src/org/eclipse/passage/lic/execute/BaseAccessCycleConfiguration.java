@@ -19,7 +19,6 @@ import org.eclipse.passage.lic.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.acquire.ForsakenGrantsService;
-import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationService;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
@@ -33,7 +32,6 @@ import org.eclipse.passage.lic.api.conditions.evaluation.PermissionEmittingServi
 import org.eclipse.passage.lic.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.api.conditions.mining.ContentType;
-import org.eclipse.passage.lic.api.conditions.mining.MinedConditionsRegistry;
 import org.eclipse.passage.lic.api.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironmentRegistry;
@@ -185,18 +183,6 @@ public abstract class BaseAccessCycleConfiguration implements AccessCycleConfigu
 	@Override
 	public AgreementAcceptanceService acceptance() {
 		return acceptance;
-	}
-
-	@Override
-	public MinedConditionsRegistry conditionMiners() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public LicenseAcquisitionServicesRegistry acquirers() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
