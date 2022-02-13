@@ -13,15 +13,11 @@
 package org.eclipse.passage.lbc.internal.jetty;
 
 import java.io.InputStream;
-import java.nio.file.Path;
-import java.util.Optional;
 
 import org.eclipse.passage.lbc.internal.base.FlotingRequestHandled;
 import org.eclipse.passage.lbc.internal.base.api.FloatingState;
-import org.eclipse.passage.lbc.internal.base.api.FlsGear;
-import org.eclipse.passage.lbc.internal.base.api.FlsGearAwre;
+import org.eclipse.passage.lbc.internal.base.api.FloatingStateFromGear;
 import org.eclipse.passage.lbc.jetty.FlsCommandScope;
-import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.equinox.io.FileFromBundle;
 import org.eclipse.passage.lic.internal.jetty.JettyHandler;
 import org.eclipse.passage.lic.internal.jetty.interaction.LicensedJettyActivator;
@@ -33,34 +29,10 @@ import org.osgi.framework.FrameworkUtil;
 @SuppressWarnings("restriction")
 public final class FlsJettyActivator extends LicensedJettyActivator {
 
-	private final FloatingState state;
 	private final Storage storage;
 
 	public FlsJettyActivator() {
 		this.storage = new Storage();
-		this.state = state();
-	}
-
-	private FloatingState state() {
-		Optional<FloatingState> mayBeState;
-		try {
-			mayBeState = new FlsGearAwre().withGear(this::state);
-		} catch (LicensingException e) {
-			e.printStackTrace();
-			mayBeState = Optional.empty();
-		}
-		if (!mayBeState.isPresent()) {
-			throw new IllegalStateException("FLS configuration error: Floating State is not supplied"); //$NON-NLS-1$
-		}
-		return mayBeState.get();
-	}
-
-	private Optional<FloatingState> state(FlsGear gear) {
-		Optional<Path> path = storage.get();
-		if (!path.isPresent()) {
-			throw new IllegalStateException("FLS configuration error: storage path is not supplied"); //$NON-NLS-1$
-		}
-		return Optional.ofNullable(gear.state(path::get));
 	}
 
 	@Override
@@ -70,6 +42,7 @@ public final class FlsJettyActivator extends LicensedJettyActivator {
 
 	@Override
 	protected JettyHandler handler() {
+		FloatingState state = new FloatingStateFromGear(storage.get()).get();
 		return new JettyHandler(request -> new FlotingRequestHandled(new StatedRequest(request, state)).get());
 	}
 

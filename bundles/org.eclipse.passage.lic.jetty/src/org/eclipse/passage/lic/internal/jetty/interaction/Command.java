@@ -37,6 +37,10 @@ public abstract class Command implements JettyCommands {
 		this(scope, names.toArray(new String[names.size()]));
 	}
 
+	public final Scope scope() {
+		return scope;
+	}
+
 	@Override
 	public final void register(BundleContext context) {
 		Hashtable<String, Object> properties = new Hashtable<>();

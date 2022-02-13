@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,11 +14,14 @@ package org.eclipse.passage.lbc.internal.base.api;
 
 import java.util.Optional;
 
+import org.eclipse.passage.lbc.internal.base.acquire.GrantsStorage;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
 
 public interface Grants {
+
+	GrantsStorage storage();
 
 	Optional<GrantAcqisition> acquire(LicensedProduct product, String user, String feature) throws LicensingException;
 
