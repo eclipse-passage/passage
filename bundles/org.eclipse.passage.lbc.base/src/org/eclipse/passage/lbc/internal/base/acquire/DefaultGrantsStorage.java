@@ -47,7 +47,7 @@ public abstract class DefaultGrantsStorage implements GrantsStorage {
 
 	@Override
 	public final Optional<GrantAcqisition> acquire(LicensedProduct product, String user, FeatureGrant grant) {
-		if (beforeAcquire()) {
+		if (!beforeAcquire()) {
 			logStateAlternationError("acquire: blocked by preliminary checks", grant, product); //$NON-NLS-1$
 			return Optional.empty();
 		}
@@ -64,8 +64,7 @@ public abstract class DefaultGrantsStorage implements GrantsStorage {
 				}
 			}
 		} finally {
-			boolean ok = afterAcquire();
-			if (!ok) {
+			if (!afterAcquire()) {
 				logStateAlternationError("acquire: blocked by post checks", grant, product); //$NON-NLS-1$
 				result = Optional.empty();
 			}
