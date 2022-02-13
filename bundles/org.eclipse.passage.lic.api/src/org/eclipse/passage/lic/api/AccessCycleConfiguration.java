@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api;
 
+import org.eclipse.passage.lic.api.acquire.ForsakenGrantsService;
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
@@ -64,5 +65,10 @@ public interface AccessCycleConfiguration {
 	HashesRegistry hashes();
 
 	AgreementAcceptanceService acceptance();
+
+	/**
+	 * @since 2.3
+	 */
+	ForsakenGrantsService forsakenGrants();
 
 }

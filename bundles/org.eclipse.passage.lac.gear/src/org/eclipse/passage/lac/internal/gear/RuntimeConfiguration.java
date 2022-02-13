@@ -20,6 +20,7 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.acquire.ForsakenGrantsService;
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
@@ -197,6 +198,11 @@ public final class RuntimeConfiguration implements AccessCycleConfiguration {
 
 	@Override
 	public AgreementAcceptanceService acceptance() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public ForsakenGrantsService forsakenGrants() {
 		throw new UnsupportedOperationException();
 	}
 
