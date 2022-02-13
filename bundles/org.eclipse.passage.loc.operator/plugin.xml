@@ -56,7 +56,7 @@
       <processor
             apply="always"
             beforefragment="false"
-            class="org.eclipse.passage.lic.internal.e4.ui.addons.E4LicensingProcessor">
+            class="org.eclipse.passage.lic.e4.ui.addons.E4LicensingProcessor">
       </processor>
    </extension>
 
