@@ -15,6 +15,12 @@
         </filter>
     </resource>
     <resource path="src/org/eclipse/passage/lic/api/AccessCycleConfiguration.java" type="org.eclipse.passage.lic.api.AccessCycleConfiguration">
+        <filter id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.api.AccessCycleConfiguration"/>
+                <message_argument value="forsakenGrants()"/>
+            </message_arguments>
+        </filter>
         <filter id="643842064">
             <message_arguments>
                 <message_argument value="AgreementAcceptanceService"/>

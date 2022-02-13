@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
+import org.eclipse.passage.lic.api.acquire.ForsakenGrantsService;
 import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
@@ -40,13 +41,15 @@ import org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages;
 final class Lock {
 
 	private final LicenseAcquisitionServicesRegistry acquirers;
+	private final ForsakenGrantsService forsaken;
 
-	Lock(LicenseAcquisitionServicesRegistry acquirers) {
+	Lock(LicenseAcquisitionServicesRegistry acquirers, ForsakenGrantsService forsaken) {
 		this.acquirers = acquirers;
+		this.forsaken = forsaken;
 	}
 
 	Lock(Framework framework) {
-		this(framework.accessCycleConfiguration().acquirers());
+		this(framework.accessCycleConfiguration().acquirers(), framework.accessCycleConfiguration().forsakenGrants());
 	}
 
 	/**
@@ -59,6 +62,7 @@ final class Lock {
 	 * @see LicenseAcquisitionService
 	 */
 	ServiceInvocationResult<GrantLockAttempt> lock(ExaminationCertificate certificate) {
+		forsaken.settle();
 		if (notPermissive(certificate)) {
 			return tentativeGrant(certificate);
 		}
@@ -89,7 +93,16 @@ final class Lock {
 		if (!acquirers.get().hasService(target)) {
 			return noService(Boolean.FALSE, target);
 		}
-		return acquirers.get().service(target).release(permission.product(), lock.grant());
+		ServiceInvocationResult<Boolean> response = acquirers.get().service(target)//
+				.release(permission.product(), lock.grant());
+		if (notReleased(response)) {
+			forsaken.takeCare(lock.grant());
+		}
+		return response;
+	}
+
+	private boolean notReleased(ServiceInvocationResult<Boolean> response) {
+		return response.data().isPresent() && !response.data().get();
 	}
 
 	private BaseServiceInvocationResult<GrantLockAttempt> noGrant(ExaminationCertificate certificate,
