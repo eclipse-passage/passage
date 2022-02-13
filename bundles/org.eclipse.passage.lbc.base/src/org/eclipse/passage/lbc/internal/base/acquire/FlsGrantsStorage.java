@@ -20,26 +20,19 @@ final class FlsGrantsStorage extends DefaultGrantsStorage {
 	private final String feature = "org.eclipse.passage.lbc.acquire.concurrent"; //$NON-NLS-1$
 
 	@Override
-	protected void beforeAcquire() {
-		checkFlsLicense();
-	}
-
-	// TODO: evolve LicenseRunnable to return a result, re-implement with proper
-	// grant acquisition
-	private void checkFlsLicense() {
-		if (!new EquinoxPassage().canUse(feature)) {
-			log.error(String.format("FLS feature %s is not covered by a license", feature)); //$NON-NLS-1$
-		}
-	}
-
-	@Override
 	protected int capacity(FeatureGrant grant) {
 		return new ProtectedGrantCapacity(grant).get();
 	}
 
 	@Override
-	protected void afterAcquire() {
-		// do nothing
+	protected boolean beforeAcquire() {
+		checkFlsLicense();
+		return true; // restriction level is 'info': we just report license absence
+	}
+
+	@Override
+	protected boolean afterAcquire() {
+		return true;
 	}
 
 	@Override
@@ -50,6 +43,16 @@ final class FlsGrantsStorage extends DefaultGrantsStorage {
 	@Override
 	protected void afterRelease() {
 		// do nothing
+	}
+
+	// TODO: evolve LicenseRunnable to return a result, re-implement with proper
+	// grant acquisition
+	private boolean checkFlsLicense() {
+		boolean canUse = new EquinoxPassage().canUse(feature);
+		if (!canUse) {
+			log.error(String.format("FLS feature %s is not covered by a license", feature)); //$NON-NLS-1$
+		}
+		return canUse;
 	}
 
 }

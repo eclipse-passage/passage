@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -37,6 +37,7 @@ import org.eclipse.passage.lic.licenses.model.transport.XmiConditionTransport;
 final class PassageFlsGear implements FlsGear {
 
 	private final Registry<StringServiceId, Hashes> hashes;
+	private EagerFloatingState state;
 
 	static final PassageFlsGear gear = new PassageFlsGear();
 
@@ -68,7 +69,14 @@ final class PassageFlsGear implements FlsGear {
 
 	@Override
 	public FloatingState state(Supplier<Path> storage) {
-		return new EagerFloatingState(storage);
+		if (state == null) {
+			synchronized (this) {
+				if (state == null) {
+					state = new EagerFloatingState(storage);
+				}
+			}
+		}
+		return state;
 	}
 
 }

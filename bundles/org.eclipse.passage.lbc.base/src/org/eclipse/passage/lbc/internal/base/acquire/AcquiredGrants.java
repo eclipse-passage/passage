@@ -48,6 +48,11 @@ public final class AcquiredGrants implements Grants {
 	}
 
 	@Override
+	public GrantsStorage storage() {
+		return storage;
+	}
+
+	@Override
 	public Optional<GrantAcqisition> acquire(LicensedProduct product, String user, String feature)
 			throws LicensingException {
 		Collection<FeatureGrant> grants = new FeatureGrants(product, user, feature, base).get();

@@ -18,7 +18,7 @@ import org.osgi.service.component.annotations.Component;
 
 @SuppressWarnings("restriction")
 @Component
-public class PassageFlsGearAvailable implements FlsGearSupplier {
+public final class PassageFlsGearAvailable implements FlsGearSupplier {
 
 	@Override
 	public FlsGear gear() {

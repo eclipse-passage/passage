@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -46,7 +47,11 @@ public abstract class DefaultGrantsStorage implements GrantsStorage {
 
 	@Override
 	public final Optional<GrantAcqisition> acquire(LicensedProduct product, String user, FeatureGrant grant) {
-		beforeAcquire();
+		if (beforeAcquire()) {
+			logStateAlternationError("acquire: blocked by preliminary checks", grant, product); //$NON-NLS-1$
+			return Optional.empty();
+		}
+		Optional<GrantAcqisition> result = Optional.empty();
 		try {
 			final int capacity = capacity(grant);
 			synchronized (this) {
@@ -55,13 +60,17 @@ public abstract class DefaultGrantsStorage implements GrantsStorage {
 					GrantAcqisition acquistion = acquistion(grant, user);
 					acquisitions.add(acquistion);
 					logStateAlternation("acquire", acquistion, product); //$NON-NLS-1$
-					return Optional.of(acquistion);
+					result = Optional.of(acquistion);
 				}
 			}
 		} finally {
-			afterAcquire();
+			boolean ok = afterAcquire();
+			if (!ok) {
+				logStateAlternationError("acquire: blocked by post checks", grant, product); //$NON-NLS-1$
+				result = Optional.empty();
+			}
 		}
-		return Optional.empty();
+		return result;
 	}
 
 	@Override
@@ -81,12 +90,13 @@ public abstract class DefaultGrantsStorage implements GrantsStorage {
 		} finally {
 			afterRelease();
 		}
+		logStateAlternationError("release: failed as grant was not acquired", acquisition, product); //$NON-NLS-1$
 		return false;
 	}
 
-	protected abstract void beforeAcquire();
+	protected abstract boolean beforeAcquire();
 
-	protected abstract void afterAcquire();
+	protected abstract boolean afterAcquire();
 
 	protected abstract void beforeRelease();
 
@@ -117,13 +127,30 @@ public abstract class DefaultGrantsStorage implements GrantsStorage {
 	}
 
 	private void logStateAlternation(String operation, GrantAcqisition grant, LicensedProduct product) {
-		log.debug(String.format("|%s| acquisiiton [%s] for user %s on feature %s product %s v%s", //$NON-NLS-1$
+		logStateAlternation(operation, grant, product, log::debug);
+	}
+
+	private void logStateAlternationError(String operation, GrantAcqisition grant, LicensedProduct product) {
+		logStateAlternation(operation, grant, product, log::error);
+	}
+
+	private void logStateAlternationError(String message, FeatureGrant grant, LicensedProduct product) {
+		log.error(String.format("|%s|: grant [%s] on feature %s product %s v%s", //$NON-NLS-1$
+				message, //
+				grant.getIdentifier(), //
+				grant.getFeature(), //
+				product.identifier(), //
+				product.version()));
+	}
+
+	private void logStateAlternation(String operation, GrantAcqisition grant, LicensedProduct product,
+			Consumer<String> logging) {
+		logging.accept(String.format("|%s| acquisition [%s] for user %s on feature %s product %s v%s", //$NON-NLS-1$
 				operation, //
 				grant.getIdentifier(), //
 				grant.getUser(), //
 				grant.getFeature(), //
 				product.identifier(), //
 				product.version()));
-
 	}
 }
