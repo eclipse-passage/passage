@@ -33,6 +33,6 @@ public interface FlsGear extends Gear {
 
 	ConditionTransport transport(ContentType contentType);
 
-	FloatingState freshState(Supplier<Path> storage);
+	FloatingState state(Supplier<Path> storage);
 
 }

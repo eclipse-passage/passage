@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2021, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -23,12 +23,11 @@ import java.util.UUID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lic.api.LicensedProduct;
-import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 
-final class AcquiredGrantsStorage {
+public abstract class DefaultGrantsStorage implements GrantsStorage {
 
 	/**
 	 * <p>
@@ -42,50 +41,58 @@ final class AcquiredGrantsStorage {
 	 * own collection of {@code acquisitions}
 	 * </p>
 	 */
-	private final Map<LicensedProduct, Map<String, Collection<GrantAcqisition>>> locks = new HashMap<>();
-	private final String feature = "org.eclipse.passage.lbc.acquire.concurrent"; //$NON-NLS-1$
-	private final Logger log = LogManager.getLogger(getClass());
+	protected final Map<LicensedProduct, Map<String, Collection<GrantAcqisition>>> locks = new HashMap<>();
+	protected final Logger log = LogManager.getLogger(getClass());
 
-	AcquiredGrantsStorage() {
-		synchronized (this) {
-			// TODO: read locks from persistent state #569158
-		}
-	}
-
-	Optional<GrantAcqisition> acquire(LicensedProduct product, String user, FeatureGrant grant) {
-		checkFlsLicense();
-		final int capacity = new ProtectedGrantCapacity(grant).get();
-		synchronized (this) {
-			Collection<GrantAcqisition> acquisitions = grantLocks(product, grant.getIdentifier());
-			if (acquisitions.size() < capacity) {
-				GrantAcqisition acquistion = acquistion(grant, user);
-				acquisitions.add(acquistion);
-				logAcquisition("acquire", acquistion, product); //$NON-NLS-1$
-				return Optional.of(acquistion);
+	@Override
+	public final Optional<GrantAcqisition> acquire(LicensedProduct product, String user, FeatureGrant grant) {
+		beforeAcquire();
+		try {
+			final int capacity = capacity(grant);
+			synchronized (this) {
+				Collection<GrantAcqisition> acquisitions = grantLocks(product, grant.getIdentifier());
+				if (acquisitions.size() < capacity) {
+					GrantAcqisition acquistion = acquistion(grant, user);
+					acquisitions.add(acquistion);
+					logStateAlternation("acquire", acquistion, product); //$NON-NLS-1$
+					return Optional.of(acquistion);
+				}
 			}
+		} finally {
+			afterAcquire();
 		}
 		return Optional.empty();
 	}
 
-	// TODO: evolve LicenseRunnable to return a result, re-implement with proper
-	// grant acquisition
-	private void checkFlsLicense() {
-		if (!new EquinoxPassage().canUse(feature)) {
-			log.error(String.format("FLS feature %s is not covered by a license", feature)); //$NON-NLS-1$
-		}
-	}
-
-	synchronized boolean release(LicensedProduct product, GrantAcqisition acquisition) {
-		Collection<GrantAcqisition> colleagues = grantLocks(product, acquisition.getGrant());
-		for (GrantAcqisition colleage : colleagues) {
-			if (matches(colleage, acquisition)) {
-				colleagues.remove(colleage);
-				logAcquisition("release", colleage, product); //$NON-NLS-1$
-				return true;
+	@Override
+	public final boolean release(LicensedProduct product, GrantAcqisition acquisition) {
+		beforeRelease();
+		try {
+			synchronized (this) {
+				Collection<GrantAcqisition> colleagues = grantLocks(product, acquisition.getGrant());
+				for (GrantAcqisition colleage : colleagues) {
+					if (matches(colleage, acquisition)) {
+						colleagues.remove(colleage);
+						logStateAlternation("release", colleage, product); //$NON-NLS-1$
+						return true;
+					}
+				}
 			}
+		} finally {
+			afterRelease();
 		}
 		return false;
 	}
+
+	protected abstract void beforeAcquire();
+
+	protected abstract void afterAcquire();
+
+	protected abstract void beforeRelease();
+
+	protected abstract void afterRelease();
+
+	protected abstract int capacity(FeatureGrant grant);
 
 	private boolean matches(GrantAcqisition actual, GrantAcqisition expected) {
 		return actual.getIdentifier().equals(expected.getIdentifier());
@@ -109,7 +116,7 @@ final class AcquiredGrantsStorage {
 		return locks.computeIfAbsent(product, p -> new HashMap<String, Collection<GrantAcqisition>>());
 	}
 
-	private void logAcquisition(String operation, GrantAcqisition grant, LicensedProduct product) {
+	private void logStateAlternation(String operation, GrantAcqisition grant, LicensedProduct product) {
 		log.debug(String.format("|%s| acquisiiton [%s] for user %s on feature %s product %s v%s", //$NON-NLS-1$
 				operation, //
 				grant.getIdentifier(), //
