@@ -30,12 +30,10 @@ import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
 final class Residence {
 
 	private final Path file;
-	private int amount;
 	private final Logger log = LogManager.getLogger(getClass());
 
 	Residence(Supplier<Path> srotage) {
 		this.file = srotage.get().resolve("forsaken-grants.bin"); //$NON-NLS-1$
-		this.amount = 0;
 	}
 
 	List<GrantAcquisition> read() {
@@ -55,7 +53,6 @@ final class Residence {
 	private void rawWrite(List<GrantAcquisition> grants) throws Exception {
 		checkFile();
 		try (ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(file.toFile()))) {
-			this.amount = grants.size();
 			stream.writeInt(grants.size());
 			for (GrantAcquisition grant : grants) {
 				stream.writeObject(grant);
@@ -66,8 +63,8 @@ final class Residence {
 
 	private void rawRead(List<GrantAcquisition> grants) throws Exception {
 		try (ObjectInputStream stream = new ObjectInputStream(new FileInputStream(file.toFile()))) {
-			this.amount = stream.readInt();
-			for (int i = 0; i < this.amount; i++) {
+			int amount = stream.readInt();
+			for (int i = 0; i < amount; i++) {
 				grants.add((GrantAcquisition) stream.readObject());
 			}
 		}
