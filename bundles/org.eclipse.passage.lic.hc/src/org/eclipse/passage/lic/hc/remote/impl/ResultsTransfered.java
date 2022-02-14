@@ -37,8 +37,10 @@ public final class ResultsTransfered {
 		code = connection.code();
 		message = connection.message();
 		contentType = connection.contentType();
-		data = connection.payload(); // should be eager
 		successful = connection.successful();
+		data = successful //
+				? connection.payload() // should be eager
+				: new byte[0];
 	}
 
 	public ContentType contentType() {
