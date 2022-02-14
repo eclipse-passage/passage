@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
-import org.eclipse.passage.lic.api.acquire.ForsakenGrantsService;
 import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
+import org.eclipse.passage.lic.api.acquire.GrantsTraceService;
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
@@ -41,15 +41,15 @@ import org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages;
 final class Lock {
 
 	private final LicenseAcquisitionServicesRegistry acquirers;
-	private final ForsakenGrantsService forsaken;
+	private final GrantsTraceService traces;
 
-	Lock(LicenseAcquisitionServicesRegistry acquirers, ForsakenGrantsService forsaken) {
+	Lock(LicenseAcquisitionServicesRegistry acquirers, GrantsTraceService traces) {
 		this.acquirers = acquirers;
-		this.forsaken = forsaken;
+		this.traces = traces;
 	}
 
 	Lock(Framework framework) {
-		this(framework.accessCycleConfiguration().acquirers(), framework.accessCycleConfiguration().forsakenGrants());
+		this(framework.accessCycleConfiguration().acquirers(), framework.accessCycleConfiguration().grantsTrace());
 	}
 
 	/**
@@ -62,7 +62,6 @@ final class Lock {
 	 * @see LicenseAcquisitionService
 	 */
 	ServiceInvocationResult<GrantLockAttempt> lock(ExaminationCertificate certificate) {
-		forsaken.settle();
 		if (notPermissive(certificate)) {
 			return tentativeGrant(certificate);
 		}
@@ -78,6 +77,7 @@ final class Lock {
 					? tentativeGrant(certificate) //
 					: noGrant(certificate, grant);
 		}
+		traces.trace(grant.data().get());
 		return grant(certificate, grant.data().get(), grant.diagnostic());
 	}
 
@@ -95,14 +95,10 @@ final class Lock {
 		}
 		ServiceInvocationResult<Boolean> response = acquirers.get().service(target)//
 				.release(permission.product(), lock.grant());
-		if (notReleased(response)) {
-			forsaken.takeCare(lock.grant());
+		if (new GrantReleased().test(response)) {
+			traces.forget(lock.grant());
 		}
 		return response;
-	}
-
-	private boolean notReleased(ServiceInvocationResult<Boolean> response) {
-		return response.data().isPresent() && !response.data().get();
 	}
 
 	private BaseServiceInvocationResult<GrantLockAttempt> noGrant(ExaminationCertificate certificate,

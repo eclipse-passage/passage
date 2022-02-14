@@ -21,22 +21,20 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
-import org.eclipse.passage.lic.base.io.LicensingFolder;
-import org.eclipse.passage.lic.base.io.UserHomePath;
 
 final class Residence {
 
 	private final Path file;
-	private int amount;
 	private final Logger log = LogManager.getLogger(getClass());
 
-	Residence() {
-		this.file = new LicensingFolder(new UserHomePath()).get().resolve("forsaken-grants.bin"); //$NON-NLS-1$
-		this.amount = 0;
+	Residence(Supplier<Path> srotage) {
+		this.file = srotage.get().resolve("forsaken-grants.bin"); //$NON-NLS-1$
 	}
 
 	List<GrantAcquisition> read() {
@@ -56,7 +54,6 @@ final class Residence {
 	private void rawWrite(List<GrantAcquisition> grants) throws Exception {
 		checkFile();
 		try (ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(file.toFile()))) {
-			this.amount = grants.size();
 			stream.writeInt(grants.size());
 			for (GrantAcquisition grant : grants) {
 				stream.writeObject(grant);
@@ -67,8 +64,8 @@ final class Residence {
 
 	private void rawRead(List<GrantAcquisition> grants) throws Exception {
 		try (ObjectInputStream stream = new ObjectInputStream(new FileInputStream(file.toFile()))) {
-			this.amount = stream.readInt();
-			for (int i = 0; i < this.amount; i++) {
+			int amount = stream.readInt();
+			for (int i = 0; i < amount; i++) {
 				grants.add((GrantAcquisition) stream.readObject());
 			}
 		}
@@ -86,22 +83,40 @@ final class Residence {
 	}
 
 	private boolean notWrittenYet() {
-		return !Files.exists(file) || !Files.isReadable(file);
+		return !Files.exists(file) || !Files.isRegularFile(file);
 	}
 
 	private void checkFile() {
-		if (!Files.isRegularFile(file)) {
-			log.error(String.format(
-					"Forsaken grant residence will constantly fail to operate: residence file [%s] is directory", //$NON-NLS-1$
-					file.toAbsolutePath()));
+		if (Files.exists(file)) {
+			List<String> message = new ArrayList<>();
+			if (!Files.isRegularFile(file)) {
+				message.add("directory");//$NON-NLS-1$
+			}
+			if (!Files.isReadable(file)) {
+				message.add("not readable");//$NON-NLS-1$
+			}
+			if (!Files.isWritable(file)) {
+				message.add("not writable");//$NON-NLS-1$
+			}
+			if (!message.isEmpty()) {
+				log.error(String.format(
+						"Forsaken grant residence will constantly fail to operate: residence file [%s] is %s", //$NON-NLS-1$
+						file.toAbsolutePath(), message.stream().collect(Collectors.joining(", ")))); //$NON-NLS-1$
+			}
 		}
-		if (!Files.exists(file.getParent())) {
+		Path owner = file.getParent();
+		if (!Files.exists(owner)) {
 			boolean successful = file.toFile().mkdirs();
 			if (!successful) {
 				log.error(String.format(
 						"Forsaken grant residence will constantly fail to operate: failed to create folder structure [%s]", //$NON-NLS-1$
 						file.toAbsolutePath()));
 			}
+		} else if (!Files.isExecutable(owner)) {
+			log.error(String.format(
+					"Forsaken grant residence will constantly fail to operate: folder [%s] is not executable", //$NON-NLS-1$
+					owner.toAbsolutePath()));
+
 		}
 	}
 

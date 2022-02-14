@@ -30,7 +30,7 @@ final class Storage {
 		}
 	}
 
-	void oneMoreLeftBehind(GrantAcquisition grant) {
+	void keep(GrantAcquisition grant) {
 		synchronized (grants) {
 			if (notYetSpotted(grant)) {
 				grants.add(grant);
@@ -44,7 +44,7 @@ final class Storage {
 		}
 	}
 
-	List<GrantAcquisition> forsaken() {
+	List<GrantAcquisition> active() {
 		List<GrantAcquisition> all = new ArrayList<>();
 		synchronized (grants) {
 			all.addAll(grants);

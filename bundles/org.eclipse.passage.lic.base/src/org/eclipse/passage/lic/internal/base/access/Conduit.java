@@ -21,6 +21,7 @@ import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
+import org.eclipse.passage.lic.base.access.GrantReleased;
 
 final class Conduit {
 
@@ -49,14 +50,11 @@ final class Conduit {
 		LicensedProduct licproduct = product.get();
 		for (LicenseAcquisitionService service : acquirers.get().get().services()) {
 			ServiceInvocationResult<Boolean> result = service.release(licproduct, grant);
-			if (released(result)) {
+			if (new GrantReleased().test(result)) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	private boolean released(ServiceInvocationResult<Boolean> response) {
-		return response.data().isPresent() && response.data().get();
-	}
 }

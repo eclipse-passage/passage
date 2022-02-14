@@ -18,7 +18,7 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.api.LicensedProduct;
-import org.eclipse.passage.lic.api.acquire.ForsakenGrantsService;
+import org.eclipse.passage.lic.api.acquire.GrantsTraceService;
 import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationService;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
@@ -57,9 +57,10 @@ import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.base.restrictions.BasePermissionsExaminationService;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
 import org.eclipse.passage.lic.equinox.io.BundleKeyKeeper;
+import org.eclipse.passage.lic.equinox.io.ConfigurationPath;
 import org.eclipse.passage.lic.equinox.requirements.BundleRequirements;
 import org.eclipse.passage.lic.equinox.requirements.ComponentRequirements;
-import org.eclipse.passage.lic.internal.base.access.UnreleasedGrantsService;
+import org.eclipse.passage.lic.internal.base.access.StoringGrantTraceService;
 import org.eclipse.passage.lic.licenses.model.transport.XmiConditionTransport;
 import org.eclipse.passage.lic.oshi.HardwareAssessmentService;
 import org.eclipse.passage.lic.oshi.HardwareEnvironment;
@@ -80,7 +81,7 @@ public abstract class BaseAccessCycleConfiguration implements AccessCycleConfigu
 	private final Registry<EvaluationType, RuntimeEnvironment> environments;
 	private final Registry<StringServiceId, PermissionsExaminationService> examinators;
 	private final AgreementAcceptanceService acceptance;
-	private final ForsakenGrantsService forsakenGrants;
+	private final GrantsTraceService forsakenGrants;
 
 	protected BaseAccessCycleConfiguration(Supplier<LicensedProduct> product, Supplier<Bundle> bundle) {
 		requirements = new ReadOnlyRegistry<>(Arrays.asList(//
@@ -117,7 +118,7 @@ public abstract class BaseAccessCycleConfiguration implements AccessCycleConfigu
 		));
 		acceptance = new BaseAgreementAcceptanceService(hashes(), product);
 		examinators = new ReadOnlyRegistry<>(new BasePermissionsExaminationService(acceptance, product));
-		forsakenGrants = new UnreleasedGrantsService(product, this::acquirers);
+		forsakenGrants = new StoringGrantTraceService(product, new ConfigurationPath(), this::acquirers);
 	}
 
 	@Override
@@ -186,7 +187,7 @@ public abstract class BaseAccessCycleConfiguration implements AccessCycleConfigu
 	}
 
 	@Override
-	public ForsakenGrantsService forsakenGrants() {
+	public GrantsTraceService grantsTrace() {
 		return forsakenGrants;
 	}
 

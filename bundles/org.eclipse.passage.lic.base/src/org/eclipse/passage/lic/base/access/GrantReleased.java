@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2022 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,15 +10,20 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.acquire;
+package org.eclipse.passage.lic.base.access;
+
+import java.util.function.Predicate;
+
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
 
 /**
  * @since 2.3
  */
-public interface ForsakenGrantsService {
+public final class GrantReleased implements Predicate<ServiceInvocationResult<Boolean>> {
 
-	void takeCare(GrantAcquisition grant);
-
-	void settle();
+	@Override
+	public boolean test(ServiceInvocationResult<Boolean> response) {
+		return response.data().isPresent() && response.data().get();
+	}
 
 }

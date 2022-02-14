@@ -18,7 +18,7 @@
         <filter id="403804204">
             <message_arguments>
                 <message_argument value="org.eclipse.passage.lic.api.AccessCycleConfiguration"/>
-                <message_argument value="forsakenGrants()"/>
+                <message_argument value="grantsTrace()"/>
             </message_arguments>
         </filter>
         <filter id="643842064">
