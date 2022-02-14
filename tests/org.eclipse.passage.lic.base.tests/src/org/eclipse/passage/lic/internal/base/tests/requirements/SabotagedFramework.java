@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import org.eclipse.passage.lic.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.LicensedProduct;
-import org.eclipse.passage.lic.api.acquire.ForsakenGrantsService;
+import org.eclipse.passage.lic.api.acquire.GrantsTraceService;
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
@@ -136,7 +136,7 @@ final class SabotagedFramework implements Framework {
 		}
 
 		@Override
-		public ForsakenGrantsService forsakenGrants() {
+		public GrantsTraceService grantsTrace() {
 			return null;
 		}
 

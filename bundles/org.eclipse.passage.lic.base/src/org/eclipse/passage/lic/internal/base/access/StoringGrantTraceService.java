@@ -13,20 +13,22 @@
 package org.eclipse.passage.lic.internal.base.access;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
-import org.eclipse.passage.lic.api.acquire.ForsakenGrantsService;
 import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
+import org.eclipse.passage.lic.api.acquire.GrantsTraceService;
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
 
-public final class UnreleasedGrantsService implements ForsakenGrantsService {
+public final class StoringGrantTraceService implements GrantsTraceService {
 
 	private final Residence residence;
 	private final Storage storage;
 	private final Conduit conduit;
+	private final AtomicBoolean fresh = new AtomicBoolean(true);
 
-	public UnreleasedGrantsService(Supplier<LicensedProduct> product,
+	public StoringGrantTraceService(Supplier<LicensedProduct> product,
 			Supplier<LicenseAcquisitionServicesRegistry> acquirers) {
 		this.residence = new Residence();
 		this.storage = new Storage(residence.read());
@@ -34,18 +36,28 @@ public final class UnreleasedGrantsService implements ForsakenGrantsService {
 	}
 
 	@Override
-	public synchronized void takeCare(GrantAcquisition grant) {
+	public synchronized void trace(GrantAcquisition grant) {
+		if (fresh.getAndSet(false)) {
+			releaseForsaken();
+		}
 		synchronized (storage) {
-			storage.oneMoreLeftBehind(grant);
-			residence.write(storage.forsaken());
+			storage.keep(grant);
+			residence.write(storage.active());
 		}
 	}
 
 	@Override
-	public void settle() {
+	public synchronized void forget(GrantAcquisition grant) {
+		synchronized (storage) {
+			storage.forget(grant);
+			residence.write(storage.active());
+		}
+	}
+
+	private void releaseForsaken() {
 		List<GrantAcquisition> forsaken;
 		synchronized (storage) {
-			forsaken = storage.forsaken(); // fresh copy
+			forsaken = storage.active(); // fresh copy
 		}
 		conduit.release(forsaken);
 	}
