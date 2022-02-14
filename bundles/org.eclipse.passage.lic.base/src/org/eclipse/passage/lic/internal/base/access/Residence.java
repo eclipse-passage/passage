@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -82,22 +83,40 @@ final class Residence {
 	}
 
 	private boolean notWrittenYet() {
-		return !Files.exists(file) || !Files.isReadable(file);
+		return !Files.exists(file) || !Files.isRegularFile(file);
 	}
 
 	private void checkFile() {
-		if (Files.exists(file) && !Files.isRegularFile(file)) {
-			log.error(String.format(
-					"Forsaken grant residence will constantly fail to operate: residence file [%s] is directory", //$NON-NLS-1$
-					file.toAbsolutePath()));
+		if (Files.exists(file)) {
+			List<String> message = new ArrayList<>();
+			if (!Files.isRegularFile(file)) {
+				message.add("directory");//$NON-NLS-1$
+			}
+			if (!Files.isReadable(file)) {
+				message.add("not readable");//$NON-NLS-1$
+			}
+			if (!Files.isWritable(file)) {
+				message.add("not writable");//$NON-NLS-1$
+			}
+			if (!message.isEmpty()) {
+				log.error(String.format(
+						"Forsaken grant residence will constantly fail to operate: residence file [%s] is %s", //$NON-NLS-1$
+						file.toAbsolutePath(), message.stream().collect(Collectors.joining(", ")))); //$NON-NLS-1$
+			}
 		}
-		if (!Files.exists(file.getParent())) {
+		Path owner = file.getParent();
+		if (!Files.exists(owner)) {
 			boolean successful = file.toFile().mkdirs();
 			if (!successful) {
 				log.error(String.format(
 						"Forsaken grant residence will constantly fail to operate: failed to create folder structure [%s]", //$NON-NLS-1$
 						file.toAbsolutePath()));
 			}
+		} else if (!Files.isExecutable(owner)) {
+			log.error(String.format(
+					"Forsaken grant residence will constantly fail to operate: folder [%s] is not executable", //$NON-NLS-1$
+					owner.toAbsolutePath()));
+
 		}
 	}
 
