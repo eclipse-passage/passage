@@ -89,7 +89,7 @@ final class Residence {
 	}
 
 	private void checkFile() {
-		if (!Files.isRegularFile(file)) {
+		if (Files.exists(file) && !Files.isRegularFile(file)) {
 			log.error(String.format(
 					"Forsaken grant residence will constantly fail to operate: residence file [%s] is directory", //$NON-NLS-1$
 					file.toAbsolutePath()));
