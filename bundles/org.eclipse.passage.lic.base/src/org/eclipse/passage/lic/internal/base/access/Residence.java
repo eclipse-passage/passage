@@ -21,12 +21,11 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
-import org.eclipse.passage.lic.base.io.LicensingFolder;
-import org.eclipse.passage.lic.base.io.UserHomePath;
 
 final class Residence {
 
@@ -34,8 +33,8 @@ final class Residence {
 	private int amount;
 	private final Logger log = LogManager.getLogger(getClass());
 
-	Residence() {
-		this.file = new LicensingFolder(new UserHomePath()).get().resolve("forsaken-grants.bin"); //$NON-NLS-1$
+	Residence(Supplier<Path> srotage) {
+		this.file = srotage.get().resolve("forsaken-grants.bin"); //$NON-NLS-1$
 		this.amount = 0;
 	}
 

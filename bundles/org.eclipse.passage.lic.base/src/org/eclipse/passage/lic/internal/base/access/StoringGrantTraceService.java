@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.access;
 
+import java.nio.file.Path;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
@@ -28,9 +29,9 @@ public final class StoringGrantTraceService implements GrantsTraceService {
 	private final Conduit conduit;
 	private final AtomicBoolean fresh = new AtomicBoolean(true);
 
-	public StoringGrantTraceService(Supplier<LicensedProduct> product,
+	public StoringGrantTraceService(Supplier<LicensedProduct> product, Supplier<Path> srotage,
 			Supplier<LicenseAcquisitionServicesRegistry> acquirers) {
-		this.residence = new Residence();
+		this.residence = new Residence(srotage);
 		this.storage = new Storage(residence.read());
 		this.conduit = new Conduit(product, acquirers);
 	}
