@@ -89,7 +89,7 @@ final class Residence {
 	private void checkFile() {
 		if (Files.exists(file)) {
 			List<String> message = new ArrayList<>();
-			if (!Files.isRegularFile(file)) {
+			if (Files.isDirectory(file)) {
 				message.add("directory");//$NON-NLS-1$
 			}
 			if (!Files.isReadable(file)) {

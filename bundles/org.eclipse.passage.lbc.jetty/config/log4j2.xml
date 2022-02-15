@@ -40,11 +40,13 @@
 
 	<Loggers>
 
-		<Root level="debug">
+		<Root level="error">
 			<AppenderRef ref="ToSysOut" />
-			<AppenderRef ref="ToFile" />
 		</Root>
-		
+		<Logger name="org.eclipse.passage">
+			<AppenderRef ref="ToFile" />
+		</Logger>
+
 	</Loggers>
 
 </Configuration>

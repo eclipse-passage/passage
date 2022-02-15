@@ -44,7 +44,7 @@ final class Storage {
 		}
 	}
 
-	List<GrantAcquisition> active() {
+	List<GrantAcquisition> grants() {
 		List<GrantAcquisition> all = new ArrayList<>();
 		synchronized (grants) {
 			all.addAll(grants);
