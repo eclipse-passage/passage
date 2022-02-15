@@ -49,12 +49,19 @@ final class FeatureGrants {
 	 */
 	Collection<FeatureGrant> get() {
 		try {
-			return new FlsGearAwre()//
-					.withGear(gear -> Optional.of(get(gear)))//
-					.orElse(failedOnGathering());
+			// Here empty optional and empty collection have different semantics:
+			// No value: FlsGear is broken, severe
+			// Empty collection: no free grants, regular state
+			Optional<Collection<FeatureGrant>> grants = new FlsGearAwre().withGear(this::grants);
+			return grants.orElseGet(this::failedOnGathering);
 		} catch (LicensingException e) {
 			return exceptionOnGathering(e);
 		}
+	}
+
+	private Optional<Collection<FeatureGrant>> grants(FlsGear gear) {
+		Collection<FeatureGrant> grants = get(gear);
+		return Optional.of(grants);
 	}
 
 	private Collection<FeatureGrant> failedOnGathering() {

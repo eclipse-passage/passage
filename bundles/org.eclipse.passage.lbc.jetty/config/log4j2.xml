@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-	Copyright (c) 2021 ArSysOp 
-
-	This program and the accompanying materials are made available under the
-	terms of the Eclipse Public License 2.0 which is available at
-	https://www.eclipse.org/legal/epl-2.0/.
-
-	SPDX-License-Identifier: EPL-2.0
-
-	Contributors:
-		ArSysOp - initial API and implementation
--->
+<!-- Copyright (c) 2021 ArSysOp This program and the accompanying materials 
+	are made available under the terms of the Eclipse Public License 2.0 which 
+	is available at https://www.eclipse.org/legal/epl-2.0/. SPDX-License-Identifier: 
+	EPL-2.0 Contributors: ArSysOp - initial API and implementation -->
 
 <Configuration status="DEBUG"
 	packages="org.eclipse.passage.lbc.internal.base,org.eclipse.passage.lbc.internal.jetty,org.eclipse.passage.lic.internal.jetty,org.eclipse.passage.lic.internal.net,org.apache.logging.log4j2,org.eclipse">
@@ -40,11 +32,13 @@
 
 	<Loggers>
 
-		<Root level="debug">
+		<Root level="error">
 			<AppenderRef ref="ToSysOut" />
-			<AppenderRef ref="ToFile" />
 		</Root>
-		
+		<Logger name="org.eclipse.passage">
+			<AppenderRef ref="ToFile" />
+		</Logger>
+
 	</Loggers>
 
 </Configuration>
