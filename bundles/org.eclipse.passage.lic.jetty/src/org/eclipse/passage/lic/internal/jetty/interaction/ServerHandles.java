@@ -62,7 +62,8 @@ final class ServerHandles extends Command {
 
 	public void state() {
 		try {
-			System.out.println(server.state());
+			String where = port.get().map(i -> i.toString()).orElse("-"); //$NON-NLS-1$
+			System.out.println(server.state() + " on port " + where); //$NON-NLS-1$
 		} catch (JettyException e) {
 			log.error("failed to report state of Jetty server", e); //$NON-NLS-1$
 		}
