@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -22,6 +22,7 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
 import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.equinox.app.IApplicationContext;
@@ -102,7 +103,7 @@ public class LocWokbench {
 			return;
 		}
 		switchPerspective(eclipseContext, perspectiveId);
-		ServiceInvocationResult<Boolean> source = registry.registerSource(selected);
+		ServiceInvocationResult<Boolean> source = registry.registerSource(URI.createFileURI(selected));
 		if (!new NoErrors().test(source.diagnostic())) {
 			new DiagnosticDialog(shell, source.diagnostic()).open();
 		}
