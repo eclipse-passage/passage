@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -18,6 +18,13 @@ import java.util.Optional;
  * @since 1.1
  */
 public final class Port extends CliParameter<Integer> {
+
+	/**
+	 * @since 2.3
+	 */
+	public Port() {
+		super(8090);
+	}
 
 	public Port(int lazy) {
 		super(lazy);
