@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -36,7 +36,7 @@ public final class UnregisterUri implements Consumer<URI> {
 				.flatMap(e -> access.domainRegistryForExtension(e))//
 				.filter(EditingDomainRegistry.class::isInstance)//
 				.map(EditingDomainRegistry.class::cast)//
-				.ifPresent(r -> r.unregisterSource(uri.toFileString()));
+				.ifPresent(r -> r.unregisterSource(uri));
 	}
 
 }

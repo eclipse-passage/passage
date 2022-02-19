@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -20,6 +20,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.BasicCommandStack;
@@ -48,7 +49,7 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 
 	private AdapterFactoryEditingDomain editingDomain;
 
-	private final List<String> sources = new ArrayList<>();
+	private final List<URI> sources = new ArrayList<>();
 
 	private EContentAdapter contentAdapter;
 
@@ -74,6 +75,7 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 				return;
 			}
 			Files.readAllLines(domainPath).stream()//
+					.map(URI::createURI)//
 					.map(this::registerSource)//
 					.map(ServiceInvocationResult::diagnostic)//
 					.filter(new NoErrors().negate())//
@@ -102,10 +104,12 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 			if (!Files.exists(domainPath)) {
 				Files.createFile(domainPath);
 			}
-			Files.write(domainPath, sources);
+			List<String> strings = sources.stream()//
+					.map(URI::toString)//
+					.collect(Collectors.toList());
+			Files.write(domainPath, strings);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Platform.getLog(getClass()).error(e.getMessage(), e);
 		}
 	}
 
@@ -122,8 +126,7 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 		return new HashMap<>();
 	}
 
-	public ServiceInvocationResult<Boolean> loadSource(String source) {
-		URI uri = createURI(source);
+	public ServiceInvocationResult<Boolean> loadSource(URI uri) {
 		ResourceSet set = editingDomain.getResourceSet();
 		Resource resource = createResource(uri);
 		set.getResources().add(resource);
@@ -133,38 +136,33 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 			return new BaseServiceInvocationResult<>(true);
 		} catch (IOException e) {
 			return new BaseServiceInvocationResult<>(new Trouble(//
-					new ResourceLoadFailed(), NLS.bind(EmfMessages.BaseDomainRegistry_e_load_failed, source), e));
+					new ResourceLoadFailed(), NLS.bind(EmfMessages.BaseDomainRegistry_e_load_failed, uri), e));
 		}
 	}
 
 	protected abstract Resource createResource(URI uri);
 
-	public void unloadSource(String source) {
-		URI uri = createURI(source);
+	public void unloadSource(URI uri) {
 		ResourceSet resourceSet = editingDomain.getResourceSet();
 		Resource resource = resourceSet.getResource(uri, false);
 		resource.unload();
 		resourceSet.getResources().remove(resource);
 	}
 
-	protected URI createURI(String source) {
-		return URI.createFileURI(source);
+	@Override
+	public ServiceInvocationResult<Boolean> registerSource(URI uri) {
+		sources.add(uri);
+		return loadSource(uri);
 	}
 
 	@Override
-	public ServiceInvocationResult<Boolean> registerSource(String source) {
-		sources.add(source);
-		return loadSource(source);
+	public void unregisterSource(URI uri) {
+		sources.remove(uri);
+		unloadSource(uri);
 	}
 
 	@Override
-	public void unregisterSource(String source) {
-		sources.remove(source);
-		unloadSource(source);
-	}
-
-	@Override
-	public Iterable<String> getSources() {
+	public List<URI> getSources() {
 		return Collections.unmodifiableList(sources);
 	}
 
