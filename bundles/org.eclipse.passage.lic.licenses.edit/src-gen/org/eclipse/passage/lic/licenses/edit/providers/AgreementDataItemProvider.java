@@ -197,7 +197,7 @@ public class AgreementDataItemProvider extends ItemProviderAdapter implements IE
 	public Object getImage(Object object) {
 		try {
 			return overlayImage(object,
-					new URL("platform:/plugin/org.eclipse.passage.lic.agreements.edit/full/obj16/agreement.png")); //$NON-NLS-1$
+					new URL("platform:/plugin/org.eclipse.passage.lic.agreements.edit/icons/full/obj16/agreement.png")); //$NON-NLS-1$
 		} catch (MalformedURLException e) {
 			return overlayImage(object, getResourceLocator().getImage("full/obj16/license.png")); //$NON-NLS-1$
 		}
