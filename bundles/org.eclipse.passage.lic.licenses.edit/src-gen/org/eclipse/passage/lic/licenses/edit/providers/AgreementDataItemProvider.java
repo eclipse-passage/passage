@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.edit.providers;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Collection;
 import java.util.List;
 
@@ -193,8 +195,12 @@ public class AgreementDataItemProvider extends ItemProviderAdapter implements IE
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object,
-				getResourceLocator().getImage("../org.eclipse.passage.lic.agreements.edit/full/obj16/agreement.png")); //$NON-NLS-1$
+		try {
+			return overlayImage(object,
+					new URL("platform:/plugin/org.eclipse.passage.lic.agreements.edit/full/obj16/agreement.png")); //$NON-NLS-1$
+		} catch (MalformedURLException e) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/license.png")); //$NON-NLS-1$
+		}
 	}
 
 	/**
