@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -28,7 +28,6 @@ final class HomeBasedKeys implements Keys {
 
 	private final Path residence;
 	private final PassageFileExtension keys = new DomainFileExtension.Keys();
-	private final PassageFileExtension pub = new PassageFileExtension.PublicKey();
 
 	HomeBasedKeys() {
 		this.residence = new LicensingFolder(new UserHomePath()).get();
@@ -41,12 +40,12 @@ final class HomeBasedKeys implements Keys {
 
 	@Override
 	public ResourceHandle located(String product, String version) {
-		return new LocalFileHandle(residentFile(product, version, keys));
+		return new LocalFileHandle(xmi, residentFile(product, version, keys));
 	}
 
 	@Override
 	public ResourceHandle locatedPub(String product, String version) {
-		return new LocalFileHandle(residentFile(product, version, pub));
+		return new LocalFileHandle(pub, residentFile(product, version, new PassageFileExtension.PublicKey()));
 	}
 
 	private Path residentFile(String product, String version, PassageFileExtension ext) {

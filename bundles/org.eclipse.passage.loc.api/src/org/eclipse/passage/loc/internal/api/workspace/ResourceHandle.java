@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,8 +19,13 @@ public interface ResourceHandle {
 	 */
 	String info();
 
+	ResourceType type();
+
 	void write(byte[] content) throws Exception;
 
 	byte[] content() throws Exception;
+
+	// FIXME: AF: find better solution
+	String uri();
 
 }

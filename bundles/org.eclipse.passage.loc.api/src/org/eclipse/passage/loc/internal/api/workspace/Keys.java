@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -23,6 +23,22 @@ public interface Keys {
 	ResourceHandle located(String product, String version);
 
 	ResourceHandle locatedPub(String product, String version);
+
+	ResourceType xmi = new ResourceType() {
+
+		@Override
+		public String id() {
+			return "keys_xmi"; //$NON-NLS-1$
+		}
+	};
+
+	ResourceType pub = new ResourceType() {
+
+		@Override
+		public String id() {
+			return "pub"; //$NON-NLS-1$
+		}
+	};
 
 	public static final class Smart implements Keys {
 

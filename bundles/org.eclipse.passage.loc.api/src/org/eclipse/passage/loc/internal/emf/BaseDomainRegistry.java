@@ -13,8 +13,6 @@
 package org.eclipse.passage.loc.internal.emf;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -38,79 +36,95 @@ import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
-import org.eclipse.passage.lic.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.emf.resource.ResourceLoadFailed;
 import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
+import org.eclipse.passage.loc.internal.api.OperatorGear;
+import org.eclipse.passage.loc.internal.api.OperatorGearSupplier;
+import org.eclipse.passage.loc.internal.api.workspace.KnownResources;
+import org.eclipse.passage.loc.internal.api.workspace.OperatorWorkspace;
+import org.eclipse.passage.loc.internal.api.workspace.ResourceHandle;
 
 @SuppressWarnings("restriction")
 public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>, IEditingDomainProvider {
 
 	protected String domainName;
 
-	private AdapterFactoryEditingDomain editingDomain;
+	private final AdapterFactoryEditingDomain editingDomain;
 
-	private final List<URI> sources = new ArrayList<>();
+	private final List<URI> sources;
 
-	private EContentAdapter contentAdapter;
+	private final EContentAdapter contentAdapter;
+
+	private final List<OperatorGearSupplier> gear;
 
 	public BaseDomainRegistry() {
+		sources = new ArrayList<>();
+		gear = new ArrayList<>(1);
 		BasicCommandStack commandStack = new BasicCommandStack();
 		editingDomain = new AdapterFactoryEditingDomain(
 				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), commandStack,
 				new HashMap<Resource, Boolean>());
+		contentAdapter = createContentAdapter();
+	}
+
+	public void bindGear(OperatorGearSupplier supplier) {
+		gear.add(supplier);
+	}
+
+	public void unbindGear(OperatorGearSupplier supplier) {
+		gear.remove(supplier);
 	}
 
 	protected void activate(Map<String, Object> properties) {
 		domainName = String.valueOf(properties.get(EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME));
-		contentAdapter = createContentAdapter();
-		ResourceSet resourceSet = editingDomain.getResourceSet();
-		resourceSet.eAdapters().add(contentAdapter);
-		loadResourceSet();
-	}
-
-	protected void loadResourceSet() {
+		editingDomain.getResourceSet().eAdapters().add(contentAdapter);
 		try {
-			Path domainPath = getResourceSetPath();
-			if (!Files.exists(domainPath)) {
-				return;
-			}
-			Files.readAllLines(domainPath).stream()//
-					.map(URI::createURI)//
-					.map(this::registerSource)//
-					.map(ServiceInvocationResult::diagnostic)//
-					.filter(new NoErrors().negate())//
-					.forEach(this::logDiagnostic);
+			gear.stream()//
+					.findFirst()//
+					.map(OperatorGearSupplier::gear)//
+					.map(OperatorGear::workspace)//
+					.ifPresent(this::load);
 		} catch (Exception e) {
-			Platform.getLog(getClass()).error(EmfMessages.BaseDomainRegistry_e_load_workspace, e);
+			Platform.getLog(getClass()).error(e.getMessage(), e);
 		}
 	}
+
+	private void load(OperatorWorkspace workspace) {
+		knownResources(workspace).all().stream()//
+				.filter(this::emfResource)//
+				.map(ResourceHandle::uri)//
+				.map(URI::createURI)//
+				.forEach(this::registerSource);
+	}
+
+	protected abstract boolean emfResource(ResourceHandle handle);
+
+	protected abstract KnownResources knownResources(OperatorWorkspace workspace);
 
 	protected void logDiagnostic(Diagnostic diagnostic) {
 		Platform.getLog(getClass()).error(new DiagnosticExplained(diagnostic).get());
 	}
 
-	protected abstract Path getResourceSetPath() throws Exception;
-
 	protected abstract DomainContentAdapter<I, ? extends EditingDomainRegistry<I>> createContentAdapter();
 
 	protected void deactivate(Map<String, Object> properties) {
-		saveResourceSet();
-		editingDomain.getResourceSet().eAdapters().remove(contentAdapter);
-	}
-
-	protected void saveResourceSet() {
 		try {
-			Path domainPath = getResourceSetPath();
-			if (!Files.exists(domainPath)) {
-				Files.createFile(domainPath);
-			}
-			List<String> strings = sources.stream()//
-					.map(URI::toString)//
-					.collect(Collectors.toList());
-			Files.write(domainPath, strings);
+			gear.stream()//
+					.findFirst()//
+					.map(OperatorGearSupplier::gear)//
+					.map(OperatorGear::workspace)//
+					.ifPresent(this::store);
 		} catch (Exception e) {
 			Platform.getLog(getClass()).error(e.getMessage(), e);
 		}
+		editingDomain.getResourceSet().eAdapters().remove(contentAdapter);
+	}
+
+	private void store(OperatorWorkspace workspace) {
+		knownResources(workspace)//
+				.memento(getSources().stream()//
+						.map(URI::toString)//
+						.collect(Collectors.toList()));
 	}
 
 	@Override
