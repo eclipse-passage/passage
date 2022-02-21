@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.features.core;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -27,13 +25,17 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.equinox.io.InstallationPath;
 import org.eclipse.passage.lic.features.FeatureDescriptor;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.features.model.util.FeaturesResourceImpl;
 import org.eclipse.passage.lic.internal.equinox.events.EquinoxEvent;
+import org.eclipse.passage.loc.internal.api.OperatorGearSupplier;
+import org.eclipse.passage.loc.internal.api.workspace.Features;
+import org.eclipse.passage.loc.internal.api.workspace.KnownResources;
+import org.eclipse.passage.loc.internal.api.workspace.OperatorWorkspace;
+import org.eclipse.passage.loc.internal.api.workspace.ResourceHandle;
 import org.eclipse.passage.loc.internal.emf.BaseDomainRegistry;
 import org.eclipse.passage.loc.internal.emf.DomainContentAdapter;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistry;
@@ -65,6 +67,17 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 
 	public void unbindEventAdmin(@SuppressWarnings("unused") EventAdmin admin) {
 		this.events = null;
+	}
+
+	@Override
+	@Reference
+	public void bindGear(OperatorGearSupplier supplier) {
+		super.bindGear(supplier);
+	}
+
+	@Override
+	public void unbindGear(OperatorGearSupplier supplier) {
+		super.unbindGear(supplier);
 	}
 
 	@Override
@@ -275,15 +288,18 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 	}
 
 	@Override
-	protected Path getResourceSetPath() throws Exception {
-		Path passagePath = new InstallationPath().get();
-		Files.createDirectories(passagePath);
-		return passagePath.resolve(domainName);
+	protected final Resource createResource(URI uri) {
+		return new FeaturesResourceImpl(uri);
 	}
 
 	@Override
-	protected final Resource createResource(URI uri) {
-		return new FeaturesResourceImpl(uri);
+	protected boolean emfResource(ResourceHandle handle) {
+		return Features.xmi.equals(handle.type()) || Features.xmi033.equals(handle.type());
+	}
+
+	@Override
+	protected KnownResources knownResources(OperatorWorkspace workspace) {
+		return workspace.features();
 	}
 
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.users.core;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -25,12 +23,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.equinox.io.InstallationPath;
 import org.eclipse.passage.lic.internal.equinox.events.EquinoxEvent;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.model.util.UsersResourceImpl;
+import org.eclipse.passage.loc.internal.api.OperatorGearSupplier;
+import org.eclipse.passage.loc.internal.api.workspace.KnownResources;
+import org.eclipse.passage.loc.internal.api.workspace.OperatorWorkspace;
+import org.eclipse.passage.loc.internal.api.workspace.ResourceHandle;
+import org.eclipse.passage.loc.internal.api.workspace.Users;
 import org.eclipse.passage.loc.internal.emf.BaseDomainRegistry;
 import org.eclipse.passage.loc.internal.emf.DomainContentAdapter;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistry;
@@ -61,6 +63,17 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 
 	public void unbindEventAdmin(@SuppressWarnings("unused") EventAdmin admin) {
 		this.events = null;
+	}
+
+	@Override
+	@Reference
+	public void bindGear(OperatorGearSupplier supplier) {
+		super.bindGear(supplier);
+	}
+
+	@Override
+	public void unbindGear(OperatorGearSupplier supplier) {
+		super.unbindGear(supplier);
 	}
 
 	@Override
@@ -189,15 +202,18 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 	}
 
 	@Override
-	protected Path getResourceSetPath() throws Exception {
-		Path passagePath = new InstallationPath().get();
-		Files.createDirectories(passagePath);
-		return passagePath.resolve(domainName);
+	protected final Resource createResource(URI uri) {
+		return new UsersResourceImpl(uri);
 	}
 
 	@Override
-	protected final Resource createResource(URI uri) {
-		return new UsersResourceImpl(uri);
+	protected boolean emfResource(ResourceHandle handle) {
+		return Users.xmi.equals(handle.type()) || Users.xmi033.equals(handle.type());
+	}
+
+	@Override
+	protected KnownResources knownResources(OperatorWorkspace workspace) {
+		return workspace.users();
 	}
 
 }

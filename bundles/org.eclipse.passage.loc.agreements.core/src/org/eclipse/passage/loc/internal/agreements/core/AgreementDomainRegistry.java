@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.agreements.core;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -31,11 +29,15 @@ import org.eclipse.passage.lic.agreements.AgreementGroupDescriptor;
 import org.eclipse.passage.lic.agreements.model.api.AgreementGroup;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 import org.eclipse.passage.lic.agreements.model.util.AgreementsResourceImpl;
-import org.eclipse.passage.lic.equinox.io.InstallationPath;
 import org.eclipse.passage.lic.internal.equinox.events.EquinoxEvent;
 import org.eclipse.passage.loc.internal.agreements.AgreementRegistry;
 import org.eclipse.passage.loc.internal.agreements.AgreementRegistryEvents;
 import org.eclipse.passage.loc.internal.agreements.core.i18n.AgreementsCoreMessages;
+import org.eclipse.passage.loc.internal.api.OperatorGearSupplier;
+import org.eclipse.passage.loc.internal.api.workspace.Agreements;
+import org.eclipse.passage.loc.internal.api.workspace.KnownResources;
+import org.eclipse.passage.loc.internal.api.workspace.OperatorWorkspace;
+import org.eclipse.passage.loc.internal.api.workspace.ResourceHandle;
 import org.eclipse.passage.loc.internal.emf.BaseDomainRegistry;
 import org.eclipse.passage.loc.internal.emf.DomainContentAdapter;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistry;
@@ -68,6 +70,17 @@ public final class AgreementDomainRegistry extends BaseDomainRegistry<AgreementG
 		agreements.clear();
 		groups.clear();
 		super.deactivate(properties);
+	}
+
+	@Override
+	@Reference
+	public void bindGear(OperatorGearSupplier supplier) {
+		super.bindGear(supplier);
+	}
+
+	@Override
+	public void unbindGear(OperatorGearSupplier supplier) {
+		super.unbindGear(supplier);
 	}
 
 	@Reference
@@ -197,15 +210,18 @@ public final class AgreementDomainRegistry extends BaseDomainRegistry<AgreementG
 	}
 
 	@Override
-	protected Path getResourceSetPath() throws Exception {
-		Path passagePath = new InstallationPath().get();
-		Files.createDirectories(passagePath);
-		return passagePath.resolve(domainName);
+	protected final Resource createResource(URI uri) {
+		return new AgreementsResourceImpl(uri);
 	}
 
 	@Override
-	protected final Resource createResource(URI uri) {
-		return new AgreementsResourceImpl(uri);
+	protected boolean emfResource(ResourceHandle handle) {
+		return Agreements.xmi.equals(handle.type());
+	}
+
+	@Override
+	protected KnownResources knownResources(OperatorWorkspace workspace) {
+		return workspace.agreements();
 	}
 
 }

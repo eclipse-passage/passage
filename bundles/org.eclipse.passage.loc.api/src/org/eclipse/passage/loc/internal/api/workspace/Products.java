@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021, 2022 ArSysOp
+ * Copyright (c) 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,31 +12,21 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.api.workspace;
 
-public interface Agreements extends KnownResources {
-
-	/**
-	 * Locate a handle for the given file under the common agreements residence
-	 * 
-	 * @param file name of an agreement file
-	 * @return handle to be used for agreement content writing
-	 */
-	ResourceHandle located(String file);
-
-	boolean exists(String file);
-
-	ResourceType text = new ResourceType() {
-
-		@Override
-		public String id() {
-			return "agreements_text"; //$NON-NLS-1$
-		}
-	};
+public interface Products extends KnownResources {
 
 	ResourceType xmi = new ResourceType() {
 
 		@Override
 		public String id() {
-			return "agreements_xmi"; //$NON-NLS-1$
+			return "products_xmi"; //$NON-NLS-1$
+		}
+	};
+
+	ResourceType xmi033 = new ResourceType() {
+
+		@Override
+		public String id() {
+			return "lic_products"; //$NON-NLS-1$
 		}
 	};
 

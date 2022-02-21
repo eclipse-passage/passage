@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.products.core;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -27,7 +25,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.equinox.io.InstallationPath;
 import org.eclipse.passage.lic.internal.equinox.events.EquinoxEvent;
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
@@ -35,6 +32,11 @@ import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.products.model.util.ProductsResourceImpl;
+import org.eclipse.passage.loc.internal.api.OperatorGearSupplier;
+import org.eclipse.passage.loc.internal.api.workspace.KnownResources;
+import org.eclipse.passage.loc.internal.api.workspace.OperatorWorkspace;
+import org.eclipse.passage.loc.internal.api.workspace.Products;
+import org.eclipse.passage.loc.internal.api.workspace.ResourceHandle;
 import org.eclipse.passage.loc.internal.emf.BaseDomainRegistry;
 import org.eclipse.passage.loc.internal.emf.DomainContentAdapter;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistry;
@@ -67,6 +69,17 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 
 	public void unbindEventAdmin(@SuppressWarnings("unused") EventAdmin admin) {
 		this.events = null;
+	}
+
+	@Override
+	@Reference
+	public void bindGear(OperatorGearSupplier supplier) {
+		super.bindGear(supplier);
+	}
+
+	@Override
+	public void unbindGear(OperatorGearSupplier supplier) {
+		super.unbindGear(supplier);
 	}
 
 	@Override
@@ -335,15 +348,18 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 	}
 
 	@Override
-	protected Path getResourceSetPath() throws Exception {
-		Path passagePath = new InstallationPath().get();
-		Files.createDirectories(passagePath);
-		return passagePath.resolve(domainName);
+	protected final Resource createResource(URI uri) {
+		return new ProductsResourceImpl(uri);
 	}
 
 	@Override
-	protected final Resource createResource(URI uri) {
-		return new ProductsResourceImpl(uri);
+	protected boolean emfResource(ResourceHandle handle) {
+		return Products.xmi.equals(handle.type()) || Products.xmi033.equals(handle.type());
+	}
+
+	@Override
+	protected KnownResources knownResources(OperatorWorkspace workspace) {
+		return workspace.products();
 	}
 
 }
