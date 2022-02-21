@@ -44,6 +44,12 @@ final class Storage {
 		}
 	}
 
+	void forget(List<GrantAcquisition> bunch) {
+		synchronized (grants) {
+			grants.removeAll(bunch);
+		}
+	}
+
 	List<GrantAcquisition> grants() {
 		List<GrantAcquisition> all = new ArrayList<>();
 		synchronized (grants) {
@@ -57,4 +63,5 @@ final class Storage {
 				.map(GrantAcquisition::identifier)//
 				.noneMatch(grant.identifier()::equals);
 	}
+
 }
