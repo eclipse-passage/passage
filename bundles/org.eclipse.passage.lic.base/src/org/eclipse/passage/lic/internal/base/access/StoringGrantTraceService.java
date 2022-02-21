@@ -39,7 +39,7 @@ public final class StoringGrantTraceService implements GrantsTraceService {
 		synchronized (storage) {
 			if (fresh) {
 				fresh = false;
-				conduit.release(storage.grants());
+				storage.forget(conduit.release(storage.grants()));
 			}
 			storage.keep(grant);
 			residence.write(storage.grants());
