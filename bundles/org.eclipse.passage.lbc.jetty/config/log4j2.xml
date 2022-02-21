@@ -12,8 +12,7 @@
 		ArSysOp - initial API and implementation
 -->
 
-<Configuration status="DEBUG"
-	packages="org.eclipse.passage.lbc.internal.base,org.eclipse.passage.lbc.internal.jetty,org.eclipse.passage.lic.internal.jetty,org.eclipse.passage.lic.internal.net,org.apache.logging.log4j2,org.eclipse">
+<Configuration status="DEBUG" packages="org.eclipse.passage,org.apache.logging.log4j2,org.eclipse">
 
 	<Appenders>
 
@@ -35,16 +34,33 @@
 				</Route>
 			</Routes>
 		</Routing>
+		
+		<Routing name="ToTalk">
+			<Routes pattern="$${sd:type}">
+				<Route>
+					<RollingFile name="talk-FLS"
+						fileName="logs/talk.log" filePattern="talk.%i.log.gz">
+						<PatternLayout>
+							<pattern>%d{HH:mm:ss} %p %c{1.} [%t] %m%n</pattern>
+						</PatternLayout>
+						<SizeBasedTriggeringPolicy size="500000" />
+					</RollingFile>
+				</Route>
+			</Routes>
+		</Routing>
 
 	</Appenders>
 
 	<Loggers>
 
-		<Root level="error">
-			<AppenderRef ref="ToSysOut" />
+		<Root level="info">
+			<AppenderRef ref="ToTalk" />
 		</Root>
 		<Logger name="org.eclipse.passage">
 			<AppenderRef ref="ToFile" />
+		</Logger>
+		<Logger name="org.apache.logging.log4j">
+			<AppenderRef ref="ToTalk" />
 		</Logger>
 
 	</Loggers>
