@@ -12,13 +12,13 @@
 		ArSysOp - initial API and implementation
 -->
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.passage.lic.jetty" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.passage.loc.licenses.core" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.passage.lic.jetty" id="commands" name="Commands"/>
+         <meta.schema plugin="org.eclipse.passage.loc.licenses.core" id="issue" name="License Pack issue listener"/>
       </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         instanciated and called on a license pack persistence phase
       </documentation>
    </annotation>
 
@@ -30,7 +30,7 @@
       </annotation>
       <complexType>
          <sequence minOccurs="1" maxOccurs="unbounded">
-            <element ref="command" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="listener" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -59,7 +59,7 @@
       </complexType>
    </element>
 
-   <element name="command">
+   <element name="listener">
       <complexType>
          <attribute name="class" type="string" use="required">
             <annotation>
@@ -67,7 +67,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.passage.lic.internal.jetty.interaction.JettyCommand"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.passage.loc.internal.licenses.core.LicensePackPersistenceListener"/>
                </appinfo>
             </annotation>
          </attribute>
