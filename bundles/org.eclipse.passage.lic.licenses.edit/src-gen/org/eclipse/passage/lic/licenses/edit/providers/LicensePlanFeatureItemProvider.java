@@ -32,6 +32,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.passage.lic.licenses.edit.LicensesEditPlugin;
 import org.eclipse.passage.lic.licenses.model.api.FeatureRef;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
+import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
@@ -192,9 +193,13 @@ public class LicensePlanFeatureItemProvider extends ItemProviderAdapter implemen
 		if (identifier == null || identifier.length() == 0) {
 			identifier = getString("_UI_LicensePlanFeature_type"); //$NON-NLS-1$
 		}
-		String version = feature.getVersionMatch().getVersion();
-		if (version == null || version.length() == 0) {
-			return identifier;
+		VersionMatch match = feature.getVersionMatch();
+		String version = ""; //$NON-NLS-1$
+		if (match != null) {
+			version = match.getVersion();
+			if (version == null || version.length() == 0) {
+				return identifier;
+			}
 		}
 		return getString("_UI_LicensePlanFeature_text_pattern", new Object[] { identifier, version }); //$NON-NLS-1$
 	}

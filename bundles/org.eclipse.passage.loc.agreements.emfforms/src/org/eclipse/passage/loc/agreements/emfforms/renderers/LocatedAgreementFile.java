@@ -40,7 +40,7 @@ final class LocatedAgreementFile implements Supplier<Optional<File>> {
 		FileDialog dialog = new FileDialog(shell);
 		List<AgreementFormat> formats = new AgreementFormat.Supported().get();
 		dialog.setText("Point an agreement content file"); //$NON-NLS-1$
-		dialog.setFilterExtensions(filters(formats, AgreementFormat::extention));
+		dialog.setFilterExtensions(filters(formats, AgreementFormat::description));
 		dialog.setFilterNames(filters(formats, AgreementFormat::description));
 		return file(Optional.ofNullable(dialog.open()));
 	}

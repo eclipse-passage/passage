@@ -49,7 +49,7 @@ final class AgreementFormat {
 		// TODO: get rid of the code in constructor: use CashingFunction from
 		// ru.arsysop.lang
 		private final List<AgreementFormat> supported = Arrays.asList(//
-				new AgreementFormat(".txt", "Text file (*.txt)", "text/plain") //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+				new AgreementFormat(".txt", "*.txt", "text/plain") //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
 		);
 
 		@Override

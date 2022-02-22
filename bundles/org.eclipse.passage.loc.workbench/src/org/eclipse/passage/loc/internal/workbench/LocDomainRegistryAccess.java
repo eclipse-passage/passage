@@ -39,7 +39,6 @@ public class LocDomainRegistryAccess implements EditingDomainRegistryAccess {
 
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	public void registerEditingDomainRegistry(EditingDomainRegistry<?> instance, Map<String, Object> properties) {
-		System.out.println("LocDomainRegistryAccess.registerEditingDomainRegistry()"); //$NON-NLS-1$
 		String domain = String.valueOf(properties.get(PROPERTY_DOMAIN_NAME));
 		registerEntry(domainRegistries, domain, instance);
 		String extension = String.valueOf(properties.get(PROPERTY_FILE_EXTENSION));
