@@ -13,6 +13,6 @@
 		ArSysOp - initial API and implementation
 -->
 <plugin>
-   <extension-point id="commands" name="%extension-point.name" schema="schema/commands.exsd"/>
+   <extension-point id="issue" name="%extension-point.name" schema="schema/issue.exsd"/>
 
 </plugin>

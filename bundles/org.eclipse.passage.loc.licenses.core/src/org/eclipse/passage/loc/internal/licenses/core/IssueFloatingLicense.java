@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -107,6 +107,7 @@ final class IssueFloatingLicense {
 		if (!new NoSevereErrors().test(withKey.diagnostic())) {
 			return new BaseServiceInvocationResult<>(withKey.diagnostic());
 		}
+		new ContributedLicensePackIssueListener().floating(pack, configs, residence);
 		return new BaseServiceInvocationResult<>(new BaseIssuedFloatingLicense(residence, withKey.data().get()));
 	}
 

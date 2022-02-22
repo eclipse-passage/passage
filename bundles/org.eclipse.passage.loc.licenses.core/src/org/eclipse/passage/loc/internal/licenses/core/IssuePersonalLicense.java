@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -103,6 +103,7 @@ final class IssuePersonalLicense {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(),
 					LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, e));
 		}
+		new ContributedLicensePackIssueListener().personal(license, path);
 		return result(license, decrypted, encrypted);
 	}
 
