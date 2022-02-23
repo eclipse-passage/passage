@@ -109,16 +109,22 @@ public class LocWokbench {
 		}
 	}
 
-	public static void switchPerspective(IEclipseContext eclipseContext, String perspectiveId) {
-		EPartService partService = eclipseContext.get(EPartService.class);
+	public static void switchPerspective(IEclipseContext context, String perspectiveId) {
+		EPartService partService = context.get(EPartService.class);
+		if (partService == null) {
+			return;
+		}
 		Optional<MPerspective> switched = partService.switchPerspective(perspectiveId);
 		if (switched.isPresent()) {
 			MPerspective perspective = switched.get();
 			String label = perspective.getLocalizedLabel();
-			IApplicationContext applicationContext = eclipseContext.get(IApplicationContext.class);
-			String brandingName = applicationContext.getBrandingName();
-			String title = brandingName + ' ' + '-' + ' ' + label;
-			MWindow window = eclipseContext.get(MWindow.class);
+			IApplicationContext application = context.get(IApplicationContext.class);
+			if (application == null) {
+				return;
+			}
+			String branding = application.getBrandingName();
+			String title = branding + ' ' + '-' + ' ' + label;
+			MWindow window = context.get(MWindow.class);
 			window.setLabel(title);
 		}
 	}
