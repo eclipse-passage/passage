@@ -27,7 +27,6 @@ import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
-import org.eclipse.passage.lic.base.io.UserHomeProductResidence;
 import org.eclipse.passage.lic.emf.validation.ErrorMessages;
 import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
@@ -85,8 +84,7 @@ final class IssuePersonalLicense {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(),
 					LicensesCoreMessages.LicenseOperatorServiceImpl_error_io, e));
 		}
-		LicensedProduct product = product(license);
-		Path path = new UserHomeProductResidence(product).get();
+		Path path = new LicensePackResidence(license.getLicense()).get();
 
 		Path decrypted;
 		try {
@@ -98,7 +96,7 @@ final class IssuePersonalLicense {
 
 		Path encrypted;
 		try {
-			encrypted = encrypted(license, product, decrypted);
+			encrypted = encrypted(license, product(license), decrypted);
 		} catch (LicensingException e) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(),
 					LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, e));
