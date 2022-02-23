@@ -34,12 +34,10 @@ import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.base.diagnostic.SumOfLists;
 import org.eclipse.passage.lic.base.io.FloatingFileExtension;
-import org.eclipse.passage.lic.base.io.UserHomeProductResidence;
 import org.eclipse.passage.lic.emf.validation.ErrorMessages;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
-import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.api.UserGrant;
 import org.eclipse.passage.loc.internal.agreements.AgreementRegistry;
@@ -95,7 +93,7 @@ final class IssueFloatingLicense {
 	private ServiceInvocationResult<IssuedFloatingLicense> persistLicenseFiles(FloatingLicensePack pack,
 			Collection<FloatingLicenseAccess> configs) {
 		LicensedProduct product = product(pack.getLicense().getProduct());
-		Path residence = residence(pack.getLicense());
+		Path residence = new LicensePackResidence(pack.getLicense()).get();
 		ServiceInvocationResult<List<Path>> license = //
 				persist(pack, product, residence, decryptedFile(pack), encryptedFile(pack));
 		BinaryOperator<ServiceInvocationResult<List<Path>>> sum = new BaseServiceInvocationResult.Sum<>(
@@ -147,14 +145,6 @@ final class IssueFloatingLicense {
 					LicensesCoreMessages.LicenseOperatorServiceImpl_floating_save_product_key, e));
 		}
 		return new BaseServiceInvocationResult<>(Collections.singletonList(key));
-	}
-
-	private Path residence(LicenseRequisites license) {
-		return new UserHomeProductResidence(//
-				license.getProduct().getIdentifier(), //
-				license.getProduct().getVersion())//
-						.get()//
-						.resolve(license.getIdentifier());
 	}
 
 	private LicensedProduct product(ProductRef ref) {
