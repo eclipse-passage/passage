@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -42,11 +42,10 @@ public final class EquinoxPassageUI implements PassageUI {
 
 	@Override
 	public ServiceInvocationResult<GrantLockAttempt> acquireLicense(String feature) {
-		ServiceInvocationResult<GrantLockAttempt> lock = investigate(//
+		return investigate(//
 				() -> acquire(feature), //
 				GrantLockAttempt::certificate, //
-				cert -> !new CertificateWorthAttention().test(cert));
-		return lock;
+				new CertificateWorthAttention().negate());
 	}
 
 	@Override
