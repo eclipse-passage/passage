@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.passage.lic.base" version="2">
-    <resource path="META-INF/MANIFEST.MF">
-        <filter comment="intentional version change to 2.1.0" id="925892614">
-            <message_arguments>
-                <message_argument value="2.1.0"/>
-                <message_argument value="1.0.203"/>
-            </message_arguments>
-        </filter>
-    </resource>
     <resource path="src/org/eclipse/passage/lic/base/access/Restrictions.java" type="org.eclipse.passage.lic.base.access.Restrictions">
         <filter id="643850349">
             <message_arguments>

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.base
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.passage.lic.base
+Bundle-SymbolicName: org.eclipse.passage.lic.base;singleton:=true
 Bundle-Version: 2.3.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor

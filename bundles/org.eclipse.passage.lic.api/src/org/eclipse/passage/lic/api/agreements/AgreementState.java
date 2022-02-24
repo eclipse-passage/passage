@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -35,16 +35,9 @@ public interface AgreementState {
 	byte[] content();
 
 	/**
-	 * Path to the agreement content file deployed.
-	 * 
-	 * @return
-	 */
-	// Path located();
-
-	/**
-	 * Agreement acceptance check could possible fail due to a wide variety of
-	 * reasons, not only because the agreement has not indeed be accepted. Is the
-	 * case state is still 'not accepted' and diagnostic is supplied
+	 * Agreement acceptance check could possibly fail due to a wide variety of
+	 * reasons, not only because the agreement has not indeed be accepted. In the
+	 * case state is still 'not accepted' and diagnostic is supplied by this method.
 	 */
 	Optional<Trouble> error();
 
