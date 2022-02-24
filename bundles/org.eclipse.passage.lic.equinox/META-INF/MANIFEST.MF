@@ -19,6 +19,7 @@ Export-Package: org.eclipse.passage.lic.equinox,
  org.eclipse.passage.lic.equinox.conditions,
  org.eclipse.passage.lic.equinox.io,
  org.eclipse.passage.lic.equinox.requirements,
+ org.eclipse.passage.lic.internal.equinox;x-friends:="org.eclipse.passage.loc.licenses.core,org.eclipse.passage.lic.jetty",
  org.eclipse.passage.lic.internal.equinox.events;
   x-friends:="org.eclipse.passage.loc.features.core,
    org.eclipse.passage.loc.products.core,
