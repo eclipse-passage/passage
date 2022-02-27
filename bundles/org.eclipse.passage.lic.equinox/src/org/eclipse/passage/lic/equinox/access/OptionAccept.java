@@ -16,17 +16,24 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
 import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
 import org.eclipse.passage.lic.equinox.SuppliedFrameworkAware;
 import org.eclipse.passage.lic.equinox.access.Interaction.Smart;
+import org.eclipse.passage.lic.internal.base.access.Libraries;
+import org.eclipse.passage.lic.internal.equinox.access.AgreementAcceptanceDelegate;
+import org.eclipse.passage.lic.internal.equinox.access.RegisteredLibraries;
 
+@SuppressWarnings("restriction")
 final class OptionAccept extends BaseOption<CoverageCheckOptionDecision> {
 
 	private final Collection<AgreementToAccept> agreements;
 	private final Options<AcceptanceDecision> options;
+	private final Libraries libraries;
 
-	public OptionAccept(Interaction.Smart interaction, Collection<AgreementToAccept> agreements) {
+	public OptionAccept(Interaction.Smart interaction, Collection<AgreementToAccept> agreements,
+			LicensedProduct product) {
 		super('a', //
 				"Accept", //$NON-NLS-1$
 				"Read and accept license agreements", //$NON-NLS-1$
@@ -36,18 +43,20 @@ final class OptionAccept extends BaseOption<CoverageCheckOptionDecision> {
 				Arrays.asList(//
 						new OptionAccepted(interaction), //
 						new OptionDenied(interaction)));
+		this.libraries = new Libraries(new RegisteredLibraries(), () -> product);
 	}
 
 	@Override
 	public CoverageCheckOptionDecision run() {
 		interaction.head(String.format("accept license agreements: %d", agreements.size()), //$NON-NLS-1$
 				"Please read the agreement(s) carefully prior pressing 'I agree'"); //$NON-NLS-1$
-		Optional<AgreementAcceptanceService> acceptance = acceptanceService();
-		if (!acceptance.isPresent()) {
+		Optional<AgreementAcceptanceService> root = acceptanceService();
+		if (!root.isPresent()) {
 			reportInsufficientConfiguration();
 			return CoverageCheckOptionDecision.quit;
 		}
-		agreements.forEach(agreement -> exposeForAccept(agreement, acceptance.get()));
+		AgreementAcceptanceDelegate acceptance = new AgreementAcceptanceDelegate(root.get(), libraries);
+		agreements.forEach(agreement -> exposeForAccept(agreement, acceptance));
 		return CoverageCheckOptionDecision.reassess;
 	}
 
@@ -57,10 +66,10 @@ final class OptionAccept extends BaseOption<CoverageCheckOptionDecision> {
 
 	}
 
-	private void exposeForAccept(AgreementToAccept agreement, AgreementAcceptanceService service) {
+	private void exposeForAccept(AgreementToAccept agreement, AgreementAcceptanceDelegate service) {
 		try {
 			if (exposedAndAccepted(agreement)) {
-				service.accept(() -> agreement.acceptance().content());
+				service.accept(agreement);
 			}
 		} catch (Exception e) {
 			interaction.swear(e);

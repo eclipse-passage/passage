@@ -19,20 +19,29 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.passage.lic.api.Framework;
+import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
 import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
 import org.eclipse.passage.lic.equinox.SuppliedFrameworkAware;
+import org.eclipse.passage.lic.internal.base.access.Libraries;
+import org.eclipse.passage.lic.internal.equinox.access.AgreementAcceptanceDelegate;
+import org.eclipse.passage.lic.internal.equinox.access.RegisteredLibraries;
 import org.eclipse.passage.lic.internal.jface.i18n.AgreementsDialogMessages;
 
+@SuppressWarnings("restriction")
 final class AgreementsWizard extends Wizard {
 
 	private final Logger log = LogManager.getLogger(getClass());
 
 	private final Collection<AgreementToAccept> agreements;
+	private final Libraries libraries;
 
 	AgreementsWizard(Collection<AgreementToAccept> agreements) {
 		this.agreements = agreements;
+		this.libraries = new Libraries(new RegisteredLibraries(), product()::get);
 		setWindowTitle(AgreementsDialogMessages.AgreementsWizard_description);
+
 	}
 
 	@Override
@@ -44,9 +53,10 @@ final class AgreementsWizard extends Wizard {
 
 	@Override
 	public boolean performFinish() {
-		Optional<AgreementAcceptanceService> acceptance = acceptance();
+		Optional<AgreementAcceptanceService> acceptance = productAcceptanceService();
 		if (!acceptance.isPresent()) {
 			reportInsufficientConfiguration();
+			return true;
 		}
 		boolean success = performAcceptance(acceptance.get());
 		if (!success) {
@@ -55,11 +65,12 @@ final class AgreementsWizard extends Wizard {
 		return true;
 	}
 
-	private boolean performAcceptance(AgreementAcceptanceService acceptance) {
+	private boolean performAcceptance(AgreementAcceptanceService root) {
+		AgreementAcceptanceDelegate service = new AgreementAcceptanceDelegate(root, libraries);
 		boolean success = true;
 		for (AgreementToAccept agreement : agreements) {
 			try {
-				acceptance.accept(() -> agreement.acceptance().content());
+				service.accept(agreement);
 			} catch (Exception e) {
 				success = false;
 				e.printStackTrace();
@@ -75,12 +86,17 @@ final class AgreementsWizard extends Wizard {
 	}
 
 	private void reportFailure() {
-		MessageDialog.openError(getShell(), AgreementsDialogMessages.AgreementsWizard_failure, AgreementsDialogMessages.AgreementsWizard_failure_description);
+		MessageDialog.openError(getShell(), AgreementsDialogMessages.AgreementsWizard_failure,
+				AgreementsDialogMessages.AgreementsWizard_failure_description);
 	}
 
-	private Optional<AgreementAcceptanceService> acceptance() {
+	private Optional<AgreementAcceptanceService> productAcceptanceService() {
 		return new SuppliedFrameworkAware()
 				.withFramework(framework -> framework.accessCycleConfiguration().acceptance());
+	}
+
+	private Optional<LicensedProduct> product() {
+		return new SuppliedFrameworkAware().withFramework(Framework::product);
 	}
 
 }

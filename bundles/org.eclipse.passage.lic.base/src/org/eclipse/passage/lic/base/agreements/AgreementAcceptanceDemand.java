@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.base.agreements;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.agreements.ResolvedAgreement;
 import org.eclipse.passage.lic.api.requirements.Feature;
 import org.eclipse.passage.lic.api.requirements.Requirement;
@@ -25,8 +26,8 @@ public final class AgreementAcceptanceDemand implements Requirement {
 	private final Feature feature;
 	private final List<ResolvedAgreement> agreement;
 
-	public AgreementAcceptanceDemand(ResolvedAgreement agreement) {
-		this.feature = new GlobalAgreementSupportFeature().get();
+	public AgreementAcceptanceDemand(ResolvedAgreement agreement, LicensedProduct product) {
+		this.feature = new GlobalAgreementSupportFeature(product).get();
 		this.agreement = Collections.singletonList(agreement);
 	}
 
