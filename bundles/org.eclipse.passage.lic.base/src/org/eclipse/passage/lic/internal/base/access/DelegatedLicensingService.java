@@ -89,6 +89,11 @@ public interface DelegatedLicensingService extends PassageLicenseCoverage {
 	 */
 	ServiceInvocationResult<LicenseReadingService> licenseReadingService();
 
+	/**
+	 * If the given {@code license} relates to the library, it should install to the
+	 * license residence, configured for this library's
+	 * {@code access cycle configuration}
+	 */
 	void installLicense(Path license) throws IOException;
 
 }
