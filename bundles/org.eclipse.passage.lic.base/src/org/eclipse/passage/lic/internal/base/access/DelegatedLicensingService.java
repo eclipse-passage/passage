@@ -14,19 +14,60 @@ package org.eclipse.passage.lic.internal.base.access;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Collection;
-import java.util.Optional;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.PassageLicenseCoverage;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
 import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
-import org.eclipse.passage.lic.api.conditions.Condition;
+import org.eclipse.passage.lic.api.conditions.mining.LicenseReadingService;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 
 /**
- * Implementation must be stateless.
+ * <p>
+ * Implementation must be stateless: service is to be instantiated as many times
+ * as it is appealed to, no caching to perform for scanned extensions.
+ * </p>
+ * <p>
+ * A library appeals to it's own standalone {@linkplain Framewrok} instance when
+ * checks license coverage for its features. Nothing to be contributed to the
+ * product {@code access cycle} for this scenario.
+ * </p>
+ * <p>
+ * However, a library should participate in
+ * </p>
+ * 
+ * <ul>
+ * 
+ * <li>1. the owning product license coverage assessment</li>
+ * 
+ * <li>2. bulk license import (prevent end user from dealing with all the
+ * product-libraries relations)</li>
+ * 
+ * </ul>
+ * 
+ * <p>
+ * smoothly, so it should
+ * </p>
+ * 
+ * <ul>
+ * 
+ * <li>1.1. supply it's own assessment results when asked:
+ * {@code implementing access()}</li>
+ * 
+ * <li>1.2. facilitate acceptance of a license agreement, in case it demands
+ * some for acceptance:
+ * {@code agreementsService(AgreementToAccept agreement)}</li>
+ * 
+ * <li>2.1. supply a {@linkplain LicenseReadingService} that will read licensing
+ * {@linkplain Condition}s from a given file, in case it can be treated a this
+ * library's license</li>
+ * 
+ * <li>2.2. provide a way to install a license to path configured for the
+ * library as license residence.</li>
+ * 
+ * </ul>
+ * 
  */
 public interface DelegatedLicensingService extends PassageLicenseCoverage {
 
@@ -40,9 +81,13 @@ public interface DelegatedLicensingService extends PassageLicenseCoverage {
 	 * agreement is demanded by it, and in this case supply an instance and
 	 * {@linkplain AgreementAcceptanceService} for acceptance.
 	 */
-	Optional<AgreementAcceptanceService> agreementsService(AgreementToAccept agreement);
+	ServiceInvocationResult<AgreementAcceptanceService> agreementsService(AgreementToAccept agreement);
 
-	Collection<Condition> conditions(Path license);
+	/**
+	 * Supply license reading service configured for the library to be used for
+	 * imported license analysis.
+	 */
+	ServiceInvocationResult<LicenseReadingService> licenseReadingService();
 
 	void installLicense(Path license) throws IOException;
 

@@ -14,7 +14,8 @@ package org.eclipse.passage.lic.internal.base.access;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Collection;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -23,10 +24,12 @@ import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
 import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
-import org.eclipse.passage.lic.api.conditions.Condition;
+import org.eclipse.passage.lic.api.conditions.mining.LicenseReadingService;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.base.BaseServiceInvocationResult.Sum;
 import org.eclipse.passage.lic.base.access.SumOfCertificates;
+import org.eclipse.passage.lic.base.diagnostic.SumOfLists;
 
 public final class Libraries {
 
@@ -56,25 +59,33 @@ public final class Libraries {
 				.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCertificates()));
 	}
 
-	public Optional<AgreementAcceptanceService> agreementsService(AgreementToAccept agreement) {
-		if (empty()) {
-			return Optional.empty();
-		}
+	public Optional<ServiceInvocationResult<List<AgreementAcceptanceService>>> agreementsServices(
+			AgreementToAccept agreement) {
 		return libraries.stream()//
 				.map(library -> library.agreementsService(agreement))//
-				.filter(Optional::isPresent)//
-				.map(Optional::get)//
-				.findAny();
+				.map(this::enlisted)//
+				.reduce(sum());
 	}
 
-	public Collection<Condition> conditions(Path license) {
-		// TODO Auto-generated method stub
-		return null;
+	public Optional<ServiceInvocationResult<List<LicenseReadingService>>> licenseReadingServices() {
+		return libraries.stream()//
+				.map(DelegatedLicensingService::licenseReadingService)//
+				.map(this::enlisted)//
+				.reduce(sum());
 	}
 
 	public void installLicense(Path license) throws IOException {
 		// TODO Auto-generated method stub
 
+	}
+
+	private <T> ServiceInvocationResult<List<T>> enlisted(ServiceInvocationResult<T> origin) {
+		List<T> data = origin.data().isPresent() ? Arrays.asList(origin.data().get()) : Collections.emptyList();
+		return new BaseServiceInvocationResult<List<T>>(origin.diagnostic(), data);
+	}
+
+	private <T> Sum<List<T>> sum() {
+		return new Sum<List<T>>(new SumOfLists<T>());
 	}
 
 }

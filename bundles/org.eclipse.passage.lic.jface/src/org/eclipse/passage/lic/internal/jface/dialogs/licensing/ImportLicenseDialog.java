@@ -31,7 +31,9 @@ import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.base.io.ExternalLicense;
 import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.equinox.LicenseReadingServiceRequest;
+import org.eclipse.passage.lic.internal.base.access.Libraries;
 import org.eclipse.passage.lic.internal.base.conditions.LicenseConditions;
+import org.eclipse.passage.lic.internal.equinox.access.RegisteredLibraries;
 import org.eclipse.passage.lic.internal.jface.i18n.ImportLicenseDialogMessages;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.swt.SWT;
@@ -138,10 +140,14 @@ public final class ImportLicenseDialog extends NotificationDialog {
 	}
 
 	private void loadLicense(String file) {
+		Optional<LicensedProduct> product = product();
+		if (!product.isPresent()) {
+			return;
+		}
 		ServiceInvocationResult<Collection<ConditionPack>> packs = new LicenseConditions(//
 				Paths.get(file), //
-				new LicenseReadingServiceRequest()//
-		).get();
+				new LicenseReadingServiceRequest(), //
+				new Libraries(new RegisteredLibraries(), product::get)).get();
 		if (!packs.data().isPresent()) {
 			reportError(packs.diagnostic());
 			return;
@@ -177,14 +183,21 @@ public final class ImportLicenseDialog extends NotificationDialog {
 		getButton(action.id()).setEnabled(!((Collection) viewer.getInput()).isEmpty());
 	}
 
-	private void doLicenseImport() {
+	private Optional<LicensedProduct> product() {
 		ServiceInvocationResult<LicensedProduct> product = new EquinoxPassage().product();
 		if (!product.data().isPresent()) {
 			reportError(product.diagnostic());
+		}
+		return product.data();
+	}
+
+	private void doLicenseImport() {
+		Optional<LicensedProduct> product = product();
+		if (!product.isPresent()) {
 			return;
 		}
 		try {
-			new ExternalLicense(product.data().get()).install(Paths.get(path.getText().trim()));
+			new ExternalLicense(product.get()).install(Paths.get(path.getText().trim()));
 		} catch (IOException e) {
 			setErrorMessage(
 					String.format(ImportLicenseDialogMessages.ImportLicenseDialog_io_error, e.getLocalizedMessage()));

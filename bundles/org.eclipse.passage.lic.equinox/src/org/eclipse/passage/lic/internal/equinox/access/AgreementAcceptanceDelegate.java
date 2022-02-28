@@ -12,8 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.access;
 
+import java.util.List;
 import java.util.Optional;
 
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
 import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
 import org.eclipse.passage.lic.internal.base.access.Libraries;
@@ -41,12 +43,32 @@ public final class AgreementAcceptanceDelegate {
 	}
 
 	public void accept(AgreementToAccept agreement) throws Exception {
-		AgreementAcceptanceService service = root;
-		Optional<AgreementAcceptanceService> library = libraries.agreementsService(agreement);
-		if (library.isPresent()) {
-			service = library.get();
-		}
+		AgreementAcceptanceService service = responsibleForAcceptance(agreement);
 		service.accept(() -> agreement.acceptance().content());
+	}
+
+	private AgreementAcceptanceService responsibleForAcceptance(AgreementToAccept agreement) {
+		Optional<AgreementAcceptanceService> library = libraryResponsibleForAcceptance(agreement);
+		if (library.isPresent()) {
+			return library.get();
+		}
+		return root;
+	}
+
+	private Optional<AgreementAcceptanceService> libraryResponsibleForAcceptance(AgreementToAccept agreement) {
+		Optional<ServiceInvocationResult<List<AgreementAcceptanceService>>> request = libraries
+				.agreementsServices(agreement);
+		if (!request.isPresent()) {
+			return Optional.empty();
+		}
+		if (!request.get().data().isPresent()) {
+			return Optional.empty();
+		}
+		List<AgreementAcceptanceService> services = request.get().data().get();
+		if (services.isEmpty()) {
+			return Optional.empty();
+		}
+		return Optional.of(services.get(0));
 	}
 
 }
