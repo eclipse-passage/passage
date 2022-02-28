@@ -34,9 +34,7 @@ import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.base.io.ExternalLicense;
 import org.eclipse.passage.lic.equinox.EquinoxPassage;
-import org.eclipse.passage.lic.equinox.LicenseReadingServiceRequest;
 import org.eclipse.passage.lic.internal.base.access.Libraries;
-import org.eclipse.passage.lic.internal.base.conditions.LicenseConditions;
 import org.eclipse.passage.lic.internal.equinox.access.RegisteredLibraries;
 import org.eclipse.passage.lic.internal.jface.i18n.ImportLicenseDialogMessages;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
@@ -45,7 +43,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -130,30 +128,24 @@ public final class ImportLicenseDialog extends NotificationDialog {
 	}
 
 	private void browseAndLoad() {
-		browse().ifPresent(this::loadLicense);
+		loadLicense(browse());
 		updateButtonsEnablement();
 	}
 
-	private Optional<String> browse() {
-		FileDialog dialog = new FileDialog(getShell(), SWT.OPEN | SWT.SHEET);
+	private List<Path> browse() {
+		DirectoryDialog dialog = new DirectoryDialog(getShell(), SWT.OPEN | SWT.SHEET);
 		dialog.setText(ImportLicenseDialogMessages.ImportLicenseDialog_browse_dialog_title);
-		dialog.setFilterPath(path.getText().trim());
-		dialog.setFilterExtensions(new String[] { "*.licen", "*.*" }); //$NON-NLS-1$ //$NON-NLS-2$
-		Optional<String> file = Optional.ofNullable(dialog.open());
-		file.ifPresent(path::setText);
-		return file;
+		return new AllLicensesFromFolder(dialog.open()).get();
 	}
 
-	private void loadLicense(String file) {
+	private void loadLicense(List<Path> files) {
 		Optional<LicensedProduct> product = product();
 		if (!product.isPresent()) {
 			return;
 		}
-		ServiceInvocationResult<Collection<ConditionPack>> packs = new LicenseConditions(//
-				Paths.get(file), //
-				new LicenseReadingServiceRequest(), //
-				libraries()).get();
-		if (!packs.data().isPresent()) {
+		ServiceInvocationResult<Collection<ConditionPack>> packs = //
+				new AllConditionsFromLicenses(files, libraries()).get();
+		if (!new NoSevereErrors().test(packs.diagnostic())) {
 			reportError(packs.diagnostic());
 			return;
 		}

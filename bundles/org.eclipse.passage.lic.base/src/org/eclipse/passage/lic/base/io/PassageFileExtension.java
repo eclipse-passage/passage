@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.io;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
@@ -22,6 +23,13 @@ public abstract class PassageFileExtension implements Supplier<String> {
 
 	public final boolean ends(Path path) {
 		return path.getFileName().toString().endsWith(get());
+	}
+
+	/**
+	 * @since 2.3
+	 */
+	public final boolean ends(File file) {
+		return file.getName().endsWith(get());
 	}
 
 	public static final class LicenseEncrypted extends PassageFileExtension {
