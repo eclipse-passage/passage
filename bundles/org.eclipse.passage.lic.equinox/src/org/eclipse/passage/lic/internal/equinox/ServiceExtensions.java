@@ -32,8 +32,8 @@ import org.eclipse.core.runtime.Platform;
  * extensions of sequence<service<class>> structure.
  * </p>
  * <p>
- * In case there is a trouble with any single library, logs details and proceeds
- * with the rest of them.
+ * In case there is a trouble with any single extension, logs details and
+ * proceeds with the rest of them.
  * </p>
  */
 public final class ServiceExtensions<S> implements Supplier<List<S>> {
@@ -57,7 +57,7 @@ public final class ServiceExtensions<S> implements Supplier<List<S>> {
 		return Arrays.stream(extensions())//
 				.map(IExtension::getConfigurationElements)//
 				.flatMap(Arrays::stream)//
-				.map(this::oneService)//
+				.map(this::service)//
 				.filter(Optional::isPresent) //
 				.map(Optional::get) //
 				.collect(Collectors.toList());
@@ -67,7 +67,7 @@ public final class ServiceExtensions<S> implements Supplier<List<S>> {
 		return Platform.getExtensionRegistry().getExtensionPoint(namespace, point).getExtensions();
 	}
 
-	private Optional<S> oneService(IConfigurationElement config) {
+	private Optional<S> service(IConfigurationElement config) {
 		try {
 			Object executable = config.createExecutableExtension("class"); //$NON-NLS-1$
 			return Optional.of(service.cast(executable));

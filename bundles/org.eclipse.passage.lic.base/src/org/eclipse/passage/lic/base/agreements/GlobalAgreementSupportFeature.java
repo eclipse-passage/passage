@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,16 +14,23 @@ package org.eclipse.passage.lic.base.agreements;
 
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.requirements.Feature;
 import org.eclipse.passage.lic.base.requirements.BaseFeature;
 
 public final class GlobalAgreementSupportFeature implements Supplier<Feature> {
 
+	private final LicensedProduct product;
+
+	public GlobalAgreementSupportFeature(LicensedProduct product) {
+		this.product = product;
+	}
+
 	@Override
 	public Feature get() {
 		return new BaseFeature(//
-				"passage.global-agreement-support.feature", //$NON-NLS-1$
-				"1.0.0", //$NON-NLS-1$
+				product.identifier(), //
+				product.version(), //
 				"Global Agreements Support by Passage", //$NON-NLS-1$
 				"Eclipse Passage Runtime" //$NON-NLS-1$
 		);

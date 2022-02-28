@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -65,7 +65,8 @@ public final class LicenseCoverageCheck {
 		if (new CertificateIsRestrictive().test(assessment.data())) {
 			options.add(new OptionImport(interaction, product));
 			options.add(new OptionRequest(interaction));
-			agreements(assessment).ifPresent(agreements -> options.add(new OptionAccept(interaction, agreements)));
+			agreements(assessment)
+					.ifPresent(agreements -> options.add(new OptionAccept(interaction, agreements, product)));
 			options.add(new OptionDiagnostic(interaction, assessment.diagnostic()));
 			options.add(new OptionQuit(interaction));
 			options.add(new OptionProceed(interaction));

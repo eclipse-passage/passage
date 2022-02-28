@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -94,7 +94,7 @@ public final class Restrictions implements Supplier<ServiceInvocationResult<Exam
 	private AgreementToAccept agreementToAccept(GlobalAgreement agreement) {
 		ResolvedAgreement definition = new MinedAgreement(agreement);
 		return new BaseAgreementToAccept(//
-				new AgreementAcceptanceDemand(definition), //
+				new AgreementAcceptanceDemand(definition, product), //
 				definition, //
 				acceptanceState(agreement));
 	}

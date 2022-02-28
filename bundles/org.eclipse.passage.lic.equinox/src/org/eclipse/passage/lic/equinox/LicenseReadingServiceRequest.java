@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -17,6 +17,7 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.conditions.mining.LicenseReadingService;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.base.FrameworkAware;
 import org.eclipse.passage.lic.base.conditions.mining.BaseLicenseReadingService;
 
 /**
@@ -24,13 +25,16 @@ import org.eclipse.passage.lic.base.conditions.mining.BaseLicenseReadingService;
  */
 public final class LicenseReadingServiceRequest implements Supplier<ServiceInvocationResult<LicenseReadingService>> {
 
-	private final EquinoxFrameworkAware<?> delegate;
+	private final FrameworkAware delegate;
 
 	public LicenseReadingServiceRequest() {
 		this(new SuppliedFrameworkAware());
 	}
 
-	public LicenseReadingServiceRequest(EquinoxFrameworkAware<?> delegate) {
+	/**
+	 * @since 2.3
+	 */
+	public LicenseReadingServiceRequest(FrameworkAware delegate) {
 		this.delegate = delegate;
 	}
 

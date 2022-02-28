@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,9 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
-import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -22,16 +23,19 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
+import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
+import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.base.io.ExternalLicense;
 import org.eclipse.passage.lic.equinox.EquinoxPassage;
-import org.eclipse.passage.lic.equinox.LicenseReadingServiceRequest;
-import org.eclipse.passage.lic.internal.base.conditions.LicenseConditions;
+import org.eclipse.passage.lic.internal.base.access.Libraries;
+import org.eclipse.passage.lic.internal.equinox.access.RegisteredLibraries;
 import org.eclipse.passage.lic.internal.jface.i18n.ImportLicenseDialogMessages;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.swt.SWT;
@@ -39,7 +43,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -48,6 +52,7 @@ import org.eclipse.swt.widgets.Text;
 public final class ImportLicenseDialog extends NotificationDialog {
 
 	private final DateTimeFormatter dates = DateTimeFormatter.ofPattern("dd-MM-yyyy"); //$NON-NLS-1$
+	private Libraries libraries = null;
 	private ButtonConfig action;
 	private Text path;
 
@@ -123,26 +128,24 @@ public final class ImportLicenseDialog extends NotificationDialog {
 	}
 
 	private void browseAndLoad() {
-		browse().ifPresent(this::loadLicense);
+		loadLicense(browse());
 		updateButtonsEnablement();
 	}
 
-	private Optional<String> browse() {
-		FileDialog dialog = new FileDialog(getShell(), SWT.OPEN | SWT.SHEET);
+	private List<Path> browse() {
+		DirectoryDialog dialog = new DirectoryDialog(getShell(), SWT.OPEN | SWT.SHEET);
 		dialog.setText(ImportLicenseDialogMessages.ImportLicenseDialog_browse_dialog_title);
-		dialog.setFilterPath(path.getText().trim());
-		dialog.setFilterExtensions(new String[] { "*.licen", "*.*" }); //$NON-NLS-1$ //$NON-NLS-2$
-		Optional<String> file = Optional.ofNullable(dialog.open());
-		file.ifPresent(path::setText);
-		return file;
+		return new AllLicensesFromFolder(dialog.open()).get();
 	}
 
-	private void loadLicense(String file) {
-		ServiceInvocationResult<Collection<ConditionPack>> packs = new LicenseConditions(//
-				Paths.get(file), //
-				new LicenseReadingServiceRequest()//
-		).get();
-		if (!packs.data().isPresent()) {
+	private void loadLicense(List<Path> files) {
+		Optional<LicensedProduct> product = product();
+		if (!product.isPresent()) {
+			return;
+		}
+		ServiceInvocationResult<Collection<ConditionPack>> packs = //
+				new AllConditionsFromLicenses(files, libraries()).get();
+		if (!new NoSevereErrors().test(packs.diagnostic())) {
 			reportError(packs.diagnostic());
 			return;
 		}
@@ -177,19 +180,57 @@ public final class ImportLicenseDialog extends NotificationDialog {
 		getButton(action.id()).setEnabled(!((Collection) viewer.getInput()).isEmpty());
 	}
 
-	private void doLicenseImport() {
+	private Optional<LicensedProduct> product() {
 		ServiceInvocationResult<LicensedProduct> product = new EquinoxPassage().product();
 		if (!product.data().isPresent()) {
 			reportError(product.diagnostic());
+		}
+		return product.data();
+	}
+
+	private void doLicenseImport() {
+		Optional<LicensedProduct> product = product();
+		if (!product.isPresent()) {
 			return;
 		}
+		List<Path> files = Arrays.asList(Paths.get(path.getText().trim())); // TODO: scan folder for *.licen-files
+		files.forEach(file -> doLicenseImport(file, product.get()));
+		okPressed();
+	}
+
+	private Libraries libraries() {
+		if (libraries == null) {
+			Optional<LicensedProduct> product = product();
+			if (!product.isPresent()) {
+				return null;
+			}
+			libraries = new Libraries(new RegisteredLibraries(), product::get);
+		}
+		return libraries;
+	}
+
+	private void doLicenseImport(Path license, LicensedProduct product) {
 		try {
-			new ExternalLicense(product.data().get()).install(Paths.get(path.getText().trim()));
-		} catch (IOException e) {
+			installLibraryLicense(license);
+			new ExternalLicense(product).install(license);
+		} catch (Exception e) {
 			setErrorMessage(
 					String.format(ImportLicenseDialogMessages.ImportLicenseDialog_io_error, e.getLocalizedMessage()));
 		}
-		okPressed();
+	}
+
+	private void installLibraryLicense(Path license) throws Exception {
+		Optional<ServiceInvocationResult<Boolean>> result = libraries.installLicense(license);
+		if (!result.isPresent()) {
+			return; // no libraries
+		}
+		ServiceInvocationResult<Boolean> status = result.get();
+		Diagnostic diagnostic = status.diagnostic();
+		System.out.println("Import license license: " + license); //$NON-NLS-1$
+		System.out.println(new DiagnosticExplained(diagnostic).get());
+		if (!new NoSevereErrors().test(diagnostic)) {
+			throw new LicensingException(String.format("License file [%s] failed to be imported", license)); //$NON-NLS-1$
+		}
 	}
 
 }

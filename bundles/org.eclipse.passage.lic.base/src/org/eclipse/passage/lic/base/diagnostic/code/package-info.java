@@ -65,6 +65,8 @@
  * <li>411 - no data of a particular type found (info)</li>
  * <li>412 - a licensing agreement has not been actively accepted by the product
  * user</li>
+ * <li>413 - foreign license: suggested license file cannot be read with the
+ * product/library key (bearable)
  * </ul>
  * </li>
  * <li>5xx - reserved</li>
