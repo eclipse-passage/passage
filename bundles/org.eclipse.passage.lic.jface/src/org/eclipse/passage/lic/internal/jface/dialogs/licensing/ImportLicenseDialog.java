@@ -12,9 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
-import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -22,12 +23,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
+import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
+import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.base.io.ExternalLicense;
 import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.equinox.LicenseReadingServiceRequest;
@@ -50,6 +54,7 @@ import org.eclipse.swt.widgets.Text;
 public final class ImportLicenseDialog extends NotificationDialog {
 
 	private final DateTimeFormatter dates = DateTimeFormatter.ofPattern("dd-MM-yyyy"); //$NON-NLS-1$
+	private Libraries libraries = null;
 	private ButtonConfig action;
 	private Text path;
 
@@ -147,7 +152,7 @@ public final class ImportLicenseDialog extends NotificationDialog {
 		ServiceInvocationResult<Collection<ConditionPack>> packs = new LicenseConditions(//
 				Paths.get(file), //
 				new LicenseReadingServiceRequest(), //
-				new Libraries(new RegisteredLibraries(), product::get)).get();
+				libraries()).get();
 		if (!packs.data().isPresent()) {
 			reportError(packs.diagnostic());
 			return;
@@ -196,13 +201,44 @@ public final class ImportLicenseDialog extends NotificationDialog {
 		if (!product.isPresent()) {
 			return;
 		}
+		List<Path> files = Arrays.asList(Paths.get(path.getText().trim())); // TODO: scan folder for *.licen-files
+		files.forEach(file -> doLicenseImport(file, product.get()));
+		okPressed();
+	}
+
+	private Libraries libraries() {
+		if (libraries == null) {
+			Optional<LicensedProduct> product = product();
+			if (!product.isPresent()) {
+				return null;
+			}
+			libraries = new Libraries(new RegisteredLibraries(), product::get);
+		}
+		return libraries;
+	}
+
+	private void doLicenseImport(Path license, LicensedProduct product) {
 		try {
-			new ExternalLicense(product.get()).install(Paths.get(path.getText().trim()));
-		} catch (IOException e) {
+			installLibraryLicense(license);
+			new ExternalLicense(product).install(license);
+		} catch (Exception e) {
 			setErrorMessage(
 					String.format(ImportLicenseDialogMessages.ImportLicenseDialog_io_error, e.getLocalizedMessage()));
 		}
-		okPressed();
+	}
+
+	private void installLibraryLicense(Path license) throws Exception {
+		Optional<ServiceInvocationResult<Boolean>> result = libraries.installLicense(license);
+		if (!result.isPresent()) {
+			return; // no libraries
+		}
+		ServiceInvocationResult<Boolean> status = result.get();
+		Diagnostic diagnostic = status.diagnostic();
+		System.out.println("Import license license: " + license); //$NON-NLS-1$
+		System.out.println(new DiagnosticExplained(diagnostic).get());
+		if (!new NoSevereErrors().test(diagnostic)) {
+			throw new LicensingException(String.format("License file [%s] failed to be imported", license)); //$NON-NLS-1$
+		}
 	}
 
 }

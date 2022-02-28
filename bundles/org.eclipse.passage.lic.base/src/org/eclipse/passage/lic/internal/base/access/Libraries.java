@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.BinaryOperator;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
@@ -31,16 +32,21 @@ import org.eclipse.passage.lic.base.BaseServiceInvocationResult.Sum;
 import org.eclipse.passage.lic.base.access.SumOfCertificates;
 import org.eclipse.passage.lic.base.diagnostic.SumOfLists;
 
+/**
+ * Set of libraries registered for the the product
+ * 
+ * @see Library
+ */
 public final class Libraries {
 
-	private final List<DelegatedLicensingService> libraries;
+	private final List<Library> libraries;
 	private final Supplier<LicensedProduct> owner;
 
-	public Libraries(Supplier<List<DelegatedLicensingService>> libraries, Supplier<LicensedProduct> owner) {
+	public Libraries(Supplier<List<Library>> libraries, Supplier<LicensedProduct> owner) {
 		this(libraries.get(), owner);
 	}
 
-	public Libraries(List<DelegatedLicensingService> libraries, Supplier<LicensedProduct> owner) {
+	public Libraries(List<Library> libraries, Supplier<LicensedProduct> owner) {
 		this.libraries = libraries;
 		this.owner = owner;
 	}
@@ -55,8 +61,7 @@ public final class Libraries {
 
 	public Optional<ServiceInvocationResult<ExaminationCertificate>> assess() {
 		return libraries.stream()//
-				.map(DelegatedLicensingService::assess)
-				.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCertificates()));
+				.map(Library::assess).reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCertificates()));
 	}
 
 	public Optional<ServiceInvocationResult<List<AgreementAcceptanceService>>> agreementsServices(
@@ -69,14 +74,15 @@ public final class Libraries {
 
 	public Optional<ServiceInvocationResult<List<LicenseReadingService>>> licenseReadingServices() {
 		return libraries.stream()//
-				.map(DelegatedLicensingService::licenseReadingService)//
+				.map(Library::licenseReadingService)//
 				.map(this::enlisted)//
 				.reduce(sum());
 	}
 
-	public void installLicense(Path license) throws IOException {
-		// TODO Auto-generated method stub
-
+	public Optional<ServiceInvocationResult<Boolean>> installLicense(Path license) throws IOException {
+		return libraries.stream()//
+				.map(library -> library.installLicense(license))//
+				.reduce(new Sum<Boolean>(or()));
 	}
 
 	private <T> ServiceInvocationResult<List<T>> enlisted(ServiceInvocationResult<T> origin) {
@@ -86,6 +92,10 @@ public final class Libraries {
 
 	private <T> Sum<List<T>> sum() {
 		return new Sum<List<T>>(new SumOfLists<T>());
+	}
+
+	private BinaryOperator<Boolean> or() {
+		return (first, second) -> first || second;
 	}
 
 }

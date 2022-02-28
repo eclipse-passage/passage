@@ -15,18 +15,18 @@ package org.eclipse.passage.lic.internal.equinox.access;
 import java.util.List;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.internal.base.access.DelegatedLicensingService;
+import org.eclipse.passage.lic.internal.base.access.Library;
 import org.eclipse.passage.lic.internal.equinox.ServiceExtensions;
 
 @SuppressWarnings("restriction")
-public final class RegisteredLibraries implements Supplier<List<DelegatedLicensingService>> {
+public final class RegisteredLibraries implements Supplier<List<Library>> {
 
 	@Override
-	public List<DelegatedLicensingService> get() {
-		return new ServiceExtensions<DelegatedLicensingService>(//
+	public List<Library> get() {
+		return new ServiceExtensions<Library>(//
 				"org.eclipse.passage.lic.base", //$NON-NLS-1$
 				"library", //$NON-NLS-1$
-				DelegatedLicensingService.class)//
+				Library.class)//
 						.get();
 	}
 

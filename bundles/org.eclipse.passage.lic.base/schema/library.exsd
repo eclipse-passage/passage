@@ -67,7 +67,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.passage.lic.internal.base.access.DelegatedLicensingService"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.passage.lic.internal.base.access.Library"/>
                </appinfo>
             </annotation>
          </attribute>
