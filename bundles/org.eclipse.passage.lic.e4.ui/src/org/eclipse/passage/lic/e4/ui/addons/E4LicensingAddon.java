@@ -19,12 +19,15 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.workbench.UIEvents;
 import org.eclipse.equinox.app.IApplicationContext;
+import org.eclipse.passage.lic.api.Framework;
+import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.base.restrictions.ExaminationExplained;
 import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.equinox.LicensedProductFromContext;
+import org.eclipse.passage.lic.equinox.SuppliedFrameworkAware;
 import org.eclipse.passage.lic.internal.e4.ui.restrictions.WorkbenchShutdown;
 import org.eclipse.passage.lic.jface.EquinoxPassageUI;
 import org.eclipse.swt.widgets.Shell;
@@ -52,8 +55,7 @@ public final class E4LicensingAddon {
 			@UIEventTopic(UIEvents.UILifeCycle.APP_STARTUP_COMPLETE) //
 			Event event) {
 		ServiceInvocationResult<GrantLockAttempt> response = //
-				new EquinoxPassageUI(this::shell)
-						.acquireLicense(new LicensedProductFromContext(application).get().identifier());
+				new EquinoxPassageUI(this::shell).acquireLicense(product().identifier());
 		if (grantAcquired(response)) {
 			grant = response.data();
 		} else {
@@ -61,6 +63,11 @@ public final class E4LicensingAddon {
 					new DiagnosticExplained(response.diagnostic()).get(), explainExamination(response));
 			new WorkbenchShutdown().run();
 		}
+	}
+
+	private LicensedProduct product() {
+		return new SuppliedFrameworkAware().withFramework(Framework::product)//
+				.orElseGet(new LicensedProductFromContext(application));
 	}
 
 	@Inject
