@@ -35,6 +35,9 @@ import org.eclipse.passage.lic.internal.base.access.Libraries;
  * A license file can belong either to a product under licensing, or to any
  * library it exploits. Only appropriate component can read it's licenses.
  * </p>
+ * <p>
+ * To be used strictly outside of Access Cycle.
+ * </p>
  */
 public final class LicenseConditions implements Supplier<ServiceInvocationResult<Collection<ConditionPack>>> {
 
@@ -53,7 +56,7 @@ public final class LicenseConditions implements Supplier<ServiceInvocationResult
 
 	@Override
 	public ServiceInvocationResult<Collection<ConditionPack>> get() {
-		return sum().apply(fromProduct(), fromLibraries());
+		return new CalmedDown(sum().apply(fromProduct(), fromLibraries())).get();
 	}
 
 	private ServiceInvocationResult<Collection<ConditionPack>> fromProduct() {

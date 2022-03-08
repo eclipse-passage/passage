@@ -13,9 +13,7 @@
 package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -23,16 +21,13 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
-import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
-import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
-import org.eclipse.passage.lic.base.io.ExternalLicense;
 import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.internal.base.access.Libraries;
 import org.eclipse.passage.lic.internal.equinox.access.RegisteredLibraries;
@@ -135,7 +130,14 @@ public final class ImportLicenseDialog extends NotificationDialog {
 	private List<Path> browse() {
 		DirectoryDialog dialog = new DirectoryDialog(getShell(), SWT.OPEN | SWT.SHEET);
 		dialog.setText(ImportLicenseDialogMessages.ImportLicenseDialog_browse_dialog_title);
-		return new AllLicensesFromFolder(dialog.open()).get();
+		String folder = dialog.open();
+		if (folder == null) {
+			return Collections.emptyList();
+		}
+		path.setText(folder);
+		List<Path> licenses = new AllLicensesFromFolder(folder).get();
+		path.setData(licenses);
+		return licenses;
 	}
 
 	private void loadLicense(List<Path> files) {
@@ -188,13 +190,17 @@ public final class ImportLicenseDialog extends NotificationDialog {
 		return product.data();
 	}
 
+	@SuppressWarnings("unchecked")
 	private void doLicenseImport() {
 		Optional<LicensedProduct> product = product();
 		if (!product.isPresent()) {
 			return;
 		}
-		List<Path> files = Arrays.asList(Paths.get(path.getText().trim())); // TODO: scan folder for *.licen-files
-		files.forEach(file -> doLicenseImport(file, product.get()));
+		Object licenses = path.getData();
+		if (licenses == null) {
+			return;
+		}
+		new LicenseSet((List<Path>) licenses, product.get(), libraries, this::setErrorMessage).install();
 		okPressed();
 	}
 
@@ -207,30 +213,6 @@ public final class ImportLicenseDialog extends NotificationDialog {
 			libraries = new Libraries(new RegisteredLibraries(), product::get);
 		}
 		return libraries;
-	}
-
-	private void doLicenseImport(Path license, LicensedProduct product) {
-		try {
-			installLibraryLicense(license);
-			new ExternalLicense(product).install(license);
-		} catch (Exception e) {
-			setErrorMessage(
-					String.format(ImportLicenseDialogMessages.ImportLicenseDialog_io_error, e.getLocalizedMessage()));
-		}
-	}
-
-	private void installLibraryLicense(Path license) throws Exception {
-		Optional<ServiceInvocationResult<Boolean>> result = libraries.installLicense(license);
-		if (!result.isPresent()) {
-			return; // no libraries
-		}
-		ServiceInvocationResult<Boolean> status = result.get();
-		Diagnostic diagnostic = status.diagnostic();
-		System.out.println("Import license license: " + license); //$NON-NLS-1$
-		System.out.println(new DiagnosticExplained(diagnostic).get());
-		if (!new NoSevereErrors().test(diagnostic)) {
-			throw new LicensingException(String.format("License file [%s] failed to be imported", license)); //$NON-NLS-1$
-		}
 	}
 
 }
