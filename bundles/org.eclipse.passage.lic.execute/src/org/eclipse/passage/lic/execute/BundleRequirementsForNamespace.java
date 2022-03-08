@@ -20,7 +20,7 @@ final class BundleRequirementsForNamespace implements ResolvedRequirementsRegist
 		this.delegate = new ReadOnlyRegistry<>(//
 				new FilteredRequirements(//
 						new BundleRequirements(), //
-						this::declaredByAtlas//
+						this::declaredInNamespace//
 				));
 	}
 
@@ -29,7 +29,7 @@ final class BundleRequirementsForNamespace implements ResolvedRequirementsRegist
 		return delegate;
 	}
 
-	private boolean declaredByAtlas(Requirement requirement) {
+	private boolean declaredInNamespace(Requirement requirement) {
 		return requirement.feature().identifier().startsWith(namespace);
 	}
 
