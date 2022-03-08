@@ -15,6 +15,7 @@ package org.eclipse.passage.loc.workspace;
 import org.eclipse.passage.loc.internal.api.workspace.Agreements;
 import org.eclipse.passage.loc.internal.api.workspace.Features;
 import org.eclipse.passage.loc.internal.api.workspace.Keys;
+import org.eclipse.passage.loc.internal.api.workspace.LicensePacks;
 import org.eclipse.passage.loc.internal.api.workspace.Licenses;
 import org.eclipse.passage.loc.internal.api.workspace.OperatorWorkspace;
 import org.eclipse.passage.loc.internal.api.workspace.Products;
@@ -25,6 +26,7 @@ public final class CollectiveWorkspace implements OperatorWorkspace {
 	private final Features features;
 	private final Products products;
 	private final Keys keys;
+	private final LicensePacks packs;
 	private final Agreements agreements;
 	private final Licenses licenses;
 	private final Users users;
@@ -33,6 +35,7 @@ public final class CollectiveWorkspace implements OperatorWorkspace {
 		this.features = new UncertainFeatures();
 		this.products = new UncertainProducts();
 		this.keys = new HomeBasedKeys();
+		this.packs = new HomeBasedLicensePacks();
 		this.agreements = new HomeBasedAgreements();
 		this.licenses = new UncertainLicenses();
 		this.users = new UncertainUsers();
@@ -51,6 +54,11 @@ public final class CollectiveWorkspace implements OperatorWorkspace {
 	@Override
 	public Keys keys() {
 		return keys;
+	}
+
+	@Override
+	public LicensePacks licensePacks() {
+		return packs;
 	}
 
 	@Override
