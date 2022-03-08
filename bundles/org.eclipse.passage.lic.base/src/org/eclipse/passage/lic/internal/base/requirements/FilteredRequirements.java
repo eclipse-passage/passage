@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.requirements;
+package org.eclipse.passage.lic.internal.base.requirements;
 
 import java.util.Collection;
 import java.util.Objects;
