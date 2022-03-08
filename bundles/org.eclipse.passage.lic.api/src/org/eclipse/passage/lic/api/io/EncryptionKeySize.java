@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -23,7 +23,7 @@ public abstract class EncryptionKeySize {
 
 	public EncryptionKeySize(int size) {
 		if (size <= 0) {
-			throw new IllegalArgumentException("EncryptionKeySize::size must be positiv"); //$NON-NLS-1$
+			throw new IllegalArgumentException("EncryptionKeySize::size must be positive"); //$NON-NLS-1$
 		}
 		this.size = size;
 	}
