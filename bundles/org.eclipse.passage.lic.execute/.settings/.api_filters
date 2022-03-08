@@ -9,4 +9,13 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="src/org/eclipse/passage/lic/execute/NamespaceConfiguraton.java" type="org.eclipse.passage.lic.execute.NamespaceConfiguraton">
+        <filter id="643842064">
+            <message_arguments>
+                <message_argument value="AgreementAcceptanceService"/>
+                <message_argument value="NamespaceConfiguraton"/>
+                <message_argument value="acceptance()"/>
+            </message_arguments>
+        </filter>
+    </resource>
 </component>

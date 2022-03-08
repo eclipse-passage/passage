@@ -86,9 +86,15 @@ public interface Library extends PassageLicenseCoverage {
 	ServiceInvocationResult<ExaminationCertificate> assess();
 
 	/**
+	 * <p>
 	 * For a given {@code agreement} a library should perform an analysis if this
 	 * agreement is demanded by it, and in this case supply an instance and
 	 * {@linkplain AgreementAcceptanceService} for acceptance.
+	 * </p>
+	 * <p>
+	 * If the {@code agreement} does not belong to the library, report empty result
+	 * with bearable diagnostic of {@linkplain ForeignLicense} trouble code.
+	 * </p>
 	 */
 	ServiceInvocationResult<AgreementAcceptanceService> agreementsService(AgreementToAccept agreement);
 
