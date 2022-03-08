@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2019, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -21,16 +21,18 @@ import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
+import org.eclipse.passage.loc.internal.api.OperatorGearSupplier;
 
-public class PublicKeyRenderer extends ProductVersionKeyRenderer {
+public final class PublicKeyRenderer extends ProductVersionKeyRenderer {
 
 	private final PassageFileExtension extention = new PassageFileExtension.PublicKey();
 
 	@Inject
 	public PublicKeyRenderer(VControl vElement, ViewModelContext viewContext, ReportService reportService,
 			EMFFormsDatabinding emfFormsDatabinding, EMFFormsLabelProvider emfFormsLabelProvider,
-			VTViewTemplateProvider vtViewTemplateProvider) {
-		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider);
+			VTViewTemplateProvider vtViewTemplateProvider, OperatorGearSupplier gear) {
+		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider,
+				gear);
 	}
 
 	@Override
