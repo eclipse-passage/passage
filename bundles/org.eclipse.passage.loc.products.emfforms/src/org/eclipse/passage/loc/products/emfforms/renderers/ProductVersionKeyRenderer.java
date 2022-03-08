@@ -13,6 +13,7 @@
 package org.eclipse.passage.loc.products.emfforms.renderers;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.inject.Inject;
 
@@ -26,23 +27,32 @@ import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.base.io.FileNameFromLicensedProduct;
 import org.eclipse.passage.lic.base.io.UserHomeProductResidence;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
+import org.eclipse.passage.loc.internal.api.OperatorGearSupplier;
+import org.eclipse.passage.loc.internal.api.workspace.Keys;
+import org.eclipse.passage.loc.internal.api.workspace.OperatorWorkspace;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.FileContentRenderer;
 
 public abstract class ProductVersionKeyRenderer extends FileContentRenderer<ProductVersion> {
 
+	protected final OperatorWorkspace workspace;
+
 	@Inject
 	public ProductVersionKeyRenderer(VControl vElement, ViewModelContext viewContext, ReportService reportService,
 			EMFFormsDatabinding emfFormsDatabinding, EMFFormsLabelProvider emfFormsLabelProvider,
-			VTViewTemplateProvider vtViewTemplateProvider) {
+			VTViewTemplateProvider vtViewTemplateProvider, OperatorGearSupplier gear) {
 		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider,
 				ProductVersion.class);
+		this.workspace = gear.gear().workspace();
 	}
 
 	@Override
 	protected String extractFilePath(String value, ProductVersion observed) {
 		BaseLicensedProduct product = new BaseLicensedProduct(//
 				observed.getProduct().getIdentifier(), observed.getVersion());
-		Path dir = new UserHomeProductResidence(product).get();
+		Path dir = new Keys.Smart(workspace.keys()).existing(product)//
+				.map(Paths::get)//
+				.map(Path::getParent)//
+				.orElseGet(new UserHomeProductResidence(product));
 		return dir.resolve(new FileNameFromLicensedProduct(product, this::getFileExtension).get()).toString();
 	}
 
