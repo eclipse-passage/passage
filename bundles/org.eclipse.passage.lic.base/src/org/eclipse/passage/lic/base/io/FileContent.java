@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,12 +9,11 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     Hannes Wellmann (IILS mbH) - Simplify IO operations(#1071)
  *******************************************************************************/
 package org.eclipse.passage.lic.base.io;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
@@ -32,10 +31,6 @@ public final class FileContent {
 	}
 
 	public byte[] get() throws IOException {
-		byte[] content = new byte[(int) Files.size(file)];
-		try (InputStream stream = new FileInputStream(file.toFile())) {
-			stream.read(content);
-		}
-		return content;
+		return Files.readAllBytes(file);
 	}
 }
