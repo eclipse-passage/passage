@@ -43,7 +43,7 @@
   <setupTask
       xsi:type="setup:EclipseIniTask"
       option="-Doomph.redirection.passage"
-      value="https://raw.githubusercontent.com/eclipse-passage/passage/master/releng/org.eclipse.passage.releng/passage.setup->${git.clone.passage.location|uri}/releng/org.eclipse.passage.releng/passage.setup"
+      value="=https://raw.githubusercontent.com/eclipse-passage/passage/master/releng/org.eclipse.passage.releng/passage.setup->${git.clone.passage.location|uri}/releng/org.eclipse.passage.releng/passage.setup"
       vm="true">
     <description>Set an Oomph redirection system property to redirect the logical location of this setup to its physical location in the Git clone.</description>
   </setupTask>
@@ -214,7 +214,7 @@
           <repository
               url="https://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952/"/>
           <repository
-              url="https://download.eclipse.org/tools/orbit/downloads/drops/I20211211225428/repository/"/>
+              url="https://download.eclipse.org/tools/orbit/downloads/2021-12/"/>
         </repositoryList>
       </targlet>
     </setupTask>
@@ -330,7 +330,7 @@
           <repository
               url="https://download.eclipse.org/cbi/updates/license/"/>
           <repository
-              url="https://download.eclipse.org/eclipse/updates/4.23-I-builds/I20220302-1800/"/>
+              url="https://download.eclipse.org/eclipse/updates/4.23"/>
           <repository
               url="https://download.eclipse.org/ecp/rt/1261/"/>
           <repository
