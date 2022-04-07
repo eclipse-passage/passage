@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.oshi;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
+import java.util.Objects;
 import java.util.Set;
 
 import org.eclipse.passage.lic.api.inspection.EnvironmentProperty;
@@ -61,9 +61,8 @@ abstract class Swath<T> {
 
 	final boolean hasValue(EnvironmentProperty property, String regexp) {
 		return properties.stream()//
-				.map(props -> Optional.ofNullable(props.get(property)))//
-				.filter(Optional::isPresent)//
-				.map(Optional::get)//
+				.map(props -> props.get(property))//
+				.filter(Objects::nonNull)//
 				.anyMatch(value -> value.matches(regexp));
 	}
 
