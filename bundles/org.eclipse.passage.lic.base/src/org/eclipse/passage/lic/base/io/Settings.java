@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,24 +9,20 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     Hannes Wellmann (IILS mbH) - Simplify IO operations(#1071)
  *******************************************************************************/
 package org.eclipse.passage.lic.base.io;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Properties;
-import java.util.Set;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
@@ -66,49 +62,36 @@ public final class Settings {
 	}
 
 	public Map<String, Object> get() throws LicensingException {
-		HunterForSettingsFiles hunter = new HunterForSettingsFiles();
-		try {
-			Files.walkFileTree(base.get(), hunter);
+		try (Stream<Path> files = settingFilesIn(base.get())) {
+			return properties(files);
 		} catch (IOException e) {
 			throw new LicensingException(String.format(BaseMessages.getString("Settings.error_on_reading_settings"), //$NON-NLS-1$
 					base.get()), e);
 		}
-		return hunter.findings();
 	}
 
-	private final class HunterForSettingsFiles extends SimpleFileVisitor<Path> {
-
-		private final Map<String, Object> properties;
-		private final PassageFileExtension extension = new PassageFileExtension.Settings();
-
-		public HunterForSettingsFiles() {
-			this.properties = new HashMap<String, Object>();
-		}
-
-		@Override
-		public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-			if (!extension.ends(file)) {
-				return FileVisitResult.CONTINUE;
-			}
-			load(file).stream() //
-					.forEach(e -> properties.put(//
-							e.getKey().toString(), //
-							e.getValue()));
-			return enough.test(properties) ? FileVisitResult.TERMINATE : FileVisitResult.CONTINUE;
-		}
-
-		private Set<Entry<Object, Object>> load(Path file) throws IOException {
-			Properties heap = new Properties();
-			try (InputStream stream = new FileInputStream(file.toFile())) {
-				heap.load(stream);
-			}
-			return heap.entrySet();
-		}
-
-		Map<String, Object> findings() {
-			return properties;
-		}
-
+	private Stream<Path> settingFilesIn(Path path) throws IOException {
+		return Files.walk(path) //
+				.filter(Files::isRegularFile) //
+				.filter(new PassageFileExtension.Settings()::ends);
 	}
 
+	private Map<String, Object> properties(Stream<Path> files) throws IOException {
+		Map<String, Object> properties = new HashMap<>();
+		for (Path file : (Iterable<Path>) files::iterator) {
+			loadAndAdd(properties, file);
+			if (enough.test(properties)) {
+				return properties;
+			}
+		}
+		return properties;
+	}
+
+	private void loadAndAdd(Map<String, Object> properties, Path file) throws IOException {
+		Properties heap = new Properties();
+		try (InputStream stream = Files.newInputStream(file)) {
+			heap.load(stream);
+		}
+		heap.forEach((k, v) -> properties.put(k.toString(), v));
+	}
 }

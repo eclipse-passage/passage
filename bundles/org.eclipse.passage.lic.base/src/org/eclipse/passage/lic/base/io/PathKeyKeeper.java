@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,8 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.io;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
 import java.util.function.Supplier;
@@ -47,7 +47,7 @@ public final class PathKeyKeeper implements KeyKeeper {
 	public InputStream productPublicKey() throws LicensingException {
 		Path path = base.get().resolve(keyFile());
 		try {
-			return new FileInputStream(path.toFile());
+			return Files.newInputStream(path);
 		} catch (Exception e) {
 			throw new LicensingException(//
 					String.format(//

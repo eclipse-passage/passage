@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,20 +9,19 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     Hannes Wellmann (IILS mbH) - Simplify IO operations(#1071)
  *******************************************************************************/
 package org.eclipse.passage.lic.base.io;
 
 import java.io.IOException;
-import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
@@ -43,34 +42,20 @@ public final class FileCollection {
 	}
 
 	public Collection<Path> get() throws LicensingException {
-		HunterFiles hunter = new HunterFiles(extensions);
-		try {
-			Files.walkFileTree(base.get(), hunter);
+		try (Stream<Path> all = filesIn(base.get())) {
+			return filtered(all);
 		} catch (IOException e) {
-			new LicensingException(BaseMessages.getString("FileCollection.failure"), e); //$NON-NLS-1$
+			throw new LicensingException(BaseMessages.getString("FileCollection.failure"), e); //$NON-NLS-1$
 		}
-		return hunter.findings();
 	}
 
-	private static final class HunterFiles extends SimpleFileVisitor<Path> {
-		private final List<Path> findings = new ArrayList<>();
-		private final PassageFileExtension extension;
+	private Stream<Path> filesIn(Path path) throws IOException {
+		return Files.walk(path) //
+				.filter(Files::isRegularFile);
+	}
 
-		HunterFiles(PassageFileExtension extension) {
-			this.extension = extension;
-		}
-
-		@Override
-		public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-			if (file.getFileName().toString().endsWith(extension.get())) {
-				findings.add(file);
-			}
-			return FileVisitResult.CONTINUE;
-		}
-
-		Collection<Path> findings() {
-			return findings;
-		}
-
+	private List<Path> filtered(Stream<Path> files) {
+		return files.filter(extensions::ends) //
+				.collect(Collectors.toList());
 	}
 }
