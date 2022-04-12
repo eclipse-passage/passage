@@ -24,9 +24,22 @@ import java.util.function.Supplier;
  */
 public final class Cached<S, T> implements Supplier<T> {
 
-	private final S source;
-	private final Function<S, T> retrieve;
-	private final List<T> value = new ArrayList<T>(1);
+	private final Supplier<T> retrieve;
+	private final List<T> value = new ArrayList<>(1);
+
+	/**
+	 * To create a <i>late init</i> value, you should specify a a {@code way} to
+	 * perform it.
+	 * 
+	 * @param retrieve a supplier that builds <i>the late init value</i>. It is
+	 *                 guaranteed to be called ones and only when {@linkplain get}
+	 *                 method is called.
+	 * @since 2.3.0
+	 */
+	public Cached(Supplier<T> retrieve) {
+		Objects.requireNonNull(retrieve, "Retriever function cannot be null"); //$NON-NLS-1$
+		this.retrieve = retrieve;
+	}
 
 	/**
 	 * To create a <i>late init</i> value, you should specify a {@code source} for
@@ -42,8 +55,7 @@ public final class Cached<S, T> implements Supplier<T> {
 	public Cached(S source, Function<S, T> retrieve) {
 		Objects.requireNonNull(source, "Source cannot be null"); //$NON-NLS-1$
 		Objects.requireNonNull(retrieve, "Retriever function cannot be null"); //$NON-NLS-1$
-		this.source = source;
-		this.retrieve = retrieve;
+		this.retrieve = () -> retrieve.apply(source);
 	}
 
 	/**
@@ -55,7 +67,7 @@ public final class Cached<S, T> implements Supplier<T> {
 	@Override
 	public T get() {
 		if (value.isEmpty()) {
-			value.add(retrieve.apply(source));
+			value.add(retrieve.get());
 		}
 		return value.get(0);
 	}

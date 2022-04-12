@@ -22,6 +22,7 @@ import java.util.stream.Stream;
 
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.inspection.EnvironmentProperty;
+import org.eclipse.passage.lic.internal.base.Cached;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.BaseBoard;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.Computer;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.Cpu;
@@ -74,7 +75,7 @@ final class State {
 	}
 
 	boolean hasValue(EnvironmentProperty prop, String expected) {
-		String regexp = expected.replaceAll("\\*", ".*"); //$NON-NLS-1$//$NON-NLS-2$
+		String regexp = expected.replace("*", ".*"); //$NON-NLS-1$//$NON-NLS-2$
 		Optional<Swath<?>> swath = swaths.stream().filter(sw -> sw.relates(prop.family())).findAny();
 		if (swath.isPresent()) {
 			return swath.get().hasValue(prop, regexp);
@@ -99,8 +100,8 @@ final class State {
 	private void read() throws LicensingException {
 		try {
 			SystemInfo system = new SystemInfo();
-			readOS(system::getOperatingSystem);
-			readHal(system::getHardware);
+			readOS(cache(system::getOperatingSystem));
+			readHal(cache(system::getHardware));
 			swaths.forEach(swath -> swath.read(system));
 		} catch (Throwable e) {
 			throw new LicensingException(AssessmentMessages.State_error_reading_hw, e);
@@ -115,16 +116,16 @@ final class State {
 	}
 
 	private void readHal(Supplier<HardwareAbstractionLayer> hal) {
-		readPart(() -> hal.get().getComputerSystem(), this::readSystem);
-		readPart(() -> hal.get().getProcessor(), this::readProcessor);
+		readPart(cache(() -> hal.get().getComputerSystem()), this::readSystem);
+		readPart(cache(() -> hal.get().getProcessor()), this::readProcessor);
 	}
 
 	private void readSystem(Supplier<ComputerSystem> info) {
 		hardware.store(() -> info.get().getManufacturer(), new Computer.Manufacturer());
 		hardware.store(() -> info.get().getModel(), new Computer.Model());
 		hardware.store(() -> info.get().getSerialNumber(), new Computer.Serial());
-		readPart(() -> info.get().getBaseboard(), this::readBaseBoard);
-		readPart(() -> info.get().getFirmware(), this::readFirmware);
+		readPart(cache(() -> info.get().getBaseboard()), this::readBaseBoard);
+		readPart(cache(() -> info.get().getFirmware()), this::readFirmware);
 	}
 
 	private void readBaseBoard(Supplier<Baseboard> info) {
@@ -158,4 +159,8 @@ final class State {
 		new FragileData<>(aspect, read).supply();
 	}
 
+	@SuppressWarnings("restriction")
+	private static <T> Supplier<T> cache(Supplier<T> supplier) {
+		return new Cached<>(supplier);
+	}
 }
