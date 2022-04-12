@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.inspection.EnvironmentProperty;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.Disk;
@@ -70,8 +71,8 @@ abstract class Swath<T> {
 		new FragileData<>(() -> source(system), this::readSource).supply();
 	}
 
-	private void readSource(T[] source) {
-		Arrays.stream(source).forEach(src -> properties.add(fillProperties(src, new EnvironmentProperties())));
+	private void readSource(Supplier<T[]> source) {
+		Arrays.stream(source.get()).forEach(src -> properties.add(fillProperties(src, new EnvironmentProperties())));
 	}
 
 	protected abstract T[] source(SystemInfo system);

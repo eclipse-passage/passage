@@ -28,21 +28,18 @@ import java.util.function.Supplier;
 final class FragileData<T> {
 
 	private final Supplier<T> aspect;
-	private final Consumer<T> read;
+	private final Consumer<Supplier<T>> read;
 
-	FragileData(Supplier<T> aspect, Consumer<T> read) {
+	FragileData(Supplier<T> aspect, Consumer<Supplier<T>> read) {
 		this.aspect = aspect;
 		this.read = read;
 	}
 
 	void supply() {
-		T descriptor;
 		try {
-			descriptor = aspect.get();
+			read.accept(aspect);
 		} catch (Throwable any) {
-			return; // legal; 'read' just isn't going to happen
+			// legal; 'read' just isn't going to happen
 		}
-		read.accept(descriptor);
 	}
-
 }

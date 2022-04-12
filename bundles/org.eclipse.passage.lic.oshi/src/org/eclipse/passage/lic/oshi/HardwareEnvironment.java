@@ -44,12 +44,12 @@ public final class HardwareEnvironment implements RuntimeEnvironment {
 	public boolean isAssuptionTrue(EnvironmentProperty property, String assumption) throws LicensingException {
 		Objects.requireNonNull(property, "HardwareEnvironment::isAssuptionTrue::property"); //$NON-NLS-1$
 		Objects.requireNonNull(assumption, "HardwareEnvironment::isAssuptionTrue::assumption"); //$NON-NLS-1$
-		return freshState().hasValue(property, assumption);
+		return freshState(property).hasValue(property, assumption);
 	}
 
 	@Override
 	public String state() throws LicensingException {
-		return new GlanceOfState(freshState()).get();
+		return new GlanceOfState(freshState(null)).get();
 	}
 
 	/**
@@ -64,10 +64,10 @@ public final class HardwareEnvironment implements RuntimeEnvironment {
 	 * class. Just beware, in case of any threading troubles revise.
 	 * </p>
 	 */
-	private State freshState() throws LicensingException {
+	private State freshState(EnvironmentProperty property) throws LicensingException {
 		State state;
 		synchronized (SystemInfo.class) {
-			state = new State();
+			state = new State(property);
 		}
 		return state;
 	}

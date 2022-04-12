@@ -23,8 +23,20 @@ import org.eclipse.passage.lic.api.inspection.EnvironmentProperty;
 final class EnvironmentProperties {
 
 	private final Map<EnvironmentProperty, String> properties = new HashMap<>();
+	private final EnvironmentProperty property;
+
+	public EnvironmentProperties() {
+		this(null);
+	}
+
+	public EnvironmentProperties(EnvironmentProperty property) {
+		this.property = property;
+	}
 
 	void store(Supplier<String> value, EnvironmentProperty key) {
+		if (property != null && !property.equals(key)) {
+			return;
+		}
 		Optional<String> read;
 		try {
 			read = Optional.ofNullable(value.get());
@@ -34,8 +46,8 @@ final class EnvironmentProperties {
 		read.ifPresent(valuable -> properties.put(key, valuable));
 	}
 
-	String get(EnvironmentProperty property) {
-		return properties.get(property);
+	String get(EnvironmentProperty prop) {
+		return properties.get(prop);
 	}
 
 	Set<EnvironmentProperty> all() {

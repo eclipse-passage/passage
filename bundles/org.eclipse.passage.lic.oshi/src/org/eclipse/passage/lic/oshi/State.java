@@ -12,12 +12,13 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.oshi;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.inspection.EnvironmentProperty;
@@ -64,19 +65,21 @@ final class State {
 	private final EnvironmentProperties hardware;
 	private final List<Swath<?>> swaths;
 
-	State() throws LicensingException {
-		this.hardware = new EnvironmentProperties();
-		this.swaths = Arrays.asList(new Swath.Disks(), new Swath.Nets());
+	State(EnvironmentProperty property) throws LicensingException {
+		this.hardware = new EnvironmentProperties(property);
+		this.swaths = Stream.of(new Swath.Disks(), new Swath.Nets())
+				.filter(sw -> property == null || sw.relates(property.family())) //
+				.collect(Collectors.toList());
 		read(); // eager due to OSHI specifics
 	}
 
-	boolean hasValue(EnvironmentProperty property, String expected) {
+	boolean hasValue(EnvironmentProperty prop, String expected) {
 		String regexp = expected.replaceAll("\\*", ".*"); //$NON-NLS-1$//$NON-NLS-2$
-		Optional<Swath<?>> swath = swaths.stream().filter(sw -> sw.relates(property.family())).findAny();
+		Optional<Swath<?>> swath = swaths.stream().filter(sw -> sw.relates(prop.family())).findAny();
 		if (swath.isPresent()) {
-			return swath.get().hasValue(property, regexp);
+			return swath.get().hasValue(prop, regexp);
 		}
-		return Optional.ofNullable(hardware.get(property))//
+		return Optional.ofNullable(hardware.get(prop))//
 				.map(value -> value.matches(regexp))//
 				.orElse(false);
 	}
@@ -96,62 +99,62 @@ final class State {
 	private void read() throws LicensingException {
 		try {
 			SystemInfo system = new SystemInfo();
-			readOS(system.getOperatingSystem());
-			readHal(system.getHardware());
+			readOS(system::getOperatingSystem);
+			readHal(system::getHardware);
 			swaths.forEach(swath -> swath.read(system));
 		} catch (Throwable e) {
 			throw new LicensingException(AssessmentMessages.State_error_reading_hw, e);
 		}
 	}
 
-	private void readOS(OperatingSystem info) {
-		hardware.store(info::getFamily, new OS.Family());
-		hardware.store(info::getManufacturer, new OS.Manufacturer());
-		hardware.store(info.getVersion()::getVersion, new OS.Version());
-		hardware.store(info.getVersion()::getBuildNumber, new OS.BuildNumber());
+	private void readOS(Supplier<OperatingSystem> info) {
+		hardware.store(() -> info.get().getFamily(), new OS.Family());
+		hardware.store(() -> info.get().getManufacturer(), new OS.Manufacturer());
+		hardware.store(() -> info.get().getVersion().getVersion(), new OS.Version());
+		hardware.store(() -> info.get().getVersion().getBuildNumber(), new OS.BuildNumber());
 	}
 
-	private void readHal(HardwareAbstractionLayer hal) {
-		readPart(hal::getComputerSystem, this::readSystem);
-		readPart(hal::getProcessor, this::readProcessor);
+	private void readHal(Supplier<HardwareAbstractionLayer> hal) {
+		readPart(() -> hal.get().getComputerSystem(), this::readSystem);
+		readPart(() -> hal.get().getProcessor(), this::readProcessor);
 	}
 
-	private void readSystem(ComputerSystem info) {
-		hardware.store(info::getManufacturer, new Computer.Manufacturer());
-		hardware.store(info::getModel, new Computer.Model());
-		hardware.store(info::getSerialNumber, new Computer.Serial());
-		readPart(info::getBaseboard, this::readBaseBoard);
-		readPart(info::getFirmware, this::readFirmware);
+	private void readSystem(Supplier<ComputerSystem> info) {
+		hardware.store(() -> info.get().getManufacturer(), new Computer.Manufacturer());
+		hardware.store(() -> info.get().getModel(), new Computer.Model());
+		hardware.store(() -> info.get().getSerialNumber(), new Computer.Serial());
+		readPart(() -> info.get().getBaseboard(), this::readBaseBoard);
+		readPart(() -> info.get().getFirmware(), this::readFirmware);
 	}
 
-	private void readBaseBoard(Baseboard info) {
-		hardware.store(info::getManufacturer, new BaseBoard.Manufacturer());
-		hardware.store(info::getModel, new BaseBoard.Model());
-		hardware.store(info::getVersion, new BaseBoard.Version());
-		hardware.store(info::getSerialNumber, new BaseBoard.Serial());
+	private void readBaseBoard(Supplier<Baseboard> info) {
+		hardware.store(() -> info.get().getManufacturer(), new BaseBoard.Manufacturer());
+		hardware.store(() -> info.get().getModel(), new BaseBoard.Model());
+		hardware.store(() -> info.get().getVersion(), new BaseBoard.Version());
+		hardware.store(() -> info.get().getSerialNumber(), new BaseBoard.Serial());
 	}
 
-	private void readFirmware(oshi.hardware.Firmware info) {
-		hardware.store(info::getManufacturer, new Firmware.Manufacturer());
-		hardware.store(info::getVersion, new Firmware.Version());
-		hardware.store(info::getReleaseDate, new Firmware.ReleaseDate());
-		hardware.store(info::getName, new Firmware.Name());
-		hardware.store(info::getDescription, new Firmware.Description());
+	private void readFirmware(Supplier<oshi.hardware.Firmware> info) {
+		hardware.store(() -> info.get().getManufacturer(), new Firmware.Manufacturer());
+		hardware.store(() -> info.get().getVersion(), new Firmware.Version());
+		hardware.store(() -> info.get().getReleaseDate(), new Firmware.ReleaseDate());
+		hardware.store(() -> info.get().getName(), new Firmware.Name());
+		hardware.store(() -> info.get().getDescription(), new Firmware.Description());
 	}
 
-	private void readProcessor(CentralProcessor info) {
-		hardware.store(info::getVendor, new Cpu.Vendor());
-		hardware.store(info::getFamily, new Cpu.Family());
-		hardware.store(info::getModel, new Cpu.Model());
-		hardware.store(info::getName, new Cpu.Name());
-		hardware.store(info::getProcessorID, new Cpu.ProcessorId());
+	private void readProcessor(Supplier<CentralProcessor> info) {
+		hardware.store(() -> info.get().getVendor(), new Cpu.Vendor());
+		hardware.store(() -> info.get().getFamily(), new Cpu.Family());
+		hardware.store(() -> info.get().getModel(), new Cpu.Model());
+		hardware.store(() -> info.get().getName(), new Cpu.Name());
+		hardware.store(() -> info.get().getProcessorID(), new Cpu.ProcessorId());
 	}
 
 	/**
 	 * #569352 HAL likes to fail on native access, thus we isolate each HAL aspect
 	 * assessment and legalize absence of corresponding properties.
 	 */
-	private <T> void readPart(Supplier<T> aspect, Consumer<T> read) {
+	private <T> void readPart(Supplier<T> aspect, Consumer<Supplier<T>> read) {
 		new FragileData<>(aspect, read).supply();
 	}
 
