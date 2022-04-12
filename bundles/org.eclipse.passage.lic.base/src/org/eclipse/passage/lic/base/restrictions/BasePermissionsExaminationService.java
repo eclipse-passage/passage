@@ -13,14 +13,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.restrictions;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
@@ -75,7 +76,7 @@ public final class BasePermissionsExaminationService implements PermissionsExami
 			Collection<AgreementToAccept> agreements, Map<Requirement, Permission> active) {
 		List<Restriction> uncovered = insufficientCoverage(requirements, permissions, active);
 		List<Restriction> unaccepted = unacceptedAgreements(agreements);
-		return Arrays.asList(uncovered, unaccepted).stream()//
+		return Stream.of(uncovered, unaccepted) //
 				.flatMap(List::stream)//
 				.collect(Collectors.toList());
 
@@ -84,8 +85,8 @@ public final class BasePermissionsExaminationService implements PermissionsExami
 	private List<Restriction> insufficientCoverage(Collection<Requirement> requirements,
 			Collection<Permission> permissions, Map<Requirement, Permission> active) {
 		return requirements.stream() //
-				.collect(Collectors.groupingBy(Requirement::feature)).entrySet().stream()//
-				.map(e -> insufficientLicenseCoverage(e.getValue(), permissions, active))//
+				.collect(Collectors.groupingBy(Requirement::feature)).values().stream()//
+				.map(v -> insufficientLicenseCoverage(v, permissions, active))//
 				.flatMap(Collection::stream)//
 				.collect(Collectors.toList());
 	}
@@ -94,19 +95,20 @@ public final class BasePermissionsExaminationService implements PermissionsExami
 			Collection<Permission> permissions, Map<Requirement, Permission> active) {
 		return requirements.stream()//
 				.filter(requirement -> notCovered(requirement, permissions, active))//
-				.map(requirement -> insufficientLicenseCoverage(requirement)) //
+				.map(this::insufficientLicenseCoverage) //
 				.collect(Collectors.toList());
 	}
 
 	private boolean notCovered(Requirement requirement, Collection<Permission> permissions,
 			Map<Requirement, Permission> active) {
-		return !permissions.stream() //
+		Optional<Permission> satisfied = permissions.stream() //
 				.filter(permission -> sameFeature(requirement, permission)) //
 				.filter(permission -> versionMatches(requirement, permission)) //
-				// keep an eye on each permission that played active role in examination
-				.peek(permission -> active.put(requirement, permission)) //
-				.findAny()//
-				.isPresent();
+				.findAny();
+		if (satisfied.isPresent()) {
+			active.put(requirement, satisfied.get());
+		}
+		return !satisfied.isPresent();
 	}
 
 	private boolean sameFeature(Requirement requirement, Permission permission) {
