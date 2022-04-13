@@ -42,7 +42,7 @@
 		<cbi-snapshots-repo.url>https://repo.eclipse.org/content/repositories/cbi-snapshots/</cbi-snapshots-repo.url>
 
 		<eclipserun-repo>https://download.eclipse.org/eclipse/updates/4.22/R-4.22-202111241800/</eclipserun-repo>
-		<released.baseline>https://download.eclipse.org/passage/updates/release/2.2.1/</released.baseline>
+		<released.baseline>https://download.eclipse.org/passage/updates/release/2.3.0/</released.baseline>
 		<staging.baseline>https://download.eclipse.org/passage/drops/integration/latest/</staging.baseline>
 
 		<compare-version-with-baselines.skip>true</compare-version-with-baselines.skip>
