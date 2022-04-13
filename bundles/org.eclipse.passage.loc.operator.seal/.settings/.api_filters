@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.passage.loc.operator.seal" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter comment="intentional version increment" id="925892614">
+            <message_arguments>
+                <message_argument value="2.4.0"/>
+                <message_argument value="0.1.102"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>
