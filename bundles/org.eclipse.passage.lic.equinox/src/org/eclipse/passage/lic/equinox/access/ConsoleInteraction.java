@@ -26,7 +26,7 @@ public final class ConsoleInteraction implements Interaction {
 		byte[] bytes = new byte[1024];
 		int length = 0;
 		try {
-			for (int symbol = System.in.read(); symbol != 13; symbol = System.in.read()) {
+			for (int symbol = System.in.read(); (symbol != 10) && (symbol != 13); symbol = System.in.read()) {
 				bytes[length++] = (byte) symbol;
 			}
 		} catch (IOException e) {
