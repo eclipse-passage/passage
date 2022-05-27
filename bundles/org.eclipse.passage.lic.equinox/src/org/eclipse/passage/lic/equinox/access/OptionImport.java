@@ -28,7 +28,7 @@ final class OptionImport extends BaseOption<CoverageCheckOptionDecision> {
 	OptionImport(Interaction.Smart interaction, LicensedProduct product) {
 		super('i', //
 				"Import", //$NON-NLS-1$
-				"Import a license for the application", //$NON-NLS-1$
+				"Import a license for this application", //$NON-NLS-1$
 				interaction);
 		this.product = product;
 	}
@@ -36,7 +36,7 @@ final class OptionImport extends BaseOption<CoverageCheckOptionDecision> {
 	@Override
 	public CoverageCheckOptionDecision run() {
 		interaction.head("import license"); //$NON-NLS-1$
-		interaction.prompt("Please enter path the a license file"); //$NON-NLS-1$
+		interaction.prompt("Please enter the path to a license file"); //$NON-NLS-1$
 		readPath().ifPresent(this::install);
 		return CoverageCheckOptionDecision.reassess;
 	}
