@@ -92,14 +92,14 @@ public final class LicenseCoverageCheck {
 	}
 
 	private void reportAssessment(Optional<ExaminationCertificate> certificate) {
-		interaction.head("license coverage assessment"); //$NON-NLS-1$
+		interaction.head("License coverage assessment"); //$NON-NLS-1$
 		if (certificate.isPresent()) {
 			if (new CertificateIsRestrictive().test(certificate)) {
 				interaction.prompt("License coverage for the product or its features is not sufficient"); //$NON-NLS-1$
 			} else if (new CertificateWorthAttention().test(certificate)) {
 				interaction.prompt("License coverage for the product or its features worth your attention"); //$NON-NLS-1$
 			} else {
-				interaction.prompt("License coverage for the product and all its feature is suffiient"); //$NON-NLS-1$
+				interaction.prompt("License coverage for the product and all its feature is sufficient"); //$NON-NLS-1$
 			}
 			interaction.prompt(String.format("\n%s", new RequirementsCoverageExplained(certificate.get()).get())); //$NON-NLS-1$
 		} else {
