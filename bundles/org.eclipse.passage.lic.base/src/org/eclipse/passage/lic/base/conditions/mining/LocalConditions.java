@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.conditions.mining;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Collections;
@@ -102,7 +103,12 @@ public abstract class LocalConditions implements MinedConditions {
 	}
 
 	private Collection<Path> licenses(LicensedProduct product) throws LicensingException {
-		return new FileCollection(base(product), scope).get();
+		Supplier<Path> base = base(product);
+		if (Files.exists(base.get())) {
+			return new FileCollection(base, scope).get();
+		} else {
+			return Collections.emptyList();
+		}
 	}
 
 	protected abstract Supplier<Path> base(LicensedProduct product);

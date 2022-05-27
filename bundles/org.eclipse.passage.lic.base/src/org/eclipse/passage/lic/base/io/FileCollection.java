@@ -41,15 +41,18 @@ public final class FileCollection {
 		this.extensions = extension;
 	}
 
-	public Collection<Path> get() throws LicensingException {
-		try (Stream<Path> all = filesIn(base.get())) {
+	public Collection<Path> get() throws LicensingException, IllegalArgumentException {
+		try (Stream<Path> all = files(base.get())) {
 			return filtered(all);
 		} catch (IOException e) {
 			throw new LicensingException(BaseMessages.getString("FileCollection.failure"), e); //$NON-NLS-1$
 		}
 	}
 
-	private Stream<Path> filesIn(Path path) throws IOException {
+	private Stream<Path> files(Path path) throws IOException {
+		if (!Files.exists(path)) {
+			throw new IllegalArgumentException("Root of file collection does not exist"); //$NON-NLS-1$
+		}
 		return Files.walk(path) //
 				.filter(Files::isRegularFile);
 	}
