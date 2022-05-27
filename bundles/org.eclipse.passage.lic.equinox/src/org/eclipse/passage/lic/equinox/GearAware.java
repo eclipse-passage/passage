@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
@@ -23,7 +21,6 @@ import org.eclipse.passage.lic.api.GearSupplier;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
-import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 
 /**
@@ -35,24 +32,17 @@ public abstract class GearAware<G extends Gear, S extends GearSupplier<G>> {
 
 	public final <T> Optional<T> withGear(Unsafe<G, T> with) throws LicensingException {
 		BundleContext context = FrameworkUtil.getBundle(getClass()).getBundleContext();
-		Collection<ServiceReference<S>> references = Collections.emptyList();
-		try {
-			references = context.getServiceReferences(supplier(), null);
-		} catch (InvalidSyntaxException e) {
-			log.error(e);
-			return Optional.empty();
-		}
-		if (references.isEmpty()) {
+		ServiceReference<S> reference = context.getServiceReference(supplier());
+		if (reference == null) {
 			log.error("No reference of service " + supplier().getName()); //$NON-NLS-1$
 			return Optional.empty();
 		}
-		ServiceReference<S> any = references.iterator().next();
 		try {
-			return with.apply(context.getService(any).gear());
+			return with.apply(context.getService(reference).gear());
 		} catch (Exception e) {
 			throw new LicensingException("Error on service invocation", e); //$NON-NLS-1$
 		} finally {
-			context.ungetService(any);
+			context.ungetService(reference);
 		}
 	}
 
