@@ -27,35 +27,43 @@ import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 /**
+ * Collects regular files of the given {@code extension} starting from the given
+ * {@code base} path recursively. No particular order is guaranteed.
+ * 
  * @since 2.1
  */
 public final class FileCollection {
 
 	private final Supplier<Path> base;
-	private final PassageFileExtension extensions;
+	private final PassageFileExtension extension;
 
+	/**
+	 * @param base expected to supply path to an existing directory
+	 */
 	public FileCollection(Supplier<Path> base, PassageFileExtension extension) {
 		Objects.requireNonNull(base, "FileCollection::base path"); //$NON-NLS-1$
 		Objects.requireNonNull(extension, "FileCollection::extension"); //$NON-NLS-1$
 		this.base = base;
-		this.extensions = extension;
+		this.extension = extension;
 	}
 
 	public Collection<Path> get() throws LicensingException {
-		try (Stream<Path> all = filesIn(base.get())) {
+		try (Stream<Path> all = files(base.get())) {
 			return filtered(all);
 		} catch (IOException e) {
-			throw new LicensingException(BaseMessages.getString("FileCollection.failure"), e); //$NON-NLS-1$
+			throw new LicensingException(
+					String.format(BaseMessages.getString("FileCollection.failure"), extension.get(), base.get()), //$NON-NLS-1$
+					e);
 		}
 	}
 
-	private Stream<Path> filesIn(Path path) throws IOException {
+	private Stream<Path> files(Path path) throws IOException {
 		return Files.walk(path) //
 				.filter(Files::isRegularFile);
 	}
 
 	private List<Path> filtered(Stream<Path> files) {
-		return files.filter(extensions::ends) //
+		return files.filter(extension::ends) //
 				.collect(Collectors.toList());
 	}
 }
