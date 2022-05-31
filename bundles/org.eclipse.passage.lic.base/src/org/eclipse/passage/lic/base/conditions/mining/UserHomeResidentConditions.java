@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -17,6 +17,7 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.conditions.mining.MiningEquipment;
+import org.eclipse.passage.lic.base.io.ExistingFolder;
 import org.eclipse.passage.lic.base.io.LicensingFolder;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.base.io.PathFromLicensedProduct;
@@ -40,7 +41,11 @@ public final class UserHomeResidentConditions extends LocalConditions {
 
 	@Override
 	protected Supplier<Path> base(LicensedProduct product) {
-		return new PathFromLicensedProduct(new LicensingFolder(new UserHomePath()), product);
+		return new ExistingFolder(//
+				new PathFromLicensedProduct(//
+						new LicensingFolder(//
+								new UserHomePath()), //
+						product));
 	}
 
 }

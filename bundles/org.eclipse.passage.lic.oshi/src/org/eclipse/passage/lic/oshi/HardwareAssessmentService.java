@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -27,7 +27,7 @@ import org.eclipse.passage.lic.internal.oshi.i18n.AssessmentMessages;
 public final class HardwareAssessmentService implements ExpressionTokenAssessmentService {
 
 	private final EvaluationType type = new EvaluationType.Hardware();
-	private RuntimeEnvironmentRegistry environments;
+	private final RuntimeEnvironmentRegistry environments;
 
 	public HardwareAssessmentService(RuntimeEnvironmentRegistry environments) {
 		this.environments = environments;

@@ -17,12 +17,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-import java.util.stream.Stream;
 
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
@@ -45,9 +45,6 @@ public final class Settings {
 
 	/**
 	 * Tell me where to start searching and when to stop
-	 * 
-	 * @param base
-	 * @param enough
 	 */
 	public Settings(Supplier<Path> base, Predicate<Map<String, Object>> enough) {
 		this.base = base;
@@ -62,23 +59,22 @@ public final class Settings {
 	}
 
 	public Map<String, Object> get() throws LicensingException {
-		try (Stream<Path> files = settingFilesIn(base.get())) {
-			return properties(files);
+		try {
+			return properties(settingFiles());
 		} catch (IOException e) {
-			throw new LicensingException(String.format(BaseMessages.getString("Settings.error_on_reading_settings"), //$NON-NLS-1$
-					base.get()), e);
+			throw new LicensingException(//
+					String.format(BaseMessages.getString("Settings.error_on_reading_settings"), base.get()), //$NON-NLS-1$
+					e);
 		}
 	}
 
-	private Stream<Path> settingFilesIn(Path path) throws IOException {
-		return Files.walk(path) //
-				.filter(Files::isRegularFile) //
-				.filter(new PassageFileExtension.Settings()::ends);
+	private Collection<Path> settingFiles() throws LicensingException {
+		return new FileCollection(base, new PassageFileExtension.Settings()).get();
 	}
 
-	private Map<String, Object> properties(Stream<Path> files) throws IOException {
+	private Map<String, Object> properties(Collection<Path> files) throws IOException {
 		Map<String, Object> properties = new HashMap<>();
-		for (Path file : (Iterable<Path>) files::iterator) {
+		for (Path file : files) {
 			loadAndAdd(properties, file);
 			if (enough.test(properties)) {
 				return properties;
