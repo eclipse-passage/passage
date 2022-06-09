@@ -25,6 +25,7 @@ import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.base.conditions.MatchingRuleForIdentifier;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.Disk;
 import org.eclipse.passage.lic.internal.licenses.model.EmptyFeatureGrant;
+import org.eclipse.passage.lic.licenses.FeatureRefDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.CompanyRef;
@@ -39,6 +40,7 @@ import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
@@ -187,33 +189,39 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 
 	private FeatureGrant featureGrant(LicensePlanFeatureDescriptor feature, FloatingLicensePack pack, int no) {
 		FeatureGrant grant = new EmptyFeatureGrant().get();
-		String fid = feature.getFeature().getIdentifier();
-		grant.getFeature().setIdentifier(fid);
+		grant.getFeature().setIdentifier(feature.getFeature().getIdentifier());
 		grant.setCapacity(request.defaultCapacity());
 		grant.setIdentifier(String.format("%s#%d", request.identifier(), no)); //$NON-NLS-1$
 		grant.setPack(pack);
-		grant.setValid(featureGrantPeriod(fid));
-		grant.setVivid(featureGrantVivid(fid));
+		grant.setValid(featureGrantPeriod(feature.getFeature()));
+		grant.setVivid(featureGrantVivid(feature.getFeature()));
 		grant.getFeature().setVersionMatch(version(feature));
 		return grant;
 	}
 
-	private ValidityPeriod featureGrantPeriod(String feature) {
+	private ValidityPeriod featureGrantPeriod(FeatureRefDescriptor feature) {
 		return template//
 				.flatMap(l -> forFeature(l.getFeatures(), feature)) //
+				.filter(g -> g.eIsSet(LicensesPackage.eINSTANCE.getFeatureGrant_Vivid())) //
 				.map(g -> EcoreUtil.copy(g.getValid()))//
 				.orElseGet(this::period);
 	}
 
-	private long featureGrantVivid(String feature) {
+	private long featureGrantVivid(FeatureRefDescriptor feature) {
 		return template//
 				.flatMap(l -> forFeature(l.getFeatures(), feature)) //
 				.map(FeatureGrant::getVivid)//
 				.orElse(60L);
 	}
 
-	private Optional<FeatureGrant> forFeature(List<FeatureGrant> all, String feature) {
-		return all.stream().filter(g -> feature.equals(g.getFeature())).findFirst();
+	private Optional<FeatureGrant> forFeature(List<FeatureGrant> all, FeatureRefDescriptor feature) {
+		return all.stream().filter(g -> equals(feature, g.getFeature())).findFirst();
+	}
+
+	private static boolean equals(FeatureRefDescriptor f1, FeatureRefDescriptor f2) {
+		return f1.getIdentifier().equals(f2.getIdentifier())
+				&& f1.getVersionMatch().getVersion().equals(f2.getVersionMatch().getVersion())
+				&& f1.getVersionMatch().getRule().equals(f2.getVersionMatch().getRule());
 	}
 
 	private VersionMatch version(LicensePlanFeatureDescriptor feature) {
