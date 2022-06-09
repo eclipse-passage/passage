@@ -12,7 +12,7 @@ Copyright © 2018, 2022 ArSysOp and others
 
 [![Eclipse License](https://img.shields.io/badge/License-EPL--2.0-thistle.svg)](https://github.com/eclipse/passage/blob/master/LICENSE) 
 
-###### Latest release: [2.4.0](https://projects.eclipse.org/projects/technology.passage/releases/2.4.0), 08.06.2022 
+###### Latest release: [2.4.0](https://projects.eclipse.org/projects/technology.passage/releases/2.4.0), 08.06.2022. Part of [Eclipse 2022-06](https://projects.eclipse.org/releases/2022-06).
 [![Stable release P2](https://img.shields.io/badge/P2%20Components-2.4.0-lightblue.svg)](https://download.eclipse.org/passage/updates/release/2.4.0/)
 [![Stable release Products](https://img.shields.io/badge/Runnable%20Products-2.4.0-lightblue.svg)](https://download.eclipse.org/passage/downloads/release/2.4.0/)
 
