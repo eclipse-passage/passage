@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation
+ *     ArSysOp - initial API and implementation, further development
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.inspection.hardware;
 
@@ -17,7 +17,7 @@ import org.eclipse.passage.lic.base.inspection.BaseEnvironmentProperty;
 public abstract class Computer extends BaseEnvironmentProperty {
 
 	protected Computer(String name) {
-		super("system", name); //$NON-NLS-1$
+		super("computer", name); //$NON-NLS-1$
 	}
 
 	public static final class Manufacturer extends Computer {
