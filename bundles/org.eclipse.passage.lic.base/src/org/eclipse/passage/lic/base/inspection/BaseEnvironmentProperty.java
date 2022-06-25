@@ -54,8 +54,8 @@ public abstract class BaseEnvironmentProperty implements EnvironmentProperty {
 		if (!EnvironmentProperty.class.isInstance(object)) {
 			return false;
 		}
-		EnvironmentProperty os = (EnvironmentProperty) object;
-		return family.equals(os.family()) && name.equals(os.name());
+		EnvironmentProperty property = (EnvironmentProperty) object;
+		return family.equals(property.family()) && name.equals(property.name());
 	}
 
 	@Override

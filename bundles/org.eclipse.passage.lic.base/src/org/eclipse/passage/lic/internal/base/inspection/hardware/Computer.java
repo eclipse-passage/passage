@@ -17,7 +17,7 @@ import org.eclipse.passage.lic.base.inspection.BaseEnvironmentProperty;
 public abstract class Computer extends BaseEnvironmentProperty {
 
 	protected Computer(String name) {
-		super("system", name); //$NON-NLS-1$
+		super("computer", name); //$NON-NLS-1$
 	}
 
 	public static final class Manufacturer extends Computer {
