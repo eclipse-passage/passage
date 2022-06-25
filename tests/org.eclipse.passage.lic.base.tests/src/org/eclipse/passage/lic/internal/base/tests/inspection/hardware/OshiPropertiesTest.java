@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (c) 2022 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.inspection.hardware;
 
 import static org.junit.Assert.assertEquals;
@@ -23,11 +35,11 @@ public final class OshiPropertiesTest {
 	@Test
 	public void allDifferent() {
 		// having
-		AtomicInteger additions = new AtomicInteger(0);
+		AtomicInteger amount = new AtomicInteger(0);
 		// when
-		Set<EnvironmentProperty> all = eachAndEveryProperty(additions);
+		Set<EnvironmentProperty> all = eachAndEveryProperty(amount);
 		// then
-		assertEquals(additions.get(), all.size());
+		assertEquals(amount.get(), all.size());
 	}
 
 	private Set<EnvironmentProperty> eachAndEveryProperty(AtomicInteger additions) {
