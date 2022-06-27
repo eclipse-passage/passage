@@ -192,7 +192,7 @@
           <repository
               url="https://download.eclipse.org/ecp/rt/1261/"/>
           <repository
-              url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.29/"/>
+              url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.30/"/>
           <repository
               url="https://download.eclipse.org/modeling/emf/query/updates/releases/R201805030653/"/>
           <repository
@@ -208,7 +208,7 @@
           <repository
               url="https://download.eclipse.org/modeling/mdt/uml2/updates/5.5/"/>
           <repository
-              url="https://download.eclipse.org/passage/updates/release/2.3.0/"/>
+              url="https://download.eclipse.org/passage/updates/release/2.4.0/"/>
           <repository
               url="https://download.eclipse.org/sirius/updates/releases/6.5.1/2020-09/"/>
           <repository
@@ -329,8 +329,6 @@
             name="">
           <repository
               url="https://download.eclipse.org/cbi/updates/license/"/>
-          <repository
-              url="https://download.eclipse.org/eclipse/updates/4.24-I-builds/I20220601-1800/"/>
           <repository
               url="https://download.eclipse.org/ecp/rt/1261/"/>
           <repository
