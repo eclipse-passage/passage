@@ -20,18 +20,21 @@ import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lic.equinox.access.LicenseProtection;
 import org.eclipse.passage.lic.internal.jetty.JettyException;
 import org.eclipse.passage.lic.internal.jetty.JettyServer;
+import org.eclipse.passage.lic.internal.net.connect.BindAddress;
 import org.eclipse.passage.lic.internal.net.connect.Port;
 
 final class ServerHandles extends Command {
 
 	private final Logger log = LogManager.getLogger(getClass());
 	private final JettyServer server;
-	private final Port port;
 	private final LicenseProtection license = new LicenseProtection();
+	private final BindAddress listen;
+	private final Port port;
 
 	ServerHandles(JettyServer server, String name) {
 		super(new Scope.Of(name), new Handlers().get());
 		this.server = server;
+		this.listen = new BindAddress("0.0.0.0"); //$NON-NLS-1$
 		this.port = new Port(8090);
 	}
 
@@ -40,7 +43,7 @@ final class ServerHandles extends Command {
 			return;
 		}
 		try {
-			server.launch(port);
+			server.launch(listen, port);
 		} catch (JettyException e) {
 			log.error("failed to launch Jetty server", e); //$NON-NLS-1$
 		}
@@ -62,16 +65,18 @@ final class ServerHandles extends Command {
 
 	public void state() {
 		try {
-			String where = port.get().map(i -> i.toString()).orElse("-"); //$NON-NLS-1$
-			System.out.println(server.state() + " on port " + where); //$NON-NLS-1$
+			String listen = this.listen.get().orElse("-"); //$NON-NLS-1$
+			String port = this.port.get().map(i -> i.toString()).orElse("-"); //$NON-NLS-1$
+			System.out.println(server.state() + " listen on " + listen + " on port " + port); //$NON-NLS-1$ //$NON-NLS-2$
 		} catch (JettyException e) {
 			log.error("failed to report state of Jetty server", e); //$NON-NLS-1$
 		}
 	}
 
-	public ServerHandles(Scope scope, String[] names, JettyServer server, Port port) {
+	public ServerHandles(Scope scope, String[] names, JettyServer server, BindAddress listen, Port port) {
 		super(scope, names);
 		this.server = server;
+		this.listen = listen;
 		this.port = port;
 	}
 
