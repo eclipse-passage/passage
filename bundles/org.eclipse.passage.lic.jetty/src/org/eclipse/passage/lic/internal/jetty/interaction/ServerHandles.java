@@ -75,7 +75,7 @@ final class ServerHandles extends Command {
 	private String where() {
 		return listen.get().orElse("-") //$NON-NLS-1$
 				+ ":" //$NON-NLS-1$
-				+ this.port.get().map(i -> i.toString()).orElse("-"); //$NON-NLS-1$
+				+ port.get().map(i -> i.toString()).orElse("-"); //$NON-NLS-1$
 	}
 
 	public ServerHandles(Scope scope, String[] names, JettyServer server, BindAddress listen, Port port) {
