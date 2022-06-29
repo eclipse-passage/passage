@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jetty;
 
+import java.net.InetSocketAddress;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -21,6 +22,7 @@ import org.apache.logging.log4j.Logger;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.passage.lic.internal.jetty.i18n.Messages;
 import org.eclipse.passage.lic.internal.net.connect.Port;
+import org.eclipse.passage.lic.internal.net.connect.BindAddress;
 
 public final class JettyServer {
 
@@ -33,12 +35,14 @@ public final class JettyServer {
 		this.handler = handler;
 	}
 
-	public void launch(Port port) throws JettyException {
+	public void launch(BindAddress listen, Port port) throws JettyException {
 		try {
-			server = Optional.of(new Server(port.get().get()));
+			InetSocketAddress address = InetSocketAddress.createUnresolved(listen.get().get(),
+					port.get().get());
+			server = Optional.of(new Server(address));
 			server.get().setHandler(handler.get());
 			server.get().start();
-			log.info(String.format(Messages.started, port.get().get()));
+			log.info(String.format(Messages.started, address));
 		} catch (Exception e) {
 			logAndRethrow(e, Messages.error_onstart);
 		}
