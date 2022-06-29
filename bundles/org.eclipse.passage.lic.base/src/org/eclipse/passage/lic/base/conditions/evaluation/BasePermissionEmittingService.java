@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     IILS mbH (Hannes Wellmann) - Don't emit permissions for expired/not-yet-valid conditions
  *******************************************************************************/
 package org.eclipse.passage.lic.base.conditions.evaluation;
 
@@ -16,6 +17,7 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Optional;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.LicensingException;
@@ -38,7 +40,9 @@ import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.base.SumOfCollections;
 import org.eclipse.passage.lic.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.base.diagnostic.code.LicenseDoesNotMatch;
+import org.eclipse.passage.lic.base.diagnostic.code.LicenseExpired;
 import org.eclipse.passage.lic.base.diagnostic.code.LicenseInvalid;
+import org.eclipse.passage.lic.base.diagnostic.code.LicenseNotStarted;
 import org.eclipse.passage.lic.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.base.i18n.ConditionsEvaluationMessages;
 
@@ -113,7 +117,26 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 							condition.evaluationInstructions().expression()), //
 					e);
 		}
+		Optional<Trouble> trouble = checkPeriod(condition);
+		if (trouble.isPresent()) {
+			return new BaseServiceInvocationResult<>(//
+					new BaseDiagnostic(Collections.singletonList(trouble.get())), //
+					new Emission(pack));
+		}
 		return createFor(condition, pack, product);
+	}
+
+	private Optional<Trouble> checkPeriod(Condition condition) {
+		ZonedDateTime now = ZonedDateTime.now();
+		ZonedDateTime start = from(condition.validityPeriod()); // TODO: #566015
+		ZonedDateTime end = expiration(condition.validityPeriod());
+		Optional<TroubleCode> troubles = Optional.empty();
+		if (now.isBefore(start)) {
+			troubles = Optional.of(new LicenseNotStarted());
+		} else if (now.isAfter(end)) {
+			troubles = Optional.of(new LicenseExpired());
+		}
+		return troubles.map(c -> new Trouble(c, c.explanation()));
 	}
 
 	private ServiceInvocationResult<Emission> createFor(Condition condition, ConditionPack pack,
@@ -149,7 +172,7 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 	}
 
 	private ZonedDateTime from(ValidityPeriod period) {
-		if (ValidityPeriodClosed.class.isInstance(period)) {
+		if (period instanceof ValidityPeriodClosed) {
 			return ((ValidityPeriodClosed) period).from();
 		}
 		return ZonedDateTime.now();
@@ -157,7 +180,7 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 	}
 
 	private ZonedDateTime expiration(ValidityPeriod period) {
-		if (ValidityPeriodClosed.class.isInstance(period)) {
+		if (period instanceof ValidityPeriodClosed) {
 			return ((ValidityPeriodClosed) period).to();
 		}
 		return ZonedDateTime.now().plusDays(1);

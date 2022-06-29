@@ -44,7 +44,9 @@ import org.eclipse.passage.lic.base.conditions.evaluation.BasePermissionEmitting
 import org.eclipse.passage.lic.base.conditions.evaluation.BerlinProtocolExpressionParseService;
 import org.eclipse.passage.lic.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
 import org.eclipse.passage.lic.base.diagnostic.code.LicenseDoesNotMatch;
+import org.eclipse.passage.lic.base.diagnostic.code.LicenseExpired;
 import org.eclipse.passage.lic.base.diagnostic.code.LicenseInvalid;
+import org.eclipse.passage.lic.base.diagnostic.code.LicenseNotStarted;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.junit.Test;
 
@@ -127,6 +129,22 @@ public final class BasePermissionEmittingServiceTest {
 				new LicenseDoesNotMatch());
 	}
 
+	@Test
+	public void periodNotStartedFailsEmission() {
+		Condition notStartedCondition = humanoid(1, 1).withValidityPeriod(hour(1, 2));
+		verifyMorelFailure(//
+				service(morphologyAssessor(1, 1)).emit(packOf(notStartedCondition), product()), //
+				new LicenseNotStarted());
+	}
+
+	@Test
+	public void periodExpiredFailsEmission() {
+		Condition expiredCondition = humanoid(1, 1).withValidityPeriod(hour(-2, -1));
+		verifyMorelFailure(//
+				service(morphologyAssessor(1, 1)).emit(packOf(expiredCondition), product()), //
+				new LicenseExpired());
+	}
+
 	private void verifyMorelFailure(ServiceInvocationResult<Collection<Emission>> result, TroubleCode expected) {
 		// there is no severe errors
 		assertTrue(result.diagnostic().severe().isEmpty());
@@ -171,7 +189,7 @@ public final class BasePermissionEmittingServiceTest {
 				.withValidityPeriod(hour());
 	}
 
-	private Condition humanoid(int legs, int eyes) {
+	private FakeCondition humanoid(int legs, int eyes) {
 		return new FakeCondition().withEvaluationInstructions(//
 				new BaseEvaluationInstructions(//
 						new EvaluationType.Of("morphology"), //$NON-NLS-1$
@@ -188,9 +206,13 @@ public final class BasePermissionEmittingServiceTest {
 	}
 
 	private ValidityPeriod hour() {
+		return hour(0, 1);
+	}
+
+	private ValidityPeriod hour(int start, int end) {
 		return new BaseValidityPeriodClosed(//
-				ZonedDateTime.now(), //
-				ZonedDateTime.now().plusHours(1));
+				ZonedDateTime.now().plusHours(start), //
+				ZonedDateTime.now().plusHours(end));
 	}
 
 	private BiasedAssessor morphologyAssessor(int legs, int eyes) {
