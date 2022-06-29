@@ -63,14 +63,19 @@ final class ServerHandles extends Command {
 		start();
 	}
 
+	// TODO: l10n
 	public void state() {
 		try {
-			String listen = this.listen.get().orElse("-"); //$NON-NLS-1$
-			String port = this.port.get().map(i -> i.toString()).orElse("-"); //$NON-NLS-1$
-			System.out.println(server.state() + " listen on " + listen + " on port " + port); //$NON-NLS-1$ //$NON-NLS-2$
+			System.out.println(server.state() + " on " + where()); //$NON-NLS-1$
 		} catch (JettyException e) {
 			log.error("failed to report state of Jetty server", e); //$NON-NLS-1$
 		}
+	}
+
+	private String where() {
+		return listen.get().orElse("-") //$NON-NLS-1$
+				+ ":" //$NON-NLS-1$
+				+ this.port.get().map(i -> i.toString()).orElse("-"); //$NON-NLS-1$
 	}
 
 	public ServerHandles(Scope scope, String[] names, JettyServer server, BindAddress listen, Port port) {
