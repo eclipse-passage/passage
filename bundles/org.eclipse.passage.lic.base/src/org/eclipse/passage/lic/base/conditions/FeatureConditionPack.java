@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.base.conditions;
 
 import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -49,7 +50,7 @@ public final class FeatureConditionPack implements ConditionPack {
 		// FIXME: work for CachingFunction
 		return parent.conditions().stream()//
 				.filter(condition -> condition.feature().equals(feature))//
-				.collect(Collectors.toSet());
+				.collect(Collectors.toCollection(LinkedHashSet::new));
 	}
 
 	@Override

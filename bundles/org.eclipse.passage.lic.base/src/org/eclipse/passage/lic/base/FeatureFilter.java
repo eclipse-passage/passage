@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.base;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -56,7 +57,7 @@ public final class FeatureFilter<T>
 				.map(target -> map.apply(target, feature))//
 				.filter(Optional::isPresent) //
 				.map(Optional::get) //
-				.collect(Collectors.toSet());
+				.collect(Collectors.toCollection(LinkedHashSet::new));
 	}
 
 }
