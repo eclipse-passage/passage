@@ -2,12 +2,12 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.base
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.base;singleton:=true
-Bundle-Version: 2.4.0.qualifier
+Bundle-Version: 2.5.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: org.eclipse.passage.lic.api;bundle-version="2.4.0";visibility:=reexport,
+Require-Bundle: org.eclipse.passage.lic.api;bundle-version="2.5.0";visibility:=reexport,
  org.apache.logging.log4j;bundle-version="2.17.1"
 Export-Package: org.eclipse.passage.lic.base,
  org.eclipse.passage.lic.base.access,
