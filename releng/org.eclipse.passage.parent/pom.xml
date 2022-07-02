@@ -41,8 +41,8 @@
 		<eclipse-repo.url>https://repo.eclipse.org/content/repositories/cbi/</eclipse-repo.url>
 		<cbi-snapshots-repo.url>https://repo.eclipse.org/content/repositories/cbi-snapshots/</cbi-snapshots-repo.url>
 
-		<eclipserun-repo>https://download.eclipse.org/eclipse/updates/4.23/R-4.23-202203080310/</eclipserun-repo>
-		<released.baseline>https://download.eclipse.org/passage/updates/release/2.3.0/</released.baseline>
+		<eclipserun-repo>https://download.eclipse.org/eclipse/updates/4.24/R-4.24-202206070700/</eclipserun-repo>
+		<released.baseline>https://download.eclipse.org/passage/updates/release/2.4.0/</released.baseline>
 		<staging.baseline>https://download.eclipse.org/passage/drops/integration/latest/</staging.baseline>
 
 		<compare-version-with-baselines.skip>true</compare-version-with-baselines.skip>
