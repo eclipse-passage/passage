@@ -188,11 +188,11 @@
         <repositoryList
             name="Passage Latest Released">
           <repository
-              url="https://download.eclipse.org/eclipse/updates/4.23/R-4.23-202203080310/"/>
+              url="https://download.eclipse.org/eclipse/updates/4.24/R-4.24-202206070700/"/>
           <repository
               url="https://download.eclipse.org/ecp/rt/1261/"/>
           <repository
-              url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.29/"/>
+              url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.30/"/>
           <repository
               url="https://download.eclipse.org/modeling/emf/query/updates/releases/R201805030653/"/>
           <repository
@@ -204,17 +204,19 @@
           <repository
               url="https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R202106221344/"/>
           <repository
-              url="https://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.17.0/"/>
+              url="https://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.17.1/"/>
           <repository
               url="https://download.eclipse.org/modeling/mdt/uml2/updates/5.5/"/>
           <repository
-              url="https://download.eclipse.org/passage/updates/release/2.3.0/"/>
+              url="https://download.eclipse.org/passage/updates/release/2.4.0/"/>
           <repository
               url="https://download.eclipse.org/sirius/updates/releases/6.5.1/2020-09/"/>
           <repository
               url="https://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952/"/>
           <repository
-              url="https://download.eclipse.org/tools/orbit/downloads/2022-03/"/>
+              url="https://download.eclipse.org/tools/orbit/downloads/drops/R20220531185310/repository/"/>
+          <repository
+              url="https://download.eclipse.org/tools/orbit/downloads/drops/R20220302172233/repository/"/>
         </repositoryList>
       </targlet>
     </setupTask>
@@ -330,7 +332,7 @@
           <repository
               url="https://download.eclipse.org/cbi/updates/license/"/>
           <repository
-              url="https://download.eclipse.org/eclipse/updates/4.24-I-builds/I20220601-1800/"/>
+              url="https://download.eclipse.org/eclipse/updates/4.24/R-4.24-202206070700/"/>
           <repository
               url="https://download.eclipse.org/ecp/rt/1261/"/>
           <repository
@@ -353,6 +355,8 @@
               url="https://download.eclipse.org/sirius/updates/releases/6.5.1/2020-09/"/>
           <repository
               url="https://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952/"/>
+          <repository
+              url="https://download.eclipse.org/tools/orbit/downloads/drops/R20220531185310/repository/"/>
           <repository
               url="https://download.eclipse.org/tools/orbit/downloads/drops/R20220302172233/repository/"/>
         </repositoryList>
