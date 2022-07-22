@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.base.conditions.evaluation;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -25,10 +26,10 @@ import org.eclipse.passage.lic.api.conditions.evaluation.ParsedExpression;
  */
 public final class SimpleMapExpression implements ParsedExpression {
 
-	private final Map<String, String> checks;
+	private final Map<String, List<String>> checks;
 	private final ExpressionProtocol protocol;
 
-	public SimpleMapExpression(ExpressionProtocol protocol, Map<String, String> checks) {
+	public SimpleMapExpression(ExpressionProtocol protocol, Map<String, List<String>> checks) {
 		Objects.requireNonNull(protocol);
 		Objects.requireNonNull(checks);
 		this.protocol = protocol;
@@ -45,6 +46,14 @@ public final class SimpleMapExpression implements ParsedExpression {
 	}
 
 	public String expected(String key) {
+		List<String> list = checks.get(key);
+		return list != null ? list.get(0) : null;
+	}
+
+	/**
+	 * @since 2.5
+	 */
+	public List<String> expecteds(String key) {
 		return checks.get(key);
 	}
 

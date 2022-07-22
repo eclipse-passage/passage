@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,7 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.conditions.evaluation;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -43,7 +45,7 @@ public final class BerlinProtocolExpressionParseService implements ExpressionPar
 	@Override
 	public ParsedExpression parsed(String expression) throws ExpressionParsingException {
 		Objects.requireNonNull(expression);
-		Map<String, String> couples = new HashMap<>();
+		Map<String, List<String>> couples = new HashMap<>();
 		for (String segment : expression.split(separator)) {
 			addCouple(segment, couples);
 		}
@@ -55,14 +57,14 @@ public final class BerlinProtocolExpressionParseService implements ExpressionPar
 		return new SimpleMapExpression(protocol, couples);
 	}
 
-	private void addCouple(String segment, Map<String, String> couples) throws ExpressionParsingException {
+	private void addCouple(String segment, Map<String, List<String>> couples) throws ExpressionParsingException {
 		String[] couple = segment.split(mediator);
 		if (coupleIsInvalid(couple)) {
 			throw new ExpressionParsingException(String.format(//
 					ConditionsEvaluationMessages.getString("BerlinProtocolExpressionParseService.invalid_format"), //$NON-NLS-1$
 					segment));
 		}
-		couples.put(couple[0].trim(), couple[1].trim());
+		couples.computeIfAbsent(couple[0].trim(), k -> new ArrayList<>()).add(couple[1].trim());
 	}
 
 	private boolean coupleIsInvalid(String[] couple) {

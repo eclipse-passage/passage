@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -41,11 +41,13 @@ public final class SimpleMapExpressionEvaluationService implements ExpressionEva
 		verifyProtocol(expression);
 		SimpleMapExpression map = map(expression);
 		for (String key : map.keys()) {
-			boolean passed = equal(key, map.expected(key), assessor);
-			if (!passed) {
-				throw new ExpressionEvaluationException(String.format(ConditionsEvaluationMessages.getString(//
-						"SimpleMapExpressionEvaluationService.segment_fails_evaluation"), //$NON-NLS-1$
-						assessor.id().identifier(), key, map.expected(key)));
+			for (String expected : map.expecteds(key)) {
+				boolean passed = equal(key, expected, assessor);
+				if (!passed) {
+					throw new ExpressionEvaluationException(String.format(ConditionsEvaluationMessages.getString(//
+							"SimpleMapExpressionEvaluationService.segment_fails_evaluation"), //$NON-NLS-1$
+							assessor.id().identifier(), key, map.expected(key)));
+				}
 			}
 		}
 	}
