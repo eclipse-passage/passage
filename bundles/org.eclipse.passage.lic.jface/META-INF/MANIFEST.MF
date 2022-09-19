@@ -12,8 +12,7 @@ Require-Bundle: org.eclipse.osgi;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.jface;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.api;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.base;bundle-version="0.0.0";visibility:=reexport,
- org.eclipse.passage.lic.equinox;bundle-version="0.0.0",
- org.apache.logging.log4j;bundle-version="2.17.1"
+ org.eclipse.passage.lic.equinox;bundle-version="0.0.0"
 Export-Package: org.eclipse.passage.lic.internal.jface.dialogs.licensing;x-friends:="org.eclipse.passage.lic.e4.ui,org.eclipse.passage.loc.dashboard.ui,org.eclipse.passage.loc.licenses.ui",
  org.eclipse.passage.lic.internal.jface.i18n;x-internal:=true,
  org.eclipse.passage.lic.jface;x-friends:="org.eclipse.passage.loc.workbench",
@@ -34,4 +33,5 @@ Export-Package: org.eclipse.passage.lic.internal.jface.dialogs.licensing;x-frien
    org.eclipse.passage.loc.edit.ui,
    org.eclipse.passage.lic.agreements.e4.ui",
  org.eclipse.passage.lic.jface.widgets;x-friends:="org.eclipse.passage.loc.workbench"
+Import-Package: org.apache.logging.log4j;version="2.17.1"
 Bundle-ActivationPolicy: lazy
