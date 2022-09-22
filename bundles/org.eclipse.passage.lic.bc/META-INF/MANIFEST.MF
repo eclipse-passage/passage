@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.bc
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.bc
-Bundle-Version: 2.5.0.qualifier
+Bundle-Version: 2.6.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -12,6 +12,6 @@ Require-Bundle: org.bouncycastle.bcpg;bundle-version="0.0.0",
  org.bouncycastle.bcpkix;bundle-version="0.0.0",
  org.bouncycastle.bcprov;bundle-version="0.0.0",
  org.eclipse.osgi.services;bundle-version="0.0.0",
- org.eclipse.passage.lic.api;bundle-version="2.5.0",
- org.eclipse.passage.lic.base;bundle-version="2.5.0"
+ org.eclipse.passage.lic.api;bundle-version="2.6.0",
+ org.eclipse.passage.lic.base;bundle-version="2.6.0"
 Export-Package: org.eclipse.passage.lic.bc
