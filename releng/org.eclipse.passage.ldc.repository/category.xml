@@ -35,4 +35,6 @@
 		id="org.eclipse.passage.ldc.feature.source">
 		<category name="org.eclipse.passage.ldc.category.source" />
 	</feature>
+	<bundle id="org.slf4j.api"/>
+	<bundle id="org.slf4j.api.source"/>
 </site>
