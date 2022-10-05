@@ -42,7 +42,7 @@
 		<cbi-snapshots-repo.url>https://repo.eclipse.org/content/repositories/cbi-snapshots/</cbi-snapshots-repo.url>
 
 		<eclipserun-repo>https://download.eclipse.org/eclipse/updates/4.24/R-4.24-202206070700/</eclipserun-repo>
-		<released.baseline>https://download.eclipse.org/passage/updates/release/2.4.0/</released.baseline>
+		<released.baseline>https://download.eclipse.org/passage/updates/release/2.5.0/</released.baseline>
 		<staging.baseline>https://download.eclipse.org/passage/drops/integration/latest/</staging.baseline>
 
 		<compare-version-with-baselines.skip>true</compare-version-with-baselines.skip>
