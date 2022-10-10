@@ -71,4 +71,6 @@
 	</feature>
 	<bundle id="org.slf4j.api"/>
 	<bundle id="org.slf4j.api.source"/>
+	<bundle id="org.apache.logging.log4j"/>
+	<bundle id="org.apache.logging.log4j.source"/>
 </site>
