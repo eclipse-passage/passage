@@ -41,7 +41,6 @@
 
    <requires>
       <import feature="org.eclipse.passage.lic.define.feature"/>
-      <import plugin="org.apache.logging.log4j"/>
    </requires>
 
    <plugin
