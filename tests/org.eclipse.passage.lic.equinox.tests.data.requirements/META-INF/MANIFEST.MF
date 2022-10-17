@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.equinox.tests.data.requirements
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.equinox.tests.data.requirements;singleton:=true
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.1.100.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Name: Data for Passage LIC Equinox requirements tests
 Bundle-Vendor: Eclipse Passage 
@@ -12,5 +12,3 @@ Provide-Capability: licensing.feature;licensing.feature="PI";version="3.14.15";n
  licensing.feature;licensing.feature="Incomplete"
 Service-Component: OSGI-INF/*.xml
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.osgi.services;bundle-version="3.8.0"
- 

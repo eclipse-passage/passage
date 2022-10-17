@@ -31,8 +31,6 @@ Export-Package: org.eclipse.passage.loc.internal.api;
 Require-Bundle: org.eclipse.e4.core.services;bundle-version="0.0.0",
  org.eclipse.emf.edit;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.equinox.common;bundle-version="0.0.0";visibility:=reexport,
- org.eclipse.osgi.services;bundle-version="0.0.0",
- org.eclipse.osgi;bundle-version="0.0.0",
  org.eclipse.passage.lic.base;bundle-version="0.0.0",
  org.eclipse.passage.lic.emf;bundle-version="0.0.0",
  org.eclipse.passage.lic.equinox;bundle-version="0.0.0";visibility:=reexport,
@@ -46,3 +44,4 @@ Provide-Capability: licensing.feature;licensing.feature="org.eclipse.passage.loc
  licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.floating";version="2.0.0";name="Issue Floating License";level="warn";provider="Eclipse Passage",
  licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.personal.full";version="2.0.0";name="Issue Personal License (Professional)";level="error";provider="Eclipse Passage",
  licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.floating.full";version="2.0.0";name="Issue Floating License (Professional)";level="error";provider="Eclipse Passage"
+Import-Package: org.osgi.service.event;version="1.0.0"
