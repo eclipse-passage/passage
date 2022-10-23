@@ -39,7 +39,7 @@ The result should be an Eclipse workspace without build errors. m2eclipse may ta
 
 ## 🏗️ Build & Test
 
-From the root directory of your local Passage git-repository clone run the following Maven commands...
+From the root directory of your local Passage git-repository clone run the following Maven commands:
 * to check if compilation and all tests succeed:
     * `mvn clean verify`
 
@@ -57,7 +57,10 @@ Add one blank line, followed by more details about the change. This could includ
 
 Make small commits, yet self-contained commits. This makes them easy to review.
 
-Do not mix concerns in commits: have a commit do a single thing. This makes them reviewable 'in isolation'. This is particularly important if you need to do refactorings to the existing code: Refactorings tend to lead to large diffs which are difficult to review. Therefore make sure to have separate commits for refactorings and for functional changes.
+Do not mix concerns in commits: have a commit do a single thing. This makes them reviewable 'in isolation'. 
+This is particularly important if you need to do refactorings to the existing code: 
+Refactorings tend to lead to large diffs which are difficult to review. 
+Therefore make sure to have separate commits for refactorings and for functional changes.
 
 ## Submit patch
 
@@ -66,8 +69,6 @@ As GitHub pull request.
 ## Contact
 
 Contact the project developers via the project's "dev" list: https://dev.eclipse.org/mailman/listinfo/passage-dev
-
-## 👔 Process and Legal
 
 ## Eclipse Development Process
 
@@ -82,4 +83,27 @@ electronically sign the Eclipse Contributor Agreement (ECA): http://www.eclipse.
 For more information, please see the Eclipse Committer Handbook:
 https://www.eclipse.org/projects/handbook/#resources-commit
 
+## Project code guidelines
 
+Make sure your contribution is aligned with Passage project code guidelines. 
+
+* Passage is _null-free zone_. 
+	* There must never appear `null` literal, 
+	  except for the cases mandatorily demanded by an external framework or library in use.
+	  Each such occasion must be exhaustively documented. 
+	* `null` value must never be expected as an input on any implementation level, except for the ones accessible for a client code.
+	  In the latter case implementation must actively fail.
+* Use _fail fast_ approach when handle incorrect input data. Do not make assumptions, do not built-in fallback strategies.
+* There must be no _static_ methods or fields in your class, unless it is directly demanded by an external framework. 
+* For all local variables and class fields neither _cameCase_ nor _stake_ _ _case_ is applicable, compound names are prohibited.
+* For all method _query/action_ naming approach must be used. 
+  Query-method does not change the owning class state, returns a value and is named with a noun after the value it returns. 
+  Action-method can change the owning class state, does not return a value and is named with a verb after the activity it performs.
+* All fields and a class must be _private_ and _final_, unless otherwise is directly demanded by a framework in use.
+* Constructor must not perform any calculation, only assignments.
+* No optimization, cashing or other -improvements- alike must be applied to a code unless it is proven there is a significant performance issue.
+* A class must stay small and dedicated to a single aspect of a domain. Methods must stay small as well.
+
+Make sure your code is sufficiently covered with tests.
+ 
+ 
