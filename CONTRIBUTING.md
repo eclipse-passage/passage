@@ -45,6 +45,13 @@ From the root directory of your local Passage git-repository clone run the follo
 
 ## Commits
 
+### Ticket reference
+
+Each commit contributes a code improvement in landscape of a certain situation. 
+Whether it is a bug, a new functionality, an extension, some refactoring or else, there must be a ticket (issue) which states the reason for the commit(s), contains discussions and all the information necessary to trace the commit origin. 
+
+It can be one of [existing](https://github.com/eclipse-passage/passage/issues) or [new one, created by you](https://github.com/eclipse-passage/passage/issues/new), but it is mandatory to have a ticket for any commit. 
+
 ### Message Guidelines
 
 Start with `Bug: <record>` stating the Bugzilla record number the change is related to; to reference a GiHub issue start with `Bug: #<issue>`
