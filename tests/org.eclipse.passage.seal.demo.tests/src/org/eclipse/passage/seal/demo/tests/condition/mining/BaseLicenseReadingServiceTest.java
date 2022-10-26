@@ -63,7 +63,7 @@ import org.osgi.framework.FrameworkUtil;
  */
 public final class BaseLicenseReadingServiceTest {
 
-	private final String licFile = "e121463c-309e-43a7-b199-189c84ffb753.licen"; //$NON-NLS-1$
+	private final String licence = "e121463c-309e-43a7-b199-189c84ffb753.licen"; //$NON-NLS-1$
 
 	@Rule
 	public TemporaryFolder folder = new TemporaryFolder();
@@ -79,7 +79,7 @@ public final class BaseLicenseReadingServiceTest {
 	}
 
 	private void assertPackState(ConditionPack pack) throws Exception {
-		assertTrue(pack.origin().coordinates().endsWith(licFile));
+		assertTrue(pack.origin().coordinates().endsWith(licence));
 		assertEquals(1, pack.conditions().size());
 		assertConditionState(pack.conditions().iterator().next());
 	}
@@ -152,7 +152,7 @@ public final class BaseLicenseReadingServiceTest {
 	}
 
 	private Path licensePath() {
-		return residence().get().resolve("e121463c-309e-43a7-b199-189c84ffb753.licen"); //$NON-NLS-1$
+		return residence().get().resolve(licence); // $NON-NLS-1$
 	}
 
 	private Bundle bundle() {
