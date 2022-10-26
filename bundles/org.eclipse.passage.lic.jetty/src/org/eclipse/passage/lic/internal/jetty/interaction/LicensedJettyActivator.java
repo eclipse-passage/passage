@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -8,13 +8,10 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation
+ *     ArSysOp - initial API and implementation, further support
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jetty.interaction;
 
-import java.io.InputStream;
-
-import org.eclipse.passage.lic.internal.base.logging.Logging;
 import org.eclipse.passage.lic.internal.jetty.JettyHandler;
 import org.eclipse.passage.lic.internal.jetty.JettyServer;
 import org.osgi.framework.BundleActivator;
@@ -41,9 +38,7 @@ public abstract class LicensedJettyActivator implements BundleActivator {
 		server.stop();
 	}
 
-	private void configureLogging() {
-		new Logging(this::logConfig).configure();
-	}
+	protected abstract void configureLogging();
 
 	private void registerCommands(BundleContext context) {
 		Commands commands = new Commands();
@@ -55,8 +50,6 @@ public abstract class LicensedJettyActivator implements BundleActivator {
 	protected abstract String name();
 
 	protected abstract JettyHandler handler();
-
-	protected abstract InputStream logConfig() throws Exception;
 
 	protected abstract void registerCustomCommands(BundleContext context);
 
