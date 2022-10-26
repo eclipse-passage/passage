@@ -27,9 +27,7 @@ Export-Package: org.eclipse.passage.lic.base,
  org.eclipse.passage.lic.internal.base.access;x-internal:=true,
  org.eclipse.passage.lic.internal.base.conditions;x-internal:=true,
  org.eclipse.passage.lic.internal.base.inspection.hardware;x-friends:="org.eclipse.passage.loc.licenses.core,org.eclipse.passage.lic.oshi",
- org.eclipse.passage.lic.internal.base.logging;x-friends:="org.eclipse.passage.lic.jetty",
  org.eclipse.passage.lic.internal.base.observatory;x-internal:=true,
  org.eclipse.passage.lic.internal.base.requirements;x-internal:=true,
  org.eclipse.passage.lic.internal.base.time;x-friends:="org.eclipse.passage.lic.base.tests"
-Import-Package: org.apache.logging.log4j;version="2.17.1",
- org.apache.logging.log4j.core.config;version="2.17.1"
+Import-Package: org.apache.logging.log4j;version="2.17.1"

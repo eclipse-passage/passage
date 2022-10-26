@@ -19,6 +19,7 @@ import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lbc.internal.base.api.FloatingStateFromGear;
 import org.eclipse.passage.lbc.jetty.FlsCommandScope;
 import org.eclipse.passage.lic.equinox.io.FileFromBundle;
+import org.eclipse.passage.lic.internal.execute.Logging;
 import org.eclipse.passage.lic.internal.jetty.JettyHandler;
 import org.eclipse.passage.lic.internal.jetty.interaction.LicensedJettyActivator;
 import org.eclipse.passage.lic.internal.net.connect.Storage;
@@ -47,7 +48,11 @@ public final class FlsJettyActivator extends LicensedJettyActivator {
 	}
 
 	@Override
-	protected InputStream logConfig() throws Exception {
+	protected void configureLogging() {
+		new Logging(this::logConfig).configure();
+	}
+
+	private InputStream logConfig() throws Exception {
 		Bundle bundle = FrameworkUtil.getBundle(getClass());
 		return new FileFromBundle(bundle, "config/log4j2.xml").get(); //$NON-NLS-1$
 	}
