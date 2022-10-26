@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -25,7 +25,7 @@ public final class Trouble {
 	private final String details;
 	private final Optional<Exception> exception;
 
-	private Trouble(TroubleCode code, String details, Optional<Exception> exception) {
+	public Trouble(TroubleCode code, String details, Optional<Exception> exception) {
 		Objects.requireNonNull(code);
 		Objects.requireNonNull(details);
 		Objects.requireNonNull(exception);
