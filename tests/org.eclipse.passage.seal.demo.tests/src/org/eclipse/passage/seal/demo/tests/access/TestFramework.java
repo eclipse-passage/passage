@@ -26,7 +26,7 @@ final class TestFramework extends BaseFramework {
 
 	@Override
 	protected LicensedProduct productRead() {
-		return new BaseLicensedProduct("anti-human-magic.product", "0.2.1"); //$NON-NLS-1$ //$NON-NLS-2$
+		return new BaseLicensedProduct("anti-human-magic.product", "1.0.0"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	private Bundle bundle() {
