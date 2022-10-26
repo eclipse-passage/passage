@@ -15,7 +15,7 @@ Require-Bundle: org.junit;bundle-version="4.12.0",
  org.eclipse.passage.lic.bc;bundle-version="0.0.0",
  org.eclipse.passage.lic.licenses.model;bundle-version="0.0.0",
  org.eclipse.passage.lic.execute;bundle-version="0.0.0"
-Provide-Capability: licensing.feature;licensing.feature="anti-human-magic.product";name="anti-human-magic.product";version="0.2.1";provider="Eclipse Passage Tests";level="warn",
- licensing.feature;licensing.feature="frog-to-prince";version="1.12";name="Turn a frog to a prince";level="info";provider="Eclipse Passage Tests",
- licensing.feature;licensing.feature="prince-to-frog";version="0.1.0";name="Turn a prince to a frog";level="error";provider="Eclipse Passage Tests",
+Provide-Capability: licensing.feature;licensing.feature="anti-human-magic.product";name="anti-human-magic.product";version="1.0.0";provider="Eclipse Passage Tests";level="warn",
+ licensing.feature;licensing.feature="frog-to-prince";version="0.9.0";name="Turn a frog to a prince";level="info";provider="Eclipse Passage Tests",
+ licensing.feature;licensing.feature="prince-to-frog";version="1.1.0";name="Turn a prince to a frog";level="error";provider="Eclipse Passage Tests",
  licensing.feature;licensing.feature="frog-firework";version="3.14";name="Run fireworks of frogs";level="error";provider="Eclipse Passage Tests"
