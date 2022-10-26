@@ -22,7 +22,13 @@ import org.eclipse.passage.lic.execute.DirectedAccessCycleConfiguration;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
-final class TestFramework extends BaseFramework {
+abstract class TestFramework extends BaseFramework {
+
+	private final String timeframe;
+
+	protected TestFramework(String timeframe) {
+		this.timeframe = timeframe;
+	}
 
 	@Override
 	protected LicensedProduct productRead() {
@@ -34,7 +40,7 @@ final class TestFramework extends BaseFramework {
 	}
 
 	private Path source() {
-		return new TestLicFolder().get();
+		return new TestLicFolder().get().resolve(timeframe);
 	}
 
 	@Override
@@ -42,4 +48,27 @@ final class TestFramework extends BaseFramework {
 		return new DirectedAccessCycleConfiguration(this::product, source(), this::bundle);
 	}
 
+	static final class Expired extends TestFramework {
+
+		Expired() {
+			super("expired"); //$NON-NLS-1$
+		}
+
+	}
+
+	static final class NotStarted extends TestFramework {
+
+		NotStarted() {
+			super("notstarted"); //$NON-NLS-1$
+		}
+
+	}
+
+	static final class Everlasting extends TestFramework {
+
+		Everlasting() {
+			super("everlasting"); //$NON-NLS-1$
+		}
+
+	}
 }

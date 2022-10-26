@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.passage.lic:PersonalLicensePack xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.eclipse.passage.lic="http://www.eclipse.org/passage/lic/licenses/2.0.0">
+  <license identifier="fc36f279-3290-4af7-8239-5c7620fe1b50" issueDate="2022-10-26T19:17:30.518+0300" plan="Short">
+    <product identifier="anti-human-magic.product" version="1.0.0"/>
+    <valid xsi:type="org.eclipse.passage.lic:ValidityPeriodClosed" from="2110-01-01T00:00:00.000+0300" until="2111-01-01T00:00:00.000+0300"/>
+    <signature>
+      <attributes name="issuer.name" value="ru.arsysop.cordon.lco.product"/>
+      <attributes name="issuer.version" value="2.3.0"/>
+      <attributes name="issuer.licensing_status" value="sufficient"/>
+      <parent>
+        <attributes name="issuer.licensing_status" value="insufficient"/>
+        <attributes name="issuer.version" value="2.3.0"/>
+        <attributes name="issuer.name" value="ru.arsysop.cordon.lco.product"/>
+      </parent>
+    </signature>
+    <user identifier="gogol.nv@lit.ru" name="Gogol N.V."/>
+  </license>
+  <grants identifier="fc36f279-3290-4af7-8239-5c7620fe1b50#0">
+    <feature identifier="anti-human-magic.product">
+      <versionMatch version="1.0.0" rule="compatible"/>
+    </feature>
+    <valid xsi:type="org.eclipse.passage.lic:ValidityPeriodClosed" from="2110-01-01T00:00:00.000+0300" until="2111-01-01T00:00:00.000+0300"/>
+    <userAuthentication type="hardware" expression="os.family=*"/>
+  </grants>
+  <grants identifier="fc36f279-3290-4af7-8239-5c7620fe1b50#1">
+    <feature identifier="prince-to-frog">
+      <versionMatch version="1.1.0" rule="compatible"/>
+    </feature>
+    <valid xsi:type="org.eclipse.passage.lic:ValidityPeriodClosed" from="2110-01-01T00:00:00.000+0300" until="2111-01-01T00:00:00.000+0300"/>
+    <userAuthentication type="hardware" expression="os.family=*"/>
+  </grants>
+</org.eclipse.passage.lic:PersonalLicensePack>

@@ -34,14 +34,35 @@ import org.junit.Test;
 public final class AccessAssessmentTest {
 
 	@Test
-	public void assess() {
-		ServiceInvocationResult<ExaminationCertificate> result = new Access(new TestFramework()).assess();
+	public void assessWithValidLicense() {
+		assess(//
+				new TestFramework.Everlasting(), //
+				new HashSet<>(Arrays.asList(//
+						"prince-to-frog", //$NON-NLS-1$
+						"anti-human-magic.product")) //$NON-NLS-1$
+		);
+	}
+
+	@Test
+	public void assessWithExpiredLicense() {
+		assess(//
+				new TestFramework.Expired(), //
+				new HashSet<>());
+	}
+
+	@Test
+	public void assessWithNotStartedLicense() {
+		assess(//
+				new TestFramework.NotStarted(), //
+				new HashSet<>());
+	}
+
+	private void assess(TestFramework framework, Set<String> expected) {
+		ServiceInvocationResult<ExaminationCertificate> result = new Access(framework).assess();
 		assertTrue(new NoSevereErrors().test(result.diagnostic()));
 		assertTrue(result.data().isPresent());
 		assertEquals(//
-				new HashSet<>(Arrays.asList(//
-						"prince-to-frog", //$NON-NLS-1$
-						"anti-human-magic.product")), //$NON-NLS-1$
+				expected, //
 				new HashSet<>(coveredFeatures(result.data().get())));
 	}
 

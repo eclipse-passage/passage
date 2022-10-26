@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation
+ *     ArSysOp - initial API and implementation, further support
  *******************************************************************************/
 package org.eclipse.passage.lic.base.conditions.evaluation;
 
@@ -16,13 +16,13 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Optional;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed;
 import org.eclipse.passage.lic.api.conditions.evaluation.Emission;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationException;
@@ -38,7 +38,9 @@ import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.base.SumOfCollections;
 import org.eclipse.passage.lic.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.base.diagnostic.code.LicenseDoesNotMatch;
+import org.eclipse.passage.lic.base.diagnostic.code.LicenseExpired;
 import org.eclipse.passage.lic.base.diagnostic.code.LicenseInvalid;
+import org.eclipse.passage.lic.base.diagnostic.code.LicenseNotStarted;
 import org.eclipse.passage.lic.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.base.i18n.ConditionsEvaluationMessages;
 
@@ -49,13 +51,13 @@ import org.eclipse.passage.lic.internal.base.i18n.ConditionsEvaluationMessages;
 public final class BasePermissionEmittingService implements PermissionEmittingService {
 
 	private final StringServiceId id = new StringServiceId("default-emitter"); //$NON-NLS-1$
-	private final Authentication authentification;
+	private final Authentication authentication;
 
 	public BasePermissionEmittingService(//
 			ExpressionPasringRegistry parsers, //
 			ExpressionTokenAssessorsRegistry assessors, //
 			ExpressionEvaluatorsRegistry evaluators) {
-		authentification = new Authentication(parsers, assessors, evaluators);
+		authentication = new Authentication(parsers, assessors, evaluators);
 	}
 
 	@Override
@@ -90,8 +92,20 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 
 	private ServiceInvocationResult<Emission> emitFor(Condition condition, ConditionPack pack,
 			LicensedProduct product) {
+		Optional<ServiceInvocationResult<Emission>> auth = authenticationDenial(condition, pack);
+		if (auth.isPresent()) {
+			return auth.get();
+		}
+		Optional<ServiceInvocationResult<Emission>> time = timeDenial(condition, pack);
+		if (time.isPresent()) {
+			return time.get();
+		}
+		return createFor(condition, pack, product);
+	}
+
+	private Optional<ServiceInvocationResult<Emission>> authenticationDenial(Condition condition, ConditionPack pack) {
 		try {
-			authentification.verify(condition.evaluationInstructions());
+			authentication.verify(condition.evaluationInstructions());
 		} catch (ExpressionParsingException e) {
 			return fail(pack, //
 					new LicenseInvalid(), //
@@ -113,7 +127,35 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 							condition.evaluationInstructions().expression()), //
 					e);
 		}
-		return createFor(condition, pack, product);
+		return Optional.empty();
+	}
+
+	private Optional<ServiceInvocationResult<Emission>> timeDenial(Condition condition, ConditionPack pack) {
+		if (!validityPeriodIsSupported(condition)) {
+			return fail(pack, //
+					new LicenseInvalid(), //
+					String.format(
+							ConditionsEvaluationMessages
+									.getString("BasePermissionEmittingService.validity_period_unsupported"), //$NON-NLS-1$
+							condition.validityPeriod().getClass().getName()));
+		}
+		ZonedDateTime from = from(condition);
+		if (ZonedDateTime.now().isBefore(from)) {
+			return fail(pack, //
+					new LicenseNotStarted(), //
+					String.format(
+							ConditionsEvaluationMessages.getString("BasePermissionEmittingService.license_not_started"), //$NON-NLS-1$
+							from.toString()));
+		}
+		ZonedDateTime expiration = expiration(condition);
+		if (ZonedDateTime.now().isAfter(expiration)) {
+			return fail(pack, //
+					new LicenseExpired(), //
+					String.format(
+							ConditionsEvaluationMessages.getString("BasePermissionEmittingService.license_expired"), //$NON-NLS-1$
+							expiration.toString()));
+		}
+		return Optional.empty();
 	}
 
 	private ServiceInvocationResult<Emission> createFor(Condition condition, ConditionPack pack,
@@ -125,8 +167,8 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 							new BasePermission(//
 									product, //
 									condition, //
-									// FIXME:#566015
-									from(condition.validityPeriod()), expiration(condition.validityPeriod()), //
+									from(condition), //
+									expiration(condition), //
 									pack.origin())//
 					));
 		} catch (Exception e) {
@@ -141,26 +183,32 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 		}
 	}
 
-	private ServiceInvocationResult<Emission> fail(ConditionPack pack, TroubleCode code, String explanation,
+	private Optional<ServiceInvocationResult<Emission>> fail(ConditionPack pack, TroubleCode code, String explanation,
 			Exception e) {
-		return new BaseServiceInvocationResult<Emission>(//
+		return fail(pack, code, explanation, Optional.of(e));
+	}
+
+	private Optional<ServiceInvocationResult<Emission>> fail(ConditionPack pack, TroubleCode code, String explanation) {
+		return fail(pack, code, explanation, Optional.empty());
+	}
+
+	private Optional<ServiceInvocationResult<Emission>> fail(ConditionPack pack, TroubleCode code, String explanation,
+			Optional<Exception> e) {
+		return Optional.of(new BaseServiceInvocationResult<Emission>(//
 				new BaseDiagnostic(Collections.singletonList(new Trouble(code, explanation, e))), //
-				new Emission(pack));
+				new Emission(pack)));
 	}
 
-	private ZonedDateTime from(ValidityPeriod period) {
-		if (ValidityPeriodClosed.class.isInstance(period)) {
-			return ((ValidityPeriodClosed) period).from();
-		}
-		return ZonedDateTime.now();
-
+	private ZonedDateTime from(Condition condition) {
+		return ((ValidityPeriodClosed) condition.validityPeriod()).from();
 	}
 
-	private ZonedDateTime expiration(ValidityPeriod period) {
-		if (ValidityPeriodClosed.class.isInstance(period)) {
-			return ((ValidityPeriodClosed) period).to();
-		}
-		return ZonedDateTime.now().plusDays(1);
+	private ZonedDateTime expiration(Condition condition) {
+		return ((ValidityPeriodClosed) condition.validityPeriod()).to();
 	}
 
+	// FIXME:#566015
+	private boolean validityPeriodIsSupported(Condition condition) {
+		return ValidityPeriodClosed.class.isInstance(condition.validityPeriod());
+	}
 }
