@@ -53,8 +53,11 @@ public final class FlsJettyActivator extends LicensedJettyActivator {
 	}
 
 	private InputStream logConfig() throws Exception {
-		Bundle bundle = FrameworkUtil.getBundle(getClass());
-		return new FileFromBundle(bundle, "config/log4j2.xml").get(); //$NON-NLS-1$
+		return new FileFromBundle(bundle(), "config/log4j2.xml").get(); //$NON-NLS-1$
+	}
+
+	private Bundle bundle() {
+		return FrameworkUtil.getBundle(getClass());
 	}
 
 	@Override
