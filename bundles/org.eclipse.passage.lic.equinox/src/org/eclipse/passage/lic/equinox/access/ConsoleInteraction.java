@@ -14,7 +14,15 @@ package org.eclipse.passage.lic.equinox.access;
 
 import java.io.IOException;
 
+import org.eclipse.core.runtime.Platform;
+
 public final class ConsoleInteraction implements Interaction {
+
+	private final int stop;
+
+	public ConsoleInteraction() {
+		this.stop = stop();
+	}
 
 	@Override
 	public void prompt(String information) {
@@ -26,7 +34,7 @@ public final class ConsoleInteraction implements Interaction {
 		byte[] bytes = new byte[1024];
 		int length = 0;
 		try {
-			for (int symbol = System.in.read(); (symbol != 10) && (symbol != 13); symbol = System.in.read()) {
+			for (int symbol = System.in.read(); symbol != stop; symbol = System.in.read()) {
 				bytes[length++] = (byte) symbol;
 			}
 		} catch (IOException e) {
@@ -39,6 +47,13 @@ public final class ConsoleInteraction implements Interaction {
 	@Override
 	public void swear(Throwable thro) {
 		thro.printStackTrace(System.err);
+	}
+
+	private int stop() {
+		if (Platform.getOS().equals(Platform.OS_WIN32)) {
+			return 13;
+		}
+		return 10;
 	}
 
 }
