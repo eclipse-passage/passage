@@ -50,13 +50,10 @@ public final class ConsoleInteraction implements Interaction {
 	}
 
 	private int stop() {
-		if (Platform.getOS().equals(Platform.OS_LINUX)) {
-			return 10;
-		} else if (Platform.getOS().equals(Platform.OS_MACOSX)) {
-			return 10;
-		} else {
+		if (Platform.getOS().equals(Platform.OS_WIN32)) {
 			return 13;
 		}
+		return 10;
 	}
 
 }
