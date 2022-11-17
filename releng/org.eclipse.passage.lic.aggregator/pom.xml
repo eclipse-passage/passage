@@ -38,7 +38,6 @@
 		<module>../../tests/org.eclipse.passage.lic.base.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.equinox.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.equinox.tests.data.requirements</module>
-		
 
 		<module>../../bundles/org.eclipse.passage.lic.bc</module>
 		<module>../../features/org.eclipse.passage.lic.bc.feature</module>
@@ -46,6 +45,7 @@
 
 		<module>../../bundles/org.eclipse.passage.lic.net</module>
 		<module>../../bundles/org.eclipse.passage.lic.jetty</module>
+		<module>../../bundles/org.eclipse.passage.lic.email</module>
 		<module>../../features/org.eclipse.passage.lic.net.feature</module>
 		<module>../../features/org.eclipse.passage.lic.jetty.feature</module>
 		<module>../../tests/org.eclipse.passage.lic.net.tests</module>
