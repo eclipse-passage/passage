@@ -46,15 +46,10 @@
 
 		<module>../../bundles/org.eclipse.passage.lic.net</module>
 		<module>../../bundles/org.eclipse.passage.lic.jetty</module>
-		<module>../../bundles/org.eclipse.passage.lic.email</module>
 		<module>../../features/org.eclipse.passage.lic.net.feature</module>
 		<module>../../features/org.eclipse.passage.lic.jetty.feature</module>
 		<module>../../tests/org.eclipse.passage.lic.net.tests</module>
 	
-		<module>../../bundles/org.eclipse.passage.lic.mail</module>
-		<module>../../features/org.eclipse.passage.lic.mail.feature</module>
-		<module>../../tests/org.eclipse.passage.lic.mail.tests</module>
-
 		<module>../../bundles/org.eclipse.passage.lic.hc</module>
 		<module>../../features/org.eclipse.passage.lic.hc.feature</module>
 		<module>../../tests/org.eclipse.passage.lic.hc.tests</module>
