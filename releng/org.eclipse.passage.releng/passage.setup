@@ -260,11 +260,9 @@
         <requirement
             name="com.sun.jna.platform"/>
         <requirement
+            name="jakarta.servlet"/>
+        <requirement
             name="javax.activation"/>
-        <requirement
-            name="javax.mail"/>
-        <requirement
-            name="javax.servlet"/>
         <requirement
             name="org.apache.commons.csv"
             versionRange="[1.4.0,2.0.0)"/>
@@ -351,8 +349,6 @@
               url="https://download.eclipse.org/tools/gef/classic/releases/3.14.0/"/>
           <repository
               url="https://download.eclipse.org/tools/orbit/downloads/2022-12"/>
-          <repository
-              url="https://download.eclipse.org/tools/orbit/downloads/drops/R20220302172233/repository/"/>
         </repositoryList>
       </targlet>
     </setupTask>
