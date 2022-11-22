@@ -69,8 +69,16 @@
 		id="org.eclipse.passage.lic.jetty.feature.source">
 		<category name="org.eclipse.passage.lic.category.source" />
 	</feature>
-	<bundle id="org.slf4j.api"/>
-	<bundle id="org.slf4j.api.source"/>
 	<bundle id="org.apache.logging.log4j"/>
 	<bundle id="org.apache.logging.log4j.source"/>
+	<bundle id="org.bouncycastle.bcpg" />
+	<bundle id="org.bouncycastle.bcpg.source" />
+	<bundle id="org.bouncycastle.bcpkix" />
+	<bundle id="org.bouncycastle.bcpkix.source" />
+	<bundle id="org.bouncycastle.bcprov" />
+	<bundle id="org.bouncycastle.bcprov.source" />
+	<bundle id="org.bouncycastle.bcutil" />
+	<bundle id="org.bouncycastle.bcutil.source" />
+	<bundle id="org.slf4j.api"/>
+	<bundle id="org.slf4j.api.source"/>
 </site>
