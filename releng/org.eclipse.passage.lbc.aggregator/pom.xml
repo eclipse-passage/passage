@@ -27,8 +27,6 @@
 		<relativePath>../../releng/org.eclipse.passage.parent</relativePath>
 	</parent>
 	<modules>
-		<module>../../features/org.eclipse.passage.lbc.target.feature</module>
-
 		<module>../../bundles/org.eclipse.passage.lbc.base</module>
 		<module>../../tests/org.eclipse.passage.lbc.base.tests</module>
 		<module>../../bundles/org.eclipse.passage.lbc.jetty</module>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- Copyright (c) 2018, 2020 ArSysOp and others
+ Copyright (c) 2018, 2022 ArSysOp and others
  This program and the accompanying materials are made available under the
  terms of the Eclipse Public License 2.0 which is available at
  https://www.eclipse.org/legal/epl-2.0/.
@@ -19,10 +19,6 @@
 				OSGi-based server to manage licensing data" 
 		</description>
 	</category-def>
-	<feature 
-		id="org.eclipse.passage.lbc.target.feature">
-		<category name="org.eclipse.passage.lbc.category" />
-	</feature>
 	<feature 
 		id="org.eclipse.passage.lbc.execute.feature">
 		<category name="org.eclipse.passage.lbc.category" />
