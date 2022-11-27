@@ -132,13 +132,17 @@ public final class ExaminationExplained implements Supplier<String> {
 		Collection<AgreementToAccept> agreements = certificate.agreements();
 		out.append(String.format("Agreements state contains %d entries.\r\n", agreements.size())); //$NON-NLS-1$
 		agreements.forEach(agreement -> {
+			boolean accepted = agreement.acceptance().accepted();
 			out.append("\tagreement [") //$NON-NLS-1$
 					.append(agreement.definition().path())//
 					.append("]\r\n\tdeclared by [") //$NON-NLS-1$
 					.append(agreement.origin())//
 					.append("]\r\n\thas [") //$NON-NLS-1$
-					.append(agreement.acceptance().accepted() ? "accepted" : "not accepted") //$NON-NLS-1$//$NON-NLS-2$
+					.append(accepted ? "accepted" : "not accepted") //$NON-NLS-1$//$NON-NLS-2$
 					.append("] state.\r\n"); //$NON-NLS-1$
+			if (!accepted) {
+				out.append("\tThis is FATAL!11. Product cannot proceed without the agreement been accepted.\r\n"); //$NON-NLS-1$
+			}
 			if (agreement.acceptance().error().isPresent()) {
 				out.append("\terror:\r\n\t") //$NON-NLS-1$
 						.append(new TroubleExplained(agreement.acceptance().error().get()).get())//

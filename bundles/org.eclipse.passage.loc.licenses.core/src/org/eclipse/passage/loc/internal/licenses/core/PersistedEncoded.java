@@ -27,6 +27,7 @@ import org.eclipse.passage.loc.internal.equinox.OperatorGearAware;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 import org.eclipse.passage.loc.internal.products.core.ProductKeys;
 
+@SuppressWarnings("restriction")
 final class PersistedEncoded {
 
 	private final LicensedProduct product;
