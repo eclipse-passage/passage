@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	Copyright (c) 2018, 2020 ArSysOp and others
+	Copyright (c) 2018, 2022 ArSysOp and others
 
 	This program and the accompanying materials are made available under the
 	terms of the Eclipse Public License 2.0 which is available at
@@ -69,6 +69,12 @@
 		id="org.eclipse.passage.lic.jetty.feature.source">
 		<category name="org.eclipse.passage.lic.category.source" />
 	</feature>
+	<bundle id="com.fasterxml.jackson.core.jackson-annotations"/>
+	<bundle id="com.fasterxml.jackson.core.jackson-annotations.source"/>
+	<bundle id="com.fasterxml.jackson.core.jackson-core"/>
+	<bundle id="com.fasterxml.jackson.core.jackson-core.source"/>
+	<bundle id="com.fasterxml.jackson.core.jackson-databind"/>
+	<bundle id="com.fasterxml.jackson.core.jackson-databind.source"/>
 	<bundle id="org.apache.logging.log4j"/>
 	<bundle id="org.apache.logging.log4j.source"/>
 	<bundle id="org.bouncycastle.bcpg" />
