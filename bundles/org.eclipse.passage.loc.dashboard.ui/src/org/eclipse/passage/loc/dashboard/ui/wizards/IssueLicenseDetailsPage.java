@@ -12,9 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards;
 
+import java.util.function.Supplier;
+
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;
-import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.model.described.DescribedPersonalLicense;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -22,24 +25,34 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
-//TODO: looks empty, fill or kill 
-public final class IssueLicenseDetailsPage extends WizardPage {
+@SuppressWarnings("restriction")
+public final class IssueLicenseDetailsPage extends TwoPhaseWizardPage {
 
-	protected IssueLicenseDetailsPage(String name) {
+	private final Supplier<PersonalLicensePackDescriptor> pack;
+	private Text info;
+
+	protected IssueLicenseDetailsPage(String name, Supplier<PersonalLicensePackDescriptor> pack) {
 		super(name);
+		this.pack = pack;
 		setTitle(IssueLicensePageMessages.IssueLicenseDetailsPage_page_title);
 		setDescription(IssueLicensePageMessages.IssueLicenseDetailsPage_page_description);
 	}
 
+	// TODO: into to Tab; + one Tab for each agreement
 	@Override
 	public void createControl(Composite parent) {
 		Composite composite = new Composite(parent, SWT.NONE);
 		composite.setLayoutData(GridDataFactory.fillDefaults().grab(true, true).create());
 		composite.setLayout(new GridLayout());
-		Text info = new Text(composite, SWT.BORDER | SWT.MULTI | SWT.WRAP);
+		this.info = new Text(composite, SWT.BORDER | SWT.MULTI | SWT.WRAP);
 		info.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		setControl(composite);
 		Dialog.applyDialogFont(composite);
+	}
+
+	@Override
+	void init() {
+		info.setText(new DescribedPersonalLicense(pack.get()).get());
 	}
 
 }
