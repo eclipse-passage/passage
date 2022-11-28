@@ -48,15 +48,15 @@ public class IssueLicenseWizard extends Wizard {
 		addPage(request.get());
 		pack = new IssueLicensePackPage(IssueLicensePackPage.class.getName(), request::request, context);
 		addPage(pack);
-		info = new IssueLicenseDetailsPage(IssueLicenseDetailsPage.class.getName());
+		info = new IssueLicenseDetailsPage(IssueLicenseDetailsPage.class.getName(), pack::pack);
 		addPage(info);
 	}
 
 	@Override
 	public IWizardPage getNextPage(IWizardPage page) {
 		IWizardPage next = super.getNextPage(page);
-		if (pack.equals(next)) {
-			pack.init();
+		if (next instanceof TwoPhaseWizardPage) {
+			((TwoPhaseWizardPage) next).init();
 		}
 		return next;
 	}

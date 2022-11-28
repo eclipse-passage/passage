@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2021 ArSysOp
+ * Copyright (c) 2019, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -27,7 +27,6 @@ import org.eclipse.emfforms.swt.core.EMFFormsSWTConstants;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
-import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.emf.validation.ErrorMessages;
 import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
@@ -42,7 +41,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
-class IssueLicensePackPage extends WizardPage {
+class IssueLicensePackPage extends TwoPhaseWizardPage {
 
 	private final IEclipseContext context;
 	private final Supplier<PersonalLicenseRequest> data;
@@ -60,6 +59,7 @@ class IssueLicensePackPage extends WizardPage {
 		setDescription(IssueLicensePageMessages.IssueLicensePackPage_page_description);
 	}
 
+	@Override
 	void init() {
 		PersonalLicenseRequest request = data.get();
 		if (license != null) {
