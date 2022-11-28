@@ -113,6 +113,16 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</pluginRepository>
+		<pluginRepository>
+			<id>eclipse-dash</id>
+			<url>https://repo.eclipse.org/content/repositories/dash-licenses/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
 	</pluginRepositories>
 
 	<repositories>
