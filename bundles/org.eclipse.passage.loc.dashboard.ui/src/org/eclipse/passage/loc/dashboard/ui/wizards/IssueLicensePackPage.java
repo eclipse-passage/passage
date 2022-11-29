@@ -47,7 +47,6 @@ class IssueLicensePackPage extends TwoPhaseWizardPage {
 	private final Supplier<PersonalLicenseRequest> data;
 	private final ErrorMessages validate;
 	private PersonalLicensePack license;
-	private VViewModelProperties properties;
 	private Composite base;
 
 	protected IssueLicensePackPage(String name, Supplier<PersonalLicenseRequest> data, IEclipseContext context) {
@@ -109,9 +108,6 @@ class IssueLicensePackPage extends TwoPhaseWizardPage {
 		base = new Composite(composite, SWT.NONE);
 		base.setLayout(new GridLayout(1, false));
 		base.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
-		properties = VViewFactory.eINSTANCE.createViewModelLoadingProperties();
-		properties.addInheritableProperty(EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_KEY,
-				EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_VALUE);
 		buildPage();
 		Dialog.applyDialogFont(composite);
 	}
@@ -129,12 +125,21 @@ class IssueLicensePackPage extends TwoPhaseWizardPage {
 				control.dispose();
 			}
 			try {
-				ECPSWTViewRenderer.INSTANCE.render(base, license, properties);
+				ECPSWTViewRenderer.INSTANCE.render(base, license, properties());
 				base.layout();
 			} catch (ECPRendererException e) {
+				e.printStackTrace();
 			}
 		}
 		setPageComplete(validatePage());
+	}
+
+	private VViewModelProperties properties() {
+		VViewModelProperties properties = VViewFactory.eINSTANCE.createViewModelLoadingProperties();
+		properties.addInheritableProperty(EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_KEY,
+				EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_VALUE);
+		// properties.addNonInheritableProperty("viewpoint", "wizard");
+		return properties;
 	}
 
 	protected boolean validatePage() {

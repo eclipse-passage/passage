@@ -6,7 +6,7 @@
       <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//VersionMatch/version"/>
     </domainModelReference>
   </children>
-  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4Ra10hrKEeuMV_ofZRuPaw" name="Control rule" readonly="true">
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4Ra10hrKEeuMV_ofZRuPaw" name="Control rule">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_4Ra10xrKEeuMV_ofZRuPaw">
       <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//VersionMatch/rule"/>
     </domainModelReference>

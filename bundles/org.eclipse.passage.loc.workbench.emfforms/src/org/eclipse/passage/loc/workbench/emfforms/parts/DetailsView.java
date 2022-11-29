@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -197,8 +197,10 @@ public class DetailsView {
 		ChildrenDescriptorCollector childrenDescriptorCollector = createChildrenDescriptorCollector();
 		MenuProvider menuProvider = createMenuProvider(childrenDescriptorCollector, createElementCallback);
 		final TreeMasterDetailComposite treeMasterDetail = TreeMasterDetailSWTFactory
-				.fillDefaults(composite, SWT.NONE, editorInput).customizeCildCreation(createElementCallback)
-				.customizeMenu(menuProvider).create();
+				.fillDefaults(composite, SWT.NONE, editorInput) //
+				.customizeCildCreation(createElementCallback) //
+				.customizeMenu(menuProvider)//
+				.create();
 		return treeMasterDetail;
 	}
 
