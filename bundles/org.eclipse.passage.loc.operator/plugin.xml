@@ -17,11 +17,19 @@
          id="product"
          point="org.eclipse.core.runtime.products">
       <product
-            name="Passage Licensing Operator Workbench"
+            name="%product.name"
             application="org.eclipse.e4.ui.workbench.swt.E4Application">
          <property
                name="appName"
-               value="Passage Licensing Operator Workbench">
+               value="%application.name">
+         </property>
+         <property
+               name="aboutImage"
+               value="images/about.png">
+         </property>
+         <property
+               name="aboutText"
+               value="%aboutText">
          </property>
          <property
                name="applicationCSS"
