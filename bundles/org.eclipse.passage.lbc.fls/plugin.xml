@@ -34,4 +34,12 @@
        </property>
     </product>
  </extension>
+ <extension
+       id="product"
+       point="org.eclipse.core.runtime.products">
+    <product
+          application="org.eclipse.passage.lbc.fls.application"
+          name="Passage Floating License Server">
+    </product>
+ </extension>
 </plugin>
