@@ -111,6 +111,11 @@
 					<version>2.0.5</version>
 					<type>jar</type>
 				</dependency>
+				<dependency>
+					<groupId>org.osgi</groupId>
+					<artifactId>org.osgi.service.serviceloader</artifactId>
+					<version>1.0.0</version>
+				</dependency>
 			</dependencies>
 		</location>
 	</locations>
