@@ -15,5 +15,5 @@ Require-Bundle: org.eclipse.passage.lic.api;bundle-version="0.0.0",
  org.eclipse.passage.lic.execute;bundle-version="0.0.0",
  org.eclipse.passage.lic.licenses.model;bundle-version="0.0.0",
  org.eclipse.passage.lic.oshi;bundle-version="0.0.0"
-Service-Component: OSGI-INF/*.xml
 Provide-Capability: licensing.feature;licensing.feature="org.eclipse.passage.lbc.fls.product";name="Eclipse Passage Floating License Server";version="2.6.1";provider="Eclipse Passage";level="warn"
+Service-Component: OSGI-INF/org.eclipse.passage.lbc.internal.fls.seal.FlsFrameworkSupplier.xml
