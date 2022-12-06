@@ -40,14 +40,14 @@
          id="com.sun.jna"
          download-size="0"
          install-size="0"
-         version="4.5.1.v20210503-0343"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="com.sun.jna.platform"
          download-size="0"
          install-size="0"
-         version="4.5.1.v20221112-0806"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
