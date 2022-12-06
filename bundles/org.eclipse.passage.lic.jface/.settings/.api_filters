@@ -7,5 +7,11 @@
                 <message_argument value="org.eclipse.osgi"/>
             </message_arguments>
         </filter>
+        <filter id="933232702">
+            <message_arguments>
+                <message_argument value="2.6.1"/>
+                <message_argument value="org.eclipse.osgi"/>
+            </message_arguments>
+        </filter>
     </resource>
 </component>

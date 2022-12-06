@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,11 +9,11 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - porting to OSHi 6.3.2
  *******************************************************************************/
 package org.eclipse.passage.lic.oshi;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -70,11 +70,11 @@ abstract class Swath<T> {
 		new FragileData<>(() -> source(system), this::readSource).supply();
 	}
 
-	private void readSource(T[] source) {
-		Arrays.stream(source).forEach(src -> properties.add(fillProperties(src, new EnvironmentProperties())));
+	private void readSource(List<T> source) {
+		source.stream().forEach(src -> properties.add(fillProperties(src, new EnvironmentProperties())));
 	}
 
-	protected abstract T[] source(SystemInfo system);
+	protected abstract List<T> source(SystemInfo system);
 
 	protected abstract EnvironmentProperties fillProperties(T source, EnvironmentProperties props);
 
@@ -85,7 +85,7 @@ abstract class Swath<T> {
 		}
 
 		@Override
-		protected HWDiskStore[] source(SystemInfo system) {
+		protected List<HWDiskStore> source(SystemInfo system) {
 			return system.getHardware().getDiskStores();
 		}
 
@@ -106,7 +106,7 @@ abstract class Swath<T> {
 		}
 
 		@Override
-		protected NetworkIF[] source(SystemInfo system) {
+		protected List<NetworkIF> source(SystemInfo system) {
 			return system.getHardware().getNetworkIFs();
 		}
 

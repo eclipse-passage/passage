@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - porting to OSHi 6.3.2
  *******************************************************************************/
 package org.eclipse.passage.lic.oshi;
 
@@ -30,7 +31,7 @@ import org.eclipse.passage.lic.internal.oshi.i18n.AssessmentMessages;
 
 import oshi.SystemInfo;
 import oshi.hardware.Baseboard;
-import oshi.hardware.CentralProcessor;
+import oshi.hardware.CentralProcessor.ProcessorIdentifier;
 import oshi.hardware.ComputerSystem;
 import oshi.hardware.HardwareAbstractionLayer;
 import oshi.software.os.OperatingSystem;
@@ -107,13 +108,13 @@ final class State {
 	private void readOS(OperatingSystem info) {
 		hardware.store(info::getFamily, new OS.Family());
 		hardware.store(info::getManufacturer, new OS.Manufacturer());
-		hardware.store(info.getVersion()::getVersion, new OS.Version());
-		hardware.store(info.getVersion()::getBuildNumber, new OS.BuildNumber());
+		hardware.store(info.getVersionInfo()::getVersion, new OS.Version());
+		hardware.store(info.getVersionInfo()::getBuildNumber, new OS.BuildNumber());
 	}
 
 	private void readHal(HardwareAbstractionLayer hal) {
 		readPart(hal::getComputerSystem, this::readSystem);
-		readPart(hal::getProcessor, this::readProcessor);
+		readPart(hal.getProcessor()::getProcessorIdentifier, this::readProcessor);
 	}
 
 	private void readSystem(ComputerSystem info) {
@@ -139,7 +140,7 @@ final class State {
 		hardware.store(info::getDescription, new Firmware.Description());
 	}
 
-	private void readProcessor(CentralProcessor info) {
+	private void readProcessor(ProcessorIdentifier info) {
 		hardware.store(info::getVendor, new Cpu.Vendor());
 		hardware.store(info::getFamily, new Cpu.Family());
 		hardware.store(info::getModel, new Cpu.Model());
