@@ -25,6 +25,6 @@ Export-Package: org.eclipse.passage.loc.internal.products;
    org.eclipse.passage.loc.licenses.ui",
  org.eclipse.passage.loc.internal.products.core;x-internal:=true,
  org.eclipse.passage.loc.internal.products.core.i18n;x-internal:=true
-Import-Package: org.apache.logging.log4j;version="2.17.1",
+Import-Package: org.apache.log4j;version="1.2.19",
  org.osgi.service.event;version="1.0.0"
 Service-Component: OSGI-INF/*.xml

@@ -26,7 +26,7 @@ Export-Package: org.eclipse.passage.lic.internal.net;
    org.eclipse.passage.lbc.base.tests,
    org.eclipse.passage.lbc.jetty,
    org.eclipse.passage.lic.jetty",
- org.eclipse.passage.lic.internal.net.connect,
+ org.eclipse.passage.lic.internal.net.connect;x-internal:=true,
  org.eclipse.passage.lic.internal.net.handle;
   x-friends:="org.eclipse.passage.lac,
    org.eclipse.passage.lac.gear,
@@ -35,5 +35,5 @@ Export-Package: org.eclipse.passage.lic.internal.net;
    org.eclipse.passage.lbc.jetty,
    org.eclipse.passage.lic.jetty",
  org.eclipse.passage.lic.internal.net.io;x-friends:="org.eclipse.passage.lbc.base,org.eclipse.passage.lic.hc"
-Import-Package: org.apache.logging.log4j;version="2.17.1"
+Import-Package: org.apache.log4j;version="1.2.19"
 Bundle-ActivationPolicy: lazy
