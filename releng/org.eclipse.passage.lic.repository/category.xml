@@ -75,8 +75,8 @@
 	<bundle id="com.fasterxml.jackson.core.jackson-core.source"/>
 	<bundle id="com.fasterxml.jackson.core.jackson-databind"/>
 	<bundle id="com.fasterxml.jackson.core.jackson-databind.source"/>
-	<bundle id="org.apache.logging.log4j"/>
-	<bundle id="org.apache.logging.log4j.source"/>
+	<bundle id="org.apache.log4j"/>
+	<bundle id="org.apache.log4j.source"/>
 	<bundle id="org.bouncycastle.bcpg" />
 	<bundle id="org.bouncycastle.bcpg.source" />
 	<bundle id="org.bouncycastle.bcpkix" />
