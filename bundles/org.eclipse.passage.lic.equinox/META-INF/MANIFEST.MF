@@ -24,7 +24,7 @@ Export-Package: org.eclipse.passage.lic.equinox,
    org.eclipse.passage.loc.licenses.core,
    org.eclipse.passage.loc.users.core",
  org.eclipse.passage.lic.internal.equinox.i18n;x-internal:=true
-Import-Package: org.apache.logging.log4j;version="2.17.1",
+Import-Package: org.apache.log4j;version="1.2.19",
  org.osgi.service.component.runtime;version="1.0.0",
  org.osgi.service.component.runtime.dto;version="1.0.0",
  org.osgi.service.event;version="1.0.0"

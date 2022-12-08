@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2022 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -17,12 +17,12 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.passage.lic.internal.jetty.i18n.Messages;
-import org.eclipse.passage.lic.internal.net.connect.Port;
 import org.eclipse.passage.lic.internal.net.connect.BindAddress;
+import org.eclipse.passage.lic.internal.net.connect.Port;
 
 public final class JettyServer {
 
@@ -37,8 +37,7 @@ public final class JettyServer {
 
 	public void launch(BindAddress listen, Port port) throws JettyException {
 		try {
-			InetSocketAddress address = InetSocketAddress.createUnresolved(listen.get().get(),
-					port.get().get());
+			InetSocketAddress address = InetSocketAddress.createUnresolved(listen.get().get(), port.get().get());
 			server = Optional.of(new Server(address));
 			server.get().setHandler(handler.get());
 			server.get().start();

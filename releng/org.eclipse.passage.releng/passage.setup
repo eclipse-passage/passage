@@ -267,7 +267,7 @@
             name="org.apache.commons.csv"
             versionRange="[1.4.0,2.0.0)"/>
         <requirement
-            name="org.apache.logging.log4j"/>
+            name="org.apache.log4j"/>
         <requirement
             name="org.bouncycastle.bcpg"/>
         <requirement

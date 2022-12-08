@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.loc.licenses.core
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.loc.licenses.core;singleton:=true
-Bundle-Version: 2.0.200.qualifier
+Bundle-Version: 2.0.201.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -26,7 +26,7 @@ Export-Package: org.eclipse.passage.loc.internal.licenses;
  org.eclipse.passage.loc.internal.licenses.core;x-friends:="org.eclipse.passage.loc.dashboard.ui",
  org.eclipse.passage.loc.internal.licenses.core.i18n;x-internal:=true,
  org.eclipse.passage.loc.internal.licenses.core.request;x-friends:="org.eclipse.passage.loc.dashboard.ui,org.eclipse.passage.loc.licenses.ui"
-Import-Package: org.apache.logging.log4j;version="2.17.1",
+Import-Package: org.apache.log4j;version="1.2.19",
  org.osgi.service.event;version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/*.xml

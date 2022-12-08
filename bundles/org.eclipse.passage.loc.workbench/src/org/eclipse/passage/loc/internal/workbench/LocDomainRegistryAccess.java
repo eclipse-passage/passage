@@ -18,8 +18,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistry;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistryAccess;
 import org.eclipse.passage.loc.internal.emf.SelectionCommandAdvisor;
@@ -68,17 +69,17 @@ public class LocDomainRegistryAccess implements EditingDomainRegistryAccess {
 	protected <K, V> void registerEntry(Map<K, V> map, K key, V value) {
 		V existing = map.put(key, value);
 		if (existing != null) {
-			logger.warn("Replaced {} for domain {}", existing, key); //$NON-NLS-1$
+			logger.warn(NLS.bind("Replaced {0} for domain {1}", existing, key)); //$NON-NLS-1$
 		}
-		logger.trace("Registered {} for domain {}", value, key); //$NON-NLS-1$
+		logger.trace(NLS.bind("Registered {0} for domain {1}", value, key)); //$NON-NLS-1$
 	}
 
 	protected <K, V> void unregisterEntry(Map<K, V> map, K key, V value) {
 		V existing = map.remove(key);
 		if (existing == null) {
-			logger.warn("Unexpected null (should be {}) for domain {}", value, key); //$NON-NLS-1$
+			logger.warn(NLS.bind("Unexpected null (should be {0}) for domain {1}", value, key)); //$NON-NLS-1$
 		}
-		logger.trace("Unregistered {} for domain {}", existing, key); //$NON-NLS-1$
+		logger.trace(NLS.bind("Unregistered {0} for domain {1}", existing, key)); //$NON-NLS-1$
 	}
 
 	@Override

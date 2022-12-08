@@ -14,8 +14,7 @@ package org.eclipse.passage.lic.internal.execute;
 
 import java.io.InputStream;
 
-import org.apache.logging.log4j.core.config.ConfigurationSource;
-import org.apache.logging.log4j.core.config.Configurator;
+import org.apache.log4j.PropertyConfigurator;
 
 public final class Logging {
 
@@ -28,9 +27,7 @@ public final class Logging {
 	@SuppressWarnings("resource")
 	public void configure() {
 		try (InputStream configuration = config.get()) {
-			System.setProperty("org.apache.logging.log4j.simplelog.StatusLogger.level", "ERROR"); //$NON-NLS-1$//$NON-NLS-2$
-			ConfigurationSource source = new ConfigurationSource(configuration);
-			Configurator.initialize(getClass().getClassLoader().getParent(), source);
+			PropertyConfigurator.configure(config.get());
 		} catch (Exception e) {
 			System.err.println("Failed to configure logging"); //$NON-NLS-1$
 			e.printStackTrace();
