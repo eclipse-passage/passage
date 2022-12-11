@@ -13,6 +13,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.oshi;
 
+import java.net.SocketException;
 import java.util.function.Supplier;
 
 import oshi.hardware.NetworkIF;
@@ -27,7 +28,20 @@ final class NetHardwareAddress implements Supplier<String> {
 
 	@Override
 	public String get() {
-		return net.getMacaddr();
+		byte[] address;
+		try {
+			address = net.queryNetworkInterface().getHardwareAddress();
+		} catch (SocketException e) {
+			return null; // mimic null: supports OSHI reading policy
+		}
+		return enlisted(address);
 	}
 
+	private String enlisted(byte[] bytes) {
+		StringBuilder out = new StringBuilder();
+		for (int one : bytes) {
+			out.append(one);
+		}
+		return out.toString();
+	}
 }
