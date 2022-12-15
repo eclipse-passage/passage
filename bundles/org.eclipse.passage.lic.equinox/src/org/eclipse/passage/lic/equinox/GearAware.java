@@ -16,8 +16,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.passage.lic.api.Gear;
 import org.eclipse.passage.lic.api.GearSupplier;
 import org.eclipse.passage.lic.api.LicensingException;
@@ -25,13 +23,15 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @since 2.1
  */
 public abstract class GearAware<G extends Gear, S extends GearSupplier<G>> {
 
-	private final Logger log = LogManager.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	public final <T> Optional<T> withGear(Unsafe<G, T> with) throws LicensingException {
 		BundleContext context = FrameworkUtil.getBundle(getClass()).getBundleContext();
@@ -39,7 +39,7 @@ public abstract class GearAware<G extends Gear, S extends GearSupplier<G>> {
 		try {
 			references = context.getServiceReferences(supplier(), null);
 		} catch (InvalidSyntaxException e) {
-			log.error(e);
+			log.error("Failed to resolve service references", e); //$NON-NLS-1$
 			return Optional.empty();
 		}
 		if (references.isEmpty()) {

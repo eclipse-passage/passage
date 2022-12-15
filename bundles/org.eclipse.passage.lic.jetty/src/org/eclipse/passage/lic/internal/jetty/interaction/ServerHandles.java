@@ -15,17 +15,17 @@ package org.eclipse.passage.lic.internal.jetty.interaction;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.passage.lic.equinox.access.LicenseProtection;
 import org.eclipse.passage.lic.internal.jetty.JettyException;
 import org.eclipse.passage.lic.internal.jetty.JettyServer;
 import org.eclipse.passage.lic.internal.net.connect.BindAddress;
 import org.eclipse.passage.lic.internal.net.connect.Port;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 final class ServerHandles extends Command {
 
-	private final Logger log = LogManager.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 	private final JettyServer server;
 	private final LicenseProtection license = new LicenseProtection();
 	private final BindAddress listen;

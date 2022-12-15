@@ -11,8 +11,7 @@
 
 	Contributors:
 		ArSysOp - initial API and implementation
--->
-<target name="org.eclipse.passage.target" sequenceNumber="111">
+--><target name="org.eclipse.passage.target" sequenceNumber="112">
 	<locations>
 		<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<repository location="https://download.eclipse.org/cbi/updates/license/"/>
@@ -78,7 +77,6 @@
 			<unit id="jakarta.servlet" version="0.0.0"/>
 			<unit id="javax.activation" version="0.0.0"/>
 			<unit id="org.apache.commons.csv" version="0.0.0"/>
-			<unit id="org.apache.log4j" version="0.0.0"/>
 			<unit id="org.bouncycastle.bcpg" version="0.0.0"/>
 			<unit id="org.bouncycastle.bcpkix" version="0.0.0"/>
 			<unit id="org.bouncycastle.bcprov" version="0.0.0"/>
@@ -108,6 +106,13 @@
 				<dependency>
 					<groupId>org.slf4j</groupId>
 					<artifactId>slf4j-api</artifactId>
+					<version>1.7.36</version>
+					<type>jar</type>
+				</dependency>
+				<!-- slf4j-api requires 1 impl, providing a dummy one... -->
+				<dependency>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-nop</artifactId>
 					<version>1.7.36</version>
 					<type>jar</type>
 				</dependency>

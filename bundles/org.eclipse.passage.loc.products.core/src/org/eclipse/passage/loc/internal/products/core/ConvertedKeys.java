@@ -20,8 +20,6 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
@@ -29,6 +27,8 @@ import org.eclipse.passage.lic.base.io.LicensingFolder;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.base.io.UserHomePath;
 import org.eclipse.passage.lic.keys.model.api.KeyPair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class ConvertedKeys {
 
@@ -136,7 +136,7 @@ public final class ConvertedKeys {
 
 	static final class ToLog implements Consumer<ConvertKeysReport> {
 
-		private final Logger log = LogManager.getLogger(ConvertedKeys.class);
+		private final Logger log = LoggerFactory.getLogger(ConvertedKeys.class);
 
 		@Override
 		public void accept(ConvertKeysReport report) {

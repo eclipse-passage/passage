@@ -14,8 +14,6 @@ package org.eclipse.passage.loc.operator.seal;
 
 import java.io.InputStream;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.passage.lic.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.LicensedProduct;
@@ -28,6 +26,8 @@ import org.eclipse.passage.lic.execute.FocusedAccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.execute.Logging;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("restriction")
 final class OperatorFramework extends BaseFramework {
@@ -39,7 +39,7 @@ final class OperatorFramework extends BaseFramework {
 
 	private OperatorFramework() {
 		configureLogging();
-		this.log = LogManager.getLogger(getClass());
+		this.log = LoggerFactory.getLogger(getClass());
 		logConfiguration();
 		this.configuration = new FocusedAccessCycleConfiguration.Personal(this::product,
 				() -> FrameworkUtil.getBundle(OperatorFramework.class));

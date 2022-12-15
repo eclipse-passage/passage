@@ -12,14 +12,14 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.licenses.core.issue;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.ReductionMessages;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 final class FeatureGrantCapacityReduction implements Reduction<FeatureGrant> {
 
-	private final Logger log = LogManager.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 	private final int capacity = 3;
 
 	@Override

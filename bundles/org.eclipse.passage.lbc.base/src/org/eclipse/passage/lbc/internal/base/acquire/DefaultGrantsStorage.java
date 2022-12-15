@@ -21,12 +21,12 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class DefaultGrantsStorage implements GrantsStorage {
 
@@ -43,7 +43,7 @@ public abstract class DefaultGrantsStorage implements GrantsStorage {
 	 * </p>
 	 */
 	protected final Map<LicensedProduct, Map<String, Collection<GrantAcqisition>>> locks = new HashMap<>();
-	protected final Logger log = LogManager.getLogger(getClass());
+	protected final Logger log = LoggerFactory.getLogger(getClass());
 
 	@Override
 	public final Optional<GrantAcqisition> acquire(LicensedProduct product, String user, FeatureGrant grant) {

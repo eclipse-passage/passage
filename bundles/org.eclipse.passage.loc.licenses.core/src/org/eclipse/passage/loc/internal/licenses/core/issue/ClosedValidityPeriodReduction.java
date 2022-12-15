@@ -18,15 +18,15 @@ import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed;
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.ReductionMessages;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 final class ClosedValidityPeriodReduction<L> implements Reduction<L> {
 
-	private final Logger log = LogManager.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 	private final Function<L, Optional<ValidityPeriodClosed>> get;
 	private final BiConsumer<L, ValidityPeriodClosed> set;
 	private final int length = 3;

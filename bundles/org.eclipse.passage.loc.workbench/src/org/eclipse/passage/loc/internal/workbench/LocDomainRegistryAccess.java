@@ -18,8 +18,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistry;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistryAccess;
@@ -27,11 +25,13 @@ import org.eclipse.passage.loc.internal.emf.SelectionCommandAdvisor;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Component
 public class LocDomainRegistryAccess implements EditingDomainRegistryAccess {
 
-	private final Logger logger = LogManager.getLogger(getClass());
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	private final Map<String, EditingDomainRegistry<?>> domainRegistries = new HashMap<>();
 	private final Map<String, String> domain2extension = new HashMap<>();

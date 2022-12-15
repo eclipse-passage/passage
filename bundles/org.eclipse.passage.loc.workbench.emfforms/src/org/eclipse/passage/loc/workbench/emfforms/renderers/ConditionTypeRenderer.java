@@ -20,8 +20,6 @@ import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecp.view.spi.context.ViewModelContext;
 import org.eclipse.emf.ecp.view.spi.model.VControl;
 import org.eclipse.emf.ecp.view.template.model.VTViewTemplateProvider;
@@ -34,11 +32,13 @@ import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.loc.internal.api.OperatorGear;
 import org.eclipse.passage.loc.internal.equinox.OperatorGearAware;
 import org.eclipse.passage.loc.internal.workbench.emfforms.i18n.WorkbenchEmfformsMessages;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("restriction")
 public class ConditionTypeRenderer extends ComboControlRenderer {
 
-	private final Logger log = LogManager.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 	private final List<String> environments;
 
 	@Inject
@@ -50,7 +50,7 @@ public class ConditionTypeRenderer extends ComboControlRenderer {
 		try {
 			found = new OperatorGearAware().withGear(this::names);
 		} catch (LicensingException e) {
-			log.error(e);
+			log.error("Failed to resolve condition types", e); //$NON-NLS-1$
 		}
 		environments = found.orElseGet(Collections::emptyList);
 	}

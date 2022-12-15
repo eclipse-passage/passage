@@ -15,17 +15,17 @@ package org.eclipse.passage.lic.equinox.access;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.equinox.EquinoxPassage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class LicenseProtection {
 
-	private final Logger log = LogManager.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 	private Optional<GrantLockAttempt> lock = Optional.empty();
 	private final Supplier<Interaction> interaction;
 

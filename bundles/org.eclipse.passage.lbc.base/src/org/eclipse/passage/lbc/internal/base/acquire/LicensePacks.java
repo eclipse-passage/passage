@@ -19,8 +19,6 @@ import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.io.KeyKeeper;
@@ -33,6 +31,8 @@ import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 final class LicensePacks {
 
@@ -40,7 +40,7 @@ final class LicensePacks {
 	private final KeyKeeper key;
 	private final StreamCodec codec;
 	private final Supplier<Path> base;
-	private final Logger log = LogManager.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	public LicensePacks(KeyKeeper key, StreamCodec codec, LicensedProduct product, Supplier<Path> base) {
 		this.product = product;
