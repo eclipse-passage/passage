@@ -49,6 +49,4 @@
 	<bundle id="org.bouncycastle.bcprov.source" />
 	<bundle id="org.bouncycastle.bcutil" />
 	<bundle id="org.bouncycastle.bcutil.source" />
-	<bundle id="org.slf4j.api"/>
-	<bundle id="org.slf4j.api.source"/>
 </site>
