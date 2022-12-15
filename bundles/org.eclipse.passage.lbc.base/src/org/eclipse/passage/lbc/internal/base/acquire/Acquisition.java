@@ -16,8 +16,6 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lbc.internal.base.DecodedRequest;
 import org.eclipse.passage.lbc.internal.base.EncodedResponse;
@@ -31,11 +29,13 @@ import org.eclipse.passage.lic.internal.net.handle.Failure;
 import org.eclipse.passage.lic.internal.net.handle.PlainSuceess;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class Acquisition {
 
 	private final ProductUserRequest<RawRequest> data;
-	private final Logger log = LogManager.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	public Acquisition(ProductUserRequest<RawRequest> data) {
 		Objects.requireNonNull(data, "Acquisition::data"); //$NON-NLS-1$

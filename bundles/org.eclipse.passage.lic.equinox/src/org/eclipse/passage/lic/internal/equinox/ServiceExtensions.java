@@ -19,12 +19,12 @@ import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.Platform;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * <p>
@@ -41,7 +41,7 @@ public final class ServiceExtensions<S> implements Supplier<List<S>> {
 	private final String namespace;
 	private final String point;
 	private final Class<S> service;
-	private final Logger log = LogManager.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	public ServiceExtensions(String namespace, String point, Class<S> service) {
 		Objects.requireNonNull(namespace, "ServiceExtensions::namespace"); //$NON-NLS-1$

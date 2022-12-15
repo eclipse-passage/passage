@@ -15,8 +15,6 @@ package org.eclipse.passage.loc.internal.licenses.core;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
@@ -33,11 +31,13 @@ import org.eclipse.passage.lic.internal.licenses.model.signature.SignatureData;
 import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.Signature;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("restriction")
 final class LicenseSignature implements Consumer<LicenseRequisites> {
 
-	private final Logger log = LogManager.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	@Override
 	public void accept(LicenseRequisites license) {

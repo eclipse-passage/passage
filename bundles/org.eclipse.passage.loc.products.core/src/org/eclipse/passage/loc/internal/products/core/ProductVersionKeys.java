@@ -17,8 +17,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.passage.lic.api.LicensedProduct;
@@ -32,13 +30,15 @@ import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.loc.internal.api.workspace.Keys;
 import org.eclipse.passage.loc.internal.equinox.OperatorGearAware;
 import org.eclipse.passage.loc.internal.products.core.i18n.ProductsCoreMessages;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("restriction")
 final class ProductVersionKeys {
 
 	private final String plugin;
 	private final Consumer<String> notify;
-	private final Logger log = LogManager.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	ProductVersionKeys(String plugin, Consumer<String> notify) {
 		Objects.requireNonNull(plugin, "ProductVersionPassword::plugin"); //$NON-NLS-1$

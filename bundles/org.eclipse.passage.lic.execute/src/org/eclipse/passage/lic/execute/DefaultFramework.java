@@ -15,8 +15,6 @@ package org.eclipse.passage.lic.execute;
 import java.io.InputStream;
 import java.util.function.Supplier;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.passage.lic.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.LicensingException;
@@ -27,6 +25,8 @@ import org.eclipse.passage.lic.equinox.io.FileFromBundle;
 import org.eclipse.passage.lic.internal.execute.Logging;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class DefaultFramework extends BaseFramework {
 
@@ -35,7 +35,7 @@ public final class DefaultFramework extends BaseFramework {
 
 	public DefaultFramework(Supplier<Bundle> bundle) {
 		configureLogging();
-		this.log = LogManager.getLogger(getClass());
+		this.log = LoggerFactory.getLogger(getClass());
 		logConfiguration();
 		this.configuration = new FocusedAccessCycleConfiguration.Wide(this::product, bundle);
 	}

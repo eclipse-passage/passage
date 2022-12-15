@@ -17,16 +17,16 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.passage.lic.internal.jetty.i18n.Messages;
 import org.eclipse.passage.lic.internal.net.connect.BindAddress;
 import org.eclipse.passage.lic.internal.net.connect.Port;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class JettyServer {
 
-	private final Logger log = LogManager.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 	private final Supplier<JettyHandler> handler;
 	private Optional<Server> server = Optional.empty();
 

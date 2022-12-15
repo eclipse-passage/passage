@@ -12,16 +12,16 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.licenses.core.issue;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.UserGrant;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.ReductionMessages;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 final class UserGrantsAmountReduction implements Reduction<FloatingLicensePack> {
 
-	private final Logger log = LogManager.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 	private final int amount = 5;
 
 	@Override

@@ -14,17 +14,17 @@ package org.eclipse.passage.lic.internal.net.handle;
 
 import java.util.Optional;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.internal.net.api.handle.Chore;
 import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class ChoreDraft<R extends NetRequest> implements Chore {
 
 	protected final R data;
-	protected final Logger log = LogManager.getLogger(getClass());
+	protected final Logger log = LoggerFactory.getLogger(getClass());
 
 	protected ChoreDraft(R request) {
 		this.data = request;

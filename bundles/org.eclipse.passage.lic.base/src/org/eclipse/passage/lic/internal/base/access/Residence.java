@@ -24,14 +24,14 @@ import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 final class Residence {
 
 	private final Path file;
-	private final Logger log = LogManager.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	Residence(Supplier<Path> srotage) {
 		this.file = srotage.get().resolve("forsaken-grants.bin"); //$NON-NLS-1$

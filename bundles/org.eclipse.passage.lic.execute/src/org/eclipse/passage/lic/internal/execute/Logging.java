@@ -14,8 +14,6 @@ package org.eclipse.passage.lic.internal.execute;
 
 import java.io.InputStream;
 
-import org.apache.log4j.PropertyConfigurator;
-
 public final class Logging {
 
 	private final ConfigSupplier config;
@@ -27,7 +25,7 @@ public final class Logging {
 	@SuppressWarnings("resource")
 	public void configure() {
 		try (InputStream configuration = config.get()) {
-			PropertyConfigurator.configure(config.get());
+			// should be done by end-product framework
 		} catch (Exception e) {
 			System.err.println("Failed to configure logging"); //$NON-NLS-1$
 			e.printStackTrace();

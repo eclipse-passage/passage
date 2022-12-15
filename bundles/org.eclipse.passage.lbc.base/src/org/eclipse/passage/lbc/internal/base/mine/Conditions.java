@@ -16,8 +16,6 @@ import java.util.Collection;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lbc.internal.base.EncodedResponse;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
@@ -30,11 +28,13 @@ import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class Conditions implements Supplier<NetResponse> {
 
 	private final ProductUserRequest<RawRequest> data;
-	private final Logger log = LogManager.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	public Conditions(ProductUserRequest<RawRequest> data) {
 		this.data = data;

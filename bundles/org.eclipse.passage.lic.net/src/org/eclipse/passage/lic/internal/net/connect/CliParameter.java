@@ -15,17 +15,17 @@ package org.eclipse.passage.lic.internal.net.connect;
 import java.util.Arrays;
 import java.util.Optional;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.passage.lic.base.NamedData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @since 1.1
  */
 public abstract class CliParameter<T> implements NamedData<T> {
 
-	protected final Logger log = LogManager.getLogger(getClass());
+	protected final Logger log = LoggerFactory.getLogger(getClass());
 	protected final Optional<String> raw;
 	private final T lazy;
 

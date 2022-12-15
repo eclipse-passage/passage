@@ -18,8 +18,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.passage.lbc.internal.base.i18n.BaseMessages;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.LicensingException;
@@ -44,13 +42,15 @@ import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("restriction")
 final class ReassemblingMiningTool extends ArmedMiningTool {
 
 	private final String user;
 	private final LicensedProduct product;
-	private final Logger log = LogManager.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	ReassemblingMiningTool(KeyKeeper key, StreamCodec codec, ConditionTransport transport, LicensedProduct product,
 			String user, ConditionMiningTarget miner) {

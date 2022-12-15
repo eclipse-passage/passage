@@ -15,8 +15,6 @@ package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 import java.util.Collection;
 import java.util.Optional;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.passage.lic.api.Framework;
@@ -28,11 +26,13 @@ import org.eclipse.passage.lic.internal.base.access.Libraries;
 import org.eclipse.passage.lic.internal.equinox.access.AgreementAcceptanceDelegate;
 import org.eclipse.passage.lic.internal.equinox.access.RegisteredLibraries;
 import org.eclipse.passage.lic.internal.jface.i18n.AgreementsDialogMessages;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("restriction")
 final class AgreementsWizard extends Wizard {
 
-	private final Logger log = LogManager.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	private final Collection<AgreementToAccept> agreements;
 	private final Libraries libraries;
@@ -74,7 +74,7 @@ final class AgreementsWizard extends Wizard {
 			} catch (Exception e) {
 				success = false;
 				e.printStackTrace();
-				log.error(e);
+				log.error("Agreement acceptance failed", e); //$NON-NLS-1$
 			}
 		}
 		return success;

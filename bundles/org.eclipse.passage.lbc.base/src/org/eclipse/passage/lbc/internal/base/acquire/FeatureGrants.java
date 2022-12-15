@@ -19,14 +19,14 @@ import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.eclipse.passage.lbc.internal.base.api.FlsGear;
 import org.eclipse.passage.lbc.internal.base.api.FlsGearAwre;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 final class FeatureGrants {
 
@@ -34,7 +34,7 @@ final class FeatureGrants {
 	private final String user;
 	private final String feature;
 	private final Supplier<Path> base;
-	private final Logger log = LogManager.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	FeatureGrants(LicensedProduct product, String user, String feature, Supplier<Path> base) {
 		this.product = product;
@@ -88,7 +88,7 @@ final class FeatureGrants {
 					.map(Optional::get) //
 					.collect(Collectors.toList());
 		} catch (LicensingException e) {
-			log.error(e);
+			log.error("Failed to get feature grants", e); //$NON-NLS-1$
 			return Collections.emptyList();
 		}
 	}
