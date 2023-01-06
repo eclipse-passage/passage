@@ -9,7 +9,7 @@
         </filter>
         <filter id="923795461">
             <message_arguments>
-                <message_argument value="2.6.1"/>
+                <message_argument value="2.7.0"/>
                 <message_argument value="2.5.0"/>
             </message_arguments>
         </filter>
@@ -58,7 +58,7 @@
         <filter id="305365105">
             <message_arguments>
                 <message_argument value="org.eclipse.passage.lic.internal.net.connect.BindAddress"/>
-                <message_argument value="org.eclipse.passage.lic.net_2.6.1"/>
+                <message_argument value="org.eclipse.passage.lic.net_2.7.0"/>
             </message_arguments>
         </filter>
     </resource>
@@ -66,7 +66,7 @@
         <filter id="305365105">
             <message_arguments>
                 <message_argument value="org.eclipse.passage.lic.internal.net.connect.CliParameter"/>
-                <message_argument value="org.eclipse.passage.lic.net_2.6.1"/>
+                <message_argument value="org.eclipse.passage.lic.net_2.7.0"/>
             </message_arguments>
         </filter>
     </resource>
@@ -74,7 +74,7 @@
         <filter id="305365105">
             <message_arguments>
                 <message_argument value="org.eclipse.passage.lic.internal.net.connect.Port"/>
-                <message_argument value="org.eclipse.passage.lic.net_2.6.1"/>
+                <message_argument value="org.eclipse.passage.lic.net_2.7.0"/>
             </message_arguments>
         </filter>
     </resource>
@@ -82,7 +82,7 @@
         <filter id="305365105">
             <message_arguments>
                 <message_argument value="org.eclipse.passage.lic.internal.net.connect.Storage"/>
-                <message_argument value="org.eclipse.passage.lic.net_2.6.1"/>
+                <message_argument value="org.eclipse.passage.lic.net_2.7.0"/>
             </message_arguments>
         </filter>
     </resource>

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.loc.api
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.loc.api
-Bundle-Version: 2.6.1.qualifier
+Bundle-Version: 2.7.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -40,8 +40,8 @@ Require-Bundle: org.eclipse.e4.core.services;bundle-version="0.0.0",
  org.eclipse.passage.lic.users.model;bundle-version="0.0.0",
  org.eclipse.passage.lic.licenses.model;bundle-version="0.0.0"
 Bundle-ActivationPolicy: lazy
-Provide-Capability: licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.personal";version="2.6.1";name="Issue Personal License";level="warn";provider="Eclipse Passage",
- licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.floating";version="2.6.1";name="Issue Floating License";level="warn";provider="Eclipse Passage",
- licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.personal.full";version="2.6.1";name="Issue Personal License (Professional)";level="error";provider="Eclipse Passage",
- licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.floating.full";version="2.6.1";name="Issue Floating License (Professional)";level="error";provider="Eclipse Passage"
+Provide-Capability: licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.personal";version="2.7.0";name="Issue Personal License";level="warn";provider="Eclipse Passage",
+ licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.floating";version="2.7.0";name="Issue Floating License";level="warn";provider="Eclipse Passage",
+ licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.personal.full";version="2.7.0";name="Issue Personal License (Professional)";level="error";provider="Eclipse Passage",
+ licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.floating.full";version="2.7.0";name="Issue Floating License (Professional)";level="error";provider="Eclipse Passage"
 Import-Package: org.osgi.service.event;version="1.0.0"
