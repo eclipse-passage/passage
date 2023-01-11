@@ -6,7 +6,7 @@ Bundle-Version: 2.7.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: org.eclipse.passage.lic.api,
  org.eclipse.passage.lic.api.access,
  org.eclipse.passage.lic.api.acquire,

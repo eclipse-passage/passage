@@ -44,7 +44,7 @@ public final class ProvidedCapabilitiesFromManifestTest {
 				+ "Bundle-ManifestVersion: 2\r\n" //$NON-NLS-1$
 				+ "Bundle-SymbolicName: org.eclipse.passage.lic.equinox.tests\r\n" //$NON-NLS-1$
 				+ "Bundle-Version: 0.6.0.qualifier\r\n" //$NON-NLS-1$
-				+ "Bundle-RequiredExecutionEnvironment: JavaSE-1.8\r\n" //$NON-NLS-1$
+				+ "Bundle-RequiredExecutionEnvironment: JavaSE-11\r\n" //$NON-NLS-1$
 				+ "Bundle-Name: %Bundle-Name\r\n" //$NON-NLS-1$
 				+ "Bundle-Vendor: %Bundle-Vendor\r\n" //$NON-NLS-1$
 				+ "Bundle-Copyright: %Bundle-Copyright\r\n" //$NON-NLS-1$
@@ -105,7 +105,7 @@ public final class ProvidedCapabilitiesFromManifestTest {
 				+ "Bundle-ManifestVersion: 2" + ending //$NON-NLS-1$
 				+ "Bundle-SymbolicName: org.eclipse.passage.lic.equinox.tests.data.requirements;singleton:=true" //$NON-NLS-1$
 				+ ending + "Bundle-Version: 0.1.0.qualifier" + ending //$NON-NLS-1$
-				+ "Bundle-RequiredExecutionEnvironment: JavaSE-1.8" + ending //$NON-NLS-1$
+				+ "Bundle-RequiredExecutionEnvironment: JavaSE-11" + ending //$NON-NLS-1$
 				+ "Bundle-Name: Data for Passage LIC Equinox requirements tests" + ending //$NON-NLS-1$
 				+ "Bundle-Vendor: Eclipse Passage " + ending //$NON-NLS-1$
 				+ "Bundle-Copyright: %Bundle-Copyright" + ending //$NON-NLS-1$

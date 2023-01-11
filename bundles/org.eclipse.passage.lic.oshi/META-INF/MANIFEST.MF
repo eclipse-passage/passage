@@ -6,7 +6,7 @@ Bundle-Version: 2.7.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: com.sun.jna;bundle-version="5.12.0",
  com.sun.jna.platform;bundle-version="5.12.0",
  com.github.oshi.oshi-core;bundle-version="6.2.2",
