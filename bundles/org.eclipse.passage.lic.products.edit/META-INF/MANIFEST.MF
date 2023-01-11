@@ -2,12 +2,12 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.products.edit
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.products.edit;singleton:=true
-Bundle-Version: 1.0.201.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Copyright: %Bundle-Copyright
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0";resolution:=optional;x-installation:=greedy,
  org.eclipse.passage.lic.products.model;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.emf.edit;bundle-version="0.0.0";visibility:=reexport
