@@ -17,8 +17,16 @@ Export-Package: org.eclipse.passage.loc.internal.api;
    org.eclipse.passage.loc.products.core,
    org.eclipse.passage.loc.features.core,
    org.eclipse.passage.loc.users.core,
-   org.eclipse.passage.loc.operator.gear",
- org.eclipse.passage.loc.internal.api.workspace;x-friends:="org.eclipse.passage.loc.workspace,org.eclipse.passage.loc.store",
+   org.eclipse.passage.loc.operator.gear,
+   org.eclipse.passage.loc.products.emfforms",
+ org.eclipse.passage.loc.internal.api.workspace;
+  x-friends:="org.eclipse.passage.loc.workspace,
+   org.eclipse.passage.loc.store,
+   org.eclipse.passage.loc.features.core,
+   org.eclipse.passage.loc.users.core,
+   org.eclipse.passage.loc.products.core,
+   org.eclipse.passage.loc.licenses.core,
+   org.eclipse.passage.loc.products.emfforms",
  org.eclipse.passage.loc.internal.emf;
   x-friends:="org.eclipse.passage.loc.licenses.core,
    org.eclipse.passage.loc.edit.ui,
