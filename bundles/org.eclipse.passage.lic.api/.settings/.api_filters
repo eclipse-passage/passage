@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.passage.lic.api" version="2">
-    <resource path="META-INF/MANIFEST.MF">
-        <filter comment="Intentional increment" id="926941240">
-            <message_arguments>
-                <message_argument value="2.2.1"/>
-                <message_argument value="2.1.1"/>
-            </message_arguments>
-        </filter>
-        <filter comment="intentional version increase" id="926941240">
-            <message_arguments>
-                <message_argument value="2.3.0"/>
-                <message_argument value="2.2.1"/>
-            </message_arguments>
-        </filter>
-    </resource>
     <resource path="src/org/eclipse/passage/lic/api/AccessCycleConfiguration.java" type="org.eclipse.passage.lic.api.AccessCycleConfiguration">
-        <filter id="403804204">
-            <message_arguments>
-                <message_argument value="org.eclipse.passage.lic.api.AccessCycleConfiguration"/>
-                <message_argument value="grantsTrace()"/>
-            </message_arguments>
-        </filter>
         <filter id="643842064">
             <message_arguments>
                 <message_argument value="AgreementAcceptanceService"/>

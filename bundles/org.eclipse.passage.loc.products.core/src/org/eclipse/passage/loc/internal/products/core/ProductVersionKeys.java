@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021, 2022 ArSysOp
+ * Copyright (c) 2021, 2023 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -33,7 +33,6 @@ import org.eclipse.passage.loc.internal.products.core.i18n.ProductsCoreMessages;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@SuppressWarnings("restriction")
 final class ProductVersionKeys {
 
 	private final String plugin;

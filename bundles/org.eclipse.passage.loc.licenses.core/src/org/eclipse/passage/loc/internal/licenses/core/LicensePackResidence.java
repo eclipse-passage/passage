@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2022 ArSysOp
+ * Copyright (c) 2022, 2023 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -23,7 +23,6 @@ import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
 import org.eclipse.passage.loc.internal.api.workspace.LicensePacks;
 import org.eclipse.passage.loc.internal.equinox.OperatorGearAware;
 
-@SuppressWarnings("restriction")
 final class LicensePackResidence implements Supplier<Path> {
 
 	private final LicenseRequisites license;
@@ -45,8 +44,8 @@ final class LicensePackResidence implements Supplier<Path> {
 		return new UserHomeProductResidence(//
 				license.getProduct().getIdentifier(), //
 				license.getProduct().getVersion())//
-						.get()//
-						.resolve(license.getIdentifier());
+				.get()//
+				.resolve(license.getIdentifier());
 	}
 
 	private Optional<Path> fromWorkspace() {

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2023 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -29,7 +29,6 @@ import org.eclipse.passage.loc.internal.equinox.AgreementsService;
 import org.eclipse.passage.loc.internal.equinox.OperatorGearAware;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 
-@SuppressWarnings("restriction")
 final class LicenseAgreements {
 
 	private final AgreementRegistry registry;

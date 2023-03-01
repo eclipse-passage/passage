@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2022 ArSysOp
+ * Copyright (c) 2019, 2023 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -32,7 +32,6 @@ import org.eclipse.passage.loc.internal.api.workspace.Keys;
 import org.eclipse.passage.loc.internal.api.workspace.OperatorWorkspace;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.FileContentRenderer;
 
-@SuppressWarnings("restriction")
 public abstract class ProductVersionKeyRenderer extends FileContentRenderer<ProductVersion> {
 
 	protected final OperatorWorkspace workspace;
