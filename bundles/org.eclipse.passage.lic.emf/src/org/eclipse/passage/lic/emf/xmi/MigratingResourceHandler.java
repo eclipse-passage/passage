@@ -57,12 +57,12 @@ public abstract class MigratingResourceHandler extends BasicResourceHandler {
 				throw new RuntimeException(message, e);
 			}
 		}
-		evaporizeUnknownParticles(resource);
 		complete(resource);
+		evaporizeUnknownParticles(resource);
 	}
 
 	private void evaporizeUnknownParticles(XMLResource resource) {
-
+		resource.getEObjectToExtensionMap().clear();
 	}
 
 	protected void convertEntry(Entry<EObject, AnyType> entry) throws MigrationException {
