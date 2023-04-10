@@ -17,7 +17,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <version.tycho>2.7.1</version.tycho>
+    <version.tycho>2.7.5</version.tycho>
     <version.passage>stage</version.passage>
     <promotion.passage>drops</promotion.passage>
     <p2.passage>https://download.eclipse.org/passage/${promotion.passage}/release/${version.passage}</p2.passage>
