@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.loc.workbench.emfforms
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.loc.workbench.emfforms;singleton:=true
-Bundle-Version: 2.0.300.qualifier
+Bundle-Version: 2.0.301.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Import-Package: javax.annotation;version="1.2.0",
