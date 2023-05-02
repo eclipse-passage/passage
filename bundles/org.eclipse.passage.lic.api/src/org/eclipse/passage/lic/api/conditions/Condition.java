@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2023 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -23,7 +23,7 @@ import org.eclipse.passage.lic.api.EvaluationInstructions;
  * These statements demands the feature to be used under curtain
  * {@code condition}s, such as "only version older than 2.14.1 on a workstation
  * under Windows OS with hard disk of serial AB0123C4DEFJHI and only for two
- * years starting from the 1st of May, 2020." {@code Condition} represents such
+ * years starting from the 1st of May, 2023." {@code Condition} represents such
  * a bundle of demands.
  * </p>
  * 

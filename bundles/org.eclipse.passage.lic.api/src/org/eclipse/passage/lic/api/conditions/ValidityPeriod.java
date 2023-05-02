@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2023 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -20,7 +20,7 @@ import java.time.ZonedDateTime;
  * valid.
  * </p>
  * <p>
- * Examples: 'from 1st of May, 2020 for two months' or 'each Friday ever'.
+ * Examples: 'from 1st of May, 2023 for two months' or 'each Friday ever'.
  * </p>
  * 
  * @since 2.1
