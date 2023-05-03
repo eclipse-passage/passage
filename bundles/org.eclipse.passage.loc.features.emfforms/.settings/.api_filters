@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.passage.loc.features.emfforms" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter comment="Bulk version increment" id="0"/>
+    </resource>
+</component>

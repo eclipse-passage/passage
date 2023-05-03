@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.passage.lic.base" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter comment="Bulk version increment" id="932184123">
+            <message_arguments>
+                <message_argument value="2.8.0"/>
+                <message_argument value="2.6.1"/>
+            </message_arguments>
+        </filter>
+    </resource>
     <resource path="src/org/eclipse/passage/lic/base/access/Restrictions.java" type="org.eclipse.passage.lic.base.access.Restrictions">
         <filter id="643850349">
             <message_arguments>
