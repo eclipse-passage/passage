@@ -137,7 +137,6 @@ public final class LicensedE4FullFeatherProductTemplateSection extends BaseLicen
 	@Override
 	protected List<String> getRCP4xDependencies() {
 		List<String> result = new ArrayList<>();
-		result.add("javax.annotation"); //$NON-NLS-1$
 		result.addAll(super.getRCP4xDependencies());
 		result.add("org.eclipse.passage.lic.execute"); //$NON-NLS-1$
 		result.remove("org.eclipse.passage.seal.demo"); //$NON-NLS-1$

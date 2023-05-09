@@ -23,4 +23,9 @@ public final class LicensedE4FullFeatherProductContentWizard extends NewPluginTe
 				new LicensedE4FullFeatherProductTemplateSection(), //
 		};
 	}
+
+	@Override
+	public String[] getImportPackages() {
+		return new String[] { "javax.annotation;version=\"[1.3.0,2.0.0)\"" }; //$NON-NLS-1$
+	}
 }
