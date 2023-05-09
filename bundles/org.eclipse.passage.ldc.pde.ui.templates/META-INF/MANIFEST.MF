@@ -21,6 +21,4 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0",
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-Copyright: %Bundle-Copyright
 Automatic-Module-Name: org.eclipse.passage.ldc.pde.ui.templates
-Import-Package: javax.annotation;version="1.0.0";resolution:=optional,
- javax.inject;version="1.0.0"
 Bundle-ActivationPolicy: lazy
