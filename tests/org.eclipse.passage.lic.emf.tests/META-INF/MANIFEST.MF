@@ -8,5 +8,5 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Fragment-Host: org.eclipse.passage.lic.emf
-Require-Bundle: org.junit;bundle-version="0.0.0"
+Import-Package: org.junit
 Export-Package: org.eclipse.passage.lic.emf.meta

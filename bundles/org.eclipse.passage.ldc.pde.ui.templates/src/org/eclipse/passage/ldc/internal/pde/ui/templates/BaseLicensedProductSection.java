@@ -174,7 +174,6 @@ public abstract class BaseLicensedProductSection extends BaseLicensingSection {
 
 	protected List<String> getRCP4xDependencies() {
 		return Arrays.asList(//
-				"javax.inject", //$NON-NLS-1$
 				"org.eclipse.core.runtime", //$NON-NLS-1$
 				"org.eclipse.swt", //$NON-NLS-1$
 				"org.eclipse.jface", //$NON-NLS-1$
@@ -186,8 +185,7 @@ public abstract class BaseLicensedProductSection extends BaseLicensingSection {
 				"org.eclipse.e4.core.contexts", //$NON-NLS-1$
 				"org.eclipse.passage.lic.equinox", //$NON-NLS-1$
 				"org.eclipse.passage.lic.e4.ui", //$NON-NLS-1$
-				"org.eclipse.passage.seal.demo", //$NON-NLS-1$
-				"org.apache.logging.log4j"); //$NON-NLS-1$
+				"org.eclipse.passage.seal.demo"); //$NON-NLS-1$
 	}
 
 	protected Requirement createProductRequirement(String product) {

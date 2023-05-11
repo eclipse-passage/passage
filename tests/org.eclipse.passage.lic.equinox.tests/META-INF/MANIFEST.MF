@@ -8,8 +8,8 @@ Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Fragment-Host: org.eclipse.passage.lic.equinox
-Require-Bundle: org.junit;bundle-version="0.0.0",
- org.eclipse.equinox.event;bundle-version="0.0.0",
+Import-Package: org.junit
+Require-Bundle: org.eclipse.equinox.event;bundle-version="0.0.0",
  org.eclipse.passage.lic.base;bundle-version="0.0.0",
  org.eclipse.passage.lic.equinox.tests.data.requirements;bundle-version="0.1.0",
  org.eclipse.passage.lic.base.tests;bundle-version="1.0.0",

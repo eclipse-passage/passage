@@ -24,4 +24,9 @@ public class LicensedE4ProductContentWizard extends NewPluginTemplateWizard {
 				new LicensedE4ProductTemplateSection(), //
 		};
 	}
+
+	@Override
+	public String[] getImportPackages() {
+		return new String[] { "javax.inject;version=\"[1.0.0,2.0.0)\"" }; //$NON-NLS-1$
+	}
 }
