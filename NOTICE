@@ -41,7 +41,7 @@ oshi-core (3.8.0)
  * Project: https://github.com/oshi/oshi
  * Source: https://github.com/oshi/oshi
 
-JNA (4.5.1)
+JNA (5.13.0)
 
  * License: LGPL 2.1 and Apache 2.0, https://github.com/java-native-access/jna/blob/master/LICENSE
  * Project: https://github.com/java-native-access/jna
