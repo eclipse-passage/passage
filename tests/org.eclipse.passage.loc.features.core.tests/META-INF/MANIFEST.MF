@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.loc.features.core.tests
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.loc.features.core.tests
-Bundle-Version: 2.8.0.qualifier
+Bundle-Version: 2.9.0.qualifier
 Import-Package: org.junit
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
