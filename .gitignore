@@ -41,7 +41,6 @@ target/
 hs_err_pid*
 
 #m2e
-/.settings/
 releng/**/.settings/
 
 #tycho
