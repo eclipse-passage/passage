@@ -82,20 +82,49 @@
 			<unit id="com.fasterxml.jackson.core.jackson-annotations" version="0.0.0"/>
 			<unit id="com.fasterxml.jackson.core.jackson-core" version="0.0.0"/>
 			<unit id="com.fasterxml.jackson.core.jackson-databind" version="0.0.0"/>
-			<unit id="com.github.oshi.oshi-core" version="0.0.0"/>
-			<unit id="com.sun.jna" version="4.5.1.v20210503-0343"/>
-			<unit id="com.sun.jna.platform" version="4.5.1.v20221112-0806"/>
 			<unit id="jakarta.servlet" version="0.0.0"/>
 			<unit id="javax.activation" version="0.0.0"/>
 			<unit id="org.apache.commons.csv" version="0.0.0"/>
-			<unit id="org.apache.logging.log4j" version="0.0.0"/>
 			<unit id="org.bouncycastle.bcpg" version="0.0.0"/>
 			<unit id="org.bouncycastle.bcpkix" version="0.0.0"/>
 			<unit id="org.bouncycastle.bcprov" version="0.0.0"/>
 			<unit id="org.bouncycastle.bcutil" version="0.0.0"/>
 			<unit id="org.junit" version="0.0.0"/>
-			<unit id="org.slf4j.api" version="0.0.0"/>
-			<unit id="org.slf4j.apis.log4j" version="0.0.0"/>
+		</location>
+		<location includeDependencyDepth="none" includeDependencyScopes="compile" includeSource="true" missingManifest="error" type="Maven">
+			<dependencies>
+				<dependency>
+					<groupId>com.github.oshi</groupId>
+					<artifactId>oshi-core</artifactId>
+					<version>6.2.2</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>net.java.dev.jna</groupId>
+					<artifactId>jna-platform</artifactId>
+					<version>5.13.0</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>net.java.dev.jna</groupId>
+					<artifactId>jna</artifactId>
+					<version>5.13.0</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+					<version>1.7.36</version>
+					<type>jar</type>
+				</dependency>
+				<!-- slf4j-api requires 1 impl, providing a dummy one... -->
+				<dependency>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-nop</artifactId>
+					<version>1.7.36</version>
+					<type>jar</type>
+				</dependency>
+			</dependencies>
 		</location>
 	</locations>
 </target>
