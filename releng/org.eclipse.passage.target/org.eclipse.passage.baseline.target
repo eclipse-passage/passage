@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.8"?>
 <!--
-	Copyright (c) 2018, 2022 ArSysOp and others
+	Copyright (c) 2018, 2023 ArSysOp and others
 
 	This program and the accompanying materials are made available under the
 	terms of the Eclipse Public License 2.0 which is available at
@@ -12,7 +12,7 @@
 	Contributors:
 		ArSysOp - initial API and implementation
 -->
-<target name="org.eclipse.passage.baseline" sequenceNumber="102">
+<target name="org.eclipse.passage.baseline">
 	<locations>
 		<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<repository location="https://download.eclipse.org/cbi/updates/license/"/>
@@ -30,7 +30,7 @@
 			<unit id="org.eclipse.emfforms.setup.base" version="0.0.0"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/modeling/emf/emf/builds/release/2.34/"/>
+			<repository location="https://download.eclipse.org/modeling/emf/emf/builds/release/2.34.0/"/>
 			<unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
@@ -46,11 +46,11 @@
 			<unit id="org.eclipse.emf.validation.sdk.feature.group" version="0.0.0"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R202305230839/"/>
+			<repository location="https://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R202211151334/"/>
 			<unit id="org.eclipse.gmf.runtime.notation.sdk.feature.group" version="0.0.0"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R202211041032/"/>
+			<repository location="https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R202305230839/"/>
 			<unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="0.0.0"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
@@ -117,7 +117,6 @@
 					<version>1.7.36</version>
 					<type>jar</type>
 				</dependency>
-				<!-- slf4j-api requires 1 impl, providing a dummy one... -->
 				<dependency>
 					<groupId>org.slf4j</groupId>
 					<artifactId>slf4j-nop</artifactId>
