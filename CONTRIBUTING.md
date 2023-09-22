@@ -62,11 +62,11 @@ Add one blank line, followed by more details about the change. This could includ
 
 ### Granularity
 
-Make small commits, yet self-contained commits. This makes them easy to review.
+Make small yet self-contained commits. This makes them easy to review.
 
-Do not mix concerns in commits: have a commit do a single thing. This makes them reviewable 'in isolation'. 
+Do not mix concerns in commits: let commit do a single thing. This makes them reviewable 'in isolation'. 
 This is particularly important if you need to do refactorings to the existing code: 
-Refactorings tend to lead to large diffs which are difficult to review. 
+refactorings tend to lead to large diffs which are difficult to review. 
 Therefore make sure to have separate commits for refactorings and for functional changes.
 
 ## Submit patch
@@ -102,15 +102,17 @@ Make sure your contribution is aligned with Passage project code guidelines.
 	  In the latter case implementation must actively fail.
 * Use _fail fast_ approach when handle incorrect input data. Do not make assumptions, do not built-in fallback strategies.
 * There must be no _static_ methods or fields in your class, unless it is directly demanded by an external framework. 
-* For all local variables and class fields neither _cameCase_ nor _stake_ _ _case_ is applicable, compound names are prohibited.
+* For all local variables and class fields neither cameCase nor snake_case is applicable, compound names are prohibited.
 * For all method _query/action_ naming approach must be used. 
-  Query-method does not change the owning class state, returns a value and is named with a noun after the value it returns. 
-  Action-method can change the owning class state, does not return a value and is named with a verb after the activity it performs.
-* All fields and a class must be _private_ and _final_, unless otherwise is directly demanded by a framework in use.
+  Query-method does not change the owning class state, returns a value and is named with a noun or adjective after the value it returns. 
+  Action-method can change the owning class state, mainly does not return a value and is named with a verb after the activity it performs.
+  Sometimes action-method can return status, but there must be valuable reasons for such design.
+* All fields in a class must be declared both _private_ and _final_, unless otherwise is directly demanded by a framework in use.
 * Constructor must not perform any calculation, only assignments.
-* No optimization, cashing or other -improvements- alike must be applied to a code unless it is proven there is a significant performance issue.
-* A class must stay small and dedicated to a single aspect of a domain. Methods must stay small as well.
+* Designing a class hierarchy apply _either final or abstract_ approach. It concerns not only class inheritance itself but also each piece of implementation. Class must be declared either _abstract_ or _final_. Each method in an _abstract_ class must be declared either _abstract_ or _final_ or _private_. Implementation inheritance is totally prohibited in any form.  
+* No optimization, caching or other 'improvements'-alike solutions must be applied to a code unless it is proven there is a significant performance issue.
+* A class must stay small and dedicated to a single aspect of a domain. Methods must stay small and do exactly one thing as well.
+* Keep code granularity on the same level across a single scope.
 
 Make sure your code is sufficiently covered with tests.
- 
- 
+  
