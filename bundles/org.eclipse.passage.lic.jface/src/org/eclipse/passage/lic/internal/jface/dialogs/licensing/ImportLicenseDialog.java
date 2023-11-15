@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2022 ArSysOp
+ * Copyright (c) 2020, 2023 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
@@ -80,7 +81,7 @@ public final class ImportLicenseDialog extends NotificationDialog {
 		path = new Text(composite, SWT.BORDER | SWT.READ_ONLY);
 		path.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		Button browse = new Button(composite, SWT.PUSH);
-		browse.setText("B&rowse..."); //$NON-NLS-1$
+		browse.setText(ImportLicenseDialogMessages.ImportLicenseDialog_browse);
 		browse.addListener(SWT.Selection, e -> browseAndLoad());
 		setButtonLayoutData(browse);
 	}
