@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2023 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface.i18n;
 
@@ -16,6 +17,7 @@ import org.eclipse.osgi.util.NLS;
 
 public class ImportLicenseDialogMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.jface.i18n.ImportLicenseDialogMessages"; //$NON-NLS-1$
+	public static String ImportLicenseDialog_browse;
 	public static String ImportLicenseDialog_browse_dialog_title;
 	public static String ImportLicenseDialog_column_evaluation;
 	public static String ImportLicenseDialog_column_feature;

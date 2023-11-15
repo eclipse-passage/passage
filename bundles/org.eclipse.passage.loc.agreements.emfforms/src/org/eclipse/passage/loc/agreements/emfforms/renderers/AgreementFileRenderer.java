@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2023 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -41,9 +41,13 @@ import org.eclipse.swt.widgets.Control;
 
 @SuppressWarnings("restriction")
 /**
- * TODO: (1) validity: Workspace.Agreements must report existence for content
- * file denoted by [file] attribute (2) rename: there should be a way to rename
+ * <pre>
+ * TODO:
+ * (1) validity: Workspace.Agreements must report existence for content
+ * file denoted by [file] attribute 
+ * (2) rename: there should be a way to rename
  * content file
+ * </pre>
  */
 public final class AgreementFileRenderer extends TextWithButtonRenderer {
 
@@ -85,8 +89,6 @@ public final class AgreementFileRenderer extends TextWithButtonRenderer {
 	}
 
 	private String reside(File file) throws Exception {
-		// rename in already defined name if any:
-		// String name = definedName().orElse(file.getName());
 		String name = file.getName();
 		new AgreementsService().get().located(name).write(Files.readAllBytes(file.toPath()));
 		return name;
