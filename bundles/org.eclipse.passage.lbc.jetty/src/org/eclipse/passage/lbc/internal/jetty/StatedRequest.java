@@ -35,6 +35,11 @@ final class StatedRequest implements RawRequest {
 	}
 
 	@Override
+	public String remoteAddress() {
+		return delegate.remoteAddress();
+	}
+
+	@Override
 	public byte[] content() throws IOException {
 		return delegate.content();
 	}

@@ -121,6 +121,11 @@ final class RequestConstructed {
 		}
 
 		@Override
+		public String remoteAddress() {
+			return null;
+		}
+
+		@Override
 		public byte[] content() throws IOException {
 			return content;
 		}

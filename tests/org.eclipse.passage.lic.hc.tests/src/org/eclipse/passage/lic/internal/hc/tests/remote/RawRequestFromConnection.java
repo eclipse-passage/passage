@@ -34,6 +34,11 @@ final class RawRequestFromConnection implements RawRequest {
 	}
 
 	@Override
+	public String remoteAddress() {
+		return null;
+	}
+
+	@Override
 	public byte[] content() throws IOException {
 		return connection.requestPayload();
 	}

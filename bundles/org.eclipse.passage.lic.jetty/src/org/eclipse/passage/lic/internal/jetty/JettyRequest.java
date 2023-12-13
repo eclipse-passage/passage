@@ -37,6 +37,11 @@ public final class JettyRequest implements NetRequest {
 	}
 
 	@Override
+	public String remoteAddress() {
+		return Request.getRemoteAddr(origin);
+	}
+
+	@Override
 	public byte[] content() throws IOException {
 		//FIXME: AF: field can be null
 		HttpField field = origin.getHeaders().getField(HttpHeader.CONTENT_LENGTH);

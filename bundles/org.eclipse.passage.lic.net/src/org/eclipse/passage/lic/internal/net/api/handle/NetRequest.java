@@ -18,6 +18,15 @@ public interface NetRequest {
 
 	String parameter(String name);
 
+	/**
+	 * Returns the address of the remote that send this request.
+	 * <p>
+	 * By default, this is the first hop of the underlying network connection, but
+	 * it may be wrapped to represent a more remote end point.
+	 * </p>
+	 */
+	String remoteAddress();
+
 	byte[] content() throws IOException;
 
 }
