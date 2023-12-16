@@ -33,7 +33,7 @@
 		<build.label>${unqualifiedVersion}.${buildQualifier}</build.label>
 
 		<tycho.scmUrl>scm:git:https://github.com/eclipse-passage/passage.git</tycho.scmUrl>
-		<tycho.version>3.0.5</tycho.version>
+		<tycho.version>4.0.4</tycho.version>
 		<cbi-plugins.version>1.3.1</cbi-plugins.version>
 
 		<tycho-snapshot-repo.url>https://repo.eclipse.org/content/repositories/tycho-snapshots/</tycho-snapshot-repo.url>
@@ -70,8 +70,8 @@
 	</organization>
 
 	<issueManagement>
-		<system>Bugzilla</system>
-		<url>https://bugs.eclipse.org/bugs/</url>
+		<system>GitHub Issues</system>
+		<url>https://github.com/eclipse-passage/passage/issues/</url>
 	</issueManagement>
 
 	<pluginRepositories>
