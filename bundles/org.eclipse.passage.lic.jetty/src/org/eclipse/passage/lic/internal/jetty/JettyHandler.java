@@ -9,27 +9,24 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     Hannes Wellmann (IILS mbH) - Complete Migration to Jetty-12
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jetty;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.charset.Charset;
+import java.nio.ByteBuffer;
 import java.util.Objects;
 import java.util.function.Function;
 
-import javax.servlet.http.HttpServletResponse;
-
-import org.eclipse.jetty.http.HttpField;
-import org.eclipse.jetty.http.HttpFields;
 import org.eclipse.jetty.http.HttpHeader;
-import org.eclipse.jetty.io.Content;
+import org.eclipse.jetty.http.HttpStatus;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.Response;
 import org.eclipse.jetty.util.Callback;
 import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
+import org.eclipse.passage.lic.internal.net.api.handle.NetResponse.Error;
 
 /**
  * There is one single instance of the handler for a server. All of the rest in
@@ -48,73 +45,36 @@ public final class JettyHandler extends Handler.Abstract {
 	}
 
 	@Override
-	public boolean handle(Request request, Response response, Callback callback) throws Exception {
-		response.setStatus(200);
-		long contentLength = -1;
-		for (HttpField field : request.getHeaders()) {
-			HttpHeader header = field.getHeader();
-			if (header == null) {
-				continue;
-			}
-			switch (header) {
-			case CONTENT_LENGTH:
-				response.getHeaders().add(field);
-				contentLength = field.getLongValue();
-				break;
-			case CONTENT_TYPE:
-				response.getHeaders().add(field);
-				break;
-			case TRAILER:
-				response.setTrailersSupplier(HttpFields.build());
-				break;
-			case TRANSFER_ENCODING:
-				contentLength = Long.MAX_VALUE;
-				break;
-			}
-		}
-		if (contentLength > 0) {
-			//FIXME: AF: here we should somehow consider our "handler" function
-			Content.copy(request, response, Response.newTrailersChunkProcessor(response), callback);
-		} else {
-			callback.succeeded();
-		}
+	public boolean handle(Request request, Response answer, Callback callback) throws Exception {
+		NetResponse response = handler.apply(new JettyRequest(request));
+		write(response, request, answer, callback);
 		return true;
 
 	}
 
-//	@Override
-//	public void handle(String target, Request request, HttpServletRequest wrapper, HttpServletResponse envelope)
-//			throws IOException, ServletException {
-//		write(response(wrapper), envelope);
-//		request.setHandled(true);
-//	}
-
-	private NetResponse response(Request request) {
-		return handler.apply(new JettyRequest(request));
-	}
-
-	private void write(NetResponse response, HttpServletResponse envelope) throws IOException {
-		envelope.setContentType(response.contentType().contentType());
-		envelope.setCharacterEncoding("UTF-8"); //$NON-NLS-1$
+	private void write(NetResponse response, Request request, Response answer, Callback callback) throws IOException {
 		if (response.failed()) {
-			envelope.sendError(response.error().code(), response.error().message());
+			Error error = response.error();
+			Response.writeError(request, answer, callback, error.code(), error.message());
 			return;
 		}
-		envelope.setStatus(HttpServletResponse.SC_OK);
-		if (response.carriesPayload()) {
-			byte[] payload;
-			try {
-				payload = response.payload();
-			} catch (Exception e) {
-				throw new IOException(e);
-			}
-			envelope.setContentLength(payload.length);
-			try (PrintWriter out = envelope.getWriter()) {
-				out.write(new String(payload, Charset.forName("UTF-8"))); //$NON-NLS-1$
-				out.flush();
-			}
-			envelope.flushBuffer();
+		answer.setStatus(HttpStatus.OK_200);
+		if (!response.carriesPayload()) {
+			return;
 		}
+		byte[] payload;
+		try {
+			payload = response.payload();
+		} catch (Exception e) {
+			throw new IOException(e);
+		}
+		answer.getHeaders().put(HttpHeader.CONTENT_LENGTH, payload.length);
+		answer.getHeaders().put(HttpHeader.CONTENT_TYPE, contentType(response) + "; charset=UTF-8"); //$NON-NLS-1$
+		answer.write(true, ByteBuffer.wrap(payload), callback);
+	}
+
+	private String contentType(NetResponse response) {
+		return response.contentType().contentType();
 	}
 
 }

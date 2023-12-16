@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     Hannes Wellmann (IILS mbH) - Complete Migration to Jetty-12
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jetty;
 
@@ -16,37 +17,33 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
 
-import org.eclipse.jetty.http.HttpField;
-import org.eclipse.jetty.http.HttpHeader;
 import org.eclipse.jetty.server.Request;
+import org.eclipse.jetty.util.Fields;
 import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 
 public final class JettyRequest implements NetRequest {
 
 	private final Request origin;
+	private final Fields parameters;
 
 	public JettyRequest(Request origin) {
 		Objects.requireNonNull(origin, "JettyRequest::origin"); //$NON-NLS-1$
 		this.origin = origin;
+		this.parameters = Request.extractQueryParameters(origin);
 	}
 
 	@Override
 	public String parameter(String name) {
-		//FIXME: AF: most probably this is it
-		return Request.extractQueryParameters(origin).getValue(name);
+		return parameters.getValue(name);
 	}
 
 	@Override
 	public byte[] content() throws IOException {
-		//FIXME: AF: field can be null
-		HttpField field = origin.getHeaders().getField(HttpHeader.CONTENT_LENGTH);
-		//FIXME: AF: they expect long here
-		long length = field.getLongValue();
-		byte[] content = new byte[(int) length];
+		byte[] content = new byte[(int) origin.getLength()];
 		try (InputStream stream = Request.asInputStream(origin)) {
 			stream.read(content);
 		}
 		return content;
 	}
-	
+
 }
