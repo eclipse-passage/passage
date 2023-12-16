@@ -19,7 +19,7 @@
 			<unit id="org.eclipse.license.feature.group" version="0.0.0"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/eclipse/updates/4.28/R-4.28-202306050440/"/>
+			<repository location="https://download.eclipse.org/eclipse/updates/4.30/R-4.30-202312010110/"/>
 			<unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.equinox.sdk.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.sdk.feature.group" version="0.0.0"/>
@@ -30,100 +30,38 @@
 			<unit id="org.eclipse.emfforms.setup.base" version="0.0.0"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/modeling/emf/emf/builds/release/2.34.0/"/>
+			<repository location="https://download.eclipse.org/modeling/emf/emf/builds/release/2.36.0/"/>
 			<unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/modeling/emf/query/updates/releases/R202208101410/"/>
-			<unit id="org.eclipse.emf.query.sdk.feature.group" version="0.0.0"/>
-		</location>
-		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/modeling/emf/transaction/updates/releases/R202208110935/"/>
-			<unit id="org.eclipse.emf.transaction.sdk.feature.group" version="0.0.0"/>
-		</location>
-		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/modeling/emf/validation/updates/releases/R202305230712/"/>
-			<unit id="org.eclipse.emf.validation.sdk.feature.group" version="0.0.0"/>
-		</location>
-		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R202211151334/"/>
-			<unit id="org.eclipse.gmf.runtime.notation.sdk.feature.group" version="0.0.0"/>
-		</location>
-		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R202305230839/"/>
-			<unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="0.0.0"/>
-		</location>
-		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.18.0/"/>
-			<unit id="org.eclipse.ocl.all.sdk.feature.group" version="0.0.0"/>
-		</location>
-		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/modeling/mdt/uml2/updates/5.5/"/>
-			<unit id="org.eclipse.uml2.sdk.feature.group" version="0.0.0"/>
-		</location>
-		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/passage/updates/release/2.8.0/"/>
+			<repository location="https://download.eclipse.org/passage/updates/release/2.10.0/"/>
 			<unit id="org.eclipse.passage.lbc.execute.feature.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.passage.ldc.feature.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.passage.lic.define.feature.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.passage.loc.operator.feature.feature.group" version="0.0.0"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/sirius/updates/releases/7.2.0/2023-03/"/>
-			<unit id="org.eclipse.sirius.runtime.aql.feature.group" version="0.0.0"/>
-			<unit id="org.eclipse.sirius.runtime.feature.group" version="0.0.0"/>
-		</location>
-		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/tools/gef/classic/releases/3.16.0/"/>
-			<unit id="org.eclipse.gef.sdk.feature.group" version="0.0.0"/>
-		</location>
-		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20221123021534/repository/"/>
+			<unit id="org.apache.commons.csv" version="0.0.0"/>
+		</location>
+		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+			<repository location="https://download.eclipse.org/tools/orbit/simrel/orbit-aggregation/2023-12/"/>
+			<unit id="bcpg" version="0.0.0"/>
+			<unit id="bcpkix" version="0.0.0"/>
+			<unit id="bcprov" version="0.0.0"/>
+			<unit id="bcutil" version="0.0.0"/>
 			<unit id="com.fasterxml.jackson.core.jackson-annotations" version="0.0.0"/>
 			<unit id="com.fasterxml.jackson.core.jackson-core" version="0.0.0"/>
 			<unit id="com.fasterxml.jackson.core.jackson-databind" version="0.0.0"/>
-			<unit id="jakarta.servlet" version="0.0.0"/>
-			<unit id="javax.activation" version="0.0.0"/>
-			<unit id="org.apache.commons.csv" version="0.0.0"/>
-			<unit id="org.bouncycastle.bcpg" version="0.0.0"/>
-			<unit id="org.bouncycastle.bcpkix" version="0.0.0"/>
-			<unit id="org.bouncycastle.bcprov" version="0.0.0"/>
-			<unit id="org.bouncycastle.bcutil" version="0.0.0"/>
+			<unit id="com.github.oshi.oshi-core" version="0.0.0"/>
+			<unit id="com.sun.jna" version="0.0.0"/>
+			<unit id="com.sun.jna.platform" version="0.0.0"/>
+			<unit id="jakarta.activation-api" version="0.0.0"/>
+			<unit id="jakarta.annotation-api" version="1.3.5"/>
+			<unit id="jakarta.servlet-api" version="0.0.0"/>
 			<unit id="org.junit" version="0.0.0"/>
-		</location>
-		<location includeDependencyDepth="none" includeDependencyScopes="compile" includeSource="true" missingManifest="error" type="Maven">
-			<dependencies>
-				<dependency>
-					<groupId>com.github.oshi</groupId>
-					<artifactId>oshi-core</artifactId>
-					<version>6.2.2</version>
-					<type>jar</type>
-				</dependency>
-				<dependency>
-					<groupId>net.java.dev.jna</groupId>
-					<artifactId>jna-platform</artifactId>
-					<version>5.13.0</version>
-					<type>jar</type>
-				</dependency>
-				<dependency>
-					<groupId>net.java.dev.jna</groupId>
-					<artifactId>jna</artifactId>
-					<version>5.13.0</version>
-					<type>jar</type>
-				</dependency>
-				<dependency>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-api</artifactId>
-					<version>1.7.36</version>
-					<type>jar</type>
-				</dependency>
-				<dependency>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-nop</artifactId>
-					<version>1.7.36</version>
-					<type>jar</type>
-				</dependency>
-			</dependencies>
+			<unit id="slf4j.api" version="0.0.0"/>
+			<unit id="slf4j.nop" version="0.0.0"/>
 		</location>
 	</locations>
 </target>
