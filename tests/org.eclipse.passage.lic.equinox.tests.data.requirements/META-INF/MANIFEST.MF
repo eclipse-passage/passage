@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.equinox.tests.data.requirements
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.equinox.tests.data.requirements;singleton:=true
-Bundle-Version: 2.10.0.qualifier
+Bundle-Version: 2.10.1.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-Name: Data for Passage LIC Equinox requirements tests
 Bundle-Vendor: Eclipse Passage 
