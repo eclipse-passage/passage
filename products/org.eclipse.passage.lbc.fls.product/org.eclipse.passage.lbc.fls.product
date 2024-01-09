@@ -2,7 +2,7 @@
 <?pde version="3.5"?>
 
 <!--
-	Copyright (c) 2018, 2023 ArSysOp and others
+	Copyright (c) 2018, 2024 ArSysOp and others
 
 	This program and the accompanying materials are made available under the
 	terms of the Eclipse Public License 2.0 which is available at
@@ -13,7 +13,7 @@
 	Contributors:
 		ArSysOp - initial API and implementation
 -->
-<product name="Passage Floating License Server" uid="org.eclipse.passage.lbc.fls.product" id="org.eclipse.passage.lbc.fls.product" application="org.eclipse.passage.lbc.fls.application" version="2.10.1.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="Passage Floating License Server" uid="org.eclipse.passage.lbc.fls.product" id="org.eclipse.passage.lbc.fls.product" application="org.eclipse.passage.lbc.fls.application" version="2.11.0.qualifier" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
