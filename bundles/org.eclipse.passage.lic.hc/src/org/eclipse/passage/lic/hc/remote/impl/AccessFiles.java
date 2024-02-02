@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.lic.hc.remote.impl;
 
@@ -34,13 +35,13 @@ final class AccessFiles {
 		this.source = source;
 	}
 
-	public AccessFiles(LicensedProduct product) {
+	AccessFiles(LicensedProduct product) {
 		this(product, new LicensingFolder(new UserHomePath()));
 	}
 
-	public Collection<Path> get() throws LicensingException {
+	Collection<Path> get() throws LicensingException {
 		return new FileCollection(//
-				new PathFromLicensedProduct(source, product),
+				new PathFromLicensedProduct(source, product), //
 				new FloatingFileExtension.FloatingLicenseAccessEncrypted()//
 		).get();
 	}

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.lic.hc.remote.impl;
 
@@ -74,14 +75,12 @@ public abstract class RequestParameters implements QueryParameters {
 				new ProductVersion(encode(product.version())), //
 				new LicensingAction(action()), //
 				new LicenseUser(access.getUser()), //
-				new LicenseUser(access.getUser()), //
 				new EncodingAlgorithm(hash), //
 				new ServerAuthenticationType(access.getServer().getAuthentication().getType()), //
 				new ServerAuthenticationExpression(encode(access.getServer().getAuthentication().getExpression())));
-
 	}
 
-	protected String encode(String value) throws LicensingException {
+	protected final String encode(String value) throws LicensingException {
 		try {
 			return URLEncoder.encode(value, "UTF-8"); //$NON-NLS-1$
 		} catch (UnsupportedEncodingException e) {
