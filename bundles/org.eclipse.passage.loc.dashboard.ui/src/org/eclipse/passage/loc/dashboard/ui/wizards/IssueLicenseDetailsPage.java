@@ -44,8 +44,8 @@ public final class IssueLicenseDetailsPage extends TwoPhaseWizardPage {
 		Composite composite = new Composite(parent, SWT.NONE);
 		composite.setLayoutData(GridDataFactory.fillDefaults().grab(true, true).create());
 		composite.setLayout(new GridLayout());
-		this.info = new Text(composite, SWT.BORDER | SWT.MULTI | SWT.WRAP);
-		info.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		this.info = new Text(composite, SWT.BORDER | SWT.MULTI | SWT.WRAP | SWT.READ_ONLY | SWT.V_SCROLL);
+		this.info.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		setControl(composite);
 		Dialog.applyDialogFont(composite);
 	}
