@@ -19,7 +19,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
+import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -126,6 +126,11 @@ public class SignatureAttributeItemProvider extends ItemProviderAdapter implemen
 		String label = ((SignatureAttribute) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_SignatureAttribute_type") : //$NON-NLS-1$
 				getString("_UI_SignatureAttribute_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+	}
+	
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, EcoreEditPlugin.INSTANCE.getImage("full/obj16/EObject")); //$NON-NLS-1$
 	}
 
 	/**
