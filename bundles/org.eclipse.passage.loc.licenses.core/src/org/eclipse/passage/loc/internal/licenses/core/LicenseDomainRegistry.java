@@ -115,7 +115,7 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlanDescrip
 	public void registerLicensePlan(LicensePlanDescriptor licensePlan) {
 		String identifier = licensePlan.getIdentifier();
 		LicensePlanDescriptor existing = licensePlanIndex.put(identifier, licensePlan);
-		if (existing != null) {
+		if ((existing != null) && (existing != licensePlan)) {
 			String msg = NLS.bind(LicensesCoreMessages.LicenseDomain_instance_duplication_message, existing,
 					licensePlan);
 			Platform.getLog(getClass()).warn(msg);

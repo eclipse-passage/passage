@@ -141,7 +141,7 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 	public void registerUserOrigin(UserOriginDescriptor userOrigin) {
 		String identifier = userOrigin.getIdentifier();
 		UserOriginDescriptor existing = userOriginIndex.put(identifier, userOrigin);
-		if (existing != null) {
+		if ((existing != null) && (existing != userOrigin)) {
 			String msg = NLS.bind(UsersCoreMessages.UserDomain_instance_duplication_message, existing, userOrigin);
 			Platform.getLog(getClass()).warn(msg);
 		}
@@ -152,7 +152,7 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 	public void registerUser(UserDescriptor user) {
 		String identifier = user.getContact().getEmail();
 		UserDescriptor existing = userIndex.put(identifier, user);
-		if (existing != null) {
+		if ((existing != null) && (existing != user)) {
 			String msg = NLS.bind(UsersCoreMessages.UserDomain_instance_duplication_message, existing, user);
 			Platform.getLog(getClass()).warn(msg);
 		}
