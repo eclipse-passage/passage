@@ -182,7 +182,7 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 	public void registerFeatureSet(FeatureSetDescriptor featureSet) {
 		String identifier = featureSet.getIdentifier();
 		FeatureSetDescriptor existing = featureSetIndex.put(identifier, featureSet);
-		if (existing != null) {
+		if ((existing != null) && (existing != featureSet)) {
 			String msg = NLS.bind(FeaturesCoreMessages.FeatureDomain_instance_duplication_message, existing,
 					featureSet);
 			Platform.getLog(getClass()).warn(msg);
@@ -198,7 +198,7 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 	public void registerFeature(FeatureDescriptor feature) {
 		String identifier = feature.getIdentifier();
 		FeatureDescriptor existing = featureIndex.put(identifier, feature);
-		if (existing != null) {
+		if ((existing != null) && (existing != feature)) {
 			String msg = NLS.bind(FeaturesCoreMessages.FeatureDomain_instance_duplication_message, existing, feature);
 			Platform.getLog(getClass()).warn(msg);
 		}
@@ -216,7 +216,7 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 				key -> new HashMap<>());
 		String version = featureVersion.getVersion();
 		FeatureVersionDescriptor existing = map.put(version, featureVersion);
-		if (existing != null) {
+		if ((existing != null) && (existing != featureVersion)) {
 			String msg = NLS.bind(FeaturesCoreMessages.FeatureDomain_instance_duplication_message, existing,
 					featureVersion);
 			Platform.getLog(getClass()).warn(msg);

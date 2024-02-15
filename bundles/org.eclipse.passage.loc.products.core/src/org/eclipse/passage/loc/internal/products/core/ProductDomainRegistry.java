@@ -211,7 +211,7 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 	public void registerProductLine(ProductLineDescriptor productLine) {
 		String identifier = productLine.getIdentifier();
 		ProductLineDescriptor existing = productLineIndex.put(identifier, productLine);
-		if (existing != null) {
+		if ((existing != null) && (existing != productLine)) {
 			String msg = NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing,
 					productLine);
 			Platform.getLog(getClass()).warn(msg);
@@ -224,7 +224,7 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 	public void registerProduct(ProductDescriptor product) {
 		String identifier = product.getIdentifier();
 		ProductDescriptor existing = productIndex.put(identifier, product);
-		if (existing != null) {
+		if ((existing != null) && (existing != product)) {
 			String msg = NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing, product);
 			Platform.getLog(getClass()).warn(msg);
 		}
@@ -239,7 +239,7 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 				key -> new HashMap<>());
 		String version = productVersion.getVersion();
 		ProductVersionDescriptor existing = versions.put(version, productVersion);
-		if (existing != null) {
+		if ((existing != null) && (existing != productVersion)) {
 			String msg = NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing,
 					productVersion);
 			Platform.getLog(getClass()).warn(msg);
@@ -258,7 +258,7 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 				key -> new HashMap<>());
 		String featureIdentifier = productVersionFeature.getFeatureIdentifier();
 		ProductVersionFeatureDescriptor existing = features.put(featureIdentifier, productVersionFeature);
-		if (existing != null) {
+		if ((existing != null) && (existing != productVersionFeature)) {
 			String msg = NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing,
 					productVersionFeature);
 			Platform.getLog(getClass()).warn(msg);

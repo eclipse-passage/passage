@@ -143,7 +143,7 @@ public final class AgreementDomainRegistry extends BaseDomainRegistry<AgreementG
 
 	public void registerAgreementGroup(AgreementGroupDescriptor group) {
 		AgreementGroupDescriptor existing = groups.put(group.getIdentifier(), group);
-		if (existing != null) {
+		if ((existing != null) && (existing != group)) {
 			String msg = NLS.bind(AgreementsCoreMessages.AgreementDomain_instance_duplication_message, existing, group);
 			Platform.getLog(getClass()).warn(msg);
 		}
@@ -161,7 +161,7 @@ public final class AgreementDomainRegistry extends BaseDomainRegistry<AgreementG
 	public void registerAgreement(AgreementDescriptor agreement) {
 		String identifier = agreement.getIdentifier();
 		AgreementDescriptor existing = agreements.put(identifier, agreement);
-		if (existing != null) {
+		if ((existing != null) && (existing != agreement)) {
 			String msg = NLS.bind(AgreementsCoreMessages.AgreementDomain_instance_duplication_message, existing,
 					agreement);
 			Platform.getLog(getClass()).warn(msg);
