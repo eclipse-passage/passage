@@ -53,6 +53,18 @@ public final class EnvironmentStateDialog extends Dialog {
 		return folder;
 	}
 
+	@Override
+	protected void configureShell(Shell shell) {
+		super.configureShell(shell);
+		shell.setSize(500, 700);
+		shell.setText(EnvironmentStateDialogMessages.EnvironmentStatesDialog_title);
+	}
+
+	@Override
+	protected final boolean isResizable() {
+		return true;
+	}
+
 	private void installTabPerEnvironment(TabFolder folder, RuntimeEnvironment environment) {
 		TabItem item = new TabItem(folder, SWT.NONE);
 		item.setText(environment.id().identifier());
@@ -79,13 +91,6 @@ public final class EnvironmentStateDialog extends Dialog {
 		composite.pack();
 		scrolled.setContent(composite);
 		return composite;
-	}
-
-	@Override
-	protected void configureShell(Shell shell) {
-		super.configureShell(shell);
-		shell.setSize(500, 700);
-		shell.setText(EnvironmentStateDialogMessages.EnvironmentStatesDialog_title);
 	}
 
 	private String state(RuntimeEnvironment environment) {
