@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.passage.lic.api.tests" version="2">
+    <resource path="src/org/eclipse/passage/lic/api/tests/fakes/agreements/FakeAgreementState.java" type="org.eclipse.passage.lic.api.tests.fakes.agreements.FakeAgreementState">
+        <filter id="576725006">
+            <message_arguments>
+                <message_argument value="AgreementState"/>
+                <message_argument value="FakeAgreementState"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/passage/lic/api/tests/fakes/agreements/FakeResolvedAgreement.java" type="org.eclipse.passage.lic.api.tests.fakes.agreements.FakeResolvedAgreement">
+        <filter id="576725006">
+            <message_arguments>
+                <message_argument value="ResolvedAgreement"/>
+                <message_argument value="FakeResolvedAgreement"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support 
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.restrictions;
 
@@ -81,20 +82,16 @@ public final class BasePermissionsExaminationServiceTest extends PermissionsExam
 		assertPermissionHasDoneItsWork(state.permissionSecond(), certificate);
 	}
 
-	private void assertPermissionHasDoneItsWork(Permission permission, ExaminationCertificate certificate) {
-		Collection<Requirement> satisfied = certificate.satisfied();
-		assertEquals(1, satisfied.size());
-		Permission satisfaction = certificate.satisfaction(satisfied.iterator().next());
-		assertEquals(permission, satisfaction);
-	}
-
 	@Test
 	public void detectsRequirementUnsatisfactionOnObsoleteCondition() {
+		// given:
 		TestState state = new TestState();
+		// when:
 		Collection<Restriction> restrictions = examiner(state::product).examine(//
 				Arrays.asList(state.requirementSecond()), //
 				Arrays.asList(state.permissionSecondObsolete()))//
 				.restrictions();
+		// then:
 		assertNotNull(restrictions);
 		assertEquals(1, restrictions.size());
 		Restriction restriction = restrictions.iterator().next();
@@ -122,6 +119,13 @@ public final class BasePermissionsExaminationServiceTest extends PermissionsExam
 		return new BasePermissionsExaminationService(//
 				new BaseAgreementAcceptanceService(() -> new ReadOnlyRegistry<>(new MD5Hashes()), product), //
 				product);
+	}
+
+	private void assertPermissionHasDoneItsWork(Permission permission, ExaminationCertificate certificate) {
+		Collection<Requirement> satisfied = certificate.satisfied();
+		assertEquals(1, satisfied.size());
+		Permission satisfaction = certificate.satisfaction(satisfied.iterator().next());
+		assertEquals(permission, satisfaction);
 	}
 
 	private void testSuccess(//

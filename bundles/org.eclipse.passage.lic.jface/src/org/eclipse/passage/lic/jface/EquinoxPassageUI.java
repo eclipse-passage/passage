@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2022 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.lic.jface;
 
@@ -25,7 +26,7 @@ import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
-import org.eclipse.passage.lic.base.restrictions.CertificateWorthAttention;
+import org.eclipse.passage.lic.base.restrictions.CertificateIsSufficient;
 import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.equinox.EquinoxPassageLicenseCoverage;
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
@@ -45,7 +46,7 @@ public final class EquinoxPassageUI implements PassageUI {
 		return investigate(//
 				() -> acquire(feature), //
 				GrantLockAttempt::certificate, //
-				new CertificateWorthAttention().negate());
+				new CertificateIsSufficient(feature));
 	}
 
 	@Override
