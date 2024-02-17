@@ -41,7 +41,7 @@ public final class CertificateIsSufficient implements Predicate<Optional<Examina
 		if (anyRestrictionForFeature(certificate.get())) {
 			return false;
 		}
-		if (anyUnacceptedAgreementsForFeature(certificate.get())) {
+		if (anyAgreementForFeatureIsNotAccepted(certificate.get())) {
 			return false;
 		}
 		return true;
@@ -53,7 +53,7 @@ public final class CertificateIsSufficient implements Predicate<Optional<Examina
 				.anyMatch(this::relatesToFeature);
 	}
 
-	private boolean anyUnacceptedAgreementsForFeature(ExaminationCertificate certificate) {
+	private boolean anyAgreementForFeatureIsNotAccepted(ExaminationCertificate certificate) {
 		return certificate.agreements().stream()//
 				.filter(this::notAccepted)//
 				.anyMatch(this::relatesToFeature);
