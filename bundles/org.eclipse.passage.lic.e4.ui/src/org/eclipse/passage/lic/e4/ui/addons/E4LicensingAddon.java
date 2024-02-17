@@ -36,6 +36,7 @@ import org.osgi.service.event.Event;
 /**
  * @since 2.1
  */
+@SuppressWarnings("restriction")
 public final class E4LicensingAddon {
 
 	private final IApplicationContext application;
