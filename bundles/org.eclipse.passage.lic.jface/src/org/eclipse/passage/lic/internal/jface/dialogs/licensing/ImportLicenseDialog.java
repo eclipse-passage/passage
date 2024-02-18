@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2023 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,9 +15,11 @@ package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
 import java.nio.file.Path;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -34,26 +36,25 @@ import org.eclipse.passage.lic.internal.base.access.Libraries;
 import org.eclipse.passage.lic.internal.equinox.access.RegisteredLibraries;
 import org.eclipse.passage.lic.internal.jface.i18n.ImportLicenseDialogMessages;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.DirectoryDialog;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text;
 
 @SuppressWarnings("restriction")
 public final class ImportLicenseDialog extends NotificationDialog {
 
 	private final DateTimeFormatter dates = DateTimeFormatter.ofPattern("dd-MM-yyyy"); //$NON-NLS-1$
-	private Libraries libraries = null;
+	private Optional<Libraries> libraries = Optional.empty();
+	private final List<Path> licenses = new ArrayList<>();
+	private final LicenseFilesControl source;
 	private ButtonConfig action;
-	private Text path;
 
 	public ImportLicenseDialog(Shell shell) {
+		this(shell, new FromLocalFileSystem());
+	}
+
+	public ImportLicenseDialog(Shell shell, LicenseFilesControl source) {
 		super(shell);
+		this.source = Objects.requireNonNull(source);
 	}
 
 	@Override
@@ -76,21 +77,7 @@ public final class ImportLicenseDialog extends NotificationDialog {
 	}
 
 	private void buildSelector(Composite parent) {
-		Composite composite = row(parent, 3);
-		new Label(composite, SWT.NONE).setText(ImportLicenseDialogMessages.ImportLicenseDialog_path_label);
-		path = new Text(composite, SWT.BORDER | SWT.READ_ONLY);
-		path.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		Button browse = new Button(composite, SWT.PUSH);
-		browse.setText(ImportLicenseDialogMessages.ImportLicenseDialog_browse);
-		browse.addListener(SWT.Selection, e -> browseAndLoad());
-		setButtonLayoutData(browse);
-	}
-
-	private Composite row(Composite parent, int columns) {
-		Composite row = new Composite(parent, SWT.NONE);
-		row.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		row.setLayout(new GridLayout(columns, false));
-		return row;
+		source.install(parent, this::loadAndUpdate);
 	}
 
 	private void buildViewer(Composite parent) {
@@ -123,25 +110,14 @@ public final class ImportLicenseDialog extends NotificationDialog {
 				condition.evaluationInstructions().type().identifier());
 	}
 
-	private void browseAndLoad() {
-		loadLicense(browse());
+	private void loadAndUpdate(List<Path> files) {
+		licenses.clear();
+		licenses.addAll(files);
+		exposeLicensesContent(files);
 		updateButtonsEnablement();
 	}
 
-	private List<Path> browse() {
-		DirectoryDialog dialog = new DirectoryDialog(getShell(), SWT.OPEN | SWT.SHEET);
-		dialog.setText(ImportLicenseDialogMessages.ImportLicenseDialog_browse_dialog_title);
-		String folder = dialog.open();
-		if (folder == null) {
-			return Collections.emptyList();
-		}
-		path.setText(folder);
-		List<Path> licenses = new AllLicensesFromFolder(folder).get();
-		path.setData(licenses);
-		return licenses;
-	}
-
-	private void loadLicense(List<Path> files) {
+	private void exposeLicensesContent(List<Path> files) {
 		Optional<LicensedProduct> product = product();
 		if (!product.isPresent()) {
 			return;
@@ -191,27 +167,22 @@ public final class ImportLicenseDialog extends NotificationDialog {
 		return product.data();
 	}
 
-	@SuppressWarnings("unchecked")
 	private void doLicenseImport() {
 		Optional<LicensedProduct> product = product();
 		if (!product.isPresent()) {
 			return;
 		}
-		Object licenses = path.getData();
-		if (licenses == null) {
-			return;
-		}
-		new LicenseSet((List<Path>) licenses, product.get(), libraries, this::setErrorMessage).install();
+		new LicenseSet(licenses, product.get(), libraries, this::setErrorMessage).install();
 		okPressed();
 	}
 
-	private Libraries libraries() {
-		if (libraries == null) {
+	private Optional<Libraries> libraries() {
+		if (libraries.isEmpty()) {
 			Optional<LicensedProduct> product = product();
-			if (!product.isPresent()) {
-				return null;
+			if (product.isEmpty()) {
+				return Optional.empty();
 			}
-			libraries = new Libraries(new RegisteredLibraries(), product::get);
+			libraries = Optional.of(new Libraries(new RegisteredLibraries(), product::get));
 		}
 		return libraries;
 	}

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2022 ArSysOp
+ * Copyright (c) 2022, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *      ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
@@ -36,11 +37,11 @@ import org.eclipse.passage.lic.internal.jface.i18n.ImportLicenseDialogMessages;
 final class LicenseSet {
 	private final LicensedProduct product;
 	private final List<Path> licenses;
-	private final Libraries libraries;
+	private final Optional<Libraries> libraries;
 	private final Consumer<String> error;
 	private final Optional<LicenseReadingService> service;
 
-	LicenseSet(List<Path> licenses, LicensedProduct product, Libraries libraries, Consumer<String> error) {
+	LicenseSet(List<Path> licenses, LicensedProduct product, Optional<Libraries> libraries, Consumer<String> error) {
 		this.licenses = licenses;
 		this.product = product;
 		this.libraries = libraries;
@@ -79,7 +80,10 @@ final class LicenseSet {
 	}
 
 	private void installLibraryLicense(Path license) throws Exception {
-		Optional<ServiceInvocationResult<Boolean>> result = libraries.installLicense(license);
+		if (libraries.isEmpty()) {
+			return;
+		}
+		Optional<ServiceInvocationResult<Boolean>> result = libraries.get().installLicense(license);
 		if (!result.isPresent()) {
 			return; // no libraries
 		}
@@ -100,4 +104,5 @@ final class LicenseSet {
 				.map(conditions -> !conditions.isEmpty())//
 				.orElse(Boolean.FALSE);
 	}
+
 }
