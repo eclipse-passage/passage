@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2022 ArSysOp
+ * Copyright (c) 2022, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
@@ -16,6 +17,7 @@ import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
@@ -30,10 +32,10 @@ import org.eclipse.passage.lic.internal.base.conditions.LicenseConditions;
 final class AllConditionsFromLicenses implements Supplier<ServiceInvocationResult<Collection<ConditionPack>>> {
 
 	private final List<Path> licenses;
-	private final Libraries libraries;
+	private final Optional<Libraries> libraries;
 	private final LicenseReadingServiceRequest product;
 
-	AllConditionsFromLicenses(List<Path> licenses, Libraries libraries) {
+	AllConditionsFromLicenses(List<Path> licenses, Optional<Libraries> libraries) {
 		this.licenses = licenses;
 		this.libraries = libraries;
 		this.product = new LicenseReadingServiceRequest();

@@ -19,7 +19,6 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.passage.loc.internal.api.IssuedFloatingLicense;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
-import org.eclipse.passage.loc.internal.licenses.ui.i18n.LicensesUiMessages;
 import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Shell;
 

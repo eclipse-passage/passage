@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021, 2022 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.conditions;
 
@@ -43,12 +44,12 @@ public final class LicenseConditions implements Supplier<ServiceInvocationResult
 
 	private final Path file;
 	private final Supplier<ServiceInvocationResult<LicenseReadingService>> owner;
-	private final Libraries libraries;
+	private final Optional<Libraries> libraries;
 
 	public LicenseConditions(//
 			Path file, //
 			Supplier<ServiceInvocationResult<LicenseReadingService>> provider, //
-			Libraries libraries) {
+			Optional<Libraries> libraries) {
 		this.file = file;
 		this.owner = provider;
 		this.libraries = libraries;
@@ -68,7 +69,8 @@ public final class LicenseConditions implements Supplier<ServiceInvocationResult
 	}
 
 	private ServiceInvocationResult<Collection<ConditionPack>> fromLibraries() {
-		Optional<ServiceInvocationResult<List<LicenseReadingService>>> request = libraries.licenseReadingServices();
+		Optional<ServiceInvocationResult<List<LicenseReadingService>>> request = libraries
+				.flatMap(Libraries::licenseReadingServices);
 		if (!request.isPresent()) {
 			return new BaseServiceInvocationResult<>(Collections.emptyList());
 		}

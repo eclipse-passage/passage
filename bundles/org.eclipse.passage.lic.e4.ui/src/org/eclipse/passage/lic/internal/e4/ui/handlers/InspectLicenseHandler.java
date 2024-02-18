@@ -19,6 +19,7 @@ import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog
 import org.eclipse.passage.lic.jface.EquinoxPassageUI;
 import org.eclipse.swt.widgets.Shell;
 
+@SuppressWarnings("restriction")
 public final class InspectLicenseHandler {
 
 	@Execute
