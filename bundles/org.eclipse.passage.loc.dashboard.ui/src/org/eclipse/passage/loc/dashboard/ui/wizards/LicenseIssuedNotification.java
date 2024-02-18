@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards;
 
@@ -33,7 +34,7 @@ public final class LicenseIssuedNotification {
 	public void showPersonal(IssuedLicense license) {
 		show(//
 				IssueLicensePageMessages.IssueLicenseWizard_ok_licensed_title, //
-				String.format(LicensesUiMessages.LicenseExportHandler_success_description, //
+				String.format("", // //$NON-NLS-1$
 						license.encrypted().toAbsolutePath().toString(), //
 						license.decrypted().toAbsolutePath().toString()), //
 				license.encrypted().getParent());
@@ -47,16 +48,20 @@ public final class LicenseIssuedNotification {
 				license.residence());
 	}
 
-	private void show(String title, String description, Path residence) {
+	public void show(String title, String description, Path residence) {
+		show(title, description, residence, MessageDialog.INFORMATION);
+	}
+
+	public void show(String title, String description, Path residence, int kind) {
 		MessageDialog dialog = new MessageDialog(//
 				shell, //
 				title, //
 				null, //
 				description, //
-				MessageDialog.INFORMATION, //
+				kind, //
 				new String[] { //
 						"OK", //$NON-NLS-1$
-						"Open &Folder" //$NON-NLS-1$
+						IssueLicensePageMessages.LicenseIssuedNotification_open_folder //
 				}, 0);
 		int result = dialog.open();
 		if (result == 1) {
