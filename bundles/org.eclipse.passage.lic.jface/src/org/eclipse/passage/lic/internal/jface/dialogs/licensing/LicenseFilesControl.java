@@ -18,6 +18,9 @@ import java.util.function.Consumer;
 
 import org.eclipse.swt.widgets.Composite;
 
+/**
+ * Represents sources for license files
+ */
 public interface LicenseFilesControl {
 
 	void install(Composite parent, Consumer<List<Path>> onLicenses);
