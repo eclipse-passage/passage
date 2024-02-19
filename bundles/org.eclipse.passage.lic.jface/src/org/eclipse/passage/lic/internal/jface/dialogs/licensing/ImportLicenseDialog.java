@@ -36,6 +36,9 @@ import org.eclipse.passage.lic.internal.base.access.Libraries;
 import org.eclipse.passage.lic.internal.equinox.access.RegisteredLibraries;
 import org.eclipse.passage.lic.internal.jface.i18n.ImportLicenseDialogMessages;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
@@ -77,7 +80,14 @@ public final class ImportLicenseDialog extends NotificationDialog {
 	}
 
 	private void buildSelector(Composite parent) {
-		source.install(parent, this::loadAndUpdate);
+		source.install(row(parent, 3), this::loadAndUpdate);
+	}
+
+	private Composite row(Composite parent, int columns) {
+		Composite row = new Composite(parent, SWT.NONE);
+		row.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		row.setLayout(new GridLayout(columns, false));
+		return row;
 	}
 
 	private void buildViewer(Composite parent) {
