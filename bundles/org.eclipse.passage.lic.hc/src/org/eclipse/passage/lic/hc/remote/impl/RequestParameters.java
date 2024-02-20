@@ -80,7 +80,7 @@ public abstract class RequestParameters implements QueryParameters {
 				new ServerAuthenticationExpression(encode(access.getServer().getAuthentication().getExpression())));
 	}
 
-	protected final String encode(String value) throws LicensingException {
+	protected String encode(String value) throws LicensingException {
 		try {
 			return URLEncoder.encode(value, "UTF-8"); //$NON-NLS-1$
 		} catch (UnsupportedEncodingException e) {
