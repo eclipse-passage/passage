@@ -18,18 +18,16 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
@@ -38,6 +36,7 @@ import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.emf.resource.ResourceLoadFailed;
 import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
+import org.eclipse.passage.loc.internal.api.EditingDomainSource;
 import org.eclipse.passage.loc.internal.api.OperatorGear;
 import org.eclipse.passage.loc.internal.api.OperatorGearSupplier;
 import org.eclipse.passage.loc.internal.api.workspace.KnownResources;
@@ -49,35 +48,35 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 
 	protected String domainName;
 
-	private final AdapterFactoryEditingDomain editingDomain;
+	private Optional<EditingDomain> editingDomain = Optional.empty();
 
 	private final List<URI> sources;
 
 	private final EContentAdapter contentAdapter;
 
-	private final List<OperatorGearSupplier> gear;
+	private Optional<OperatorGearSupplier> gear = Optional.empty();
 
 	public BaseDomainRegistry() {
 		sources = new ArrayList<>();
-		gear = new ArrayList<>(1);
-		BasicCommandStack commandStack = new BasicCommandStack();
-		editingDomain = new AdapterFactoryEditingDomain(
-				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), commandStack,
-				new HashMap<Resource, Boolean>());
 		contentAdapter = createContentAdapter();
 	}
 
 	public void bindGear(OperatorGearSupplier supplier) {
-		gear.add(supplier);
+		gear = Optional.of(supplier);
 	}
 
 	public void unbindGear(OperatorGearSupplier supplier) {
-		gear.remove(supplier);
+		if (gear.isEmpty()) {
+			return;
+		}
+		if (gear.get().equals(supplier)) {
+			gear = Optional.empty();
+		}
 	}
 
 	protected void activate(Map<String, Object> properties) {
 		domainName = String.valueOf(properties.get(EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME));
-		editingDomain.getResourceSet().eAdapters().add(contentAdapter);
+		getEditingDomain().getResourceSet().eAdapters().add(contentAdapter);
 		try {
 			gear.stream()//
 					.findFirst()//
@@ -107,7 +106,7 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 
 	protected abstract DomainContentAdapter<I, ? extends EditingDomainRegistry<I>> createContentAdapter();
 
-	protected void deactivate(Map<String, Object> properties) {
+	protected void deactivate(@SuppressWarnings("unused") Map<String, Object> properties) {
 		try {
 			gear.stream()//
 					.findFirst()//
@@ -117,7 +116,7 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 		} catch (Exception e) {
 			Platform.getLog(getClass()).error(e.getMessage(), e);
 		}
-		editingDomain.getResourceSet().eAdapters().remove(contentAdapter);
+		getEditingDomain().getResourceSet().eAdapters().remove(contentAdapter);
 	}
 
 	private void store(OperatorWorkspace workspace) {
@@ -129,7 +128,12 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 
 	@Override
 	public EditingDomain getEditingDomain() {
-		return editingDomain;
+		if (editingDomain.isEmpty()) {
+			editingDomain = gear.map(OperatorGearSupplier::gear)//
+					.map(OperatorGear::editingDomainSource)//
+					.map(EditingDomainSource::create);
+		}
+		return editingDomain.orElse(null);
 	}
 
 	protected Map<?, ?> getLoadOptions() {
@@ -141,7 +145,7 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 	}
 
 	public ServiceInvocationResult<Boolean> loadSource(URI uri) {
-		ResourceSet set = editingDomain.getResourceSet();
+		ResourceSet set = getEditingDomain().getResourceSet();
 		Resource resource = createResource(uri);
 		set.getResources().add(resource);
 		try {
@@ -157,7 +161,7 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 	protected abstract Resource createResource(URI uri);
 
 	public void unloadSource(URI uri) {
-		ResourceSet resourceSet = editingDomain.getResourceSet();
+		ResourceSet resourceSet = getEditingDomain().getResourceSet();
 		Resource resource = resourceSet.getResource(uri, false);
 		resource.unload();
 		resourceSet.getResources().remove(resource);
