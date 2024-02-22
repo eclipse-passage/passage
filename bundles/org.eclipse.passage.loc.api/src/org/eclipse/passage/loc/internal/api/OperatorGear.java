@@ -31,4 +31,6 @@ public interface OperatorGear extends Gear {
 
 	OperatorWorkspace workspace();
 
+	EditingDomainSource editingDomainSource();
+
 }

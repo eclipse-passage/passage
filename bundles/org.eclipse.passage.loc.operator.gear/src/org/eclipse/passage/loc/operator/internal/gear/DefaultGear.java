@@ -29,8 +29,10 @@ import org.eclipse.passage.lic.base.io.MD5Hashes;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
 import org.eclipse.passage.lic.oshi.HardwareEnvironment;
+import org.eclipse.passage.loc.internal.api.EditingDomainSource;
 import org.eclipse.passage.loc.internal.api.OperatorGear;
 import org.eclipse.passage.loc.internal.api.workspace.OperatorWorkspace;
+import org.eclipse.passage.loc.operator.internal.gear.services.PassageEditingDomainSource;
 import org.eclipse.passage.loc.workspace.CollectiveWorkspace;
 
 @SuppressWarnings("restriction")
@@ -41,6 +43,7 @@ final class DefaultGear implements OperatorGear {
 	private final Registry<EvaluationType, RuntimeEnvironment> environments;
 	private final Registry<StringServiceId, Hashes> hashes;
 	private final OperatorWorkspace workspace;
+	private final EditingDomainSource editing;
 
 	private DefaultGear() {
 		this.environments = new ReadOnlyRegistry<>(Arrays.asList(//
@@ -48,6 +51,7 @@ final class DefaultGear implements OperatorGear {
 		));
 		this.hashes = new ReadOnlyRegistry<>(new MD5Hashes());
 		this.workspace = new CollectiveWorkspace();
+		this.editing = new PassageEditingDomainSource();
 	}
 
 	@Override
@@ -69,6 +73,11 @@ final class DefaultGear implements OperatorGear {
 	@Override
 	public HashesRegistry hashes() {
 		return () -> hashes;
+	}
+
+	@Override
+	public EditingDomainSource editingDomainSource() {
+		return editing;
 	}
 
 }
