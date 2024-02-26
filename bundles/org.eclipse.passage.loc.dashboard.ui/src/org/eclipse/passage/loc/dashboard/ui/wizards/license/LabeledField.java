@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards.license;
 
@@ -29,7 +30,7 @@ abstract class LabeledField<T> implements Field<T> {
 	protected final Runnable modified;
 	protected final LabelProvider labels;
 	protected final MandatoryService context;
-	protected Control widget;
+	private Optional<Control> widget = Optional.empty();
 	private Shell shell;
 	private Label label;
 
@@ -44,14 +45,14 @@ abstract class LabeledField<T> implements Field<T> {
 	public final void installControll(Composite parent) {
 		shell = parent.getShell();
 		installLabel(parent);
-		widget = control(parent);
+		widget = Optional.of(control(parent));
 		installData(source);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public final Optional<T> data() {
-		return Optional.ofNullable(widget).flatMap(w -> Optional.ofNullable((T) w.getData()));
+		return widget.flatMap(w -> Optional.ofNullable((T) w.getData()));
 	}
 
 	private void installLabel(Composite parent) {
@@ -62,7 +63,7 @@ abstract class LabeledField<T> implements Field<T> {
 
 	protected final void installData(Optional<T> origin) {
 		origin.ifPresent(data -> {
-			widget.setData(data);
+			widget.ifPresent(w -> w.setData(data));
 			reflectData(data);
 		});
 	}
@@ -73,13 +74,14 @@ abstract class LabeledField<T> implements Field<T> {
 
 	@Override
 	public final Optional<String> errorIfAny() {
-		return widget.isEnabled() ? error() : Optional.empty();
+		boolean enabled = widget.map(Control::isEnabled).orElse(false);
+		return enabled ? error() : Optional.empty();
 	}
 
 	@Override
 	public final void enable(boolean enable) {
 		label.setEnabled(enable);
-		widget.setEnabled(enable);
+		widget.ifPresent(w -> w.setEnabled(enable));
 		enableAuxiliaryControls(enable);
 	}
 
