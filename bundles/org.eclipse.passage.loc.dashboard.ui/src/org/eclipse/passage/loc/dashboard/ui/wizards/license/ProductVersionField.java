@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further evolution
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards.license;
 
@@ -44,8 +45,8 @@ public final class ProductVersionField extends SelectableField<ProductVersionDes
 	@Override
 	protected Optional<ProductVersionDescriptor> select(Text control) {
 		return new SelectInner<ProductVersionDescriptor, ProductDescriptor>(//
-				new SelectProductVersion(context).get(), //
-				new SelectProduct(context).get(), //
+				new SelectProductVersion(context, data()).get(), //
+				new SelectProduct(context, data().map(ProductVersionDescriptor::getProduct)).get(), //
 				context//
 		).get();
 	}

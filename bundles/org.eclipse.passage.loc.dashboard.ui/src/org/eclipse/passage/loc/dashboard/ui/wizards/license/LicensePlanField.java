@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further evolution
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards.license;
 
@@ -41,7 +42,7 @@ public final class LicensePlanField extends SelectableField<LicensePlanDescripto
 
 	@Override
 	protected Optional<LicensePlanDescriptor> select(Text control) {
-		return new SelectRoot<>(new SelectLicensePlan(context).get(), context).get();
+		return new SelectRoot<>(new SelectLicensePlan(context, data()).get(), context).get();
 	}
 
 }

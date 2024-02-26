@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2019, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support 
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.workbench.i18n;
 
@@ -60,6 +61,7 @@ public class WorkbenchMessages extends NLS {
 	public static String SelectRequest_e_appearance_null;
 	public static String SelectRequest_e_domain_null;
 	public static String SelectRequest_e_input_null;
+	public static String SelectRequest_e_selection_null;
 	public static String SelectRequest_e_target_null;
 	public static String SelectRoot_e_null_context;
 	public static String SelectRoot_e_null_inner_request;

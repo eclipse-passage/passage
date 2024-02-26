@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,17 +9,19 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards.license;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.api.MandatoryService;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
-import org.eclipse.passage.loc.internal.users.ui.SelectUser;
+import org.eclipse.passage.loc.internal.users.ui.SelectUsers;
 import org.eclipse.passage.loc.internal.workbench.SelectRoots;
 import org.eclipse.swt.widgets.Text;
 
@@ -41,7 +43,9 @@ public final class UsersField extends SelectableField<Collection<UserDescriptor>
 
 	@Override
 	protected Optional<Collection<UserDescriptor>> select(Text control) {
-		return Optional.of(new SelectRoots<>(new SelectUser(context).get(), context).get());
+		return Optional.of(//
+				new SelectRoots<>(//
+						new SelectUsers(context, data().orElseGet(Collections::emptyList)).get(), context).get());
 	}
 
 }

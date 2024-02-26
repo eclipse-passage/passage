@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,12 +9,16 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.workbench;
 
+import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.eclipse.passage.lic.api.MandatoryService;
 import org.eclipse.passage.loc.internal.api.ZeroOrOne;
@@ -52,9 +56,14 @@ public final class SelectInner<I, R> implements Supplier<Optional<I>> {
 
 	@Override
 	public final Optional<I> get() {
-		return new ZeroOrOne<>(inner.input()).choose(
-				new CreateInner<I, R>(context, root.domain(), inner.target(), root),
-				new SelectFromDialog<>(() -> context.get(Shell.class), inner.appearance()));
+		return new ZeroOrOne<>(inner.input())
+				.choose(new CreateInner<I, R>(context, root.domain(), inner.target(), root), new SelectFromDialog<>(
+						() -> context.get(Shell.class), inner.appearance(), collection(inner.initial())));
+	}
+
+	private Collection<I> collection(Supplier<Iterable<I>> iterable) {
+		return StreamSupport.stream(iterable.get().spliterator(), false)//
+				.collect(Collectors.toList());
 	}
 
 }

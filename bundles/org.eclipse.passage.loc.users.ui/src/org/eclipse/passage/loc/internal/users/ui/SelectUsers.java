@@ -13,6 +13,8 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.users.ui;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -35,13 +37,13 @@ import org.eclipse.passage.loc.jface.dialogs.Appearance;
  * {@link Optional#empty()}
  * 
  */
-public final class SelectUser extends SupplySelectRequest<UserDescriptor> {
+public final class SelectUsers extends SupplySelectRequest<UserDescriptor> {
 
-	public SelectUser(MandatoryService context) {
-		this(context, Optional.empty());
+	public SelectUsers(MandatoryService context) {
+		this(context, Collections.emptyList());
 	}
 
-	public SelectUser(MandatoryService context, Optional<UserDescriptor> selection) {
+	public SelectUsers(MandatoryService context, Collection<UserDescriptor> selection) {
 		super(context, selection);
 	}
 
