@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,13 +9,13 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards.license;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -51,8 +51,8 @@ public final class PageFields implements Fields {
 		return with(new UserField(user, this::modified, labels, context));
 	}
 
-	public Supplier<Optional<Collection<UserDescriptor>>> withUsers() {
-		return with(new UsersField(Collections.emptyList(), this::modified, labels, context));
+	public Supplier<Optional<Collection<UserDescriptor>>> withUsers(List<UserDescriptor> users) {
+		return with(new UsersField(users, this::modified, labels, context));
 	}
 
 	public Supplier<Optional<ProductVersionDescriptor>> withProductVersion(Optional<ProductVersionDescriptor> product) {

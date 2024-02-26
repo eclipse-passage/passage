@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.handlers;
 
@@ -32,7 +33,7 @@ import org.eclipse.passage.loc.dashboard.ui.wizards.floating.IssueFloatingLicens
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
 import org.eclipse.swt.widgets.Shell;
 
-public class DashboardIssueFloatingLicenseHandler {
+public final class DashboardIssueFloatingLicenseHandler {
 
 	private final String feature = "org.eclipse.passage.loc.operator.issue.floating"; //$NON-NLS-1$
 
@@ -55,7 +56,6 @@ public class DashboardIssueFloatingLicenseHandler {
 		WizardDialog dialog = new WizardDialog(context.get(Shell.class), wizard);
 		dialog.create();
 		Shell shell = dialog.getShell();
-		// TODO: floating license pack icon
 		shell.setImage(LicensingImages.getImage(LicensesPackage.eINSTANCE.getPersonalLicensePack().getName()));
 		shell.setSize(Math.max(800, shell.getSize().x), 700);
 		dialog.open();

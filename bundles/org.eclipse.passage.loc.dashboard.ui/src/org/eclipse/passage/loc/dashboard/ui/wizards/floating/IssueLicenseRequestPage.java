@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2019, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards.floating;
 
@@ -45,7 +46,7 @@ public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
 				context);
 		PageFields units = page.withBlock();
 		plan = units.withLicensePlan(initial.plan());
-		users = units.withUsers();
+		users = units.withUsers(initial.users());
 		product = units.withProductVersion(initial.product());
 		period = units.withPeriod();
 		capacity = units.withDefaultCapacity();
