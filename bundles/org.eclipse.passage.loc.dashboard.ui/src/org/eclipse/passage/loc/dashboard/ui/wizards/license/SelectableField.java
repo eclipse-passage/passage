@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards.license;
 
@@ -53,12 +54,19 @@ abstract class SelectableField<T> extends LabeledField<T> {
 	@Override
 	protected void reflectData(T data) {
 		if (data instanceof Collection) {
-			String altogether = StreamSupport.stream(((Collection<?>) data).spliterator(), false)//
+			Collection<?> collection = (Collection<?>) data;
+			String altogether = StreamSupport.stream(collection.spliterator(), false)//
 					.map(labels::getText)//
 					.collect(Collectors.joining(", ")); //$NON-NLS-1$
-			text.setText(altogether);
+			String fit = altogether;
+			if (altogether.length() > 100) {
+				fit = altogether.substring(0, 80) + String.format("... %d users", collection.size()); //$NON-NLS-1$
+			}
+			text.setText(fit);
+			text.setToolTipText(altogether);
 		} else {
 			text.setText(labels.getText(data));
+			text.setToolTipText(""); //$NON-NLS-1$
 		}
 	}
 

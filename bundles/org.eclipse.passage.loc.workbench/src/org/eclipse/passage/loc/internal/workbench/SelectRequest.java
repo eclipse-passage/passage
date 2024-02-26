@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,9 +9,11 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.workbench;
 
+import java.util.Collections;
 import java.util.Objects;
 import java.util.function.Supplier;
 
@@ -28,6 +30,7 @@ public final class SelectRequest<R> {
 	private final Class<R> target;
 	private final String domain;
 	private final Supplier<Iterable<R>> input;
+	private final Supplier<Iterable<R>> initial;
 	private final Appearance appearance;
 
 	/**
@@ -40,17 +43,28 @@ public final class SelectRequest<R> {
 	 * @param domain     the domain that target belongs to, must not be
 	 *                   <code>null</code>
 	 * @param input      the input to select from, must not be <code>null</code>
+	 * @param initial    preventive selection, must not be <code>null</code>
 	 * @param appearance the appearance of UI dialog, must not be <code>null</code>
 	 */
-	public SelectRequest(Class<R> target, String domain, Supplier<Iterable<R>> input, Appearance appearance) {
+	public SelectRequest(Class<R> target, String domain, Supplier<Iterable<R>> input, Supplier<Iterable<R>> initial,
+			Appearance appearance) {
 		Objects.requireNonNull(target, WorkbenchMessages.SelectRequest_e_target_null);
 		Objects.requireNonNull(domain, WorkbenchMessages.SelectRequest_e_domain_null);
 		Objects.requireNonNull(input, WorkbenchMessages.SelectRequest_e_input_null);
+		Objects.requireNonNull(initial, WorkbenchMessages.SelectRequest_e_selection_null);
 		Objects.requireNonNull(appearance, WorkbenchMessages.SelectRequest_e_appearance_null);
 		this.target = target;
 		this.domain = domain;
 		this.input = input;
+		this.initial = initial;
 		this.appearance = appearance;
+	}
+
+	/**
+	 * Convenience constructor for empty initial selection
+	 */
+	public SelectRequest(Class<R> target, String domain, Supplier<Iterable<R>> input, Appearance appearance) {
+		this(target, domain, input, Collections::emptyList, appearance);
 	}
 
 	/**
@@ -78,6 +92,15 @@ public final class SelectRequest<R> {
 	 */
 	public Supplier<Iterable<R>> input() {
 		return input;
+	}
+
+	/**
+	 * The supplier of initial selection
+	 * 
+	 * @return non-<code>null</code> supplier of input
+	 */
+	public Supplier<Iterable<R>> initial() {
+		return initial;
 	}
 
 	/**

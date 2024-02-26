@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further evolution
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.products.ui;
 
@@ -36,12 +37,16 @@ import org.eclipse.passage.loc.jface.dialogs.Appearance;
 public final class SelectProductVersion extends SupplySelectRequest<ProductVersionDescriptor> {
 
 	public SelectProductVersion(MandatoryService context) {
-		super(context);
+		this(context, Optional.empty());
+	}
+
+	public SelectProductVersion(MandatoryService context, Optional<ProductVersionDescriptor> selection) {
+		super(context, selection);
 	}
 
 	@Override
 	public SelectRequest<ProductVersionDescriptor> get() {
-		return new SelectRequest<>(ProductVersionDescriptor.class, domain(), input(), appearance());
+		return new SelectRequest<>(ProductVersionDescriptor.class, domain(), input(), () -> initial, appearance());
 	}
 
 	private Supplier<Iterable<ProductVersionDescriptor>> input() {

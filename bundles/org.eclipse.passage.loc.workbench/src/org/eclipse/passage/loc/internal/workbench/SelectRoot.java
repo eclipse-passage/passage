@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,12 +9,16 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.workbench;
 
+import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.eclipse.passage.lic.api.MandatoryService;
 import org.eclipse.passage.loc.internal.api.ZeroOrOne;
@@ -49,7 +53,13 @@ public final class SelectRoot<R> implements Supplier<Optional<R>> {
 	@Override
 	public final Optional<R> get() {
 		return new ZeroOrOne<>(request.input()).choose(new CreateRoot<R>(context, request.domain(), request.target()),
-				new SelectFromDialog<>(() -> context.get(Shell.class), request.appearance()));
+				new SelectFromDialog<>(() -> context.get(Shell.class), request.appearance(),
+						collection(request.initial())));
+	}
+
+	private Collection<R> collection(Supplier<Iterable<R>> iterable) {
+		return StreamSupport.stream(iterable.get().spliterator(), false)//
+				.collect(Collectors.toList());
 	}
 
 }

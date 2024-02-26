@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.workbench;
 
@@ -50,15 +51,19 @@ public final class SelectRoots<R> implements Supplier<Collection<R>> {
 
 	@Override
 	public final Collection<R> get() {
-		return new ZeroOrMany<>(//
-				() -> StreamSupport.stream(request.input().get().spliterator(), false)//
-						.collect(Collectors.toList())//
+		return new ZeroOrMany<>(() -> collection(request.input())//
 		).choose(//
 				new CreateRoot<R>(context, request.domain(), request.target()), //
 				new SelectSeveralFromDialog<R>(//
 						() -> context.get(Shell.class), //
-						request.appearance())//
+						request.appearance(), //
+						collection(request.initial()))//
 		);
+	}
+
+	private Collection<R> collection(Supplier<Iterable<R>> iterable) {
+		return StreamSupport.stream(iterable.get().spliterator(), false)//
+				.collect(Collectors.toList());
 	}
 
 }

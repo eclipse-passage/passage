@@ -62,10 +62,13 @@ abstract class LabeledField<T> implements Field<T> {
 	}
 
 	protected final void installData(Optional<T> origin) {
-		origin.ifPresent(data -> {
-			widget.ifPresent(w -> w.setData(data));
-			reflectData(data);
-		});
+		T data = origin.orElse(null);
+		widget.ifPresent(w -> w.setData(data));
+		reflectData(data);
+	}
+
+	protected final Optional<T> source() {
+		return source;
 	}
 
 	protected final Shell shell() {
