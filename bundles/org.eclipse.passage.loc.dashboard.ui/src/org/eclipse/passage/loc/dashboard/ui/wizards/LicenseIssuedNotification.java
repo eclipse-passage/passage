@@ -33,7 +33,7 @@ public final class LicenseIssuedNotification {
 	public void showPersonal(IssuedLicense license) {
 		show(//
 				IssueLicensePageMessages.IssueLicenseWizard_ok_licensed_title, //
-				String.format("", // //$NON-NLS-1$
+				String.format("%s\n%s", // //$NON-NLS-1$
 						license.encrypted().toAbsolutePath().toString(), //
 						license.decrypted().toAbsolutePath().toString()), //
 				license.encrypted().getParent());
