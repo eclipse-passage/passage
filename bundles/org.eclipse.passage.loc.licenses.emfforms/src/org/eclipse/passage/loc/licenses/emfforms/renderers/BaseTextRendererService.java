@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.licenses.emfforms.renderers;
 
@@ -26,17 +27,37 @@ import org.eclipse.emfforms.spi.swt.core.di.EMFFormsDIRendererService;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.ValidatedTextRenderer;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
-public class BaseTextRendererService implements EMFFormsDIRendererService<VControl> {
+@Component
+public final class BaseTextRendererService implements EMFFormsDIRendererService<VControl> {
 
-	private EMFFormsDatabinding databindingService;
-	private ReportService reportService;
+	private EMFFormsDatabinding databinding;
+	private ReportService report;
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see org.eclipse.emfforms.spi.swt.core.EMFFormsRendererService#isApplicable(VElement,ViewModelContext)
-	 */
+	@Reference
+	public void bindEMFFormsDatabinding(EMFFormsDatabinding service) {
+		this.databinding = service;
+	}
+
+	public void unbindEMFFormsDatabinding(EMFFormsDatabinding service) {
+		if (this.databinding == service) {
+			this.databinding = null;
+		}
+	}
+
+	@Reference
+	public void bindReportService(ReportService service) {
+		this.report = service;
+	}
+
+	public void unbindReportService(ReportService service) {
+		if (this.report == service) {
+			this.report = null;
+		}
+	}
+
 	@Override
 	public double isApplicable(VElement vElement, ViewModelContext viewModelContext) {
 		if (!VControl.class.isInstance(vElement)) {
@@ -50,10 +71,10 @@ public class BaseTextRendererService implements EMFFormsDIRendererService<VContr
 		@SuppressWarnings("rawtypes")
 		IValueProperty valueProperty;
 		try {
-			valueProperty = databindingService.getValueProperty(control.getDomainModelReference(),
+			valueProperty = databinding.getValueProperty(control.getDomainModelReference(),
 					viewModelContext.getDomainModel());
 		} catch (final DatabindingFailedException ex) {
-			reportService.report(new DatabindingFailedReport(ex));
+			report.report(new DatabindingFailedReport(ex));
 			return NOT_APPLICABLE;
 		}
 		Object valueType = valueProperty.getValueType();
@@ -64,36 +85,15 @@ public class BaseTextRendererService implements EMFFormsDIRendererService<VContr
 				|| ProductsPackage.eINSTANCE.getProduct_Identifier().equals(eStructuralFeature)
 				|| ProductsPackage.eINSTANCE.getProduct_Name().equals(eStructuralFeature)
 				|| ProductsPackage.eINSTANCE.getProductVersion_Version().equals(eStructuralFeature)) {
-			return 10;
+			return 9;
 		}
 
 		return NOT_APPLICABLE;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emfforms.spi.swt.core.di.EMFFormsD
-	 *      IRendererService#getRendererClass()
-	 */
 	@Override
 	public Class<? extends AbstractSWTRenderer<VControl>> getRendererClass() {
 		return ValidatedTextRenderer.class;
 	}
 
-	public void bindEMFFormsDatabinding(EMFFormsDatabinding databinding) {
-		this.databindingService = databinding;
-	}
-
-	public void unbindEMFFormsDatabinding(EMFFormsDatabinding databinding) {
-		this.databindingService = null;
-	}
-
-	public void bindReportService(ReportService report) {
-		this.reportService = report;
-	}
-
-	public void unbindReportService(ReportService report) {
-		this.reportService = null;
-	}
 }
