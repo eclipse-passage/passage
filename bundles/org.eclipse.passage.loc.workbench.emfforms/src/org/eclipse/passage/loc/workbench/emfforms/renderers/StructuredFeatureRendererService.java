@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,10 +9,10 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.workbench.emfforms.renderers;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -28,37 +28,33 @@ import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.swt.core.AbstractSWTRenderer;
 import org.eclipse.emfforms.spi.swt.core.di.EMFFormsDIRendererService;
 
-public class StructuredFeatureRendererService implements EMFFormsDIRendererService<VControl> {
+public abstract class StructuredFeatureRendererService implements EMFFormsDIRendererService<VControl> {
 
 	private final Class<? extends AbstractSWTRenderer<VControl>> renderer;
 	private final Iterable<EStructuralFeature> features;
+	private final double priority;
+	private EMFFormsDatabinding databinding;
+	private ReportService report;
 
-	private double priority = 10;
-
-	private EMFFormsDatabinding databindingService;
-	private ReportService reportService;
+	protected StructuredFeatureRendererService(Class<? extends AbstractSWTRenderer<VControl>> renderer, double priority,
+			EStructuralFeature... features) {
+		this(renderer, priority, Arrays.asList(features));
+	}
 
 	protected StructuredFeatureRendererService(Class<? extends AbstractSWTRenderer<VControl>> renderer,
 			EStructuralFeature... features) {
-		this.renderer = renderer;
-		this.features = Arrays.asList(features);
+		this(renderer, 10, features);
 	}
 
-	/**
-	 * 
-	 * @param renderer
-	 * @param features
-	 * 
-	 * @since 0.5.0
-	 */
-	protected StructuredFeatureRendererService(Class<? extends AbstractSWTRenderer<VControl>> renderer,
+	protected StructuredFeatureRendererService(Class<? extends AbstractSWTRenderer<VControl>> renderer, double priority,
 			Collection<EStructuralFeature> features) {
 		this.renderer = renderer;
-		this.features = new ArrayList<EStructuralFeature>(features);
+		this.priority = priority;
+		this.features = features;
 	}
 
 	@Override
-	public double isApplicable(VElement vElement, ViewModelContext viewModelContext) {
+	public final double isApplicable(VElement vElement, ViewModelContext viewModelContext) {
 		if (!VControl.class.isInstance(vElement)) {
 			return NOT_APPLICABLE;
 		}
@@ -69,10 +65,10 @@ public class StructuredFeatureRendererService implements EMFFormsDIRendererServi
 		@SuppressWarnings("rawtypes")
 		IValueProperty valueProperty;
 		try {
-			valueProperty = databindingService.getValueProperty(control.getDomainModelReference(),
+			valueProperty = databinding.getValueProperty(control.getDomainModelReference(),
 					viewModelContext.getDomainModel());
 		} catch (final DatabindingFailedException ex) {
-			reportService.report(new DatabindingFailedReport(ex));
+			report.report(new DatabindingFailedReport(ex));
 			return NOT_APPLICABLE;
 		}
 		Object valueType = valueProperty.getValueType();
@@ -88,27 +84,27 @@ public class StructuredFeatureRendererService implements EMFFormsDIRendererServi
 	}
 
 	@Override
-	public Class<? extends AbstractSWTRenderer<VControl>> getRendererClass() {
+	public final Class<? extends AbstractSWTRenderer<VControl>> getRendererClass() {
 		return renderer;
 	}
 
 	protected void bindEMFFormsDatabinding(EMFFormsDatabinding service) {
-		this.databindingService = service;
+		this.databinding = service;
 	}
 
 	protected void unbindEMFFormsDatabinding(EMFFormsDatabinding service) {
-		if (this.databindingService == service) {
-			this.databindingService = null;
+		if (this.databinding == service) {
+			this.databinding = null;
 		}
 	}
 
 	protected void bindReportService(ReportService service) {
-		this.reportService = service;
+		this.report = service;
 	}
 
 	protected void unbindReportService(ReportService service) {
-		if (this.reportService == service) {
-			this.reportService = null;
+		if (this.report == service) {
+			this.report = null;
 		}
 	}
 
