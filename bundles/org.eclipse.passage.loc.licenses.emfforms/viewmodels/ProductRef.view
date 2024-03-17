@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1180" xmi:id="_4QTbgBrKEeuMV_ofZRuPaw" name="ProductRef">
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1180" xmi:id="_4QTbgBrKEeuMV_ofZRuPaw" name="Product Reference">
   <rootEClass href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//ProductRef"/>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4QWe0BrKEeuMV_ofZRuPaw" name="Control product" readonly="true">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_hSdHwL-yEeuw7f5-0ea7hA">
