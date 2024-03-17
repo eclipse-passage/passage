@@ -54,7 +54,6 @@ public final class IssueLicensePackPage extends WizardPage {
 		}
 	};
 	private FloatingLicensePack license;
-	private VViewModelProperties properties;
 	private Composite base;
 
 	IssueLicensePackPage(String name, Supplier<FloatingLicenseRequest> data, IEclipseContext context) {
@@ -83,12 +82,6 @@ public final class IssueLicensePackPage extends WizardPage {
 		base = new Composite(composite, SWT.NONE);
 		base.setLayout(new GridLayout(1, false));
 		base.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
-		properties = VViewFactory.eINSTANCE.createViewModelLoadingProperties();
-		properties.addNonInheritableProperty("viewpoint", "wizard"); //$NON-NLS-1$ //$NON-NLS-2$
-		properties.addInheritableProperty(EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_KEY,
-				EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_VALUE);
-		new WithMentor(license, context).inProperties(properties);
-
 		updatePage();
 		Dialog.applyDialogFont(composite);
 	}
@@ -126,11 +119,20 @@ public final class IssueLicensePackPage extends WizardPage {
 		}
 		try {
 			Arrays.asList(base.getChildren()).forEach(Control::dispose);
-			ECPSWTViewRenderer.INSTANCE.render(base, license, properties);
+			ECPSWTViewRenderer.INSTANCE.render(base, license, properties());
 			base.layout(); // guaranteed to exist and been not disposed
 		} catch (ECPRendererException e) {
 			// do nothing
 		}
+	}
+
+	private VViewModelProperties properties() {
+		VViewModelProperties properties = VViewFactory.eINSTANCE.createViewModelLoadingProperties();
+		properties.addNonInheritableProperty("viewpoint", "wizard"); //$NON-NLS-1$ //$NON-NLS-2$
+		properties.addInheritableProperty(EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_KEY,
+				EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_VALUE);
+		new WithMentor(license, context).inProperties(properties);
+		return properties;
 	}
 
 	protected boolean validatePage() {
