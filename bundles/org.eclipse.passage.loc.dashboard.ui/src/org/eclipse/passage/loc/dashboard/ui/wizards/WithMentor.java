@@ -32,7 +32,7 @@ public final class WithMentor {
 	}
 
 	public void inProperties(VViewModelProperties properties) {
-		mentor().ifPresent(mentor -> properties.addNonInheritableProperty(new LocObjectMentorProperty().get(), mentor));
+		mentor().ifPresent(mentor -> properties.addInheritableProperty(new LocObjectMentorProperty().get(), mentor));
 	}
 
 	private Optional<String> mentor() {

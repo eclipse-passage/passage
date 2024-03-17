@@ -128,7 +128,7 @@ public final class IssueLicensePackPage extends WizardPage {
 
 	private VViewModelProperties properties() {
 		VViewModelProperties properties = VViewFactory.eINSTANCE.createViewModelLoadingProperties();
-		properties.addNonInheritableProperty("viewpoint", "wizard"); //$NON-NLS-1$ //$NON-NLS-2$
+		properties.addInheritableProperty("viewpoint", "wizard"); //$NON-NLS-1$ //$NON-NLS-2$
 		properties.addInheritableProperty(EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_KEY,
 				EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_VALUE);
 		new WithMentor(license, context).inProperties(properties);
