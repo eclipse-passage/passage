@@ -10,10 +10,10 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.api;
+package org.eclipse.passage.loc.internal.e4;
 
-import static org.eclipse.passage.loc.internal.api.OperatorEvents.TOPIC_SEP;
-import static org.eclipse.passage.loc.internal.api.OperatorEvents.create;
+import static org.eclipse.passage.loc.internal.e4.OperatorEvents.TOPIC_SEP;
+import static org.eclipse.passage.loc.internal.e4.OperatorEvents.create;
 
 import org.osgi.service.event.Event;
 

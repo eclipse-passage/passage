@@ -39,6 +39,13 @@
          unpack="false"/>
 
    <plugin
+         id="org.eclipse.passage.loc.e4"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.eclipse.passage.loc.workspace"
          download-size="0"
          install-size="0"

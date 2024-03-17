@@ -52,4 +52,3 @@ Provide-Capability: licensing.feature;licensing.feature="org.eclipse.passage.loc
  licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.floating";version="2.11.1";name="Issue Floating License";level="warn";provider="Eclipse Passage",
  licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.personal.full";version="2.11.1";name="Issue Personal License (Professional)";level="error";provider="Eclipse Passage",
  licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.floating.full";version="2.11.1";name="Issue Floating License (Professional)";level="error";provider="Eclipse Passage"
-Import-Package: org.osgi.service.event;version="1.0.0"
