@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,20 +9,22 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.products.core;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
-import org.eclipse.passage.loc.internal.api.OperatorProductEvents;
 import org.eclipse.passage.loc.internal.api.OperatorProductService;
+import org.eclipse.passage.loc.internal.e4.OperatorProductEvents;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.EventAdmin;
 
+@SuppressWarnings("restriction")
 @Component
 public class ProductOperatorServiceImpl implements OperatorProductService {
 

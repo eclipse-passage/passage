@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2022 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.licenses.core;
 
@@ -33,8 +34,8 @@ import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.loc.internal.agreements.AgreementRegistry;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
-import org.eclipse.passage.loc.internal.api.OperatorLicenseEvents;
 import org.eclipse.passage.loc.internal.api.OperatorProductService;
+import org.eclipse.passage.loc.internal.e4.OperatorLicenseEvents;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 import org.eclipse.passage.loc.internal.licenses.core.issue.PersonalLicenseIssuingProtection;
@@ -44,6 +45,7 @@ import org.eclipse.passage.loc.licenses.trouble.code.LicenseIssuingFailed;
 import org.eclipse.passage.loc.licenses.trouble.code.LicenseValidationFailed;
 import org.osgi.service.event.EventAdmin;
 
+@SuppressWarnings("restriction")
 final class IssuePersonalLicense {
 
 	private final LicenseRegistry licenses;
