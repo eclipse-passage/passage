@@ -31,6 +31,7 @@ import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.emf.validation.ErrorMessages;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
+import org.eclipse.passage.loc.dashboard.ui.wizards.WithMentor;
 import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
@@ -82,8 +83,11 @@ public final class IssueLicensePackPage extends WizardPage {
 		base.setLayout(new GridLayout(1, false));
 		base.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
 		properties = VViewFactory.eINSTANCE.createViewModelLoadingProperties();
+		properties.addNonInheritableProperty("viewpoint", "wizard"); //$NON-NLS-1$ //$NON-NLS-2$
 		properties.addInheritableProperty(EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_KEY,
 				EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_VALUE);
+		new WithMentor(license, context).inProperties(properties);
+
 		updatePage();
 		Dialog.applyDialogFont(composite);
 	}

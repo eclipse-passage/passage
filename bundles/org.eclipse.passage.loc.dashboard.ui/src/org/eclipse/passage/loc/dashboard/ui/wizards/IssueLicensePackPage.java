@@ -138,7 +138,8 @@ class IssueLicensePackPage extends TwoPhaseWizardPage {
 		VViewModelProperties properties = VViewFactory.eINSTANCE.createViewModelLoadingProperties();
 		properties.addInheritableProperty(EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_KEY,
 				EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_VALUE);
-		// properties.addNonInheritableProperty("viewpoint", "wizard");
+		properties.addNonInheritableProperty("viewpoint", "wizard"); //$NON-NLS-1$ //$NON-NLS-2$
+		new WithMentor(license, context).inProperties(properties);
 		return properties;
 	}
 
