@@ -8,17 +8,17 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Import-Package: javax.inject,
  javax.annotation;version="1.2.0"
-Require-Bundle: org.eclipse.jface;bundle-version="0.0.0",
- org.eclipse.emf.ecore;bundle-version="0.0.0",
- org.eclipse.emf.edit.ui;bundle-version="0.0.0",
- org.eclipse.e4.core.contexts;bundle-version="0.0.0",
+Require-Bundle: org.eclipse.e4.core.contexts;bundle-version="0.0.0",
  org.eclipse.e4.core.di.annotations;bundle-version="0.0.0",
  org.eclipse.e4.ui.di;bundle-version="0.0.0",
- org.eclipse.e4.ui.services;bundle-version="0.0.0",
  org.eclipse.e4.ui.model.workbench;bundle-version="0.0.0",
+ org.eclipse.e4.ui.services;bundle-version="0.0.0",
  org.eclipse.e4.ui.workbench;bundle-version="0.0.0",
+ org.eclipse.emf.ecore;bundle-version="0.0.0",
+ org.eclipse.emf.edit.ui;bundle-version="0.0.0",
+ org.eclipse.jface;bundle-version="0.0.0",
  org.eclipse.passage.lic.emf;bundle-version="0.0.0",
- org.eclipse.passage.loc.api;bundle-version="0.0.0",
+ org.eclipse.passage.loc.equinox;bundle-version="0.0.0",
  org.eclipse.passage.loc.workbench;bundle-version="0.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: org.eclipse.passage.loc.edit.ui;x-internal:=true,

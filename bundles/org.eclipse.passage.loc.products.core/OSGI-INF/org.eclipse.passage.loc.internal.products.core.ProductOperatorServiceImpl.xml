@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" name="org.eclipse.passage.loc.internal.products.core.ProductOperatorServiceImpl">
    <service>
-      <provide interface="org.eclipse.passage.loc.internal.api.OperatorProductService"/>
+      <provide interface="org.eclipse.passage.loc.internal.equinox.OperatorProductService"/>
    </service>
    <reference bind="bindEnvironmentInfo" interface="org.eclipse.osgi.service.environment.EnvironmentInfo" name="EnvironmentInfo" unbind="unbindEnvironmentInfo"/>
    <reference bind="bindEventAdmin" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" unbind="unbindEventAdmin"/>

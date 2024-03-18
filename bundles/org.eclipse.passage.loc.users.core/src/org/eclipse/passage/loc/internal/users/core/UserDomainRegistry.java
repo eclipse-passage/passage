@@ -33,10 +33,10 @@ import org.eclipse.passage.loc.internal.api.workspace.KnownResources;
 import org.eclipse.passage.loc.internal.api.workspace.OperatorWorkspace;
 import org.eclipse.passage.loc.internal.api.workspace.ResourceHandle;
 import org.eclipse.passage.loc.internal.api.workspace.Users;
-import org.eclipse.passage.loc.internal.emf.BaseDomainRegistry;
 import org.eclipse.passage.loc.internal.emf.DomainContentAdapter;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistry;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistryAccess;
+import org.eclipse.passage.loc.internal.equinox.BaseDomainRegistry;
 import org.eclipse.passage.loc.internal.users.UserRegistry;
 import org.eclipse.passage.loc.internal.users.UserRegistryEvents;
 import org.eclipse.passage.loc.internal.users.core.i18n.UsersCoreMessages;
@@ -46,6 +46,7 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.EventAdmin;
 
+@SuppressWarnings("restriction")
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + UsersPackage.eNAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "users_xmi" })
 public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>

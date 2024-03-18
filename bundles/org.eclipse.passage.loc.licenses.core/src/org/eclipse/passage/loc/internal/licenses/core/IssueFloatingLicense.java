@@ -42,7 +42,7 @@ import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.api.UserGrant;
 import org.eclipse.passage.loc.internal.agreements.AgreementRegistry;
 import org.eclipse.passage.loc.internal.api.IssuedFloatingLicense;
-import org.eclipse.passage.loc.internal.api.OperatorProductService;
+import org.eclipse.passage.loc.internal.equinox.OperatorProductService;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 import org.eclipse.passage.loc.internal.licenses.core.issue.FloatingLicenseIssuingProtection;

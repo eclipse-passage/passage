@@ -23,7 +23,7 @@ import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
-import org.eclipse.passage.loc.internal.api.OperatorProductService;
+import org.eclipse.passage.loc.internal.equinox.OperatorProductService;
 import org.eclipse.passage.loc.internal.products.ui.i18n.ProductsUiMessages;
 import org.eclipse.swt.widgets.Shell;
 
