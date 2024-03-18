@@ -36,10 +36,10 @@ import org.eclipse.passage.loc.internal.api.workspace.Features;
 import org.eclipse.passage.loc.internal.api.workspace.KnownResources;
 import org.eclipse.passage.loc.internal.api.workspace.OperatorWorkspace;
 import org.eclipse.passage.loc.internal.api.workspace.ResourceHandle;
-import org.eclipse.passage.loc.internal.emf.BaseDomainRegistry;
 import org.eclipse.passage.loc.internal.emf.DomainContentAdapter;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistry;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistryAccess;
+import org.eclipse.passage.loc.internal.equinox.BaseDomainRegistry;
 import org.eclipse.passage.loc.internal.features.FeatureRegistry;
 import org.eclipse.passage.loc.internal.features.FeatureRegistryEvents;
 import org.eclipse.passage.loc.internal.features.core.i18n.FeaturesCoreMessages;
@@ -49,6 +49,7 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.EventAdmin;
 
+@SuppressWarnings("restriction")
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + FeaturesPackage.eNAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "features_xmi" })
 public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescriptor>

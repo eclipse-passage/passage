@@ -14,10 +14,10 @@ Require-Bundle: org.eclipse.passage.lic.base;bundle-version="0.0.0",
  org.eclipse.passage.lic.licenses.model;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.users.model;bundle-version="0.0.0",
  org.eclipse.passage.loc.agreements.core;bundle-version="0.0.0",
- org.eclipse.passage.loc.api;bundle-version="0.0.0",
  org.eclipse.passage.loc.e4;bundle-version="0.0.0",
  org.eclipse.passage.loc.products.core;bundle-version="0.0.0",
- org.eclipse.passage.loc.users.core;bundle-version="0.0.0"
+ org.eclipse.passage.loc.users.core;bundle-version="0.0.0",
+ org.eclipse.passage.loc.equinox;bundle-version="0.0.0"
 Export-Package: org.eclipse.passage.loc.internal.licenses;
   x-friends:="org.eclipse.passage.loc.licenses.emfforms,
    org.eclipse.passage.loc.licenses.ui,

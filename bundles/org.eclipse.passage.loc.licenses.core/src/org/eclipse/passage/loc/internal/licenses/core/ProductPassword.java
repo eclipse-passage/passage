@@ -15,7 +15,7 @@ package org.eclipse.passage.loc.internal.licenses.core;
 import java.util.function.Function;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
-import org.eclipse.passage.loc.internal.api.OperatorProductService;
+import org.eclipse.passage.loc.internal.equinox.OperatorProductService;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
 
 final class ProductPassword implements Function<LicensedProduct, String> {

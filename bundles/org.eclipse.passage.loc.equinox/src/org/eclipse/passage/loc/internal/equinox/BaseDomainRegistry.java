@@ -11,7 +11,7 @@
  *     ArSysOp - initial API and implementation
  *     ArSysOp - further evolution
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.emf;
+package org.eclipse.passage.loc.internal.equinox;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,6 +43,9 @@ import org.eclipse.passage.loc.internal.api.OperatorGearSupplier;
 import org.eclipse.passage.loc.internal.api.workspace.KnownResources;
 import org.eclipse.passage.loc.internal.api.workspace.OperatorWorkspace;
 import org.eclipse.passage.loc.internal.api.workspace.ResourceHandle;
+import org.eclipse.passage.loc.internal.emf.DomainContentAdapter;
+import org.eclipse.passage.loc.internal.emf.EditingDomainRegistry;
+import org.eclipse.passage.loc.internal.emf.EditingDomainRegistryAccess;
 
 @SuppressWarnings("restriction")
 public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>, IEditingDomainProvider {
