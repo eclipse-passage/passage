@@ -17,7 +17,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.loc.internal.api.OperatorProductService;
-import org.eclipse.passage.loc.internal.e4.OperatorProductEvents;
+import org.eclipse.passage.loc.internal.e4.events.OperatorProductEvents;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -70,7 +70,7 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 	}
 
 	private void broadcast(String info) {
-		events.postEvent(OperatorProductEvents.keysCreated(info));
+		events.postEvent(new OperatorProductEvents().keysCreated(info));
 	}
 
 }

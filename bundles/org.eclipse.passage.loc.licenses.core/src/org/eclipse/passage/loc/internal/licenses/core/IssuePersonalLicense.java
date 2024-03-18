@@ -35,7 +35,7 @@ import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.loc.internal.agreements.AgreementRegistry;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.api.OperatorProductService;
-import org.eclipse.passage.loc.internal.e4.OperatorLicenseEvents;
+import org.eclipse.passage.loc.internal.e4.events.OperatorLicenseEvents;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 import org.eclipse.passage.loc.internal.licenses.core.issue.PersonalLicenseIssuingProtection;
@@ -116,14 +116,14 @@ final class IssuePersonalLicense {
 			throws LicensingException {
 		Path encrypted = new PersistedEncoded(product, decrypted, new ProductPassword(products, operator))//
 				.write(license.getLicense().getIdentifier() + new PassageFileExtension.LicenseEncrypted().get());
-		events.postEvent(OperatorLicenseEvents.encodedIssued(encrypted.toString()));
+		events.postEvent(new OperatorLicenseEvents().encodedIssued(encrypted.toString()));
 		return encrypted;
 	}
 
 	private Path decrypted(PersonalLicensePack license, Path path) throws LicensingException {
 		Path decrypted = new PersistedDecoded(path, license)//
 				.write(license.getLicense().getIdentifier() + new PassageFileExtension.LicenseDecrypted().get());
-		events.postEvent(OperatorLicenseEvents.decodedIssued(decrypted.toString()));
+		events.postEvent(new OperatorLicenseEvents().decodedIssued(decrypted.toString()));
 		return decrypted;
 	}
 
