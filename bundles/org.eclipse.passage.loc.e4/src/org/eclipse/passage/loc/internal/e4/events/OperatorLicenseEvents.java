@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,41 +9,46 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.e4;
-
-import static org.eclipse.passage.loc.internal.e4.OperatorEvents.TOPIC_SEP;
-import static org.eclipse.passage.loc.internal.e4.OperatorEvents.create;
+package org.eclipse.passage.loc.internal.e4.events;
 
 import org.osgi.service.event.Event;
 
 public final class OperatorLicenseEvents {
 
-	private OperatorLicenseEvents() {
-		// block
-	}
-
 	/**
 	 * Base name of all License Operator events
 	 */
-	public static final String TOPIC = "org/eclipse/passage/loc/api/OperatorLicenseEvents"; //$NON-NLS-1$
+	private final String topic;
 
 	/**
 	 * Sent when decoded {@link PersonalLicensePack} is issued
 	 */
-	public static final String DECODED_ISSUED = TOPIC + TOPIC_SEP + "decodedIssued"; //$NON-NLS-1$
+	private final String decoded;
 
 	/**
 	 * Sent when encoded {@link PersonalLicensePack} is issued in encoded form
 	 */
-	public static final String ENCODED_ISSUED = TOPIC + TOPIC_SEP + "encodedIssued"; //$NON-NLS-1$
+	private final String encoded;
 
-	public static Event decodedIssued(String path) {
-		return create(DECODED_ISSUED, path);
+	public OperatorLicenseEvents() {
+		topic = "org/eclipse/passage/loc/api/OperatorLicenseEvents"; //$NON-NLS-1$
+		String separator = new OperatorEvents().topicSeparator();
+		decoded = topic + separator + "decodedIssued"; //$NON-NLS-1$
+		encoded = topic + separator + "encodedIssued"; //$NON-NLS-1$
 	}
 
-	public static Event encodedIssued(String path) {
-		return create(ENCODED_ISSUED, path);
+	public Event decodedIssued(String path) {
+		return new OperatorEvents().create(decoded, path);
+	}
+
+	public Event encodedIssued(String path) {
+		return new OperatorEvents().create(encoded, path);
+	}
+
+	public String topic() {
+		return topic;
 	}
 
 }

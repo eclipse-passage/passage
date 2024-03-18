@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,11 +9,9 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.e4;
-
-import static org.eclipse.passage.loc.internal.e4.OperatorEvents.TOPIC_SEP;
-import static org.eclipse.passage.loc.internal.e4.OperatorEvents.create;
+package org.eclipse.passage.loc.internal.e4.events;
 
 import java.security.KeyPair;
 
@@ -21,22 +19,27 @@ import org.osgi.service.event.Event;
 
 public final class OperatorProductEvents {
 
-	private OperatorProductEvents() {
-		// block
-	}
-
 	/**
 	 * Base name of all License Operator events
 	 */
-	public static final String TOPIC = "org/eclipse/passage/loc/api/OperatorProductEvents"; //$NON-NLS-1$
+	private final String topic;
 
 	/**
 	 * Sent when {@link KeyPair} is generated and persisted
 	 */
-	public static final String KEYS_CREATED = TOPIC + TOPIC_SEP + "keysCreated"; //$NON-NLS-1$
+	private final String keyCreated;
 
-	public static Event keysCreated(String path) {
-		return create(KEYS_CREATED, path);
+	public OperatorProductEvents() {
+		topic = "org/eclipse/passage/loc/api/OperatorProductEvents"; //$NON-NLS-1$
+		keyCreated = topic + new OperatorEvents().topicSeparator() + "keysCreated"; //$NON-NLS-1$
+	}
+
+	public Event keysCreated(String path) {
+		return new OperatorEvents().create(keyCreated, path);
+	}
+
+	public String topic() {
+		return topic;
 	}
 
 }
