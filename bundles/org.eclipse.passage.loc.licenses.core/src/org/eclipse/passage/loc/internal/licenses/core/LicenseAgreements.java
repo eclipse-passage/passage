@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021, 2023 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.licenses.core;
 
@@ -16,6 +17,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 import org.eclipse.passage.lic.agreements.AgreementDescriptor;
+import org.eclipse.passage.lic.agreements.model.api.Agreement;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.io.Hashes;
 import org.eclipse.passage.lic.api.io.HashesRegistry;
@@ -48,10 +50,10 @@ final class LicenseAgreements {
 
 	private void installAgreement(LicenseRequisites license, AgreementDescriptor agreement, Agreements service,
 			Hashes hashes) throws LicensingException {
-		if (!service.exists(agreement.getFile())) {
+		if (!service.exists(agreement.getFile(), (Agreement) agreement)) {
 			throw new LicensingException(String.format(//
 					LicensesCoreMessages.LicenseOperatorServiceImpl_failed_to_find_agreement_file, //
-					service.located(agreement.getFile()).info(), //
+					service.located(agreement.getFile(), (Agreement) agreement).info(), //
 					agreement.getName()));
 		}
 		license.getAgreements().add(data(agreement, service, hashes));
@@ -73,12 +75,12 @@ final class LicenseAgreements {
 
 	private byte[] content(AgreementDescriptor agreement, Agreements service) throws LicensingException {
 		try {
-			return service.located(agreement.getFile()).content();
+			return service.located(agreement.getFile(), (Agreement) agreement).content();
 		} catch (Exception e) {
 			throw new LicensingException(String.format(//
 					LicensesCoreMessages.LicenseOperatorServiceImpl_failed_to_attach_agreement, //
 					agreement.getName(), //
-					service.located(agreement.getFile()).info(), //
+					service.located(agreement.getFile(), (Agreement) agreement).info(), //
 					e));
 		}
 	}
