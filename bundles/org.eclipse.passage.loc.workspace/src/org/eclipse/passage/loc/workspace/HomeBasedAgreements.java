@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021, 2022 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.workspace;
 
@@ -16,6 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.base.io.LicensingFolder;
 import org.eclipse.passage.lic.base.io.UserHomePath;
 import org.eclipse.passage.lic.equinox.io.InstallationPath;
@@ -31,12 +33,12 @@ final class HomeBasedAgreements implements Agreements {
 	}
 
 	@Override
-	public ResourceHandle located(String file) {
+	public ResourceHandle located(String file, EObject agreement) {
 		return new LocalFileHandle(text, residence.resolve(file));
 	}
 
 	@Override
-	public boolean exists(String file) {
+	public boolean exists(String file, EObject agreement) {
 		return Files.exists(residence.resolve(file));
 	}
 

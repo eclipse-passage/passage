@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.agreements.emfforms.renderers;
 
@@ -23,21 +24,32 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 
-final class LocatedAgreementFile implements Supplier<Optional<File>> {
+public final class LocatedAgreementFile implements Supplier<Optional<File>> {
 
 	private final Shell shell;
+	private final Optional<String> residence;
 
-	LocatedAgreementFile(Shell shell) {
-		this.shell = shell;
+	public LocatedAgreementFile(Shell shell, String residence) {
+		this(shell, Optional.of(residence));
 	}
 
-	LocatedAgreementFile() {
-		this(Display.getDefault().getActiveShell());
+	public LocatedAgreementFile(String residence) {
+		this(Display.getDefault().getActiveShell(), residence);
+	}
+
+	public LocatedAgreementFile() {
+		this(Display.getDefault().getActiveShell(), Optional.empty());
+	}
+
+	private LocatedAgreementFile(Shell shell, Optional<String> residence) {
+		this.shell = shell;
+		this.residence = residence;
 	}
 
 	@Override
 	public Optional<File> get() {
 		FileDialog dialog = new FileDialog(shell);
+		residence.ifPresent(dialog::setFilterPath);
 		List<AgreementFormat> formats = new AgreementFormat.Supported().get();
 		dialog.setText("Point an agreement content file"); //$NON-NLS-1$
 		dialog.setFilterExtensions(filters(formats, AgreementFormat::description));

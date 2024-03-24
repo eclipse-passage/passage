@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021, 2022 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,8 +9,11 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.api.workspace;
+
+import org.eclipse.emf.ecore.EObject;
 
 public interface Agreements extends KnownResources {
 
@@ -20,9 +23,9 @@ public interface Agreements extends KnownResources {
 	 * @param file name of an agreement file
 	 * @return handle to be used for agreement content writing
 	 */
-	ResourceHandle located(String file);
+	ResourceHandle located(String file, EObject agreement);
 
-	boolean exists(String file);
+	boolean exists(String file, EObject agreement);
 
 	ResourceType text = new ResourceType() {
 
