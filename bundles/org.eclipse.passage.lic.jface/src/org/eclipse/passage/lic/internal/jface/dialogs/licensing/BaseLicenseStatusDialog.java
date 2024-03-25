@@ -54,7 +54,7 @@ public abstract class BaseLicenseStatusDialog extends NotificationDialog {
 		super.configureShell(shell);
 		shell.setText(LicenseStatusDialogMessages.LicenseStatusDialog_title);
 		shell.setImage(getDefaultImage());
-		shell.setSize(840, 600);
+		shell.setSize(1200, 600);
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public abstract class BaseLicenseStatusDialog extends NotificationDialog {
 				.withColumn(LicenseStatusDialogMessages.LicenseStatusDialog_column_id, //
 						600, RequirementStatus::feature)
 				.withColumn(LicenseStatusDialogMessages.LicenseStatusDialog_column_status, //
-						200, RequirementStatus::status)
+						500, RequirementStatus::status)
 				.viewer();
 		notice = new StyledText(parent, SWT.BORDER | SWT.READ_ONLY);
 		notice.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
