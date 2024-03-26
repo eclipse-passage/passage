@@ -60,7 +60,7 @@ public final class CertificateIsSufficient implements Predicate<Optional<Examina
 	}
 
 	private boolean notBearable(Restriction restriction) {
-		return new RequirementDemandsExecutionStop().test(restriction.unsatisfiedRequirement());
+		return new RestrictionMustPauseExecution().test(restriction);
 	}
 
 	private boolean relatesToFeature(Restriction restriction) {
