@@ -35,6 +35,12 @@ public final class CertificateIsSufficientTest {
 	}
 
 	@Test
+	public void assessedFeatureIsSoftlyRestricted() {
+		String feature = feature();
+		assertFalse(new CertificateIsSufficient(feature).test(Optional.of(warn(feature))));
+	}
+
+	@Test
 	public void notAssessedFeatureIsRestricted() {
 		String feature = feature();
 		assertTrue(new CertificateIsSufficient(feature).test(Optional.of(severe())));
@@ -59,6 +65,10 @@ public final class CertificateIsSufficientTest {
 
 	private ExaminationCertificate severe(String feature) {
 		return new TestCertificates().withSevereRestrictions(feature);
+	}
+
+	private ExaminationCertificate warn(String feature) {
+		return new TestCertificates().withWarningRestrictions(feature);
 	}
 
 	private ExaminationCertificate severe() {

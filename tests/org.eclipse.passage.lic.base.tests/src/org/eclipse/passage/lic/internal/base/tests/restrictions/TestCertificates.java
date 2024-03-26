@@ -113,6 +113,17 @@ final class TestCertificates {
 				));
 	}
 
+	ExaminationCertificate withWarningRestrictions(String feature) {
+		return new BaseExaminationCertificate(//
+				Collections.emptyMap(), // no permissions
+				Collections.singleton(//
+						new BaseRestriction(//
+								product(), //
+								warningProtectedFeature(feature), //
+								new LicenseDoesNotMatch())//
+				));
+	}
+
 	ExaminationCertificate withAgreementRestrictions() {
 		return withAgreementRestrictions("not-very-much-protected-feature"); //$NON-NLS-1$
 	}
@@ -165,8 +176,8 @@ final class TestCertificates {
 				new BaseFeature(//
 						feature, //
 						"12.1.0", //$NON-NLS-1$
-						"Mature an precious feature", //$NON-NLS-1$
-						"Does need to ve error-level protected"), //$NON-NLS-1$
+						"Mature and precious feature", //$NON-NLS-1$
+						"Needs to be error-level protected"), //$NON-NLS-1$
 				new RestrictionLevel.Error(), //
 				"Requirement is mandatory to satisfy"); //$NON-NLS-1$
 	}
