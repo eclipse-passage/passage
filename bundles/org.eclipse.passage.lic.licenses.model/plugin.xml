@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <!--
-	Copyright (c) 2018, 2020 ArSysOp and others
+	Copyright (c) 2018, 2024 ArSysOp and others
 
 	This program and the accompanying materials are made available under the
 	terms of the Eclipse Public License 2.0 which is available at
@@ -11,6 +11,7 @@
 
 	Contributors:
 		ArSysOp - initial API and implementation
+		ArSysOp - further support
 -->
 <plugin>
 
@@ -27,6 +28,16 @@
       <parser
             type="licenses"
             class="org.eclipse.passage.lic.licenses.model.util.LicensesResourceFactoryImpl"/>
+      <parser
+            type="licenses_xmi"
+            class="org.eclipse.passage.lic.licenses.model.util.LicensesResourceFactoryImpl"/>
+      <parser
+            type="lic_licenses"
+            class="org.eclipse.passage.lic.licenses.model.util.LicensesResourceFactoryImpl"/>
+      <parser
+            type="lic"
+            class="org.eclipse.passage.lic.licenses.model.util.LicensesResourceFactoryImpl"/>
+            
    </extension>
 
 </plugin>
