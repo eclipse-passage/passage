@@ -34,7 +34,6 @@ public final class ProductsMigratorTest {
 		File legacy = new File(
 				System.getProperty("user.dir") + File.separator + "model/org.eclipse.passage.lic.lic_products"); //$NON-NLS-1$//$NON-NLS-2$
 		URI uri = URI.createFileURI(legacy.getPath());
-		// FIXME:AF: should be done via factory
 		Resource resource = new ProductsResourceImpl(uri);
 		resource.load(null);
 		EList<EObject> contents = resource.getContents();

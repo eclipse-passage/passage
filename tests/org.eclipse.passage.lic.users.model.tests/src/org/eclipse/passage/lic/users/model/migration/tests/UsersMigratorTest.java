@@ -24,9 +24,9 @@ import java.util.Optional;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
-import org.eclipse.passage.lic.users.model.util.UsersResourceImpl;
 import org.junit.Test;
 
 public final class UsersMigratorTest {
@@ -86,8 +86,7 @@ public final class UsersMigratorTest {
 
 	private UserOrigin origin(String path) throws IOException {
 		File legacy = new File(System.getProperty("user.dir") + File.separator + path); //$NON-NLS-1$
-		// FIXME:AF: should be done via factory
-		Resource resource = new UsersResourceImpl(URI.createFileURI(legacy.getPath()));
+		Resource resource = new ResourceSetImpl().createResource(URI.createFileURI(legacy.getPath()));
 		resource.load(Collections.emptyMap());
 		return UserOrigin.class.cast(resource.getContents().get(0));
 	}

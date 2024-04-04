@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.licenses.model.migration.tests;
 
@@ -25,17 +26,18 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lic.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.emf.BlindResource;
 import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalFeatureGrant;
 import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.licenses.model.transport.XmiConditionTransport;
-import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
+@SuppressWarnings("restriction")
 public class XmiLicensingConditionExtractorTest {
 
 	private static final String COND1_FEATURE_ID = "loc.workbench"; //$NON-NLS-1$
@@ -91,7 +93,7 @@ public class XmiLicensingConditionExtractorTest {
 		File file = baseFolder.newFile("some.lic"); //$NON-NLS-1$
 		try (FileOutputStream fos = new FileOutputStream(file)) {
 			// FIXME:AF: should be done via factory
-			Resource saved = new LicensesResourceImpl();
+			Resource saved = new BlindResource(license).get();
 			saved.getContents().add(license);
 			saved.save(fos, new HashMap<>());
 		}

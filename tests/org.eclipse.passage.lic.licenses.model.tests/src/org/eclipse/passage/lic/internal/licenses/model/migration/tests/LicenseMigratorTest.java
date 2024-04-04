@@ -34,12 +34,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
-import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
-import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 import org.junit.Test;
 
 public final class LicenseMigratorTest {
@@ -190,8 +190,7 @@ public final class LicenseMigratorTest {
 	private <T extends EObject> T read(String path, Class<T> expected) throws IOException {
 		File legacy = new File(System.getProperty("user.dir") + File.separator + path); //$NON-NLS-1$
 		URI uri = URI.createFileURI(legacy.getPath());
-		// FIXME:AF: should be done via factory
-		Resource resource = new LicensesResourceImpl(uri);
+		Resource resource = new ResourceSetImpl().createResource(uri);
 		resource.load(Collections.emptyMap());
 		return expected.cast(resource.getContents().get(0));
 	}

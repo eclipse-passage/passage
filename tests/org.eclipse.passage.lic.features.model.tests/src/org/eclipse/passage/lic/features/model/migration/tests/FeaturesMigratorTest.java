@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.lic.features.model.migration.tests;
 
@@ -20,10 +21,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.passage.lic.features.model.api.Feature;
 import org.eclipse.passage.lic.features.model.api.FeatureSet;
 import org.eclipse.passage.lic.features.model.api.FeatureVersion;
-import org.eclipse.passage.lic.features.model.util.FeaturesResourceImpl;
 import org.junit.Test;
 
 public final class FeaturesMigratorTest {
@@ -33,8 +34,7 @@ public final class FeaturesMigratorTest {
 		File legacy = new File(
 				System.getProperty("user.dir") + File.separator + "model/org.eclipse.passage.lic.lic_features"); //$NON-NLS-1$//$NON-NLS-2$
 		URI uri = URI.createFileURI(legacy.getPath());
-		// FIXME:AF: should be done via factory
-		Resource resource = new FeaturesResourceImpl(uri);
+		Resource resource = new ResourceSetImpl().createResource(uri);
 		resource.load(null);
 		EList<EObject> contents = resource.getContents();
 		EObject eObject = contents.get(0);

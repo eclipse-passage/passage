@@ -35,6 +35,7 @@ import org.eclipse.passage.lic.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.base.conditions.BaseCondition;
 import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
+import org.eclipse.passage.lic.internal.emf.BlindResource;
 import org.eclipse.passage.lic.internal.licenses.convert.PAgreements;
 import org.eclipse.passage.lic.internal.licenses.convert.PIssuerSignature;
 import org.eclipse.passage.lic.internal.licenses.convert.PVersionMatch;
@@ -43,7 +44,6 @@ import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
-import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 
 @SuppressWarnings("restriction")
 abstract class BaseXmiConditionTransport implements ConditionTransport {
@@ -66,8 +66,7 @@ abstract class BaseXmiConditionTransport implements ConditionTransport {
 
 	@Override
 	public Data read(InputStream input) throws IOException {
-		// FIXME:AF: should be done via factory
-		Resource resource = new LicensesResourceImpl();
+		Resource resource = new BlindResource(LicensesPackage.eINSTANCE.getPersonalLicensePack()).get();
 		resource.load(input, loadOptions());
 		Optional<PersonalLicensePack> license = resource.getContents().stream() //
 				.filter(PersonalLicensePack.class::isInstance) //
