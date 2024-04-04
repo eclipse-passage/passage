@@ -41,7 +41,6 @@ import org.eclipse.passage.lic.internal.licenses.convert.PAgreements;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
-import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -94,11 +93,9 @@ final class ReassemblingMiningTool extends ArmedMiningTool {
 	}
 
 	private FloatingLicensePack pack(Path source) throws LicensingException {
-		// FIXME:AF: should be done via factory
-		return new EObjectFromBytes<>(//
+		return new EObjectFromBytes<FloatingLicensePack>(//
 				decoded(source), //
-				FloatingLicensePack.class, //
-				LicensesResourceImpl::new//
+				LicensesPackage.eINSTANCE.getFloatingLicensePack()//
 		).get(Collections.singletonMap(LicensesPackage.eNS_URI, LicensesPackage.eINSTANCE));
 	}
 

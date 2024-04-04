@@ -23,4 +23,11 @@
             genModel="model/keys.genmodel"/>
    </extension>
 
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated keys -->
+      <parser
+            type="keys"
+            class="org.eclipse.passage.lic.keys.model.util.KeysResourceFactoryImpl"/>
+   </extension>
+   
 </plugin>

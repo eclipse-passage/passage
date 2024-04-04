@@ -29,7 +29,6 @@ import org.eclipse.passage.lic.base.ProductVersion;
 import org.eclipse.passage.lic.internal.emf.EObjectToBytes;
 import org.eclipse.passage.lic.internal.net.LicenseUser;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
-import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 
 @SuppressWarnings("restriction")
 final class FeatureRequest {
@@ -81,8 +80,7 @@ final class FeatureRequest {
 	}
 
 	private byte[] raw(EObject obj) throws LicensingException {
-		// FIXME:AF: should be done via factory
-		return new EObjectToBytes(obj, LicensesResourceImpl::new)//
+		return new EObjectToBytes(obj)//
 				.get(Collections.singletonMap(LicensesPackage.eNS_URI, LicensesPackage.eINSTANCE));
 	}
 

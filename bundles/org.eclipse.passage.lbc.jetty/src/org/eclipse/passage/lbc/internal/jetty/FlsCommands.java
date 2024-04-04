@@ -15,6 +15,7 @@ package org.eclipse.passage.lbc.internal.jetty;
 import org.eclipse.passage.lic.internal.net.connect.Storage;
 import org.osgi.framework.BundleContext;
 
+@SuppressWarnings("restriction")
 public final class FlsCommands {
 
 	public void register(BundleContext context, String name, Storage storage) {

@@ -10,34 +10,40 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.licenses.model.util;
+package org.eclipse.passage.lic.keys.model.util;
+
+import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
-import org.eclipse.passage.lic.emf.resource.BlindResourceFactory;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 /**
- * @see org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl
- * @since 2.1
  * @generated NOT
  */
-public final class LicensesResourceFactoryImpl extends ResourceFactoryImpl implements BlindResourceFactory {
-
+public class KeysResourceImpl extends XMIResourceImpl {
 	/**
 	 * @generated
 	 */
-	@Override
-	public Resource createResource(URI uri) {
-		return new LicensesResourceImpl(uri);
+	public KeysResourceImpl(URI uri) {
+		super(uri);
+	}
+
+	/**
+	 * 
+	 * @generated NOT
+	 */
+	public KeysResourceImpl() {
+		super();
 	}
 
 	/**
 	 * @generated NOT
 	 */
 	@Override
-	public Resource createResource() {
-		return new LicensesResourceImpl();
+	protected void init() {
+		super.init();
+		Map<Object, Object> options = getDefaultLoadOptions();
+		options.put(OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
 	}
 
 }

@@ -43,6 +43,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IWorkbenchActionConstants;
 
+@SuppressWarnings("restriction")
 public class DomainRegistryExplorerPart {
 
 	private final LocDomainRegistryAccess access;

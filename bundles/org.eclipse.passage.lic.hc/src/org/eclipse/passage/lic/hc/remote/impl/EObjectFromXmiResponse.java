@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.hc.remote.impl;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.conditions.mining.ContentType;
@@ -20,7 +21,6 @@ import org.eclipse.passage.lic.hc.remote.ResponseHandler;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.internal.net.io.SafePayload;
-import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 
 /**
  * 
@@ -28,10 +28,10 @@ import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
  */
 public final class EObjectFromXmiResponse<T extends EObject> implements ResponseHandler<T> {
 
-	private final Class<T> expected;
+	private final EClass expected;
 	private final Equipment equipment;
 
-	public EObjectFromXmiResponse(Class<T> expected, Equipment equipment) {
+	public EObjectFromXmiResponse(EClass expected, Equipment equipment) {
 		this.expected = expected;
 		this.equipment = equipment;
 	}
@@ -39,8 +39,7 @@ public final class EObjectFromXmiResponse<T extends EObject> implements Response
 	@Override
 	public T read(ResultsTransfered results, RequestContext context) throws LicensingException {
 		contentTypeIsExpected(results);
-		// FIXME:AF: should be done via factory
-		return new EObjectFromBytes<T>(decoded(results.data(), context), expected, LicensesResourceImpl::new).get();
+		return new EObjectFromBytes<T>(decoded(results.data(), context), expected).get();
 	}
 
 	private byte[] decoded(byte[] raw, RequestContext context) throws LicensingException {

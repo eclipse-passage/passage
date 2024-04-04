@@ -18,21 +18,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Objects;
-import java.util.function.Supplier;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 
 public class EObjectFromFile<T extends EObject> extends EObjectFromStream<T> {
 
 	private final File file;
 
-	public EObjectFromFile(Path path, Class<T> expected, Supplier<Resource> factory) {
-		this(path.toFile(), expected, factory);
+	public EObjectFromFile(Path path, EClass expected) {
+		this(path.toFile(), expected);
 	}
 
-	public EObjectFromFile(File file, Class<T> expected, Supplier<Resource> factory) {
-		super(expected, factory);
+	public EObjectFromFile(File file, EClass expected) {
+		super(expected);
 		Objects.requireNonNull(file, "EObjectFromFile::file"); //$NON-NLS-1$
 		this.file = file;
 

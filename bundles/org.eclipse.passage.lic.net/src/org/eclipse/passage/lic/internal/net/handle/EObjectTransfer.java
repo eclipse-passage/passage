@@ -12,8 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.net.handle;
 
+import java.util.Objects;
+
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.api.io.Hashes;
@@ -29,9 +30,9 @@ public final class EObjectTransfer implements NetResponse {
 	private final Hashes hashes;
 
 	public EObjectTransfer(EObject payload, KeyKeeper key, Hashes hashes) {
-		this.payload = payload;
-		this.key = key;
-		this.hashes = hashes;
+		this.payload = Objects.requireNonNull(payload);
+		this.key = Objects.requireNonNull(key);
+		this.hashes = Objects.requireNonNull(hashes);
 	}
 
 	@Override
@@ -51,8 +52,7 @@ public final class EObjectTransfer implements NetResponse {
 
 	@Override
 	public byte[] payload() throws LicensingException {
-		// FIXME:AF: should be done via factory
-		return encode(new EObjectToBytes(payload, XMIResourceImpl::new).get());
+		return encode(new EObjectToBytes(payload).get());
 	}
 
 	@Override
