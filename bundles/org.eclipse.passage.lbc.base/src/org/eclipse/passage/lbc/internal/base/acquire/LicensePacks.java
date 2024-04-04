@@ -30,7 +30,6 @@ import org.eclipse.passage.lic.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
-import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,7 +67,8 @@ final class LicensePacks {
 		FloatingLicensePack pack;
 		try {
 			// FIXME:AF: should be done via factory
-			pack = new EObjectFromBytes<>(decoded(license), FloatingLicensePack.class, LicensesResourceImpl::new)//
+			pack = new EObjectFromBytes<FloatingLicensePack>(decoded(license),
+					LicensesPackage.eINSTANCE.getFloatingLicensePack())//
 					.get(Collections.singletonMap(LicensesPackage.eNS_URI, LicensesPackage.eINSTANCE));
 		} catch (LicensingException e) {
 			log.error("failed: ", e); //$NON-NLS-1$

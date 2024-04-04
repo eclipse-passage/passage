@@ -18,8 +18,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Supplier;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lic.api.LicensingException;
@@ -27,14 +27,11 @@ import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
 
 public abstract class EObjectFromStream<T extends EObject> {
 
-	private final Class<T> expected;
-	private final Supplier<Resource> factory;
+	private final EClass expected;
 
-	public EObjectFromStream(Class<T> expected, Supplier<Resource> factory) {
-		Objects.requireNonNull(expected, getClass().getSimpleName() + "::expected"); //$NON-NLS-1$
-		Objects.requireNonNull(factory, getClass().getSimpleName() + "::factory"); //$NON-NLS-1$
-		this.expected = expected;
-		this.factory = factory;
+	public EObjectFromStream(EClass expected) {
+		this.expected = Objects.requireNonNull(expected, getClass().getSimpleName() + "::expected"); //$NON-NLS-1$
+
 	}
 
 	public T get() throws LicensingException {
@@ -48,7 +45,7 @@ public abstract class EObjectFromStream<T extends EObject> {
 	protected abstract InputStream stream() throws IOException;
 
 	private List<EObject> content(Map<?, ?> options) throws LicensingException {
-		Resource resource = factory.get();
+		Resource resource = new BlindResource(expected).get();
 		try (InputStream input = stream()) {
 			resource.load(input, options);
 		} catch (IOException e) {
@@ -64,12 +61,13 @@ public abstract class EObjectFromStream<T extends EObject> {
 		return contents.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	private T from(EObject only) throws LicensingException {
-		if (!expected.isInstance(only)) {
+		if (expected != only.eClass()) {
 			throw new LicensingException(String.format(EmfMessages.XmiToEObject_unexpected_type,
 					only.getClass().getName(), expected.getName()));
 		}
-		return expected.cast(only);
+		return (T) expected.getInstanceClass().cast(only);
 	}
 
 }

@@ -28,6 +28,7 @@ import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
 import org.junit.Test;
 import org.osgi.framework.FrameworkUtil;
 
+@SuppressWarnings("restriction")
 public class RequirementsFromManifestTest {
 
 	@Test

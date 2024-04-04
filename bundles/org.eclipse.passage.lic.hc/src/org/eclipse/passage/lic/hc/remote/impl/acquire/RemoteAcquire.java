@@ -28,12 +28,13 @@ import org.eclipse.passage.lic.hc.remote.impl.EObjectFromXmiResponse;
 import org.eclipse.passage.lic.hc.remote.impl.Equipment;
 import org.eclipse.passage.lic.hc.remote.impl.RemoteRequest;
 import org.eclipse.passage.lic.hc.remote.impl.RemoteServiceData;
+import org.eclipse.passage.lic.hc.remote.impl.RemoteServiceData.OfFeature;
 import org.eclipse.passage.lic.hc.remote.impl.RequestParameters;
 import org.eclipse.passage.lic.hc.remote.impl.ResultsTransfered;
 import org.eclipse.passage.lic.hc.remote.impl.ServiceAny;
-import org.eclipse.passage.lic.hc.remote.impl.RemoteServiceData.OfFeature;
 import org.eclipse.passage.lic.internal.licenses.convert.PGrantAcquisition;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 final class RemoteAcquire<C extends Connection> extends ServiceAny<C, GrantAcquisition, RemoteServiceData.OfFeature> {
 
@@ -49,8 +50,8 @@ final class RemoteAcquire<C extends Connection> extends ServiceAny<C, GrantAcqui
 	@Override
 	protected ResponseHandler<GrantAcquisition> handler(FloatingLicenseAccess access) {
 		return new Response(//
-				new EObjectFromXmiResponse<>(//
-						org.eclipse.passage.lic.licenses.model.api.GrantAcqisition.class, //
+				new EObjectFromXmiResponse<org.eclipse.passage.lic.licenses.model.api.GrantAcqisition>(//
+						LicensesPackage.eINSTANCE.getGrantAcqisition(), //
 						equipment));
 	}
 

@@ -39,7 +39,6 @@ import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
-import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 
 /**
  * 
@@ -106,8 +105,8 @@ public final class AccessPacks implements Supplier<ServiceInvocationResult<Colle
 	}
 
 	private FloatingLicenseAccess from(byte[] content) throws LicensingException {
-		// FIXME:AF: should be done via factory
-		return new EObjectFromBytes<>(content, FloatingLicenseAccess.class, LicensesResourceImpl::new)//
+		return new EObjectFromBytes<FloatingLicenseAccess>(content,
+				LicensesPackage.eINSTANCE.getFloatingLicenseAccess())//
 				.get(Collections.singletonMap(LicensesPackage.eNS_URI, LicensesPackage.eINSTANCE));
 	}
 

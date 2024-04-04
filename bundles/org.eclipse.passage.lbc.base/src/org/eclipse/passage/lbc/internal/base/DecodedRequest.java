@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.api.LicensedProduct;
@@ -27,7 +28,6 @@ import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 import org.eclipse.passage.lic.internal.net.io.SafePayload;
 import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
-import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 
 public abstract class DecodedRequest<T extends EObject> {
 
@@ -41,10 +41,10 @@ public abstract class DecodedRequest<T extends EObject> {
 
 	public final T get() throws IOException, LicensingException {
 		// FIXME:AF: should be done via factory
-		return new EObjectFromBytes<>(decoded(request.content()), target(), LicensesResourceImpl::new).get(options);
+		return new EObjectFromBytes<T>(decoded(request.content()), target()).get(options);
 	}
 
-	protected abstract Class<T> target();
+	protected abstract EClass target();
 
 	private byte[] decoded(byte[] raw) throws LicensingException {
 		LicensedProduct product = new ProductUserRequest<RawRequest>(request).product().get();
@@ -58,8 +58,8 @@ public abstract class DecodedRequest<T extends EObject> {
 		}
 
 		@Override
-		protected Class<GrantAcqisition> target() {
-			return GrantAcqisition.class;
+		protected EClass target() {
+			return LicensesPackage.eINSTANCE.getGrantAcqisition();
 		}
 	}
 

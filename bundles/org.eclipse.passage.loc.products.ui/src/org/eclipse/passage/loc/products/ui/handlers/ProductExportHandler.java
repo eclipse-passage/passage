@@ -27,6 +27,7 @@ import org.eclipse.passage.loc.internal.equinox.OperatorProductService;
 import org.eclipse.passage.loc.internal.products.ui.i18n.ProductsUiMessages;
 import org.eclipse.swt.widgets.Shell;
 
+@SuppressWarnings("restriction")
 public class ProductExportHandler {
 
 	@Execute

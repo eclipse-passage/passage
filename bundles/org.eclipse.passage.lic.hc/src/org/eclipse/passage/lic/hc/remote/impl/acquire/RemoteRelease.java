@@ -34,7 +34,6 @@ import org.eclipse.passage.lic.internal.emf.EObjectToBytes;
 import org.eclipse.passage.lic.internal.licenses.convert.EGrantAcquisition;
 import org.eclipse.passage.lic.internal.net.io.SafePayload;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
-import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 
 final class RemoteRelease<C extends Connection>
 		extends ServiceAny<C, Boolean, RemoteServiceData.WithPayload<GrantAcquisition>> {
@@ -88,8 +87,7 @@ final class RemoteRelease<C extends Connection>
 		}
 
 		private byte[] payload() throws LicensingException {
-			// FIXME:AF: should be done via factory
-			return new EObjectToBytes(new EGrantAcquisition(data.payload()).get(), LicensesResourceImpl::new).get();
+			return new EObjectToBytes(new EGrantAcquisition(data.payload()).get()).get();
 		}
 
 	}
