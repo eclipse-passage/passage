@@ -18,6 +18,7 @@ import java.util.function.Supplier;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.Resource.Factory.Descriptor;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.emf.resource.BlindResourceFactory;
 
@@ -37,9 +38,12 @@ public final class BlindResource implements Supplier<Resource> {
 	public Resource get() {
 		String domain = type.getEPackage().getName();
 		Object factory = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().get(domain);
+		if (factory instanceof Resource.Factory.Descriptor) {
+			Resource.Factory.Descriptor descriptor = (Descriptor) factory;
+			factory = descriptor.createFactory();
+		}
 		if (factory instanceof BlindResourceFactory) {
 			return ((BlindResourceFactory) factory).createResource();
-
 		}
 		return new XMIResourceImpl();
 	}

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.seal.demo.tests.condition.mining;
 
@@ -47,6 +48,7 @@ import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.base.conditions.MatchingRuleCompatible;
 import org.eclipse.passage.lic.base.conditions.mining.BaseLicenseReadingService;
 import org.eclipse.passage.lic.base.conditions.mining.PersonalLicenseMiningEquipment;
+import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
@@ -71,9 +73,9 @@ public final class BaseLicenseReadingServiceTest {
 	@Test
 	public void test() throws Exception {
 		ServiceInvocationResult<Collection<ConditionPack>> result = service().read(license());
-		assertTrue(result.diagnostic().severe().isEmpty());
-		assertTrue(result.diagnostic().bearable().isEmpty());
-		assertTrue(result.data().isPresent());
+		assertTrue(new DiagnosticExplained(result.diagnostic()).get(), result.diagnostic().severe().isEmpty());
+		assertTrue(new DiagnosticExplained(result.diagnostic()).get(), result.diagnostic().bearable().isEmpty());
+		assertTrue(new DiagnosticExplained(result.diagnostic()).get(), result.data().isPresent());
 		assertEquals(1, result.data().get().size());
 		assertPackState(result.data().get().iterator().next());
 	}
