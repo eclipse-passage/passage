@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2022 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.acquire;
 
@@ -66,7 +67,6 @@ final class LicensePacks {
 	private Optional<FloatingLicensePack> pack(Path license) {
 		FloatingLicensePack pack;
 		try {
-			// FIXME:AF: should be done via factory
 			pack = new EObjectFromBytes<FloatingLicensePack>(decoded(license),
 					LicensesPackage.eINSTANCE.getFloatingLicensePack())//
 					.get(Collections.singletonMap(LicensesPackage.eNS_URI, LicensesPackage.eINSTANCE));
