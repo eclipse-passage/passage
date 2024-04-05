@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lbc.fls
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lbc.fls;singleton:=true
-Bundle-Version: 2.11.1.qualifier
+Bundle-Version: 3.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -10,5 +10,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0",
  org.eclipse.passage.lbc.jetty;bundle-version="0.0.0"
 Bundle-ActivationPolicy: lazy
-Provide-Capability: licensing.feature;licensing.feature="org.eclipse.passage.lbc.fls.product";name="Eclipse Passage Floating License Server";version="2.11.1";provider="Eclipse Passage";agreements="licenses/epl-2.0.txt";level="warn"
+Provide-Capability: licensing.feature;licensing.feature="org.eclipse.passage.lbc.fls.product";name="Eclipse Passage Floating License Server";version="3.0.0";provider="Eclipse Passage";agreements="licenses/epl-2.0.txt";level="warn"
 
