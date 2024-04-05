@@ -10,9 +10,11 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.hc.remote;
+package org.eclipse.passage.lic.hc.internal.remote;
 
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.hc.remote.Connection;
+import org.eclipse.passage.lic.hc.remote.Request;
 
 /**
  * 

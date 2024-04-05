@@ -28,7 +28,7 @@ import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
-import org.eclipse.passage.lic.hc.remote.Client;
+import org.eclipse.passage.lic.hc.internal.remote.Client;
 import org.eclipse.passage.lic.hc.remote.impl.mine.RemoteConditions;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;

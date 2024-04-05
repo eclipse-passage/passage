@@ -22,7 +22,7 @@ import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.base.io.LicensingFolder;
 import org.eclipse.passage.lic.base.io.UserHomePath;
-import org.eclipse.passage.lic.hc.remote.Client;
+import org.eclipse.passage.lic.hc.internal.remote.Client;
 import org.eclipse.passage.lic.hc.remote.Connection;
 import org.eclipse.passage.lic.hc.remote.impl.Equipment;
 import org.eclipse.passage.lic.hc.remote.impl.HttpClient;

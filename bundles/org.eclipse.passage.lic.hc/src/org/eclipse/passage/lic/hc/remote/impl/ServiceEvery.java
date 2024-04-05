@@ -19,7 +19,7 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
-import org.eclipse.passage.lic.hc.remote.Client;
+import org.eclipse.passage.lic.hc.internal.remote.Client;
 import org.eclipse.passage.lic.hc.remote.Connection;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 
