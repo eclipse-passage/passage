@@ -188,32 +188,32 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	private FeatureGrant featureGrant(LicensePlanFeatureDescriptor feature, FloatingLicensePack pack, int no) {
 		FeatureGrant grant = new EmptyFeatureGrant().get();
 		String fid = feature.getFeature().getIdentifier();
-		grant.getFeature().setIdentifier(fid);
-		grant.setCapacity(request.defaultCapacity());
 		grant.setIdentifier(String.format("%s#%d", request.identifier(), no)); //$NON-NLS-1$
-		grant.setPack(pack);
+		grant.setCapacity(request.defaultCapacity());
+		grant.getFeature().setIdentifier(fid);
+		grant.getFeature().setVersionMatch(version(feature));
 		grant.setValid(featureGrantPeriod(fid));
 		grant.setVivid(featureGrantVivid(fid));
-		grant.getFeature().setVersionMatch(version(feature));
+		grant.setPack(pack);
 		return grant;
 	}
 
 	private ValidityPeriod featureGrantPeriod(String feature) {
 		return template//
-				.flatMap(l -> forFeature(l.getFeatures(), feature)) //
+				.flatMap(pack -> forFeature(pack.getFeatures(), feature)) //
 				.map(g -> EcoreUtil.copy(g.getValid()))//
 				.orElseGet(this::period);
 	}
 
 	private long featureGrantVivid(String feature) {
 		return template//
-				.flatMap(l -> forFeature(l.getFeatures(), feature)) //
+				.flatMap(pack -> forFeature(pack.getFeatures(), feature)) //
 				.map(FeatureGrant::getVivid)//
 				.orElse(60L);
 	}
 
 	private Optional<FeatureGrant> forFeature(List<FeatureGrant> all, String feature) {
-		return all.stream().filter(g -> feature.equals(g.getFeature())).findFirst();
+		return all.stream().filter(g -> feature.equals(g.getFeature().getIdentifier())).findFirst();
 	}
 
 	private VersionMatch version(LicensePlanFeatureDescriptor feature) {
