@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.loc.e4
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.loc.e4
-Bundle-Version: 2.11.1.qualifier
+Bundle-Version: 3.0.0.qualifier
 Export-Package: org.eclipse.passage.loc.internal.e4.events;x-internal:=true
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor

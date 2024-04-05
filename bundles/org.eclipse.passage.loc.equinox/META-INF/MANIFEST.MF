@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.loc.equinox
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.loc.equinox
-Bundle-Version: 2.11.1.qualifier
+Bundle-Version: 3.0.0.qualifier
 Export-Package: org.eclipse.passage.loc.internal.equinox;x-friends:="org.eclipse.passage.loc.licenses.core,org.eclipse.passage.loc.products.core"
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
