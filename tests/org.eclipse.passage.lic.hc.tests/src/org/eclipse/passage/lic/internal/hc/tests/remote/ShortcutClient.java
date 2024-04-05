@@ -22,9 +22,9 @@ import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
-import org.eclipse.passage.lic.hc.remote.Client;
+import org.eclipse.passage.lic.hc.internal.remote.Client;
+import org.eclipse.passage.lic.hc.internal.remote.ResponseHandler;
 import org.eclipse.passage.lic.hc.remote.Request;
-import org.eclipse.passage.lic.hc.remote.ResponseHandler;
 import org.eclipse.passage.lic.hc.remote.impl.ResultsTransfered;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 

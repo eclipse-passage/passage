@@ -10,9 +10,10 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.hc.remote;
+package org.eclipse.passage.lic.hc.internal.remote;
 
 import org.eclipse.passage.lic.api.LicensingException;
+import org.eclipse.passage.lic.hc.remote.RequestContext;
 import org.eclipse.passage.lic.hc.remote.impl.ResultsTransfered;
 
 /**

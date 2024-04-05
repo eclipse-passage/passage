@@ -27,9 +27,9 @@ import org.eclipse.passage.lic.base.diagnostic.code.AbsentLicenseAttendantFile;
 import org.eclipse.passage.lic.base.io.LicensingFolder;
 import org.eclipse.passage.lic.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.base.io.UserHomePath;
-import org.eclipse.passage.lic.hc.remote.Client;
+import org.eclipse.passage.lic.hc.internal.remote.Client;
+import org.eclipse.passage.lic.hc.internal.remote.ResponseHandler;
 import org.eclipse.passage.lic.hc.remote.Connection;
-import org.eclipse.passage.lic.hc.remote.ResponseHandler;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 

@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.base.diagnostic.SumOfDiagnostics;
-import org.eclipse.passage.lic.hc.remote.Client;
+import org.eclipse.passage.lic.hc.internal.remote.Client;
 import org.eclipse.passage.lic.hc.remote.Connection;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 
