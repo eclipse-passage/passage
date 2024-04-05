@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2019, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,12 +9,13 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
-public class MineMessages extends NLS {
+public final class MineMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.hc.i18n.MineMessages"; //$NON-NLS-1$
 
 	public static String DecryptedConditions_no_transport_for_content_type;
