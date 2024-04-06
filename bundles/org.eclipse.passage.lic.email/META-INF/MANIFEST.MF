@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Automatic-Module-Name: org.eclipse.passage.lic.email
-Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.passage.lic.email
-Bundle-Version: 3.0.0.qualifier
-Bundle-Name: %Bundle-Name
-Bundle-Vendor: %Bundle-Vendor
-Bundle-RequiredExecutionEnvironment: JavaSE-11
-Export-Package: org.eclipse.passage.lic.email;x-friends:="org.eclipse.passage.lic.mail,org.eclipse.passage.loc.dashboard.ui,org.eclipse.passage.loc.licenses.core"
