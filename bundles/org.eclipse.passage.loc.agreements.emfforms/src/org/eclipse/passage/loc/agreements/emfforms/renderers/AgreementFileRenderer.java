@@ -14,6 +14,7 @@
 package org.eclipse.passage.loc.agreements.emfforms.renderers;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.Optional;
 
 import javax.inject.Inject;
@@ -24,7 +25,9 @@ import org.eclipse.emf.ecp.view.template.model.VTViewTemplateProvider;
 import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
+import org.eclipse.passage.loc.internal.equinox.AgreementsService;
 
+@SuppressWarnings("restriction")
 public final class AgreementFileRenderer extends BaseAgreementFileRenderer {
 
 	@Inject
@@ -36,6 +39,14 @@ public final class AgreementFileRenderer extends BaseAgreementFileRenderer {
 	@Override
 	protected Optional<File> locatedAgreementFile() {
 		return new LocatedAgreementFile().get();
+	}
+
+	@Override
+	protected String residentAgreementResource(File file) throws Exception {
+		String name = file.getName();
+		new AgreementsService().get().located(name, getViewModelContext().getDomainModel())
+				.write(Files.readAllBytes(file.toPath()));
+		return name;
 	}
 
 }
