@@ -14,6 +14,8 @@
 <plugin>
 
 	<extension point="org.eclipse.emf.ecp.view.model.provider.xmi.file">
+		
+		<file filePath="viewmodels/AgreementData.view"/>
 		<file filePath="viewmodels/EvaluationInstructions.view" />
 		<file filePath="viewmodels/FeatureGrant.view" />
 		<file filePath="viewmodels/FloatingLicenseAccess.view" />
