@@ -14,7 +14,6 @@
 package org.eclipse.passage.loc.agreements.emfforms.renderers;
 
 import java.io.File;
-import java.nio.file.Files;
 import java.util.Optional;
 
 import org.eclipse.core.databinding.observable.IDecoratingObservable;
@@ -31,14 +30,12 @@ import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedRepor
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 import org.eclipse.passage.lic.agreements.model.api.Agreement;
-import org.eclipse.passage.loc.internal.equinox.AgreementsService;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.TextWithButtonRenderer;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
-@SuppressWarnings("restriction")
 /**
  * <pre>
  * TODO:
@@ -80,7 +77,7 @@ public abstract class BaseAgreementFileRenderer extends TextWithButtonRenderer {
 			return;
 		}
 		try {
-			reflect(reside(file.get()));
+			reflect(residentAgreementResource(file.get()));
 		} catch (Exception e) {
 			getReportService().report(new RenderingFailedReport(e));
 		}
@@ -88,12 +85,7 @@ public abstract class BaseAgreementFileRenderer extends TextWithButtonRenderer {
 
 	protected abstract Optional<File> locatedAgreementFile();
 
-	private String reside(File file) throws Exception {
-		String name = file.getName();
-		new AgreementsService().get().located(name, getViewModelContext().getDomainModel())
-				.write(Files.readAllBytes(file.toPath()));
-		return name;
-	}
+	protected abstract String residentAgreementResource(File file) throws Exception;
 
 	private void reflect(String name) {
 		if (definedName().orElse("").equals(name)) { //$NON-NLS-1$
