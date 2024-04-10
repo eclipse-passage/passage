@@ -7,7 +7,7 @@ Export-Package: org.eclipse.passage.loc.internal.equinox;x-friends:="org.eclipse
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.passage.loc.api;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.base;bundle-version="0.0.0";visibility:=reexport,

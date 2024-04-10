@@ -6,7 +6,7 @@ Bundle-Version: 3.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Require-Bundle: org.eclipse.equinox.preferences;bundle-version="0.0.0"
 Export-Package: org.eclipse.passage.lic.jface.tests
 Fragment-Host: org.eclipse.passage.lic.jface

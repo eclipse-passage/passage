@@ -6,7 +6,7 @@ Bundle-Version: 3.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Fragment-Host: org.eclipse.passage.lic.json
 Import-Package: org.junit
 Require-Bundle: org.eclipse.passage.lic.api.tests;bundle-version="0.1.0"

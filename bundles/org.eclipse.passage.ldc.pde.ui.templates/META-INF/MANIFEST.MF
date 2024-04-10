@@ -18,7 +18,7 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0",
  org.eclipse.passage.lic.equinox;bundle-version="0.0.0",
  org.eclipse.e4.core.contexts;bundle-version="0.0.0",
  org.eclipse.e4.core.di;bundle-version="0.0.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-Copyright: %Bundle-Copyright
 Automatic-Module-Name: org.eclipse.passage.ldc.pde.ui.templates
 Bundle-ActivationPolicy: lazy

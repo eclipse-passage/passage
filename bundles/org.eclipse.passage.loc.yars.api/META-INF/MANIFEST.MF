@@ -6,5 +6,5 @@ Bundle-Version: 3.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: org.eclipse.passage.loc.yars.internal.api;x-internal:=true

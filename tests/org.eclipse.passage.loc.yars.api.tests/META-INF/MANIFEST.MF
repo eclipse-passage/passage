@@ -7,5 +7,5 @@ Import-Package: org.junit
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Require-Bundle: org.eclipse.passage.loc.yars.api;bundle-version="0.1.0"

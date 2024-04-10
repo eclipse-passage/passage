@@ -6,6 +6,6 @@ Bundle-Version: 3.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Require-Bundle: org.eclipse.passage.lic.users;bundle-version="0.0.0"
 Export-Package: org.eclipse.passage.loc.internal.billing.core;x-friends:="org.eclipse.passage.loc.billing.core.tests"
