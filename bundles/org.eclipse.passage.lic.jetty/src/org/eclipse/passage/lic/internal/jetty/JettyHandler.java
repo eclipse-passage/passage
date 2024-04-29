@@ -60,6 +60,7 @@ public final class JettyHandler extends Handler.Abstract {
 		}
 		answer.setStatus(HttpStatus.OK_200);
 		if (!response.carriesPayload()) {
+			callback.succeeded();
 			return;
 		}
 		byte[] payload;
