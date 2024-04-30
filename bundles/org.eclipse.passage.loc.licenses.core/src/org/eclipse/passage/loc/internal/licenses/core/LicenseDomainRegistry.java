@@ -74,8 +74,8 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlanDescrip
 		super.unbindGear(supplier);
 	}
 
-	@Override
 	@Activate
+	@Override
 	public void activate(Map<String, Object> properties) {
 		super.activate(properties);
 	}

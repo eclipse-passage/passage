@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,27 +15,27 @@ package org.eclipse.passage.loc.agreements.ui;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.agreements.AgreementDescriptor;
+import org.eclipse.passage.lic.agreements.model.api.Agreement;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 import org.eclipse.passage.loc.internal.agreements.AgreementRegistry;
 import org.eclipse.passage.loc.internal.agreements.ui.i18n.AgreementsUiMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
 
-public final class SelectedAgreement implements Supplier<Optional<AgreementDescriptor>> {
+public final class SelectedAgreement implements Supplier<Optional<Agreement>> {
 
 	private final Shell shell;
 	private final AgreementRegistry registry;
-	private final AgreementDescriptor initial;
+	private final Optional<Agreement> initial;
 
-	public SelectedAgreement(Shell shell, AgreementRegistry registry, AgreementDescriptor initial) {
+	public SelectedAgreement(Shell shell, AgreementRegistry registry, Optional<Agreement> initial) {
 		this.shell = shell;
 		this.registry = registry;
 		this.initial = initial;
 	}
 
 	@Override
-	public Optional<AgreementDescriptor> get() {
+	public Optional<Agreement> get() {
 		return Optional.ofNullable(//
 				LocWokbench.selectClassifier(//
 						shell, //
@@ -43,7 +43,7 @@ public final class SelectedAgreement implements Supplier<Optional<AgreementDescr
 						AgreementsUiMessages.AgreementsUi_select_agreement, //
 						registry.agreements(), //
 						initial, //
-						AgreementDescriptor.class)//
+						Agreement.class)//
 		);
 	}
 

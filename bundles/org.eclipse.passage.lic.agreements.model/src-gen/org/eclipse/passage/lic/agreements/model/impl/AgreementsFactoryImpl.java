@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,13 +15,10 @@ package org.eclipse.passage.lic.agreements.model.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.passage.lic.agreements.model.api.*;
-
+import org.eclipse.passage.lic.agreements.model.api.Agreement;
+import org.eclipse.passage.lic.agreements.model.api.AgreementGroup;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsFactory;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 
@@ -121,4 +118,4 @@ public class AgreementsFactoryImpl extends EFactoryImpl implements AgreementsFac
 		return AgreementsPackage.eINSTANCE;
 	}
 
-} //AgreementsFactoryImpl
+} // AgreementsFactoryImpl

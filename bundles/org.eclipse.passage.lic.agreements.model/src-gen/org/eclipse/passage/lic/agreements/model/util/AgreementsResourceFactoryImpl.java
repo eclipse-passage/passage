@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,9 +13,7 @@
 package org.eclipse.passage.lic.agreements.model.util;
 
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 
 /**
@@ -48,4 +46,4 @@ public class AgreementsResourceFactoryImpl extends ResourceFactoryImpl {
 		return result;
 	}
 
-} //AgreementsResourceFactoryImpl
+} // AgreementsResourceFactoryImpl

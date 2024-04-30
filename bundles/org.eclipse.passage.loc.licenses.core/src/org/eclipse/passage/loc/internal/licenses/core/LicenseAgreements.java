@@ -16,7 +16,7 @@ package org.eclipse.passage.loc.internal.licenses.core;
 import java.util.Collection;
 import java.util.Optional;
 
-import org.eclipse.passage.lic.agreements.AgreementDescriptor;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.agreements.model.api.Agreement;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.io.Hashes;
@@ -43,24 +43,26 @@ final class LicenseAgreements {
 		Agreements service = new AgreementsService().get(); // TODO: cashed field
 		Hashes hashes = hashes();// TODO: cashed field
 		for (String identifier : plan.getAgreements()) {
-			installAgreement(license, registry.agreement(identifier), service, hashes);
+			installAgreement(license,
+					registry.agreement(identifier).orElseThrow(
+							() -> new LicensingException(NLS.bind(LicensesCoreMessages.LicenseAgreements_e_agreement_not_found, identifier))),
+					service, hashes);
 		}
 
 	}
 
-	private void installAgreement(LicenseRequisites license, AgreementDescriptor agreement, Agreements service,
-			Hashes hashes) throws LicensingException {
-		if (!service.exists(agreement.getFile(), (Agreement) agreement)) {
+	private void installAgreement(LicenseRequisites license, Agreement agreement, Agreements service, Hashes hashes)
+			throws LicensingException {
+		if (!service.exists(agreement.getFile(), agreement)) {
 			throw new LicensingException(String.format(//
 					LicensesCoreMessages.LicenseOperatorServiceImpl_failed_to_find_agreement_file, //
-					service.located(agreement.getFile(), (Agreement) agreement).info(), //
+					service.located(agreement.getFile(), agreement).info(), //
 					agreement.getName()));
 		}
 		license.getAgreements().add(data(agreement, service, hashes));
 	}
 
-	private AgreementData data(AgreementDescriptor agreement, Agreements service, Hashes hashes)
-			throws LicensingException {
+	private AgreementData data(Agreement agreement, Agreements service, Hashes hashes) throws LicensingException {
 		AgreementData data = LicensesFactory.eINSTANCE.createAgreementData();
 		data.setIdentifier(agreement.getIdentifier());
 		data.setName(agreement.getName());
@@ -73,14 +75,14 @@ final class LicenseAgreements {
 		return data;
 	}
 
-	private byte[] content(AgreementDescriptor agreement, Agreements service) throws LicensingException {
+	private byte[] content(Agreement agreement, Agreements service) throws LicensingException {
 		try {
-			return service.located(agreement.getFile(), (Agreement) agreement).content();
+			return service.located(agreement.getFile(), agreement).content();
 		} catch (Exception e) {
 			throw new LicensingException(String.format(//
 					LicensesCoreMessages.LicenseOperatorServiceImpl_failed_to_attach_agreement, //
 					agreement.getName(), //
-					service.located(agreement.getFile(), (Agreement) agreement).info(), //
+					service.located(agreement.getFile(), agreement).info(), //
 					e));
 		}
 	}

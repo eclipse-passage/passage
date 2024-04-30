@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -24,7 +24,7 @@ import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedExcep
 import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedReport;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.passage.lic.agreements.AgreementDescriptor;
+import org.eclipse.passage.lic.agreements.model.api.Agreement;
 import org.eclipse.passage.loc.agreements.ui.SelectedAgreement;
 import org.eclipse.passage.loc.internal.agreements.AgreementRegistry;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.TextWithButtonRenderer;
@@ -70,7 +70,7 @@ public class AgreementIdentifierRenderer extends TextWithButtonRenderer {
 
 	protected void selectIdentifier() {
 		Shell shell = Display.getDefault().getActiveShell();
-		AgreementDescriptor initial = null;
+		Optional<Agreement> initial = Optional.empty();
 		try {
 			Object value = getModelValue().getValue();
 			if (value instanceof String) {
@@ -80,7 +80,7 @@ public class AgreementIdentifierRenderer extends TextWithButtonRenderer {
 		} catch (DatabindingFailedException e) {
 			getReportService().report(new DatabindingFailedReport(e));
 		}
-		Optional<AgreementDescriptor> descriptor = new SelectedAgreement(shell, registry, initial).get();
+		Optional<Agreement> descriptor = new SelectedAgreement(shell, registry, initial).get();
 		if (descriptor.isPresent()) {
 			String identifier = descriptor.get().getIdentifier();
 			if (identifier != null) {

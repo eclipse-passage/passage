@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -22,11 +22,11 @@ import org.eclipse.emf.ecore.EReference;
  * The <b>Package</b> for the model.
  * It contains accessors for the meta objects to represent
  * <ul>
- *   <li>each class,</li>
- *   <li>each feature of each class,</li>
- *   <li>each operation of each class,</li>
- *   <li>each enum,</li>
- *   <li>and each data type</li>
+ * <li>each class,</li>
+ * <li>each feature of each class,</li>
+ * <li>each operation of each class,</li>
+ * <li>each enum,</li>
+ * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
  * @see org.eclipse.passage.lic.agreements.model.meta.AgreementsFactory
@@ -48,7 +48,7 @@ public interface AgreementsPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/passage/lic/agreements/0.1.0"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/passage/lic/agreements/3.0.0"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -67,62 +67,6 @@ public interface AgreementsPackage extends EPackage {
 	AgreementsPackage eINSTANCE = org.eclipse.passage.lic.agreements.model.impl.AgreementsPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.agreements.AgreementDescriptor <em>Agreement Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.agreements.AgreementDescriptor
-	 * @see org.eclipse.passage.lic.agreements.model.impl.AgreementsPackageImpl#getAgreementDescriptor()
-	 * @generated
-	 */
-	int AGREEMENT_DESCRIPTOR = 0;
-
-	/**
-	 * The number of structural features of the '<em>Agreement Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AGREEMENT_DESCRIPTOR_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Agreement Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AGREEMENT_DESCRIPTOR_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.agreements.AgreementGroupDescriptor <em>Agreement Group Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.agreements.AgreementGroupDescriptor
-	 * @see org.eclipse.passage.lic.agreements.model.impl.AgreementsPackageImpl#getAgreementGroupDescriptor()
-	 * @generated
-	 */
-	int AGREEMENT_GROUP_DESCRIPTOR = 1;
-
-	/**
-	 * The number of structural features of the '<em>Agreement Group Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AGREEMENT_GROUP_DESCRIPTOR_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Agreement Group Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AGREEMENT_GROUP_DESCRIPTOR_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.agreements.model.impl.AgreementImpl <em>Agreement</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,7 +74,7 @@ public interface AgreementsPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.agreements.model.impl.AgreementsPackageImpl#getAgreement()
 	 * @generated
 	 */
-	int AGREEMENT = 2;
+	int AGREEMENT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -139,7 +83,7 @@ public interface AgreementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENT__IDENTIFIER = AGREEMENT_DESCRIPTOR_FEATURE_COUNT + 0;
+	int AGREEMENT__IDENTIFIER = 0;
 
 	/**
 	 * The feature id for the '<em><b>Spdx</b></em>' attribute.
@@ -148,7 +92,7 @@ public interface AgreementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENT__SPDX = AGREEMENT_DESCRIPTOR_FEATURE_COUNT + 1;
+	int AGREEMENT__SPDX = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -157,7 +101,7 @@ public interface AgreementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENT__NAME = AGREEMENT_DESCRIPTOR_FEATURE_COUNT + 2;
+	int AGREEMENT__NAME = 2;
 
 	/**
 	 * The feature id for the '<em><b>File</b></em>' attribute.
@@ -166,7 +110,7 @@ public interface AgreementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENT__FILE = AGREEMENT_DESCRIPTOR_FEATURE_COUNT + 3;
+	int AGREEMENT__FILE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Mime</b></em>' attribute.
@@ -175,7 +119,7 @@ public interface AgreementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENT__MIME = AGREEMENT_DESCRIPTOR_FEATURE_COUNT + 4;
+	int AGREEMENT__MIME = 4;
 
 	/**
 	 * The number of structural features of the '<em>Agreement</em>' class.
@@ -184,7 +128,7 @@ public interface AgreementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENT_FEATURE_COUNT = AGREEMENT_DESCRIPTOR_FEATURE_COUNT + 5;
+	int AGREEMENT_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Agreement</em>' class.
@@ -193,7 +137,7 @@ public interface AgreementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENT_OPERATION_COUNT = AGREEMENT_DESCRIPTOR_OPERATION_COUNT + 0;
+	int AGREEMENT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.agreements.model.impl.AgreementGroupImpl <em>Agreement Group</em>}' class.
@@ -203,7 +147,7 @@ public interface AgreementsPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.agreements.model.impl.AgreementsPackageImpl#getAgreementGroup()
 	 * @generated
 	 */
-	int AGREEMENT_GROUP = 3;
+	int AGREEMENT_GROUP = 1;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -212,7 +156,7 @@ public interface AgreementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENT_GROUP__IDENTIFIER = AGREEMENT_GROUP_DESCRIPTOR_FEATURE_COUNT + 0;
+	int AGREEMENT_GROUP__IDENTIFIER = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -221,7 +165,7 @@ public interface AgreementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENT_GROUP__NAME = AGREEMENT_GROUP_DESCRIPTOR_FEATURE_COUNT + 1;
+	int AGREEMENT_GROUP__NAME = 1;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -230,7 +174,7 @@ public interface AgreementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENT_GROUP__DESCRIPTION = AGREEMENT_GROUP_DESCRIPTOR_FEATURE_COUNT + 2;
+	int AGREEMENT_GROUP__DESCRIPTION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Agreements</b></em>' containment reference list.
@@ -239,7 +183,7 @@ public interface AgreementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENT_GROUP__AGREEMENTS = AGREEMENT_GROUP_DESCRIPTOR_FEATURE_COUNT + 3;
+	int AGREEMENT_GROUP__AGREEMENTS = 3;
 
 	/**
 	 * The number of structural features of the '<em>Agreement Group</em>' class.
@@ -248,7 +192,7 @@ public interface AgreementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENT_GROUP_FEATURE_COUNT = AGREEMENT_GROUP_DESCRIPTOR_FEATURE_COUNT + 4;
+	int AGREEMENT_GROUP_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Agreement Group</em>' class.
@@ -257,7 +201,7 @@ public interface AgreementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AGREEMENT_GROUP_OPERATION_COUNT = AGREEMENT_GROUP_DESCRIPTOR_OPERATION_COUNT + 0;
+	int AGREEMENT_GROUP_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.agreements.model.api.Agreement <em>Agreement</em>}'.
@@ -379,28 +323,6 @@ public interface AgreementsPackage extends EPackage {
 	EReference getAgreementGroup_Agreements();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.agreements.AgreementDescriptor <em>Agreement Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Agreement Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.agreements.AgreementDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.agreements.AgreementDescriptor"
-	 * @generated
-	 */
-	EClass getAgreementDescriptor();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.agreements.AgreementGroupDescriptor <em>Agreement Group Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Agreement Group Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.agreements.AgreementGroupDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.agreements.AgreementGroupDescriptor"
-	 * @generated
-	 */
-	EClass getAgreementGroupDescriptor();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -409,4 +331,4 @@ public interface AgreementsPackage extends EPackage {
 	 */
 	AgreementsFactory getAgreementsFactory();
 
-} //AgreementsPackage
+} // AgreementsPackage

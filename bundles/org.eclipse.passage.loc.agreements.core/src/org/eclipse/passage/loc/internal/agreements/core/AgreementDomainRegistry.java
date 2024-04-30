@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021, 2022 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,18 +14,18 @@ package org.eclipse.passage.loc.internal.agreements.core;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.agreements.AgreementDescriptor;
-import org.eclipse.passage.lic.agreements.AgreementGroupDescriptor;
+import org.eclipse.passage.lic.agreements.model.api.Agreement;
 import org.eclipse.passage.lic.agreements.model.api.AgreementGroup;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 import org.eclipse.passage.lic.agreements.model.util.AgreementsResourceImpl;
@@ -51,11 +51,11 @@ import org.osgi.service.event.EventAdmin;
 @SuppressWarnings("restriction")
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + AgreementsPackage.eNAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "agreements_xmi" })
-public final class AgreementDomainRegistry extends BaseDomainRegistry<AgreementGroupDescriptor>
-		implements AgreementRegistry, EditingDomainRegistry<AgreementGroupDescriptor> {
+public final class AgreementDomainRegistry extends BaseDomainRegistry<AgreementGroup>
+		implements AgreementRegistry, EditingDomainRegistry<AgreementGroup> {
 
-	private final Map<String, AgreementGroupDescriptor> groups = new HashMap<>();
-	private final Map<String, AgreementDescriptor> agreements = new HashMap<>();
+	private final Map<String, AgreementGroup> groups = new HashMap<>();
+	private final Map<String, Agreement> agreements = new HashMap<>();
 	private EventAdmin events;
 
 	@Override
@@ -98,51 +98,49 @@ public final class AgreementDomainRegistry extends BaseDomainRegistry<AgreementG
 	}
 
 	@Override
-	public Class<AgreementGroupDescriptor> getContentClass() {
-		return AgreementGroupDescriptor.class;
+	public Class<AgreementGroup> getContentClass() {
+		return AgreementGroup.class;
 	}
 
 	@Override
-	public String resolveIdentifier(AgreementGroupDescriptor content) {
+	public String resolveIdentifier(AgreementGroup content) {
 		return content.getIdentifier();
 	}
 
 	@Override
-	public Collection<AgreementGroupDescriptor> groups() {
+	public Collection<AgreementGroup> groups() {
 		return new ArrayList<>(groups.values());
 	}
 
 	@Override
-	public AgreementGroupDescriptor group(String identifier) {
-		return groups.get(identifier);
+	public Optional<AgreementGroup> group(String identifier) {
+		return Optional.ofNullable(groups.get(identifier));
 	}
 
 	@Override
-	public Collection<AgreementDescriptor> agreements() {
+	public Collection<Agreement> agreements() {
 		return new ArrayList<>(agreements.values());
 	}
 
-	@SuppressWarnings("unchecked")
-	public Collection<AgreementDescriptor> agreements(String id) {
-		AgreementGroupDescriptor group = groups.get(id);
-		if (group == null) {
-			return Collections.emptyList();
-		}
-		return (Collection<AgreementDescriptor>) group.getAgreements();
+	public Collection<Agreement> agreements(String id) {
+		return group(id)//
+				.map(AgreementGroup::getAgreements)//
+				.orElseGet(BasicEList::new)//
+				.stream().toList();
 	}
 
 	@Override
-	public AgreementDescriptor agreement(String identifier) {
-		return agreements.get(identifier);
+	public Optional<Agreement> agreement(String identifier) {
+		return Optional.ofNullable(agreements.get(identifier));
 	}
 
 	@Override
-	protected DomainContentAdapter<AgreementGroupDescriptor, AgreementDomainRegistry> createContentAdapter() {
+	protected DomainContentAdapter<AgreementGroup, AgreementDomainRegistry> createContentAdapter() {
 		return new AgreementsDomainRegistryTracker(this);
 	}
 
-	public void registerAgreementGroup(AgreementGroupDescriptor group) {
-		AgreementGroupDescriptor existing = groups.put(group.getIdentifier(), group);
+	public void registerAgreementGroup(AgreementGroup group) {
+		AgreementGroup existing = groups.put(group.getIdentifier(), group);
 		if ((existing != null) && (existing != group)) {
 			String msg = NLS.bind(AgreementsCoreMessages.AgreementDomain_instance_duplication_message, existing, group);
 			Platform.getLog(getClass()).warn(msg);
@@ -152,15 +150,15 @@ public final class AgreementDomainRegistry extends BaseDomainRegistry<AgreementG
 		group.getAgreements().forEach(u -> registerAgreement(u));
 	}
 
-	private void brush(AgreementGroupDescriptor group) {
+	private void brush(AgreementGroup group) {
 		if (group.getDescription() == null) {
-			((AgreementGroup) group).setDescription(""); //$NON-NLS-1$
+			group.setDescription(""); //$NON-NLS-1$
 		}
 	}
 
-	public void registerAgreement(AgreementDescriptor agreement) {
+	public void registerAgreement(Agreement agreement) {
 		String identifier = agreement.getIdentifier();
-		AgreementDescriptor existing = agreements.put(identifier, agreement);
+		Agreement existing = agreements.put(identifier, agreement);
 		if ((existing != null) && (existing != agreement)) {
 			String msg = NLS.bind(AgreementsCoreMessages.AgreementDomain_instance_duplication_message, existing,
 					agreement);
@@ -170,7 +168,7 @@ public final class AgreementDomainRegistry extends BaseDomainRegistry<AgreementG
 	}
 
 	public void unregisterAgreementGroup(String id) {
-		AgreementGroupDescriptor removed = groups.remove(id);
+		AgreementGroup removed = groups.remove(id);
 		if (removed != null) {
 			events.postEvent(new EquinoxEvent(AgreementRegistryEvents.AGREEMENT_GROUP_DELETE, removed).get());
 			removed.getAgreements().forEach(u -> unregisterAgreement(u.getIdentifier()));
@@ -178,7 +176,7 @@ public final class AgreementDomainRegistry extends BaseDomainRegistry<AgreementG
 	}
 
 	public void unregisterAgreement(String id) {
-		AgreementDescriptor removed = agreements.remove(id);
+		Agreement removed = agreements.remove(id);
 		if (removed != null) {
 			events.postEvent(new EquinoxEvent(AgreementRegistryEvents.AGREEMENT_DELETE, removed).get());
 		}
@@ -200,7 +198,7 @@ public final class AgreementDomainRegistry extends BaseDomainRegistry<AgreementG
 	}
 
 	@Override
-	public void registerContent(AgreementGroupDescriptor content) {
+	public void registerContent(AgreementGroup content) {
 		registerAgreementGroup(content);
 	}
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,16 +12,19 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.agreements.model.util;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.util.URI;
 
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.passage.lic.internal.agreements.model.migration.AgreementsResourceHandler;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
  * @see org.eclipse.passage.lic.agreements.model.util.AgreementsResourceFactoryImpl
- * @generated
+ * @generated NOT
  */
 public class AgreementsResourceImpl extends XMIResourceImpl {
 	/**
@@ -33,6 +36,14 @@ public class AgreementsResourceImpl extends XMIResourceImpl {
 	 */
 	public AgreementsResourceImpl(URI uri) {
 		super(uri);
+	}
+
+	@Override
+	protected void init() {
+		super.init();
+		Map<Object, Object> options = getDefaultLoadOptions();
+		options.put(OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
+		options.put(OPTION_RESOURCE_HANDLER, new AgreementsResourceHandler());
 	}
 
 } //AgreementsResourceImpl
