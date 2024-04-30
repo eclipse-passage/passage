@@ -12,38 +12,23 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.features;
 
-import org.eclipse.passage.lic.features.FeatureDescriptor;
-import org.eclipse.passage.lic.features.FeatureSetDescriptor;
-import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
+import java.util.Collection;
+import java.util.Optional;
+
+import org.eclipse.passage.lic.features.model.api.Feature;
+import org.eclipse.passage.lic.features.model.api.FeatureSet;
+import org.eclipse.passage.lic.features.model.api.FeatureVersion;
 
 public interface FeatureRegistry {
 
-	Iterable<? extends FeatureSetDescriptor> getFeatureSets();
+	Collection<FeatureSet> featureSets();
 
-	FeatureSetDescriptor getFeatureSet(String featureSetId);
+	Optional<FeatureSet> featureSet(String id);
 
-	void registerFeatureSet(FeatureSetDescriptor featureSet);
+	Collection<Feature> features();
 
-	void unregisterFeatureSet(String featureSetId);
+	Optional<Feature> feature(String id);
 
-	Iterable<? extends FeatureDescriptor> getFeatures();
-
-	Iterable<? extends FeatureDescriptor> getFeatures(String featureSetId);
-
-	FeatureDescriptor getFeature(String featureId);
-
-	void registerFeature(FeatureDescriptor feature);
-
-	void unregisterFeature(String featureId);
-
-	Iterable<? extends FeatureVersionDescriptor> getFeatureVersions();
-
-	Iterable<? extends FeatureVersionDescriptor> getFeatureVersions(String featureId);
-
-	FeatureVersionDescriptor getFeatureVersion(String featureId, String version);
-
-	void registerFeatureVersion(FeatureDescriptor feature, FeatureVersionDescriptor featureVersion);
-
-	void unregisterFeatureVersion(String featureId, String version);
+	Collection<FeatureVersion> featureVersions();
 
 }

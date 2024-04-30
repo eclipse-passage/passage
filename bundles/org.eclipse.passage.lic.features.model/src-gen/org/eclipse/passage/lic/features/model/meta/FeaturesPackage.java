@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -48,7 +48,7 @@ public interface FeaturesPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/passage/lic/features/2.0.0"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/passage/lic/features/3.0.0"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -67,90 +67,6 @@ public interface FeaturesPackage extends EPackage {
 	FeaturesPackage eINSTANCE = org.eclipse.passage.lic.features.model.impl.FeaturesPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.features.FeatureSetDescriptor <em>Feature Set Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.features.FeatureSetDescriptor
-	 * @see org.eclipse.passage.lic.features.model.impl.FeaturesPackageImpl#getFeatureSetDescriptor()
-	 * @generated
-	 */
-	int FEATURE_SET_DESCRIPTOR = 0;
-
-	/**
-	 * The number of structural features of the '<em>Feature Set Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_SET_DESCRIPTOR_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Feature Set Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_SET_DESCRIPTOR_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.features.FeatureDescriptor <em>Feature Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.features.FeatureDescriptor
-	 * @see org.eclipse.passage.lic.features.model.impl.FeaturesPackageImpl#getFeatureDescriptor()
-	 * @generated
-	 */
-	int FEATURE_DESCRIPTOR = 1;
-
-	/**
-	 * The number of structural features of the '<em>Feature Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_DESCRIPTOR_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Feature Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_DESCRIPTOR_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.features.FeatureVersionDescriptor <em>Feature Version Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.features.FeatureVersionDescriptor
-	 * @see org.eclipse.passage.lic.features.model.impl.FeaturesPackageImpl#getFeatureVersionDescriptor()
-	 * @generated
-	 */
-	int FEATURE_VERSION_DESCRIPTOR = 2;
-
-	/**
-	 * The number of structural features of the '<em>Feature Version Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_VERSION_DESCRIPTOR_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Feature Version Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_VERSION_DESCRIPTOR_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.features.model.impl.FeatureSetImpl <em>Feature Set</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -158,7 +74,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.features.model.impl.FeaturesPackageImpl#getFeatureSet()
 	 * @generated
 	 */
-	int FEATURE_SET = 3;
+	int FEATURE_SET = 0;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -167,7 +83,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_SET__IDENTIFIER = FEATURE_SET_DESCRIPTOR_FEATURE_COUNT + 0;
+	int FEATURE_SET__IDENTIFIER = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -176,7 +92,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_SET__NAME = FEATURE_SET_DESCRIPTOR_FEATURE_COUNT + 1;
+	int FEATURE_SET__NAME = 1;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -185,7 +101,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_SET__DESCRIPTION = FEATURE_SET_DESCRIPTOR_FEATURE_COUNT + 2;
+	int FEATURE_SET__DESCRIPTION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Features</b></em>' containment reference list.
@@ -194,7 +110,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_SET__FEATURES = FEATURE_SET_DESCRIPTOR_FEATURE_COUNT + 3;
+	int FEATURE_SET__FEATURES = 3;
 
 	/**
 	 * The number of structural features of the '<em>Feature Set</em>' class.
@@ -203,7 +119,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_SET_FEATURE_COUNT = FEATURE_SET_DESCRIPTOR_FEATURE_COUNT + 4;
+	int FEATURE_SET_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Feature Set</em>' class.
@@ -212,7 +128,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_SET_OPERATION_COUNT = FEATURE_SET_DESCRIPTOR_OPERATION_COUNT + 0;
+	int FEATURE_SET_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.features.model.impl.FeatureImpl <em>Feature</em>}' class.
@@ -222,7 +138,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.features.model.impl.FeaturesPackageImpl#getFeature()
 	 * @generated
 	 */
-	int FEATURE = 4;
+	int FEATURE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -231,7 +147,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__IDENTIFIER = FEATURE_DESCRIPTOR_FEATURE_COUNT + 0;
+	int FEATURE__IDENTIFIER = 0;
 
 	/**
 	 * The feature id for the '<em><b>Provider</b></em>' attribute.
@@ -240,7 +156,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__PROVIDER = FEATURE_DESCRIPTOR_FEATURE_COUNT + 1;
+	int FEATURE__PROVIDER = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -249,7 +165,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__NAME = FEATURE_DESCRIPTOR_FEATURE_COUNT + 2;
+	int FEATURE__NAME = 2;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -258,7 +174,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__DESCRIPTION = FEATURE_DESCRIPTOR_FEATURE_COUNT + 3;
+	int FEATURE__DESCRIPTION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Feature Set</b></em>' container reference.
@@ -267,7 +183,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__FEATURE_SET = FEATURE_DESCRIPTOR_FEATURE_COUNT + 4;
+	int FEATURE__FEATURE_SET = 4;
 
 	/**
 	 * The feature id for the '<em><b>Feature Versions</b></em>' containment reference list.
@@ -276,7 +192,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__FEATURE_VERSIONS = FEATURE_DESCRIPTOR_FEATURE_COUNT + 5;
+	int FEATURE__FEATURE_VERSIONS = 5;
 
 	/**
 	 * The number of structural features of the '<em>Feature</em>' class.
@@ -285,7 +201,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_FEATURE_COUNT = FEATURE_DESCRIPTOR_FEATURE_COUNT + 6;
+	int FEATURE_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Feature</em>' class.
@@ -294,7 +210,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_OPERATION_COUNT = FEATURE_DESCRIPTOR_OPERATION_COUNT + 0;
+	int FEATURE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.features.model.impl.FeatureVersionImpl <em>Feature Version</em>}' class.
@@ -304,7 +220,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.features.model.impl.FeaturesPackageImpl#getFeatureVersion()
 	 * @generated
 	 */
-	int FEATURE_VERSION = 5;
+	int FEATURE_VERSION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Version</b></em>' attribute.
@@ -313,7 +229,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_VERSION__VERSION = FEATURE_VERSION_DESCRIPTOR_FEATURE_COUNT + 0;
+	int FEATURE_VERSION__VERSION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' container reference.
@@ -322,7 +238,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_VERSION__FEATURE = FEATURE_VERSION_DESCRIPTOR_FEATURE_COUNT + 1;
+	int FEATURE_VERSION__FEATURE = 1;
 
 	/**
 	 * The feature id for the '<em><b>News</b></em>' attribute.
@@ -331,7 +247,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_VERSION__NEWS = FEATURE_VERSION_DESCRIPTOR_FEATURE_COUNT + 2;
+	int FEATURE_VERSION__NEWS = 2;
 
 	/**
 	 * The number of structural features of the '<em>Feature Version</em>' class.
@@ -340,7 +256,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_VERSION_FEATURE_COUNT = FEATURE_VERSION_DESCRIPTOR_FEATURE_COUNT + 3;
+	int FEATURE_VERSION_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Feature Version</em>' class.
@@ -349,40 +265,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_VERSION_OPERATION_COUNT = FEATURE_VERSION_DESCRIPTOR_OPERATION_COUNT + 0;
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.features.FeatureSetDescriptor <em>Feature Set Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Feature Set Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.features.FeatureSetDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.features.FeatureSetDescriptor"
-	 * @generated
-	 */
-	EClass getFeatureSetDescriptor();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.features.FeatureDescriptor <em>Feature Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Feature Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.features.FeatureDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.features.FeatureDescriptor"
-	 * @generated
-	 */
-	EClass getFeatureDescriptor();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.features.FeatureVersionDescriptor <em>Feature Version Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Feature Version Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.features.FeatureVersionDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.features.FeatureVersionDescriptor"
-	 * @generated
-	 */
-	EClass getFeatureVersionDescriptor();
+	int FEATURE_VERSION_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.features.model.api.FeatureSet <em>Feature Set</em>}'.
@@ -566,4 +449,4 @@ public interface FeaturesPackage extends EPackage {
 	 */
 	FeaturesFactory getFeaturesFactory();
 
-} //FeaturesPackage
+} // FeaturesPackage

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,17 +14,11 @@ package org.eclipse.passage.lic.features.model.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.passage.lic.features.FeatureDescriptor;
-import org.eclipse.passage.lic.features.FeatureSetDescriptor;
-import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
-
-import org.eclipse.passage.lic.features.model.api.*;
-
+import org.eclipse.passage.lic.features.model.api.Feature;
+import org.eclipse.passage.lic.features.model.api.FeatureSet;
+import org.eclipse.passage.lic.features.model.api.FeatureVersion;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 
 /**
@@ -83,21 +77,6 @@ public class FeaturesAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected FeaturesSwitch<Adapter> modelSwitch = new FeaturesSwitch<Adapter>() {
 		@Override
-		public Adapter caseFeatureSetDescriptor(FeatureSetDescriptor object) {
-			return createFeatureSetDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseFeatureDescriptor(FeatureDescriptor object) {
-			return createFeatureDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseFeatureVersionDescriptor(FeatureVersionDescriptor object) {
-			return createFeatureVersionDescriptorAdapter();
-		}
-
-		@Override
 		public Adapter caseFeatureSet(FeatureSet object) {
 			return createFeatureSetAdapter();
 		}
@@ -129,48 +108,6 @@ public class FeaturesAdapterFactory extends AdapterFactoryImpl {
 	@Override
 	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.features.FeatureSetDescriptor <em>Feature Set Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.features.FeatureSetDescriptor
-	 * @generated
-	 */
-	public Adapter createFeatureSetDescriptorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.features.FeatureDescriptor <em>Feature Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.features.FeatureDescriptor
-	 * @generated
-	 */
-	public Adapter createFeatureDescriptorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.features.FeatureVersionDescriptor <em>Feature Version Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.features.FeatureVersionDescriptor
-	 * @generated
-	 */
-	public Adapter createFeatureVersionDescriptorAdapter() {
-		return null;
 	}
 
 	/**
@@ -227,4 +164,4 @@ public class FeaturesAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //FeaturesAdapterFactory
+} // FeaturesAdapterFactory

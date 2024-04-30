@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.features.emfforms.renderers;
 
+import java.util.Optional;
+
 import javax.inject.Inject;
 
 import org.eclipse.emf.ecp.view.spi.context.ViewModelContext;
@@ -22,7 +24,7 @@ import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedExcep
 import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedReport;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.passage.lic.features.FeatureDescriptor;
+import org.eclipse.passage.lic.features.model.api.Feature;
 import org.eclipse.passage.loc.features.ui.FeaturesUi;
 import org.eclipse.passage.loc.internal.features.FeatureRegistry;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.TextWithButtonRenderer;
@@ -68,17 +70,17 @@ public class FeatureIdentifierRenderer extends TextWithButtonRenderer {
 
 	protected void selectIdentifier() {
 		Shell shell = Display.getDefault().getActiveShell();
-		FeatureDescriptor initial = null;
+		Optional<Feature> initial = Optional.empty();
 		try {
 			Object value = getModelValue().getValue();
 			if (value instanceof String) {
 				String id = (String) value;
-				initial = registry.getFeature(id);
+				initial = registry.feature(id);
 			}
 		} catch (DatabindingFailedException e) {
 			getReportService().report(new DatabindingFailedReport(e));
 		}
-		FeatureDescriptor descriptor = FeaturesUi.selectFeatureDescriptor(shell, registry, initial);
+		Feature descriptor = FeaturesUi.selectFeatureDescriptor(shell, registry, initial);
 		if (descriptor != null) {
 			String identifier = descriptor.getIdentifier();
 			if (identifier != null) {

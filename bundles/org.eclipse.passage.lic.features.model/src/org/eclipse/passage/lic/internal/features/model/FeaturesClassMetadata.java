@@ -19,8 +19,6 @@ import java.util.Optional;
 import org.eclipse.passage.lic.emf.meta.ClassMetadata;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.lic.emf.meta.PlainEntityMetadata;
-import org.eclipse.passage.lic.features.FeatureDescriptor;
-import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.features.model.api.Feature;
 import org.eclipse.passage.lic.features.model.api.FeatureSet;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
@@ -34,18 +32,16 @@ public final class FeaturesClassMetadata implements ClassMetadata {
 	public FeaturesClassMetadata() {
 		meta = FeaturesPackage.eINSTANCE;
 		map = new HashMap<Class<?>, EntityMetadata>();
-		map.put(FeatureSetDescriptor.class, //
+		map.put(FeatureSet.class, //
 				new PlainEntityMetadata(//
 						meta.getFeatureSet(), //
 						meta.getFeatureSet_Identifier(), //
 						meta.getFeatureSet_Name()));
-		map.put(FeatureSet.class, map.get(FeatureSetDescriptor.class));
-		map.put(FeatureDescriptor.class, //
+		map.put(Feature.class, //
 				new PlainEntityMetadata(//
 						meta.getFeature(), //
 						meta.getFeature_Identifier(), //
 						meta.getFeature_Name()));
-		map.put(Feature.class, map.get(FeatureDescriptor.class));
 	}
 
 	@Override

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,10 +13,7 @@
 package org.eclipse.passage.lic.features.model.api;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,10 +31,10 @@ import org.eclipse.passage.lic.features.FeatureSetDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.features.model.meta.FeaturesPackage#getFeatureSet()
- * @model superTypes="org.eclipse.passage.lic.features.model.api.FeatureSetDescriptor"
+ * @model
  * @generated
  */
-public interface FeatureSet extends EObject, FeatureSetDescriptor {
+public interface FeatureSet extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -48,7 +45,6 @@ public interface FeatureSet extends EObject, FeatureSetDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getIdentifier();
 
 	/**
@@ -71,7 +67,6 @@ public interface FeatureSet extends EObject, FeatureSetDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getName();
 
 	/**
@@ -94,7 +89,6 @@ public interface FeatureSet extends EObject, FeatureSetDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getDescription();
 
 	/**
@@ -119,7 +113,6 @@ public interface FeatureSet extends EObject, FeatureSetDescriptor {
 	 * @model opposite="featureSet" containment="true"
 	 * @generated
 	 */
-	@Override
 	EList<Feature> getFeatures();
 
 } // FeatureSet

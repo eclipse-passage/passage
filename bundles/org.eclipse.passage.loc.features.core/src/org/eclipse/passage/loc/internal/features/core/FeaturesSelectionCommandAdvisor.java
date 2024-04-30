@@ -25,16 +25,8 @@ import org.osgi.service.component.annotations.Reference;
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + FeaturesPackage.eNAME })
 public class FeaturesSelectionCommandAdvisor implements SelectionCommandAdvisor {
 
-	private FeatureRegistry registry;
-
 	@Reference
-	public void bindDomainRegistry(FeatureRegistry featureRegistry) {
-		this.registry = featureRegistry;
-	}
-
-	public void unbindDomainRegistry(FeatureRegistry featureRegistry) {
-		this.registry = null;
-	}
+	private FeatureRegistry registry;
 
 	@Override
 	public String getSelectionTitle(String classifier) {
@@ -56,13 +48,13 @@ public class FeaturesSelectionCommandAdvisor implements SelectionCommandAdvisor 
 			return Collections.emptyList();
 		}
 		if (FeaturesPackage.eINSTANCE.getFeatureSet().getName().equals(classifier)) {
-			return registry.getFeatureSets();
+			return registry.featureSets();
 		}
 		if (FeaturesPackage.eINSTANCE.getFeature().getName().equals(classifier)) {
-			return registry.getFeatures();
+			return registry.features();
 		}
 		if (FeaturesPackage.eINSTANCE.getFeatureVersion().getName().equals(classifier)) {
-			return registry.getFeatureVersions();
+			return registry.featureVersions();
 		}
 		return Collections.emptyList();
 	}

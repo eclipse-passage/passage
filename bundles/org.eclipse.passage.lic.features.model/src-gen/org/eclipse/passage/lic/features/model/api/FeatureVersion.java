@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,8 +13,6 @@
 package org.eclipse.passage.lic.features.model.api;
 
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,10 +29,10 @@ import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.features.model.meta.FeaturesPackage#getFeatureVersion()
- * @model superTypes="org.eclipse.passage.lic.features.model.api.FeatureVersionDescriptor"
+ * @model
  * @generated
  */
-public interface FeatureVersion extends EObject, FeatureVersionDescriptor {
+public interface FeatureVersion extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Version</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -45,7 +43,6 @@ public interface FeatureVersion extends EObject, FeatureVersionDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getVersion();
 
 	/**
@@ -70,7 +67,6 @@ public interface FeatureVersion extends EObject, FeatureVersionDescriptor {
 	 * @model opposite="featureVersions" required="true" transient="false"
 	 * @generated
 	 */
-	@Override
 	Feature getFeature();
 
 	/**
@@ -93,7 +89,6 @@ public interface FeatureVersion extends EObject, FeatureVersionDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getNews();
 
 	/**
