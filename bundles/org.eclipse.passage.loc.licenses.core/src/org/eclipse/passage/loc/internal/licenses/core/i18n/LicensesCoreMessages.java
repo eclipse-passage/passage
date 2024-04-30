@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2021 ArSysOp and others
+ * Copyright (c) 2019, 2024 ArSysOp and others
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -20,6 +20,8 @@ public final class LicensesCoreMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages"; //$NON-NLS-1$
 
 	public static String EmfObjectPersisted_failed;
+	public static String LicenseAgreements_e_agreement_not_found;
+
 	public static String LicenseOperatorServiceImpl_error_io;
 	public static String LicenseOperatorServiceImpl_export_error;
 	public static String LicenseOperatorServiceImpl_export_success;

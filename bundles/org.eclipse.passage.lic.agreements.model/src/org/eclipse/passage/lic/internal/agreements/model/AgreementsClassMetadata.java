@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,8 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import org.eclipse.passage.lic.agreements.AgreementDescriptor;
-import org.eclipse.passage.lic.agreements.AgreementGroupDescriptor;
 import org.eclipse.passage.lic.agreements.model.api.Agreement;
 import org.eclipse.passage.lic.agreements.model.api.AgreementGroup;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
@@ -33,18 +31,16 @@ public final class AgreementsClassMetadata implements ClassMetadata {
 	public AgreementsClassMetadata() {
 		meta = AgreementsPackage.eINSTANCE;
 		map = new HashMap<Class<?>, EntityMetadata>();
-		map.put(AgreementGroupDescriptor.class, //
+		map.put(AgreementGroup.class, //
 				new PlainEntityMetadata(//
 						meta.getAgreementGroup(), //
 						meta.getAgreementGroup_Identifier(), //
 						meta.getAgreementGroup_Name()));
-		map.put(AgreementGroup.class, map.get(AgreementGroupDescriptor.class));
-		map.put(AgreementDescriptor.class, //
+		map.put(Agreement.class, //
 				new PlainEntityMetadata(//
 						meta.getAgreement(), //
 						meta.getAgreement_Identifier(), //
 						meta.getAgreement_Name()));
-		map.put(Agreement.class, map.get(AgreementDescriptor.class));
 	}
 
 	@Override

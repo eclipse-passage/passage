@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,15 +15,9 @@ package org.eclipse.passage.lic.agreements.model.impl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.passage.lic.agreements.AgreementDescriptor;
-
-import org.eclipse.passage.lic.agreements.AgreementGroupDescriptor;
 import org.eclipse.passage.lic.agreements.model.api.Agreement;
-
 import org.eclipse.passage.lic.agreements.model.api.AgreementGroup;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsFactory;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
@@ -48,20 +42,6 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 	 * @generated
 	 */
 	private EClass agreementGroupEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass agreementDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass agreementGroupDescriptorEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -243,26 +223,6 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 	 * @generated
 	 */
 	@Override
-	public EClass getAgreementDescriptor() {
-		return agreementDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getAgreementGroupDescriptor() {
-		return agreementGroupDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public AgreementsFactory getAgreementsFactory() {
 		return (AgreementsFactory) getEFactoryInstance();
 	}
@@ -287,10 +247,6 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 		isCreated = true;
 
 		// Create classes and their features
-		agreementDescriptorEClass = createEClass(AGREEMENT_DESCRIPTOR);
-
-		agreementGroupDescriptorEClass = createEClass(AGREEMENT_GROUP_DESCRIPTOR);
-
 		agreementEClass = createEClass(AGREEMENT);
 		createEAttribute(agreementEClass, AGREEMENT__IDENTIFIER);
 		createEAttribute(agreementEClass, AGREEMENT__SPDX);
@@ -334,16 +290,8 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		agreementEClass.getESuperTypes().add(this.getAgreementDescriptor());
-		agreementGroupEClass.getESuperTypes().add(this.getAgreementGroupDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(agreementDescriptorEClass, AgreementDescriptor.class, "AgreementDescriptor", IS_ABSTRACT, //$NON-NLS-1$
-				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(agreementGroupDescriptorEClass, AgreementGroupDescriptor.class, "AgreementGroupDescriptor", //$NON-NLS-1$
-				IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(agreementEClass, Agreement.class, "Agreement", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAgreement_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, Agreement.class, //$NON-NLS-1$
@@ -375,4 +323,4 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 		createResource(eNS_URI);
 	}
 
-} //AgreementsPackageImpl
+} // AgreementsPackageImpl

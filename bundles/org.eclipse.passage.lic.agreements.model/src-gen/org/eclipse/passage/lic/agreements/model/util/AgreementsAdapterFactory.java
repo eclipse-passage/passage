@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,22 +14,17 @@ package org.eclipse.passage.lic.agreements.model.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.passage.lic.agreements.AgreementDescriptor;
-
-import org.eclipse.passage.lic.agreements.AgreementGroupDescriptor;
-import org.eclipse.passage.lic.agreements.model.api.*;
-
+import org.eclipse.passage.lic.agreements.model.api.Agreement;
+import org.eclipse.passage.lic.agreements.model.api.AgreementGroup;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
- * It provides an adapter <code>createXXX</code> method for each class of the model.
+ * It provides an adapter <code>createXXX</code> method for each class of the
+ * model.
  * <!-- end-user-doc -->
  * @see org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage
  * @generated
@@ -58,7 +53,8 @@ public class AgreementsAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * Returns whether this factory is applicable for the type of the object.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
+	 * This implementation returns <code>true</code> if the object is either the
+	 * model's package or is an instance object of the model.
 	 * <!-- end-user-doc -->
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
@@ -81,16 +77,6 @@ public class AgreementsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected AgreementsSwitch<Adapter> modelSwitch = new AgreementsSwitch<Adapter>() {
-		@Override
-		public Adapter caseAgreementDescriptor(AgreementDescriptor object) {
-			return createAgreementDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseAgreementGroupDescriptor(AgreementGroupDescriptor object) {
-			return createAgreementGroupDescriptorAdapter();
-		}
-
 		@Override
 		public Adapter caseAgreement(Agreement object) {
 			return createAgreementAdapter();
@@ -124,7 +110,8 @@ public class AgreementsAdapterFactory extends AdapterFactoryImpl {
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.agreements.model.api.Agreement <em>Agreement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * it's useful to ignore a case when inheritance will catch all the cases
+	 * anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.agreements.model.api.Agreement
@@ -138,41 +125,14 @@ public class AgreementsAdapterFactory extends AdapterFactoryImpl {
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.agreements.model.api.AgreementGroup <em>Agreement Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * it's useful to ignore a case when inheritance will catch all the cases
+	 * anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.agreements.model.api.AgreementGroup
 	 * @generated
 	 */
 	public Adapter createAgreementGroupAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.agreements.AgreementDescriptor <em>Agreement Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.agreements.AgreementDescriptor
-	 * @generated
-	 */
-	public Adapter createAgreementDescriptorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.agreements.AgreementGroupDescriptor <em>Agreement Group Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.agreements.AgreementGroupDescriptor
-	 * @generated
-	 */
-	public Adapter createAgreementGroupDescriptorAdapter() {
 		return null;
 	}
 
@@ -188,4 +148,4 @@ public class AgreementsAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //AgreementsAdapterFactory
+} // AgreementsAdapterFactory

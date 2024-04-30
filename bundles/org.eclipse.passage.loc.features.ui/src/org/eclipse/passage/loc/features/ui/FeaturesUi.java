@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -11,6 +11,8 @@
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
 package org.eclipse.passage.loc.features.ui;
+
+import java.util.Optional;
 
 import org.eclipse.passage.lic.features.FeatureDescriptor;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
@@ -31,7 +33,7 @@ public class FeaturesUi {
 		String title = FeatureUiMessages.FeaturesUi_select_feature_title;
 		Iterable<? extends FeatureDescriptor> input = registry.getFeatures();
 		Class<FeatureDescriptor> clazz = FeatureDescriptor.class;
-		return LocWokbench.selectClassifier(shell, classifier, title, input, initial, clazz);
+		return LocWokbench.selectClassifier(shell, classifier, title, input, Optional.ofNullable(initial), clazz);
 	}
 
 }

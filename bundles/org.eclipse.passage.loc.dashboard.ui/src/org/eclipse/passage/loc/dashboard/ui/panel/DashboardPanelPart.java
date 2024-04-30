@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -24,8 +24,8 @@ import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
-import org.eclipse.passage.lic.agreements.AgreementDescriptor;
-import org.eclipse.passage.lic.agreements.AgreementGroupDescriptor;
+import org.eclipse.passage.lic.agreements.model.api.Agreement;
+import org.eclipse.passage.lic.agreements.model.api.AgreementGroup;
 import org.eclipse.passage.lic.emf.meta.ComposableClassMetadata;
 import org.eclipse.passage.lic.features.FeatureDescriptor;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
@@ -255,26 +255,26 @@ public class DashboardPanelPart {
 	@Inject
 	@Optional
 	public void createdAgreementsGroup(
-			@UIEventTopic(AgreementRegistryEvents.AGREEMENT_GROUP_CREATE) AgreementGroupDescriptor input) {
+			@UIEventTopic(AgreementRegistryEvents.AGREEMENT_GROUP_CREATE) AgreementGroup input) {
 		dashboard.updateAgreementInfo(agreements);
 	}
 
 	@Inject
 	@Optional
 	public void deletedAgreementsGroup(
-			@UIEventTopic(AgreementRegistryEvents.AGREEMENT_GROUP_DELETE) AgreementGroupDescriptor input) {
+			@UIEventTopic(AgreementRegistryEvents.AGREEMENT_GROUP_DELETE) AgreementGroup input) {
 		dashboard.updateAgreementInfo(agreements);
 	}
 
 	@Inject
 	@Optional
-	public void createdAgreement(@UIEventTopic(AgreementRegistryEvents.AGREEMENT_CREATE) AgreementDescriptor input) {
+	public void createdAgreement(@UIEventTopic(AgreementRegistryEvents.AGREEMENT_CREATE) Agreement input) {
 		dashboard.updateAgreementInfo(agreements);
 	}
 
 	@Inject
 	@Optional
-	public void deletedAgreement(@UIEventTopic(AgreementRegistryEvents.AGREEMENT_DELETE) AgreementDescriptor input) {
+	public void deletedAgreement(@UIEventTopic(AgreementRegistryEvents.AGREEMENT_DELETE) Agreement input) {
 		dashboard.updateAgreementInfo(agreements);
 	}
 

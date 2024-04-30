@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,8 +15,7 @@ package org.eclipse.passage.loc.internal.agreements.ui;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.agreements.AgreementDescriptor;
-import org.eclipse.passage.lic.agreements.AgreementGroupDescriptor;
+import org.eclipse.passage.lic.agreements.model.api.Agreement;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 import org.eclipse.passage.lic.api.MandatoryService;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
@@ -32,18 +31,18 @@ import org.eclipse.passage.loc.jface.dialogs.Appearance;
  * 
  */
 @SuppressWarnings("restriction")
-public final class SelectAgreement extends SupplySelectRequest<AgreementDescriptor> {
+public final class SelectAgreement extends SupplySelectRequest<Agreement> {
 
 	public SelectAgreement(MandatoryService context) {
 		super(context);
 	}
 
 	@Override
-	public SelectRequest<AgreementDescriptor> get() {
-		return new SelectRequest<>(AgreementDescriptor.class, domain(), input(), appearance());
+	public SelectRequest<Agreement> get() {
+		return new SelectRequest<>(Agreement.class, domain(), input(), appearance());
 	}
 
-	private Supplier<Iterable<AgreementDescriptor>> input() {
+	private Supplier<Iterable<Agreement>> input() {
 		return () -> new ArrayList<>(context.get(AgreementRegistry.class).agreements());
 	}
 

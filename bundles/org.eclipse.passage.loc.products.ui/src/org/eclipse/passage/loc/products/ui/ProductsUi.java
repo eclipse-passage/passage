@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -11,6 +11,8 @@
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
 package org.eclipse.passage.loc.products.ui;
+
+import java.util.Optional;
 
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
@@ -32,16 +34,16 @@ public class ProductsUi {
 		String title = ProductsUiMessages.ProductsUi_select_product;
 		Iterable<? extends ProductDescriptor> input = registry.getProducts();
 		Class<ProductDescriptor> clazz = ProductDescriptor.class;
-		return LocWokbench.selectClassifier(shell, classifier, title, input, initial, clazz);
+		return LocWokbench.selectClassifier(shell, classifier, title, input, Optional.ofNullable(initial), clazz);
 	}
 
-	public static ProductVersionDescriptor selectProductVersionDescriptor(Shell shell,
-			ProductRegistry registry, ProductVersionDescriptor initial) {
+	public static ProductVersionDescriptor selectProductVersionDescriptor(Shell shell, ProductRegistry registry,
+			ProductVersionDescriptor initial) {
 		String classifier = ProductsPackage.eINSTANCE.getProductVersion().getName();
 		String title = ProductsUiMessages.ProductsUi_select_product_line;
 		Iterable<? extends ProductVersionDescriptor> input = registry.getProductVersions();
 		Class<ProductVersionDescriptor> clazz = ProductVersionDescriptor.class;
-		return LocWokbench.selectClassifier(shell, classifier, title, input, initial, clazz);
+		return LocWokbench.selectClassifier(shell, classifier, title, input, Optional.ofNullable(initial), clazz);
 	}
 
 }

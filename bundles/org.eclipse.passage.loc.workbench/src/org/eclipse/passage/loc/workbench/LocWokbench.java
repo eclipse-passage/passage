@@ -139,7 +139,7 @@ public class LocWokbench {
 	 * @since 1.0
 	 */
 	public static <C> C selectClassifier(Shell shell, String classifier, String title, Iterable<? extends C> input,
-			C initial, Class<C> clazz) {
+			Optional<C> initial, Class<C> clazz) {
 		Object selected = selectClassifier(shell, classifier, title, input, initial);
 		if (clazz.isInstance(selected)) {
 			return clazz.cast(selected);

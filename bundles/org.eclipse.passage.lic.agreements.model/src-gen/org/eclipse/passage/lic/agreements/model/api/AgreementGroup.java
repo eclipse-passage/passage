@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,7 +14,6 @@ package org.eclipse.passage.lic.agreements.model.api;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lic.agreements.AgreementGroupDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,10 +31,10 @@ import org.eclipse.passage.lic.agreements.AgreementGroupDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage#getAgreementGroup()
- * @model superTypes="org.eclipse.passage.lic.agreements.model.api.AgreementGroupDescriptor"
+ * @model
  * @generated
  */
-public interface AgreementGroup extends EObject, AgreementGroupDescriptor {
+public interface AgreementGroup extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -46,7 +45,6 @@ public interface AgreementGroup extends EObject, AgreementGroupDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getIdentifier();
 
 	/**
@@ -69,7 +67,6 @@ public interface AgreementGroup extends EObject, AgreementGroupDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getName();
 
 	/**
@@ -92,7 +89,6 @@ public interface AgreementGroup extends EObject, AgreementGroupDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getDescription();
 
 	/**
@@ -115,7 +111,6 @@ public interface AgreementGroup extends EObject, AgreementGroupDescriptor {
 	 * @model containment="true"
 	 * @generated
 	 */
-	@Override
 	EList<Agreement> getAgreements();
 
 } // AgreementsGroup

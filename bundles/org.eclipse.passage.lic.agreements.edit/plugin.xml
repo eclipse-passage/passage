@@ -17,9 +17,9 @@
 <plugin>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <!-- @generated features -->
+      <!-- @generated agreements -->
       <factory
-            uri="http://www.eclipse.org/passage/lic/agreements/0.1.0"
+            uri="http://www.eclipse.org/passage/lic/agreements/3.0.0"
             class="org.eclipse.passage.lic.agreements.edit.providers.AgreementsItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
