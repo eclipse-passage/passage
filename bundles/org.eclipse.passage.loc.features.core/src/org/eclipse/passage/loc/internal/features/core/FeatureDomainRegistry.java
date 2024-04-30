@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2022 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,10 +14,10 @@ package org.eclipse.passage.loc.internal.features.core;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
@@ -25,9 +25,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.features.FeatureDescriptor;
-import org.eclipse.passage.lic.features.FeatureSetDescriptor;
-import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
+import org.eclipse.passage.lic.features.model.api.Feature;
+import org.eclipse.passage.lic.features.model.api.FeatureSet;
+import org.eclipse.passage.lic.features.model.api.FeatureVersion;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.features.model.util.FeaturesResourceImpl;
 import org.eclipse.passage.lic.internal.equinox.events.EquinoxEvent;
@@ -52,12 +52,12 @@ import org.osgi.service.event.EventAdmin;
 @SuppressWarnings("restriction")
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + FeaturesPackage.eNAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "features_xmi" })
-public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescriptor>
-		implements FeatureRegistry, EditingDomainRegistry<FeatureSetDescriptor> {
+public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSet>
+		implements FeatureRegistry, EditingDomainRegistry<FeatureSet> {
 
-	private final Map<String, FeatureSetDescriptor> featureSetIndex = new HashMap<>();
-	private final Map<String, FeatureDescriptor> featureIndex = new HashMap<>();
-	private final Map<String, Map<String, FeatureVersionDescriptor>> featureVersionIndex = new HashMap<>();
+	private final Map<String, FeatureSet> sets = new HashMap<>();
+	private final Map<String, Feature> features = new HashMap<>();
+	private final Map<String, Map<String, FeatureVersion>> versions = new HashMap<>();
 
 	private EventAdmin events;
 
@@ -90,13 +90,10 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 	@Deactivate
 	@Override
 	public void deactivate(Map<String, Object> properties) {
-		Collection<Map<String, FeatureVersionDescriptor>> values = featureVersionIndex.values();
-		for (Map<String, FeatureVersionDescriptor> map : values) {
-			map.clear();
-		}
-		featureVersionIndex.clear();
-		featureIndex.clear();
-		featureSetIndex.clear();
+		versions.values().forEach(Map::clear);
+		versions.clear();
+		features.clear();
+		sets.clear();
 		super.deactivate(properties);
 	}
 
@@ -106,159 +103,106 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 	}
 
 	@Override
-	public Class<FeatureSetDescriptor> getContentClass() {
-		return FeatureSetDescriptor.class;
+	public Class<FeatureSet> getContentClass() {
+		return FeatureSet.class;
 	}
 
 	@Override
-	public String resolveIdentifier(FeatureSetDescriptor content) {
+	public String resolveIdentifier(FeatureSet content) {
 		return content.getIdentifier();
 	}
 
 	@Override
-	public Iterable<? extends FeatureSetDescriptor> getFeatureSets() {
-		return new ArrayList<>(featureSetIndex.values());
+	public Collection<FeatureSet> featureSets() {
+		return new ArrayList<>(sets.values());
 	}
 
 	@Override
-	public FeatureSetDescriptor getFeatureSet(String identifier) {
-		return featureSetIndex.get(identifier);
+	public Optional<FeatureSet> featureSet(String identifier) {
+		return Optional.ofNullable(sets.get(identifier));
 	}
 
 	@Override
-	public Iterable<? extends FeatureDescriptor> getFeatures() {
-		return new ArrayList<>(featureIndex.values());
+	public Collection<Feature> features() {
+		return new ArrayList<>(features.values());
 	}
 
 	@Override
-	public Iterable<? extends FeatureDescriptor> getFeatures(String featureSetId) {
-		FeatureSetDescriptor featureSet = featureSetIndex.get(featureSetId);
-		if (featureSet == null) {
-			return Collections.emptyList();
-		}
-		List<FeatureDescriptor> features = new ArrayList<>();
-		featureSet.getFeatures().forEach(features::add);
-		return features;
+	public Optional<Feature> feature(String id) {
+		return Optional.ofNullable(features.get(id));
 	}
 
 	@Override
-	public FeatureDescriptor getFeature(String identifier) {
-		return featureIndex.get(identifier);
-	}
-
-	@Override
-	public Iterable<? extends FeatureVersionDescriptor> getFeatureVersions() {
-		List<FeatureVersionDescriptor> list = new ArrayList<>();
-		Collection<Map<String, FeatureVersionDescriptor>> values = featureVersionIndex.values();
-		for (Map<String, FeatureVersionDescriptor> map : values) {
+	public Collection<FeatureVersion> featureVersions() {
+		List<FeatureVersion> list = new ArrayList<>();
+		Collection<Map<String, FeatureVersion>> values = versions.values();
+		for (Map<String, FeatureVersion> map : values) {
 			list.addAll(map.values());
 		}
 		return list;
 	}
 
 	@Override
-	public Iterable<? extends FeatureVersionDescriptor> getFeatureVersions(String featureId) {
-		Map<String, FeatureVersionDescriptor> map = featureVersionIndex.get(featureId);
-		if (map == null) {
-			return Collections.emptyList();
-		}
-		return new ArrayList<>(map.values());
-	}
-
-	@Override
-	public FeatureVersionDescriptor getFeatureVersion(String featureId, String version) {
-		Map<String, FeatureVersionDescriptor> map = featureVersionIndex.get(featureId);
-		if (map == null) {
-			return null;
-		}
-		return map.get(version);
-	}
-
-	@Override
-	protected DomainContentAdapter<FeatureSetDescriptor, FeatureDomainRegistry> createContentAdapter() {
+	protected DomainContentAdapter<FeatureSet, FeatureDomainRegistry> createContentAdapter() {
 		return new FeaturesDomainRegistryTracker(this);
 	}
 
-	@Override
-	public void registerFeatureSet(FeatureSetDescriptor featureSet) {
-		String identifier = featureSet.getIdentifier();
-		FeatureSetDescriptor existing = featureSetIndex.put(identifier, featureSet);
-		if ((existing != null) && (existing != featureSet)) {
-			String msg = NLS.bind(FeaturesCoreMessages.FeatureDomain_instance_duplication_message, existing,
-					featureSet);
-			Platform.getLog(getClass()).warn(msg);
+	void registerFeatureSet(FeatureSet fs) {
+		FeatureSet existing = sets.put(fs.getIdentifier(), fs);
+		if ((existing != null) && (existing != fs)) {
+			Platform.getLog(getClass())
+					.warn(NLS.bind(FeaturesCoreMessages.FeatureDomain_instance_duplication_message, existing, fs));
 		}
-		events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_SET_CREATE, featureSet).get());
-		Iterable<? extends FeatureDescriptor> features = featureSet.getFeatures();
-		for (FeatureDescriptor feature : features) {
-			registerFeature(feature);
-		}
+		events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_SET_CREATE, fs).get());
+		fs.getFeatures().forEach(this::registerFeature);
 	}
 
-	@Override
-	public void registerFeature(FeatureDescriptor feature) {
-		String identifier = feature.getIdentifier();
-		FeatureDescriptor existing = featureIndex.put(identifier, feature);
+	void registerFeature(Feature feature) {
+		Feature existing = features.put(feature.getIdentifier(), feature);
 		if ((existing != null) && (existing != feature)) {
-			String msg = NLS.bind(FeaturesCoreMessages.FeatureDomain_instance_duplication_message, existing, feature);
-			Platform.getLog(getClass()).warn(msg);
+			Platform.getLog(getClass())
+					.warn(NLS.bind(FeaturesCoreMessages.FeatureDomain_instance_duplication_message, existing, feature));
 		}
 		events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_CREATE, feature).get());
-		Iterable<? extends FeatureVersionDescriptor> featureVersions = feature.getFeatureVersions();
-		for (FeatureVersionDescriptor featureVersion : featureVersions) {
-			registerFeatureVersion(feature, featureVersion);
-		}
+		feature.getFeatureVersions().forEach(fv -> registerFeatureVersion(feature, fv));
 	}
 
-	@Override
-	public void registerFeatureVersion(FeatureDescriptor feature, FeatureVersionDescriptor featureVersion) {
+	void registerFeatureVersion(Feature feature, FeatureVersion version) {
 		String identifier = feature.getIdentifier();
-		Map<String, FeatureVersionDescriptor> map = featureVersionIndex.computeIfAbsent(identifier,
-				key -> new HashMap<>());
-		String version = featureVersion.getVersion();
-		FeatureVersionDescriptor existing = map.put(version, featureVersion);
-		if ((existing != null) && (existing != featureVersion)) {
-			String msg = NLS.bind(FeaturesCoreMessages.FeatureDomain_instance_duplication_message, existing,
-					featureVersion);
-			Platform.getLog(getClass()).warn(msg);
+		Map<String, FeatureVersion> map = versions.computeIfAbsent(identifier, key -> new HashMap<>());
+		FeatureVersion existing = map.put(version.getVersion(), version);
+		if ((existing != null) && (existing != version)) {
+			Platform.getLog(getClass())
+					.warn(NLS.bind(FeaturesCoreMessages.FeatureDomain_instance_duplication_message, existing, version));
 		}
-		events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_VERSION_CREATE, featureVersion).get());
+		events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_VERSION_CREATE, version).get());
 	}
 
-	@Override
-	public void unregisterFeatureSet(String featureSetId) {
-		FeatureSetDescriptor removed = featureSetIndex.remove(featureSetId);
+	void unregisterFeatureSet(String id) {
+		FeatureSet removed = sets.remove(id);
 		if (removed != null) {
 			events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_SET_DELETE, removed).get());
-			Iterable<? extends FeatureDescriptor> features = removed.getFeatures();
-			for (FeatureDescriptor feature : features) {
-				unregisterFeature(feature.getIdentifier());
-			}
+			removed.getFeatures().stream().map(Feature::getIdentifier).forEach(this::unregisterFeature);
 		}
 	}
 
-	@Override
-	public void unregisterFeature(String featureId) {
-		FeatureDescriptor removed = featureIndex.remove(featureId);
+	void unregisterFeature(String id) {
+		Feature removed = features.remove(id);
 		if (removed != null) {
 			events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_DELETE, removed).get());
-			Iterable<? extends FeatureVersionDescriptor> featureVersions = removed.getFeatureVersions();
-			for (FeatureVersionDescriptor featureVersion : featureVersions) {
-				unregisterFeatureVersion(featureId, featureVersion.getVersion());
-			}
+			removed.getFeatureVersions().forEach(fv -> unregisterFeatureVersion(id, fv.getVersion()));
 		}
 	}
 
-	@Override
-	public void unregisterFeatureVersion(String featureId, String version) {
-		Map<String, FeatureVersionDescriptor> map = featureVersionIndex.get(featureId);
+	void unregisterFeatureVersion(String featureId, String version) {
+		Map<String, FeatureVersion> map = versions.get(featureId);
 		if (map != null) {
-			FeatureVersionDescriptor removed = map.remove(version);
+			FeatureVersion removed = map.remove(version);
 			if (removed != null) {
 				events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_VERSION_DELETE, removed).get());
 			}
 			if (map.isEmpty()) {
-				featureVersionIndex.remove(version);
+				versions.remove(version);
 			}
 		}
 	}
@@ -279,7 +223,7 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 	}
 
 	@Override
-	public void registerContent(FeatureSetDescriptor content) {
+	public void registerContent(FeatureSet content) {
 		registerFeatureSet(content);
 	}
 

@@ -27,9 +27,9 @@ import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.passage.lic.agreements.model.api.Agreement;
 import org.eclipse.passage.lic.agreements.model.api.AgreementGroup;
 import org.eclipse.passage.lic.emf.meta.ComposableClassMetadata;
-import org.eclipse.passage.lic.features.FeatureDescriptor;
-import org.eclipse.passage.lic.features.FeatureSetDescriptor;
-import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
+import org.eclipse.passage.lic.features.model.api.Feature;
+import org.eclipse.passage.lic.features.model.api.FeatureSet;
+import org.eclipse.passage.lic.features.model.api.FeatureVersion;
 import org.eclipse.passage.lic.internal.agreements.model.AgreementsClassMetadata;
 import org.eclipse.passage.lic.internal.features.model.FeaturesClassMetadata;
 import org.eclipse.passage.lic.internal.licenses.model.LicensesClassMetadata;
@@ -138,39 +138,39 @@ public class DashboardPanelPart {
 
 	@Inject
 	@Optional
-	public void createdFeatureSet(@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_CREATE) FeatureSetDescriptor input) {
+	public void createdFeatureSet(@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_CREATE) FeatureSet input) {
 		dashboard.updateFeatureInfo(features);
 	}
 
 	@Inject
 	@Optional
-	public void deletedFeatureSet(@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_DELETE) FeatureSetDescriptor input) {
+	public void deletedFeatureSet(@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_DELETE) FeatureSet input) {
 		dashboard.updateFeatureInfo(features);
 	}
 
 	@Inject
 	@Optional
-	public void createdFeature(@UIEventTopic(FeatureRegistryEvents.FEATURE_CREATE) FeatureDescriptor input) {
+	public void createdFeature(@UIEventTopic(FeatureRegistryEvents.FEATURE_CREATE) Feature input) {
 		dashboard.updateFeatureInfo(features);
 	}
 
 	@Inject
 	@Optional
-	public void deletedFeature(@UIEventTopic(FeatureRegistryEvents.FEATURE_DELETE) FeatureDescriptor input) {
+	public void deletedFeature(@UIEventTopic(FeatureRegistryEvents.FEATURE_DELETE) Feature input) {
 		dashboard.updateFeatureInfo(features);
 	}
 
 	@Inject
 	@Optional
 	public void createdFeatureVersion(
-			@UIEventTopic(FeatureRegistryEvents.FEATURE_VERSION_CREATE) FeatureVersionDescriptor input) {
+			@UIEventTopic(FeatureRegistryEvents.FEATURE_VERSION_CREATE) FeatureVersion input) {
 		dashboard.updateFeatureInfo(features);
 	}
 
 	@Inject
 	@Optional
 	public void deletedFeatureVersion(
-			@UIEventTopic(FeatureRegistryEvents.FEATURE_VERSION_DELETE) FeatureVersionDescriptor input) {
+			@UIEventTopic(FeatureRegistryEvents.FEATURE_VERSION_DELETE) FeatureVersion input) {
 		dashboard.updateFeatureInfo(features);
 	}
 

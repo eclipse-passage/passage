@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,10 +13,7 @@
 package org.eclipse.passage.lic.features.model.api;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.passage.lic.features.FeatureDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,10 +33,10 @@ import org.eclipse.passage.lic.features.FeatureDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.features.model.meta.FeaturesPackage#getFeature()
- * @model superTypes="org.eclipse.passage.lic.features.model.api.FeatureDescriptor"
+ * @model
  * @generated
  */
-public interface Feature extends EObject, FeatureDescriptor {
+public interface Feature extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -50,7 +47,6 @@ public interface Feature extends EObject, FeatureDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getIdentifier();
 
 	/**
@@ -73,7 +69,6 @@ public interface Feature extends EObject, FeatureDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getProvider();
 
 	/**
@@ -96,7 +91,6 @@ public interface Feature extends EObject, FeatureDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getName();
 
 	/**
@@ -119,7 +113,6 @@ public interface Feature extends EObject, FeatureDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getDescription();
 
 	/**
@@ -144,7 +137,6 @@ public interface Feature extends EObject, FeatureDescriptor {
 	 * @model opposite="features" required="true" transient="false"
 	 * @generated
 	 */
-	@Override
 	FeatureSet getFeatureSet();
 
 	/**
@@ -169,7 +161,6 @@ public interface Feature extends EObject, FeatureDescriptor {
 	 * @model opposite="feature" containment="true"
 	 * @generated
 	 */
-	@Override
 	EList<FeatureVersion> getFeatureVersions();
 
 } // Feature

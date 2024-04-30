@@ -14,8 +14,6 @@ package org.eclipse.passage.lic.features.model.tests;
 
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.passage.lic.features.FeatureDescriptor;
-import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.features.model.api.Feature;
 import org.eclipse.passage.lic.features.model.api.FeatureSet;
 import org.eclipse.passage.lic.internal.features.model.FeaturesClassMetadata;
@@ -31,20 +29,17 @@ public class FeaturesClassMetadataTest {
 
 	@Test
 	public void featureSetMetadata() {
-		assertTrue(metadata.find(FeatureSetDescriptor.class).isPresent());
 		assertTrue(metadata.find(FeatureSet.class).isPresent());
 	}
 
 	@Test
 	public void featureMetadata() {
-		assertTrue(metadata.find(FeatureDescriptor.class).isPresent());
 		assertTrue(metadata.find(Feature.class).isPresent());
 	}
 
 	@Test
 	public void featureVersionMetadata() {
 		// FIXME: implement
-//		assertTrue(metadata.find(FeatureVersionDescriptor.class).isPresent());
 //		assertTrue(metadata.find(FeatureVersion.class).isPresent());
 	}
 }

@@ -8,7 +8,7 @@
     editorPluginClass="org.eclipse.passage.lic.features.editor.FeaturesEditorPlugin"
     nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     codeFormatting="true" testSuiteClass="org.eclipse.passage.lic.features.model.tests.FeaturesAllTests"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="17.0" copyrightFields="false"
     editPluginID="org.eclipse.passage.lic.features.edit" editorPluginID="org.eclipse.passage.lic.features.editor"
     language="" operationReflection="true" runtimePlatform="RCP" importOrganizing="true"
     cleanup="true" oSGiCompatible="true">
@@ -18,9 +18,6 @@
       classPackageSuffix="model.impl" utilityPackageSuffix="model.util" providerPackageSuffix="edit.providers"
       presentationPackageSuffix="editor" testsPackageSuffix="model.tests" literalsInterface="false"
       ecorePackage="../../org.eclipse.passage.lic.features.ecore/model/features.ecore#/">
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureSetDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureVersionDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureSet">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureSet/identifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureSet/name"/>

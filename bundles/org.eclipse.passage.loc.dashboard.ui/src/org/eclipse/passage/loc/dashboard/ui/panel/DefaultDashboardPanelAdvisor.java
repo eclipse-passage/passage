@@ -124,9 +124,9 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	@Override
 	public void updateFeatureInfo(FeatureRegistry featureRegistry) {
-		featureSets.update(featureRegistry.getFeatureSets());
-		features.update(featureRegistry.getFeatures());
-		featureVersions.update(featureRegistry.getFeatureVersions());
+		featureSets.update(featureRegistry.featureSets());
+		features.update(featureRegistry.features());
+		featureVersions.update(featureRegistry.featureVersions());
 	}
 
 	@Override

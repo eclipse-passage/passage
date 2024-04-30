@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,7 +13,6 @@
 package org.eclipse.passage.lic.features.model.meta;
 
 import org.eclipse.emf.ecore.EFactory;
-
 import org.eclipse.passage.lic.features.model.api.Feature;
 import org.eclipse.passage.lic.features.model.api.FeatureSet;
 import org.eclipse.passage.lic.features.model.api.FeatureVersion;
@@ -71,4 +70,4 @@ public interface FeaturesFactory extends EFactory {
 	 */
 	FeaturesPackage getFeaturesPackage();
 
-} //FeaturesFactory
+} // FeaturesFactory

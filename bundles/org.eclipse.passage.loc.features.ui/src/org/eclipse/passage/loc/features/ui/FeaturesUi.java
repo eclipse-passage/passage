@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.features.ui;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lic.features.FeatureDescriptor;
+import org.eclipse.passage.lic.features.model.api.Feature;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.loc.internal.features.FeatureRegistry;
 import org.eclipse.passage.loc.internal.features.ui.i18n.FeatureUiMessages;
@@ -27,13 +27,10 @@ public class FeaturesUi {
 
 	public static final String PERSPECTIVE_MAIN = BUNDLE_SYMBOLIC_NAME + '.' + "perspective.main"; //$NON-NLS-1$
 
-	public static FeatureDescriptor selectFeatureDescriptor(Shell shell, FeatureRegistry registry,
-			FeatureDescriptor initial) {
+	public static Feature selectFeatureDescriptor(Shell shell, FeatureRegistry registry, Optional<Feature> initial) {
 		String classifier = FeaturesPackage.eINSTANCE.getFeature().getName();
 		String title = FeatureUiMessages.FeaturesUi_select_feature_title;
-		Iterable<? extends FeatureDescriptor> input = registry.getFeatures();
-		Class<FeatureDescriptor> clazz = FeatureDescriptor.class;
-		return LocWokbench.selectClassifier(shell, classifier, title, input, Optional.ofNullable(initial), clazz);
+		return LocWokbench.selectClassifier(shell, classifier, title, registry.features(), initial, Feature.class);
 	}
 
 }

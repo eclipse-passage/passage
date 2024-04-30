@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,17 +16,10 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.passage.lic.features.FeatureDescriptor;
-import org.eclipse.passage.lic.features.FeatureSetDescriptor;
-import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
-
 import org.eclipse.passage.lic.features.model.api.Feature;
 import org.eclipse.passage.lic.features.model.api.FeatureSet;
 import org.eclipse.passage.lic.features.model.api.FeatureVersion;
-
 import org.eclipse.passage.lic.features.model.meta.FeaturesFactory;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 
@@ -37,27 +30,6 @@ import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
  * @generated
  */
 public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass featureSetDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass featureDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass featureVersionDescriptorEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -141,36 +113,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(FeaturesPackage.eNS_URI, theFeaturesPackage);
 		return theFeaturesPackage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getFeatureSetDescriptor() {
-		return featureSetDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getFeatureDescriptor() {
-		return featureDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getFeatureVersionDescriptor() {
-		return featureVersionDescriptorEClass;
 	}
 
 	/**
@@ -363,12 +305,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 		isCreated = true;
 
 		// Create classes and their features
-		featureSetDescriptorEClass = createEClass(FEATURE_SET_DESCRIPTOR);
-
-		featureDescriptorEClass = createEClass(FEATURE_DESCRIPTOR);
-
-		featureVersionDescriptorEClass = createEClass(FEATURE_VERSION_DESCRIPTOR);
-
 		featureSetEClass = createEClass(FEATURE_SET);
 		createEAttribute(featureSetEClass, FEATURE_SET__IDENTIFIER);
 		createEAttribute(featureSetEClass, FEATURE_SET__NAME);
@@ -418,20 +354,8 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		featureSetEClass.getESuperTypes().add(this.getFeatureSetDescriptor());
-		featureEClass.getESuperTypes().add(this.getFeatureDescriptor());
-		featureVersionEClass.getESuperTypes().add(this.getFeatureVersionDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(featureSetDescriptorEClass, FeatureSetDescriptor.class, "FeatureSetDescriptor", IS_ABSTRACT, //$NON-NLS-1$
-				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(featureDescriptorEClass, FeatureDescriptor.class, "FeatureDescriptor", IS_ABSTRACT, IS_INTERFACE, //$NON-NLS-1$
-				!IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(featureVersionDescriptorEClass, FeatureVersionDescriptor.class, "FeatureVersionDescriptor", //$NON-NLS-1$
-				IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(featureSetEClass, FeatureSet.class, "FeatureSet", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFeatureSet_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, //$NON-NLS-1$
@@ -477,4 +401,4 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 		createResource(eNS_URI);
 	}
 
-} //FeaturesPackageImpl
+} // FeaturesPackageImpl
