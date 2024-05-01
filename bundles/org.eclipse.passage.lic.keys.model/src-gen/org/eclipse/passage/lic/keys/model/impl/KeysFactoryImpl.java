@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,13 +15,10 @@ package org.eclipse.passage.lic.keys.model.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.passage.lic.keys.model.api.*;
-
+import org.eclipse.passage.lic.keys.model.api.KeyPair;
+import org.eclipse.passage.lic.keys.model.api.ProductRef;
 import org.eclipse.passage.lic.keys.model.meta.KeysFactory;
 import org.eclipse.passage.lic.keys.model.meta.KeysPackage;
 
@@ -120,4 +117,4 @@ public class KeysFactoryImpl extends EFactoryImpl implements KeysFactory {
 		return KeysPackage.eINSTANCE;
 	}
 
-} //KeysFactoryImpl
+} // KeysFactoryImpl

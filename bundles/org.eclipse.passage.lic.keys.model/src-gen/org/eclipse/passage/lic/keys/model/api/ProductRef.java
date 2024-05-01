@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,7 +13,6 @@
 package org.eclipse.passage.lic.keys.model.api;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lic.keys.ProductRefRO;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,10 +28,10 @@ import org.eclipse.passage.lic.keys.ProductRefRO;
  * </ul>
  *
  * @see org.eclipse.passage.lic.keys.model.meta.KeysPackage#getProductRef()
- * @model superTypes="org.eclipse.passage.lic.keys.model.api.ProductRefRO"
+ * @model
  * @generated
  */
-public interface ProductRef extends EObject, ProductRefRO {
+public interface ProductRef extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -43,7 +42,6 @@ public interface ProductRef extends EObject, ProductRefRO {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getIdentifier();
 
 	/**
@@ -66,7 +64,6 @@ public interface ProductRef extends EObject, ProductRefRO {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getVersion();
 
 	/**

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="keys" nsURI="http://www.eclipse.org/passage/lic/keys/2.0.0"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="keys" nsURI="http://www.eclipse.org/passage/lic/keys/3.0.0"
     nsPrefix="org.eclipse.passage.lic">
-  <eClassifiers xsi:type="ecore:EClass" name="KeyPair" eSuperTypes="#//KeyPairRO">
+  <eClassifiers xsi:type="ecore:EClass" name="KeyPair">
     <eStructuralFeatures xsi:type="ecore:EReference" name="product" lowerBound="1"
         eType="#//ProductRef" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="algorithm" lowerBound="1"
@@ -11,14 +11,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pub" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="scr" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProductRef" eSuperTypes="#//ProductRefRO">
+  <eClassifiers xsi:type="ecore:EClass" name="ProductRef">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="KeyPairRO" instanceClassName="org.eclipse.passage.lic.keys.KeyPairRO"
-      abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ProductRefRO" instanceClassName="org.eclipse.passage.lic.keys.ProductRefRO"
-      abstract="true" interface="true"/>
 </ecore:EPackage>

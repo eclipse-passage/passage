@@ -14,6 +14,9 @@ package org.eclipse.passage.lic.emf.resource;
 
 import org.eclipse.emf.ecore.resource.Resource;
 
+/**
+ * @since 3.0
+ */
 public interface BlindResourceFactory {
 
 	Resource createResource();

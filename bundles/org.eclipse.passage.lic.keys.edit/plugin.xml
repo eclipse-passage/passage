@@ -19,7 +19,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated keys -->
       <factory
-            uri="http://www.eclipse.org/passage/lic/keys/2.0.0"
+            uri="http://www.eclipse.org/passage/lic/keys/3.0.0"
             class="org.eclipse.passage.lic.keys.edit.providers.KeysItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

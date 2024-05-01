@@ -16,9 +16,11 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.passage.lic.internal.keys.model.migration.KeysResourceHandler;
 
 /**
  * @generated NOT
+ * @since 3.0
  */
 public class KeysResourceImpl extends XMIResourceImpl {
 	/**
@@ -44,6 +46,7 @@ public class KeysResourceImpl extends XMIResourceImpl {
 		super.init();
 		Map<Object, Object> options = getDefaultLoadOptions();
 		options.put(OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
+		options.put(OPTION_RESOURCE_HANDLER, new KeysResourceHandler());
 	}
 
 }

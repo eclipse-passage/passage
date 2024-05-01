@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,7 +13,6 @@
 package org.eclipse.passage.lic.keys.model.api;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lic.keys.KeyPairRO;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,10 +31,10 @@ import org.eclipse.passage.lic.keys.KeyPairRO;
  * </ul>
  *
  * @see org.eclipse.passage.lic.keys.model.meta.KeysPackage#getKeyPair()
- * @model superTypes="org.eclipse.passage.lic.keys.model.api.KeyPairRO"
+ * @model
  * @generated
  */
-public interface KeyPair extends EObject, KeyPairRO {
+public interface KeyPair extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Product</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -46,7 +45,6 @@ public interface KeyPair extends EObject, KeyPairRO {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	@Override
 	ProductRef getProduct();
 
 	/**
@@ -69,7 +67,6 @@ public interface KeyPair extends EObject, KeyPairRO {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getAlgorithm();
 
 	/**
@@ -92,7 +89,6 @@ public interface KeyPair extends EObject, KeyPairRO {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	int getKey();
 
 	/**
@@ -115,7 +111,6 @@ public interface KeyPair extends EObject, KeyPairRO {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getPub();
 
 	/**
@@ -138,7 +133,6 @@ public interface KeyPair extends EObject, KeyPairRO {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getScr();
 
 	/**
