@@ -18,7 +18,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated products -->
       <package
-            uri="http://www.eclipse.org/passage/lic/products/0.5.0"
+            uri="http://www.eclipse.org/passage/lic/products/3.0.0"
             class="org.eclipse.passage.lic.products.model.meta.ProductsPackage"
             genModel="model/products.genmodel"/>
    </extension>

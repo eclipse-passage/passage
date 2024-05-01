@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -18,7 +18,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
+import org.eclipse.passage.lic.products.model.api.ProductVersionFeature;
 import org.eclipse.swt.graphics.Image;
 
 public class DomainRegistryLabelProvider extends LabelProvider {
@@ -47,13 +47,10 @@ public class DomainRegistryLabelProvider extends LabelProvider {
 	@Override
 	public String getText(Object element) {
 		// FIXME: move to lic.products.edit
-		if (element instanceof ProductVersionFeatureDescriptor) {
-			ProductVersionFeatureDescriptor productVersionFeature = (ProductVersionFeatureDescriptor) element;
-			String text = getText(productVersionFeature.getProductVersion());
-			return text + ' ' + ':' + ' ' + productVersionFeature.getFeatureIdentifier() + ' '
-					+ productVersionFeature.getFeatureVersion();
+		if (element instanceof ProductVersionFeature pvf) {
+			return getText(pvf.getProductVersion()) + ' ' + ':' + ' ' + pvf.getFeatureIdentifier() + ' '
+					+ pvf.getFeatureVersion();
 		}
-
 		return delegate.getText(element);
 	}
 

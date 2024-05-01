@@ -32,7 +32,7 @@ import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
@@ -62,9 +62,7 @@ public class LicenseExportHandler {
 		if (!user.isPresent()) {
 			return;
 		}
-		ProductRegistry productRegistry = context.get(ProductRegistry.class);
-		ProductVersionDescriptor productVersion = ProductsUi.selectProductVersionDescriptor(shell, productRegistry,
-				null);
+		ProductVersion productVersion = ProductsUi.selectProductVersion(shell, context.get(ProductRegistry.class));
 		if (productVersion == null) {
 			return;
 		}
@@ -122,8 +120,8 @@ public class LicenseExportHandler {
 		return licensePlan != null;
 	}
 
-	private PersonalLicenseRequest createLicensingRequest(UserDescriptor user, LicensePlan plan,
-			ProductVersionDescriptor product, LocalDate from, LocalDate until) {
+	private PersonalLicenseRequest createLicensingRequest(UserDescriptor user, LicensePlan plan, ProductVersion product,
+			LocalDate from, LocalDate until) {
 		return new PersonalLicenseData(() -> user, () -> plan, () -> product, () -> from, () -> until);
 	}
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,7 +14,6 @@ package org.eclipse.passage.lic.products.model.api;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lic.products.ProductDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,10 +34,10 @@ import org.eclipse.passage.lic.products.ProductDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.products.model.meta.ProductsPackage#getProduct()
- * @model superTypes="org.eclipse.passage.lic.products.model.api.ProductDescriptor"
+ * @model
  * @generated
  */
-public interface Product extends EObject, ProductDescriptor {
+public interface Product extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -53,7 +52,6 @@ public interface Product extends EObject, ProductDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getIdentifier();
 
 	/**
@@ -81,7 +79,6 @@ public interface Product extends EObject, ProductDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getName();
 
 	/**
@@ -108,7 +105,6 @@ public interface Product extends EObject, ProductDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getDescription();
 
 	/**
@@ -138,7 +134,6 @@ public interface Product extends EObject, ProductDescriptor {
 	 * @model opposite="products" required="true" transient="false"
 	 * @generated
 	 */
-	@Override
 	ProductLine getProductLine();
 
 	/**
@@ -168,7 +163,6 @@ public interface Product extends EObject, ProductDescriptor {
 	 * @model opposite="product" containment="true"
 	 * @generated
 	 */
-	@Override
 	EList<ProductVersion> getProductVersions();
 
 } // Product

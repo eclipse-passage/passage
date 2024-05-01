@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,13 +15,13 @@ package org.eclipse.passage.loc.internal.products.core;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.model.api.ProductVersion;
 
 final class ProductVersionPassword implements Supplier<String> {
 
-	private final ProductVersionDescriptor source;
+	private final ProductVersion source;
 
-	ProductVersionPassword(ProductVersionDescriptor source) {
+	ProductVersionPassword(ProductVersion source) {
 		Objects.requireNonNull(source, "ProductVersionPassword::source"); //$NON-NLS-1$
 		this.source = source;
 	}

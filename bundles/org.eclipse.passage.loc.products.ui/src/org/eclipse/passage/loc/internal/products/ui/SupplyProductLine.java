@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,11 +15,11 @@ package org.eclipse.passage.loc.internal.products.ui;
 import java.util.Optional;
 
 import org.eclipse.passage.lic.api.MandatoryService;
-import org.eclipse.passage.lic.products.ProductLineDescriptor;
+import org.eclipse.passage.lic.products.model.api.ProductLine;
 import org.eclipse.passage.loc.internal.api.InstanceSupply;
 import org.eclipse.passage.loc.internal.workbench.SelectRoot;
 
-public class SupplyProductLine implements InstanceSupply<ProductLineDescriptor> {
+public class SupplyProductLine implements InstanceSupply<ProductLine> {
 
 	private final MandatoryService context;
 
@@ -28,8 +28,8 @@ public class SupplyProductLine implements InstanceSupply<ProductLineDescriptor> 
 	}
 
 	@Override
-	public Optional<ProductLineDescriptor> supply() {
-		return new SelectRoot<ProductLineDescriptor>(new SelectProductLine(context).get(), context).get();
+	public Optional<ProductLine> supply() {
+		return new SelectRoot<ProductLine>(new SelectProductLine(context).get(), context).get();
 	}
 
 }

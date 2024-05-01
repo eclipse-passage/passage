@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.products.emfforms.renderers;
 
+import java.util.Optional;
+
 import javax.inject.Inject;
 
 import org.eclipse.emf.ecp.view.spi.context.ViewModelContext;
@@ -22,7 +24,7 @@ import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedExcep
 import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedReport;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.passage.lic.products.ProductDescriptor;
+import org.eclipse.passage.lic.products.model.api.Product;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.TextWithButtonRenderer;
@@ -68,17 +70,17 @@ public class ProductIdentifierRenderer extends TextWithButtonRenderer {
 
 	protected void selectIdentifier() {
 		Shell shell = Display.getDefault().getActiveShell();
-		ProductDescriptor initial = null;
+		Optional<Product> initial = Optional.empty();
 		try {
 			Object value = getModelValue().getValue();
 			if (value instanceof String) {
 				String id = (String) value;
-				initial = registry.getProduct(id);
+				initial = registry.product(id);
 			}
 		} catch (DatabindingFailedException e) {
 			getReportService().report(new DatabindingFailedReport(e));
 		}
-		ProductDescriptor descriptor = ProductsUi.selectProductDescriptor(shell, registry, initial);
+		Product descriptor = ProductsUi.selectProduct(shell, registry, initial);
 		if (descriptor != null) {
 			String identifier = descriptor.getIdentifier();
 			if (identifier != null) {

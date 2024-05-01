@@ -20,7 +20,7 @@ import java.util.stream.StreamSupport;
 
 import org.eclipse.passage.lic.api.MandatoryService;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
 import org.eclipse.passage.loc.internal.products.ui.i18n.ProductsUiMessages;
@@ -34,23 +34,23 @@ import org.eclipse.passage.loc.jface.dialogs.Appearance;
  * {@link Optional#empty()}
  * 
  */
-public final class SelectProductVersion extends SupplySelectRequest<ProductVersionDescriptor> {
+public final class SelectProductVersion extends SupplySelectRequest<ProductVersion> {
 
 	public SelectProductVersion(MandatoryService context) {
 		this(context, Optional.empty());
 	}
 
-	public SelectProductVersion(MandatoryService context, Optional<ProductVersionDescriptor> selection) {
+	public SelectProductVersion(MandatoryService context, Optional<ProductVersion> selection) {
 		super(context, selection);
 	}
 
 	@Override
-	public SelectRequest<ProductVersionDescriptor> get() {
-		return new SelectRequest<>(ProductVersionDescriptor.class, domain(), input(), () -> initial, appearance());
+	public SelectRequest<ProductVersion> get() {
+		return new SelectRequest<>(ProductVersion.class, domain(), input(), () -> initial, appearance());
 	}
 
-	private Supplier<Iterable<ProductVersionDescriptor>> input() {
-		return () -> StreamSupport.stream(context.get(ProductRegistry.class).getProductVersions().spliterator(), false)//
+	private Supplier<Iterable<ProductVersion>> input() {
+		return () -> StreamSupport.stream(context.get(ProductRegistry.class).productVersions().spliterator(), false)//
 				.collect(Collectors.toList());
 	}
 

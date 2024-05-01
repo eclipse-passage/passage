@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,9 +15,6 @@ package org.eclipse.passage.lic.products.model.tests;
 import static org.junit.Assert.assertTrue;
 
 import org.eclipse.passage.lic.internal.products.model.ProductsClassMetadata;
-import org.eclipse.passage.lic.products.ProductDescriptor;
-import org.eclipse.passage.lic.products.ProductLineDescriptor;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.model.api.Product;
 import org.eclipse.passage.lic.products.model.api.ProductLine;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
@@ -33,19 +30,16 @@ public class ProductsClassMetadataTest {
 
 	@Test
 	public void productLineMetadata() {
-		assertTrue(metadata.find(ProductLineDescriptor.class).isPresent());
 		assertTrue(metadata.find(ProductLine.class).isPresent());
 	}
 
 	@Test
 	public void productMetadata() {
-		assertTrue(metadata.find(ProductDescriptor.class).isPresent());
 		assertTrue(metadata.find(Product.class).isPresent());
 	}
 
 	@Test
 	public void productVersionMetadata() {
-		assertTrue(metadata.find(ProductVersionDescriptor.class).isPresent());
 		assertTrue(metadata.find(ProductVersion.class).isPresent());
 	}
 }

@@ -17,17 +17,17 @@ import java.util.Optional;
 
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.api.MandatoryService;
-import org.eclipse.passage.lic.products.ProductDescriptor;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.model.api.Product;
+import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.internal.products.ui.SelectProduct;
 import org.eclipse.passage.loc.internal.products.ui.SelectProductVersion;
 import org.eclipse.passage.loc.internal.workbench.SelectInner;
 import org.eclipse.swt.widgets.Text;
 
-public final class ProductVersionField extends SelectableField<ProductVersionDescriptor> {
+public final class ProductVersionField extends SelectableField<ProductVersion> {
 
-	ProductVersionField(Optional<ProductVersionDescriptor> product, Runnable modified, LabelProvider labels,
+	ProductVersionField(Optional<ProductVersion> product, Runnable modified, LabelProvider labels,
 			MandatoryService context) {
 		super(product, modified, labels, context);
 	}
@@ -43,10 +43,10 @@ public final class ProductVersionField extends SelectableField<ProductVersionDes
 	}
 
 	@Override
-	protected Optional<ProductVersionDescriptor> select(Text control) {
-		return new SelectInner<ProductVersionDescriptor, ProductDescriptor>(//
+	protected Optional<ProductVersion> select(Text control) {
+		return new SelectInner<ProductVersion, Product>(//
 				new SelectProductVersion(context, data()).get(), //
-				new SelectProduct(context, data().map(ProductVersionDescriptor::getProduct)).get(), //
+				new SelectProduct(context, data().map(ProductVersion::getProduct)).get(), //
 				context//
 		).get();
 	}

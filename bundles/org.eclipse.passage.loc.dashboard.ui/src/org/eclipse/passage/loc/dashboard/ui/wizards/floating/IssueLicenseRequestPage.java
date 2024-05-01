@@ -22,7 +22,7 @@ import java.util.function.Supplier;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.dashboard.ui.wizards.license.ComposedPage;
 import org.eclipse.passage.loc.dashboard.ui.wizards.license.PageFields;
@@ -34,7 +34,7 @@ public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
 
 	private final Supplier<Optional<LicensePlan>> plan;
 	private final Supplier<Optional<Collection<UserDescriptor>>> users;
-	private final Supplier<Optional<ProductVersionDescriptor>> product;
+	private final Supplier<Optional<ProductVersion>> product;
 	private final Supplier<Optional<List<LocalDate>>> period;
 	private final Supplier<Optional<Integer>> capacity;
 	private final ComposedPage page;

@@ -17,7 +17,7 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
 
@@ -26,7 +26,7 @@ public final class PersonalLicenseData extends GeneralLicenseData implements Per
 	private final Supplier<UserDescriptor> user;
 
 	public PersonalLicenseData(Supplier<UserDescriptor> user, Supplier<LicensePlan> plan,
-			Supplier<ProductVersionDescriptor> product, Supplier<LocalDate> from, Supplier<LocalDate> until) {
+			Supplier<ProductVersion> product, Supplier<LocalDate> from, Supplier<LocalDate> until) {
 		super(plan, product, from, until);
 		Objects.requireNonNull(user, "PersonalLicenseData::user"); //$NON-NLS-1$
 		this.user = user;

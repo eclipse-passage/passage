@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -23,7 +23,7 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ICheckStateProvider;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.passage.lic.products.ProductDescriptor;
+import org.eclipse.passage.lic.products.model.api.Product;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportWizardMessages;
 import org.eclipse.passage.loc.report.internal.ui.jface.PageObserver;
@@ -38,8 +38,8 @@ import org.eclipse.swt.widgets.Table;
 
 final class ScopePage extends WizardPage {
 
-	private final ProductDescriptor[] products;
-	private final Set<ProductDescriptor> selected;
+	private final Product[] products;
+	private final Set<Product> selected;
 	private final PageObserver preview;
 	private Button all;
 	private Button none;
@@ -71,7 +71,7 @@ final class ScopePage extends WizardPage {
 
 	Set<String> identifiers() {
 		return selected.stream()//
-				.map(ProductDescriptor::getIdentifier) //
+				.map(Product::getIdentifier) //
 				.collect(Collectors.toSet());
 	}
 
@@ -120,7 +120,7 @@ final class ScopePage extends WizardPage {
 		}));
 		viewer.addCheckStateListener(e -> {
 			if (e.getChecked()) {
-				selected.add((ProductDescriptor) e.getElement());
+				selected.add((Product) e.getElement());
 			} else {
 				selected.remove(e.getElement());
 			}
@@ -149,7 +149,7 @@ final class ScopePage extends WizardPage {
 		product.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
-				return ((ProductDescriptor) element).getName();
+				return ((Product) element).getName();
 			}
 		});
 	}

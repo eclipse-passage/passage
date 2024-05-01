@@ -15,7 +15,7 @@ package org.eclipse.passage.loc.internal.products.core;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.loc.internal.e4.events.OperatorProductEvents;
 import org.eclipse.passage.loc.internal.equinox.OperatorProductService;
 import org.osgi.framework.BundleContext;
@@ -40,12 +40,12 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 	}
 
 	@Override
-	public String createPassword(ProductVersionDescriptor descriptor) {
+	public String createPassword(ProductVersion descriptor) {
 		return new ProductVersionPassword(descriptor).get();
 	}
 
 	@Override
-	public IStatus createProductKeys(ProductVersionDescriptor target) {
+	public IStatus createProductKeys(ProductVersion target) {
 		return new ProductVersionKeys(plugin, this::broadcast).createKeys(target);
 	}
 

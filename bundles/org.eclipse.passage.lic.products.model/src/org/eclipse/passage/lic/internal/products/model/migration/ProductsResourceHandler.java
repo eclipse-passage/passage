@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -28,6 +28,7 @@ public final class ProductsResourceHandler extends MigratingResourceHandler {
 	protected void register() {
 		migrate030();
 		migrate040();
+		migrate050();
 	}
 
 	@Override
@@ -53,6 +54,12 @@ public final class ProductsResourceHandler extends MigratingResourceHandler {
 
 	private void migrate040() {
 		String uri = "http://www.eclipse.org/passage/lic/products/0.4.0"; //$NON-NLS-1$
+		ProductsPackage delegate = ProductsPackage.eINSTANCE;
+		EPackage.Registry.INSTANCE.computeIfAbsent(uri, ns -> delegate);
+	}
+
+	private void migrate050() {
+		String uri = "http://www.eclipse.org/passage/lic/products/0.5.0"; //$NON-NLS-1$
 		ProductsPackage delegate = ProductsPackage.eINSTANCE;
 		EPackage.Registry.INSTANCE.computeIfAbsent(uri, ns -> delegate);
 	}

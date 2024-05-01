@@ -15,18 +15,18 @@ package org.eclipse.passage.loc.dashboard.ui.wizards;
 import java.util.Optional;
 
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.lic.users.UserDescriptor;
 
 public final class PersonalDataPack {
 	private final Optional<LicensePlan> plan;
 	private final Optional<UserDescriptor> user;
-	private final Optional<ProductVersionDescriptor> product;
+	private final Optional<ProductVersion> product;
 
 	public PersonalDataPack(//
 			Optional<LicensePlan> plan, //
 			Optional<UserDescriptor> user, //
-			Optional<ProductVersionDescriptor> product) {
+			Optional<ProductVersion> product) {
 		this.plan = plan;
 		this.user = user;
 		this.product = product;
@@ -44,7 +44,7 @@ public final class PersonalDataPack {
 		return user;
 	}
 
-	Optional<ProductVersionDescriptor> product() {
+	Optional<ProductVersion> product() {
 		return product;
 	}
 

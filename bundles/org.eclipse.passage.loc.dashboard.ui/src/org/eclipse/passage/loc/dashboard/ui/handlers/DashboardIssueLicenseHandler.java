@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.jface.actions.LicensedRunnableUI;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.dashboard.ui.wizards.IssueLicenseWizard;
 import org.eclipse.passage.loc.dashboard.ui.wizards.PersonalDataPack;
@@ -38,13 +38,13 @@ public class DashboardIssueLicenseHandler {
 	@Execute
 	public void execute(IEclipseContext context, @Named(IServiceConstants.ACTIVE_SELECTION) @Optional LicensePlan plan,
 			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional UserDescriptor user,
-			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional ProductVersionDescriptor product) {
+			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional ProductVersion product) {
 		Shell shell = context.get(Shell.class);
 		new LicensedRunnableUI(() -> shell, feature, () -> startWizard(shell, context, plan, user, product)).run();
 	}
 
 	private void startWizard(Shell shell, IEclipseContext context, LicensePlan plan, UserDescriptor user,
-			ProductVersionDescriptor product) {
+			ProductVersion product) {
 		IssueLicenseWizard wizard = new IssueLicenseWizard(context, new PersonalDataPack(//
 				java.util.Optional.ofNullable(plan), //
 				java.util.Optional.ofNullable(user), //

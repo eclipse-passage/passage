@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -17,10 +17,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.passage.lic.products.ProductDescriptor;
-import org.eclipse.passage.lic.products.ProductLineDescriptor;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
-import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
 import org.eclipse.passage.lic.products.model.api.Product;
 import org.eclipse.passage.lic.products.model.api.ProductLine;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
@@ -37,38 +33,6 @@ import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
  * @generated
  */
 public class ProductsPackageImpl extends EPackageImpl implements ProductsPackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass productLineDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass productDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass productVersionDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass productVersionFeatureDescriptorEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * 
@@ -164,50 +128,6 @@ public class ProductsPackageImpl extends EPackageImpl implements ProductsPackage
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ProductsPackage.eNS_URI, theProductsPackage);
 		return theProductsPackage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getProductLineDescriptor() {
-		return productLineDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getProductDescriptor() {
-		return productDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getProductVersionDescriptor() {
-		return productVersionDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getProductVersionFeatureDescriptor() {
-		return productVersionFeatureDescriptorEClass;
 	}
 
 	/**
@@ -506,14 +426,6 @@ public class ProductsPackageImpl extends EPackageImpl implements ProductsPackage
 		isCreated = true;
 
 		// Create classes and their features
-		productLineDescriptorEClass = createEClass(PRODUCT_LINE_DESCRIPTOR);
-
-		productDescriptorEClass = createEClass(PRODUCT_DESCRIPTOR);
-
-		productVersionDescriptorEClass = createEClass(PRODUCT_VERSION_DESCRIPTOR);
-
-		productVersionFeatureDescriptorEClass = createEClass(PRODUCT_VERSION_FEATURE_DESCRIPTOR);
-
 		productLineEClass = createEClass(PRODUCT_LINE);
 		createEAttribute(productLineEClass, PRODUCT_LINE__IDENTIFIER);
 		createEAttribute(productLineEClass, PRODUCT_LINE__NAME);
@@ -574,24 +486,8 @@ public class ProductsPackageImpl extends EPackageImpl implements ProductsPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		productLineEClass.getESuperTypes().add(this.getProductLineDescriptor());
-		productEClass.getESuperTypes().add(this.getProductDescriptor());
-		productVersionEClass.getESuperTypes().add(this.getProductVersionDescriptor());
-		productVersionFeatureEClass.getESuperTypes().add(this.getProductVersionFeatureDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(productLineDescriptorEClass, ProductLineDescriptor.class, "ProductLineDescriptor", IS_ABSTRACT, //$NON-NLS-1$
-				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(productDescriptorEClass, ProductDescriptor.class, "ProductDescriptor", IS_ABSTRACT, IS_INTERFACE, //$NON-NLS-1$
-				!IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(productVersionDescriptorEClass, ProductVersionDescriptor.class, "ProductVersionDescriptor", //$NON-NLS-1$
-				IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(productVersionFeatureDescriptorEClass, ProductVersionFeatureDescriptor.class,
-				"ProductVersionFeatureDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
 		initEClass(productLineEClass, ProductLine.class, "ProductLine", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getProductLine_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, //$NON-NLS-1$
