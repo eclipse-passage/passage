@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,15 +16,9 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.passage.lic.keys.KeyPairRO;
-import org.eclipse.passage.lic.keys.ProductRefRO;
-
 import org.eclipse.passage.lic.keys.model.api.KeyPair;
 import org.eclipse.passage.lic.keys.model.api.ProductRef;
-
 import org.eclipse.passage.lic.keys.model.meta.KeysFactory;
 import org.eclipse.passage.lic.keys.model.meta.KeysPackage;
 
@@ -48,20 +42,6 @@ public class KeysPackageImpl extends EPackageImpl implements KeysPackage {
 	 * @generated
 	 */
 	private EClass productRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass keyPairROEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass productRefROEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -223,26 +203,6 @@ public class KeysPackageImpl extends EPackageImpl implements KeysPackage {
 	 * @generated
 	 */
 	@Override
-	public EClass getKeyPairRO() {
-		return keyPairROEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getProductRefRO() {
-		return productRefROEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public KeysFactory getKeysFactory() {
 		return (KeysFactory) getEFactoryInstance();
 	}
@@ -277,10 +237,6 @@ public class KeysPackageImpl extends EPackageImpl implements KeysPackage {
 		productRefEClass = createEClass(PRODUCT_REF);
 		createEAttribute(productRefEClass, PRODUCT_REF__IDENTIFIER);
 		createEAttribute(productRefEClass, PRODUCT_REF__VERSION);
-
-		keyPairROEClass = createEClass(KEY_PAIR_RO);
-
-		productRefROEClass = createEClass(PRODUCT_REF_RO);
 	}
 
 	/**
@@ -312,8 +268,6 @@ public class KeysPackageImpl extends EPackageImpl implements KeysPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		keyPairEClass.getESuperTypes().add(this.getKeyPairRO());
-		productRefEClass.getESuperTypes().add(this.getProductRefRO());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(keyPairEClass, KeyPair.class, "KeyPair", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -337,14 +291,8 @@ public class KeysPackageImpl extends EPackageImpl implements KeysPackage {
 		initEAttribute(getProductRef_Version(), ecorePackage.getEString(), "version", null, 1, 1, ProductRef.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(keyPairROEClass, KeyPairRO.class, "KeyPairRO", IS_ABSTRACT, IS_INTERFACE, //$NON-NLS-1$
-				!IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(productRefROEClass, ProductRefRO.class, "ProductRefRO", IS_ABSTRACT, IS_INTERFACE, //$NON-NLS-1$
-				!IS_GENERATED_INSTANCE_CLASS);
-
 		// Create resource
 		createResource(eNS_URI);
 	}
 
-} //KeysPackageImpl
+} // KeysPackageImpl

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,16 +14,10 @@ package org.eclipse.passage.lic.keys.model.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.passage.lic.keys.KeyPairRO;
-import org.eclipse.passage.lic.keys.ProductRefRO;
-
-import org.eclipse.passage.lic.keys.model.api.*;
-
+import org.eclipse.passage.lic.keys.model.api.KeyPair;
+import org.eclipse.passage.lic.keys.model.api.ProductRef;
 import org.eclipse.passage.lic.keys.model.meta.KeysPackage;
 
 /**
@@ -92,16 +86,6 @@ public class KeysAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseKeyPairRO(KeyPairRO object) {
-			return createKeyPairROAdapter();
-		}
-
-		@Override
-		public Adapter caseProductRefRO(ProductRefRO object) {
-			return createProductRefROAdapter();
-		}
-
-		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -149,34 +133,6 @@ public class KeysAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.keys.KeyPairRO <em>Key Pair RO</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.keys.KeyPairRO
-	 * @generated
-	 */
-	public Adapter createKeyPairROAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.keys.ProductRefRO <em>Product Ref RO</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.keys.ProductRefRO
-	 * @generated
-	 */
-	public Adapter createProductRefROAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for the default case.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.
@@ -188,4 +144,4 @@ public class KeysAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //KeysAdapterFactory
+} // KeysAdapterFactory

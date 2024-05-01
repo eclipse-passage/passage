@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -48,7 +48,7 @@ public interface KeysPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/passage/lic/keys/2.0.0"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/passage/lic/keys/3.0.0"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -67,34 +67,6 @@ public interface KeysPackage extends EPackage {
 	KeysPackage eINSTANCE = org.eclipse.passage.lic.keys.model.impl.KeysPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.keys.KeyPairRO <em>Key Pair RO</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.keys.KeyPairRO
-	 * @see org.eclipse.passage.lic.keys.model.impl.KeysPackageImpl#getKeyPairRO()
-	 * @generated
-	 */
-	int KEY_PAIR_RO = 2;
-
-	/**
-	 * The number of structural features of the '<em>Key Pair RO</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KEY_PAIR_RO_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Key Pair RO</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KEY_PAIR_RO_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.keys.model.impl.KeyPairImpl <em>Key Pair</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -111,7 +83,7 @@ public interface KeysPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KEY_PAIR__PRODUCT = KEY_PAIR_RO_FEATURE_COUNT + 0;
+	int KEY_PAIR__PRODUCT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Algorithm</b></em>' attribute.
@@ -120,7 +92,7 @@ public interface KeysPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KEY_PAIR__ALGORITHM = KEY_PAIR_RO_FEATURE_COUNT + 1;
+	int KEY_PAIR__ALGORITHM = 1;
 
 	/**
 	 * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -129,7 +101,7 @@ public interface KeysPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KEY_PAIR__KEY = KEY_PAIR_RO_FEATURE_COUNT + 2;
+	int KEY_PAIR__KEY = 2;
 
 	/**
 	 * The feature id for the '<em><b>Pub</b></em>' attribute.
@@ -138,7 +110,7 @@ public interface KeysPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KEY_PAIR__PUB = KEY_PAIR_RO_FEATURE_COUNT + 3;
+	int KEY_PAIR__PUB = 3;
 
 	/**
 	 * The feature id for the '<em><b>Scr</b></em>' attribute.
@@ -147,7 +119,7 @@ public interface KeysPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KEY_PAIR__SCR = KEY_PAIR_RO_FEATURE_COUNT + 4;
+	int KEY_PAIR__SCR = 4;
 
 	/**
 	 * The number of structural features of the '<em>Key Pair</em>' class.
@@ -156,7 +128,7 @@ public interface KeysPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KEY_PAIR_FEATURE_COUNT = KEY_PAIR_RO_FEATURE_COUNT + 5;
+	int KEY_PAIR_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Key Pair</em>' class.
@@ -165,35 +137,7 @@ public interface KeysPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KEY_PAIR_OPERATION_COUNT = KEY_PAIR_RO_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.keys.ProductRefRO <em>Product Ref RO</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.keys.ProductRefRO
-	 * @see org.eclipse.passage.lic.keys.model.impl.KeysPackageImpl#getProductRefRO()
-	 * @generated
-	 */
-	int PRODUCT_REF_RO = 3;
-
-	/**
-	 * The number of structural features of the '<em>Product Ref RO</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRODUCT_REF_RO_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Product Ref RO</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRODUCT_REF_RO_OPERATION_COUNT = 0;
+	int KEY_PAIR_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.keys.model.impl.ProductRefImpl <em>Product Ref</em>}' class.
@@ -212,7 +156,7 @@ public interface KeysPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_REF__IDENTIFIER = PRODUCT_REF_RO_FEATURE_COUNT + 0;
+	int PRODUCT_REF__IDENTIFIER = 0;
 
 	/**
 	 * The feature id for the '<em><b>Version</b></em>' attribute.
@@ -221,7 +165,7 @@ public interface KeysPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_REF__VERSION = PRODUCT_REF_RO_FEATURE_COUNT + 1;
+	int PRODUCT_REF__VERSION = 1;
 
 	/**
 	 * The number of structural features of the '<em>Product Ref</em>' class.
@@ -230,7 +174,7 @@ public interface KeysPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_REF_FEATURE_COUNT = PRODUCT_REF_RO_FEATURE_COUNT + 2;
+	int PRODUCT_REF_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Product Ref</em>' class.
@@ -239,7 +183,7 @@ public interface KeysPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_REF_OPERATION_COUNT = PRODUCT_REF_RO_OPERATION_COUNT + 0;
+	int PRODUCT_REF_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.keys.model.api.KeyPair <em>Key Pair</em>}'.
@@ -339,28 +283,6 @@ public interface KeysPackage extends EPackage {
 	EAttribute getProductRef_Version();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.keys.KeyPairRO <em>Key Pair RO</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Key Pair RO</em>'.
-	 * @see org.eclipse.passage.lic.keys.KeyPairRO
-	 * @model instanceClass="org.eclipse.passage.lic.keys.KeyPairRO"
-	 * @generated
-	 */
-	EClass getKeyPairRO();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.keys.ProductRefRO <em>Product Ref RO</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Product Ref RO</em>'.
-	 * @see org.eclipse.passage.lic.keys.ProductRefRO
-	 * @model instanceClass="org.eclipse.passage.lic.keys.ProductRefRO"
-	 * @generated
-	 */
-	EClass getProductRefRO();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -369,4 +291,4 @@ public interface KeysPackage extends EPackage {
 	 */
 	KeysFactory getKeysFactory();
 
-} //KeysPackage
+} // KeysPackage

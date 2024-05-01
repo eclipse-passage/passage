@@ -3,7 +3,7 @@
    <service>
       <provide interface="org.eclipse.passage.loc.internal.equinox.OperatorProductService"/>
    </service>
-   <reference bind="bindEnvironmentInfo" interface="org.eclipse.osgi.service.environment.EnvironmentInfo" name="EnvironmentInfo" unbind="unbindEnvironmentInfo"/>
-   <reference bind="bindEventAdmin" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" unbind="unbindEventAdmin"/>
+   <reference cardinality="1..1" field="environment" interface="org.eclipse.osgi.service.environment.EnvironmentInfo" name="environment"/>
+   <reference cardinality="1..1" field="events" interface="org.osgi.service.event.EventAdmin" name="events"/>
    <implementation class="org.eclipse.passage.loc.internal.products.core.ProductOperatorServiceImpl"/>
 </scr:component>

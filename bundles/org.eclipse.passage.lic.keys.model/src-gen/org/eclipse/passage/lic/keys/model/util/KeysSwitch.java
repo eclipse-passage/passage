@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,14 +14,9 @@ package org.eclipse.passage.lic.keys.model.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.eclipse.passage.lic.keys.KeyPairRO;
-import org.eclipse.passage.lic.keys.ProductRefRO;
-
-import org.eclipse.passage.lic.keys.model.api.*;
-
+import org.eclipse.passage.lic.keys.model.api.KeyPair;
+import org.eclipse.passage.lic.keys.model.api.ProductRef;
 import org.eclipse.passage.lic.keys.model.meta.KeysPackage;
 
 /**
@@ -85,30 +80,12 @@ public class KeysSwitch<T> extends Switch<T> {
 			KeyPair keyPair = (KeyPair) theEObject;
 			T result = caseKeyPair(keyPair);
 			if (result == null)
-				result = caseKeyPairRO(keyPair);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
 		case KeysPackage.PRODUCT_REF: {
 			ProductRef productRef = (ProductRef) theEObject;
 			T result = caseProductRef(productRef);
-			if (result == null)
-				result = caseProductRefRO(productRef);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case KeysPackage.KEY_PAIR_RO: {
-			KeyPairRO keyPairRO = (KeyPairRO) theEObject;
-			T result = caseKeyPairRO(keyPairRO);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case KeysPackage.PRODUCT_REF_RO: {
-			ProductRefRO productRefRO = (ProductRefRO) theEObject;
-			T result = caseProductRefRO(productRefRO);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -149,36 +126,6 @@ public class KeysSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Key Pair RO</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Key Pair RO</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseKeyPairRO(KeyPairRO object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Product Ref RO</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Product Ref RO</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseProductRefRO(ProductRefRO object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -194,4 +141,4 @@ public class KeysSwitch<T> extends Switch<T> {
 		return null;
 	}
 
-} //KeysSwitch
+} // KeysSwitch

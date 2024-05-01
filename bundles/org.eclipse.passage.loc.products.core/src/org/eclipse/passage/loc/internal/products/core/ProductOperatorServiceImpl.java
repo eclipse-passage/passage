@@ -29,34 +29,14 @@ import org.osgi.service.event.EventAdmin;
 public class ProductOperatorServiceImpl implements OperatorProductService {
 
 	private String plugin;
+	@Reference
 	private EnvironmentInfo environment;
+	@Reference
 	private EventAdmin events;
 
 	@Activate
 	public void activate(BundleContext context) {
 		plugin = context.getBundle().getSymbolicName();
-	}
-
-	@Reference
-	public void bindEnvironmentInfo(EnvironmentInfo info) {
-		this.environment = info;
-	}
-
-	public void unbindEnvironmentInfo(EnvironmentInfo info) {
-		if (environment == info) {
-			this.environment = null;
-		}
-	}
-
-	@Reference
-	public void bindEventAdmin(EventAdmin admin) {
-		this.events = admin;
-	}
-
-	public void unbindEventAdmin(EventAdmin admin) {
-		if (this.events == admin) {
-			this.events = null;
-		}
 	}
 
 	@Override

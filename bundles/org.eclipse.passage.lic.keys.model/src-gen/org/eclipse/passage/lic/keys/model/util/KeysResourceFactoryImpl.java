@@ -17,10 +17,15 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.passage.lic.emf.resource.BlindResourceFactory;
 
+/**
+ * @since 3.0
+ * 
+ * @generated NOT
+ */
 public final class KeysResourceFactoryImpl extends ResourceFactoryImpl implements BlindResourceFactory {
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Resource createResource(URI uri) {
