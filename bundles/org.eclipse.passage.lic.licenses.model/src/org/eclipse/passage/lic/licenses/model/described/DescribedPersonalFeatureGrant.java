@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2022 ArSysOp
+ * Copyright (c) 2022, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,13 +13,13 @@
 package org.eclipse.passage.lic.licenses.model.described;
 
 import org.eclipse.passage.lic.internal.licenses.model.i18n.Messages;
-import org.eclipse.passage.lic.licenses.PersonalFeatureGrantDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 
 public final class DescribedPersonalFeatureGrant extends Described {
 
-	private PersonalFeatureGrantDescriptor grant;
+	private PersonalFeatureGrant grant;
 
-	public DescribedPersonalFeatureGrant(PersonalFeatureGrantDescriptor grant) {
+	public DescribedPersonalFeatureGrant(PersonalFeatureGrant grant) {
 		this.grant = grant;
 	}
 

@@ -8,7 +8,7 @@
     editorPluginClass="org.eclipse.passage.lic.licenses.editor.LicensesEditorPlugin"
     nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     codeFormatting="true" testSuiteClass="org.eclipse.passage.lic.licenses.model.tests.LicensesAllTests"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="17.0" copyrightFields="false"
     editPluginID="org.eclipse.passage.lic.licenses.edit" editorPluginID="org.eclipse.passage.lic.licenses.editor"
     language="" operationReflection="true" runtimePlatform="RCP" importOrganizing="true"
     cleanup="true" oSGiCompatible="true">
@@ -18,28 +18,6 @@
       classPackageSuffix="model.impl" utilityPackageSuffix="model.util" providerPackageSuffix="edit.providers"
       presentationPackageSuffix="editor" testsPackageSuffix="model.tests" literalsInterface="false"
       ecorePackage="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#/">
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//AgreementDataDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//CompanyRefDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//EvaluationInstructionsDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//FeatureGrantDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//FeatureRefDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//FloatingLicensePackDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//FloatingLicenseRequisitesDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//FloatingServerDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePlanDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePlanFeatureDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseRequisitesDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//PersonalFeatureGrantDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//PersonalLicensePackDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//PersonalLicenseRequisitesDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//ProductRefDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//SignatureAttributeDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//SignatureDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//UserGrantDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//UserRefDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//ValidityPeriodClosedDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//ValidityPeriodDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//VersionMatchDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//AgreementData">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//AgreementData/identifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//AgreementData/name"/>

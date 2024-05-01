@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -11,8 +11,6 @@
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.model.api;
-
-import org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,10 +29,10 @@ import org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getPersonalLicenseRequisites()
- * @model superTypes="org.eclipse.passage.lic.licenses.model.api.LicenseRequisites org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisitesDescriptor"
+ * @model
  * @generated
  */
-public interface PersonalLicenseRequisites extends LicenseRequisites, PersonalLicenseRequisitesDescriptor {
+public interface PersonalLicenseRequisites extends LicenseRequisites {
 	/**
 	 * Returns the value of the '<em><b>User</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -45,7 +43,6 @@ public interface PersonalLicenseRequisites extends LicenseRequisites, PersonalLi
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	@Override
 	UserRef getUser();
 
 	/**

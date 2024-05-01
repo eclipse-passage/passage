@@ -21,8 +21,8 @@ import org.eclipse.passage.lic.agreements.model.api.Agreement;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.io.Hashes;
 import org.eclipse.passage.lic.api.io.HashesRegistry;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.AgreementData;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.loc.internal.agreements.AgreementRegistry;
@@ -39,13 +39,13 @@ final class LicenseAgreements {
 		this.registry = registry;
 	}
 
-	void install(LicensePlanDescriptor plan, LicenseRequisites license) throws LicensingException {
+	void install(LicensePlan plan, LicenseRequisites license) throws LicensingException {
 		Agreements service = new AgreementsService().get(); // TODO: cashed field
 		Hashes hashes = hashes();// TODO: cashed field
 		for (String identifier : plan.getAgreements()) {
-			installAgreement(license,
-					registry.agreement(identifier).orElseThrow(
-							() -> new LicensingException(NLS.bind(LicensesCoreMessages.LicenseAgreements_e_agreement_not_found, identifier))),
+			installAgreement(license, registry.agreement(identifier)
+					.orElseThrow(() -> new LicensingException(
+							NLS.bind(LicensesCoreMessages.LicenseAgreements_e_agreement_not_found, identifier))),
 					service, hashes);
 		}
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,13 +19,12 @@ import org.eclipse.passage.lic.api.conditions.VersionMatch;
 import org.eclipse.passage.lic.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.base.conditions.MatchingRuleDefault;
 import org.eclipse.passage.lic.base.conditions.MatchingRuleForIdentifier;
-import org.eclipse.passage.lic.licenses.VersionMatchDescriptor;
 
 public final class PVersionMatch implements Supplier<VersionMatch> {
 
-	private final VersionMatchDescriptor descriptor;
+	private final org.eclipse.passage.lic.licenses.model.api.VersionMatch descriptor;
 
-	public PVersionMatch(VersionMatchDescriptor descriptor) {
+	public PVersionMatch(org.eclipse.passage.lic.licenses.model.api.VersionMatch descriptor) {
 		this.descriptor = descriptor;
 	}
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,7 +13,6 @@
 package org.eclipse.passage.lic.licenses.model.api;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lic.licenses.PersonalFeatureGrantDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,10 +37,10 @@ import org.eclipse.passage.lic.licenses.PersonalFeatureGrantDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getPersonalFeatureGrant()
- * @model superTypes="org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrantDescriptor"
+ * @model
  * @generated
  */
-public interface PersonalFeatureGrant extends EObject, PersonalFeatureGrantDescriptor {
+public interface PersonalFeatureGrant extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -52,7 +51,6 @@ public interface PersonalFeatureGrant extends EObject, PersonalFeatureGrantDescr
 	 * @model id="true"
 	 * @generated
 	 */
-	@Override
 	String getIdentifier();
 
 	/**
@@ -75,7 +73,6 @@ public interface PersonalFeatureGrant extends EObject, PersonalFeatureGrantDescr
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	@Override
 	FeatureRef getFeature();
 
 	/**
@@ -98,7 +95,6 @@ public interface PersonalFeatureGrant extends EObject, PersonalFeatureGrantDescr
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	@Override
 	ValidityPeriod getValid();
 
 	/**
@@ -121,7 +117,6 @@ public interface PersonalFeatureGrant extends EObject, PersonalFeatureGrantDescr
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	@Override
 	EvaluationInstructions getUserAuthentication();
 
 	/**
@@ -145,7 +140,6 @@ public interface PersonalFeatureGrant extends EObject, PersonalFeatureGrantDescr
 	 * @model default="1"
 	 * @generated
 	 */
-	@Override
 	int getCapacity();
 
 	/**
@@ -168,7 +162,6 @@ public interface PersonalFeatureGrant extends EObject, PersonalFeatureGrantDescr
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	long getVivid();
 
 	/**
@@ -193,7 +186,6 @@ public interface PersonalFeatureGrant extends EObject, PersonalFeatureGrantDescr
 	 * @model opposite="grants" required="true" transient="false"
 	 * @generated
 	 */
-	@Override
 	PersonalLicensePack getPack();
 
 	/**

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,9 +19,9 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
-import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.loc.yars.internal.api.DosHandleMedia;
 import org.eclipse.passage.loc.yars.internal.api.ExportData;
 import org.eclipse.passage.loc.yars.internal.api.Progress;
@@ -35,14 +35,14 @@ import org.eclipse.passage.loc.yars.internal.api.Progress;
 @SuppressWarnings("restriction")
 public final class LicensePlanReport implements ExportData<LicensePlanReport, DosHandleMedia<LicensePlanReport>> {
 
-	private final LicensePlanDescriptor plan;
-	private final Map<String, List<PersonalLicensePackDescriptor>> personal;
-	private final Map<String, List<FloatingLicensePackDescriptor>> floating;
+	private final LicensePlan plan;
+	private final Map<String, List<PersonalLicensePack>> personal;
+	private final Map<String, List<FloatingLicensePack>> floating;
 	private final boolean explain;
 	private final SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd"); //$NON-NLS-1$
 
-	LicensePlanReport(LicensePlanDescriptor plan, Map<String, List<PersonalLicensePackDescriptor>> personal,
-			Map<String, List<FloatingLicensePackDescriptor>> floating, boolean explain) {
+	LicensePlanReport(LicensePlan plan, Map<String, List<PersonalLicensePack>> personal,
+			Map<String, List<FloatingLicensePack>> floating, boolean explain) {
 		this.plan = plan;
 		this.personal = personal;
 		this.floating = floating;

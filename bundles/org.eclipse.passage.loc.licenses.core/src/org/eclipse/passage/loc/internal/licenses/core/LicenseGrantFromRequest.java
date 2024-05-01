@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,17 +15,17 @@ package org.eclipse.passage.loc.internal.licenses.core;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalFeatureGrant;
-import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
 import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
 
 final class LicenseGrantFromRequest implements Supplier<PersonalFeatureGrant> {
 
-	private final LicensePlanFeatureDescriptor feature;
+	private final LicensePlanFeature feature;
 	private final PersonalLicenseRequest request;
 
-	public LicenseGrantFromRequest(LicensePlanFeatureDescriptor feature, PersonalLicenseRequest request) {
+	public LicenseGrantFromRequest(LicensePlanFeature feature, PersonalLicenseRequest request) {
 		this.feature = feature;
 		this.request = request;
 	}

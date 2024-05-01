@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -40,9 +40,9 @@ import org.eclipse.passage.lic.internal.licenses.convert.PAgreements;
 import org.eclipse.passage.lic.internal.licenses.convert.PIssuerSignature;
 import org.eclipse.passage.lic.internal.licenses.convert.PVersionMatch;
 import org.eclipse.passage.lic.internal.licenses.model.migration.LicensesResourceHandler;
-import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 @SuppressWarnings("restriction")
@@ -109,8 +109,8 @@ abstract class BaseXmiConditionTransport implements ConditionTransport {
 				grant.getFeature().getIdentifier(), //
 				new PVersionMatch(grant.getFeature().getVersionMatch()).get(), //
 				new BaseValidityPeriodClosed(//
-						fromDate(((ValidityPeriodClosedDescriptor) grant.getValid()).getFrom()), //
-						fromDate(((ValidityPeriodClosedDescriptor) grant.getValid()).getUntil())), //
+						fromDate(((ValidityPeriodClosed) grant.getValid()).getFrom()), //
+						fromDate(((ValidityPeriodClosed) grant.getValid()).getUntil())), //
 				new BaseEvaluationInstructions(//
 						new EvaluationType.Of(grant.getUserAuthentication().getType()), //
 						grant.getUserAuthentication().getExpression()));

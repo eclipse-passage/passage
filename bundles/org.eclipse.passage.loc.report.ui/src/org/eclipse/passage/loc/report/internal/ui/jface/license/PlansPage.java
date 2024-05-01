@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -23,7 +23,7 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ICheckStateProvider;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportLicenseReportWizardMessages;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportWizardMessages;
 import org.eclipse.passage.loc.report.internal.ui.jface.PageObserver;
@@ -38,8 +38,8 @@ import org.eclipse.swt.widgets.Table;
 
 final class PlansPage extends WizardPage {
 
-	private final LicensePlanDescriptor[] plans;
-	private final Set<LicensePlanDescriptor> selected;
+	private final LicensePlan[] plans;
+	private final Set<LicensePlan> selected;
 	private final PageObserver preview;
 	private Button all;
 	private Button none;
@@ -71,7 +71,7 @@ final class PlansPage extends WizardPage {
 
 	Set<String> identifiers() {
 		return selected.stream()//
-				.map(LicensePlanDescriptor::getIdentifier) //
+				.map(LicensePlan::getIdentifier) //
 				.collect(Collectors.toSet());
 	}
 
@@ -120,7 +120,7 @@ final class PlansPage extends WizardPage {
 		}));
 		viewer.addCheckStateListener(e -> {
 			if (e.getChecked()) {
-				selected.add((LicensePlanDescriptor) e.getElement());
+				selected.add((LicensePlan) e.getElement());
 			} else {
 				selected.remove(e.getElement());
 			}
@@ -149,7 +149,7 @@ final class PlansPage extends WizardPage {
 		id.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
-				return ((LicensePlanDescriptor) element).getIdentifier();
+				return ((LicensePlan) element).getIdentifier();
 			}
 		});
 		TableViewerColumn name = new TableViewerColumn(viewer, SWT.NONE);
@@ -158,7 +158,7 @@ final class PlansPage extends WizardPage {
 		name.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
-				return ((LicensePlanDescriptor) element).getName();
+				return ((LicensePlan) element).getName();
 			}
 		});
 	}

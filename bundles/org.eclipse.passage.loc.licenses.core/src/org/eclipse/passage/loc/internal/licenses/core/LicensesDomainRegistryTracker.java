@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,12 +13,11 @@
 package org.eclipse.passage.loc.internal.licenses.core;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.loc.internal.emf.DomainContentAdapter;
 
-public class LicensesDomainRegistryTracker extends DomainContentAdapter<LicensePlanDescriptor, LicenseDomainRegistry> {
+public class LicensesDomainRegistryTracker extends DomainContentAdapter<LicensePlan, LicenseDomainRegistry> {
 
 	public LicensesDomainRegistryTracker(LicenseDomainRegistry registry) {
 		super(registry);

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -17,7 +17,7 @@ import java.util.Optional;
 
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.loc.report.internal.core.license.LicenseStorage;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportLicenseReportWizardMessages;
 import org.eclipse.passage.loc.report.internal.ui.jface.PageObserver;
@@ -92,7 +92,7 @@ final class PreviewPage extends WizardPage implements PageObserver {
 				format.format(data.from()), format.format(data.to())));
 	}
 
-	private String planInfo(LicensePlanDescriptor plan) {
+	private String planInfo(LicensePlan plan) {
 		return NLS.bind("{0} ({1})", plan.getName(), plan.getIdentifier()); //$NON-NLS-1$
 	}
 

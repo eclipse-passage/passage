@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -25,8 +25,7 @@ import java.util.Set;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalLicensePack;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
-import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
@@ -36,7 +35,7 @@ import org.eclipse.passage.loc.report.internal.core.TestData;
 @SuppressWarnings("restriction")
 abstract class TestLicenses extends TestData<LicenseStorage> {
 
-	protected List<LicensePlanDescriptor> plans = Collections.emptyList();
+	protected List<LicensePlan> plans = Collections.emptyList();
 	protected List<UserDescriptor> users = Collections.emptyList();
 	protected List<UserOriginDescriptor> companies = Collections.emptyList();
 	protected final Date from;
@@ -59,7 +58,7 @@ abstract class TestLicenses extends TestData<LicenseStorage> {
 
 	abstract LicensePlanReportParameters params();
 
-	protected LicensePlanDescriptor plan(String id) {
+	protected LicensePlan plan(String id) {
 		return plans.stream()//
 				.filter(plan -> id.equals(plan.getIdentifier()))//
 				.findFirst()//
@@ -138,8 +137,8 @@ abstract class TestLicenses extends TestData<LicenseStorage> {
 			UserDescriptor evan = user("evan").get(); //$NON-NLS-1$
 			UserDescriptor dorothea = user("dorothea").get(); //$NON-NLS-1$
 			UserDescriptor zena = user("zena").get(); //$NON-NLS-1$
-			LicensePlanDescriptor planA = plan("plan-a"); //$NON-NLS-1$
-			LicensePlanDescriptor planB = plan("plan-b"); //$NON-NLS-1$
+			LicensePlan planA = plan("plan-a"); //$NON-NLS-1$
+			LicensePlan planB = plan("plan-b"); //$NON-NLS-1$
 			issuePersonal(planA, evan, new MovedNow(date -> date.plus(2, ChronoUnit.MONTHS)).get());
 			issuePersonal(planB, evan, new Date());
 			issuePersonal(planA, zena, new Date());
@@ -170,7 +169,7 @@ abstract class TestLicenses extends TestData<LicenseStorage> {
 					header(false)));
 		}
 
-		private void issuePersonal(LicensePlanDescriptor plan, UserDescriptor user, Date issued) {
+		private void issuePersonal(LicensePlan plan, UserDescriptor user, Date issued) {
 			LicensedProduct product = new BaseLicensedProduct("pop", "1.0.1"); //$NON-NLS-1$ //$NON-NLS-2$
 			PersonalLicensePack pack = new EmptyPersonalLicensePack().get();
 			pack.getLicense().setPlan(plan.getIdentifier());
@@ -179,8 +178,7 @@ abstract class TestLicenses extends TestData<LicenseStorage> {
 			pack.getLicense().getProduct().setIdentifier(product.identifier());
 			pack.getLicense().getProduct().setVersion(product.version());
 			pack.getLicense().setIssueDate(issued);
-			@SuppressWarnings("unchecked")
-			List<PersonalLicensePackDescriptor> personal = (List<PersonalLicensePackDescriptor>) plan.getPersonal();
+			List<PersonalLicensePack> personal = plan.getPersonal();
 			personal.add(pack);
 		}
 	}

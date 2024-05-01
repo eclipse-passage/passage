@@ -30,7 +30,7 @@ import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.emf.validation.ErrorMessages;
 import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.loc.internal.agreements.AgreementRegistry;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
@@ -168,8 +168,8 @@ final class IssuePersonalLicense {
 			return pack;
 		}
 
-		private LicensePlanDescriptor plan() {
-			return licenses.getLicensePlan(pack.getLicense().getPlan());
+		private LicensePlan plan() throws LicensingException {
+			return licenses.plan(pack.getLicense().getPlan()).get();
 		}
 	}
 }

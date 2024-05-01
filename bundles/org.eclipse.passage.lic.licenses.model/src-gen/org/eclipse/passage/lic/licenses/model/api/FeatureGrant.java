@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,8 +13,6 @@
 package org.eclipse.passage.lic.licenses.model.api;
 
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.passage.lic.licenses.FeatureGrantDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,10 +36,10 @@ import org.eclipse.passage.lic.licenses.FeatureGrantDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getFeatureGrant()
- * @model superTypes="org.eclipse.passage.lic.licenses.model.api.FeatureGrantDescriptor"
+ * @model
  * @generated
  */
-public interface FeatureGrant extends EObject, FeatureGrantDescriptor {
+public interface FeatureGrant extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -52,7 +50,6 @@ public interface FeatureGrant extends EObject, FeatureGrantDescriptor {
 	 * @model id="true" required="true"
 	 * @generated
 	 */
-	@Override
 	String getIdentifier();
 
 	/**
@@ -75,7 +72,6 @@ public interface FeatureGrant extends EObject, FeatureGrantDescriptor {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	@Override
 	FeatureRef getFeature();
 
 	/**
@@ -98,7 +94,6 @@ public interface FeatureGrant extends EObject, FeatureGrantDescriptor {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	@Override
 	ValidityPeriod getValid();
 
 	/**
@@ -121,7 +116,6 @@ public interface FeatureGrant extends EObject, FeatureGrantDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	long getVivid();
 
 	/**
@@ -144,7 +138,6 @@ public interface FeatureGrant extends EObject, FeatureGrantDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	int getCapacity();
 
 	/**
@@ -169,7 +162,6 @@ public interface FeatureGrant extends EObject, FeatureGrantDescriptor {
 	 * @model opposite="features" required="true" transient="false"
 	 * @generated
 	 */
-	@Override
 	FloatingLicensePack getPack();
 
 	/**

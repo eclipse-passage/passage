@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,8 +13,6 @@
 package org.eclipse.passage.lic.licenses.model.api;
 
 import java.util.Date;
-
-import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,10 +32,10 @@ import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getValidityPeriodClosed()
- * @model superTypes="org.eclipse.passage.lic.licenses.model.api.ValidityPeriod org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosedDescriptor"
+ * @model
  * @generated
  */
-public interface ValidityPeriodClosed extends ValidityPeriod, ValidityPeriodClosedDescriptor {
+public interface ValidityPeriodClosed extends ValidityPeriod {
 	/**
 	 * Returns the value of the '<em><b>From</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -48,7 +46,6 @@ public interface ValidityPeriodClosed extends ValidityPeriod, ValidityPeriodClos
 	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
-	@Override
 	Date getFrom();
 
 	/**
@@ -71,7 +68,6 @@ public interface ValidityPeriodClosed extends ValidityPeriod, ValidityPeriodClos
 	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
-	@Override
 	Date getUntil();
 
 	/**

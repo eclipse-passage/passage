@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2022 ArSysOp
+ * Copyright (c) 2019, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,7 +16,7 @@ import java.util.function.Supplier;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;
-import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.described.DescribedPersonalLicense;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.swt.SWT;
@@ -28,10 +28,10 @@ import org.eclipse.swt.widgets.Text;
 @SuppressWarnings("restriction")
 public final class IssueLicenseDetailsPage extends TwoPhaseWizardPage {
 
-	private final Supplier<PersonalLicensePackDescriptor> pack;
+	private final Supplier<PersonalLicensePack> pack;
 	private Text info;
 
-	protected IssueLicenseDetailsPage(String name, Supplier<PersonalLicensePackDescriptor> pack) {
+	protected IssueLicenseDetailsPage(String name, Supplier<PersonalLicensePack> pack) {
 		super(name);
 		this.pack = pack;
 		setTitle(IssueLicensePageMessages.IssueLicenseDetailsPage_page_title);

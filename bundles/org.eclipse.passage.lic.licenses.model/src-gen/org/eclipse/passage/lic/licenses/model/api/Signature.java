@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,10 +13,7 @@
 package org.eclipse.passage.lic.licenses.model.api;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.passage.lic.licenses.SignatureDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,10 +33,10 @@ import org.eclipse.passage.lic.licenses.SignatureDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getSignature()
- * @model superTypes="org.eclipse.passage.lic.licenses.model.api.SignatureDescriptor"
+ * @model
  * @generated
  */
-public interface Signature extends EObject, SignatureDescriptor {
+public interface Signature extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.passage.lic.licenses.model.api.SignatureAttribute}.
@@ -50,7 +47,6 @@ public interface Signature extends EObject, SignatureDescriptor {
 	 * @model containment="true"
 	 * @generated
 	 */
-	@Override
 	EList<SignatureAttribute> getAttributes();
 
 	/**
@@ -63,7 +59,6 @@ public interface Signature extends EObject, SignatureDescriptor {
 	 * @model containment="true"
 	 * @generated
 	 */
-	@Override
 	Signature getParent();
 
 	/**

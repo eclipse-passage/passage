@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -66,7 +66,7 @@ final class UpdateLicensePlan {
 	}
 
 	private <T extends EObject> LicensePlan plan(T license, Function<T, String> id) {
-		return (LicensePlan) licenses.getLicensePlan(id.apply(license));
+		return licenses.plan(id.apply(license)).get();
 	}
 
 	@SuppressWarnings("unchecked")

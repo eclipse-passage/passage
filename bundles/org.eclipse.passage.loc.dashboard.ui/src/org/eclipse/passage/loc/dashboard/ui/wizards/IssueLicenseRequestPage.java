@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2019, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,7 +19,7 @@ import java.util.function.Supplier;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.wizard.IWizardPage;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.dashboard.ui.wizards.license.ComposedPage;
@@ -30,7 +30,7 @@ import org.eclipse.passage.loc.internal.licenses.core.request.PersonalLicenseDat
 
 public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
 
-	private final Supplier<Optional<LicensePlanDescriptor>> plan;
+	private final Supplier<Optional<LicensePlan>> plan;
 	private final Supplier<Optional<UserDescriptor>> user;
 	private final Supplier<Optional<ProductVersionDescriptor>> product;
 	private final Supplier<Optional<List<LocalDate>>> period;

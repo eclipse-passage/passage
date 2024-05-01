@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -35,11 +35,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
 import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.junit.Test;
 
 public final class LicenseMigratorTest {
@@ -101,9 +101,9 @@ public final class LicenseMigratorTest {
 		assertEquals("perfect", grant.getFeature().getVersionMatch().getRule()); //$NON-NLS-1$
 		assertEquals("0.4.0", grant.getFeature().getVersionMatch().getVersion()); //$NON-NLS-1$
 		assertEquals(getLicensingDateFormat().parse("2019-03-14T00:00:00.000+0300"), //$NON-NLS-1$
-				((ValidityPeriodClosedDescriptor) grant.getValid()).getFrom());
+				((ValidityPeriodClosed) grant.getValid()).getFrom());
 		assertEquals(getLicensingDateFormat().parse("2019-06-14T00:00:00.000+0300"), //$NON-NLS-1$
-				((ValidityPeriodClosedDescriptor) grant.getValid()).getUntil());
+				((ValidityPeriodClosed) grant.getValid()).getUntil());
 	}
 
 	private void loadedTwoGrants(String path) throws IOException, ParseException {
@@ -144,9 +144,9 @@ public final class LicenseMigratorTest {
 		assertEquals("hardware", grant.getUserAuthentication().getType()); //$NON-NLS-1$
 		assertEquals("os.family=*", grant.getUserAuthentication().getExpression()); //$NON-NLS-1$
 		assertEquals(getLicensingDateFormat().parse("2020-12-02T00:00:00.000+0300"), //$NON-NLS-1$
-				((ValidityPeriodClosedDescriptor) grant.getValid()).getFrom());
+				((ValidityPeriodClosed) grant.getValid()).getFrom());
 		assertEquals(getLicensingDateFormat().parse("2021-12-02T00:00:00.000+0300"), //$NON-NLS-1$
-				((ValidityPeriodClosedDescriptor) grant.getValid()).getUntil());
+				((ValidityPeriodClosed) grant.getValid()).getUntil());
 	}
 
 	private void verifyPlan(String path) throws IOException, ParseException {

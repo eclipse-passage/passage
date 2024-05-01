@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,9 +13,7 @@
 package org.eclipse.passage.lic.licenses.model.api;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,10 +33,10 @@ import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getPersonalLicensePack()
- * @model superTypes="org.eclipse.passage.lic.licenses.model.api.PersonalLicensePackDescriptor"
+ * @model
  * @generated
  */
-public interface PersonalLicensePack extends EObject, PersonalLicensePackDescriptor {
+public interface PersonalLicensePack extends EObject {
 	/**
 	 * Returns the value of the '<em><b>License</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -49,7 +47,6 @@ public interface PersonalLicensePack extends EObject, PersonalLicensePackDescrip
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	@Override
 	PersonalLicenseRequisites getLicense();
 
 	/**
@@ -74,7 +71,6 @@ public interface PersonalLicensePack extends EObject, PersonalLicensePackDescrip
 	 * @model opposite="pack" containment="true"
 	 * @generated
 	 */
-	@Override
 	EList<PersonalFeatureGrant> getGrants();
 
 } // PersonalLicensePack

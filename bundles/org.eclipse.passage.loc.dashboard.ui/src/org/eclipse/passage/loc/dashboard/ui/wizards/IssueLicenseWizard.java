@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2022 ArSysOp
+ * Copyright (c) 2019, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,7 +19,6 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
-import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.loc.dashboard.ui.wizards.license.WizardInfoBar;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
@@ -63,9 +62,8 @@ public class IssueLicenseWizard extends Wizard {
 
 	@Override
 	public boolean performFinish() {
-		OperatorLicenseService licenseService = context.get(OperatorLicenseService.class);
-		PersonalLicensePackDescriptor licensePack = pack.pack();
-		ServiceInvocationResult<IssuedLicense> result = licenseService.issueLicensePack(request.request(), licensePack);
+		ServiceInvocationResult<IssuedLicense> result = context.get(OperatorLicenseService.class)
+				.issueLicensePack(pack.pack());
 		if (!new NoSevereErrors().test(result.diagnostic())) {
 			new WizardInfoBar(this).installError("Export failed"); //$NON-NLS-1$
 			new DiagnosticDialog(getShell(), result.diagnostic()).open();

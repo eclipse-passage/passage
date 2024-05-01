@@ -21,19 +21,20 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.base.conditions.MatchingRuleForIdentifier;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.Disk;
 import org.eclipse.passage.lic.internal.licenses.model.EmptyFeatureGrant;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
-import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.CompanyRef;
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.FloatingServer;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.api.UserGrant;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
@@ -179,14 +180,15 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	}
 
 	private Collection<FeatureGrant> featureGrants(FloatingLicensePack pack) {
-		LicensePlanDescriptor plan = licenses.getLicensePlan(request.plan());
 		AtomicInteger counter = new AtomicInteger(0);
-		return plan.getFeatures().stream()//
+		return licenses.plan(request.plan())//
+				.map(LicensePlan::getFeatures)//
+				.orElseGet(BasicEList::new).stream()//
 				.map(feature -> featureGrant(feature, pack, counter.getAndIncrement())) //
 				.collect(Collectors.toSet());
 	}
 
-	private FeatureGrant featureGrant(LicensePlanFeatureDescriptor feature, FloatingLicensePack pack, int no) {
+	private FeatureGrant featureGrant(LicensePlanFeature feature, FloatingLicensePack pack, int no) {
 		FeatureGrant grant = new EmptyFeatureGrant().get();
 		String fid = feature.getFeature().getIdentifier();
 		grant.setIdentifier(String.format("%s#%d", request.identifier(), no)); //$NON-NLS-1$
@@ -217,7 +219,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 		return all.stream().filter(g -> feature.equals(g.getFeature().getIdentifier())).findFirst();
 	}
 
-	private VersionMatch version(LicensePlanFeatureDescriptor feature) {
+	private VersionMatch version(LicensePlanFeature feature) {
 		VersionMatch version = LicensesFactory.eINSTANCE.createVersionMatch();
 		version.setVersion(feature.getFeature().getVersionMatch().getVersion());
 		version.setRule(new MatchingRuleForIdentifier(Optional.ofNullable(//

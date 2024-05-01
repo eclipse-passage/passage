@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,17 +14,17 @@ package org.eclipse.passage.loc.dashboard.ui.wizards;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 
 public final class PersonalDataPack {
-	private final Optional<LicensePlanDescriptor> plan;
+	private final Optional<LicensePlan> plan;
 	private final Optional<UserDescriptor> user;
 	private final Optional<ProductVersionDescriptor> product;
 
 	public PersonalDataPack(//
-			Optional<LicensePlanDescriptor> plan, //
+			Optional<LicensePlan> plan, //
 			Optional<UserDescriptor> user, //
 			Optional<ProductVersionDescriptor> product) {
 		this.plan = plan;
@@ -36,7 +36,7 @@ public final class PersonalDataPack {
 		this(Optional.empty(), Optional.empty(), Optional.empty());
 	}
 
-	Optional<LicensePlanDescriptor> plan() {
+	Optional<LicensePlan> plan() {
 		return plan;
 	}
 

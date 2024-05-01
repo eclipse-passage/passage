@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,8 +13,6 @@
 package org.eclipse.passage.lic.licenses.model.api;
 
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.passage.lic.licenses.AgreementDataDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,10 +37,10 @@ import org.eclipse.passage.lic.licenses.AgreementDataDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getAgreementData()
- * @model superTypes="org.eclipse.passage.lic.licenses.model.api.AgreementDataDescriptor"
+ * @model
  * @generated
  */
-public interface AgreementData extends EObject, AgreementDataDescriptor {
+public interface AgreementData extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -53,7 +51,6 @@ public interface AgreementData extends EObject, AgreementDataDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getIdentifier();
 
 	/**
@@ -76,7 +73,6 @@ public interface AgreementData extends EObject, AgreementDataDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getName();
 
 	/**
@@ -99,7 +95,6 @@ public interface AgreementData extends EObject, AgreementDataDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getFile();
 
 	/**
@@ -122,7 +117,6 @@ public interface AgreementData extends EObject, AgreementDataDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getHashAlgo();
 
 	/**
@@ -145,7 +139,6 @@ public interface AgreementData extends EObject, AgreementDataDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	byte[] getHash();
 
 	/**
@@ -168,7 +161,6 @@ public interface AgreementData extends EObject, AgreementDataDescriptor {
 	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
-	@Override
 	byte[] getContent();
 
 	/**
@@ -191,7 +183,6 @@ public interface AgreementData extends EObject, AgreementDataDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getContentType();
 
 	/**

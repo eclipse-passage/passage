@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2022 ArSysOp
+ * Copyright (c) 2022, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,13 +14,13 @@ package org.eclipse.passage.lic.licenses.model.described;
 
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 
 public final class DescribedFloatingLicense implements Supplier<String> {
 
-	private final FloatingLicensePackDescriptor pack;
+	private final FloatingLicensePack pack;
 
-	public DescribedFloatingLicense(FloatingLicensePackDescriptor license) {
+	public DescribedFloatingLicense(FloatingLicensePack license) {
 		this.pack = license;
 	}
 

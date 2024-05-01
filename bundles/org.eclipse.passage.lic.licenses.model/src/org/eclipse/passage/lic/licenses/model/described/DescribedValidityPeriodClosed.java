@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2022 ArSysOp
+ * Copyright (c) 2022, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,19 +16,19 @@ import java.util.Date;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.licenses.model.i18n.Messages;
-import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
-import org.eclipse.passage.lic.licenses.ValidityPeriodDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
+import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 
 public final class DescribedValidityPeriodClosed implements Supplier<String> {
 
-	private final ValidityPeriodClosedDescriptor valid;
+	private final ValidityPeriodClosed valid;
 
-	public DescribedValidityPeriodClosed(ValidityPeriodClosedDescriptor valid) {
+	public DescribedValidityPeriodClosed(ValidityPeriodClosed valid) {
 		this.valid = valid;
 	}
 
-	public DescribedValidityPeriodClosed(ValidityPeriodDescriptor valid) {
-		this((ValidityPeriodClosedDescriptor) valid);
+	public DescribedValidityPeriodClosed(ValidityPeriod valid) {
+		this((ValidityPeriodClosed) valid);
 	}
 
 	@Override

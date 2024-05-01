@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,16 +13,14 @@
 package org.eclipse.passage.loc.internal.licenses;
 
 import java.util.Collection;
+import java.util.Optional;
 
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 
-/**
- * @since 0.4.0
- */
 public interface LicenseRegistry {
 
-	Collection<? extends LicensePlanDescriptor> getLicensePlans();
+	Collection<LicensePlan> plans();
 
-	LicensePlanDescriptor getLicensePlan(String licensePlanId);
+	Optional<LicensePlan> plan(String id);
 
 }

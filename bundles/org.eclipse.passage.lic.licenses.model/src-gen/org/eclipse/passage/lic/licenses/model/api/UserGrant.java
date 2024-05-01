@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,8 +13,6 @@
 package org.eclipse.passage.lic.licenses.model.api;
 
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.passage.lic.licenses.UserGrantDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,10 +32,10 @@ import org.eclipse.passage.lic.licenses.UserGrantDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getUserGrant()
- * @model superTypes="org.eclipse.passage.lic.licenses.model.api.UserGrantDescriptor"
+ * @model
  * @generated
  */
-public interface UserGrant extends EObject, UserGrantDescriptor {
+public interface UserGrant extends EObject {
 	/**
 	 * Returns the value of the '<em><b>User</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -48,7 +46,6 @@ public interface UserGrant extends EObject, UserGrantDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getUser();
 
 	/**
@@ -71,7 +68,6 @@ public interface UserGrant extends EObject, UserGrantDescriptor {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	@Override
 	EvaluationInstructions getAuthentication();
 
 	/**

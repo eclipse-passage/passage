@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,8 +13,6 @@
 package org.eclipse.passage.lic.licenses.model.api;
 
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,10 +30,10 @@ import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlanFeature()
- * @model superTypes="org.eclipse.passage.lic.licenses.model.api.LicensePlanFeatureDescriptor"
+ * @model
  * @generated
  */
-public interface LicensePlanFeature extends EObject, LicensePlanFeatureDescriptor {
+public interface LicensePlanFeature extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Feature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -49,7 +47,6 @@ public interface LicensePlanFeature extends EObject, LicensePlanFeatureDescripto
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	@Override
 	FeatureRef getFeature();
 
 	/**
@@ -78,7 +75,6 @@ public interface LicensePlanFeature extends EObject, LicensePlanFeatureDescripto
 	 * @model opposite="features" required="true" transient="false"
 	 * @generated
 	 */
-	@Override
 	LicensePlan getPlan();
 
 	/**
@@ -105,7 +101,6 @@ public interface LicensePlanFeature extends EObject, LicensePlanFeatureDescripto
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	long getVivid();
 
 	/**
@@ -132,7 +127,6 @@ public interface LicensePlanFeature extends EObject, LicensePlanFeatureDescripto
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	int getCapacity();
 
 	/**

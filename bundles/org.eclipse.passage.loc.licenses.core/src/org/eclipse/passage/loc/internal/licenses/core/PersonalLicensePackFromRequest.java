@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,8 +16,8 @@ import java.util.Date;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalLicensePack;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
-import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
@@ -55,8 +55,8 @@ final class PersonalLicensePackFromRequest implements Supplier<PersonalLicensePa
 	}
 
 	private void installGrants(PersonalLicensePack pack) {
-		LicensePlanDescriptor plan = licenses.getLicensePlan(pack.getLicense().getPlan());
-		for (LicensePlanFeatureDescriptor feature : plan.getFeatures()) {
+		LicensePlan plan = licenses.plan(pack.getLicense().getPlan()).get();
+		for (LicensePlanFeature feature : plan.getFeatures()) {
 			pack.getGrants().add(new LicenseGrantFromRequest(feature, request).get());
 		}
 	}

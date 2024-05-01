@@ -24,7 +24,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.passage.lic.jface.actions.LicensedRunnableUI;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
@@ -38,8 +38,7 @@ public final class DashboardIssueFloatingLicenseHandler {
 	private final String feature = "org.eclipse.passage.loc.operator.issue.floating"; //$NON-NLS-1$
 
 	@Execute
-	public void execute(IEclipseContext context,
-			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional LicensePlanDescriptor plan,
+	public void execute(IEclipseContext context, @Named(IServiceConstants.ACTIVE_SELECTION) @Optional LicensePlan plan,
 			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional UserDescriptor user,
 			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional ProductVersionDescriptor product) {
 		new LicensedRunnableUI(feature, () -> open(context, //

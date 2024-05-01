@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,8 +13,6 @@
 package org.eclipse.passage.lic.licenses.model.api;
 
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.passage.lic.licenses.CompanyRefDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,10 +33,10 @@ import org.eclipse.passage.lic.licenses.CompanyRefDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getCompanyRef()
- * @model superTypes="org.eclipse.passage.lic.licenses.model.api.CompanyRefDescriptor"
+ * @model
  * @generated
  */
-public interface CompanyRef extends EObject, CompanyRefDescriptor {
+public interface CompanyRef extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -49,7 +47,6 @@ public interface CompanyRef extends EObject, CompanyRefDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getIdentifier();
 
 	/**
@@ -72,7 +69,6 @@ public interface CompanyRef extends EObject, CompanyRefDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getName();
 
 	/**
@@ -95,7 +91,6 @@ public interface CompanyRef extends EObject, CompanyRefDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getInfo();
 
 	/**
