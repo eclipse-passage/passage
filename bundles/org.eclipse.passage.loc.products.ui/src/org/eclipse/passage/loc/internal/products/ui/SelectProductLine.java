@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -18,7 +18,7 @@ import java.util.stream.StreamSupport;
 
 import org.eclipse.passage.lic.api.MandatoryService;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.products.ProductLineDescriptor;
+import org.eclipse.passage.lic.products.model.api.ProductLine;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
 import org.eclipse.passage.loc.internal.products.ui.i18n.ProductsUiMessages;
@@ -31,19 +31,19 @@ import org.eclipse.passage.loc.jface.dialogs.Appearance;
  * given {@link MandatoryService}.
  * 
  */
-public final class SelectProductLine extends SupplySelectRequest<ProductLineDescriptor> {
+public final class SelectProductLine extends SupplySelectRequest<ProductLine> {
 
 	public SelectProductLine(MandatoryService context) {
 		super(context);
 	}
 
 	@Override
-	public SelectRequest<ProductLineDescriptor> get() {
-		return new SelectRequest<>(ProductLineDescriptor.class, domain(), input(), appearance());
+	public SelectRequest<ProductLine> get() {
+		return new SelectRequest<>(ProductLine.class, domain(), input(), appearance());
 	}
 
-	private Supplier<Iterable<ProductLineDescriptor>> input() {
-		return () -> StreamSupport.stream(context.get(ProductRegistry.class).getProductLines().spliterator(), false)//
+	private Supplier<Iterable<ProductLine>> input() {
+		return () -> StreamSupport.stream(context.get(ProductRegistry.class).productLines().spliterator(), false)//
 				.collect(Collectors.toList());
 	}
 

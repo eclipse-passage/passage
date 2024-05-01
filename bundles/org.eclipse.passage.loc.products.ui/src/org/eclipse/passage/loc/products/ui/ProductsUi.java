@@ -12,10 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.products.ui;
 
+import java.util.Collection;
 import java.util.Optional;
 
-import org.eclipse.passage.lic.products.ProductDescriptor;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.model.api.Product;
+import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
 import org.eclipse.passage.loc.internal.products.ui.i18n.ProductsUiMessages;
@@ -28,22 +29,26 @@ public class ProductsUi {
 
 	public static final String PERSPECTIVE_MAIN = BUNDLE_SYMBOLIC_NAME + '.' + "perspective.main"; //$NON-NLS-1$
 
-	public static ProductDescriptor selectProductDescriptor(Shell shell, ProductRegistry registry,
-			ProductDescriptor initial) {
-		String classifier = ProductsPackage.eINSTANCE.getProduct().getName();
-		String title = ProductsUiMessages.ProductsUi_select_product;
-		Iterable<? extends ProductDescriptor> input = registry.getProducts();
-		Class<ProductDescriptor> clazz = ProductDescriptor.class;
-		return LocWokbench.selectClassifier(shell, classifier, title, input, Optional.ofNullable(initial), clazz);
+	public static Product selectProduct(Shell shell, ProductRegistry registry, Optional<Product> initial) {
+		return LocWokbench.selectClassifier(shell, //
+				ProductsPackage.eINSTANCE.getProduct().getName(), //
+				ProductsUiMessages.ProductsUi_select_product, //
+				registry.products(), //
+				initial, //
+				Product.class);
 	}
 
-	public static ProductVersionDescriptor selectProductVersionDescriptor(Shell shell, ProductRegistry registry,
-			ProductVersionDescriptor initial) {
+	public static ProductVersion selectProductVersion(Shell shell, ProductRegistry registry) {
 		String classifier = ProductsPackage.eINSTANCE.getProductVersion().getName();
 		String title = ProductsUiMessages.ProductsUi_select_product_line;
-		Iterable<? extends ProductVersionDescriptor> input = registry.getProductVersions();
-		Class<ProductVersionDescriptor> clazz = ProductVersionDescriptor.class;
-		return LocWokbench.selectClassifier(shell, classifier, title, input, Optional.ofNullable(initial), clazz);
+		Collection<ProductVersion> input = registry.productVersions();
+		Class<ProductVersion> clazz = ProductVersion.class;
+		return LocWokbench.selectClassifier(shell, //
+				classifier, //
+				title, //
+				input, //
+				Optional.empty(), //
+				clazz);
 	}
 
 }

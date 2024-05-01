@@ -14,10 +14,10 @@ package org.eclipse.passage.loc.internal.products.core;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
@@ -26,10 +26,10 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.internal.equinox.events.EquinoxEvent;
-import org.eclipse.passage.lic.products.ProductDescriptor;
-import org.eclipse.passage.lic.products.ProductLineDescriptor;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
-import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
+import org.eclipse.passage.lic.products.model.api.Product;
+import org.eclipse.passage.lic.products.model.api.ProductLine;
+import org.eclipse.passage.lic.products.model.api.ProductVersion;
+import org.eclipse.passage.lic.products.model.api.ProductVersionFeature;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.products.model.util.ProductsResourceImpl;
 import org.eclipse.passage.loc.internal.api.OperatorGearSupplier;
@@ -52,24 +52,16 @@ import org.osgi.service.event.EventAdmin;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + ProductsPackage.eNAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "products_xmi" })
-public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescriptor>
-		implements ProductRegistry, EditingDomainRegistry<ProductLineDescriptor> {
+public class ProductDomainRegistry extends BaseDomainRegistry<ProductLine>
+		implements ProductRegistry, EditingDomainRegistry<ProductLine> {
 
-	private final Map<String, ProductLineDescriptor> productLineIndex = new HashMap<>();
-	private final Map<String, ProductDescriptor> productIndex = new HashMap<>();
-	private final Map<String, Map<String, ProductVersionDescriptor>> productVersionIndex = new HashMap<>();
-	private final Map<String, Map<String, Map<String, ProductVersionFeatureDescriptor>>> productVersionFeatureIndex = new HashMap<>();
-
-	private EventAdmin events;
+	private final Map<String, ProductLine> lines = new HashMap<>();
+	private final Map<String, Product> products = new HashMap<>();
+	private final Map<String, Map<String, ProductVersion>> versions = new HashMap<>();
+	private final Map<String, Map<String, Map<String, ProductVersionFeature>>> features = new HashMap<>();
 
 	@Reference
-	public void bindEventAdmin(EventAdmin admin) {
-		this.events = admin;
-	}
-
-	public void unbindEventAdmin(@SuppressWarnings("unused") EventAdmin admin) {
-		this.events = null;
-	}
+	private EventAdmin events;
 
 	@Override
 	@Reference
@@ -91,13 +83,12 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 	@Deactivate
 	@Override
 	public void deactivate(Map<String, Object> properties) {
-		Collection<Map<String, ProductVersionDescriptor>> values = productVersionIndex.values();
-		for (Map<String, ProductVersionDescriptor> map : values) {
+		for (Map<String, Map<String, ProductVersionFeature>> map : features.values()) {
 			map.clear();
 		}
-		productVersionIndex.clear();
-		productIndex.clear();
-		productLineIndex.clear();
+		versions.values().forEach(Map::clear);
+		products.clear();
+		lines.clear();
 		super.deactivate(properties);
 	}
 
@@ -107,123 +98,79 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 	}
 
 	@Override
-	public Class<ProductLineDescriptor> getContentClass() {
-		return ProductLineDescriptor.class;
+	public Class<ProductLine> getContentClass() {
+		return ProductLine.class;
 	}
 
 	@Override
-	public String resolveIdentifier(ProductLineDescriptor content) {
+	public String resolveIdentifier(ProductLine content) {
 		return content.getIdentifier();
 	}
 
 	@Override
-	public Iterable<? extends ProductLineDescriptor> getProductLines() {
-		return new ArrayList<>(productLineIndex.values());
+	public Collection<ProductLine> productLines() {
+		return new ArrayList<>(lines.values());
 	}
 
 	@Override
-	public ProductLineDescriptor getProductLine(String identifier) {
-		return productLineIndex.get(identifier);
+	public Optional<ProductLine> productLine(String identifier) {
+		return Optional.ofNullable(lines.get(identifier));
 	}
 
 	@Override
-	public Iterable<ProductDescriptor> getProducts() {
-		return new ArrayList<>(productIndex.values());
+	public Collection<Product> products() {
+		return new ArrayList<>(products.values());
 	}
 
 	@Override
-	public Iterable<? extends ProductDescriptor> getProducts(String productLineId) {
-		ProductLineDescriptor productLine = productLineIndex.get(productLineId);
-		if (productLine == null) {
-			return Collections.emptyList();
-		}
-		return productLine.getProducts();
+	public Optional<Product> product(String id) {
+		return Optional.ofNullable(products.get(id));
 	}
 
 	@Override
-	public ProductDescriptor getProduct(String productId) {
-		return productIndex.get(productId);
-	}
-
-	@Override
-	public Iterable<ProductVersionDescriptor> getProductVersions() {
-		List<ProductVersionDescriptor> list = new ArrayList<>();
-		Collection<Map<String, ProductVersionDescriptor>> values = productVersionIndex.values();
-		for (Map<String, ProductVersionDescriptor> map : values) {
+	public Collection<ProductVersion> productVersions() {
+		List<ProductVersion> list = new ArrayList<>();
+		Collection<Map<String, ProductVersion>> values = versions.values();
+		for (Map<String, ProductVersion> map : values) {
 			list.addAll(map.values());
 		}
 		return list;
 	}
 
 	@Override
-	public Iterable<ProductVersionDescriptor> getProductVersions(String productId) {
-		Map<String, ProductVersionDescriptor> map = productVersionIndex.get(productId);
-		if (map == null) {
-			return Collections.emptyList();
-		}
-		return new ArrayList<>(map.values());
+	public Optional<ProductVersion> productVersion(String product, String version) {
+		return Optional.ofNullable(versions.get(product)).map(m -> m.get(version));
 	}
 
 	@Override
-	public ProductVersionDescriptor getProductVersion(String product, String version) {
-		Map<String, ProductVersionDescriptor> map = productVersionIndex.get(product);
-		if (map == null) {
-			return null;
-		}
-		return map.get(version);
-	}
-
-	@Override
-	public Iterable<ProductVersionFeatureDescriptor> getProductVersionFeatures() {
-		List<ProductVersionFeatureDescriptor> productVersionFeatures = new ArrayList<>();
-		Collection<Map<String, Map<String, ProductVersionFeatureDescriptor>>> versionValues = productVersionFeatureIndex
-				.values();
-		for (Map<String, Map<String, ProductVersionFeatureDescriptor>> versions : versionValues) {
-			Collection<Map<String, ProductVersionFeatureDescriptor>> values = versions.values();
-			for (Map<String, ProductVersionFeatureDescriptor> map : values) {
-				productVersionFeatures.addAll(map.values());
+	public Collection<ProductVersionFeature> productVersionFeatures() {
+		List<ProductVersionFeature> result = new ArrayList<>();
+		for (Map<String, Map<String, ProductVersionFeature>> maps : features.values()) {
+			for (Map<String, ProductVersionFeature> map : maps.values()) {
+				result.addAll(map.values());
 			}
 		}
-		return productVersionFeatures;
-	}
-
-	@Override
-	public Iterable<ProductVersionFeatureDescriptor> getProductVersionFeatures(String productId, String version) {
-		Map<String, Map<String, ProductVersionFeatureDescriptor>> versions = productVersionFeatureIndex.get(productId);
-		if (versions == null) {
-			return Collections.emptyList();
-		}
-		Map<String, ProductVersionFeatureDescriptor> map = versions.get(version);
-		if (map == null) {
-			return Collections.emptyList();
-		}
-		List<ProductVersionFeatureDescriptor> result = new ArrayList<>();
-		map.values().forEach(result::add);
 		return result;
 	}
 
 	@Override
-	protected DomainContentAdapter<ProductLineDescriptor, ProductDomainRegistry> createContentAdapter() {
+	protected DomainContentAdapter<ProductLine, ProductDomainRegistry> createContentAdapter() {
 		return new ProductsDomainRegistryTracker(this);
 	}
 
-	@Override
-	public void registerProductLine(ProductLineDescriptor productLine) {
-		String identifier = productLine.getIdentifier();
-		ProductLineDescriptor existing = productLineIndex.put(identifier, productLine);
-		if ((existing != null) && (existing != productLine)) {
-			String msg = NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing,
-					productLine);
-			Platform.getLog(getClass()).warn(msg);
+	void registerProductLine(ProductLine line) {
+		ProductLine existing = lines.put(line.getIdentifier(), line);
+		if ((existing != null) && (existing != line)) {
+			Platform.getLog(getClass())
+					.warn(NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing, line));
 		}
-		events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_LINE_CREATE, productLine).get());
-		productLine.getProducts().forEach(p -> registerProduct(p));
+		events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_LINE_CREATE, line).get());
+		line.getProducts().forEach(p -> registerProduct(p));
 	}
 
-	@Override
-	public void registerProduct(ProductDescriptor product) {
+	void registerProduct(Product product) {
 		String identifier = product.getIdentifier();
-		ProductDescriptor existing = productIndex.put(identifier, product);
+		Product existing = products.put(identifier, product);
 		if ((existing != null) && (existing != product)) {
 			String msg = NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing, product);
 			Platform.getLog(getClass()).warn(msg);
@@ -232,92 +179,75 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 		product.getProductVersions().forEach(pv -> registerProductVersion(product, pv));
 	}
 
-	@Override
-	public void registerProductVersion(ProductDescriptor product, ProductVersionDescriptor productVersion) {
-		String identifier = product.getIdentifier();
-		Map<String, ProductVersionDescriptor> versions = productVersionIndex.computeIfAbsent(identifier,
-				key -> new HashMap<>());
-		String version = productVersion.getVersion();
-		ProductVersionDescriptor existing = versions.put(version, productVersion);
-		if ((existing != null) && (existing != productVersion)) {
-			String msg = NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing,
-					productVersion);
-			Platform.getLog(getClass()).warn(msg);
+	void registerProductVersion(Product product, ProductVersion version) {
+		ProductVersion existing = versions.computeIfAbsent(product.getIdentifier(), key -> new HashMap<>())
+				.put(version.getVersion(), version);
+		if ((existing != null) && (existing != version)) {
+			Platform.getLog(getClass())
+					.warn(NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing, version));
 		}
-		events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_VERSION_CREATE, productVersion).get());
+		events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_VERSION_CREATE, version).get());
 	}
 
-	@Override
-	public void registerProductVersionFeature(ProductDescriptor product, ProductVersionDescriptor productVersion,
-			ProductVersionFeatureDescriptor productVersionFeature) {
-		String identifier = product.getIdentifier();
-		Map<String, Map<String, ProductVersionFeatureDescriptor>> versions = productVersionFeatureIndex
-				.computeIfAbsent(identifier, key -> new HashMap<>());
-		String version = productVersion.getVersion();
-		Map<String, ProductVersionFeatureDescriptor> features = versions.computeIfAbsent(version,
-				key -> new HashMap<>());
-		String featureIdentifier = productVersionFeature.getFeatureIdentifier();
-		ProductVersionFeatureDescriptor existing = features.put(featureIdentifier, productVersionFeature);
-		if ((existing != null) && (existing != productVersionFeature)) {
-			String msg = NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing,
-					productVersionFeature);
-			Platform.getLog(getClass()).warn(msg);
+	void registerProductVersionFeature(Product product, ProductVersion version, ProductVersionFeature feature) {
+		ProductVersionFeature existing = features//
+				.computeIfAbsent(product.getIdentifier(), key -> new HashMap<>())//
+				.computeIfAbsent(version.getVersion(), key -> new HashMap<>())//
+				.put(feature.getFeatureIdentifier(), feature);
+		if ((existing != null) && (existing != feature)) {
+			Platform.getLog(getClass())
+					.warn(NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing, feature));
 		}
-		events.postEvent(
-				new EquinoxEvent(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_CREATE, productVersionFeature).get());
+		events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_CREATE, feature).get());
 	}
 
-	@Override
-	public void unregisterProductLine(String productLineId) {
-		ProductLineDescriptor removed = productLineIndex.remove(productLineId);
+	void unregisterProductLine(String id) {
+		ProductLine removed = lines.remove(id);
 		if (removed != null) {
 			events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_LINE_DELETE, removed).get());
 			removed.getProducts().forEach(p -> unregisterProduct(p.getIdentifier()));
 		}
 	}
 
-	@Override
-	public void unregisterProduct(String productId) {
-		ProductDescriptor removed = productIndex.remove(productId);
+	void unregisterProduct(String id) {
+		Product removed = products.remove(id);
 		if (removed != null) {
 			events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_DELETE, removed).get());
-			removed.getProductVersions().forEach(pv -> unregisterProductVersion(productId, pv.getVersion()));
+			removed.getProductVersions().forEach(pv -> unregisterProductVersion(id, pv.getVersion()));
 		}
 	}
 
-	@Override
-	public void unregisterProductVersion(String productId, String version) {
-		Map<String, ProductVersionDescriptor> versions = productVersionIndex.get(productId);
-		if (versions != null) {
-			ProductVersionDescriptor removed = versions.remove(version);
+	void unregisterProductVersion(String product, String version) {
+		Map<String, ProductVersion> found = versions.get(product);
+		if (found != null) {
+			ProductVersion removed = found.remove(version);
 			if (removed != null) {
 				events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_VERSION_DELETE, removed).get());
-				removed.getProductVersionFeatures().forEach(
-						pvf -> unregisterProductVersionFeature(productId, version, pvf.getFeatureIdentifier()));
+				removed.getProductVersionFeatures()
+						.forEach(pvf -> unregisterProductVersionFeature(product, version, pvf.getFeatureIdentifier()));
 			}
-			if (versions.isEmpty()) {
-				productVersionIndex.remove(productId);
+			if (found.isEmpty()) {
+				found.remove(product);
 			}
 		}
 	}
 
-	@Override
-	public void unregisterProductVersionFeature(String productId, String version, String featureId) {
-		Map<String, Map<String, ProductVersionFeatureDescriptor>> versions = productVersionFeatureIndex.get(productId);
-		if (versions != null) {
-			Map<String, ProductVersionFeatureDescriptor> features = versions.get(version);
-			if (features != null) {
-				ProductVersionFeatureDescriptor removed = features.remove(featureId);
+	void unregisterProductVersionFeature(String product, String version, String feature) {
+		Map<String, Map<String, ProductVersionFeature>> maps = features.get(product);
+		if (maps != null) {
+			Map<String, ProductVersionFeature> map = maps.get(version);
+			if (map != null) {
+				ProductVersionFeature removed = map.remove(feature);
 				if (removed != null) {
 					events.postEvent(
 							new EquinoxEvent(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_DELETE, removed).get());
 				}
-				if (features.isEmpty()) {
-					versions.remove(version);
+				if (map.isEmpty()) {
+					maps.remove(version);
 				}
 			}
-			if (versions.isEmpty()) {
-				productVersionFeatureIndex.remove(productId);
+			if (maps.isEmpty()) {
+				features.remove(product);
 			}
 		}
 	}
@@ -338,7 +268,7 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 	}
 
 	@Override
-	public void registerContent(ProductLineDescriptor content) {
+	public void registerContent(ProductLine content) {
 		registerProductLine(content);
 	}
 

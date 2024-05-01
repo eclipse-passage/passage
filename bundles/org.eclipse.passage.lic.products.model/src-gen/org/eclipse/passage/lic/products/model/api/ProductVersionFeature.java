@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,7 +13,6 @@
 package org.eclipse.passage.lic.products.model.api;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,10 +33,10 @@ import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.products.model.meta.ProductsPackage#getProductVersionFeature()
- * @model superTypes="org.eclipse.passage.lic.products.model.api.ProductVersionFeatureDescriptor"
+ * @model
  * @generated
  */
-public interface ProductVersionFeature extends EObject, ProductVersionFeatureDescriptor {
+public interface ProductVersionFeature extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Feature Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -52,7 +51,6 @@ public interface ProductVersionFeature extends EObject, ProductVersionFeatureDes
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getFeatureIdentifier();
 
 	/**
@@ -80,7 +78,6 @@ public interface ProductVersionFeature extends EObject, ProductVersionFeatureDes
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getFeatureVersion();
 
 	/**
@@ -108,7 +105,6 @@ public interface ProductVersionFeature extends EObject, ProductVersionFeatureDes
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getRestrictionLevel();
 
 	/**
@@ -138,7 +134,6 @@ public interface ProductVersionFeature extends EObject, ProductVersionFeatureDes
 	 * @model opposite="productVersionFeatures" required="true" transient="false"
 	 * @generated
 	 */
-	@Override
 	ProductVersion getProductVersion();
 
 	/**

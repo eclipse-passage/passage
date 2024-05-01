@@ -22,7 +22,7 @@ import org.eclipse.passage.lic.api.EvaluationInstructions;
 import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
 
@@ -32,7 +32,7 @@ public final class FloatingLicenseData extends GeneralLicenseData implements Flo
 	private final Supplier<Integer> capacity;
 
 	public FloatingLicenseData(Supplier<Collection<UserDescriptor>> users, Supplier<LicensePlan> plan,
-			Supplier<ProductVersionDescriptor> product, Supplier<LocalDate> from, Supplier<LocalDate> until,
+			Supplier<ProductVersion> product, Supplier<LocalDate> from, Supplier<LocalDate> until,
 			Supplier<Integer> capacity) {
 		super(plan, product, from, until);
 		Objects.requireNonNull(users, "PersonalLicenseData::users"); //$NON-NLS-1$

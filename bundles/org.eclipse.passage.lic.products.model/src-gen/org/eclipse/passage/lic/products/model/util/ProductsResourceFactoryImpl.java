@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,10 +19,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 /**
  * <!-- begin-user-doc --> The <b>Resource Factory</b> associated with the
  * package. <!-- end-user-doc -->
- * 
  * @see org.eclipse.passage.lic.products.model.util.ProductsResourceImpl
  * @generated
- * @since 1.1
  */
 public class ProductsResourceFactoryImpl extends ResourceFactoryImpl {
 	/**
@@ -47,4 +45,4 @@ public class ProductsResourceFactoryImpl extends ResourceFactoryImpl {
 		return result;
 	}
 
-} //ProductsResourceFactoryImpl
+} // ProductsResourceFactoryImpl

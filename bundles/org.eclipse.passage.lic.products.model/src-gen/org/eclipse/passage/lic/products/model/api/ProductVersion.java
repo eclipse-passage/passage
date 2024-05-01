@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,7 +14,6 @@ package org.eclipse.passage.lic.products.model.api;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,10 +36,10 @@ import org.eclipse.passage.lic.products.ProductVersionDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.products.model.meta.ProductsPackage#getProductVersion()
- * @model superTypes="org.eclipse.passage.lic.products.model.api.ProductVersionDescriptor"
+ * @model
  * @generated
  */
-public interface ProductVersion extends EObject, ProductVersionDescriptor {
+public interface ProductVersion extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Version</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -55,7 +54,6 @@ public interface ProductVersion extends EObject, ProductVersionDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getVersion();
 
 	/**
@@ -79,7 +77,6 @@ public interface ProductVersion extends EObject, ProductVersionDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getName();
 
 	/**
@@ -106,7 +103,6 @@ public interface ProductVersion extends EObject, ProductVersionDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getInstallationToken();
 
 	/**
@@ -134,7 +130,6 @@ public interface ProductVersion extends EObject, ProductVersionDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getSecureToken();
 
 	/**
@@ -162,7 +157,6 @@ public interface ProductVersion extends EObject, ProductVersionDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getNews();
 
 	/**
@@ -192,7 +186,6 @@ public interface ProductVersion extends EObject, ProductVersionDescriptor {
 	 * @model opposite="productVersions" required="true" transient="false"
 	 * @generated
 	 */
-	@Override
 	Product getProduct();
 
 	/**
@@ -223,7 +216,6 @@ public interface ProductVersion extends EObject, ProductVersionDescriptor {
 	 * @model opposite="productVersion" containment="true"
 	 * @generated
 	 */
-	@Override
 	EList<ProductVersionFeature> getProductVersionFeatures();
 
 } // ProductVersion

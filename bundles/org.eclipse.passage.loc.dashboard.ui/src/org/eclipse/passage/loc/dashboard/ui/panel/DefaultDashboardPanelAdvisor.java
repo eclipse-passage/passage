@@ -185,10 +185,10 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	@Override
 	public void updateProductInfo(ProductRegistry productRegistry) {
-		productLines.update(productRegistry.getProductLines());
-		products.update(productRegistry.getProducts());
-		productVersions.update(productRegistry.getProductVersions());
-		productVersionFeatures.update(productRegistry.getProductVersionFeatures());
+		productLines.update(productRegistry.productLines());
+		products.update(productRegistry.products());
+		productVersions.update(productRegistry.productVersions());
+		productVersionFeatures.update(productRegistry.productVersionFeatures());
 	}
 
 	@Override

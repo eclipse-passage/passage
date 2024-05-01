@@ -61,16 +61,16 @@ public class ProductsSelectionCommandAdvisor implements SelectionCommandAdvisor 
 			return Collections.emptyList();
 		}
 		if (ProductsPackage.eINSTANCE.getProductLine().getName().equals(classifier)) {
-			return productRegistry.getProductLines();
+			return productRegistry.productLines();
 		}
 		if (ProductsPackage.eINSTANCE.getProduct().getName().equals(classifier)) {
-			return productRegistry.getProducts();
+			return productRegistry.products();
 		}
 		if (ProductsPackage.eINSTANCE.getProductVersion().getName().equals(classifier)) {
-			return productRegistry.getProductVersions();
+			return productRegistry.productVersions();
 		}
 		if (ProductsPackage.eINSTANCE.getProductVersionFeature().getName().equals(classifier)) {
-			return productRegistry.getProductVersionFeatures();
+			return productRegistry.productVersionFeatures();
 		}
 		return Collections.emptyList();
 	}

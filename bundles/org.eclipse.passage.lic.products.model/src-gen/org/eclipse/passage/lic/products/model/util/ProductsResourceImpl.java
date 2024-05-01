@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -21,9 +21,7 @@ import org.eclipse.passage.lic.internal.products.model.migration.ProductsResourc
 /**
  * <!-- begin-user-doc --> The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.passage.lic.products.model.util.ProductsResourceFactoryImpl
- * @since 1.1
  * @generated
  */
 public class ProductsResourceImpl extends XMIResourceImpl {
@@ -46,4 +44,4 @@ public class ProductsResourceImpl extends XMIResourceImpl {
 		options.put(OPTION_RESOURCE_HANDLER, new ProductsResourceHandler());
 	}
 
-} //ProductsResourceImpl
+} // ProductsResourceImpl

@@ -20,7 +20,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.loc.internal.api.GeneralLicenseRequest;
 
 public abstract class GeneralLicenseData implements GeneralLicenseRequest {
@@ -30,12 +30,12 @@ public abstract class GeneralLicenseData implements GeneralLicenseRequest {
 	private final Date stamp = new Date();
 
 	private final Supplier<LicensePlan> plan;
-	private final Supplier<ProductVersionDescriptor> product;
+	private final Supplier<ProductVersion> product;
 	private final Supplier<Date> from;
 	private final Supplier<Date> until;
 
-	protected GeneralLicenseData(Supplier<LicensePlan> plan, Supplier<ProductVersionDescriptor> product,
-			Supplier<LocalDate> from, Supplier<LocalDate> until) {
+	protected GeneralLicenseData(Supplier<LicensePlan> plan, Supplier<ProductVersion> product, Supplier<LocalDate> from,
+			Supplier<LocalDate> until) {
 		noNulls(plan, product, from, until);
 		this.plan = plan;
 		this.product = product;

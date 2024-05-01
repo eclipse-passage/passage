@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -20,7 +20,7 @@ import org.eclipse.emf.ecp.view.template.model.VTViewTemplateProvider;
 import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.TextWithButtonRenderer;
@@ -66,8 +66,7 @@ public class ProductVersionRenderer extends TextWithButtonRenderer {
 
 	protected void selectIdentifier() {
 		Shell shell = Display.getDefault().getActiveShell();
-		ProductVersionDescriptor initial = null;
-		ProductVersionDescriptor descriptor = ProductsUi.selectProductVersionDescriptor(shell, registry, initial);
+		ProductVersion descriptor = ProductsUi.selectProductVersion(shell, registry);
 		if (descriptor != null) {
 			String identifier = descriptor.getVersion();
 			if (identifier != null) {

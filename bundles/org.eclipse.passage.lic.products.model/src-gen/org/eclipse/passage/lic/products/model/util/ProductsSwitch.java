@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,10 +15,6 @@ package org.eclipse.passage.lic.products.model.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipse.passage.lic.products.ProductDescriptor;
-import org.eclipse.passage.lic.products.ProductLineDescriptor;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
-import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
 import org.eclipse.passage.lic.products.model.api.Product;
 import org.eclipse.passage.lic.products.model.api.ProductLine;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
@@ -86,39 +82,9 @@ public class ProductsSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case ProductsPackage.PRODUCT_LINE_DESCRIPTOR: {
-			ProductLineDescriptor productLineDescriptor = (ProductLineDescriptor) theEObject;
-			T result = caseProductLineDescriptor(productLineDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ProductsPackage.PRODUCT_DESCRIPTOR: {
-			ProductDescriptor productDescriptor = (ProductDescriptor) theEObject;
-			T result = caseProductDescriptor(productDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ProductsPackage.PRODUCT_VERSION_DESCRIPTOR: {
-			ProductVersionDescriptor productVersionDescriptor = (ProductVersionDescriptor) theEObject;
-			T result = caseProductVersionDescriptor(productVersionDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ProductsPackage.PRODUCT_VERSION_FEATURE_DESCRIPTOR: {
-			ProductVersionFeatureDescriptor productVersionFeatureDescriptor = (ProductVersionFeatureDescriptor) theEObject;
-			T result = caseProductVersionFeatureDescriptor(productVersionFeatureDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case ProductsPackage.PRODUCT_LINE: {
 			ProductLine productLine = (ProductLine) theEObject;
 			T result = caseProductLine(productLine);
-			if (result == null)
-				result = caseProductLineDescriptor(productLine);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -127,16 +93,12 @@ public class ProductsSwitch<T> extends Switch<T> {
 			Product product = (Product) theEObject;
 			T result = caseProduct(product);
 			if (result == null)
-				result = caseProductDescriptor(product);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
 		case ProductsPackage.PRODUCT_VERSION: {
 			ProductVersion productVersion = (ProductVersion) theEObject;
 			T result = caseProductVersion(productVersion);
-			if (result == null)
-				result = caseProductVersionDescriptor(productVersion);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -145,82 +107,12 @@ public class ProductsSwitch<T> extends Switch<T> {
 			ProductVersionFeature productVersionFeature = (ProductVersionFeature) theEObject;
 			T result = caseProductVersionFeature(productVersionFeature);
 			if (result == null)
-				result = caseProductVersionFeatureDescriptor(productVersionFeature);
-			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
 		default:
 			return defaultCase(theEObject);
 		}
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Product Line Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * This implementation returns null; returning a non-null result will terminate
-	 * the switch.
-	 * 
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Product Line Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseProductLineDescriptor(ProductLineDescriptor object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Product Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * This implementation returns null; returning a non-null result will terminate
-	 * the switch.
-	 * 
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Product Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseProductDescriptor(ProductDescriptor object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Product Version Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * This implementation returns null; returning a non-null result will terminate
-	 * the switch.
-	 * 
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Product Version Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseProductVersionDescriptor(ProductVersionDescriptor object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Product Version Feature Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * This implementation returns null; returning a non-null result will terminate
-	 * the switch.
-	 * 
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Product Version Feature Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseProductVersionFeatureDescriptor(ProductVersionFeatureDescriptor object) {
-		return null;
 	}
 
 	/**

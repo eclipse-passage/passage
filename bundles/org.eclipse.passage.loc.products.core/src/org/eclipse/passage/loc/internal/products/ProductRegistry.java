@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,48 +12,28 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.products;
 
-import org.eclipse.passage.lic.products.ProductDescriptor;
-import org.eclipse.passage.lic.products.ProductLineDescriptor;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
-import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
+import java.util.Collection;
+import java.util.Optional;
+
+import org.eclipse.passage.lic.products.model.api.Product;
+import org.eclipse.passage.lic.products.model.api.ProductLine;
+import org.eclipse.passage.lic.products.model.api.ProductVersion;
+import org.eclipse.passage.lic.products.model.api.ProductVersionFeature;
 
 public interface ProductRegistry {
 
-	Iterable<? extends ProductLineDescriptor> getProductLines();
+	Collection<ProductLine> productLines();
 
-	ProductLineDescriptor getProductLine(String productLineId);
+	Optional<ProductLine> productLine(String id);
 
-	void registerProductLine(ProductLineDescriptor productLine);
+	Collection<Product> products();
 
-	void unregisterProductLine(String productLineId);
+	Optional<Product> product(String id);
 
-	Iterable<? extends ProductDescriptor> getProducts();
+	Collection<ProductVersion> productVersions();
 
-	Iterable<? extends ProductDescriptor> getProducts(String productLineId);
+	Optional<ProductVersion> productVersion(String productId, String version);
 
-	ProductDescriptor getProduct(String productId);
-
-	void registerProduct(ProductDescriptor product);
-
-	void unregisterProduct(String productId);
-
-	Iterable<? extends ProductVersionDescriptor> getProductVersions();
-
-	Iterable<? extends ProductVersionDescriptor> getProductVersions(String productId);
-
-	ProductVersionDescriptor getProductVersion(String productId, String version);
-
-	void registerProductVersion(ProductDescriptor product, ProductVersionDescriptor productVersion);
-
-	void unregisterProductVersion(String productId, String version);
-
-	Iterable<? extends ProductVersionFeatureDescriptor> getProductVersionFeatures();
-
-	Iterable<? extends ProductVersionFeatureDescriptor> getProductVersionFeatures(String productId, String version);
-
-	void registerProductVersionFeature(ProductDescriptor product, ProductVersionDescriptor productVersion,
-			ProductVersionFeatureDescriptor productVersionFeature);
-
-	void unregisterProductVersionFeature(String productId, String version, String featureId);
+	Collection<ProductVersionFeature> productVersionFeatures();
 
 }

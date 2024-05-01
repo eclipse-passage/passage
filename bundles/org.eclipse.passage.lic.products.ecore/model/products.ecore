@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="products" nsURI="http://www.eclipse.org/passage/lic/products/0.5.0"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="products" nsURI="http://www.eclipse.org/passage/lic/products/3.0.0"
     nsPrefix="org.eclipse.passage.lic">
-  <eClassifiers xsi:type="ecore:EClass" name="ProductLineDescriptor" instanceClassName="org.eclipse.passage.lic.products.ProductLineDescriptor"
-      abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ProductDescriptor" instanceClassName="org.eclipse.passage.lic.products.ProductDescriptor"
-      abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ProductVersionDescriptor" instanceClassName="org.eclipse.passage.lic.products.ProductVersionDescriptor"
-      abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ProductVersionFeatureDescriptor" instanceClassName="org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor"
-      abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ProductLine" eSuperTypes="#//ProductLineDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="ProductLine">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -18,7 +10,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="products" upperBound="-1"
         eType="#//Product" containment="true" eOpposite="#//Product/productLine"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Product" eSuperTypes="#//ProductDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="Product">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -28,7 +20,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="productVersions" upperBound="-1"
         eType="#//ProductVersion" containment="true" eOpposite="#//ProductVersion/product"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProductVersion" eSuperTypes="#//ProductVersionDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="ProductVersion">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -40,7 +32,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="productVersionFeatures"
         upperBound="-1" eType="#//ProductVersionFeature" containment="true" eOpposite="#//ProductVersionFeature/productVersion"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProductVersionFeature" eSuperTypes="#//ProductVersionFeatureDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="ProductVersionFeature">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="featureIdentifier" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="featureVersion" lowerBound="1"

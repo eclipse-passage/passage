@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -51,7 +51,7 @@ public interface ProductsPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/passage/lic/products/0.5.0"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/passage/lic/products/3.0.0"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -72,130 +72,6 @@ public interface ProductsPackage extends EPackage {
 	ProductsPackage eINSTANCE = org.eclipse.passage.lic.products.model.impl.ProductsPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.products.ProductLineDescriptor <em>Product Line Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.products.ProductLineDescriptor
-	 * @see org.eclipse.passage.lic.products.model.impl.ProductsPackageImpl#getProductLineDescriptor()
-	 * @generated
-	 */
-	int PRODUCT_LINE_DESCRIPTOR = 0;
-
-	/**
-	 * The number of structural features of the '<em>Product Line Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRODUCT_LINE_DESCRIPTOR_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Product Line Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRODUCT_LINE_DESCRIPTOR_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.products.ProductDescriptor <em>Product Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.products.ProductDescriptor
-	 * @see org.eclipse.passage.lic.products.model.impl.ProductsPackageImpl#getProductDescriptor()
-	 * @generated
-	 */
-	int PRODUCT_DESCRIPTOR = 1;
-
-	/**
-	 * The number of structural features of the '<em>Product Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRODUCT_DESCRIPTOR_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Product Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRODUCT_DESCRIPTOR_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.products.ProductVersionDescriptor <em>Product Version Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.products.ProductVersionDescriptor
-	 * @see org.eclipse.passage.lic.products.model.impl.ProductsPackageImpl#getProductVersionDescriptor()
-	 * @generated
-	 */
-	int PRODUCT_VERSION_DESCRIPTOR = 2;
-
-	/**
-	 * The number of structural features of the '<em>Product Version Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Product Version Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRODUCT_VERSION_DESCRIPTOR_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor <em>Product Version Feature Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor
-	 * @see org.eclipse.passage.lic.products.model.impl.ProductsPackageImpl#getProductVersionFeatureDescriptor()
-	 * @generated
-	 */
-	int PRODUCT_VERSION_FEATURE_DESCRIPTOR = 3;
-
-	/**
-	 * The number of structural features of the '<em>Product Version Feature Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRODUCT_VERSION_FEATURE_DESCRIPTOR_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Product Version Feature Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRODUCT_VERSION_FEATURE_DESCRIPTOR_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.products.model.impl.ProductLineImpl <em>Product Line</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * 
@@ -204,7 +80,7 @@ public interface ProductsPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.products.model.impl.ProductsPackageImpl#getProductLine()
 	 * @generated
 	 */
-	int PRODUCT_LINE = 4;
+	int PRODUCT_LINE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -214,7 +90,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_LINE__IDENTIFIER = PRODUCT_LINE_DESCRIPTOR_FEATURE_COUNT + 0;
+	int PRODUCT_LINE__IDENTIFIER = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -224,7 +100,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_LINE__NAME = PRODUCT_LINE_DESCRIPTOR_FEATURE_COUNT + 1;
+	int PRODUCT_LINE__NAME = 1;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -234,7 +110,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_LINE__DESCRIPTION = PRODUCT_LINE_DESCRIPTOR_FEATURE_COUNT + 2;
+	int PRODUCT_LINE__DESCRIPTION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Products</b></em>' containment reference list.
@@ -244,7 +120,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_LINE__PRODUCTS = PRODUCT_LINE_DESCRIPTOR_FEATURE_COUNT + 3;
+	int PRODUCT_LINE__PRODUCTS = 3;
 
 	/**
 	 * The number of structural features of the '<em>Product Line</em>' class.
@@ -254,7 +130,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_LINE_FEATURE_COUNT = PRODUCT_LINE_DESCRIPTOR_FEATURE_COUNT + 4;
+	int PRODUCT_LINE_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Product Line</em>' class.
@@ -264,7 +140,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_LINE_OPERATION_COUNT = PRODUCT_LINE_DESCRIPTOR_OPERATION_COUNT + 0;
+	int PRODUCT_LINE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.products.model.impl.ProductImpl <em>Product</em>}' class.
@@ -275,7 +151,7 @@ public interface ProductsPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.products.model.impl.ProductsPackageImpl#getProduct()
 	 * @generated
 	 */
-	int PRODUCT = 5;
+	int PRODUCT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -285,7 +161,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT__IDENTIFIER = PRODUCT_DESCRIPTOR_FEATURE_COUNT + 0;
+	int PRODUCT__IDENTIFIER = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -295,7 +171,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT__NAME = PRODUCT_DESCRIPTOR_FEATURE_COUNT + 1;
+	int PRODUCT__NAME = 1;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -305,7 +181,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT__DESCRIPTION = PRODUCT_DESCRIPTOR_FEATURE_COUNT + 2;
+	int PRODUCT__DESCRIPTION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Product Line</b></em>' container reference.
@@ -315,7 +191,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT__PRODUCT_LINE = PRODUCT_DESCRIPTOR_FEATURE_COUNT + 3;
+	int PRODUCT__PRODUCT_LINE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Product Versions</b></em>' containment reference list.
@@ -325,7 +201,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT__PRODUCT_VERSIONS = PRODUCT_DESCRIPTOR_FEATURE_COUNT + 4;
+	int PRODUCT__PRODUCT_VERSIONS = 4;
 
 	/**
 	 * The number of structural features of the '<em>Product</em>' class.
@@ -335,7 +211,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_FEATURE_COUNT = PRODUCT_DESCRIPTOR_FEATURE_COUNT + 5;
+	int PRODUCT_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Product</em>' class.
@@ -345,7 +221,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_OPERATION_COUNT = PRODUCT_DESCRIPTOR_OPERATION_COUNT + 0;
+	int PRODUCT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.products.model.impl.ProductVersionImpl <em>Product Version</em>}' class.
@@ -356,7 +232,7 @@ public interface ProductsPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.products.model.impl.ProductsPackageImpl#getProductVersion()
 	 * @generated
 	 */
-	int PRODUCT_VERSION = 6;
+	int PRODUCT_VERSION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Version</b></em>' attribute.
@@ -366,7 +242,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION__VERSION = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 0;
+	int PRODUCT_VERSION__VERSION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -375,7 +251,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION__NAME = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 1;
+	int PRODUCT_VERSION__NAME = 1;
 
 	/**
 	 * The feature id for the '<em><b>Installation Token</b></em>' attribute.
@@ -385,7 +261,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION__INSTALLATION_TOKEN = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 2;
+	int PRODUCT_VERSION__INSTALLATION_TOKEN = 2;
 
 	/**
 	 * The feature id for the '<em><b>Secure Token</b></em>' attribute.
@@ -395,7 +271,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION__SECURE_TOKEN = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 3;
+	int PRODUCT_VERSION__SECURE_TOKEN = 3;
 
 	/**
 	 * The feature id for the '<em><b>News</b></em>' attribute.
@@ -405,7 +281,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION__NEWS = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 4;
+	int PRODUCT_VERSION__NEWS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Product</b></em>' container reference.
@@ -415,7 +291,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION__PRODUCT = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 5;
+	int PRODUCT_VERSION__PRODUCT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Product Version Features</b></em>' containment reference list.
@@ -425,7 +301,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION__PRODUCT_VERSION_FEATURES = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 6;
+	int PRODUCT_VERSION__PRODUCT_VERSION_FEATURES = 6;
 
 	/**
 	 * The number of structural features of the '<em>Product Version</em>' class.
@@ -435,7 +311,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION_FEATURE_COUNT = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 7;
+	int PRODUCT_VERSION_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Product Version</em>' class.
@@ -445,7 +321,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION_OPERATION_COUNT = PRODUCT_VERSION_DESCRIPTOR_OPERATION_COUNT + 0;
+	int PRODUCT_VERSION_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.products.model.impl.ProductVersionFeatureImpl <em>Product Version Feature</em>}' class.
@@ -456,7 +332,7 @@ public interface ProductsPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.products.model.impl.ProductsPackageImpl#getProductVersionFeature()
 	 * @generated
 	 */
-	int PRODUCT_VERSION_FEATURE = 7;
+	int PRODUCT_VERSION_FEATURE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Feature Identifier</b></em>' attribute.
@@ -466,7 +342,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION_FEATURE__FEATURE_IDENTIFIER = PRODUCT_VERSION_FEATURE_DESCRIPTOR_FEATURE_COUNT + 0;
+	int PRODUCT_VERSION_FEATURE__FEATURE_IDENTIFIER = 0;
 
 	/**
 	 * The feature id for the '<em><b>Feature Version</b></em>' attribute.
@@ -476,7 +352,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION_FEATURE__FEATURE_VERSION = PRODUCT_VERSION_FEATURE_DESCRIPTOR_FEATURE_COUNT + 1;
+	int PRODUCT_VERSION_FEATURE__FEATURE_VERSION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Restriction Level</b></em>' attribute.
@@ -486,7 +362,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION_FEATURE__RESTRICTION_LEVEL = PRODUCT_VERSION_FEATURE_DESCRIPTOR_FEATURE_COUNT + 2;
+	int PRODUCT_VERSION_FEATURE__RESTRICTION_LEVEL = 2;
 
 	/**
 	 * The feature id for the '<em><b>Product Version</b></em>' container reference.
@@ -496,7 +372,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION_FEATURE__PRODUCT_VERSION = PRODUCT_VERSION_FEATURE_DESCRIPTOR_FEATURE_COUNT + 3;
+	int PRODUCT_VERSION_FEATURE__PRODUCT_VERSION = 3;
 
 	/**
 	 * The number of structural features of the '<em>Product Version Feature</em>' class.
@@ -506,7 +382,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION_FEATURE_FEATURE_COUNT = PRODUCT_VERSION_FEATURE_DESCRIPTOR_FEATURE_COUNT + 4;
+	int PRODUCT_VERSION_FEATURE_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Product Version Feature</em>' class.
@@ -516,55 +392,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION_FEATURE_OPERATION_COUNT = PRODUCT_VERSION_FEATURE_DESCRIPTOR_OPERATION_COUNT + 0;
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.products.ProductLineDescriptor <em>Product Line Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Product Line Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.products.ProductLineDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.products.ProductLineDescriptor"
-	 * @generated
-	 */
-	EClass getProductLineDescriptor();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.products.ProductDescriptor <em>Product Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Product Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.products.ProductDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.products.ProductDescriptor"
-	 * @generated
-	 */
-	EClass getProductDescriptor();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.products.ProductVersionDescriptor <em>Product Version Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Product Version Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.products.ProductVersionDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.products.ProductVersionDescriptor"
-	 * @generated
-	 */
-	EClass getProductVersionDescriptor();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor <em>Product Version Feature Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Product Version Feature Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor"
-	 * @generated
-	 */
-	EClass getProductVersionFeatureDescriptor();
+	int PRODUCT_VERSION_FEATURE_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.products.model.api.ProductLine <em>Product Line</em>}'.

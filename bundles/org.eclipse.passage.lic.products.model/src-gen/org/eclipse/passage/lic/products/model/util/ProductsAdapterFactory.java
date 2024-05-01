@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,10 +16,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lic.products.ProductDescriptor;
-import org.eclipse.passage.lic.products.ProductLineDescriptor;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
-import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
 import org.eclipse.passage.lic.products.model.api.Product;
 import org.eclipse.passage.lic.products.model.api.ProductLine;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
@@ -90,26 +86,6 @@ public class ProductsAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected ProductsSwitch<Adapter> modelSwitch = new ProductsSwitch<Adapter>() {
 		@Override
-		public Adapter caseProductLineDescriptor(ProductLineDescriptor object) {
-			return createProductLineDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseProductDescriptor(ProductDescriptor object) {
-			return createProductDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseProductVersionDescriptor(ProductVersionDescriptor object) {
-			return createProductVersionDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseProductVersionFeatureDescriptor(ProductVersionFeatureDescriptor object) {
-			return createProductVersionFeatureDescriptorAdapter();
-		}
-
-		@Override
 		public Adapter caseProductLine(ProductLine object) {
 			return createProductLineAdapter();
 		}
@@ -147,74 +123,6 @@ public class ProductsAdapterFactory extends AdapterFactoryImpl {
 	@Override
 	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.products.ProductLineDescriptor <em>Product Line Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases
-	 * anyway.
-	 * 
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.products.ProductLineDescriptor
-	 * @generated
-	 */
-	public Adapter createProductLineDescriptorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.products.ProductDescriptor <em>Product Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases
-	 * anyway.
-	 * 
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.products.ProductDescriptor
-	 * @generated
-	 */
-	public Adapter createProductDescriptorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.products.ProductVersionDescriptor <em>Product Version Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases
-	 * anyway.
-	 * 
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.products.ProductVersionDescriptor
-	 * @generated
-	 */
-	public Adapter createProductVersionDescriptorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor <em>Product Version Feature Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases
-	 * anyway.
-	 * 
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor
-	 * @generated
-	 */
-	public Adapter createProductVersionFeatureDescriptorAdapter() {
-		return null;
 	}
 
 	/**

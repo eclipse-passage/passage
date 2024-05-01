@@ -13,7 +13,6 @@
 package org.eclipse.passage.loc.internal.products.core;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.passage.lic.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.products.model.api.Product;
 import org.eclipse.passage.lic.products.model.api.ProductLine;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
@@ -21,7 +20,7 @@ import org.eclipse.passage.lic.products.model.api.ProductVersionFeature;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.loc.internal.emf.DomainContentAdapter;
 
-public class ProductsDomainRegistryTracker extends DomainContentAdapter<ProductLineDescriptor, ProductDomainRegistry> {
+public class ProductsDomainRegistryTracker extends DomainContentAdapter<ProductLine, ProductDomainRegistry> {
 
 	public ProductsDomainRegistryTracker(ProductDomainRegistry registry) {
 		super(registry);
@@ -37,7 +36,7 @@ public class ProductsDomainRegistryTracker extends DomainContentAdapter<ProductL
 				processProductLineIdentifier(productLine, notification);
 				break;
 			case ProductsPackage.PRODUCT_LINE__PRODUCTS:
-				processProductLineProducts(productLine, notification);
+				processProductLineProducts(notification);
 				break;
 			default:
 				break;
@@ -79,16 +78,16 @@ public class ProductsDomainRegistryTracker extends DomainContentAdapter<ProductL
 		super.notifyChanged(notification);
 	}
 
-	protected void processProductLineIdentifier(ProductLine productLine, Notification notification) {
-		String oldValue = notification.getOldStringValue();
-		String newValue = notification.getNewStringValue();
+	protected void processProductLineIdentifier(ProductLine line, Notification notification) {
+		String from = notification.getOldStringValue();
+		String to = notification.getNewStringValue();
 		switch (notification.getEventType()) {
 		case Notification.SET:
-			if (oldValue != null) {
-				registry.unregisterProductLine(oldValue);
+			if (from != null) {
+				registry.unregisterProductLine(from);
 			}
-			if (newValue != null) {
-				registry.registerProductLine(productLine);
+			if (to != null) {
+				registry.registerProductLine(line);
 			}
 			break;
 		default:
@@ -96,13 +95,13 @@ public class ProductsDomainRegistryTracker extends DomainContentAdapter<ProductL
 		}
 	}
 
-	protected void processProductLineProducts(ProductLine productLine, Notification notification) {
-		Object oldValue = notification.getOldValue();
-		Object newValue = notification.getNewValue();
+	private void processProductLineProducts(Notification notification) {
+		Object from = notification.getOldValue();
+		Object to = notification.getNewValue();
 		switch (notification.getEventType()) {
 		case Notification.ADD:
-			if (newValue instanceof Product) {
-				Product product = (Product) newValue;
+			if (to instanceof Product) {
+				Product product = (Product) to;
 				String identifier = product.getIdentifier();
 				if (identifier != null) {
 					registry.registerProduct(product);
@@ -110,8 +109,8 @@ public class ProductsDomainRegistryTracker extends DomainContentAdapter<ProductL
 			}
 			break;
 		case Notification.REMOVE:
-			if (oldValue instanceof Product) {
-				Product product = (Product) oldValue;
+			if (from instanceof Product) {
+				Product product = (Product) from;
 				String identifier = product.getIdentifier();
 				if (identifier != null) {
 					registry.unregisterProduct(identifier);

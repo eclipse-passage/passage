@@ -20,7 +20,7 @@ import java.util.stream.StreamSupport;
 
 import org.eclipse.passage.lic.api.MandatoryService;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.products.ProductDescriptor;
+import org.eclipse.passage.lic.products.model.api.Product;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
 import org.eclipse.passage.loc.internal.products.ui.i18n.ProductsUiMessages;
@@ -34,23 +34,23 @@ import org.eclipse.passage.loc.jface.dialogs.Appearance;
  * {@link Optional#empty()}
  * 
  */
-public final class SelectProduct extends SupplySelectRequest<ProductDescriptor> {
+public final class SelectProduct extends SupplySelectRequest<Product> {
 
 	public SelectProduct(MandatoryService context) {
 		this(context, Optional.empty());
 	}
 
-	public SelectProduct(MandatoryService context, Optional<ProductDescriptor> selection) {
+	public SelectProduct(MandatoryService context, Optional<Product> selection) {
 		super(context, selection);
 	}
 
 	@Override
-	public SelectRequest<ProductDescriptor> get() {
-		return new SelectRequest<>(ProductDescriptor.class, domain(), input(), appearance());
+	public SelectRequest<Product> get() {
+		return new SelectRequest<>(Product.class, domain(), input(), appearance());
 	}
 
-	private Supplier<Iterable<ProductDescriptor>> input() {
-		return () -> StreamSupport.stream(context.get(ProductRegistry.class).getProducts().spliterator(), false)//
+	private Supplier<Iterable<Product>> input() {
+		return () -> StreamSupport.stream(context.get(ProductRegistry.class).products().spliterator(), false)//
 				.collect(Collectors.toList());
 	}
 

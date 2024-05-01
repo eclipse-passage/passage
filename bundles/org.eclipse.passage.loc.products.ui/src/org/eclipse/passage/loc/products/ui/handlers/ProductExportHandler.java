@@ -23,7 +23,7 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.loc.internal.equinox.OperatorProductService;
 import org.eclipse.passage.loc.internal.products.ui.i18n.ProductsUiMessages;
 import org.eclipse.swt.widgets.Shell;
@@ -32,10 +32,8 @@ import org.eclipse.swt.widgets.Shell;
 public class ProductExportHandler {
 
 	@Execute
-	public void execute(@Named(IServiceConstants.ACTIVE_SELECTION) ProductVersionDescriptor owner,
-			IEclipseContext context) {
-		OperatorProductService service = context.get(OperatorProductService.class);
-		IStatus status = service.createProductKeys(owner);
+	public void execute(@Named(IServiceConstants.ACTIVE_SELECTION) ProductVersion owner, IEclipseContext context) {
+		IStatus status = context.get(OperatorProductService.class).createProductKeys(owner);
 		Shell shell = context.get(Shell.class);
 		if (status.isOK()) {
 			String message = status.getMessage();
@@ -47,9 +45,8 @@ public class ProductExportHandler {
 	}
 
 	@CanExecute
-	public boolean canExecute(
-			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional ProductVersionDescriptor productVersion) {
-		return productVersion != null;
+	public boolean canExecute(@Named(IServiceConstants.ACTIVE_SELECTION) @Optional ProductVersion version) {
+		return version != null;
 	}
 
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021, 2023 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -23,9 +23,7 @@ import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
-import org.eclipse.passage.lic.emf.validation.ErrorMessages;
 import org.eclipse.passage.lic.keys.model.api.KeyPair;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.loc.internal.api.workspace.Keys;
 import org.eclipse.passage.loc.internal.equinox.OperatorGearAware;
@@ -51,7 +49,7 @@ final class ProductVersionKeys {
 		});
 	}
 
-	public IStatus createKeys(ProductVersionDescriptor target) {
+	public IStatus createKeys(ProductVersion target) {
 		LicensedProduct product = product(target);
 		Optional<String> existing;
 		try {
@@ -61,10 +59,6 @@ final class ProductVersionKeys {
 		}
 		if (existing.isPresent()) {
 			return error(existing.get());
-		}
-		Optional<String> invalid = validate(target);
-		if (invalid.isPresent()) {
-			return error(invalid.get());
 		}
 		Optional<StreamCodec> codec;
 		try {
@@ -82,7 +76,7 @@ final class ProductVersionKeys {
 		}
 	}
 
-	private BaseLicensedProduct product(ProductVersionDescriptor target) {
+	private BaseLicensedProduct product(ProductVersion target) {
 		return new BaseLicensedProduct(//
 				target.getProduct().getIdentifier(), //
 				target.getVersion());
@@ -92,13 +86,6 @@ final class ProductVersionKeys {
 		return new OperatorGearAware().withGear(gear -> gear.codec(product));
 	}
 
-	private Optional<String> validate(ProductVersionDescriptor target) {
-		if (!(target instanceof ProductVersion)) {
-			return Optional.empty();
-		}
-		return new ErrorMessages().apply(((ProductVersion) target).getProduct());
-	}
-
 	private Optional<String> keyIsPresent(LicensedProduct target) throws LicensingException {
 		Keys service = new OperatorGearAware().withGear(gear -> Optional.of(gear.workspace().keys())).get();
 		Optional<String> exists = service.existing(target.identifier(), target.version());
@@ -106,7 +93,7 @@ final class ProductVersionKeys {
 				path -> String.format(ProductsCoreMessages.ProductOperatorServiceImpl_e_key_already_defined, path));
 	}
 
-	private IStatus createKeyPair(ProductVersionDescriptor target, LicensedProduct product, StreamCodec codec)
+	private IStatus createKeyPair(ProductVersion target, LicensedProduct product, StreamCodec codec)
 			throws LicensingException {
 		Optional<String> stored = store(generate(target, product, codec));
 		if (!stored.isPresent()) {
@@ -119,7 +106,7 @@ final class ProductVersionKeys {
 		return new KeyPairStored(pair).store();
 	}
 
-	private KeyPair generate(ProductVersionDescriptor target, LicensedProduct product, StreamCodec codec)
+	private KeyPair generate(ProductVersion target, LicensedProduct product, StreamCodec codec)
 			throws LicensingException {
 		try (ByteArrayOutputStream open = new ByteArrayOutputStream();
 				ByteArrayOutputStream secret = new ByteArrayOutputStream()) {
@@ -134,7 +121,7 @@ final class ProductVersionKeys {
 		return new Status(IStatus.ERROR, plugin, errors);
 	}
 
-	private Status noCodec(ProductVersionDescriptor target, LicensedProduct product) {
+	private Status noCodec(ProductVersion target, LicensedProduct product) {
 		return error(String.format(ProductsCoreMessages.ProductOperatorServiceImpl_e_unable_to_create_keys,
 				product.version(), target.getProduct().getName()));
 	}
