@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,10 +13,7 @@
 package org.eclipse.passage.lic.users.model.api;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,10 +32,10 @@ import org.eclipse.passage.lic.users.UserOriginDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.users.model.meta.UsersPackage#getUserOrigin()
- * @model superTypes="org.eclipse.passage.lic.users.model.api.UserOriginDescriptor"
+ * @model
  * @generated
  */
-public interface UserOrigin extends EObject, UserOriginDescriptor {
+public interface UserOrigin extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -49,7 +46,6 @@ public interface UserOrigin extends EObject, UserOriginDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getIdentifier();
 
 	/**
@@ -72,7 +68,6 @@ public interface UserOrigin extends EObject, UserOriginDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getName();
 
 	/**
@@ -95,7 +90,6 @@ public interface UserOrigin extends EObject, UserOriginDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getDescription();
 
 	/**
@@ -120,7 +114,6 @@ public interface UserOrigin extends EObject, UserOriginDescriptor {
 	 * @model opposite="origin" containment="true"
 	 * @generated
 	 */
-	@Override
 	EList<User> getUsers();
 
 	/**
@@ -138,7 +131,6 @@ public interface UserOrigin extends EObject, UserOriginDescriptor {
 	 * @model opposite="origin" containment="true"
 	 * @generated
 	 */
-	@Override
 	EList<UserGroup> getGroups();
 
 } // UserOrigin

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,8 +15,6 @@ package org.eclipse.passage.lic.users.model.tests;
 import static org.junit.Assert.assertTrue;
 
 import org.eclipse.passage.lic.internal.users.model.UsersClassMetadata;
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.junit.Test;
@@ -31,13 +29,11 @@ public class UsersClassMetadataTest {
 
 	@Test
 	public void userOriginMetadata() {
-		assertTrue(metadata.find(UserOriginDescriptor.class).isPresent());
 		assertTrue(metadata.find(UserOrigin.class).isPresent());
 	}
 
 	@Test
 	public void userMetadata() {
-		assertTrue(metadata.find(UserDescriptor.class).isPresent());
 		assertTrue(metadata.find(User.class).isPresent());
 	}
 

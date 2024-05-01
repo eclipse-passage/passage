@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,7 +13,6 @@
 package org.eclipse.passage.lic.users.model.api;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.passage.lic.users.UserGroupDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,10 +32,10 @@ import org.eclipse.passage.lic.users.UserGroupDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.users.model.meta.UsersPackage#getUserGroup()
- * @model superTypes="org.eclipse.passage.lic.users.model.api.UserGroupDescriptor org.eclipse.passage.lic.users.model.api.LicenseOwner"
+ * @model
  * @generated
  */
-public interface UserGroup extends UserGroupDescriptor, LicenseOwner {
+public interface UserGroup extends LicenseOwner {
 	/**
 	 * Returns the value of the '<em><b>Users</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.passage.lic.users.model.api.User}.
@@ -47,7 +46,6 @@ public interface UserGroup extends UserGroupDescriptor, LicenseOwner {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	EList<User> getUsers();
 
 	/**
@@ -62,7 +60,6 @@ public interface UserGroup extends UserGroupDescriptor, LicenseOwner {
 	 * @model opposite="groups" required="true" transient="false"
 	 * @generated
 	 */
-	@Override
 	UserOrigin getOrigin();
 
 	/**

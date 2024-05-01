@@ -17,8 +17,6 @@ import java.util.Set;
 import org.eclipse.passage.lic.internal.users.model.EmptyUser;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.lic.users.model.meta.UsersFactory;
@@ -31,7 +29,7 @@ public abstract class TestData<S extends Storage<?>> {
 
 	public abstract S storage();
 
-	protected final UserDescriptor user(String id, String email, String name) {
+	protected final User user(String id, String email, String name) {
 		User user = new EmptyUser().get();
 		user.setIdentifier(id);
 		user.getContact().setEmail(email);
@@ -39,7 +37,7 @@ public abstract class TestData<S extends Storage<?>> {
 		return user;
 	}
 
-	protected final UserOriginDescriptor company(String[] data) {
+	protected final UserOrigin company(String[] data) {
 		UserOrigin company = UsersFactory.eINSTANCE.createUserOrigin();
 		company.setName(data[0]);
 		return company;

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2019, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -17,8 +17,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.loc.report.internal.core.TestData;
 
 abstract class TestCustomers extends TestData<CustomerStorage> {
@@ -31,13 +31,13 @@ abstract class TestCustomers extends TestData<CustomerStorage> {
 		this.companies = companies;
 	}
 
-	Set<UserDescriptor> users() {
+	Set<User> users() {
 		return Arrays.stream(persons)//
 				.map(this::userWithUsage)//
 				.collect(Collectors.toSet());
 	}
 
-	Set<UserOriginDescriptor> companies() {
+	Set<UserOrigin> companies() {
 		return Arrays.stream(companies)//
 				.map(this::company)//
 				.collect(Collectors.toSet());
@@ -59,7 +59,7 @@ abstract class TestCustomers extends TestData<CustomerStorage> {
 		return new FakeCustomersBase(this);
 	}
 
-	private UserDescriptor userWithUsage(String[] data) {
+	private User userWithUsage(String[] data) {
 		return user("", data[2], data[0]); //$NON-NLS-1$
 	}
 

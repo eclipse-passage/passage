@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,14 +15,10 @@ package org.eclipse.passage.lic.users.model.impl;
 import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.passage.lic.users.model.api.Contact;
-
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
 /**
@@ -413,4 +409,4 @@ public class ContactImpl extends MinimalEObjectImpl.Container implements Contact
 		return result.toString();
 	}
 
-} //ContactImpl
+} // ContactImpl

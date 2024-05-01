@@ -23,15 +23,15 @@ import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
-import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
 
 public final class FloatingLicenseData extends GeneralLicenseData implements FloatingLicenseRequest {
 
-	private final Supplier<Collection<UserDescriptor>> users;
+	private final Supplier<Collection<User>> users;
 	private final Supplier<Integer> capacity;
 
-	public FloatingLicenseData(Supplier<Collection<UserDescriptor>> users, Supplier<LicensePlan> plan,
+	public FloatingLicenseData(Supplier<Collection<User>> users, Supplier<LicensePlan> plan,
 			Supplier<ProductVersion> product, Supplier<LocalDate> from, Supplier<LocalDate> until,
 			Supplier<Integer> capacity) {
 		super(plan, product, from, until);
@@ -49,13 +49,13 @@ public final class FloatingLicenseData extends GeneralLicenseData implements Flo
 
 	@Override
 	public EvaluationInstructions userAuthentication(String user) {
-		UserDescriptor target = user(user);
+		User target = user(user);
 		return new BaseEvaluationInstructions(//
 				new EvaluationType.Of(target.getPreferredEvaluationExpression()), //
 				target.getPreferredEvaluationType());
 	}
 
-	private UserDescriptor user(String identifier) {
+	private User user(String identifier) {
 		return users.get().stream()//
 				.filter(user -> identifier.equals(user.getContact().getEmail()))//
 				.findAny()//

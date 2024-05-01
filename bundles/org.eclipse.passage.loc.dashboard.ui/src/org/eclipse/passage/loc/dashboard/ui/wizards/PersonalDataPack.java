@@ -16,16 +16,16 @@ import java.util.Optional;
 
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
-import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
 
 public final class PersonalDataPack {
 	private final Optional<LicensePlan> plan;
-	private final Optional<UserDescriptor> user;
+	private final Optional<User> user;
 	private final Optional<ProductVersion> product;
 
 	public PersonalDataPack(//
 			Optional<LicensePlan> plan, //
-			Optional<UserDescriptor> user, //
+			Optional<User> user, //
 			Optional<ProductVersion> product) {
 		this.plan = plan;
 		this.user = user;
@@ -40,7 +40,7 @@ public final class PersonalDataPack {
 		return plan;
 	}
 
-	Optional<UserDescriptor> user() {
+	Optional<User> user() {
 		return user;
 	}
 

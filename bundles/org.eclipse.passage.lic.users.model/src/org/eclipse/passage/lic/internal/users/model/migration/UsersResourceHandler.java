@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.users.model.migration;
 
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.passage.lic.emf.migration.DelegateClassifiers;
 import org.eclipse.passage.lic.emf.migration.EClassRoutes;
@@ -34,13 +35,14 @@ public final class UsersResourceHandler extends MigratingResourceHandler {
 		migrate050();
 		migrate100();
 		migrate110();
+		migrate200();
 	}
 
 	@Override
 	protected void complete(XMLResource resource) {
 		resource.getContents().stream()//
-		.filter(UserOrigin.class::isInstance)//
-		.map(UserOrigin.class::cast) //
+				.filter(UserOrigin.class::isInstance)//
+				.map(UserOrigin.class::cast) //
 				.forEach(this::complete);
 	}
 
@@ -84,6 +86,12 @@ public final class UsersResourceHandler extends MigratingResourceHandler {
 		new DelegateClassifiers(uri).delegate(classRoutes200());
 	}
 
+	private void migrate200() {
+		String uri = "http://www.eclipse.org/passage/lic/users/2.0.0"; //$NON-NLS-1$
+		UsersPackage delegate = UsersPackage.eINSTANCE;
+		EPackage.Registry.INSTANCE.computeIfAbsent(uri, ns -> delegate);
+	}
+
 	private EClassRoutes classRoutes200() {
 		UsersPackage delegate = UsersPackage.eINSTANCE;
 		EClassRoutes.Smart routes = new EClassRoutes.Smart(new SimpleClassRoutes());
@@ -98,10 +106,10 @@ public final class UsersResourceHandler extends MigratingResourceHandler {
 
 	private void complete(User user) {
 		Contact contact = new EnsureLicenseOwnerContact().apply(user);
-		if(user.getIdentifier() == null) {
+		if (user.getIdentifier() == null) {
 			user.setIdentifier(contact.getEmail());
 		}
-		if(user.getName() == null) {
+		if (user.getName() == null) {
 			user.setName(contact.getName());
 		}
 	}

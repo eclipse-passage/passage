@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,7 +13,6 @@
 package org.eclipse.passage.lic.users.model.meta;
 
 import org.eclipse.emf.ecore.EFactory;
-
 import org.eclipse.passage.lic.users.model.api.Contact;
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserGroup;
@@ -83,4 +82,4 @@ public interface UsersFactory extends EFactory {
 	 */
 	UsersPackage getUsersPackage();
 
-} //UsersFactory
+} // UsersFactory

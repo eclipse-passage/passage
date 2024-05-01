@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,17 +12,20 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.users;
 
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import java.util.Collection;
+import java.util.Optional;
+
+import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserOrigin;
 
 public interface UserRegistry {
 
-	Iterable<? extends UserOriginDescriptor> getUserOrigins();
+	Collection<UserOrigin> userOrigins();
 
-	UserOriginDescriptor getUserOrigin(String userOriginId);
+	Optional<UserOrigin> userOrigin(String id);
 
-	Iterable<? extends UserDescriptor> getUsers();
+	Collection<User> users();
 
-	UserDescriptor getUser(String userId);
+	Optional<User> user(String userId);
 
 }

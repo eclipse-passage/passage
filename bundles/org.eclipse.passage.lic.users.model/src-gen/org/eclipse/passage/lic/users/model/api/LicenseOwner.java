@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,7 +13,6 @@
 package org.eclipse.passage.lic.users.model.api;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lic.users.LicenseOwnerDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,10 +34,10 @@ import org.eclipse.passage.lic.users.LicenseOwnerDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.users.model.meta.UsersPackage#getLicenseOwner()
- * @model interface="true" abstract="true" superTypes="org.eclipse.passage.lic.users.model.api.LicenseOwnerDescriptor"
+ * @model interface="true" abstract="true"
  * @generated
  */
-public interface LicenseOwner extends EObject, LicenseOwnerDescriptor {
+public interface LicenseOwner extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -49,7 +48,6 @@ public interface LicenseOwner extends EObject, LicenseOwnerDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getIdentifier();
 
 	/**
@@ -75,7 +73,6 @@ public interface LicenseOwner extends EObject, LicenseOwnerDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getName();
 
 	/**
@@ -99,7 +96,6 @@ public interface LicenseOwner extends EObject, LicenseOwnerDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getDescription();
 
 	/**
@@ -125,7 +121,6 @@ public interface LicenseOwner extends EObject, LicenseOwnerDescriptor {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	@Override
 	Contact getContact();
 
 	/**

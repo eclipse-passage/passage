@@ -33,8 +33,8 @@ import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
@@ -57,8 +57,8 @@ public class LicenseExportHandler {
 	public void execute(@Named(IServiceConstants.ACTIVE_SELECTION) LicensePlan plan, IEclipseContext context) {
 		Shell shell = context.get(Shell.class);
 		MandatoryEclipseContext resolution = new MandatoryEclipseContext(context);
-		java.util.Optional<UserDescriptor> user = new SelectInner<UserDescriptor, UserOriginDescriptor>(
-				new SelectUser(resolution).get(), new SelectUserOrigin(resolution).get(), resolution).get();
+		java.util.Optional<User> user = new SelectInner<User, UserOrigin>(new SelectUser(resolution).get(),
+				new SelectUserOrigin(resolution).get(), resolution).get();
 		if (!user.isPresent()) {
 			return;
 		}
@@ -120,7 +120,7 @@ public class LicenseExportHandler {
 		return licensePlan != null;
 	}
 
-	private PersonalLicenseRequest createLicensingRequest(UserDescriptor user, LicensePlan plan, ProductVersion product,
+	private PersonalLicenseRequest createLicensingRequest(User user, LicensePlan plan, ProductVersion product,
 			LocalDate from, LocalDate until) {
 		return new PersonalLicenseData(() -> user, () -> plan, () -> product, () -> from, () -> until);
 	}

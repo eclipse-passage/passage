@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,19 +14,13 @@ package org.eclipse.passage.lic.users.model.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.passage.lic.users.ContactDescriptor;
-import org.eclipse.passage.lic.users.LicenseOwnerDescriptor;
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserGroupDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
-
-import org.eclipse.passage.lic.users.model.api.*;
-
+import org.eclipse.passage.lic.users.model.api.Contact;
+import org.eclipse.passage.lic.users.model.api.LicenseOwner;
+import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserGroup;
+import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
 /**
@@ -85,31 +79,6 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected UsersSwitch<Adapter> modelSwitch = new UsersSwitch<Adapter>() {
 		@Override
-		public Adapter caseContactDescriptor(ContactDescriptor object) {
-			return createContactDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseLicenseOwnerDescriptor(LicenseOwnerDescriptor object) {
-			return createLicenseOwnerDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseUserDescriptor(UserDescriptor object) {
-			return createUserDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseUserGroupDescriptor(UserGroupDescriptor object) {
-			return createUserGroupDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseUserOriginDescriptor(UserOriginDescriptor object) {
-			return createUserOriginDescriptorAdapter();
-		}
-
-		@Override
 		public Adapter caseContact(Contact object) {
 			return createContactAdapter();
 		}
@@ -151,79 +120,6 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 	@Override
 	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.UserOriginDescriptor <em>User Origin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.users.UserOriginDescriptor
-	 * @generated
-	 */
-	public Adapter createUserOriginDescriptorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.ContactDescriptor <em>Contact Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.users.ContactDescriptor
-	 * @since 2.0
-	 * @generated
-	 */
-	public Adapter createContactDescriptorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.LicenseOwnerDescriptor <em>License Owner Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.users.LicenseOwnerDescriptor
-	 * @since 2.0
-	 * @generated
-	 */
-	public Adapter createLicenseOwnerDescriptorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.UserDescriptor <em>User Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.users.UserDescriptor
-	 * @generated
-	 */
-	public Adapter createUserDescriptorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.UserGroupDescriptor <em>User Group Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.users.UserGroupDescriptor
-	 * @since 2.0
-	 * @generated
-	 */
-	public Adapter createUserGroupDescriptorAdapter() {
-		return null;
 	}
 
 	/**
@@ -311,4 +207,4 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //UsersAdapterFactory
+} // UsersAdapterFactory

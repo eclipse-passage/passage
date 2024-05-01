@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -48,7 +48,7 @@ public interface UsersPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/passage/lic/users/2.0.0"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/passage/lic/users/3.0.0"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -67,155 +67,6 @@ public interface UsersPackage extends EPackage {
 	UsersPackage eINSTANCE = org.eclipse.passage.lic.users.model.impl.UsersPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.users.UserOriginDescriptor <em>User Origin Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.users.UserOriginDescriptor
-	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getUserOriginDescriptor()
-	 * @generated
-	 */
-	int USER_ORIGIN_DESCRIPTOR = 4;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.users.ContactDescriptor <em>Contact Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.users.ContactDescriptor
-	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getContactDescriptor()
-	 * @since 2.0
-	 * @generated
-	 */
-	int CONTACT_DESCRIPTOR = 0;
-
-	/**
-	 * The number of structural features of the '<em>Contact Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 * @ordered
-	 */
-	int CONTACT_DESCRIPTOR_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Contact Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 * @ordered
-	 */
-	int CONTACT_DESCRIPTOR_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.users.LicenseOwnerDescriptor <em>License Owner Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.users.LicenseOwnerDescriptor
-	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getLicenseOwnerDescriptor()
-	 * @since 2.0
-	 * @generated
-	 */
-	int LICENSE_OWNER_DESCRIPTOR = 1;
-
-	/**
-	 * The number of structural features of the '<em>License Owner Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 * @ordered
-	 */
-	int LICENSE_OWNER_DESCRIPTOR_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>License Owner Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 * @ordered
-	 */
-	int LICENSE_OWNER_DESCRIPTOR_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.users.UserDescriptor <em>User Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.users.UserDescriptor
-	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getUserDescriptor()
-	 * @generated
-	 */
-	int USER_DESCRIPTOR = 2;
-
-	/**
-	 * The number of structural features of the '<em>User Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER_DESCRIPTOR_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>User Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER_DESCRIPTOR_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.users.UserGroupDescriptor <em>User Group Descriptor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.users.UserGroupDescriptor
-	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getUserGroupDescriptor()
-	 * @since 2.0
-	 * @generated
-	 */
-	int USER_GROUP_DESCRIPTOR = 3;
-
-	/**
-	 * The number of structural features of the '<em>User Group Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 * @ordered
-	 */
-	int USER_GROUP_DESCRIPTOR_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>User Group Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 * @ordered
-	 */
-	int USER_GROUP_DESCRIPTOR_OPERATION_COUNT = 0;
-
-	/**
-	 * The number of structural features of the '<em>User Origin Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>User Origin Descriptor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER_ORIGIN_DESCRIPTOR_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.users.model.impl.UserOriginImpl <em>User Origin</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -223,7 +74,7 @@ public interface UsersPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getUserOrigin()
 	 * @generated
 	 */
-	int USER_ORIGIN = 9;
+	int USER_ORIGIN = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.users.model.impl.UserImpl <em>User</em>}' class.
@@ -233,7 +84,7 @@ public interface UsersPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getUser()
 	 * @generated
 	 */
-	int USER = 7;
+	int USER = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.users.model.impl.UserGroupImpl <em>User Group</em>}' class.
@@ -244,7 +95,7 @@ public interface UsersPackage extends EPackage {
 	 * @since 2.0
 	 * @generated
 	 */
-	int USER_GROUP = 8;
+	int USER_GROUP = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.users.model.impl.ContactImpl <em>Contact</em>}' class.
@@ -255,7 +106,7 @@ public interface UsersPackage extends EPackage {
 	 * @since 2.0
 	 * @generated
 	 */
-	int CONTACT = 5;
+	int CONTACT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -265,7 +116,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTACT__NAME = CONTACT_DESCRIPTOR_FEATURE_COUNT + 0;
+	int CONTACT__NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Title</b></em>' attribute.
@@ -275,7 +126,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTACT__TITLE = CONTACT_DESCRIPTOR_FEATURE_COUNT + 1;
+	int CONTACT__TITLE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Position</b></em>' attribute.
@@ -285,7 +136,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTACT__POSITION = CONTACT_DESCRIPTOR_FEATURE_COUNT + 2;
+	int CONTACT__POSITION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Email</b></em>' attribute.
@@ -295,7 +146,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTACT__EMAIL = CONTACT_DESCRIPTOR_FEATURE_COUNT + 3;
+	int CONTACT__EMAIL = 3;
 
 	/**
 	 * The feature id for the '<em><b>Address</b></em>' attribute.
@@ -305,7 +156,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTACT__ADDRESS = CONTACT_DESCRIPTOR_FEATURE_COUNT + 4;
+	int CONTACT__ADDRESS = 4;
 
 	/**
 	 * The number of structural features of the '<em>Contact</em>' class.
@@ -315,7 +166,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTACT_FEATURE_COUNT = CONTACT_DESCRIPTOR_FEATURE_COUNT + 5;
+	int CONTACT_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Contact</em>' class.
@@ -325,7 +176,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTACT_OPERATION_COUNT = CONTACT_DESCRIPTOR_OPERATION_COUNT + 0;
+	int CONTACT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.users.model.api.LicenseOwner <em>License Owner</em>}' class.
@@ -336,7 +187,7 @@ public interface UsersPackage extends EPackage {
 	 * @since 2.0
 	 * @generated
 	 */
-	int LICENSE_OWNER = 6;
+	int LICENSE_OWNER = 1;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -346,7 +197,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_OWNER__IDENTIFIER = LICENSE_OWNER_DESCRIPTOR_FEATURE_COUNT + 0;
+	int LICENSE_OWNER__IDENTIFIER = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -356,7 +207,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_OWNER__NAME = LICENSE_OWNER_DESCRIPTOR_FEATURE_COUNT + 1;
+	int LICENSE_OWNER__NAME = 1;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -366,7 +217,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_OWNER__DESCRIPTION = LICENSE_OWNER_DESCRIPTOR_FEATURE_COUNT + 2;
+	int LICENSE_OWNER__DESCRIPTION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Contact</b></em>' containment reference.
@@ -376,7 +227,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_OWNER__CONTACT = LICENSE_OWNER_DESCRIPTOR_FEATURE_COUNT + 3;
+	int LICENSE_OWNER__CONTACT = 3;
 
 	/**
 	 * The number of structural features of the '<em>License Owner</em>' class.
@@ -386,7 +237,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_OWNER_FEATURE_COUNT = LICENSE_OWNER_DESCRIPTOR_FEATURE_COUNT + 4;
+	int LICENSE_OWNER_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>License Owner</em>' class.
@@ -396,7 +247,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_OWNER_OPERATION_COUNT = LICENSE_OWNER_DESCRIPTOR_OPERATION_COUNT + 0;
+	int LICENSE_OWNER_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -406,7 +257,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__IDENTIFIER = USER_DESCRIPTOR_FEATURE_COUNT + 0;
+	int USER__IDENTIFIER = LICENSE_OWNER__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -416,7 +267,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__NAME = USER_DESCRIPTOR_FEATURE_COUNT + 1;
+	int USER__NAME = LICENSE_OWNER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -426,7 +277,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__DESCRIPTION = USER_DESCRIPTOR_FEATURE_COUNT + 2;
+	int USER__DESCRIPTION = LICENSE_OWNER__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Contact</b></em>' containment reference.
@@ -436,7 +287,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__CONTACT = USER_DESCRIPTOR_FEATURE_COUNT + 3;
+	int USER__CONTACT = LICENSE_OWNER__CONTACT;
 
 	/**
 	 * The feature id for the '<em><b>Preferred Evaluation Type</b></em>' attribute.
@@ -446,7 +297,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__PREFERRED_EVALUATION_TYPE = USER_DESCRIPTOR_FEATURE_COUNT + 4;
+	int USER__PREFERRED_EVALUATION_TYPE = LICENSE_OWNER_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Preferred Evaluation Expression</b></em>' attribute.
@@ -456,7 +307,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__PREFERRED_EVALUATION_EXPRESSION = USER_DESCRIPTOR_FEATURE_COUNT + 5;
+	int USER__PREFERRED_EVALUATION_EXPRESSION = LICENSE_OWNER_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Origin</b></em>' container reference.
@@ -466,7 +317,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__ORIGIN = USER_DESCRIPTOR_FEATURE_COUNT + 6;
+	int USER__ORIGIN = LICENSE_OWNER_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>User</em>' class.
@@ -475,7 +326,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_FEATURE_COUNT = USER_DESCRIPTOR_FEATURE_COUNT + 7;
+	int USER_FEATURE_COUNT = LICENSE_OWNER_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>User</em>' class.
@@ -484,7 +335,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_OPERATION_COUNT = USER_DESCRIPTOR_OPERATION_COUNT + 0;
+	int USER_OPERATION_COUNT = LICENSE_OWNER_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -494,7 +345,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_GROUP__IDENTIFIER = USER_GROUP_DESCRIPTOR_FEATURE_COUNT + 0;
+	int USER_GROUP__IDENTIFIER = LICENSE_OWNER__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -504,7 +355,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_GROUP__NAME = USER_GROUP_DESCRIPTOR_FEATURE_COUNT + 1;
+	int USER_GROUP__NAME = LICENSE_OWNER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -514,7 +365,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_GROUP__DESCRIPTION = USER_GROUP_DESCRIPTOR_FEATURE_COUNT + 2;
+	int USER_GROUP__DESCRIPTION = LICENSE_OWNER__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Contact</b></em>' containment reference.
@@ -524,7 +375,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_GROUP__CONTACT = USER_GROUP_DESCRIPTOR_FEATURE_COUNT + 3;
+	int USER_GROUP__CONTACT = LICENSE_OWNER__CONTACT;
 
 	/**
 	 * The feature id for the '<em><b>Users</b></em>' reference list.
@@ -534,7 +385,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_GROUP__USERS = USER_GROUP_DESCRIPTOR_FEATURE_COUNT + 4;
+	int USER_GROUP__USERS = LICENSE_OWNER_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Origin</b></em>' container reference.
@@ -544,7 +395,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_GROUP__ORIGIN = USER_GROUP_DESCRIPTOR_FEATURE_COUNT + 5;
+	int USER_GROUP__ORIGIN = LICENSE_OWNER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>User Group</em>' class.
@@ -554,7 +405,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_GROUP_FEATURE_COUNT = USER_GROUP_DESCRIPTOR_FEATURE_COUNT + 6;
+	int USER_GROUP_FEATURE_COUNT = LICENSE_OWNER_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>User Group</em>' class.
@@ -564,7 +415,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_GROUP_OPERATION_COUNT = USER_GROUP_DESCRIPTOR_OPERATION_COUNT + 0;
+	int USER_GROUP_OPERATION_COUNT = LICENSE_OWNER_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -573,7 +424,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_ORIGIN__IDENTIFIER = USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT + 0;
+	int USER_ORIGIN__IDENTIFIER = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -582,7 +433,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_ORIGIN__NAME = USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT + 1;
+	int USER_ORIGIN__NAME = 1;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -591,7 +442,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_ORIGIN__DESCRIPTION = USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT + 2;
+	int USER_ORIGIN__DESCRIPTION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Users</b></em>' containment reference list.
@@ -600,7 +451,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_ORIGIN__USERS = USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT + 3;
+	int USER_ORIGIN__USERS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Groups</b></em>' containment reference list.
@@ -610,7 +461,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_ORIGIN__GROUPS = USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT + 4;
+	int USER_ORIGIN__GROUPS = 4;
 
 	/**
 	 * The number of structural features of the '<em>User Origin</em>' class.
@@ -619,7 +470,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_ORIGIN_FEATURE_COUNT = USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT + 5;
+	int USER_ORIGIN_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>User Origin</em>' class.
@@ -628,65 +479,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_ORIGIN_OPERATION_COUNT = USER_ORIGIN_DESCRIPTOR_OPERATION_COUNT + 0;
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.UserOriginDescriptor <em>User Origin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>User Origin Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.users.UserOriginDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.users.UserOriginDescriptor"
-	 * @generated
-	 */
-	EClass getUserOriginDescriptor();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.ContactDescriptor <em>Contact Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Contact Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.users.ContactDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.users.ContactDescriptor"
-	 * @since 2.0
-	 * @generated
-	 */
-	EClass getContactDescriptor();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.LicenseOwnerDescriptor <em>License Owner Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>License Owner Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.users.LicenseOwnerDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.users.LicenseOwnerDescriptor"
-	 * @since 2.0
-	 * @generated
-	 */
-	EClass getLicenseOwnerDescriptor();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.UserDescriptor <em>User Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>User Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.users.UserDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.users.UserDescriptor"
-	 * @generated
-	 */
-	EClass getUserDescriptor();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.UserGroupDescriptor <em>User Group Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>User Group Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.users.UserGroupDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.users.UserGroupDescriptor"
-	 * @since 2.0
-	 * @generated
-	 */
-	EClass getUserGroupDescriptor();
+	int USER_ORIGIN_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.model.api.UserOrigin <em>User Origin</em>}'.
@@ -974,4 +767,4 @@ public interface UsersPackage extends EPackage {
 	 */
 	UsersFactory getUsersFactory();
 
-} //UsersPackage
+} // UsersPackage

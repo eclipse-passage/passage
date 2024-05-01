@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -18,7 +18,7 @@ import java.util.stream.StreamSupport;
 
 import org.eclipse.passage.lic.api.MandatoryService;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.loc.internal.users.UserRegistry;
 import org.eclipse.passage.loc.internal.users.ui.i18n.UsersUiMessages;
@@ -27,23 +27,23 @@ import org.eclipse.passage.loc.internal.workbench.SupplySelectRequest;
 import org.eclipse.passage.loc.jface.dialogs.Appearance;
 
 /**
- * Creates {@link SelectRequest} for {@link UserOriginDescriptor} from the given
+ * Creates {@link SelectRequest} for {@link UserOrigin} from the given
  * {@link MandatoryService}.
  * 
  */
-public final class SelectUserOrigin extends SupplySelectRequest<UserOriginDescriptor> {
+public final class SelectUserOrigin extends SupplySelectRequest<UserOrigin> {
 
 	public SelectUserOrigin(MandatoryService context) {
 		super(context);
 	}
 
 	@Override
-	public SelectRequest<UserOriginDescriptor> get() {
-		return new SelectRequest<>(UserOriginDescriptor.class, domain(), input(), appearance());
+	public SelectRequest<UserOrigin> get() {
+		return new SelectRequest<>(UserOrigin.class, domain(), input(), appearance());
 	}
 
-	private Supplier<Iterable<UserOriginDescriptor>> input() {
-		return () -> StreamSupport.stream(context.get(UserRegistry.class).getUserOrigins().spliterator(), false)//
+	private Supplier<Iterable<UserOrigin>> input() {
+		return () -> StreamSupport.stream(context.get(UserRegistry.class).userOrigins().spliterator(), false)//
 				.collect(Collectors.toList());
 	}
 

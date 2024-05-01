@@ -27,8 +27,8 @@ import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.loc.report.internal.core.FakeLicenseRegistry;
 import org.eclipse.passage.loc.report.internal.core.TestData;
 
@@ -36,8 +36,8 @@ import org.eclipse.passage.loc.report.internal.core.TestData;
 abstract class TestLicenses extends TestData<LicenseStorage> {
 
 	protected List<LicensePlan> plans = Collections.emptyList();
-	protected List<UserDescriptor> users = Collections.emptyList();
-	protected List<UserOriginDescriptor> companies = Collections.emptyList();
+	protected List<User> users = Collections.emptyList();
+	protected List<UserOrigin> companies = Collections.emptyList();
 	protected final Date from;
 	protected final Date to;
 
@@ -65,7 +65,7 @@ abstract class TestLicenses extends TestData<LicenseStorage> {
 				.get();
 	}
 
-	protected Optional<UserDescriptor> user(String segment) {
+	protected Optional<User> user(String segment) {
 		return users.stream()//
 				.filter(user -> user.getContact().getEmail().contains(segment))//
 				.findFirst();
@@ -134,9 +134,9 @@ abstract class TestLicenses extends TestData<LicenseStorage> {
 		}
 
 		private void issueLicenses() {
-			UserDescriptor evan = user("evan").get(); //$NON-NLS-1$
-			UserDescriptor dorothea = user("dorothea").get(); //$NON-NLS-1$
-			UserDescriptor zena = user("zena").get(); //$NON-NLS-1$
+			User evan = user("evan").get(); //$NON-NLS-1$
+			User dorothea = user("dorothea").get(); //$NON-NLS-1$
+			User zena = user("zena").get(); //$NON-NLS-1$
 			LicensePlan planA = plan("plan-a"); //$NON-NLS-1$
 			LicensePlan planB = plan("plan-b"); //$NON-NLS-1$
 			issuePersonal(planA, evan, new MovedNow(date -> date.plus(2, ChronoUnit.MONTHS)).get());
@@ -169,7 +169,7 @@ abstract class TestLicenses extends TestData<LicenseStorage> {
 					header(false)));
 		}
 
-		private void issuePersonal(LicensePlan plan, UserDescriptor user, Date issued) {
+		private void issuePersonal(LicensePlan plan, User user, Date issued) {
 			LicensedProduct product = new BaseLicensedProduct("pop", "1.0.1"); //$NON-NLS-1$ //$NON-NLS-2$
 			PersonalLicensePack pack = new EmptyPersonalLicensePack().get();
 			pack.getLicense().setPlan(plan.getIdentifier());

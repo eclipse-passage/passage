@@ -41,8 +41,8 @@ import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.users.UserRegistry;
@@ -116,7 +116,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	}
 
 	private CompanyRef company() {
-		UserOriginDescriptor origin = users.getUser(request.users().iterator().next()).getOrigin();
+		UserOrigin origin = users.user(request.users().iterator().next()).get().getOrigin();
 		CompanyRef company = LicensesFactory.eINSTANCE.createCompanyRef();
 		company.setIdentifier(origin.getIdentifier());
 		company.setName(origin.getName());
@@ -140,26 +140,27 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 
 	private Collection<UserGrant> userGrants() {
 		return request.users().stream()//
-				.map(users::getUser)//
+				.map(users::user)//
+				.map(Optional::get)//
 				.map(this::userGrant)//
 				.collect(Collectors.toSet());
 	}
 
-	private UserGrant userGrant(UserDescriptor user) {
+	private UserGrant userGrant(User user) {
 		UserGrant grant = LicensesFactory.eINSTANCE.createUserGrant();
 		grant.setAuthentication(userAuthentication(user));
 		grant.setUser(user.getContact().getEmail());
 		return grant;
 	}
 
-	private EvaluationInstructions userAuthentication(UserDescriptor user) {
+	private EvaluationInstructions userAuthentication(User user) {
 		EvaluationInstructions auth = LicensesFactory.eINSTANCE.createEvaluationInstructions();
 		auth.setExpression(userAuthenticationExpression(user));
 		auth.setType(userAuthenticationType(user));
 		return auth;
 	}
 
-	private String userAuthenticationType(UserDescriptor user) {
+	private String userAuthenticationType(User user) {
 		return template//
 				.flatMap(l -> forUser(l.getUsers(), user))//
 				.map(UserGrant::getAuthentication)//
@@ -167,7 +168,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 				.orElseGet(user::getPreferredEvaluationType);
 	}
 
-	private String userAuthenticationExpression(UserDescriptor user) {
+	private String userAuthenticationExpression(User user) {
 		return template//
 				.flatMap(l -> forUser(l.getUsers(), user))//
 				.map(UserGrant::getAuthentication)//
@@ -175,7 +176,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 				.orElseGet(user::getPreferredEvaluationExpression);
 	}
 
-	private Optional<UserGrant> forUser(List<UserGrant> all, UserDescriptor user) {
+	private Optional<UserGrant> forUser(List<UserGrant> all, User user) {
 		return all.stream().filter(u -> user.getContact().getEmail().equals(u.getUser())).findFirst();
 	}
 

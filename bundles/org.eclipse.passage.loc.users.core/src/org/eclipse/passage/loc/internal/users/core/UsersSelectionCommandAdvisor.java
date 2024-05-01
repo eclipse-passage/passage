@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -25,16 +25,16 @@ import org.osgi.service.component.annotations.Reference;
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + UsersPackage.eNAME })
 public class UsersSelectionCommandAdvisor implements SelectionCommandAdvisor {
 
-	private UserRegistry userRegistry;
+	private UserRegistry users;
 
 	@Reference
 	public void bindDomainRegistry(UserRegistry registry) {
-		this.userRegistry = registry;
+		this.users = registry;
 	}
 
 	public void unbindDomainRegistry(UserRegistry registry) {
-		if (this.userRegistry == registry) {
-			this.userRegistry = null;
+		if (this.users == registry) {
+			this.users = null;
 		}
 	}
 
@@ -51,14 +51,14 @@ public class UsersSelectionCommandAdvisor implements SelectionCommandAdvisor {
 
 	@Override
 	public Iterable<?> getSelectionInput(String classifier) {
-		if (userRegistry == null) {
+		if (users == null) {
 			return Collections.emptyList();
 		}
 		if (UsersPackage.eINSTANCE.getUserOrigin().getName().equals(classifier)) {
-			return userRegistry.getUserOrigins();
+			return users.userOrigins();
 		}
 		if (UsersPackage.eINSTANCE.getUser().getName().equals(classifier)) {
-			return userRegistry.getUsers();
+			return users.users();
 		}
 		return Collections.emptyList();
 	}

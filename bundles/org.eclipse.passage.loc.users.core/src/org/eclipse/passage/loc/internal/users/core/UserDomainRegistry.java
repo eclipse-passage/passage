@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2022 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,9 +13,10 @@
 package org.eclipse.passage.loc.internal.users.core;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
@@ -24,8 +25,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.internal.equinox.events.EquinoxEvent;
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.model.util.UsersResourceImpl;
 import org.eclipse.passage.loc.internal.api.OperatorGearSupplier;
@@ -49,11 +50,11 @@ import org.osgi.service.event.EventAdmin;
 @SuppressWarnings("restriction")
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + UsersPackage.eNAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "users_xmi" })
-public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
-		implements UserRegistry, EditingDomainRegistry<UserOriginDescriptor> {
+public class UserDomainRegistry extends BaseDomainRegistry<UserOrigin>
+		implements UserRegistry, EditingDomainRegistry<UserOrigin> {
 
-	private final Map<String, UserOriginDescriptor> userOriginIndex = new HashMap<>();
-	private final Map<String, UserDescriptor> userIndex = new HashMap<>();
+	private final Map<String, UserOrigin> origins = new HashMap<>();
+	private final Map<String, User> users = new HashMap<>();
 
 	private EventAdmin events;
 
@@ -86,8 +87,8 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 	@Deactivate
 	@Override
 	public void deactivate(Map<String, Object> properties) {
-		userIndex.clear();
-		userOriginIndex.clear();
+		users.clear();
+		origins.clear();
 		super.deactivate(properties);
 	}
 
@@ -97,81 +98,69 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 	}
 
 	@Override
-	public Class<UserOriginDescriptor> getContentClass() {
-		return UserOriginDescriptor.class;
+	public Class<UserOrigin> getContentClass() {
+		return UserOrigin.class;
 	}
 
 	@Override
-	public String resolveIdentifier(UserOriginDescriptor content) {
+	public String resolveIdentifier(UserOrigin content) {
 		return content.getIdentifier();
 	}
 
 	@Override
-	public Iterable<UserOriginDescriptor> getUserOrigins() {
-		return new ArrayList<>(userOriginIndex.values());
+	public Collection<UserOrigin> userOrigins() {
+		return new ArrayList<>(origins.values());
 	}
 
 	@Override
-	public UserOriginDescriptor getUserOrigin(String identifier) {
-		return userOriginIndex.get(identifier);
+	public Optional<UserOrigin> userOrigin(String identifier) {
+		return Optional.ofNullable(origins.get(identifier));
 	}
 
 	@Override
-	public Iterable<? extends UserDescriptor> getUsers() {
-		return new ArrayList<>(userIndex.values());
-	}
-
-	public Iterable<? extends UserDescriptor> getUsers(String userOriginId) {
-		UserOriginDescriptor userOrigin = userOriginIndex.get(userOriginId);
-		if (userOrigin == null) {
-			return Collections.emptyList();
-		}
-		return userOrigin.getUsers();
+	public Collection<User> users() {
+		return new ArrayList<>(users.values());
 	}
 
 	@Override
-	public UserDescriptor getUser(String identifier) {
-		return userIndex.get(identifier);
+	public Optional<User> user(String identifier) {
+		return Optional.ofNullable(users.get(identifier));
 	}
 
 	@Override
-	protected DomainContentAdapter<UserOriginDescriptor, UserDomainRegistry> createContentAdapter() {
+	protected DomainContentAdapter<UserOrigin, UserDomainRegistry> createContentAdapter() {
 		return new UsersDomainRegistryTracker(this);
 	}
 
-	public void registerUserOrigin(UserOriginDescriptor userOrigin) {
-		String identifier = userOrigin.getIdentifier();
-		UserOriginDescriptor existing = userOriginIndex.put(identifier, userOrigin);
-		if ((existing != null) && (existing != userOrigin)) {
-			String msg = NLS.bind(UsersCoreMessages.UserDomain_instance_duplication_message, existing, userOrigin);
-			Platform.getLog(getClass()).warn(msg);
+	void registerUserOrigin(UserOrigin origin) {
+		UserOrigin existing = origins.put(origin.getIdentifier(), origin);
+		if ((existing != null) && (existing != origin)) {
+			Platform.getLog(getClass())
+					.warn(NLS.bind(UsersCoreMessages.UserDomain_instance_duplication_message, existing, origin));
 		}
-		events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_ORIGIN_CREATE, userOrigin).get());
-		userOrigin.getUsers().forEach(u -> registerUser(u));
+		events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_ORIGIN_CREATE, origin).get());
+		origin.getUsers().forEach(u -> registerUser(u));
 	}
 
-	public void registerUser(UserDescriptor user) {
-		String identifier = user.getContact().getEmail();
-		UserDescriptor existing = userIndex.put(identifier, user);
+	void registerUser(User user) {
+		User existing = users.put(user.getContact().getEmail(), user);
 		if ((existing != null) && (existing != user)) {
-			String msg = NLS.bind(UsersCoreMessages.UserDomain_instance_duplication_message, existing, user);
-			Platform.getLog(getClass()).warn(msg);
+			Platform.getLog(getClass())
+					.warn(NLS.bind(UsersCoreMessages.UserDomain_instance_duplication_message, existing, user));
 		}
 		events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_CREATE, user).get());
 	}
 
-	public void unregisterUserOrigin(String userOriginId) {
-		UserOriginDescriptor removed = userOriginIndex.remove(userOriginId);
+	void unregisterUserOrigin(String id) {
+		UserOrigin removed = origins.remove(id);
 		if (removed != null) {
 			events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_ORIGIN_DELETE, removed).get());
-			removed.getUsers().forEach(u -> {
-				unregisterUser(u.getContact().getEmail());
-			});
+			removed.getUsers().forEach(u -> unregisterUser(u.getContact().getEmail()));
 		}
 	}
 
-	public void unregisterUser(String userId) {
-		UserDescriptor removed = userIndex.remove(userId);
+	void unregisterUser(String userId) {
+		User removed = users.remove(userId);
 		if (removed != null) {
 			events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_DELETE, removed).get());
 		}
@@ -193,7 +182,7 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 	}
 
 	@Override
-	public void registerContent(UserOriginDescriptor content) {
+	public void registerContent(UserOrigin content) {
 		registerUserOrigin(content);
 	}
 

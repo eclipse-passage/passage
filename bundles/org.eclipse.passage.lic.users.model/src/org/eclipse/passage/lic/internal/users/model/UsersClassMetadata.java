@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,8 +19,6 @@ import java.util.Optional;
 import org.eclipse.passage.lic.emf.meta.ClassMetadata;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.lic.emf.meta.PlainEntityMetadata;
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
@@ -33,18 +31,16 @@ public final class UsersClassMetadata implements ClassMetadata {
 	public UsersClassMetadata() {
 		meta = UsersPackage.eINSTANCE;
 		map = new HashMap<Class<?>, EntityMetadata>();
-		map.put(UserOriginDescriptor.class, //
+		map.put(UserOrigin.class, //
 				new PlainEntityMetadata(//
 						meta.getUserOrigin(), //
 						meta.getUserOrigin_Identifier(), //
 						meta.getUserOrigin_Name()));
-		map.put(UserOrigin.class, map.get(UserOriginDescriptor.class));
-		map.put(UserDescriptor.class, //
+		map.put(User.class, //
 				new PlainEntityMetadata(//
 						meta.getUser(), //
 						meta.getLicenseOwner_Identifier(), //
 						meta.getLicenseOwner_Name()));
-		map.put(User.class, map.get(UserDescriptor.class));
 	}
 
 	@Override

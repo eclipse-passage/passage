@@ -225,8 +225,8 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	@Override
 	public void updateUserInfo(UserRegistry userRegistry) {
-		userOrigins.update(userRegistry.getUserOrigins());
-		users.update(userRegistry.getUsers());
+		userOrigins.update(userRegistry.userOrigins());
+		users.update(userRegistry.users());
 	}
 
 	@Override

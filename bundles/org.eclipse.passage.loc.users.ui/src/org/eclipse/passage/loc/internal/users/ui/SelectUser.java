@@ -20,8 +20,7 @@ import java.util.stream.StreamSupport;
 
 import org.eclipse.passage.lic.api.MandatoryService;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.loc.internal.users.UserRegistry;
 import org.eclipse.passage.loc.internal.users.ui.i18n.UsersUiMessages;
@@ -35,23 +34,23 @@ import org.eclipse.passage.loc.jface.dialogs.Appearance;
  * {@link Optional#empty()}
  * 
  */
-public final class SelectUser extends SupplySelectRequest<UserDescriptor> {
+public final class SelectUser extends SupplySelectRequest<User> {
 
 	public SelectUser(MandatoryService context) {
 		this(context, Optional.empty());
 	}
 
-	public SelectUser(MandatoryService context, Optional<UserDescriptor> selection) {
+	public SelectUser(MandatoryService context, Optional<User> selection) {
 		super(context, selection);
 	}
 
 	@Override
-	public SelectRequest<UserDescriptor> get() {
-		return new SelectRequest<>(UserDescriptor.class, domain(), input(), () -> initial, appearance());
+	public SelectRequest<User> get() {
+		return new SelectRequest<>(User.class, domain(), input(), () -> initial, appearance());
 	}
 
-	private Supplier<Iterable<UserDescriptor>> input() {
-		return () -> StreamSupport.stream(context.get(UserRegistry.class).getUsers().spliterator(), false)//
+	private Supplier<Iterable<User>> input() {
+		return () -> StreamSupport.stream(context.get(UserRegistry.class).users().spliterator(), false)//
 				.collect(Collectors.toList());
 	}
 

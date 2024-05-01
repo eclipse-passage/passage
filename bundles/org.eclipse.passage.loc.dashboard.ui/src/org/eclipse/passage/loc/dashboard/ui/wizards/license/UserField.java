@@ -17,15 +17,15 @@ import java.util.Optional;
 
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.api.MandatoryService;
-import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.internal.users.ui.SelectUser;
 import org.eclipse.passage.loc.internal.workbench.SelectRoot;
 import org.eclipse.swt.widgets.Text;
 
-public final class UserField extends SelectableField<UserDescriptor> {
+public final class UserField extends SelectableField<User> {
 
-	UserField(Optional<UserDescriptor> user, Runnable modified, LabelProvider labels, MandatoryService context) {
+	UserField(Optional<User> user, Runnable modified, LabelProvider labels, MandatoryService context) {
 		super(user, modified, labels, context);
 	}
 
@@ -40,7 +40,7 @@ public final class UserField extends SelectableField<UserDescriptor> {
 	}
 
 	@Override
-	protected Optional<UserDescriptor> select(Text control) {
+	protected Optional<User> select(Text control) {
 		return new SelectRoot<>(new SelectUser(context, data()).get(), context).get();
 	}
 

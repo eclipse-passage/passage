@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -18,8 +18,8 @@ import java.util.function.Function;
 
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
 import org.eclipse.passage.loc.report.internal.ui.jface.PageObserver;
@@ -82,11 +82,11 @@ final class PreviewPage extends WizardPage implements PageObserver {
 				.forEach(users::add);
 	}
 
-	private String userInfo(UserDescriptor user) {
+	private String userInfo(User user) {
 		return NLS.bind("{0} ({1})", user.getContact().getName(), user.getContact().getEmail()); //$NON-NLS-1$
 	}
 
-	private String companyInfo(UserOriginDescriptor company) {
+	private String companyInfo(UserOrigin company) {
 		if (company == null) {
 			return ExportCustomersWizardMessages.PreviewPage_noinfo_company;
 		}

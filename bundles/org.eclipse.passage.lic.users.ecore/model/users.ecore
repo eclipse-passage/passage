@@ -1,30 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="users" nsURI="http://www.eclipse.org/passage/lic/users/2.0.0"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="users" nsURI="http://www.eclipse.org/passage/lic/users/3.0.0"
     nsPrefix="org.eclipse.passage.lic">
-  <eClassifiers xsi:type="ecore:EClass" name="ContactDescriptor" instanceClassName="org.eclipse.passage.lic.users.ContactDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LicenseOwnerDescriptor" instanceClassName="org.eclipse.passage.lic.users.LicenseOwnerDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UserDescriptor" instanceClassName="org.eclipse.passage.lic.users.UserDescriptor"
-      abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="UserGroupDescriptor" instanceClassName="org.eclipse.passage.lic.users.UserGroupDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UserOriginDescriptor" instanceClassName="org.eclipse.passage.lic.users.UserOriginDescriptor"
-      abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Contact" eSuperTypes="#//ContactDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="Contact">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
@@ -34,8 +12,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="email" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="address" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LicenseOwner" abstract="true" interface="true"
-      eSuperTypes="#//LicenseOwnerDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="LicenseOwner" abstract="true" interface="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
@@ -53,7 +30,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//UserDescriptor #//LicenseOwner">
+  <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//LicenseOwner">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="preferredEvaluationType"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -73,7 +50,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UserGroup" eSuperTypes="#//UserGroupDescriptor #//LicenseOwner">
+  <eClassifiers xsi:type="ecore:EClass" name="UserGroup" eSuperTypes="#//LicenseOwner">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
@@ -82,7 +59,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="origin" lowerBound="1"
         eType="#//UserOrigin" eOpposite="#//UserOrigin/groups"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UserOrigin" eSuperTypes="#//UserOriginDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="UserOrigin">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

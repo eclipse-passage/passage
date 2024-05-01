@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,11 +15,11 @@ package org.eclipse.passage.loc.internal.users.ui;
 import java.util.Optional;
 
 import org.eclipse.passage.lic.api.MandatoryService;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.loc.internal.api.InstanceSupply;
 import org.eclipse.passage.loc.internal.workbench.SelectRoot;
 
-public class SupplyUserOrigin implements InstanceSupply<UserOriginDescriptor> {
+public class SupplyUserOrigin implements InstanceSupply<UserOrigin> {
 
 	private final MandatoryService context;
 
@@ -28,8 +28,8 @@ public class SupplyUserOrigin implements InstanceSupply<UserOriginDescriptor> {
 	}
 
 	@Override
-	public Optional<UserOriginDescriptor> supply() {
-		return new SelectRoot<UserOriginDescriptor>(new SelectUserOrigin(context).get(), context).get();
+	public Optional<UserOrigin> supply() {
+		return new SelectRoot<>(new SelectUserOrigin(context).get(), context).get();
 	}
 
 }

@@ -22,8 +22,7 @@ import java.util.stream.StreamSupport;
 
 import org.eclipse.passage.lic.api.MandatoryService;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.loc.internal.users.UserRegistry;
 import org.eclipse.passage.loc.internal.users.ui.i18n.UsersUiMessages;
@@ -32,28 +31,28 @@ import org.eclipse.passage.loc.internal.workbench.SupplySelectRequest;
 import org.eclipse.passage.loc.jface.dialogs.Appearance;
 
 /**
- * Selects or creates {@link UserOriginDescriptor}. Will return either
- * {@link Optional} with selected/created {@link UserOriginDescriptor} or
+ * Selects or creates {@link User}. Will return either
+ * {@link Optional} with selected/created {@link User} or
  * {@link Optional#empty()}
  * 
  */
-public final class SelectUsers extends SupplySelectRequest<UserDescriptor> {
+public final class SelectUsers extends SupplySelectRequest<User> {
 
 	public SelectUsers(MandatoryService context) {
 		this(context, Collections.emptyList());
 	}
 
-	public SelectUsers(MandatoryService context, Collection<UserDescriptor> selection) {
+	public SelectUsers(MandatoryService context, Collection<User> selection) {
 		super(context, selection);
 	}
 
 	@Override
-	public SelectRequest<UserDescriptor> get() {
-		return new SelectRequest<>(UserDescriptor.class, domain(), input(), () -> initial, appearance());
+	public SelectRequest<User> get() {
+		return new SelectRequest<>(User.class, domain(), input(), () -> initial, appearance());
 	}
 
-	private Supplier<Iterable<UserDescriptor>> input() {
-		return () -> StreamSupport.stream(context.get(UserRegistry.class).getUsers().spliterator(), false)//
+	private Supplier<Iterable<User>> input() {
+		return () -> StreamSupport.stream(context.get(UserRegistry.class).users().spliterator(), false)//
 				.collect(Collectors.toList());
 	}
 
