@@ -25,7 +25,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.api.MandatoryService;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
-import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.internal.workbench.MandatoryEclipseContext;
 import org.eclipse.passage.loc.workbench.viewers.DomainRegistryLabelProvider;
@@ -47,11 +47,11 @@ public final class PageFields implements Fields {
 		return with(new LicensePlanField(plan, this::modified, labels, context));
 	}
 
-	public Supplier<Optional<UserDescriptor>> withUser(Optional<UserDescriptor> user) {
+	public Supplier<Optional<User>> withUser(Optional<User> user) {
 		return with(new UserField(user, this::modified, labels, context));
 	}
 
-	public Supplier<Optional<Collection<UserDescriptor>>> withUsers(List<UserDescriptor> users) {
+	public Supplier<Optional<Collection<User>>> withUsers(List<User> users) {
 		return with(new UsersField(users, this::modified, labels, context));
 	}
 

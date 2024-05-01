@@ -19,15 +19,15 @@ import java.util.Optional;
 
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.api.MandatoryService;
-import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.internal.users.ui.SelectUsers;
 import org.eclipse.passage.loc.internal.workbench.SelectRoots;
 import org.eclipse.swt.widgets.Text;
 
-public final class UsersField extends SelectableField<Collection<UserDescriptor>> {
+public final class UsersField extends SelectableField<Collection<User>> {
 
-	UsersField(Collection<UserDescriptor> users, Runnable modified, LabelProvider labels, MandatoryService context) {
+	UsersField(Collection<User> users, Runnable modified, LabelProvider labels, MandatoryService context) {
 		super(Optional.of(users), modified, labels, context);
 	}
 
@@ -42,7 +42,7 @@ public final class UsersField extends SelectableField<Collection<UserDescriptor>
 	}
 
 	@Override
-	protected Optional<Collection<UserDescriptor>> select(Text control) {
+	protected Optional<Collection<User>> select(Text control) {
 		return Optional.of(//
 				new SelectRoots<>(//
 						new SelectUsers(context, data().orElseGet(Collections::emptyList)).get(), context).get());

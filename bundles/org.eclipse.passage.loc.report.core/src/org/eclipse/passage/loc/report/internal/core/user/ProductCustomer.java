@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2021 ArSysOp
+ * Copyright (c) 2019, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,8 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.report.internal.core.user;
 
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.loc.yars.internal.api.DosHandleMedia;
 import org.eclipse.passage.loc.yars.internal.api.ExportData;
 import org.eclipse.passage.loc.yars.internal.api.Progress;
@@ -45,11 +45,11 @@ public final class ProductCustomer implements ExportData<ProductCustomer, DosHan
 	private final String contact;
 	private final Usage usage;
 
-	public ProductCustomer(UserDescriptor user) {
+	public ProductCustomer(User user) {
 		this(user.getContact().getName(), user.getContact().getEmail(), Usage.personal);
 	}
 
-	public ProductCustomer(UserOriginDescriptor company) {
+	public ProductCustomer(UserOrigin company) {
 		this(company.getName(), "", Usage.company); //$NON-NLS-1$
 	}
 

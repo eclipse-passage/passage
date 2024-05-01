@@ -14,8 +14,8 @@ package org.eclipse.passage.loc.report.internal.core.user;
 
 import java.util.Set;
 
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.loc.internal.users.UserRegistry;
 import org.eclipse.passage.loc.yars.internal.api.Storage;
 
@@ -26,7 +26,7 @@ import org.eclipse.passage.loc.yars.internal.api.Storage;
  * @since 0.2
  */
 @SuppressWarnings("restriction")
-public interface CustomerStorage extends Storage<UserDescriptor> {
+public interface CustomerStorage extends Storage<User> {
 
 	/**
 	 * Retrieve information of all users who ever got licenses (personal type of
@@ -37,7 +37,7 @@ public interface CustomerStorage extends Storage<UserDescriptor> {
 	 *         in a product from the given set
 	 * @since 0.1
 	 */
-	Set<UserDescriptor> personsUsedProducts(Set<String> products);
+	Set<User> personsUsedProducts(Set<String> products);
 
 	/**
 	 * Retrieve information of all companies who ever got licenses (floating) for
@@ -48,7 +48,7 @@ public interface CustomerStorage extends Storage<UserDescriptor> {
 	 *         interested in a product from the given set
 	 * @since 0.1
 	 */
-	Set<UserOriginDescriptor> companiesUsedProducts(Set<String> products);
+	Set<UserOrigin> companiesUsedProducts(Set<String> products);
 
 	/**
 	 * Find all products for which any known user ever has got a license.

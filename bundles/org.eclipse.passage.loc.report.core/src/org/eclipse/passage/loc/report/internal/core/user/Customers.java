@@ -13,6 +13,7 @@
 package org.eclipse.passage.loc.report.internal.core.user;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -21,8 +22,8 @@ import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.users.UserRegistry;
 import org.osgi.service.component.annotations.Component;
@@ -47,24 +48,28 @@ public final class Customers implements CustomerStorage {
 	private LicenseRegistry licenses;
 
 	@Override
-	public Set<UserDescriptor> personsUsedProducts(Set<String> products) {
+	public Set<User> personsUsedProducts(Set<String> products) {
 		return licenses.plans().stream() //
 				.map(plan -> licenses(plan.getPersonal(), products, PersonalLicensePack::getLicense))//
 				.flatMap(Collection::stream)//
 				.map(this::user)//
 				.distinct()//
-				.map(users::getUser)//
+				.map(users::user)//
+				.filter(Optional::isPresent)//
+				.map(Optional::get)//
 				.collect(Collectors.toSet());
 	}
 
 	@Override
-	public Set<UserOriginDescriptor> companiesUsedProducts(Set<String> products) {
+	public Set<UserOrigin> companiesUsedProducts(Set<String> products) {
 		return licenses.plans().stream() //
 				.map(plan -> licenses(plan.getFloating(), products, FloatingLicensePack::getLicense))//
 				.flatMap(Collection::stream)//
 				.map(this::company)//
 				.distinct()//
-				.map(users::getUserOrigin)//
+				.map(users::userOrigin)//
+				.filter(Optional::isPresent)//
+				.map(Optional::get)//
 				.collect(Collectors.toSet());
 	}
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -11,8 +11,6 @@
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
 package org.eclipse.passage.lic.users.model.api;
-
-import org.eclipse.passage.lic.users.UserDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,10 +27,10 @@ import org.eclipse.passage.lic.users.UserDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.users.model.meta.UsersPackage#getUser()
- * @model superTypes="org.eclipse.passage.lic.users.model.api.UserDescriptor org.eclipse.passage.lic.users.model.api.LicenseOwner"
+ * @model
  * @generated
  */
-public interface User extends UserDescriptor, LicenseOwner {
+public interface User extends LicenseOwner {
 	/**
 	 * Returns the value of the '<em><b>Preferred Evaluation Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -46,7 +44,6 @@ public interface User extends UserDescriptor, LicenseOwner {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getPreferredEvaluationType();
 
 	/**
@@ -73,7 +70,6 @@ public interface User extends UserDescriptor, LicenseOwner {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getPreferredEvaluationExpression();
 
 	/**
@@ -102,7 +98,6 @@ public interface User extends UserDescriptor, LicenseOwner {
 	 * @model opposite="users" required="true" transient="false"
 	 * @generated
 	 */
-	@Override
 	UserOrigin getOrigin();
 
 	/**

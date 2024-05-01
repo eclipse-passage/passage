@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,21 +16,12 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.passage.lic.users.ContactDescriptor;
-import org.eclipse.passage.lic.users.LicenseOwnerDescriptor;
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserGroupDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
-
 import org.eclipse.passage.lic.users.model.api.Contact;
 import org.eclipse.passage.lic.users.model.api.LicenseOwner;
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserGroup;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
-
 import org.eclipse.passage.lic.users.model.meta.UsersFactory;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
@@ -41,44 +32,6 @@ import org.eclipse.passage.lic.users.model.meta.UsersPackage;
  * @generated
  */
 public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass userOriginDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass contactDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass licenseOwnerDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass userDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass userGroupDescriptorEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -179,59 +132,6 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(UsersPackage.eNS_URI, theUsersPackage);
 		return theUsersPackage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getUserOriginDescriptor() {
-		return userOriginDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getContactDescriptor() {
-		return contactDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getLicenseOwnerDescriptor() {
-		return licenseOwnerDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getUserDescriptor() {
-		return userDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getUserGroupDescriptor() {
-		return userGroupDescriptorEClass;
 	}
 
 	/**
@@ -522,16 +422,6 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		contactDescriptorEClass = createEClass(CONTACT_DESCRIPTOR);
-
-		licenseOwnerDescriptorEClass = createEClass(LICENSE_OWNER_DESCRIPTOR);
-
-		userDescriptorEClass = createEClass(USER_DESCRIPTOR);
-
-		userGroupDescriptorEClass = createEClass(USER_GROUP_DESCRIPTOR);
-
-		userOriginDescriptorEClass = createEClass(USER_ORIGIN_DESCRIPTOR);
-
 		contactEClass = createEClass(CONTACT);
 		createEAttribute(contactEClass, CONTACT__NAME);
 		createEAttribute(contactEClass, CONTACT__TITLE);
@@ -591,30 +481,10 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		contactEClass.getESuperTypes().add(this.getContactDescriptor());
-		licenseOwnerEClass.getESuperTypes().add(this.getLicenseOwnerDescriptor());
-		userEClass.getESuperTypes().add(this.getUserDescriptor());
 		userEClass.getESuperTypes().add(this.getLicenseOwner());
-		userGroupEClass.getESuperTypes().add(this.getUserGroupDescriptor());
 		userGroupEClass.getESuperTypes().add(this.getLicenseOwner());
-		userOriginEClass.getESuperTypes().add(this.getUserOriginDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(contactDescriptorEClass, ContactDescriptor.class, "ContactDescriptor", IS_ABSTRACT, IS_INTERFACE, //$NON-NLS-1$
-				!IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(licenseOwnerDescriptorEClass, LicenseOwnerDescriptor.class, "LicenseOwnerDescriptor", IS_ABSTRACT, //$NON-NLS-1$
-				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(userDescriptorEClass, UserDescriptor.class, "UserDescriptor", IS_ABSTRACT, IS_INTERFACE, //$NON-NLS-1$
-				!IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(userGroupDescriptorEClass, UserGroupDescriptor.class, "UserGroupDescriptor", IS_ABSTRACT, //$NON-NLS-1$
-				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(userOriginDescriptorEClass, UserOriginDescriptor.class, "UserOriginDescriptor", IS_ABSTRACT, //$NON-NLS-1$
-				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(contactEClass, Contact.class, "Contact", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getContact_Name(), ecorePackage.getEString(), "name", null, 1, 1, Contact.class, !IS_TRANSIENT, //$NON-NLS-1$
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -682,4 +552,4 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 		createResource(eNS_URI);
 	}
 
-} //UsersPackageImpl
+} // UsersPackageImpl

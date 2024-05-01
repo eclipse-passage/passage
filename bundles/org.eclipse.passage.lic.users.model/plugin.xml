@@ -18,7 +18,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated users -->
       <package
-            uri="http://www.eclipse.org/passage/lic/users/2.0.0"
+            uri="http://www.eclipse.org/passage/lic/users/3.0.0"
             class="org.eclipse.passage.lic.users.model.meta.UsersPackage"
             genModel="model/users.genmodel"/>
    </extension>

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2021 ArSysOp
+ * Copyright (c) 2019, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,8 +14,8 @@ package org.eclipse.passage.loc.report.internal.core.user;
 
 import java.util.Set;
 
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserOrigin;
 
 final class FakeCustomersBase implements CustomerStorage {
 
@@ -26,12 +26,12 @@ final class FakeCustomersBase implements CustomerStorage {
 	}
 
 	@Override
-	public Set<UserDescriptor> personsUsedProducts(Set<String> products) {
+	public Set<User> personsUsedProducts(Set<String> products) {
 		return customers.users();
 	}
 
 	@Override
-	public Set<UserOriginDescriptor> companiesUsedProducts(Set<String> products) {
+	public Set<UserOrigin> companiesUsedProducts(Set<String> products) {
 		return customers.companies();
 	}
 

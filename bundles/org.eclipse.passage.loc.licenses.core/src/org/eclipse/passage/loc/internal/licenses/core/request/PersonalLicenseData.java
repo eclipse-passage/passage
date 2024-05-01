@@ -18,18 +18,17 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
-import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
 
 public final class PersonalLicenseData extends GeneralLicenseData implements PersonalLicenseRequest {
 
-	private final Supplier<UserDescriptor> user;
+	private final Supplier<User> user;
 
-	public PersonalLicenseData(Supplier<UserDescriptor> user, Supplier<LicensePlan> plan,
-			Supplier<ProductVersion> product, Supplier<LocalDate> from, Supplier<LocalDate> until) {
+	public PersonalLicenseData(Supplier<User> user, Supplier<LicensePlan> plan, Supplier<ProductVersion> product,
+			Supplier<LocalDate> from, Supplier<LocalDate> until) {
 		super(plan, product, from, until);
-		Objects.requireNonNull(user, "PersonalLicenseData::user"); //$NON-NLS-1$
-		this.user = user;
+		this.user = Objects.requireNonNull(user);
 	}
 
 	@Override

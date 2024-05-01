@@ -40,8 +40,8 @@ import org.eclipse.passage.lic.products.model.api.Product;
 import org.eclipse.passage.lic.products.model.api.ProductLine;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.lic.products.model.api.ProductVersionFeature;
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.loc.internal.agreements.AgreementRegistry;
 import org.eclipse.passage.loc.internal.agreements.AgreementRegistryEvents;
 import org.eclipse.passage.loc.internal.features.FeatureRegistry;
@@ -228,25 +228,25 @@ public class DashboardPanelPart {
 
 	@Inject
 	@Optional
-	public void createdUserOrigin(@UIEventTopic(UserRegistryEvents.USER_ORIGIN_CREATE) UserOriginDescriptor input) {
+	public void createdUserOrigin(@UIEventTopic(UserRegistryEvents.USER_ORIGIN_CREATE) UserOrigin input) {
 		dashboard.updateUserInfo(users);
 	}
 
 	@Inject
 	@Optional
-	public void deletedUserOrigin(@UIEventTopic(UserRegistryEvents.USER_ORIGIN_DELETE) UserOriginDescriptor input) {
+	public void deletedUserOrigin(@UIEventTopic(UserRegistryEvents.USER_ORIGIN_DELETE) UserOrigin input) {
 		dashboard.updateUserInfo(users);
 	}
 
 	@Inject
 	@Optional
-	public void createdUser(@UIEventTopic(UserRegistryEvents.USER_CREATE) UserDescriptor input) {
+	public void createdUser(@UIEventTopic(UserRegistryEvents.USER_CREATE) User input) {
 		dashboard.updateUserInfo(users);
 	}
 
 	@Inject
 	@Optional
-	public void deletedUser(@UIEventTopic(UserRegistryEvents.USER_DELETE) UserDescriptor input) {
+	public void deletedUser(@UIEventTopic(UserRegistryEvents.USER_DELETE) User input) {
 		dashboard.updateUserInfo(users);
 	}
 

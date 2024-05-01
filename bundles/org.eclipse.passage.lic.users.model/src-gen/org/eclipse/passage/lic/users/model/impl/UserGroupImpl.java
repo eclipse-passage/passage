@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -17,24 +17,17 @@ import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.passage.lic.users.LicenseOwnerDescriptor;
-
 import org.eclipse.passage.lic.users.model.api.Contact;
-import org.eclipse.passage.lic.users.model.api.LicenseOwner;
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserGroup;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
-
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
 /**
@@ -527,66 +520,6 @@ public class UserGroupImpl extends MinimalEObjectImpl.Container implements UserG
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == LicenseOwnerDescriptor.class) {
-			switch (derivedFeatureID) {
-			default:
-				return -1;
-			}
-		}
-		if (baseClass == LicenseOwner.class) {
-			switch (derivedFeatureID) {
-			case UsersPackage.USER_GROUP__IDENTIFIER:
-				return UsersPackage.LICENSE_OWNER__IDENTIFIER;
-			case UsersPackage.USER_GROUP__NAME:
-				return UsersPackage.LICENSE_OWNER__NAME;
-			case UsersPackage.USER_GROUP__DESCRIPTION:
-				return UsersPackage.LICENSE_OWNER__DESCRIPTION;
-			case UsersPackage.USER_GROUP__CONTACT:
-				return UsersPackage.LICENSE_OWNER__CONTACT;
-			default:
-				return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == LicenseOwnerDescriptor.class) {
-			switch (baseFeatureID) {
-			default:
-				return -1;
-			}
-		}
-		if (baseClass == LicenseOwner.class) {
-			switch (baseFeatureID) {
-			case UsersPackage.LICENSE_OWNER__IDENTIFIER:
-				return UsersPackage.USER_GROUP__IDENTIFIER;
-			case UsersPackage.LICENSE_OWNER__NAME:
-				return UsersPackage.USER_GROUP__NAME;
-			case UsersPackage.LICENSE_OWNER__DESCRIPTION:
-				return UsersPackage.USER_GROUP__DESCRIPTION;
-			case UsersPackage.LICENSE_OWNER__CONTACT:
-				return UsersPackage.USER_GROUP__CONTACT;
-			default:
-				return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
@@ -602,4 +535,4 @@ public class UserGroupImpl extends MinimalEObjectImpl.Container implements UserG
 		return result.toString();
 	}
 
-} //UserGroupImpl
+} // UserGroupImpl

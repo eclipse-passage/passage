@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,8 +13,6 @@
 package org.eclipse.passage.lic.users.model.api;
 
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.passage.lic.users.ContactDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,10 +35,10 @@ import org.eclipse.passage.lic.users.ContactDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.users.model.meta.UsersPackage#getContact()
- * @model superTypes="org.eclipse.passage.lic.users.model.api.ContactDescriptor"
+ * @model
  * @generated
  */
-public interface Contact extends EObject, ContactDescriptor {
+public interface Contact extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -51,7 +49,6 @@ public interface Contact extends EObject, ContactDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getName();
 
 	/**
@@ -74,7 +71,6 @@ public interface Contact extends EObject, ContactDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getTitle();
 
 	/**
@@ -97,7 +93,6 @@ public interface Contact extends EObject, ContactDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getPosition();
 
 	/**
@@ -120,7 +115,6 @@ public interface Contact extends EObject, ContactDescriptor {
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getEmail();
 
 	/**
@@ -143,7 +137,6 @@ public interface Contact extends EObject, ContactDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getAddress();
 
 	/**
