@@ -4,7 +4,7 @@ Thanks for your interest in this project.
 
 ### Prerequisites
 
-Java 11 and Maven 3.6.3, or newer.
+Java 17 and Maven 3.6.3, or newer.
 
 If your Internet connection uses a proxy, make sure that you have the proxy configured in your [Maven settings.xml](http://maven.apache.org/settings.html).
 
