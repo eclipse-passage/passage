@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2021 ArSysOp
+ * Copyright (c) 2019, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -17,10 +17,10 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
-import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
-import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
+import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
@@ -48,8 +48,8 @@ public final class Customers implements CustomerStorage {
 
 	@Override
 	public Set<UserDescriptor> personsUsedProducts(Set<String> products) {
-		return licenses.getLicensePlans().stream() //
-				.map(plan -> licenses(plan.getPersonal(), products, PersonalLicensePackDescriptor::getLicense))//
+		return licenses.plans().stream() //
+				.map(plan -> licenses(plan.getPersonal(), products, PersonalLicensePack::getLicense))//
 				.flatMap(Collection::stream)//
 				.map(this::user)//
 				.distinct()//
@@ -59,8 +59,8 @@ public final class Customers implements CustomerStorage {
 
 	@Override
 	public Set<UserOriginDescriptor> companiesUsedProducts(Set<String> products) {
-		return licenses.getLicensePlans().stream() //
-				.map(plan -> licenses(plan.getFloating(), products, FloatingLicensePackDescriptor::getLicense))//
+		return licenses.plans().stream() //
+				.map(plan -> licenses(plan.getFloating(), products, FloatingLicensePack::getLicense))//
 				.flatMap(Collection::stream)//
 				.map(this::company)//
 				.distinct()//
@@ -70,8 +70,8 @@ public final class Customers implements CustomerStorage {
 
 	@Override
 	public Set<String> products() {
-		return licenses.getLicensePlans().stream()//
-				.map(LicensePlanDescriptor::getPersonal)//
+		return licenses.plans().stream()//
+				.map(LicensePlan::getPersonal)//
 				.flatMap(Collection::stream)//
 				.map(this::product)//
 				.collect(Collectors.toSet());
@@ -99,26 +99,25 @@ public final class Customers implements CustomerStorage {
 		this.licenses = registry;
 	}
 
-	private <T> Set<T> licenses(Collection<T> packs, Set<String> products,
-			Function<T, LicenseRequisitesDescriptor> license) {
+	private <T> Set<T> licenses(Collection<T> packs, Set<String> products, Function<T, LicenseRequisites> license) {
 		return packs.stream()//
 				.filter(pack -> forProduct(license.apply(pack), products))//
 				.collect(Collectors.toSet());
 	}
 
-	private boolean forProduct(LicenseRequisitesDescriptor lic, Set<String> products) {
+	private boolean forProduct(LicenseRequisites lic, Set<String> products) {
 		return products.contains(lic.getProduct().getIdentifier());
 	}
 
-	private String user(PersonalLicensePackDescriptor pack) {
+	private String user(PersonalLicensePack pack) {
 		return pack.getLicense().getUser().getIdentifier();
 	}
 
-	private String company(FloatingLicensePackDescriptor pack) {
+	private String company(FloatingLicensePack pack) {
 		return pack.getLicense().getCompany().getIdentifier();
 	}
 
-	private String product(PersonalLicensePackDescriptor pack) {
+	private String product(PersonalLicensePack pack) {
 		return pack.getLicense().getProduct().getIdentifier();
 	}
 

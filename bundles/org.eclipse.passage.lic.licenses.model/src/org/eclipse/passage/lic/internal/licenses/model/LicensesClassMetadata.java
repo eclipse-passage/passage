@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,7 +19,6 @@ import java.util.Optional;
 import org.eclipse.passage.lic.emf.meta.ClassMetadata;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.lic.emf.meta.PlainEntityMetadata;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
@@ -31,12 +30,11 @@ public final class LicensesClassMetadata implements ClassMetadata {
 	public LicensesClassMetadata() {
 		meta = LicensesPackage.eINSTANCE;
 		map = new HashMap<Class<?>, EntityMetadata>();
-		map.put(LicensePlanDescriptor.class, //
+		map.put(LicensePlan.class, //
 				new PlainEntityMetadata(//
 						meta.getLicensePlan(), //
 						meta.getLicensePlan_Identifier(), //
 						meta.getLicensePlan_Name()));
-		map.put(LicensePlan.class, map.get(LicensePlanDescriptor.class));
 	}
 
 	@Override

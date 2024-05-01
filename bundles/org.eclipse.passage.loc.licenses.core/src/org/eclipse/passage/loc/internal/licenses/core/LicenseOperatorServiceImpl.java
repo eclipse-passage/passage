@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,11 +15,9 @@ package org.eclipse.passage.loc.internal.licenses.core;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
@@ -131,14 +129,8 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 	}
 
 	@Override
-	public ServiceInvocationResult<IssuedLicense> issueLicensePack(PersonalLicenseRequest request,
-			PersonalLicensePackDescriptor template) {
-		Objects.requireNonNull(request,
-				"LicenseOperatorServiceImpl::issueLicensePack: cannot issue license for null request"); //$NON-NLS-1$
-		Supplier<PersonalLicensePack> pack = (template instanceof PersonalLicensePack) //
-				? () -> PersonalLicensePack.class.cast(template)//
-				: () -> createLicensePack(request);
-		return new IssuePersonalLicense(licenses, agreements, products, operator, events).issue(pack);
+	public ServiceInvocationResult<IssuedLicense> issueLicensePack(PersonalLicensePack template) {
+		return new IssuePersonalLicense(licenses, agreements, products, operator, events).issue(() -> template);
 	}
 
 	@Override

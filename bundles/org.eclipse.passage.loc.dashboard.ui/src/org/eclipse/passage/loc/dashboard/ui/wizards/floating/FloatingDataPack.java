@@ -17,18 +17,18 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 
 public final class FloatingDataPack {
 
-	private final Optional<LicensePlanDescriptor> plan;
+	private final Optional<LicensePlan> plan;
 	private final List<UserDescriptor> users;
 	private final Optional<ProductVersionDescriptor> product;
 
 	public FloatingDataPack(//
-			Optional<LicensePlanDescriptor> plan, //
+			Optional<LicensePlan> plan, //
 			List<UserDescriptor> users, //
 			Optional<ProductVersionDescriptor> product) {
 		this.plan = plan;
@@ -37,7 +37,7 @@ public final class FloatingDataPack {
 	}
 
 	public FloatingDataPack(//
-			Optional<LicensePlanDescriptor> plan, //
+			Optional<LicensePlan> plan, //
 			Optional<UserDescriptor> user, //
 			Optional<ProductVersionDescriptor> product) {
 		this.plan = plan;
@@ -56,7 +56,7 @@ public final class FloatingDataPack {
 		this(Optional.empty(), Collections.emptyList(), Optional.empty());
 	}
 
-	Optional<LicensePlanDescriptor> plan() {
+	Optional<LicensePlan> plan() {
 		return plan;
 	}
 

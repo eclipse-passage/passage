@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2021 ArSysOp
+ * Copyright (c) 2019, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -22,7 +22,7 @@ import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.passage.lic.jface.actions.LicensedRunnableUI;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
@@ -36,15 +36,14 @@ public class DashboardIssueLicenseHandler {
 	private final String feature = "org.eclipse.passage.loc.operator.issue.personal"; //$NON-NLS-1$
 
 	@Execute
-	public void execute(IEclipseContext context,
-			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional LicensePlanDescriptor plan,
+	public void execute(IEclipseContext context, @Named(IServiceConstants.ACTIVE_SELECTION) @Optional LicensePlan plan,
 			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional UserDescriptor user,
 			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional ProductVersionDescriptor product) {
 		Shell shell = context.get(Shell.class);
 		new LicensedRunnableUI(() -> shell, feature, () -> startWizard(shell, context, plan, user, product)).run();
 	}
 
-	private void startWizard(Shell shell, IEclipseContext context, LicensePlanDescriptor plan, UserDescriptor user,
+	private void startWizard(Shell shell, IEclipseContext context, LicensePlan plan, UserDescriptor user,
 			ProductVersionDescriptor product) {
 		IssueLicenseWizard wizard = new IssueLicenseWizard(context, new PersonalDataPack(//
 				java.util.Optional.ofNullable(plan), //

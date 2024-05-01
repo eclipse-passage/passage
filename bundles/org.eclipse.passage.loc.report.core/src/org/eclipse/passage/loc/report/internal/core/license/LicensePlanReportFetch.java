@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -18,10 +18,10 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
-import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
-import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
+import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.loc.yars.internal.api.FetchedData;
 
 /**
@@ -48,7 +48,7 @@ final class LicensePlanReportFetch implements FetchedData<LicenseStorage, Licens
 	}
 
 	private Optional<LicensePlanReport> entry(String id) {
-		Optional<LicensePlanDescriptor> plan = storage.plan(id);
+		Optional<LicensePlan> plan = storage.plan(id);
 		if (!plan.isPresent()) {
 			return Optional.empty();
 		}
@@ -57,11 +57,11 @@ final class LicensePlanReportFetch implements FetchedData<LicenseStorage, Licens
 						plan.get(), //
 						licenses(//
 								all -> all.personal(id), //
-								PersonalLicensePackDescriptor::getLicense, //
+								PersonalLicensePack::getLicense, //
 								pack -> pack.getLicense().getUser().getIdentifier()), //
 						licenses(//
 								all -> all.floating(id), //
-								FloatingLicensePackDescriptor::getLicense, //
+								FloatingLicensePack::getLicense, //
 								pack -> pack.getLicense().getCompany().getIdentifier()), //
 						parameters.explain()//
 				)//
@@ -71,7 +71,7 @@ final class LicensePlanReportFetch implements FetchedData<LicenseStorage, Licens
 
 	private <P> Map<String, List<P>> licenses(//
 			Function<LicenseStorage, List<? extends P>> packs, //
-			Function<P, LicenseRequisitesDescriptor> license, //
+			Function<P, LicenseRequisites> license, //
 			Function<P, String> owner) {
 		return packs.apply(storage).stream()//
 				.filter(pack -> license.apply(pack).getIssueDate().after(parameters.from())) //

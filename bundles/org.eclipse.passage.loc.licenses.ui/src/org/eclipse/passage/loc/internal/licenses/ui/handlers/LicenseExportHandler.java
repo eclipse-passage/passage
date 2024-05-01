@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -30,8 +30,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
-import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
@@ -55,9 +54,7 @@ import org.eclipse.swt.widgets.Shell;
 public class LicenseExportHandler {
 
 	@Execute
-	public void execute(@Named(IServiceConstants.ACTIVE_SELECTION) LicensePlanDescriptor licensePlan,
-			IEclipseContext context) {
-		OperatorLicenseService licenseService = context.get(OperatorLicenseService.class);
+	public void execute(@Named(IServiceConstants.ACTIVE_SELECTION) LicensePlan plan, IEclipseContext context) {
 		Shell shell = context.get(Shell.class);
 		MandatoryEclipseContext resolution = new MandatoryEclipseContext(context);
 		java.util.Optional<UserDescriptor> user = new SelectInner<UserDescriptor, UserOriginDescriptor>(
@@ -95,12 +92,11 @@ public class LicenseExportHandler {
 		LocalDateTime fromLocal = LocalDateTime.now();
 		LocalDateTime untilLocal = fromLocal.plusMonths(months);
 
-		PersonalLicenseRequest request = createLicensingRequest(user.get(), licensePlan, productVersion,
+		PersonalLicenseRequest request = createLicensingRequest(user.get(), plan, productVersion,
 				fromLocal.toLocalDate(), untilLocal.toLocalDate());
 
-		PersonalLicensePackDescriptor licensePack = licenseService.createLicensePack(request);
-
-		ServiceInvocationResult<IssuedLicense> result = licenseService.issueLicensePack(request, licensePack);
+		ServiceInvocationResult<IssuedLicense> result = context.get(OperatorLicenseService.class)
+				.issueLicensePack(context.get(OperatorLicenseService.class).createLicensePack(request));
 		if (new NoSevereErrors().test(result.diagnostic()) && result.data().isPresent()) {
 			MessageDialog.openInformation(shell, LicensesUiMessages.LicenseExportHandler_success_title,
 					String.format(LicensesUiMessages.LicenseExportHandler_success_description, //
@@ -117,7 +113,7 @@ public class LicenseExportHandler {
 	}
 
 	@CanExecute
-	public boolean canExecute(@Named(IServiceConstants.ACTIVE_SELECTION) @Optional LicensePlanDescriptor licensePlan,
+	public boolean canExecute(@Named(IServiceConstants.ACTIVE_SELECTION) @Optional LicensePlan licensePlan,
 			IEclipseContext context) {
 		OperatorLicenseService licenseService = context.get(OperatorLicenseService.class);
 		if (licenseService == null) {
@@ -126,7 +122,7 @@ public class LicenseExportHandler {
 		return licensePlan != null;
 	}
 
-	private PersonalLicenseRequest createLicensingRequest(UserDescriptor user, LicensePlanDescriptor plan,
+	private PersonalLicenseRequest createLicensingRequest(UserDescriptor user, LicensePlan plan,
 			ProductVersionDescriptor product, LocalDate from, LocalDate until) {
 		return new PersonalLicenseData(() -> user, () -> plan, () -> product, () -> from, () -> until);
 	}

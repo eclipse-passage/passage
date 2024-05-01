@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,9 +19,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
-import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -35,23 +35,23 @@ public final class Licenses implements LicenseStorage {
 	private LicenseRegistry licenses;
 
 	@Override
-	public List<LicensePlanDescriptor> plans() {
-		return StreamSupport.stream(licenses.getLicensePlans().spliterator(), false)//
+	public List<LicensePlan> plans() {
+		return StreamSupport.stream(licenses.plans().spliterator(), false)//
 				.collect(Collectors.toList());
 	}
 
 	@Override
-	public List<? extends PersonalLicensePackDescriptor> personal(String plan) {
-		return licenses(plan, LicensePlanDescriptor::getPersonal);
+	public List<PersonalLicensePack> personal(String plan) {
+		return licenses(plan, LicensePlan::getPersonal);
 	}
 
 	@Override
-	public List<? extends FloatingLicensePackDescriptor> floating(String plan) {
-		return licenses(plan, LicensePlanDescriptor::getFloating);
+	public List<FloatingLicensePack> floating(String plan) {
+		return licenses(plan, LicensePlan::getFloating);
 	}
 
-	private <T> List<T> licenses(String plan, Function<LicensePlanDescriptor, List<T>> get) {
-		Optional<LicensePlanDescriptor> mayBePlan = plan(plan);
+	private <T> List<T> licenses(String plan, Function<LicensePlan, List<T>> get) {
+		Optional<LicensePlan> mayBePlan = plan(plan);
 		if (!mayBePlan.isPresent()) {
 			return Collections.emptyList();
 		}
@@ -59,8 +59,8 @@ public final class Licenses implements LicenseStorage {
 	}
 
 	@Override
-	public Optional<LicensePlanDescriptor> plan(String plan) {
-		return Optional.ofNullable(licenses.getLicensePlan(plan));
+	public Optional<LicensePlan> plan(String plan) {
+		return licenses.plan(plan);
 	}
 
 	@Reference

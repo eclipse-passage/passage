@@ -20,7 +20,7 @@ import java.util.stream.StreamSupport;
 
 import org.eclipse.passage.lic.api.MandatoryService;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.licenses.ui.i18n.LicensesUiMessages;
@@ -35,23 +35,23 @@ import org.eclipse.passage.loc.jface.dialogs.Appearance;
  * @since 0.6
  *
  */
-public final class SelectLicensePlan extends SupplySelectRequest<LicensePlanDescriptor> {
+public final class SelectLicensePlan extends SupplySelectRequest<LicensePlan> {
 
 	public SelectLicensePlan(MandatoryService context) {
 		this(context, Optional.empty());
 	}
 
-	public SelectLicensePlan(MandatoryService context, Optional<LicensePlanDescriptor> selection) {
+	public SelectLicensePlan(MandatoryService context, Optional<LicensePlan> selection) {
 		super(context, selection);
 	}
 
 	@Override
-	public SelectRequest<LicensePlanDescriptor> get() {
-		return new SelectRequest<>(LicensePlanDescriptor.class, domain(), input(), () -> initial, appearance());
+	public SelectRequest<LicensePlan> get() {
+		return new SelectRequest<>(LicensePlan.class, domain(), input(), () -> initial, appearance());
 	}
 
-	private Supplier<Iterable<LicensePlanDescriptor>> input() {
-		return () -> StreamSupport.stream(context.get(LicenseRegistry.class).getLicensePlans().spliterator(), false)//
+	private Supplier<Iterable<LicensePlan>> input() {
+		return () -> StreamSupport.stream(context.get(LicenseRegistry.class).plans().spliterator(), false)//
 				.collect(Collectors.toList());
 	}
 

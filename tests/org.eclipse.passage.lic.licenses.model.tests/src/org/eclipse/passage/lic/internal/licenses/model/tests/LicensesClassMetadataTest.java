@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,7 +15,6 @@ package org.eclipse.passage.lic.internal.licenses.model.tests;
 import static org.junit.Assert.assertTrue;
 
 import org.eclipse.passage.lic.internal.licenses.model.LicensesClassMetadata;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.junit.Test;
 
@@ -29,7 +28,6 @@ public class LicensesClassMetadataTest {
 
 	@Test
 	public void licensePlanMetadata() {
-		assertTrue(metadata.find(LicensePlanDescriptor.class).isPresent());
 		assertTrue(metadata.find(LicensePlan.class).isPresent());
 	}
 

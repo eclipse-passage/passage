@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,10 +14,10 @@ package org.eclipse.passage.loc.report.internal.ui.jface.license;
 
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.loc.report.internal.core.license.LicenseStorage;
 
-final class LicensePlans implements Supplier<LicensePlanDescriptor[]> {
+final class LicensePlans implements Supplier<LicensePlan[]> {
 
 	private final LicenseStorage storage;
 
@@ -26,8 +26,8 @@ final class LicensePlans implements Supplier<LicensePlanDescriptor[]> {
 	}
 
 	@Override
-	public LicensePlanDescriptor[] get() {
-		return storage.plans().toArray(new LicensePlanDescriptor[0]);
+	public LicensePlan[] get() {
+		return storage.plans().toArray(new LicensePlan[0]);
 	}
 
 }

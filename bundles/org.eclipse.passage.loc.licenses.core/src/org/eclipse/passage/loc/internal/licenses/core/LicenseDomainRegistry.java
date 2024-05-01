@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2022 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
@@ -24,7 +25,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.internal.equinox.events.EquinoxEvent;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 import org.eclipse.passage.loc.internal.api.OperatorGearSupplier;
@@ -47,21 +48,13 @@ import org.osgi.service.event.EventAdmin;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + LicensesPackage.eNAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "licenses_xmi" })
-public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlanDescriptor>
-		implements LicenseRegistry, EditingDomainRegistry<LicensePlanDescriptor> {
+public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlan>
+		implements LicenseRegistry, EditingDomainRegistry<LicensePlan> {
 
-	private final Map<String, LicensePlanDescriptor> licensePlanIndex = new HashMap<>();
-
-	private EventAdmin events;
+	private final Map<String, LicensePlan> plans = new HashMap<>();
 
 	@Reference
-	public void bindEventAdmin(EventAdmin admin) {
-		this.events = admin;
-	}
-
-	public void unbindEventAdmin(@SuppressWarnings("unused") EventAdmin admin) {
-		this.events = null;
-	}
+	private EventAdmin events;
 
 	@Override
 	@Reference
@@ -83,7 +76,7 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlanDescrip
 	@Deactivate
 	@Override
 	public void deactivate(Map<String, Object> properties) {
-		licensePlanIndex.clear();
+		plans.clear();
 		super.deactivate(properties);
 	}
 
@@ -93,28 +86,28 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlanDescrip
 	}
 
 	@Override
-	public Class<LicensePlanDescriptor> getContentClass() {
-		return LicensePlanDescriptor.class;
+	public Class<LicensePlan> getContentClass() {
+		return LicensePlan.class;
 	}
 
 	@Override
-	public String resolveIdentifier(LicensePlanDescriptor content) {
+	public String resolveIdentifier(LicensePlan content) {
 		return content.getIdentifier();
 	}
 
 	@Override
-	public Collection<LicensePlanDescriptor> getLicensePlans() {
-		return new ArrayList<>(licensePlanIndex.values());
+	public Collection<LicensePlan> plans() {
+		return new ArrayList<>(plans.values());
 	}
 
 	@Override
-	public LicensePlanDescriptor getLicensePlan(String identifier) {
-		return licensePlanIndex.get(identifier);
+	public Optional<LicensePlan> plan(String identifier) {
+		return Optional.ofNullable(plans.get(identifier));
 	}
 
-	public void registerLicensePlan(LicensePlanDescriptor licensePlan) {
+	void registerLicensePlan(LicensePlan licensePlan) {
 		String identifier = licensePlan.getIdentifier();
-		LicensePlanDescriptor existing = licensePlanIndex.put(identifier, licensePlan);
+		LicensePlan existing = plans.put(identifier, licensePlan);
 		if ((existing != null) && (existing != licensePlan)) {
 			String msg = NLS.bind(LicensesCoreMessages.LicenseDomain_instance_duplication_message, existing,
 					licensePlan);
@@ -123,8 +116,8 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlanDescrip
 		events.postEvent(new EquinoxEvent(LicenseRegistryEvents.LICENSE_PLAN_CREATE, licensePlan).get());
 	}
 
-	public void unregisterLicensePlan(String identifier) {
-		LicensePlanDescriptor removed = licensePlanIndex.remove(identifier);
+	void unregisterLicensePlan(String identifier) {
+		LicensePlan removed = plans.remove(identifier);
 		if (removed != null) {
 			events.postEvent(new EquinoxEvent(LicenseRegistryEvents.LICENSE_PLAN_DELETE, removed).get());
 
@@ -132,7 +125,7 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlanDescrip
 	}
 
 	@Override
-	protected DomainContentAdapter<LicensePlanDescriptor, LicenseDomainRegistry> createContentAdapter() {
+	protected DomainContentAdapter<LicensePlan, LicenseDomainRegistry> createContentAdapter() {
 		return new LicensesDomainRegistryTracker(this);
 	}
 
@@ -152,7 +145,7 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlanDescrip
 	}
 
 	@Override
-	public void registerContent(LicensePlanDescriptor content) {
+	public void registerContent(LicensePlan content) {
 		registerLicensePlan(content);
 	}
 

@@ -23,7 +23,7 @@ import java.util.function.Supplier;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.api.MandatoryService;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
@@ -43,7 +43,7 @@ public final class PageFields implements Fields {
 		this.page = page;
 	}
 
-	public Supplier<Optional<LicensePlanDescriptor>> withLicensePlan(Optional<LicensePlanDescriptor> plan) {
+	public Supplier<Optional<LicensePlan>> withLicensePlan(Optional<LicensePlan> plan) {
 		return with(new LicensePlanField(plan, this::modified, labels, context));
 	}
 

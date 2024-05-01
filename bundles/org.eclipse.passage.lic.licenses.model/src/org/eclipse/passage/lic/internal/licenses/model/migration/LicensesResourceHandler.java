@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.licenses.model.migration;
 
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.passage.lic.emf.migration.DelegateClassifiers;
 import org.eclipse.passage.lic.emf.migration.EClassRoutes;
@@ -42,6 +43,7 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 		migrate050();
 		migrate100();
 		migrate110();
+		migrate200();
 	}
 
 	@Override
@@ -136,6 +138,12 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 		routes.define("LicensePack", delegate.getPersonalLicensePack()); //$NON-NLS-1$ \
 		routes.define("LicensePlan", delegate.getLicensePlan()); //$NON-NLS-1$
 		return routes;
+	}
+
+	private void migrate200() {
+		String uri = "http://www.eclipse.org/passage/lic/licenses/2.0.0"; //$NON-NLS-1$
+		LicensesPackage delegate = LicensesPackage.eINSTANCE;
+		EPackage.Registry.INSTANCE.computeIfAbsent(uri, ns -> delegate);
 	}
 
 }

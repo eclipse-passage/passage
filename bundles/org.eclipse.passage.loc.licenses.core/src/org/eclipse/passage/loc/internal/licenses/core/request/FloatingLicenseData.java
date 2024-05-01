@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.lic.api.EvaluationInstructions;
 import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
@@ -31,7 +31,7 @@ public final class FloatingLicenseData extends GeneralLicenseData implements Flo
 	private final Supplier<Collection<UserDescriptor>> users;
 	private final Supplier<Integer> capacity;
 
-	public FloatingLicenseData(Supplier<Collection<UserDescriptor>> users, Supplier<LicensePlanDescriptor> plan,
+	public FloatingLicenseData(Supplier<Collection<UserDescriptor>> users, Supplier<LicensePlan> plan,
 			Supplier<ProductVersionDescriptor> product, Supplier<LocalDate> from, Supplier<LocalDate> until,
 			Supplier<Integer> capacity) {
 		super(plan, product, from, until);

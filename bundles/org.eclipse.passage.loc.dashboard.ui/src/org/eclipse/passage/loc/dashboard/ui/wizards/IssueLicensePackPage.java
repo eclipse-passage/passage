@@ -29,7 +29,6 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.passage.lic.emf.validation.ErrorMessages;
-import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
@@ -72,16 +71,13 @@ class IssueLicensePackPage extends TwoPhaseWizardPage {
 
 	private void createFormRequest(PersonalLicenseRequest request) {
 		OperatorLicenseService service = context.get(OperatorLicenseService.class);
-		PersonalLicensePackDescriptor descriptor = service.createLicensePack(request);
-		if (descriptor instanceof PersonalLicensePack) {
-			license = (PersonalLicensePack) descriptor;
-			license.eAdapters().add(new EContentAdapter() {
-				@Override
-				public void notifyChanged(Notification notification) {
-					setPageComplete(validatePage());
-				}
-			});
-		}
+		license = service.createLicensePack(request);
+		license.eAdapters().add(new EContentAdapter() {
+			@Override
+			public void notifyChanged(Notification notification) {
+				setPageComplete(validatePage());
+			}
+		});
 	}
 
 	private void refillFormRequest(PersonalLicenseRequest request) {
@@ -150,7 +146,7 @@ class IssueLicensePackPage extends TwoPhaseWizardPage {
 		return errors.isEmpty();
 	}
 
-	PersonalLicensePackDescriptor pack() {
+	PersonalLicensePack pack() {
 		return license;
 	}
 

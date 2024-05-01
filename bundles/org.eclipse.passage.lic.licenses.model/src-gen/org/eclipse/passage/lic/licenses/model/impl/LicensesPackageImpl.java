@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,32 +16,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.passage.lic.licenses.AgreementDataDescriptor;
-import org.eclipse.passage.lic.licenses.CompanyRefDescriptor;
-import org.eclipse.passage.lic.licenses.EvaluationInstructionsDescriptor;
-import org.eclipse.passage.lic.licenses.FeatureGrantDescriptor;
-import org.eclipse.passage.lic.licenses.FeatureRefDescriptor;
-import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
-import org.eclipse.passage.lic.licenses.FloatingLicenseRequisitesDescriptor;
-import org.eclipse.passage.lic.licenses.FloatingServerDescriptor;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
-import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
-import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
-import org.eclipse.passage.lic.licenses.PersonalFeatureGrantDescriptor;
-import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
-import org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor;
-import org.eclipse.passage.lic.licenses.ProductRefDescriptor;
-import org.eclipse.passage.lic.licenses.SignatureAttributeDescriptor;
-import org.eclipse.passage.lic.licenses.SignatureDescriptor;
-import org.eclipse.passage.lic.licenses.UserGrantDescriptor;
-import org.eclipse.passage.lic.licenses.UserRefDescriptor;
-import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
-import org.eclipse.passage.lic.licenses.ValidityPeriodDescriptor;
-import org.eclipse.passage.lic.licenses.VersionMatchDescriptor;
-
 import org.eclipse.passage.lic.licenses.model.api.AgreementData;
 import org.eclipse.passage.lic.licenses.model.api.CompanyRef;
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
@@ -53,10 +28,10 @@ import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.FloatingServer;
 import org.eclipse.passage.lic.licenses.model.api.FloatingServerConnection;
 import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
-import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
 import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
@@ -67,7 +42,6 @@ import org.eclipse.passage.lic.licenses.model.api.UserRef;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
-
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
@@ -84,181 +58,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @since 2.1
 	 * @generated
 	 */
-	private EClass agreementDataDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass licensePlanDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass licensePlanFeatureDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass personalLicensePackDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass productRefDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass featureRefDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass userRefDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass companyRefDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass licenseRequisitesDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass personalFeatureGrantDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass personalLicenseRequisitesDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass floatingLicenseRequisitesDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass validityPeriodDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass validityPeriodClosedDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass floatingLicensePackDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass floatingServerDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass userGrantDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass featureGrantDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass evaluationInstructionsDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass versionMatchDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.1
-	 * @generated
-	 */
 	private EClass agreementDataEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass signatureDescriptorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass signatureAttributeDescriptorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -521,224 +321,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getAgreementDataDescriptor() {
-		return agreementDataDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getLicensePlanDescriptor() {
-		return licensePlanDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getLicensePlanFeatureDescriptor() {
-		return licensePlanFeatureDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getPersonalLicensePackDescriptor() {
-		return personalLicensePackDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getProductRefDescriptor() {
-		return productRefDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getFeatureRefDescriptor() {
-		return featureRefDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getUserRefDescriptor() {
-		return userRefDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getCompanyRefDescriptor() {
-		return companyRefDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getLicenseRequisitesDescriptor() {
-		return licenseRequisitesDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getPersonalFeatureGrantDescriptor() {
-		return personalFeatureGrantDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getPersonalLicenseRequisitesDescriptor() {
-		return personalLicenseRequisitesDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getFloatingLicenseRequisitesDescriptor() {
-		return floatingLicenseRequisitesDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getValidityPeriodDescriptor() {
-		return validityPeriodDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getValidityPeriodClosedDescriptor() {
-		return validityPeriodClosedDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getFloatingLicensePackDescriptor() {
-		return floatingLicensePackDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getFloatingServerDescriptor() {
-		return floatingServerDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getUserGrantDescriptor() {
-		return userGrantDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getFeatureGrantDescriptor() {
-		return featureGrantDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getEvaluationInstructionsDescriptor() {
-		return evaluationInstructionsDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getVersionMatchDescriptor() {
-		return versionMatchDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.1
-	 * @generated
-	 */
-	@Override
 	public EClass getAgreementData() {
 		return agreementDataEClass;
 	}
@@ -818,28 +400,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	@Override
 	public EAttribute getAgreementData_ContentType() {
 		return (EAttribute) agreementDataEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getSignatureDescriptor() {
-		return signatureDescriptorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getSignatureAttributeDescriptor() {
-		return signatureAttributeDescriptorEClass;
 	}
 
 	/**
@@ -1945,50 +1505,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		isCreated = true;
 
 		// Create classes and their features
-		agreementDataDescriptorEClass = createEClass(AGREEMENT_DATA_DESCRIPTOR);
-
-		companyRefDescriptorEClass = createEClass(COMPANY_REF_DESCRIPTOR);
-
-		evaluationInstructionsDescriptorEClass = createEClass(EVALUATION_INSTRUCTIONS_DESCRIPTOR);
-
-		featureGrantDescriptorEClass = createEClass(FEATURE_GRANT_DESCRIPTOR);
-
-		featureRefDescriptorEClass = createEClass(FEATURE_REF_DESCRIPTOR);
-
-		floatingLicensePackDescriptorEClass = createEClass(FLOATING_LICENSE_PACK_DESCRIPTOR);
-
-		floatingLicenseRequisitesDescriptorEClass = createEClass(FLOATING_LICENSE_REQUISITES_DESCRIPTOR);
-
-		floatingServerDescriptorEClass = createEClass(FLOATING_SERVER_DESCRIPTOR);
-
-		licensePlanDescriptorEClass = createEClass(LICENSE_PLAN_DESCRIPTOR);
-
-		licensePlanFeatureDescriptorEClass = createEClass(LICENSE_PLAN_FEATURE_DESCRIPTOR);
-
-		licenseRequisitesDescriptorEClass = createEClass(LICENSE_REQUISITES_DESCRIPTOR);
-
-		personalFeatureGrantDescriptorEClass = createEClass(PERSONAL_FEATURE_GRANT_DESCRIPTOR);
-
-		personalLicensePackDescriptorEClass = createEClass(PERSONAL_LICENSE_PACK_DESCRIPTOR);
-
-		personalLicenseRequisitesDescriptorEClass = createEClass(PERSONAL_LICENSE_REQUISITES_DESCRIPTOR);
-
-		productRefDescriptorEClass = createEClass(PRODUCT_REF_DESCRIPTOR);
-
-		signatureAttributeDescriptorEClass = createEClass(SIGNATURE_ATTRIBUTE_DESCRIPTOR);
-
-		signatureDescriptorEClass = createEClass(SIGNATURE_DESCRIPTOR);
-
-		userGrantDescriptorEClass = createEClass(USER_GRANT_DESCRIPTOR);
-
-		userRefDescriptorEClass = createEClass(USER_REF_DESCRIPTOR);
-
-		validityPeriodClosedDescriptorEClass = createEClass(VALIDITY_PERIOD_CLOSED_DESCRIPTOR);
-
-		validityPeriodDescriptorEClass = createEClass(VALIDITY_PERIOD_DESCRIPTOR);
-
-		versionMatchDescriptorEClass = createEClass(VERSION_MATCH_DESCRIPTOR);
-
 		agreementDataEClass = createEClass(AGREEMENT_DATA);
 		createEAttribute(agreementDataEClass, AGREEMENT_DATA__IDENTIFIER);
 		createEAttribute(agreementDataEClass, AGREEMENT_DATA__NAME);
@@ -2150,101 +1666,11 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		floatingLicenseRequisitesDescriptorEClass.getESuperTypes().add(this.getLicenseRequisitesDescriptor());
-		personalLicenseRequisitesDescriptorEClass.getESuperTypes().add(this.getLicenseRequisitesDescriptor());
-		agreementDataEClass.getESuperTypes().add(this.getAgreementDataDescriptor());
-		companyRefEClass.getESuperTypes().add(this.getCompanyRefDescriptor());
-		evaluationInstructionsEClass.getESuperTypes().add(this.getEvaluationInstructionsDescriptor());
-		featureGrantEClass.getESuperTypes().add(this.getFeatureGrantDescriptor());
-		featureRefEClass.getESuperTypes().add(this.getFeatureRefDescriptor());
-		floatingLicensePackEClass.getESuperTypes().add(this.getFloatingLicensePackDescriptor());
 		floatingLicenseRequisitesEClass.getESuperTypes().add(this.getLicenseRequisites());
-		floatingLicenseRequisitesEClass.getESuperTypes().add(this.getFloatingLicenseRequisitesDescriptor());
-		floatingServerEClass.getESuperTypes().add(this.getFloatingServerDescriptor());
-		licensePlanEClass.getESuperTypes().add(this.getLicensePlanDescriptor());
-		licensePlanFeatureEClass.getESuperTypes().add(this.getLicensePlanFeatureDescriptor());
-		licenseRequisitesEClass.getESuperTypes().add(this.getLicenseRequisitesDescriptor());
-		personalFeatureGrantEClass.getESuperTypes().add(this.getPersonalFeatureGrantDescriptor());
-		personalLicensePackEClass.getESuperTypes().add(this.getPersonalLicensePackDescriptor());
 		personalLicenseRequisitesEClass.getESuperTypes().add(this.getLicenseRequisites());
-		personalLicenseRequisitesEClass.getESuperTypes().add(this.getPersonalLicenseRequisitesDescriptor());
-		productRefEClass.getESuperTypes().add(this.getProductRefDescriptor());
-		signatureEClass.getESuperTypes().add(this.getSignatureDescriptor());
-		signatureAttributeEClass.getESuperTypes().add(this.getSignatureAttributeDescriptor());
-		userGrantEClass.getESuperTypes().add(this.getUserGrantDescriptor());
-		userRefEClass.getESuperTypes().add(this.getUserRefDescriptor());
-		validityPeriodEClass.getESuperTypes().add(this.getValidityPeriodDescriptor());
 		validityPeriodClosedEClass.getESuperTypes().add(this.getValidityPeriod());
-		validityPeriodClosedEClass.getESuperTypes().add(this.getValidityPeriodClosedDescriptor());
-		versionMatchEClass.getESuperTypes().add(this.getVersionMatchDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(agreementDataDescriptorEClass, AgreementDataDescriptor.class, "AgreementDataDescriptor", IS_ABSTRACT, //$NON-NLS-1$
-				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(companyRefDescriptorEClass, CompanyRefDescriptor.class, "CompanyRefDescriptor", IS_ABSTRACT, //$NON-NLS-1$
-				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(evaluationInstructionsDescriptorEClass, EvaluationInstructionsDescriptor.class,
-				"EvaluationInstructionsDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(featureGrantDescriptorEClass, FeatureGrantDescriptor.class, "FeatureGrantDescriptor", IS_ABSTRACT, //$NON-NLS-1$
-				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(featureRefDescriptorEClass, FeatureRefDescriptor.class, "FeatureRefDescriptor", IS_ABSTRACT, //$NON-NLS-1$
-				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(floatingLicensePackDescriptorEClass, FloatingLicensePackDescriptor.class,
-				"FloatingLicensePackDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(floatingLicenseRequisitesDescriptorEClass, FloatingLicenseRequisitesDescriptor.class,
-				"FloatingLicenseRequisitesDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(floatingServerDescriptorEClass, FloatingServerDescriptor.class, "FloatingServerDescriptor", //$NON-NLS-1$
-				IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(licensePlanDescriptorEClass, LicensePlanDescriptor.class, "LicensePlanDescriptor", IS_ABSTRACT, //$NON-NLS-1$
-				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(licensePlanFeatureDescriptorEClass, LicensePlanFeatureDescriptor.class,
-				"LicensePlanFeatureDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(licenseRequisitesDescriptorEClass, LicenseRequisitesDescriptor.class, "LicenseRequisitesDescriptor", //$NON-NLS-1$
-				IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(personalFeatureGrantDescriptorEClass, PersonalFeatureGrantDescriptor.class,
-				"PersonalFeatureGrantDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(personalLicensePackDescriptorEClass, PersonalLicensePackDescriptor.class,
-				"PersonalLicensePackDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(personalLicenseRequisitesDescriptorEClass, PersonalLicenseRequisitesDescriptor.class,
-				"PersonalLicenseRequisitesDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(productRefDescriptorEClass, ProductRefDescriptor.class, "ProductRefDescriptor", IS_ABSTRACT, //$NON-NLS-1$
-				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(signatureAttributeDescriptorEClass, SignatureAttributeDescriptor.class,
-				"SignatureAttributeDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(signatureDescriptorEClass, SignatureDescriptor.class, "SignatureDescriptor", IS_ABSTRACT, //$NON-NLS-1$
-				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(userGrantDescriptorEClass, UserGrantDescriptor.class, "UserGrantDescriptor", IS_ABSTRACT, //$NON-NLS-1$
-				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(userRefDescriptorEClass, UserRefDescriptor.class, "UserRefDescriptor", IS_ABSTRACT, IS_INTERFACE, //$NON-NLS-1$
-				!IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(validityPeriodClosedDescriptorEClass, ValidityPeriodClosedDescriptor.class,
-				"ValidityPeriodClosedDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(validityPeriodDescriptorEClass, ValidityPeriodDescriptor.class, "ValidityPeriodDescriptor", //$NON-NLS-1$
-				IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(versionMatchDescriptorEClass, VersionMatchDescriptor.class, "VersionMatchDescriptor", IS_ABSTRACT, //$NON-NLS-1$
-				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(agreementDataEClass, AgreementData.class, "AgreementData", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAgreementData_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, //$NON-NLS-1$
@@ -2553,4 +1979,4 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		createResource(eNS_URI);
 	}
 
-} //LicensesPackageImpl
+} // LicensesPackageImpl

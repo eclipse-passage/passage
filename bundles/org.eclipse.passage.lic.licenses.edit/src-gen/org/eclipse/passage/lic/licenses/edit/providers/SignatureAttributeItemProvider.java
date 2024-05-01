@@ -123,7 +123,6 @@ public class SignatureAttributeItemProvider extends ItemProviderAdapter implemen
 		return label == null || label.length() == 0 ? getString("_UI_SignatureAttribute_type") : //$NON-NLS-1$
 				getString("_UI_SignatureAttribute_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
-	
 
 	/**
 	 * @generated NOT

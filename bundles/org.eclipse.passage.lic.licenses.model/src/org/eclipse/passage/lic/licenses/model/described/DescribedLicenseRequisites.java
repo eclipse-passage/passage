@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2022 ArSysOp
+ * Copyright (c) 2022, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,13 +13,13 @@
 package org.eclipse.passage.lic.licenses.model.described;
 
 import org.eclipse.passage.lic.internal.licenses.model.i18n.Messages;
-import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
 
 public final class DescribedLicenseRequisites extends Described {
 
-	private final LicenseRequisitesDescriptor license;
+	private final LicenseRequisites license;
 
-	public DescribedLicenseRequisites(LicenseRequisitesDescriptor license) {
+	public DescribedLicenseRequisites(LicenseRequisites license) {
 		this.license = license;
 	}
 

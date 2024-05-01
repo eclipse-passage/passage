@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,23 +15,23 @@ package org.eclipse.passage.loc.report.internal.core.license;
 import java.util.List;
 import java.util.Optional;
 
-import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
-import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.loc.yars.internal.api.Storage;
 
 /**
  * @since 0.2
  */
 @SuppressWarnings("restriction")
-public interface LicenseStorage extends Storage<PersonalLicensePackDescriptor> {
+public interface LicenseStorage extends Storage<PersonalLicensePack> {
 
-	List<? extends PersonalLicensePackDescriptor> personal(String plan);
+	List<? extends PersonalLicensePack> personal(String plan);
 
-	List<? extends FloatingLicensePackDescriptor> floating(String plan);
+	List<? extends FloatingLicensePack> floating(String plan);
 
-	List<LicensePlanDescriptor> plans();
+	List<LicensePlan> plans();
 
-	Optional<LicensePlanDescriptor> plan(String plan);
+	Optional<LicensePlan> plan(String plan);
 
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -36,8 +36,8 @@ import org.eclipse.passage.lic.base.conditions.MatchingRuleGreaterOrEqual;
 import org.eclipse.passage.lic.base.conditions.MatchingRulePerfect;
 import org.eclipse.passage.lic.base.version.BaseSemanticVersion;
 import org.eclipse.passage.lic.base.version.SafeVersion;
-import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
-import org.eclipse.passage.lic.licenses.PersonalFeatureGrantDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyleRange;
@@ -121,14 +121,12 @@ public final class MatchRuleRenderer extends ExplainedComboControlRenderer {
 
 	private Optional<String> guide() {
 		EObject owner = getViewModelContext().getDomainModel();
-		if (owner instanceof LicensePlanFeatureDescriptor) {
-			return Optional
-					.ofNullable(((LicensePlanFeatureDescriptor) owner).getFeature().getVersionMatch().getVersion());
-		} else if (owner instanceof PersonalFeatureGrantDescriptor) {
-			return Optional
-					.ofNullable(((PersonalFeatureGrantDescriptor) owner).getFeature().getVersionMatch().getVersion());
-		} else if (owner instanceof VersionMatch) {
-			return Optional.ofNullable(((VersionMatch) owner).getVersion());
+		if (owner instanceof LicensePlanFeature lpf) {
+			return Optional.ofNullable(lpf.getFeature().getVersionMatch().getVersion());
+		} else if (owner instanceof PersonalFeatureGrant pfg) {
+			return Optional.ofNullable(pfg.getFeature().getVersionMatch().getVersion());
+		} else if (owner instanceof VersionMatch vm) {
+			return Optional.ofNullable(vm.getVersion());
 		}
 		return Optional.empty();
 	}

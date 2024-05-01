@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,8 +16,6 @@ import java.util.Date;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,10 +40,10 @@ import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseRequisites()
- * @model abstract="true" superTypes="org.eclipse.passage.lic.licenses.model.api.LicenseRequisitesDescriptor"
+ * @model abstract="true"
  * @generated
  */
-public interface LicenseRequisites extends EObject, LicenseRequisitesDescriptor {
+public interface LicenseRequisites extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -56,7 +54,6 @@ public interface LicenseRequisites extends EObject, LicenseRequisitesDescriptor 
 	 * @model id="true" required="true"
 	 * @generated
 	 */
-	@Override
 	String getIdentifier();
 
 	/**
@@ -79,7 +76,6 @@ public interface LicenseRequisites extends EObject, LicenseRequisitesDescriptor 
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	Date getIssueDate();
 
 	/**
@@ -102,7 +98,6 @@ public interface LicenseRequisites extends EObject, LicenseRequisitesDescriptor 
 	 * @model required="true"
 	 * @generated
 	 */
-	@Override
 	String getPlan();
 
 	/**
@@ -125,7 +120,6 @@ public interface LicenseRequisites extends EObject, LicenseRequisitesDescriptor 
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	@Override
 	ProductRef getProduct();
 
 	/**
@@ -148,7 +142,6 @@ public interface LicenseRequisites extends EObject, LicenseRequisitesDescriptor 
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	@Override
 	ValidityPeriod getValid();
 
 	/**
@@ -171,7 +164,6 @@ public interface LicenseRequisites extends EObject, LicenseRequisitesDescriptor 
 	 * @model containment="true"
 	 * @generated
 	 */
-	@Override
 	Signature getSignature();
 
 	/**
@@ -194,7 +186,6 @@ public interface LicenseRequisites extends EObject, LicenseRequisitesDescriptor 
 	 * @model containment="true"
 	 * @generated
 	 */
-	@Override
 	EList<AgreementData> getAgreements();
 
 } // LicenseRequisites

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,10 +13,7 @@
 package org.eclipse.passage.lic.licenses.model.api;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,10 +34,10 @@ import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlan()
- * @model superTypes="org.eclipse.passage.lic.licenses.model.api.LicensePlanDescriptor"
+ * @model
  * @generated
  */
-public interface LicensePlan extends EObject, LicensePlanDescriptor {
+public interface LicensePlan extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -51,7 +48,6 @@ public interface LicensePlan extends EObject, LicensePlanDescriptor {
 	 * @model id="true"
 	 * @generated
 	 */
-	@Override
 	String getIdentifier();
 
 	/**
@@ -74,7 +70,6 @@ public interface LicensePlan extends EObject, LicensePlanDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getName();
 
 	/**
@@ -97,7 +92,6 @@ public interface LicensePlan extends EObject, LicensePlanDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	String getDescription();
 
 	/**
@@ -123,7 +117,6 @@ public interface LicensePlan extends EObject, LicensePlanDescriptor {
 	 * @model
 	 * @generated
 	 */
-	@Override
 	EList<String> getAgreements();
 
 	/**
@@ -141,7 +134,6 @@ public interface LicensePlan extends EObject, LicensePlanDescriptor {
 	 * @model opposite="plan" containment="true" required="true"
 	 * @generated
 	 */
-	@Override
 	EList<LicensePlanFeature> getFeatures();
 
 	/**
@@ -157,7 +149,6 @@ public interface LicensePlan extends EObject, LicensePlanDescriptor {
 	 * @model containment="true"
 	 * @generated
 	 */
-	@Override
 	EList<PersonalLicensePack> getPersonal();
 
 	/**
@@ -173,7 +164,6 @@ public interface LicensePlan extends EObject, LicensePlanDescriptor {
 	 * @model containment="true"
 	 * @generated
 	 */
-	@Override
 	EList<FloatingLicensePack> getFloating();
 
 } // LicensePlan

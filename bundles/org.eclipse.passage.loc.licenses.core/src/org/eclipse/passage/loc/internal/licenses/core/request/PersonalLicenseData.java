@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
@@ -25,7 +25,7 @@ public final class PersonalLicenseData extends GeneralLicenseData implements Per
 
 	private final Supplier<UserDescriptor> user;
 
-	public PersonalLicenseData(Supplier<UserDescriptor> user, Supplier<LicensePlanDescriptor> plan,
+	public PersonalLicenseData(Supplier<UserDescriptor> user, Supplier<LicensePlan> plan,
 			Supplier<ProductVersionDescriptor> product, Supplier<LocalDate> from, Supplier<LocalDate> until) {
 		super(plan, product, from, until);
 		Objects.requireNonNull(user, "PersonalLicenseData::user"); //$NON-NLS-1$

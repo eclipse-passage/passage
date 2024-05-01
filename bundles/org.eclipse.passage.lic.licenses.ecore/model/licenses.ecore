@@ -1,134 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="licenses" nsURI="http://www.eclipse.org/passage/lic/licenses/2.0.0"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="licenses" nsURI="http://www.eclipse.org/passage/lic/licenses/3.0.0"
     nsPrefix="org.eclipse.passage.lic">
-  <eClassifiers xsi:type="ecore:EClass" name="AgreementDataDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.AgreementDataDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.1"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CompanyRefDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.CompanyRefDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EvaluationInstructionsDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.EvaluationInstructionsDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FeatureGrantDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.FeatureGrantDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FeatureRefDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.FeatureRefDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FloatingLicensePackDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FloatingLicenseRequisitesDescriptor"
-      instanceClassName="org.eclipse.passage.lic.licenses.FloatingLicenseRequisitesDescriptor"
-      abstract="true" interface="true" eSuperTypes="#//LicenseRequisitesDescriptor">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FloatingServerDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.FloatingServerDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LicensePlanDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.LicensePlanDescriptor"
-      abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LicensePlanFeatureDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor"
-      abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LicenseRequisitesDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PersonalFeatureGrantDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.PersonalFeatureGrantDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PersonalLicensePackDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PersonalLicenseRequisitesDescriptor"
-      instanceClassName="org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor"
-      abstract="true" interface="true" eSuperTypes="#//LicenseRequisitesDescriptor">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProductRefDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.ProductRefDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SignatureAttributeDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.SignatureAttributeDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SignatureDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.SignatureDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UserGrantDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.UserGrantDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UserRefDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.UserRefDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ValidityPeriodClosedDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ValidityPeriodDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.ValidityPeriodDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VersionMatchDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.VersionMatchDescriptor"
-      abstract="true" interface="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="@since 2.0"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AgreementData" eSuperTypes="#//AgreementDataDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="AgreementData">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.1"/>
     </eAnnotations>
@@ -144,7 +18,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="contentType" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CompanyRef" eSuperTypes="#//CompanyRefDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="CompanyRef">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
@@ -153,7 +27,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="info" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EvaluationInstructions" eSuperTypes="#//EvaluationInstructionsDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="EvaluationInstructions">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
@@ -161,7 +35,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FeatureGrant" eSuperTypes="#//FeatureGrantDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureGrant">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
@@ -177,7 +51,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="pack" lowerBound="1" eType="#//FloatingLicensePack"
         eOpposite="#//FloatingLicensePack/features"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FeatureRef" eSuperTypes="#//FeatureRefDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureRef">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
@@ -196,7 +70,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="originLicensePack" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FloatingLicensePack" eSuperTypes="#//FloatingLicensePackDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="FloatingLicensePack">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
@@ -209,7 +83,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" lowerBound="1"
         upperBound="-1" eType="#//FeatureGrant" containment="true" eOpposite="#//FeatureGrant/pack"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FloatingLicenseRequisites" eSuperTypes="#//LicenseRequisites #//FloatingLicenseRequisitesDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="FloatingLicenseRequisites" eSuperTypes="#//LicenseRequisites">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
@@ -217,7 +91,7 @@
         eType="#//CompanyRef" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="group" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FloatingServer" eSuperTypes="#//FloatingServerDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="FloatingServer">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
@@ -248,7 +122,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="created" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LicensePlan" eSuperTypes="#//LicensePlanDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="LicensePlan">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -278,7 +152,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LicensePlanFeature" eSuperTypes="#//LicensePlanFeatureDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="LicensePlanFeature">
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
         eType="#//FeatureRef" containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -303,7 +177,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LicenseRequisites" abstract="true" eSuperTypes="#//LicenseRequisitesDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="LicenseRequisites" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.1"/>
     </eAnnotations>
@@ -321,7 +195,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="agreements" upperBound="-1"
         eType="#//AgreementData" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PersonalFeatureGrant" eSuperTypes="#//PersonalFeatureGrantDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="PersonalFeatureGrant">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
@@ -339,7 +213,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="pack" lowerBound="1" eType="#//PersonalLicensePack"
         eOpposite="#//PersonalLicensePack/grants"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PersonalLicensePack" eSuperTypes="#//PersonalLicensePackDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="PersonalLicensePack">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
@@ -348,14 +222,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="grants" upperBound="-1"
         eType="#//PersonalFeatureGrant" containment="true" eOpposite="#//PersonalFeatureGrant/pack"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PersonalLicenseRequisites" eSuperTypes="#//LicenseRequisites #//PersonalLicenseRequisitesDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="PersonalLicenseRequisites" eSuperTypes="#//LicenseRequisites">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="user" lowerBound="1" eType="#//UserRef"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProductRef" eSuperTypes="#//ProductRefDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="ProductRef">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
@@ -364,7 +238,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Signature" eSuperTypes="#//SignatureDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="Signature">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
@@ -373,14 +247,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//Signature"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SignatureAttribute" eSuperTypes="#//SignatureAttributeDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="SignatureAttribute">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UserGrant" eSuperTypes="#//UserGrantDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="UserGrant">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
@@ -388,7 +262,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="authentication" lowerBound="1"
         eType="#//EvaluationInstructions" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UserRef" eSuperTypes="#//UserRefDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="UserRef">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
@@ -396,13 +270,12 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ValidityPeriod" abstract="true" interface="true"
-      eSuperTypes="#//ValidityPeriodDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="ValidityPeriod" abstract="true" interface="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ValidityPeriodClosed" eSuperTypes="#//ValidityPeriod #//ValidityPeriodClosedDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="ValidityPeriodClosed" eSuperTypes="#//ValidityPeriod">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>
@@ -411,7 +284,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="until" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VersionMatch" eSuperTypes="#//VersionMatchDescriptor">
+  <eClassifiers xsi:type="ecore:EClass" name="VersionMatch">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@since 2.0"/>
     </eAnnotations>

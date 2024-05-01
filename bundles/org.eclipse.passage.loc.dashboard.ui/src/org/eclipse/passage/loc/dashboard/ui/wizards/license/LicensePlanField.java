@@ -17,16 +17,15 @@ import java.util.Optional;
 
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.api.MandatoryService;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.internal.licenses.ui.SelectLicensePlan;
 import org.eclipse.passage.loc.internal.workbench.SelectRoot;
 import org.eclipse.swt.widgets.Text;
 
-public final class LicensePlanField extends SelectableField<LicensePlanDescriptor> {
+public final class LicensePlanField extends SelectableField<LicensePlan> {
 
-	LicensePlanField(Optional<LicensePlanDescriptor> plan, Runnable modified, LabelProvider labels,
-			MandatoryService context) {
+	LicensePlanField(Optional<LicensePlan> plan, Runnable modified, LabelProvider labels, MandatoryService context) {
 		super(plan, modified, labels, context);
 	}
 
@@ -41,7 +40,7 @@ public final class LicensePlanField extends SelectableField<LicensePlanDescripto
 	}
 
 	@Override
-	protected Optional<LicensePlanDescriptor> select(Text control) {
+	protected Optional<LicensePlan> select(Text control) {
 		return new SelectRoot<>(new SelectLicensePlan(context, data()).get(), context).get();
 	}
 

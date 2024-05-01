@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2022 ArSysOp
+ * Copyright (c) 2022, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,13 +15,13 @@ package org.eclipse.passage.lic.licenses.model.described;
 import java.util.List;
 
 import org.eclipse.passage.lic.internal.licenses.model.i18n.Messages;
-import org.eclipse.passage.lic.licenses.PersonalFeatureGrantDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 
 public final class DescribedPersonalFeatureGrants extends Described {
 
-	private final List<? extends PersonalFeatureGrantDescriptor> grants;
+	private final List<PersonalFeatureGrant> grants;
 
-	public DescribedPersonalFeatureGrants(List<? extends PersonalFeatureGrantDescriptor> grants) {
+	public DescribedPersonalFeatureGrants(List<PersonalFeatureGrant> grants) {
 		this.grants = grants;
 	}
 
@@ -29,7 +29,7 @@ public final class DescribedPersonalFeatureGrants extends Described {
 	public String get() {
 		StringBuilder out = new StringBuilder();
 		out.append(grants.size()).append(Messages.getString("DescribedPersonalFeatureGrants_grants")).append(nl); //$NON-NLS-1$
-		for (PersonalFeatureGrantDescriptor grant : grants) {
+		for (PersonalFeatureGrant grant : grants) {
 			out.append(new DescribedPersonalFeatureGrant(grant).get());
 		}
 		return out.toString();

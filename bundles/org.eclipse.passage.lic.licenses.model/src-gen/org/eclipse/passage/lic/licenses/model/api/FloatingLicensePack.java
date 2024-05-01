@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,10 +13,7 @@
 package org.eclipse.passage.lic.licenses.model.api;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,10 +35,10 @@ import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getFloatingLicensePack()
- * @model superTypes="org.eclipse.passage.lic.licenses.model.api.FloatingLicensePackDescriptor"
+ * @model
  * @generated
  */
-public interface FloatingLicensePack extends EObject, FloatingLicensePackDescriptor {
+public interface FloatingLicensePack extends EObject {
 	/**
 	 * Returns the value of the '<em><b>License</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -52,7 +49,6 @@ public interface FloatingLicensePack extends EObject, FloatingLicensePackDescrip
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	@Override
 	FloatingLicenseRequisites getLicense();
 
 	/**
@@ -75,7 +71,6 @@ public interface FloatingLicensePack extends EObject, FloatingLicensePackDescrip
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	@Override
 	FloatingServer getHost();
 
 	/**
@@ -98,7 +93,6 @@ public interface FloatingLicensePack extends EObject, FloatingLicensePackDescrip
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	@Override
 	EList<UserGrant> getUsers();
 
 	/**
@@ -113,7 +107,6 @@ public interface FloatingLicensePack extends EObject, FloatingLicensePackDescrip
 	 * @model opposite="pack" containment="true" required="true"
 	 * @generated
 	 */
-	@Override
 	EList<FeatureGrant> getFeatures();
 
 } // FloatingLicensePack

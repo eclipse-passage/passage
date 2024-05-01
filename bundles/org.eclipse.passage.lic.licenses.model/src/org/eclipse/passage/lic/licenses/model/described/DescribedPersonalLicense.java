@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2022 ArSysOp
+ * Copyright (c) 2022, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,13 +14,13 @@ package org.eclipse.passage.lic.licenses.model.described;
 
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 
 public final class DescribedPersonalLicense implements Supplier<String> {
 
-	private final PersonalLicensePackDescriptor pack;
+	private final PersonalLicensePack pack;
 
-	public DescribedPersonalLicense(PersonalLicensePackDescriptor license) {
+	public DescribedPersonalLicense(PersonalLicensePack license) {
 		this.pack = license;
 	}
 

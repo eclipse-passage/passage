@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -11,8 +11,6 @@
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.model.api;
-
-import org.eclipse.passage.lic.licenses.FloatingLicenseRequisitesDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,10 +30,10 @@ import org.eclipse.passage.lic.licenses.FloatingLicenseRequisitesDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getFloatingLicenseRequisites()
- * @model superTypes="org.eclipse.passage.lic.licenses.model.api.LicenseRequisites org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisitesDescriptor"
+ * @model
  * @generated
  */
-public interface FloatingLicenseRequisites extends LicenseRequisites, FloatingLicenseRequisitesDescriptor {
+public interface FloatingLicenseRequisites extends LicenseRequisites {
 	/**
 	 * Returns the value of the '<em><b>Company</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -46,7 +44,6 @@ public interface FloatingLicenseRequisites extends LicenseRequisites, FloatingLi
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	@Override
 	CompanyRef getCompany();
 
 	/**

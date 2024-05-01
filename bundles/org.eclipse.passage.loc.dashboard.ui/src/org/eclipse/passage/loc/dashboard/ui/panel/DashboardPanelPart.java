@@ -35,7 +35,7 @@ import org.eclipse.passage.lic.internal.features.model.FeaturesClassMetadata;
 import org.eclipse.passage.lic.internal.licenses.model.LicensesClassMetadata;
 import org.eclipse.passage.lic.internal.products.model.ProductsClassMetadata;
 import org.eclipse.passage.lic.internal.users.model.UsersClassMetadata;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
@@ -280,15 +280,13 @@ public class DashboardPanelPart {
 
 	@Inject
 	@Optional
-	public void createdLicensePlan(
-			@UIEventTopic(LicenseRegistryEvents.LICENSE_PLAN_CREATE) LicensePlanDescriptor input) {
+	public void createdLicensePlan(@UIEventTopic(LicenseRegistryEvents.LICENSE_PLAN_CREATE) LicensePlan input) {
 		dashboard.updateLicenseInfo(licenses);
 	}
 
 	@Inject
 	@Optional
-	public void deletedLicensePlan(
-			@UIEventTopic(LicenseRegistryEvents.LICENSE_PLAN_DELETE) LicensePlanDescriptor input) {
+	public void deletedLicensePlan(@UIEventTopic(LicenseRegistryEvents.LICENSE_PLAN_DELETE) LicensePlan input) {
 		dashboard.updateLicenseInfo(licenses);
 	}
 
