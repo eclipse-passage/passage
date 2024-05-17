@@ -20,6 +20,10 @@ target/
 # JDT output
 /*/*/bin/
 
+# Generated OSGi Declarative Service component files
+bundles/*/OSGI-INF/org.eclipse.passage.*.xml
+tests/*/OSGI-INF/org.eclipse.passage.*.xml
+
 # Log file
 *.log
 

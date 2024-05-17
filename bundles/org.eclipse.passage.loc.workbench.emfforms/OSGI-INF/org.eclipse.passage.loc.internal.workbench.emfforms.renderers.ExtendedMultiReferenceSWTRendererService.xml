@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.loc.internal.workbench.emfforms.renderers.ExtendedMultiReferenceSWTRendererService">
-   <service>
-      <provide interface="org.eclipse.emfforms.spi.swt.core.di.EMFFormsDIRendererService"/>
-   </service>
-   <reference bind="setEMFFormsDatabinding" interface="org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding" name="EMFFormsDatabinding"/>
-   <reference bind="setReportService" interface="org.eclipse.emfforms.spi.common.report.ReportService" name="ReportService"/>
-   <implementation class="org.eclipse.passage.loc.internal.workbench.emfforms.renderers.ExtendedMultiReferenceSWTRendererService"/>
-</scr:component>
