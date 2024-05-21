@@ -93,12 +93,6 @@
       <description>Define the JRE needed to compile and run the Java projects of ${scope.project.label}</description>
     </setupTask>
     <setupTask
-        xsi:type="pde:APIBaselineFromTargetTask"
-        name="Modular API Baseline"
-        targetName="org.eclipse.passage.baseline">
-      <description>An API baseline based on the target platform named 'Modular API Baseline Target'</description>
-    </setupTask>
-    <setupTask
         xsi:type="git:GitCloneTask"
         id="git.clone.passage"
         remoteURI="eclipse-passage/passage">
@@ -117,15 +111,26 @@
           <value>remoteURI</value>
         </detail>
       </annotation>
+      <configSections
+          name="branch">
+        <properties
+            key="autoSetupRebase"
+            value="always"/>
+      </configSections>
       <description>${scope.project.label} GitHub</description>
     </setupTask>
     <setupTask
         xsi:type="pde:TargetPlatformTask"
         name="org.eclipse.passage.target"/>
     <setupTask
+        xsi:type="pde:APIBaselineFromTargetTask"
+        name="Passage API Baseline"
+        targetName="org.eclipse.passage.baseline"/>
+    <setupTask
         xsi:type="projects:ProjectsImportTask">
       <sourceLocator
-          rootFolder="${git.clone.passage.location}"/>
+          rootFolder="${git.clone.passage.location}"
+          locateNestedProjects="true"/>
     </setupTask>
     <setupTask
         xsi:type="setup.workingsets:WorkingSetTask">
