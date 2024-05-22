@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019, 2024 ArSysOp and others
+ This program and the accompanying materials are made available under the
+ terms of the Eclipse Public License 2.0 which is available at
+ https://www.eclipse.org/legal/epl-2.0/.
+
+ SPDX-License-Identifier: EPL-2.0
+
+ Contributors:
+     ArSysOp - initial API and implementation
+-->
+<site>
+	<category-def
+		name="org.eclipse.passage.lic.category"
+		label="Passage LIC"
+	>
+		<description>
+			Passage Licensing Integration Components includes: Licensing Runtime API and its implementation for Eclipse Equinox, Licensing JFace components, Licensing Metadata EMF API, License Management Integrations
+		</description>
+	</category-def>
+	<feature
+		id="org.eclipse.passage.lic.compile.feature">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.execute.feature">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.define.feature">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.bc.feature">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.jetty.feature">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+
+	<category-def
+		name="org.eclipse.passage.lic.category.source"
+		label="Passage LIC Developer Resources"
+	>
+		<description>
+			Passage Licensing Integration Components Developer Resources includes: Licensing Runtime API and its implementation for Eclipse Equinox, Licensing JFace components, Licensing Metadata EMF API, License Management Integrations
+		</description>
+	</category-def>
+	<feature
+		id="org.eclipse.passage.lic.compile.feature.source">
+		<category name="org.eclipse.passage.lic.category.source" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.execute.feature.source">
+		<category name="org.eclipse.passage.lic.category.source" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.define.feature.source">
+		<category name="org.eclipse.passage.lic.category.source" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.bc.feature.source">
+		<category name="org.eclipse.passage.lic.category.source" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.jetty.feature.source">
+		<category name="org.eclipse.passage.lic.category.source" />
+	</feature>
+	<category-def
+		name="org.eclipse.passage.lbc.category"
+		label="Passage LBC">
+		<description>
+			Passage Licensing Back-end Components: 
+				OSGi-based server to manage licensing data" 
+		</description>
+	</category-def>
+	<feature 
+		id="org.eclipse.passage.lbc.execute.feature">
+		<category name="org.eclipse.passage.lbc.category" />
+	</feature>
+	<category-def
+		name="org.eclipse.passage.lbc.category.source"
+		label="Passage LBC Developer Resources">
+		<description>
+			Passage Licensing Back-end Components Developer Resources: 
+				OSGi-based server to manage licensing data" 
+		</description>
+	</category-def>
+	<feature 
+		id="org.eclipse.passage.lbc.execute.feature.source">
+		<category name="org.eclipse.passage.lbc.category.source" />
+	</feature>
+	<category-def
+		name="org.eclipse.passage.ldc.category"
+		label="Passage LDC">
+		<description>
+			Passage Licensing Definition Components: 
+				Eclipse PDE integration" 
+		</description>
+	</category-def>
+	<feature 
+		id="org.eclipse.passage.ldc.feature">
+		<category name="org.eclipse.passage.ldc.category" />
+	</feature>
+	<category-def
+		name="org.eclipse.passage.ldc.category.source"
+		label="Passage LDC Developer Resources">
+		<description>
+			Passage Licensing Definition Components Developer Resources: 
+				Eclipse PDE integration" 
+		</description>
+	</category-def>
+	<feature 
+		id="org.eclipse.passage.ldc.feature.source">
+		<category name="org.eclipse.passage.ldc.category.source" />
+	</feature>
+	<category-def
+		name="org.eclipse.passage.loc.category"
+		label="Passage LOC">
+		<description>
+			Passage Licensing Operator Components includes: Dashboard, EMF Forms editors, operator services
+		</description>
+	</category-def>
+	<feature
+		id="org.eclipse.passage.loc.dashboard.feature">
+		<category name="org.eclipse.passage.loc.category" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.loc.operator.feature">
+		<category name="org.eclipse.passage.loc.category" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.loc.billing.feature">
+		<category name="org.eclipse.passage.loc.category" />
+	</feature>
+	<category-def
+		name="org.eclipse.passage.loc.category.source"
+		label="Passage LOC Developer Resources">
+		<description>
+			Passage Licensing Operator Components Developer Resources includes: Dashboard, EMF Forms editors, operator services
+		</description>
+	</category-def>
+	<feature
+		id="org.eclipse.passage.loc.dashboard.feature.source">
+		<category name="org.eclipse.passage.loc.category.source" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.loc.operator.feature.source">
+		<category name="org.eclipse.passage.loc.category.source" />
+	</feature>
+	<bundle id="bcpg" />
+	<bundle id="bcpg.source" />
+	<bundle id="bcpkix" />
+	<bundle id="bcpkix.source" />
+	<bundle id="bcprov" />
+	<bundle id="bcprov.source" />
+	<bundle id="bcutil" />
+	<bundle id="bcutil.source" />
+	<bundle id="com.fasterxml.jackson.core.jackson-annotations"/>
+	<bundle id="com.fasterxml.jackson.core.jackson-annotations.source"/>
+	<bundle id="com.fasterxml.jackson.core.jackson-core"/>
+	<bundle id="com.fasterxml.jackson.core.jackson-core.source"/>
+	<bundle id="com.fasterxml.jackson.core.jackson-databind"/>
+	<bundle id="com.fasterxml.jackson.core.jackson-databind.source"/>
+	<bundle id="com.github.oshi.oshi-core" />
+	<bundle id="com.github.oshi.oshi-core.source" />
+	<bundle id="com.sun.jna" />
+	<bundle id="com.sun.jna.source" />
+	<bundle id="com.sun.jna.platform" />
+	<bundle id="com.sun.jna.platform.source" />
+	<bundle id="jakarta.activation-api" />
+	<bundle id="jakarta.activation-api.source" />
+	<bundle id="jakarta.annotation-api" />
+	<bundle id="jakarta.annotation-api.source" />
+	<bundle id="jakarta.servlet-api" />
+	<bundle id="jakarta.servlet-api.source" />
+	<bundle id="slf4j.api" />
+	<bundle id="slf4j.api.source" />
+	<bundle id="slf4j.nop" />
+	<bundle id="slf4j.nop.source" />
+</site>
