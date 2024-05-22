@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Copyright (c) 2018, 2024 ArSysOp and others
+
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License 2.0 which is available at
+	https://www.eclipse.org/legal/epl-2.0/.
+
+	SPDX-License-Identifier: EPL-2.0
+
+	Contributors:
+		ArSysOp - initial API and implementation
+-->
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>org.eclipse.passage.repository</artifactId>
+	<packaging>eclipse-repository</packaging>
+	<name>Eclipse Passage Update Site</name>
+
+	<parent>
+		<groupId>org.eclipse.passage</groupId>
+		<artifactId>org.eclipse.passage.parent</artifactId>
+		<version>3.0.0-SNAPSHOT</version>
+		<relativePath>../../releng/org.eclipse.passage.parent</relativePath>
+	</parent>
+
+	<properties>
+		<eclipse.repo>https://download.eclipse.org/releases/2023-06</eclipse.repo>
+		<justj.tools.repo>
+			https://download.eclipse.org/justj/tools/updates/nightly/latest</justj.tools.repo>
+		<org.eclipse.storage.user>genie.passage</org.eclipse.storage.user>
+		<org.eclipse.justj.p2.manager.args>
+			-remote
+			${org.eclipse.storage.user}@projects-storage.eclipse.org:/home/data/httpd/download.eclipse.org/passage</org.eclipse.justj.p2.manager.args>
+		<org.eclipse.justj.p2.manager.extra.args></org.eclipse.justj.p2.manager.extra.args>
+		<org.eclipse.justj.p2.manager.relative>updates</org.eclipse.justj.p2.manager.relative>
+		<org.eclipse.justj.p2.manager.build.url>http://www.example.com/</org.eclipse.justj.p2.manager.build.url>
+		<git.commit>unknown</git.commit>
+		<build.type>nightly</build.type>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>promote</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.eclipse.tycho.extras</groupId>
+						<artifactId>tycho-eclipserun-plugin</artifactId>
+						<version>${tycho-version}</version>
+						<configuration>
+							<executionEnvironment>JavaSE-17</executionEnvironment>
+							<dependencies>
+								<dependency>
+									<artifactId>org.eclipse.justj.p2</artifactId>
+									<type>eclipse-plugin</type>
+								</dependency>
+								<dependency>
+									<artifactId>org.apache.felix.scr</artifactId>
+									<type>eclipse-plugin</type>
+								</dependency>
+							</dependencies>
+							<repositories>
+								<repository>
+									<id>eclipse.repo</id>
+									<layout>p2</layout>
+									<url>${eclipse.repo}</url>
+								</repository>
+								<repository>
+									<id>justj.tools.repo</id>
+									<layout>p2</layout>
+									<url>${justj.tools.repo}</url>
+								</repository>
+							</repositories>
+						</configuration>
+						<executions>
+							<execution>
+								<id>promote</id>
+								<goals>
+									<goal>eclipse-run</goal>
+								</goals>
+								<phase>package</phase>
+								<configuration>
+									<argLine></argLine>
+									<appArgLine>
+										-consoleLog
+										-application
+										org.eclipse.justj.p2.manager
+										-data @None
+										-nosplash
+										${org.eclipse.justj.p2.manager.args}
+										-retain 5
+										-label "Passage"
+										-build-url
+										${org.eclipse.justj.p2.manager.build.url}
+										-root
+										${project.build.directory}/passage-sync
+										-relative
+										${org.eclipse.justj.p2.manager.relative}
+										-version-iu
+										org.eclipse.passage.ldc.feature.
+										-iu-filter-pattern
+										org.eclipse.passage.nothingtofilter.*|org.eclipse.passage.justtohaveanexample.*
+										-excluded-categories-pattern .*\.Default
+										-commit
+										https://github.com/eclipse-passage/passage/commit/${git.commit}
+										-target-url
+										https://download.eclipse.org/passage
+										-promote
+										${project.build.directory}/repository
+										-timestamp ${build.timestamp}
+										-type ${build.type}
+										-breadcrumb "Passage
+										https://www.eclipse.org/passage"
+										-favicon
+										https://github.com/eclipse-passage/passage-images/blob/master/images/org.eclipse.passage.loc.operator/png/icons/48.png
+										-xtitle-image
+										https://www.eclipse.org/jetty/common/images/jetty-logo.svg
+										-body-image
+										https://github.com/eclipse-passage/passage-images/blob/master/images/org.eclipse.passage.loc.operator/png/icons/128.png
+										${org.eclipse.justj.p2.manager.extra.args}
+									</appArgLine>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>
