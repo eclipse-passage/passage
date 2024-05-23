@@ -78,7 +78,7 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 		}
 	}
 
-	protected void activate(Map<String, Object> properties) {
+	protected final void activate(Map<String, Object> properties) {
 		domainName = String.valueOf(properties.get(EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME));
 		getEditingDomain().getResourceSet().eAdapters().add(contentAdapter);
 		try {
@@ -110,7 +110,7 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 
 	protected abstract DomainContentAdapter<I, ? extends EditingDomainRegistry<I>> createContentAdapter();
 
-	protected void deactivate(@SuppressWarnings("unused") Map<String, Object> properties) {
+	protected final void deactivate(@SuppressWarnings("unused") Map<String, Object> properties) {
 		try {
 			gear.stream()//
 					.findFirst()//

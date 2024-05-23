@@ -6,7 +6,7 @@
       <provide interface="org.eclipse.passage.loc.internal.licenses.LicenseRegistry"/>
       <provide interface="org.eclipse.passage.loc.internal.emf.EditingDomainRegistry"/>
    </service>
-   <reference bind="bindEventAdmin" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" unbind="unbindEventAdmin"/>
+   <reference bind="bindEventAdmin" cardinality="1..1" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" unbind="unbindEventAdmin"/>
    <reference bind="bindGear" interface="org.eclipse.passage.loc.internal.api.OperatorGearSupplier" name="Gear" unbind="unbindGear"/>
    <implementation class="org.eclipse.passage.loc.internal.licenses.core.LicenseDomainRegistry"/>
 </scr:component>

@@ -47,6 +47,7 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.event.EventAdmin;
 
 @SuppressWarnings("restriction")
@@ -61,7 +62,7 @@ public final class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSet>
 
 	private final List<EventAdmin> events = new ArrayList<>();
 
-	@Reference
+	@Reference(cardinality = ReferenceCardinality.MANDATORY)
 	public void bindEventAdmin(EventAdmin admin) {
 		this.events.add(admin);
 	}

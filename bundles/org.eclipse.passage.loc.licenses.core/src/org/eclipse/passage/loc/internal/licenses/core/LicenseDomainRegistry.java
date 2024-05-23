@@ -45,6 +45,7 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.event.EventAdmin;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + LicensesPackage.eNAME,
@@ -56,7 +57,7 @@ public final class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlan>
 
 	private final List<EventAdmin> events = new ArrayList<>();
 
-	@Reference
+	@Reference(cardinality = ReferenceCardinality.MANDATORY)
 	public void bindEventAdmin(EventAdmin admin) {
 		this.events.add(admin);
 	}
