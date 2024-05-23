@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" deactivate="deactivate" name="org.eclipse.passage.loc.internal.products.core.ProductDomainRegistry">
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="load" deactivate="unload" name="org.eclipse.passage.loc.internal.products.core.ProductDomainRegistry">
    <property name="org.eclipse.passage.lic.emf.edit.domain.name" value="products"/>
    <property name="org.eclipse.passage.lic.emf.edit.file.extension" value="products_xmi"/>
    <service>
       <provide interface="org.eclipse.passage.loc.internal.products.ProductRegistry"/>
       <provide interface="org.eclipse.passage.loc.internal.emf.EditingDomainRegistry"/>
    </service>
+   <reference bind="bindEventAdmin" cardinality="1..1" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" unbind="unbindEventAdmin"/>
    <reference bind="bindGear" interface="org.eclipse.passage.loc.internal.api.OperatorGearSupplier" name="Gear" unbind="unbindGear"/>
-   <reference cardinality="1..1" field="events" interface="org.osgi.service.event.EventAdmin" name="events"/>
    <implementation class="org.eclipse.passage.loc.internal.products.core.ProductDomainRegistry"/>
 </scr:component>

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2022 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -48,11 +48,12 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.event.EventAdmin;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + ProductsPackage.eNAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "products_xmi" })
-public class ProductDomainRegistry extends BaseDomainRegistry<ProductLine>
+public final class ProductDomainRegistry extends BaseDomainRegistry<ProductLine>
 		implements ProductRegistry, EditingDomainRegistry<ProductLine> {
 
 	private final Map<String, ProductLine> lines = new HashMap<>();
@@ -60,8 +61,16 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLine>
 	private final Map<String, Map<String, ProductVersion>> versions = new HashMap<>();
 	private final Map<String, Map<String, Map<String, ProductVersionFeature>>> features = new HashMap<>();
 
-	@Reference
-	private EventAdmin events;
+	private final List<EventAdmin> events = new ArrayList<>();
+
+	@Reference(cardinality = ReferenceCardinality.MANDATORY)
+	public void bindEventAdmin(EventAdmin admin) {
+		this.events.add(admin);
+	}
+
+	public void unbindEventAdmin(EventAdmin admin) {
+		this.events.remove(admin);
+	}
 
 	@Override
 	@Reference
@@ -74,15 +83,13 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLine>
 		super.unbindGear(supplier);
 	}
 
-	@Override
 	@Activate
-	public void activate(Map<String, Object> properties) {
+	public void load(Map<String, Object> properties) {
 		super.activate(properties);
 	}
 
 	@Deactivate
-	@Override
-	public void deactivate(Map<String, Object> properties) {
+	public void unload(Map<String, Object> properties) {
 		for (Map<String, Map<String, ProductVersionFeature>> map : features.values()) {
 			map.clear();
 		}
@@ -164,7 +171,7 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLine>
 			Platform.getLog(getClass())
 					.warn(NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing, line));
 		}
-		events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_LINE_CREATE, line).get());
+		events().postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_LINE_CREATE, line).get());
 		line.getProducts().forEach(p -> registerProduct(p));
 	}
 
@@ -175,7 +182,7 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLine>
 			String msg = NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing, product);
 			Platform.getLog(getClass()).warn(msg);
 		}
-		events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_CREATE, product).get());
+		events().postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_CREATE, product).get());
 		product.getProductVersions().forEach(pv -> registerProductVersion(product, pv));
 	}
 
@@ -186,7 +193,7 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLine>
 			Platform.getLog(getClass())
 					.warn(NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing, version));
 		}
-		events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_VERSION_CREATE, version).get());
+		events().postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_VERSION_CREATE, version).get());
 	}
 
 	void registerProductVersionFeature(Product product, ProductVersion version, ProductVersionFeature feature) {
@@ -198,13 +205,13 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLine>
 			Platform.getLog(getClass())
 					.warn(NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing, feature));
 		}
-		events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_CREATE, feature).get());
+		events().postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_CREATE, feature).get());
 	}
 
 	void unregisterProductLine(String id) {
 		ProductLine removed = lines.remove(id);
 		if (removed != null) {
-			events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_LINE_DELETE, removed).get());
+			events().postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_LINE_DELETE, removed).get());
 			removed.getProducts().forEach(p -> unregisterProduct(p.getIdentifier()));
 		}
 	}
@@ -212,7 +219,7 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLine>
 	void unregisterProduct(String id) {
 		Product removed = products.remove(id);
 		if (removed != null) {
-			events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_DELETE, removed).get());
+			events().postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_DELETE, removed).get());
 			removed.getProductVersions().forEach(pv -> unregisterProductVersion(id, pv.getVersion()));
 		}
 	}
@@ -222,7 +229,7 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLine>
 		if (found != null) {
 			ProductVersion removed = found.remove(version);
 			if (removed != null) {
-				events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_VERSION_DELETE, removed).get());
+				events().postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_VERSION_DELETE, removed).get());
 				removed.getProductVersionFeatures()
 						.forEach(pvf -> unregisterProductVersionFeature(product, version, pvf.getFeatureIdentifier()));
 			}
@@ -239,7 +246,7 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLine>
 			if (map != null) {
 				ProductVersionFeature removed = map.remove(feature);
 				if (removed != null) {
-					events.postEvent(
+					events().postEvent(
 							new EquinoxEvent(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_DELETE, removed).get());
 				}
 				if (map.isEmpty()) {
@@ -250,6 +257,10 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLine>
 				features.remove(product);
 			}
 		}
+	}
+
+	private EventAdmin events() {
+		return events.stream().findAny().get();
 	}
 
 	@Override
