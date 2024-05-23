@@ -58,15 +58,13 @@ public final class AgreementDomainRegistry extends BaseDomainRegistry<AgreementG
 	private final Map<String, Agreement> agreements = new HashMap<>();
 	private EventAdmin events;
 
-	@Override
 	@Activate
-	public void activate(Map<String, Object> properties) {
+	public void load(Map<String, Object> properties) {
 		super.activate(properties);
 	}
 
 	@Deactivate
-	@Override
-	public void deactivate(Map<String, Object> properties) {
+	public void unload(Map<String, Object> properties) {
 		agreements.clear();
 		groups.clear();
 		super.deactivate(properties);
