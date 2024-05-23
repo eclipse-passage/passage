@@ -61,6 +61,9 @@ public abstract class GearAware<G, S extends Supplier<G>> {
 	@FunctionalInterface
 	public interface Unsafe<G, T> {
 
+		/**
+		 * @since 3.0
+		 */
 		Optional<T> apply(G gear) throws Exception;
 
 	}
