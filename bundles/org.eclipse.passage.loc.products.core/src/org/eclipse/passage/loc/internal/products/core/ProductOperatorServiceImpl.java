@@ -13,30 +13,32 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.products.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.loc.internal.e4.events.OperatorProductEvents;
 import org.eclipse.passage.loc.internal.equinox.OperatorProductService;
-import org.osgi.framework.BundleContext;
-import org.osgi.service.component.annotations.Activate;
+import org.osgi.framework.FrameworkUtil;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.event.EventAdmin;
 
 @SuppressWarnings("restriction")
 @Component
-public class ProductOperatorServiceImpl implements OperatorProductService {
+public final class ProductOperatorServiceImpl implements OperatorProductService {
 
-	private String plugin;
-	@Reference
-	private EnvironmentInfo environment;
-	@Reference
-	private EventAdmin events;
+	private final List<EventAdmin> events = new ArrayList<>();
 
-	@Activate
-	public void activate(BundleContext context) {
-		plugin = context.getBundle().getSymbolicName();
+	@Reference(cardinality = ReferenceCardinality.MANDATORY)
+	public void bindEventAdmin(EventAdmin admin) {
+		this.events.add(admin);
+	}
+
+	public void unbindEventAdmin(EventAdmin admin) {
+		this.events.remove(admin);
 	}
 
 	@Override
@@ -46,11 +48,12 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 
 	@Override
 	public IStatus createProductKeys(ProductVersion target) {
-		return new ProductVersionKeys(plugin, this::broadcast).createKeys(target);
+		return new ProductVersionKeys(FrameworkUtil.getBundle(getClass()).getSymbolicName(), this::broadcast)
+				.createKeys(target);
 	}
 
 	private void broadcast(String info) {
-		events.postEvent(new OperatorProductEvents().keysCreated(info));
+		events.stream().findAny().get().postEvent(new OperatorProductEvents().keysCreated(info));
 	}
 
 }
