@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,6 +15,8 @@ package org.eclipse.passage.loc.internal.workbench;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.passage.loc.jface.LocImages;
@@ -24,17 +26,16 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 
 @Component
-public class LocImageRegistry implements LocImages {
+public final class LocImageRegistry implements LocImages {
 
-	private ImageRegistry imageRegistry;
+	private final ImageRegistry images = new ImageRegistry();
 
 	@Activate
-	public void activate() {
-		imageRegistry = new ImageRegistry();
+	public void register() {
 		addBaseImages();
 	}
 
-	protected void addBaseImages() {
+	private void addBaseImages() {
 		String pattern = "platform:/plugin/org.eclipse.passage.loc.workbench/images/%s"; //$NON-NLS-1$
 		register(IMG_TOOL_ADD, String.format(pattern, "add.png")); //$NON-NLS-1$
 		register(IMG_TOOL_EDIT, String.format(pattern, "edit.png")); //$NON-NLS-1$
@@ -44,27 +45,25 @@ public class LocImageRegistry implements LocImages {
 	private void register(String key, String url) {
 		try {
 			ImageDescriptor created = ImageDescriptor.createFromURL(new URL(url));
-			imageRegistry.put(key, created);
+			images.put(key, created);
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Platform.getLog(getClass()).log(Status.error(key, e));
 		}
 	}
 
 	@Deactivate
 	public void deactivate() {
-		imageRegistry.dispose();
-		imageRegistry = null;
+		images.dispose();
 	}
 
 	@Override
 	public Image getImage(String identifier) {
-		return imageRegistry.get(identifier);
+		return images.get(identifier);
 	}
 
 	@Override
 	public ImageDescriptor getImageDescriptor(String identifier) {
-		return imageRegistry.getDescriptor(identifier);
+		return images.getDescriptor(identifier);
 	}
 
 }
