@@ -84,7 +84,7 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 		try {
 			gear.stream()//
 					.findFirst()//
-					.map(OperatorGearSupplier::gear)//
+					.map(OperatorGearSupplier::get)//
 					.map(OperatorGear::workspace)//
 					.ifPresent(this::load);
 		} catch (Exception e) {
@@ -114,7 +114,7 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 		try {
 			gear.stream()//
 					.findFirst()//
-					.map(OperatorGearSupplier::gear)//
+					.map(OperatorGearSupplier::get)//
 					.map(OperatorGear::workspace)//
 					.ifPresent(this::store);
 		} catch (Exception e) {
@@ -133,7 +133,7 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 	@Override
 	public EditingDomain getEditingDomain() {
 		if (editingDomain.isEmpty()) {
-			editingDomain = gear.map(OperatorGearSupplier::gear)//
+			editingDomain = gear.map(OperatorGearSupplier::get)//
 					.map(OperatorGear::editingDomainSource)//
 					.map(EditingDomainSource::create);
 		}

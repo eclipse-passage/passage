@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2023 ArSysOp
+ * Copyright (c) 2019, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.loc.products.emfforms.renderers;
 
@@ -42,7 +43,7 @@ public abstract class ProductVersionKeyRenderer extends FileContentRenderer<Prod
 			VTViewTemplateProvider vtViewTemplateProvider, OperatorGearSupplier gear) {
 		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider,
 				ProductVersion.class);
-		this.workspace = gear.gear().workspace();
+		this.workspace = gear.get().workspace();
 	}
 
 	@Override

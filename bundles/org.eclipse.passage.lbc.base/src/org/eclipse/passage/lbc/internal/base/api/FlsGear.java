@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,13 +9,13 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.api;
 
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.api.Gear;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.api.conditions.mining.ContentType;
@@ -23,7 +23,7 @@ import org.eclipse.passage.lic.api.io.HashesRegistry;
 import org.eclipse.passage.lic.api.io.KeyKeeper;
 import org.eclipse.passage.lic.api.io.StreamCodec;
 
-public interface FlsGear extends Gear {
+public interface FlsGear {
 
 	HashesRegistry hashes();
 
