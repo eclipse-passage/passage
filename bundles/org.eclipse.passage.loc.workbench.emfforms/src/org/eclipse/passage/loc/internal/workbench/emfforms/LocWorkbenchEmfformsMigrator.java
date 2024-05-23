@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -18,10 +18,10 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 
 @Component
-public class LocWorkbenchEmfformsMigrator {
-	
+public final class LocWorkbenchEmfformsMigrator {
+
 	@Activate
-	public void activate() {
+	public void migrate() {
 		EPackage.Registry.INSTANCE.put("http://org/eclipse/emf/ecp/view/model/1170", VViewPackage.eINSTANCE); //$NON-NLS-1$
 	}
 
