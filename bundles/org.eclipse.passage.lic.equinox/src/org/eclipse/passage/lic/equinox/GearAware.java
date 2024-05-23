@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021, 2022 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,15 +9,15 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
+import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.api.Gear;
-import org.eclipse.passage.lic.api.GearSupplier;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @since 2.1
  */
-public abstract class GearAware<G extends Gear, S extends GearSupplier<G>> {
+public abstract class GearAware<G, S extends Supplier<G>> {
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -48,7 +48,7 @@ public abstract class GearAware<G extends Gear, S extends GearSupplier<G>> {
 		}
 		ServiceReference<S> any = references.iterator().next();
 		try {
-			return with.apply(context.getService(any).gear());
+			return with.apply(context.getService(any).get());
 		} catch (Exception e) {
 			throw new LicensingException("Error on service invocation", e); //$NON-NLS-1$
 		} finally {
@@ -59,7 +59,7 @@ public abstract class GearAware<G extends Gear, S extends GearSupplier<G>> {
 	protected abstract Class<S> supplier();
 
 	@FunctionalInterface
-	public interface Unsafe<G extends Gear, T> {
+	public interface Unsafe<G, T> {
 
 		Optional<T> apply(G gear) throws Exception;
 

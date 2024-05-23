@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,17 +9,12 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.api;
 
-import org.eclipse.passage.lic.api.GearSupplier;
+import java.util.function.Supplier;
 
-/**
- * @since 1.1
- */
-public interface FlsGearSupplier extends GearSupplier<FlsGear> {
-
-	@Override
-	FlsGear gear();
+public interface FlsGearSupplier extends Supplier<FlsGear> {
 
 }
