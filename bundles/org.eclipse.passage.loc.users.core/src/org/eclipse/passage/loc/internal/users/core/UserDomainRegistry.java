@@ -15,6 +15,7 @@ package org.eclipse.passage.loc.internal.users.core;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -45,26 +46,27 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.event.EventAdmin;
 
 @SuppressWarnings("restriction")
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + UsersPackage.eNAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "users_xmi" })
-public class UserDomainRegistry extends BaseDomainRegistry<UserOrigin>
+public final class UserDomainRegistry extends BaseDomainRegistry<UserOrigin>
 		implements UserRegistry, EditingDomainRegistry<UserOrigin> {
 
 	private final Map<String, UserOrigin> origins = new HashMap<>();
 	private final Map<String, User> users = new HashMap<>();
 
-	private EventAdmin events;
+	private final List<EventAdmin> events = new ArrayList<>();
 
-	@Reference
+	@Reference(cardinality = ReferenceCardinality.MANDATORY)
 	public void bindEventAdmin(EventAdmin admin) {
-		this.events = admin;
+		this.events.add(admin);
 	}
 
-	public void unbindEventAdmin(@SuppressWarnings("unused") EventAdmin admin) {
-		this.events = null;
+	public void unbindEventAdmin(EventAdmin admin) {
+		this.events.remove(admin);
 	}
 
 	@Override
@@ -78,15 +80,13 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOrigin>
 		super.unbindGear(supplier);
 	}
 
-	@Override
 	@Activate
-	public void activate(Map<String, Object> properties) {
+	public void load(Map<String, Object> properties) {
 		super.activate(properties);
 	}
 
 	@Deactivate
-	@Override
-	public void deactivate(Map<String, Object> properties) {
+	public void unload(Map<String, Object> properties) {
 		users.clear();
 		origins.clear();
 		super.deactivate(properties);
@@ -138,7 +138,7 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOrigin>
 			Platform.getLog(getClass())
 					.warn(NLS.bind(UsersCoreMessages.UserDomain_instance_duplication_message, existing, origin));
 		}
-		events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_ORIGIN_CREATE, origin).get());
+		events().postEvent(new EquinoxEvent(UserRegistryEvents.USER_ORIGIN_CREATE, origin).get());
 		origin.getUsers().forEach(u -> registerUser(u));
 	}
 
@@ -148,13 +148,13 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOrigin>
 			Platform.getLog(getClass())
 					.warn(NLS.bind(UsersCoreMessages.UserDomain_instance_duplication_message, existing, user));
 		}
-		events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_CREATE, user).get());
+		events().postEvent(new EquinoxEvent(UserRegistryEvents.USER_CREATE, user).get());
 	}
 
 	void unregisterUserOrigin(String id) {
 		UserOrigin removed = origins.remove(id);
 		if (removed != null) {
-			events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_ORIGIN_DELETE, removed).get());
+			events().postEvent(new EquinoxEvent(UserRegistryEvents.USER_ORIGIN_DELETE, removed).get());
 			removed.getUsers().forEach(u -> unregisterUser(u.getContact().getEmail()));
 		}
 	}
@@ -162,8 +162,12 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOrigin>
 	void unregisterUser(String userId) {
 		User removed = users.remove(userId);
 		if (removed != null) {
-			events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_DELETE, removed).get());
+			events().postEvent(new EquinoxEvent(UserRegistryEvents.USER_DELETE, removed).get());
 		}
+	}
+
+	private EventAdmin events() {
+		return events.stream().findAny().get();
 	}
 
 	@Override
