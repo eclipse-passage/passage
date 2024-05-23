@@ -52,22 +52,22 @@ import org.osgi.service.event.EventAdmin;
 @SuppressWarnings("restriction")
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + FeaturesPackage.eNAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "features_xmi" })
-public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSet>
+public final class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSet>
 		implements FeatureRegistry, EditingDomainRegistry<FeatureSet> {
 
 	private final Map<String, FeatureSet> sets = new HashMap<>();
 	private final Map<String, Feature> features = new HashMap<>();
 	private final Map<String, Map<String, FeatureVersion>> versions = new HashMap<>();
 
-	private EventAdmin events;
+	private final List<EventAdmin> events = new ArrayList<>();
 
 	@Reference
 	public void bindEventAdmin(EventAdmin admin) {
-		this.events = admin;
+		this.events.add(admin);
 	}
 
-	public void unbindEventAdmin(@SuppressWarnings("unused") EventAdmin admin) {
-		this.events = null;
+	public void unbindEventAdmin(EventAdmin admin) {
+		this.events.remove(admin);
 	}
 
 	@Override
@@ -81,15 +81,13 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSet>
 		super.unbindGear(supplier);
 	}
 
-	@Override
 	@Activate
-	public void activate(Map<String, Object> properties) {
+	public void load(Map<String, Object> properties) {
 		super.activate(properties);
 	}
 
 	@Deactivate
-	@Override
-	public void deactivate(Map<String, Object> properties) {
+	public void unload(Map<String, Object> properties) {
 		versions.values().forEach(Map::clear);
 		versions.clear();
 		features.clear();
@@ -153,7 +151,7 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSet>
 			Platform.getLog(getClass())
 					.warn(NLS.bind(FeaturesCoreMessages.FeatureDomain_instance_duplication_message, existing, fs));
 		}
-		events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_SET_CREATE, fs).get());
+		events().postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_SET_CREATE, fs).get());
 		fs.getFeatures().forEach(this::registerFeature);
 	}
 
@@ -163,7 +161,7 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSet>
 			Platform.getLog(getClass())
 					.warn(NLS.bind(FeaturesCoreMessages.FeatureDomain_instance_duplication_message, existing, feature));
 		}
-		events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_CREATE, feature).get());
+		events().postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_CREATE, feature).get());
 		feature.getFeatureVersions().forEach(fv -> registerFeatureVersion(feature, fv));
 	}
 
@@ -175,13 +173,13 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSet>
 			Platform.getLog(getClass())
 					.warn(NLS.bind(FeaturesCoreMessages.FeatureDomain_instance_duplication_message, existing, version));
 		}
-		events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_VERSION_CREATE, version).get());
+		events().postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_VERSION_CREATE, version).get());
 	}
 
 	void unregisterFeatureSet(String id) {
 		FeatureSet removed = sets.remove(id);
 		if (removed != null) {
-			events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_SET_DELETE, removed).get());
+			events().postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_SET_DELETE, removed).get());
 			removed.getFeatures().stream().map(Feature::getIdentifier).forEach(this::unregisterFeature);
 		}
 	}
@@ -189,7 +187,7 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSet>
 	void unregisterFeature(String id) {
 		Feature removed = features.remove(id);
 		if (removed != null) {
-			events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_DELETE, removed).get());
+			events().postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_DELETE, removed).get());
 			removed.getFeatureVersions().forEach(fv -> unregisterFeatureVersion(id, fv.getVersion()));
 		}
 	}
@@ -199,12 +197,16 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSet>
 		if (map != null) {
 			FeatureVersion removed = map.remove(version);
 			if (removed != null) {
-				events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_VERSION_DELETE, removed).get());
+				events().postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_VERSION_DELETE, removed).get());
 			}
 			if (map.isEmpty()) {
 				versions.remove(version);
 			}
 		}
+	}
+
+	private EventAdmin events() {
+		return events.stream().findAny().get();
 	}
 
 	@Override
