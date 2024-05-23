@@ -15,6 +15,7 @@ package org.eclipse.passage.loc.internal.licenses.core;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -48,13 +49,21 @@ import org.osgi.service.event.EventAdmin;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + LicensesPackage.eNAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "licenses_xmi" })
-public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlan>
+public final class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlan>
 		implements LicenseRegistry, EditingDomainRegistry<LicensePlan> {
 
 	private final Map<String, LicensePlan> plans = new HashMap<>();
 
+	private final List<EventAdmin> events = new ArrayList<>();
+
 	@Reference
-	private EventAdmin events;
+	public void bindEventAdmin(EventAdmin admin) {
+		this.events.add(admin);
+	}
+
+	public void unbindEventAdmin(EventAdmin admin) {
+		this.events.remove(admin);
+	}
 
 	@Override
 	@Reference
@@ -68,14 +77,12 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlan>
 	}
 
 	@Activate
-	@Override
-	public void activate(Map<String, Object> properties) {
+	public void load(Map<String, Object> properties) {
 		super.activate(properties);
 	}
 
 	@Deactivate
-	@Override
-	public void deactivate(Map<String, Object> properties) {
+	public void unload(Map<String, Object> properties) {
 		plans.clear();
 		super.deactivate(properties);
 	}
@@ -113,15 +120,18 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlan>
 					licensePlan);
 			Platform.getLog(getClass()).warn(msg);
 		}
-		events.postEvent(new EquinoxEvent(LicenseRegistryEvents.LICENSE_PLAN_CREATE, licensePlan).get());
+		events().postEvent(new EquinoxEvent(LicenseRegistryEvents.LICENSE_PLAN_CREATE, licensePlan).get());
 	}
 
 	void unregisterLicensePlan(String identifier) {
 		LicensePlan removed = plans.remove(identifier);
 		if (removed != null) {
-			events.postEvent(new EquinoxEvent(LicenseRegistryEvents.LICENSE_PLAN_DELETE, removed).get());
-
+			events().postEvent(new EquinoxEvent(LicenseRegistryEvents.LICENSE_PLAN_DELETE, removed).get());
 		}
+	}
+
+	private EventAdmin events() {
+		return events.stream().findAny().get();
 	}
 
 	@Override
