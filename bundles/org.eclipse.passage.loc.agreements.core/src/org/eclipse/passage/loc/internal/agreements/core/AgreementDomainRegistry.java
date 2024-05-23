@@ -15,6 +15,7 @@ package org.eclipse.passage.loc.internal.agreements.core;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -46,6 +47,7 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.event.EventAdmin;
 
 @SuppressWarnings("restriction")
@@ -56,7 +58,17 @@ public final class AgreementDomainRegistry extends BaseDomainRegistry<AgreementG
 
 	private final Map<String, AgreementGroup> groups = new HashMap<>();
 	private final Map<String, Agreement> agreements = new HashMap<>();
-	private EventAdmin events;
+
+	private final List<EventAdmin> events = new ArrayList<>();
+
+	@Reference(cardinality = ReferenceCardinality.MANDATORY)
+	public void bindEventAdmin(EventAdmin admin) {
+		this.events.add(admin);
+	}
+
+	public void unbindEventAdmin(EventAdmin admin) {
+		this.events.remove(admin);
+	}
 
 	@Activate
 	public void load(Map<String, Object> properties) {
@@ -79,15 +91,6 @@ public final class AgreementDomainRegistry extends BaseDomainRegistry<AgreementG
 	@Override
 	public void unbindGear(OperatorGearSupplier supplier) {
 		super.unbindGear(supplier);
-	}
-
-	@Reference
-	public void bindEventAdmin(EventAdmin admin) {
-		this.events = admin;
-	}
-
-	public void unbindEventAdmin(@SuppressWarnings("unused") EventAdmin admin) {
-		this.events = null;
 	}
 
 	@Override
@@ -144,7 +147,7 @@ public final class AgreementDomainRegistry extends BaseDomainRegistry<AgreementG
 			Platform.getLog(getClass()).warn(msg);
 		}
 		brush(group);
-		events.postEvent(new EquinoxEvent(AgreementRegistryEvents.AGREEMENT_GROUP_CREATE, group).get());
+		events().postEvent(new EquinoxEvent(AgreementRegistryEvents.AGREEMENT_GROUP_CREATE, group).get());
 		group.getAgreements().forEach(u -> registerAgreement(u));
 	}
 
@@ -162,13 +165,13 @@ public final class AgreementDomainRegistry extends BaseDomainRegistry<AgreementG
 					agreement);
 			Platform.getLog(getClass()).warn(msg);
 		}
-		events.postEvent(new EquinoxEvent(AgreementRegistryEvents.AGREEMENT_CREATE, agreement).get());
+		events().postEvent(new EquinoxEvent(AgreementRegistryEvents.AGREEMENT_CREATE, agreement).get());
 	}
 
 	public void unregisterAgreementGroup(String id) {
 		AgreementGroup removed = groups.remove(id);
 		if (removed != null) {
-			events.postEvent(new EquinoxEvent(AgreementRegistryEvents.AGREEMENT_GROUP_DELETE, removed).get());
+			events().postEvent(new EquinoxEvent(AgreementRegistryEvents.AGREEMENT_GROUP_DELETE, removed).get());
 			removed.getAgreements().forEach(u -> unregisterAgreement(u.getIdentifier()));
 		}
 	}
@@ -176,8 +179,12 @@ public final class AgreementDomainRegistry extends BaseDomainRegistry<AgreementG
 	public void unregisterAgreement(String id) {
 		Agreement removed = agreements.remove(id);
 		if (removed != null) {
-			events.postEvent(new EquinoxEvent(AgreementRegistryEvents.AGREEMENT_DELETE, removed).get());
+			events().postEvent(new EquinoxEvent(AgreementRegistryEvents.AGREEMENT_DELETE, removed).get());
 		}
+	}
+
+	private EventAdmin events() {
+		return events.stream().findAny().get();
 	}
 
 	@Override
