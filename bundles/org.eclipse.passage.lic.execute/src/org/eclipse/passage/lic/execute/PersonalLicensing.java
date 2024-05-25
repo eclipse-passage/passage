@@ -30,8 +30,6 @@ import org.eclipse.passage.lic.base.conditions.mining.UserHomeResidentConditions
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.equinox.acquire.ConfigurationLicenseAcquisitionService;
 import org.eclipse.passage.lic.equinox.acquire.InstallationLicenseAcquisitionService;
-import org.eclipse.passage.lic.equinox.conditions.ConfigurationResidentConditions;
-import org.eclipse.passage.lic.equinox.conditions.InstallationResidentConditions;
 
 final class PersonalLicensing implements LicensingDirection {
 

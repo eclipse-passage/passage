@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2022 ArSysOp
+ * Copyright (c) 2022, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
-import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.RegistryFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -64,7 +64,7 @@ public final class ServiceExtensions<S> implements Supplier<List<S>> {
 	}
 
 	private IExtension[] extensions() {
-		return Platform.getExtensionRegistry().getExtensionPoint(namespace, point).getExtensions();
+		return RegistryFactory.getRegistry().getExtensionPoint(namespace, point).getExtensions();
 	}
 
 	private Optional<S> service(IConfigurationElement config) {

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2022 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.equinox.conditions;
+package org.eclipse.passage.lic.execute;
 
 import java.nio.file.Path;
 import java.util.function.Supplier;
@@ -21,7 +21,7 @@ import org.eclipse.passage.lic.base.conditions.mining.LocalConditions;
 import org.eclipse.passage.lic.base.io.ExistingFolder;
 import org.eclipse.passage.lic.base.io.LicensingFolder;
 import org.eclipse.passage.lic.base.io.PathFromLicensedProduct;
-import org.eclipse.passage.lic.equinox.io.ConfigurationPath;
+import org.eclipse.passage.lic.equinox.conditions.ConfigurationMiningTarget;
 
 /**
  * Reads all the conditions containing in license files under {@code .passage}

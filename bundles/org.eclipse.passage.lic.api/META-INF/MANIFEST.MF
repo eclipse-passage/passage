@@ -13,6 +13,7 @@ Export-Package: org.eclipse.passage.lic.api,
  org.eclipse.passage.lic.api.agreements;
   x-friends:="org.eclipse.passage.lic.base,
    org.eclipse.passage.lic.base.tests,
+   org.eclipse.passage.lic.cli,
    org.eclipse.passage.lic.jface,
    org.eclipse.passage.lic.equinox",
  org.eclipse.passage.lic.api.conditions,

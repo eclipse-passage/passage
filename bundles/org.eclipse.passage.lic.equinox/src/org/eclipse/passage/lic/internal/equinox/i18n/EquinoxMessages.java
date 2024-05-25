@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp and others
+ * Copyright (c) 2019, 2024 ArSysOp and others
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -27,7 +27,6 @@ public class EquinoxMessages extends NLS {
 	public static String LicensedApplication_application_context_service_unregistered;
 	public static String LicensedApplication_no_application_context_service_ref;
 	public static String LicensedApplication_no_bundle_context;
-	public static String ProductContacts_defaults;
 	public static String RequirementsFromCapability_no_attributes;
 	public static String RequirementsFromCapability_no_feature_id;
 

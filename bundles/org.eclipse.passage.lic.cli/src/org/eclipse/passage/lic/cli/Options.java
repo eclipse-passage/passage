@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.equinox.access;
+package org.eclipse.passage.lic.cli;
 
 import java.util.List;
 import java.util.Optional;
