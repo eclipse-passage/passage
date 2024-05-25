@@ -5,7 +5,7 @@
  * </p>
  * <p>
  * The implementation has the only entry point:
- * {@linkplain org.eclipse.passage.lic.internal.base.access.StoringGrantTraceService}.
+ * {@linkplain org.eclipse.passage.lic.internal.base.access.storage.StoringGrantTraceService}.
  * </p>
  * <p>
  * As the implementation is stateful by design, it is synchronized. All the

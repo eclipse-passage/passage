@@ -15,7 +15,7 @@ package org.eclipse.passage.seal.demo.tests.access;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.passage.lic.base.access.Access;
+import org.eclipse.passage.lic.internal.base.access.Access;
 import org.junit.Test;
 
 /**
