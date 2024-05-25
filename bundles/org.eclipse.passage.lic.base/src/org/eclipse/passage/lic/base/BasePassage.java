@@ -17,7 +17,7 @@ import org.eclipse.passage.lic.api.Passage;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.base.access.Access;
+import org.eclipse.passage.lic.internal.base.access.Access;
 
 /**
  * @since 2.1

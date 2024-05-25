@@ -21,10 +21,10 @@ import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
-import org.eclipse.passage.lic.base.access.Access;
-import org.eclipse.passage.lic.base.access.SumOfCertificates;
 import org.eclipse.passage.lic.base.diagnostic.code.NoDataOfType;
+import org.eclipse.passage.lic.internal.base.access.Access;
 import org.eclipse.passage.lic.internal.base.access.Libraries;
+import org.eclipse.passage.lic.internal.base.access.SumOfCertificates;
 import org.eclipse.passage.lic.internal.equinox.access.RegisteredLibraries;
 
 /**

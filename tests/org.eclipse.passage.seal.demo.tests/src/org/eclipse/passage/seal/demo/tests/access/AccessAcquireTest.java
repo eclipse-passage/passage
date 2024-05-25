@@ -23,7 +23,6 @@ import org.eclipse.passage.lic.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.api.diagnostic.TroubleCode;
-import org.eclipse.passage.lic.base.access.Access;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
@@ -31,6 +30,7 @@ import org.eclipse.passage.lic.base.diagnostic.code.LicenseExpired;
 import org.eclipse.passage.lic.base.diagnostic.code.LicenseNotStarted;
 import org.eclipse.passage.lic.base.diagnostic.code.NoRequirements;
 import org.eclipse.passage.lic.base.diagnostic.code.TentativeAccess;
+import org.eclipse.passage.lic.internal.base.access.Access;
 import org.junit.Test;
 
 /**

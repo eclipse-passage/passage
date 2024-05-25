@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.internal.equinox.access;
 import java.util.List;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.internal.base.access.Library;
+import org.eclipse.passage.lic.base.access.Library;
 import org.eclipse.passage.lic.internal.equinox.ServiceExtensions;
 
 @SuppressWarnings("restriction")

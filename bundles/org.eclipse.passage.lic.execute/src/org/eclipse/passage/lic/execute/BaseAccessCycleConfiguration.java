@@ -60,7 +60,7 @@ import org.eclipse.passage.lic.equinox.io.BundleKeyKeeper;
 import org.eclipse.passage.lic.equinox.io.ConfigurationPath;
 import org.eclipse.passage.lic.equinox.requirements.BundleRequirements;
 import org.eclipse.passage.lic.equinox.requirements.ComponentRequirements;
-import org.eclipse.passage.lic.internal.base.access.StoringGrantTraceService;
+import org.eclipse.passage.lic.internal.base.access.storage.StoringGrantTraceService;
 import org.eclipse.passage.lic.licenses.model.transport.XmiConditionTransport;
 import org.eclipse.passage.lic.oshi.HardwareAssessmentService;
 import org.eclipse.passage.lic.oshi.HardwareEnvironment;

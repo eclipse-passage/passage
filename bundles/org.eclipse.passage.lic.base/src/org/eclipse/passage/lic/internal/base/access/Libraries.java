@@ -29,7 +29,7 @@ import org.eclipse.passage.lic.api.conditions.mining.LicenseReadingService;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult.Sum;
-import org.eclipse.passage.lic.base.access.SumOfCertificates;
+import org.eclipse.passage.lic.base.access.Library;
 import org.eclipse.passage.lic.base.diagnostic.SumOfLists;
 
 /**
