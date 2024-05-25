@@ -10,20 +10,17 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.equinox.access;
+package org.eclipse.passage.lic.cli;
 
-final class OptionProceed extends BaseOption<CoverageCheckOptionDecision> {
+public interface Option<D extends Enum<?>> {
 
-	OptionProceed(Interaction.Smart interaction) {
-		super('p', //
-				"Proceed", //$NON-NLS-1$
-				"Proceed with the application", //$NON-NLS-1$
-				interaction);
-	}
+	/**
+	 * a letter, not-localizable
+	 */
+	char key();
 
-	@Override
-	public CoverageCheckOptionDecision run() {
-		interaction.prompt("Proceeding with the server launching..."); //$NON-NLS-1$
-		return CoverageCheckOptionDecision.proceed;
-	}
+	String documentation();
+
+	D run();
+
 }

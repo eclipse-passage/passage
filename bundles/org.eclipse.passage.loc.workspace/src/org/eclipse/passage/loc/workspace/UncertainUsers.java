@@ -2,7 +2,7 @@ package org.eclipse.passage.loc.workspace;
 
 import java.util.List;
 
-import org.eclipse.passage.lic.equinox.io.InstallationPath;
+import org.eclipse.passage.lic.execute.InstallationPath;
 import org.eclipse.passage.loc.internal.api.workspace.ResourceHandle;
 import org.eclipse.passage.loc.internal.api.workspace.Users;
 

@@ -9,7 +9,8 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.passage.loc.api;bundle-version="0.0.0";visibility:=reexport,
+Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0";visibility:=reexport,
+ org.eclipse.passage.loc.api;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.base;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.emf;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.equinox;bundle-version="0.0.0";visibility:=reexport

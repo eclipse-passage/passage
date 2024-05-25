@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.equinox.access;
+package org.eclipse.passage.lic.cli;
 
 import java.io.IOException;
 import java.nio.file.Files;

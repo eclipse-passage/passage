@@ -57,7 +57,6 @@ import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.base.restrictions.BasePermissionsExaminationService;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
 import org.eclipse.passage.lic.equinox.io.BundleKeyKeeper;
-import org.eclipse.passage.lic.equinox.io.ConfigurationPath;
 import org.eclipse.passage.lic.equinox.requirements.BundleRequirements;
 import org.eclipse.passage.lic.equinox.requirements.ComponentRequirements;
 import org.eclipse.passage.lic.internal.base.access.storage.StoringGrantTraceService;

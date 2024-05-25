@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.equinox.io;
+package org.eclipse.passage.lic.execute;
 
 import java.nio.file.Path;
 import java.util.function.Supplier;
@@ -23,21 +23,21 @@ import org.eclipse.passage.lic.base.io.PathFromLocalUrl;
 /**
  * <p>
  * Accompanies {@code lic.base.internal.io} with eclipse-specific runtime
- * location: a product {@code configuration} path.
+ * location: a product installation path.
  * </p>
  * <p>
  * Decorate with {@link PathFromLicensedProduct} to get a product-named folder
  * or with {@link LicensingFolder} to get Passage settings host directory under
- * the configuration folder.
+ * the general installation folder.
  * </p>
  * 
  * @since 2.1
  */
-public final class ConfigurationPath implements Supplier<Path> {
+public final class InstallationPath implements Supplier<Path> {
 
 	@Override
 	public Path get() {
-		return new PathFromLocalUrl(Platform.getConfigurationLocation().getURL()).get();
+		return new PathFromLocalUrl(Platform.getInstallLocation().getURL()).get();
 	}
 
 }

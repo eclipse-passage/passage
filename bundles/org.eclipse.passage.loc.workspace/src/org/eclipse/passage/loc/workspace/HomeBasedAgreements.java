@@ -20,7 +20,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.base.io.LicensingFolder;
 import org.eclipse.passage.lic.base.io.UserHomePath;
-import org.eclipse.passage.lic.equinox.io.InstallationPath;
+import org.eclipse.passage.lic.execute.InstallationPath;
 import org.eclipse.passage.loc.internal.api.workspace.Agreements;
 import org.eclipse.passage.loc.internal.api.workspace.ResourceHandle;
 

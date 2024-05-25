@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.equinox.access;
+package org.eclipse.passage.lic.cli;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,8 +19,8 @@ import java.util.Optional;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
 import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
+import org.eclipse.passage.lic.cli.Interaction.Smart;
 import org.eclipse.passage.lic.equinox.SuppliedFrameworkAware;
-import org.eclipse.passage.lic.equinox.access.Interaction.Smart;
 import org.eclipse.passage.lic.internal.base.access.Libraries;
 import org.eclipse.passage.lic.internal.equinox.access.AgreementAcceptanceDelegate;
 import org.eclipse.passage.lic.internal.equinox.access.RegisteredLibraries;

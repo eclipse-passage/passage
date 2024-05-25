@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,12 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox.io;
+package org.eclipse.passage.lic.jface.tests;
 
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
-import org.eclipse.passage.lic.equinox.ProductContacts;
+import org.eclipse.passage.lic.internal.jface.dialogs.licensing.ProductContacts;
 import org.junit.Test;
 
 public class ProductContactsTest {
