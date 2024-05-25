@@ -25,7 +25,6 @@ Export-Package: org.eclipse.passage.loc.internal.licenses;
    org.eclipse.passage.loc.report.core,
    org.eclipse.passage.loc.report.core.tests",
  org.eclipse.passage.loc.internal.licenses.core;x-friends:="org.eclipse.passage.loc.dashboard.ui",
- org.eclipse.passage.loc.internal.licenses.core.i18n;x-internal:=true,
  org.eclipse.passage.loc.internal.licenses.core.request;x-friends:="org.eclipse.passage.loc.dashboard.ui,org.eclipse.passage.loc.licenses.ui"
 Import-Package: org.osgi.service.event;version="1.0.0",
  org.slf4j;version="1.7.36"

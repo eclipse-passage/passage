@@ -14,10 +14,9 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0";x-installation:=
  org.eclipse.passage.lic.features;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.emf;bundle-version="0.0.0"
 Export-Package: org.eclipse.passage.lic.features.model.api,
- org.eclipse.passage.lic.features.model.impl,
+ org.eclipse.passage.lic.features.model.impl;x-internal:=true,
  org.eclipse.passage.lic.features.model.meta,
  org.eclipse.passage.lic.features.model.util,
- org.eclipse.passage.lic.internal.features.model;
-  x-friends:="org.eclipse.passage.loc.dashboard.ui"
+ org.eclipse.passage.lic.internal.features.model;x-friends:="org.eclipse.passage.loc.dashboard.ui"
 Bundle-ClassPath: .
 Bundle-ActivationPolicy: lazy

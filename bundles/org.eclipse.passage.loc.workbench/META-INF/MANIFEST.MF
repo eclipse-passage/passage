@@ -36,7 +36,6 @@ Export-Package: org.eclipse.passage.loc.internal.workbench;
    org.eclipse.passage.loc.dashboard.ui,
    org.eclipse.passage.loc.products.ui,
    org.eclipse.passage.loc.edit.ui",
- org.eclipse.passage.loc.internal.workbench.i18n;x-internal:=true,
  org.eclipse.passage.loc.internal.workbench.registry;x-friends:="org.eclipse.passage.loc.edit.ui",
  org.eclipse.passage.loc.jface;x-friends:="org.eclipse.passage.loc.workbench.emfforms",
  org.eclipse.passage.loc.jface.dialogs;
@@ -55,7 +54,6 @@ Export-Package: org.eclipse.passage.loc.internal.workbench;
  org.eclipse.passage.loc.workbench.dialogs;x-friends:="org.eclipse.passage.loc.workbench.emfforms",
  org.eclipse.passage.loc.workbench.handlers;x-internal:=true,
  org.eclipse.passage.loc.workbench.viewers;x-friends:="org.eclipse.passage.loc.dashboard.ui,org.eclipse.passage.loc.workbench.emfforms",
- org.eclipse.passage.moveto.lic.emf.edit;x-internal:=true,
- org.eclipse.passage.moveto.lic.internal.emf.edit.i18n;x-internal:=true
+ org.eclipse.passage.moveto.lic.emf.edit;x-internal:=true
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/*.xml

@@ -9,4 +9,4 @@ Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Fragment-Host: org.eclipse.passage.lic.emf
 Import-Package: org.junit
-Export-Package: org.eclipse.passage.lic.emf.meta
+Export-Package: org.eclipse.passage.lic.emf.meta;x-internal:=true

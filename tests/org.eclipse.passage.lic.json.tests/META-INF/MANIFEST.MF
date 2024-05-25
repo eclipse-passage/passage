@@ -10,4 +10,3 @@ Bundle-RequiredExecutionEnvironment: JavaSE-17
 Fragment-Host: org.eclipse.passage.lic.json
 Import-Package: org.junit
 Require-Bundle: org.eclipse.passage.lic.api.tests;bundle-version="0.1.0"
-Export-Package: org.eclipse.passage.lic.json.tests;x-internal:=true

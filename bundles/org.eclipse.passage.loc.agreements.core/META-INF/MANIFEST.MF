@@ -17,8 +17,7 @@ Export-Package: org.eclipse.passage.loc.internal.agreements;
    org.eclipse.passage.loc.agreements.ui,
    org.eclipse.passage.loc.dashboard.ui,
    org.eclipse.passage.loc.licenses.core",
- org.eclipse.passage.loc.internal.agreements.core;x-internal:=true,
- org.eclipse.passage.loc.internal.agreements.core.i18n;x-internal:=true
+ org.eclipse.passage.loc.internal.agreements.core;x-internal:=true
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/*.xml
 Import-Package: org.osgi.service.event;version="1.0.0"

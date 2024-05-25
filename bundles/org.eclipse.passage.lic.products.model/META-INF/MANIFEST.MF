@@ -13,10 +13,9 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0";x-installation:=
  org.eclipse.emf.ecore.xmi;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.emf;bundle-version="0.0.0",
  org.eclipse.passage.lic.products;bundle-version="0.0.0";visibility:=reexport
-Export-Package: org.eclipse.passage.lic.internal.products.model;
-  x-friends:="org.eclipse.passage.loc.dashboard.ui",
+Export-Package: org.eclipse.passage.lic.internal.products.model;x-friends:="org.eclipse.passage.loc.dashboard.ui",
  org.eclipse.passage.lic.products.model.api,
- org.eclipse.passage.lic.products.model.impl,
+ org.eclipse.passage.lic.products.model.impl;x-internal:=true,
  org.eclipse.passage.lic.products.model.meta,
  org.eclipse.passage.lic.products.model.util
 Bundle-ClassPath: .
