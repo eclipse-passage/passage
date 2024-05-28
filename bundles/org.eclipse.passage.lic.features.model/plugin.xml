@@ -27,10 +27,10 @@
       <!-- @generated features -->
       <parser
             type="features"
-            class="org.eclipse.passage.lic.features.model.util.FeaturesResourceFactoryImpl"/>
+            class="org.eclipse.passage.lic.internal.features.model.util.FeaturesResourceFactoryImpl"/>
       <parser
             type="lic_features"
-            class="org.eclipse.passage.lic.features.model.util.FeaturesResourceFactoryImpl"/>
+            class="org.eclipse.passage.lic.internal.features.model.util.FeaturesResourceFactoryImpl"/>
    </extension>
 
 </plugin>
