@@ -31,6 +31,7 @@ import org.eclipse.passage.loc.internal.products.core.i18n.ProductsCoreMessages;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@SuppressWarnings("restriction")
 final class ProductVersionKeys {
 
 	private final String plugin;
