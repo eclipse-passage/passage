@@ -27,13 +27,13 @@
       <!-- @generated users -->
       <parser
             type="users"
-            class="org.eclipse.passage.lic.users.model.util.UsersResourceFactoryImpl"/>
+            class="org.eclipse.passage.lic.internal.users.model.util.UsersResourceFactoryImpl"/>
       <parser
             type="lic_users"
-            class="org.eclipse.passage.lic.users.model.util.UsersResourceFactoryImpl"/>
+            class="org.eclipse.passage.lic.internal.users.model.util.UsersResourceFactoryImpl"/>
       <parser
             type="users_xmi"
-            class="org.eclipse.passage.lic.users.model.util.UsersResourceFactoryImpl"/>
+            class="org.eclipse.passage.lic.internal.users.model.util.UsersResourceFactoryImpl"/>
    </extension>
 
 </plugin>
