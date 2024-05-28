@@ -28,6 +28,7 @@ import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 
+@SuppressWarnings("restriction")
 public final class FloatingLicenseIssuingProtection implements Consumer<FloatingLicensePack> {
 
 	private final String feature = "org.eclipse.passage.loc.operator.issue.floating.full"; //$NON-NLS-1$
@@ -70,18 +71,15 @@ public final class FloatingLicenseIssuingProtection implements Consumer<Floating
 		featureReductions.forEach(r -> r.accept(grant));
 	}
 
-	private Optional<org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed> validGet(
-			FloatingLicensePack lic) {
+	private Optional<org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed> validGet(FloatingLicensePack lic) {
 		return validGet(lic.getLicense().getValid());
 	}
 
-	private Optional<org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed> validGet(
-			FeatureGrant grant) {
+	private Optional<org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed> validGet(FeatureGrant grant) {
 		return validGet(grant.getValid());
 	}
 
-	private Optional<org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed> validGet(
-			ValidityPeriod period) {
+	private Optional<org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed> validGet(ValidityPeriod period) {
 		if (!(period instanceof ValidityPeriodClosed)) {
 			return Optional.empty(); // nothing we can reduce for now
 		}
@@ -89,13 +87,11 @@ public final class FloatingLicenseIssuingProtection implements Consumer<Floating
 		return Optional.of(new BaseValidityPeriodClosed(date(closed.getFrom()), date(closed.getUntil())));
 	}
 
-	private void validSet(FloatingLicensePack lic,
-			org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed period) {
+	private void validSet(FloatingLicensePack lic, org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed period) {
 		lic.getLicense().setValid(convert(period));
 	}
 
-	private void validSet(FeatureGrant grant,
-			org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed period) {
+	private void validSet(FeatureGrant grant, org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed period) {
 		grant.setValid(convert(period));
 	}
 
