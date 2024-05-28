@@ -19,6 +19,7 @@ import org.eclipse.passage.lic.emf.migration.MigrationRoutes;
 import org.eclipse.passage.lic.emf.migration.SimpleMigrationRoutes;
 import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
 
+@SuppressWarnings("restriction")
 public final class AgreementsResourceHandler extends MigratingResourceHandler {
 
 	@Override
