@@ -19,6 +19,7 @@ import org.eclipse.passage.lic.emf.migration.SimpleMigrationRoutes;
 import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
 import org.eclipse.passage.lic.keys.model.meta.KeysPackage;
 
+@SuppressWarnings("restriction")
 public final class KeysResourceHandler extends MigratingResourceHandler {
 
 	@Override
