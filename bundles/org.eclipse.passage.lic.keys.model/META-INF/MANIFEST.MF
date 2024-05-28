@@ -13,7 +13,8 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0";resolution:=opti
  org.eclipse.emf.ecore;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.emf;bundle-version="0.0.0",
  org.eclipse.passage.lic.keys;bundle-version="0.0.0";visibility:=reexport
-Export-Package: org.eclipse.passage.lic.keys.model.api,
+Export-Package: org.eclipse.passage.lic.internal.keys.model.util;x-internal:=true,
+ org.eclipse.passage.lic.keys.model.api,
  org.eclipse.passage.lic.keys.model.impl;x-internal:=true,
  org.eclipse.passage.lic.keys.model.meta,
  org.eclipse.passage.lic.keys.model.util

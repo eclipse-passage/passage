@@ -28,7 +28,7 @@
       <!-- @generated keys -->
       <parser
             type="keys"
-            class="org.eclipse.passage.lic.keys.model.util.KeysResourceFactoryImpl"/>
+            class="org.eclipse.passage.lic.internal.keys.model.util.KeysResourceFactoryImpl"/>
    </extension>
 
 </plugin>
