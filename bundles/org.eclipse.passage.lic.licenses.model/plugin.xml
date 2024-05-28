@@ -27,16 +27,16 @@
       <!-- @generated licenses. -->
       <parser
             type="licenses"
-            class="org.eclipse.passage.lic.licenses.model.util.LicensesResourceFactoryImpl"/>
+            class="org.eclipse.passage.lic.internal.licenses.model.util.LicensesResourceFactoryImpl"/>
       <parser
             type="licenses_xmi"
-            class="org.eclipse.passage.lic.licenses.model.util.LicensesResourceFactoryImpl"/>
+            class="org.eclipse.passage.lic.internal.licenses.model.util.LicensesResourceFactoryImpl"/>
       <parser
             type="lic_licenses"
-            class="org.eclipse.passage.lic.licenses.model.util.LicensesResourceFactoryImpl"/>
+            class="org.eclipse.passage.lic.internal.licenses.model.util.LicensesResourceFactoryImpl"/>
       <parser
             type="lic"
-            class="org.eclipse.passage.lic.licenses.model.util.LicensesResourceFactoryImpl"/>
+            class="org.eclipse.passage.lic.internal.licenses.model.util.LicensesResourceFactoryImpl"/>
             
    </extension>
 

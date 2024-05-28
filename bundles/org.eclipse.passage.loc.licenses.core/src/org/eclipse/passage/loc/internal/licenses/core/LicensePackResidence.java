@@ -23,6 +23,7 @@ import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
 import org.eclipse.passage.loc.internal.api.workspace.LicensePacks;
 import org.eclipse.passage.loc.internal.equinox.OperatorGearAware;
 
+@SuppressWarnings("restriction")
 final class LicensePackResidence implements Supplier<Path> {
 
 	private final LicenseRequisites license;

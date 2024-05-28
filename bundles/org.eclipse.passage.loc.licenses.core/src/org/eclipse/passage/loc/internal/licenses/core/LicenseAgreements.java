@@ -87,6 +87,7 @@ final class LicenseAgreements {
 		}
 	}
 
+	@SuppressWarnings("restriction")
 	private Hashes hashes() throws LicensingException {
 		Optional<HashesRegistry> service = new OperatorGearAware().withGear(gear -> Optional.of(gear.hashes()));
 		if (!service.isPresent()) {

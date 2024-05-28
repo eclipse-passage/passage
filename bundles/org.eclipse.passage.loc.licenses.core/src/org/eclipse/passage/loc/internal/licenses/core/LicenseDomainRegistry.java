@@ -26,9 +26,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.internal.equinox.events.EquinoxEvent;
+import org.eclipse.passage.lic.internal.licenses.model.util.LicensesResourceImpl;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
-import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 import org.eclipse.passage.loc.internal.api.OperatorGearSupplier;
 import org.eclipse.passage.loc.internal.api.workspace.KnownResources;
 import org.eclipse.passage.loc.internal.api.workspace.Licenses;
@@ -48,6 +48,7 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.event.EventAdmin;
 
+@SuppressWarnings("restriction")
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + LicensesPackage.eNAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "licenses_xmi" })
 public final class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlan>

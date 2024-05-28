@@ -26,6 +26,7 @@ import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 
+@SuppressWarnings("restriction")
 public final class PersonalLicenseIssuingProtection implements Consumer<PersonalLicensePack> {
 
 	private final String feature = "org.eclipse.passage.loc.operator.issue.personal.full"; //$NON-NLS-1$
