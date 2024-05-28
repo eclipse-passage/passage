@@ -17,7 +17,8 @@ Export-Package: org.eclipse.passage.lic.agreements.model.api,
  org.eclipse.passage.lic.agreements.model.impl;x-internal:=true,
  org.eclipse.passage.lic.agreements.model.meta,
  org.eclipse.passage.lic.agreements.model.util,
- org.eclipse.passage.lic.internal.agreements.model;x-friends:="org.eclipse.passage.loc.dashboard.ui"
+ org.eclipse.passage.lic.internal.agreements.model;x-friends:="org.eclipse.passage.loc.dashboard.ui",
+ org.eclipse.passage.lic.internal.agreements.model.util;x-internal:=true
 Bundle-ClassPath: .
 Bundle-ActivationPolicy: lazy
 

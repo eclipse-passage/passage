@@ -26,7 +26,7 @@
       <!-- @generated agreements -->
       <parser
             type="agreements"
-            class="org.eclipse.passage.lic.agreements.model.util.AgreementsResourceFactoryImpl"/>
+            class="org.eclipse.passage.lic.internal.agreements.model.util.AgreementsResourceFactoryImpl"/>
    </extension>
 
 </plugin>
