@@ -26,12 +26,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.internal.equinox.events.EquinoxEvent;
+import org.eclipse.passage.lic.internal.products.model.util.ProductsResourceImpl;
 import org.eclipse.passage.lic.products.model.api.Product;
 import org.eclipse.passage.lic.products.model.api.ProductLine;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.lic.products.model.api.ProductVersionFeature;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
-import org.eclipse.passage.lic.products.model.util.ProductsResourceImpl;
 import org.eclipse.passage.loc.internal.api.OperatorGearSupplier;
 import org.eclipse.passage.loc.internal.api.workspace.KnownResources;
 import org.eclipse.passage.loc.internal.api.workspace.OperatorWorkspace;
@@ -51,6 +51,7 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.event.EventAdmin;
 
+@SuppressWarnings("restriction")
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + ProductsPackage.eNAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "products_xmi" })
 public final class ProductDomainRegistry extends BaseDomainRegistry<ProductLine>

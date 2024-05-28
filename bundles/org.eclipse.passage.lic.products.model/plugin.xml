@@ -27,10 +27,10 @@
       <!-- @generated products -->
       <parser
             type="products"
-            class="org.eclipse.passage.lic.products.model.util.ProductsResourceFactoryImpl"/>
+            class="org.eclipse.passage.lic.internal.products.model.util.ProductsResourceFactoryImpl"/>
       <parser
             type="lic_products"
-            class="org.eclipse.passage.lic.products.model.util.ProductsResourceFactoryImpl"/>
+            class="org.eclipse.passage.lic.internal.products.model.util.ProductsResourceFactoryImpl"/>
    </extension>
 
 </plugin>
