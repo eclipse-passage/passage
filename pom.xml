@@ -36,7 +36,10 @@
 		<module>./releng/org.eclipse.passage.lbc.aggregator</module>
 		<module>./releng/org.eclipse.passage.ldc.aggregator</module>
 		<module>./releng/org.eclipse.passage.demo.aggregator</module>
+		<!-- enable and fix after 3.0.0 RC2 -->
+		<!--
 		<module>sites/org.eclipse.passage.repository</module>
+		-->
 	</modules>
 
 </project>
