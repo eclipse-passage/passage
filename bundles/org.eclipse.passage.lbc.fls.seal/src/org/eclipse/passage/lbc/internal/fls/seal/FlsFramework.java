@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.fls.seal;
 
@@ -20,6 +21,7 @@ import org.eclipse.passage.lic.base.BaseFramework;
 import org.eclipse.passage.lic.base.InvalidLicensedProduct;
 import org.eclipse.passage.lic.equinox.LicensedApplication;
 
+@SuppressWarnings("restriction")
 public class FlsFramework extends BaseFramework {
 
 	static final Framework instance = new FlsFramework();
