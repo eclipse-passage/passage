@@ -3,7 +3,6 @@
 ## Eclipse Passage™
 
 [![Build Status](https://github.com/eclipse-passage/passage/workflows/CI/badge.svg)](https://github.com/eclipse-passage/passage/actions)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9b7ac68ec46a4d58b6e33c5d96a34d42)](https://www.codacy.com/manual/eclipse_2/passage?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=eclipse/passage&amp;utm_campaign=Badge_Grade)
 [![codecov](https://codecov.io/gh/eclipse-passage/passage/branch/master/graph/badge.svg)](https://codecov.io/gh/eclipse-passage/passage)
 [![Hits-of-Code](https://hitsofcode.com/github/eclipse-passage/passage?branch=master)](https://hitsofcode.com/github/eclipse-passage/passage?branch=master/view?branch=master)
 
@@ -12,9 +11,9 @@ Copyright © 2018, 2024 ArSysOp and others
 
 [![Eclipse License](https://img.shields.io/badge/License-EPL--2.0-thistle.svg)](https://github.com/eclipse/passage/blob/master/LICENSE) 
 
-###### Latest release: [2.11.1](https://projects.eclipse.org/projects/technology.passage/releases/2.11.1), 2024-03-30. Presvious release [2.11.0](https://projects.eclipse.org/projects/technology.passage/releases/2.11.o) is part of [Eclipse 2024-03](https://projects.eclipse.org/releases/2024-03).
-[![Stable release P2](https://img.shields.io/badge/P2%20Components-2.11.1-lightblue.svg)](https://download.eclipse.org/passage/updates/release/2.11.1/)
-[![Stable release Products](https://img.shields.io/badge/Runnable%20Products-2.11.1-lightblue.svg)](https://download.eclipse.org/passage/downloads/release/2.11.1/)
+###### Latest release [3.0.0](https://projects.eclipse.org/projects/technology.passage/releases/3.0.0) is part of [Eclipse 2024-06](https://projects.eclipse.org/releases/2024-06).
+[![Stable release P2](https://img.shields.io/badge/P2%20Components-3.0.0-lightblue.svg)](https://download.eclipse.org/passage/updates/release/3.0.0/)
+[![Stable release Products](https://img.shields.io/badge/Runnable%20Products-3.0.0-lightblue.svg)](https://download.eclipse.org/passage/downloads/release/3.0.0/)
 
 [Eclipse Passage™](https://projects.eclipse.org/projects/technology.passage) helps to verify that the software has sufficient license grants in accordance with the specified licensing requirements.
 The Equinox-based implementation includes various validators for the time-limited, node-locked and other types of licenses.
