@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.agreements.model
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.agreements.model;singleton:=true
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 3.1.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Copyright: %Bundle-Copyright
