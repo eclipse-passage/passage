@@ -42,7 +42,7 @@ Require-Bundle: org.eclipse.emf.edit;bundle-version="0.0.0";visibility:=reexport
  org.eclipse.passage.lic.products.model;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.users.model;bundle-version="0.0.0"
 Bundle-ActivationPolicy: lazy
-Provide-Capability: licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.personal";version="3.0.0";name="Issue Personal License";level="warn";provider="Eclipse Passage",
- licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.floating";version="3.0.0";name="Issue Floating License";level="warn";provider="Eclipse Passage",
- licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.personal.full";version="3.0.0";name="Issue Personal License (Professional)";level="error";provider="Eclipse Passage",
- licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.floating.full";version="3.0.0";name="Issue Floating License (Professional)";level="error";provider="Eclipse Passage"
+Provide-Capability: licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.personal";version="3.1.0";name="Issue Personal License";level="warn";provider="Eclipse Passage",
+ licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.floating";version="3.1.0";name="Issue Floating License";level="warn";provider="Eclipse Passage",
+ licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.personal.full";version="3.1.0";name="Issue Personal License (Professional)";level="error";provider="Eclipse Passage",
+ licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issue.floating.full";version="3.1.0";name="Issue Floating License (Professional)";level="error";provider="Eclipse Passage"
