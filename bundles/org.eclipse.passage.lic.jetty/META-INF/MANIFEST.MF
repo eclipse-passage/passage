@@ -8,7 +8,7 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0",
- org.eclipse.passage.lic.cli;bundle-version="3.0.0",
+ org.eclipse.passage.lic.cli;bundle-version="0.0.0",
  org.eclipse.passage.lic.equinox;bundle-version="0.0.0",
  org.eclipse.passage.lic.net;bundle-version="0.0.0"
 Export-Package: org.eclipse.passage.lic.internal.jetty;x-friends:="org.eclipse.passage.lbc.base,org.eclipse.passage.lbc.jetty,org.eclipse.passage.lac.jetty",
