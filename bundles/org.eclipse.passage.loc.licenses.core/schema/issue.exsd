@@ -67,7 +67,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.passage.loc.internal.licenses.core.LicensePackPersistenceListener"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.passage.loc.internal.licenses.core.LicensePackIssueListener"/>
                </appinfo>
             </annotation>
          </attribute>
