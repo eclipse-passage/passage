@@ -67,7 +67,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.passage.lic.internal.jetty.interaction.JettyCommand"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.passage.lic.internal.jetty.interaction.JettyCommands"/>
                </appinfo>
             </annotation>
          </attribute>
