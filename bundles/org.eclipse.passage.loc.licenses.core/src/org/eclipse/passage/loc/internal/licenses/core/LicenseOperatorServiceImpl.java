@@ -145,7 +145,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		Objects.requireNonNull(pack,
 				"LicenseOperatorServiceImpl::issueFloatingLicensePack: cannot issue license over no data"); //$NON-NLS-1$
 		Objects.requireNonNull(configs, "LicenseOperatorServiceImpl::configs"); //$NON-NLS-1$
-		return new IssueFloatingLicense(licenses, agreements, products, operator).issue(pack, configs);
+		return new IssueFloatingLicense(licenses, agreements, products, operator, events).issue(pack, configs);
 	}
 
 }

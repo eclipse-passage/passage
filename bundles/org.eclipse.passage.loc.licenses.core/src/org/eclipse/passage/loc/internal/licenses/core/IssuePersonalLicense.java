@@ -116,14 +116,14 @@ final class IssuePersonalLicense {
 			throws LicensingException {
 		Path encrypted = new PersistedEncoded(product, decrypted, new ProductPassword(products, operator))//
 				.write(license.getLicense().getIdentifier() + new PassageFileExtension.LicenseEncrypted().get());
-		events.postEvent(new OperatorLicenseEvents().encodedIssued(encrypted.toString()));
+		events.sendEvent(new OperatorLicenseEvents().encodedIssued(encrypted.toString()));
 		return encrypted;
 	}
 
 	private Path decrypted(PersonalLicensePack license, Path path) throws LicensingException {
 		Path decrypted = new PersistedDecoded(path, license)//
 				.write(license.getLicense().getIdentifier() + new PassageFileExtension.LicenseDecrypted().get());
-		events.postEvent(new OperatorLicenseEvents().decodedIssued(decrypted.toString()));
+		events.sendEvent(new OperatorLicenseEvents().decodedIssued(decrypted.toString()));
 		return decrypted;
 	}
 

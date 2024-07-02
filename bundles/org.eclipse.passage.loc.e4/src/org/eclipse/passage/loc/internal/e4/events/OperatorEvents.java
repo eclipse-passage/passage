@@ -13,7 +13,6 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.e4.events;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.e4.core.services.events.IEventBroker;
@@ -32,10 +31,8 @@ public final class OperatorEvents {
 	private final String allSubTopics = "*"; //$NON-NLS-1$
 
 	public Event create(String topic, Object data) {
-		Map<String, Object> properties = new HashMap<>();
-		properties.put(IEventBroker.DATA, data);
-		Event event = new Event(topic, properties);
-		return event;
+		Map<String, Object> properties = Map.of(IEventBroker.DATA, data);
+		return new Event(topic, properties);
 	}
 
 	public String allSubTopics() {

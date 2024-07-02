@@ -42,6 +42,7 @@ import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.api.UserGrant;
 import org.eclipse.passage.loc.internal.agreements.AgreementRegistry;
 import org.eclipse.passage.loc.internal.api.IssuedFloatingLicense;
+import org.eclipse.passage.loc.internal.e4.events.OperatorLicenseEvents;
 import org.eclipse.passage.loc.internal.equinox.OperatorProductService;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
@@ -51,6 +52,7 @@ import org.eclipse.passage.loc.internal.products.core.PublicKeyReplcated;
 import org.eclipse.passage.loc.licenses.trouble.code.LicenseAgreementsAttachFailed;
 import org.eclipse.passage.loc.licenses.trouble.code.LicenseIssuingFailed;
 import org.eclipse.passage.loc.licenses.trouble.code.LicenseValidationFailed;
+import org.osgi.service.event.EventAdmin;
 
 @SuppressWarnings("restriction")
 final class IssueFloatingLicense {
@@ -59,13 +61,15 @@ final class IssueFloatingLicense {
 	private final AgreementRegistry agreements;
 	private final ProductRegistry products;
 	private final OperatorProductService operator;
+	private final EventAdmin events;
 
 	IssueFloatingLicense(LicenseRegistry licenses, AgreementRegistry agreements, ProductRegistry products,
-			OperatorProductService operator) {
+			OperatorProductService operator, EventAdmin events) {
 		this.licenses = licenses;
 		this.agreements = agreements;
 		this.products = products;
 		this.operator = operator;
+		this.events = events;
 	}
 
 	ServiceInvocationResult<IssuedFloatingLicense> issue(FloatingLicensePack pack,
@@ -120,6 +124,7 @@ final class IssueFloatingLicense {
 		Path lic;
 		try {
 			lic = new PersistedDecoded(folder, target).write(decrypted);
+			events.sendEvent(new OperatorLicenseEvents().decodedIssued(lic.toString()));
 		} catch (LicensingException e) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(), //
 					LicensesCoreMessages.LicenseOperatorServiceImpl_floating_save_decoded_failed, e));
@@ -128,6 +133,7 @@ final class IssueFloatingLicense {
 		Path licen;
 		try {
 			licen = new PersistedEncoded(product, lic, new ProductPassword(products, operator)).write(encrypted);
+			events.sendEvent(new OperatorLicenseEvents().encodedIssued(licen.toString()));
 		} catch (LicensingException e) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(), //
 					LicensesCoreMessages.LicenseOperatorServiceImpl_floating_save_encoded_failed, e));
