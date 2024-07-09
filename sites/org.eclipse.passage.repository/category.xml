@@ -131,10 +131,6 @@
 		id="org.eclipse.passage.loc.operator.feature">
 		<category name="org.eclipse.passage.loc.category" />
 	</feature>
-	<feature
-		id="org.eclipse.passage.loc.billing.feature">
-		<category name="org.eclipse.passage.loc.category" />
-	</feature>
 	<category-def
 		name="org.eclipse.passage.loc.category.source"
 		label="Passage LOC Developer Resources">
