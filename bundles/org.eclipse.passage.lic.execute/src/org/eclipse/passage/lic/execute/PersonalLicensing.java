@@ -31,12 +31,13 @@ import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.equinox.acquire.ConfigurationLicenseAcquisitionService;
 import org.eclipse.passage.lic.equinox.acquire.InstallationLicenseAcquisitionService;
 
-final class PersonalLicensing implements LicensingDirection {
+@SuppressWarnings("restriction")
+public final class PersonalLicensing implements LicensingDirection {
 
 	private final Registry<ConditionMiningTarget, MinedConditions> conditions;
 	private final Registry<ConditionMiningTarget, LicenseAcquisitionService> acquirers;
 
-	PersonalLicensing(Supplier<MiningEquipment> equipment) {
+	public PersonalLicensing(Supplier<MiningEquipment> equipment) {
 		this.conditions = new ReadOnlyRegistry<>(Arrays.asList(//
 				new UserHomeResidentConditions(equipment.get()), //
 				new InstallationResidentConditions(equipment.get()), //

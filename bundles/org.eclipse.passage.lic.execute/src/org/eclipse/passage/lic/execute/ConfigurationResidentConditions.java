@@ -30,6 +30,7 @@ import org.eclipse.passage.lic.equinox.conditions.ConfigurationMiningTarget;
  * 
  * @since 2.1
  */
+@SuppressWarnings("restriction")
 public final class ConfigurationResidentConditions extends LocalConditions {
 
 	public ConfigurationResidentConditions(MiningEquipment equipment) {

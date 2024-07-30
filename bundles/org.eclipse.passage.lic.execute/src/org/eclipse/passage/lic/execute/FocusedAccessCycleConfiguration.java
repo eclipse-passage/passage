@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation
+ *     ArSysOp - initial API, implementation, support
  *******************************************************************************/
 package org.eclipse.passage.lic.execute;
 
@@ -45,32 +45,6 @@ public abstract class FocusedAccessCycleConfiguration extends BaseAccessCycleCon
 		public Personal(Supplier<LicensedProduct> product, Supplier<Bundle> bundle) {
 			super(product, bundle);
 			this.delegate = new PersonalLicensing(super::miningEquipment);
-		}
-
-	}
-
-	/**
-	 * Focuses Access Cycle Configuration on remote license mining
-	 */
-	public static final class Floating extends FocusedAccessCycleConfiguration {
-
-		public Floating(Supplier<LicensedProduct> product, Supplier<Bundle> bundle) {
-			super(product, bundle);
-			this.delegate = new FloatingLicensing(super.keyKeepers(), super.codecs(), super.transports());
-		}
-
-	}
-
-	/**
-	 * Adapts Access Cycle Configuration to both local and remote license mining
-	 */
-	public static final class Wide extends FocusedAccessCycleConfiguration {
-
-		public Wide(Supplier<LicensedProduct> product, Supplier<Bundle> bundle) {
-			super(product, bundle);
-			this.delegate = new LicensingDirection.Joint(//
-					new PersonalLicensing(super::miningEquipment), //
-					new FloatingLicensing(super.keyKeepers(), super.codecs(), super.transports()));
 		}
 
 	}
