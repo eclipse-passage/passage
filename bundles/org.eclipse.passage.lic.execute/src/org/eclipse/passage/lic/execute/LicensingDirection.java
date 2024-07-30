@@ -27,7 +27,7 @@ import org.eclipse.passage.lic.api.registry.ServiceId;
 import org.eclipse.passage.lic.base.registry.JointRegistry;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 
-interface LicensingDirection {
+public interface LicensingDirection {
 
 	public MinedConditionsRegistry conditionMiners();
 
@@ -35,7 +35,7 @@ interface LicensingDirection {
 
 	public HashesRegistry hashes();
 
-	static final class Joint implements LicensingDirection {
+	public static final class Joint implements LicensingDirection {
 
 		private final List<LicensingDirection> delegates;
 
