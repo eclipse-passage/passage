@@ -12,29 +12,11 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0",
  org.eclipse.passage.lic.base;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.emf;bundle-version="0.0.0",
  org.eclipse.passage.lic.equinox;bundle-version="0.0.0"
-Export-Package: org.eclipse.passage.lic.internal.net;
-  x-friends:="org.eclipse.passage.lbc.base,
-   org.eclipse.passage.lic.hc,
-   org.eclipse.passage.lbc.jetty,
-   org.eclipse.passage.lbc.base.tests,
-   org.eclipse.passage.lac",
- org.eclipse.passage.lic.internal.net.api;x-friends:="org.eclipse.passage.lac.gear",
- org.eclipse.passage.lic.internal.net.api.handle;
-  x-friends:="org.eclipse.passage.lac,
-   org.eclipse.passage.lac.gear,
-   org.eclipse.passage.lac.jetty,
-   org.eclipse.passage.lbc.base,
-   org.eclipse.passage.lbc.base.tests,
-   org.eclipse.passage.lbc.jetty,
-   org.eclipse.passage.lic.jetty",
- org.eclipse.passage.lic.internal.net.connect;x-friends:="org.eclipse.passage.lic.jetty",
- org.eclipse.passage.lic.internal.net.handle;
-  x-friends:="org.eclipse.passage.lac,
-   org.eclipse.passage.lac.gear,
-   org.eclipse.passage.lbc.base,
-   org.eclipse.passage.lbc.base.tests,
-   org.eclipse.passage.lbc.jetty,
-   org.eclipse.passage.lic.jetty",
- org.eclipse.passage.lic.internal.net.io;x-friends:="org.eclipse.passage.lbc.base,org.eclipse.passage.lic.hc"
+Export-Package: org.eclipse.passage.lic.internal.net;x-internal:=true,
+ org.eclipse.passage.lic.internal.net.api;x-internal:=true,
+ org.eclipse.passage.lic.internal.net.api.handle;x-internal:=true,
+ org.eclipse.passage.lic.internal.net.connect;x-internal:=true,
+ org.eclipse.passage.lic.internal.net.handle;x-internal:=true,
+ org.eclipse.passage.lic.internal.net.io;x-internal:=true
 Import-Package: org.slf4j;version="1.7.36"
 Bundle-ActivationPolicy: lazy

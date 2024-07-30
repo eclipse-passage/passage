@@ -10,7 +10,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-17
 Require-Bundle: org.eclipse.passage.lic.api;bundle-version="0.0.0",
  org.eclipse.passage.lic.base;bundle-version="0.0.0",
  org.eclipse.passage.lic.equinox;bundle-version="0.0.0",
- org.eclipse.passage.lic.hc;bundle-version="0.0.0",
  org.eclipse.passage.lic.bc;bundle-version="0.0.0",
  org.eclipse.passage.lic.oshi;bundle-version="0.0.0",
  org.eclipse.passage.loc.api;bundle-version="0.0.0",
