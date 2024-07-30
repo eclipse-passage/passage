@@ -44,7 +44,8 @@ public final class NamespaceConfiguraton implements AccessCycleConfiguration {
 	private final BundleRequirementsForNamespace requirements;
 
 	public NamespaceConfiguraton(String namespace, Supplier<LicensedProduct> product, Supplier<Bundle> bundle) {
-		this(new FocusedAccessCycleConfiguration.Wide(product, bundle), new BundleRequirementsForNamespace(namespace));
+		this(new FocusedAccessCycleConfiguration.Personal(product, bundle),
+				new BundleRequirementsForNamespace(namespace));
 	}
 
 	public NamespaceConfiguraton(String namespace, AccessCycleConfiguration delegate) {

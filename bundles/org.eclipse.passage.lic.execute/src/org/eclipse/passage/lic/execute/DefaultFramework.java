@@ -28,6 +28,7 @@ import org.osgi.framework.FrameworkUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@SuppressWarnings("restriction")
 public final class DefaultFramework extends BaseFramework {
 
 	private final Logger log;
@@ -37,7 +38,7 @@ public final class DefaultFramework extends BaseFramework {
 		configureLogging();
 		this.log = LoggerFactory.getLogger(getClass());
 		logConfiguration();
-		this.configuration = new FocusedAccessCycleConfiguration.Wide(this::product, bundle);
+		this.configuration = new FocusedAccessCycleConfiguration.Personal(this::product, bundle);
 	}
 
 	@Override
