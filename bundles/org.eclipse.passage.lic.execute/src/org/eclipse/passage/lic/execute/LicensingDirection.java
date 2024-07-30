@@ -39,7 +39,7 @@ public interface LicensingDirection {
 
 		private final List<LicensingDirection> delegates;
 
-		Joint(LicensingDirection... delegates) {
+		public Joint(LicensingDirection... delegates) {
 			this.delegates = Arrays.asList(delegates);
 		}
 
