@@ -16,12 +16,11 @@
 	type='org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepository'
 	version='1.0.0'>
 	<properties size='1'>
-		<property name='p2.timestamp' value='1243822502499' />
+		<property name='p2.timestamp' value='1722355264603' />
 	</properties>
-	<children size='5'>
+	<children size='4'>
 		<child location='lic' />
 		<child location='loc' />
-		<child location='lbc' />
 		<child location='ldc' />
 		<child location='demo' />
 	</children>
