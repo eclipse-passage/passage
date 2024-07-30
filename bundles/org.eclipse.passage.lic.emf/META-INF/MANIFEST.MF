@@ -15,11 +15,7 @@ Export-Package: org.eclipse.passage.lic.emf;x-internal:=true,
  org.eclipse.passage.lic.emf.resource;x-internal:=true,
  org.eclipse.passage.lic.emf.validation;x-internal:=true,
  org.eclipse.passage.lic.emf.xmi;x-internal:=true,
- org.eclipse.passage.lic.internal.emf;
-  x-friends:="org.eclipse.passage.lic.hc,
-   org.eclipse.passage.lbc.base,
-   org.eclipse.passage.lbc.base.tests,
-   org.eclipse.passage.lic.net",
+ org.eclipse.passage.lic.internal.emf;x-friends:="org.eclipse.passage.lic.net",
  org.eclipse.passage.lic.internal.emf.i18n;x-friends:="org.eclipse.passage.loc.equinox",
  org.eclipse.passage.lic.internal.emf.migration;
   x-friends:="org.eclipse.passage.lic.features.model,
