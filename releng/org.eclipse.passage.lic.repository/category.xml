@@ -14,8 +14,7 @@
 <site>
 	<category-def
 		name="org.eclipse.passage.lic.category"
-		label="Passage LIC"
-	>
+		label="Passage LIC">
 		<description>
 			Passage Licensing Integration Components includes: Licensing Runtime API and its implementation for Eclipse Equinox, Licensing JFace components, Licensing Metadata EMF API, License Management Integrations
 		</description>
@@ -36,15 +35,10 @@
 		id="org.eclipse.passage.lic.bc.feature">
 		<category name="org.eclipse.passage.lic.category" />
 	</feature>
-	<feature
-		id="org.eclipse.passage.lic.jetty.feature">
-		<category name="org.eclipse.passage.lic.category" />
-	</feature>
 
 	<category-def
 		name="org.eclipse.passage.lic.category.source"
-		label="Passage LIC Developer Resources"
-	>
+		label="Passage LIC Developer Resources">
 		<description>
 			Passage Licensing Integration Components Developer Resources includes: Licensing Runtime API and its implementation for Eclipse Equinox, Licensing JFace components, Licensing Metadata EMF API, License Management Integrations
 		</description>
@@ -65,10 +59,7 @@
 		id="org.eclipse.passage.lic.bc.feature.source">
 		<category name="org.eclipse.passage.lic.category.source" />
 	</feature>
-	<feature
-		id="org.eclipse.passage.lic.jetty.feature.source">
-		<category name="org.eclipse.passage.lic.category.source" />
-	</feature>
+
 	<bundle id="bcpg" />
 	<bundle id="bcpg.source" />
 	<bundle id="bcpkix" />
