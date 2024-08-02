@@ -42,10 +42,6 @@
 			<unit id="com.github.oshi.oshi-core" version="0.0.0"/>
 			<unit id="com.sun.jna" version="0.0.0"/>
 			<unit id="com.sun.jna.platform" version="0.0.0"/>
-			<unit id="jakarta.activation-api" version="0.0.0"/>
-			<unit id="jakarta.annotation-api" version="1.3.5"/>
-			<unit id="jakarta.servlet-api" version="0.0.0"/>
-			<unit id="org.apache.commons.commons-csv" version="0.0.0"/>
 			<unit id="org.junit" version="0.0.0"/>
 			<unit id="slf4j.api" version="0.0.0"/>
 			<unit id="slf4j.nop" version="0.0.0"/>

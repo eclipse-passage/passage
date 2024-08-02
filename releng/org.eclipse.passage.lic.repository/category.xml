@@ -56,12 +56,6 @@
    <bundle id="com.sun.jna.source"/>
    <bundle id="com.sun.jna.platform"/>
    <bundle id="com.sun.jna.platform.source"/>
-   <bundle id="jakarta.activation-api"/>
-   <bundle id="jakarta.activation-api.source"/>
-   <bundle id="jakarta.annotation-api"/>
-   <bundle id="jakarta.annotation-api.source"/>
-   <bundle id="jakarta.servlet-api"/>
-   <bundle id="jakarta.servlet-api.source"/>
    <bundle id="slf4j.api"/>
    <bundle id="slf4j.api.source"/>
    <bundle id="slf4j.nop"/>
