@@ -23,7 +23,6 @@ import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
-@SuppressWarnings("restriction")
 public final class UsersClassMetadata implements ClassMetadata {
 
 	private final UsersPackage meta;
