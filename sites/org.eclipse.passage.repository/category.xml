@@ -69,30 +69,6 @@
 		<category name="org.eclipse.passage.lic.category.source" />
 	</feature>
 	<category-def
-		name="org.eclipse.passage.lbc.category"
-		label="Passage LBC">
-		<description>
-			Passage Licensing Back-end Components: 
-				OSGi-based server to manage licensing data" 
-		</description>
-	</category-def>
-	<feature 
-		id="org.eclipse.passage.lbc.execute.feature">
-		<category name="org.eclipse.passage.lbc.category" />
-	</feature>
-	<category-def
-		name="org.eclipse.passage.lbc.category.source"
-		label="Passage LBC Developer Resources">
-		<description>
-			Passage Licensing Back-end Components Developer Resources: 
-				OSGi-based server to manage licensing data" 
-		</description>
-	</category-def>
-	<feature 
-		id="org.eclipse.passage.lbc.execute.feature.source">
-		<category name="org.eclipse.passage.lbc.category.source" />
-	</feature>
-	<category-def
 		name="org.eclipse.passage.ldc.category"
 		label="Passage LDC">
 		<description>
