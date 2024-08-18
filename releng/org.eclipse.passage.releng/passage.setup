@@ -23,7 +23,7 @@
     </detail>
     <detail
         key="imageURI">
-      <value>https://raw.githubusercontent.com/eclipse-passage/passage/master/products/org.eclipse.passage.loc.operator.product/ico/48.png</value>
+      <value>https://raw.githubusercontent.com/eclipse-passage/passage/master/bundles/org.eclipse.passage.lic.execute.branding/passage32.png</value>
     </detail>
   </annotation>
   <annotation
@@ -138,19 +138,13 @@
           name="${scope.project.label}">
         <predicate
             xsi:type="workingsets:ExclusionPredicate"
-            excludedWorkingSet="//@streams[name='master']/@setupTasks.5/@workingSets[name='${scope.project.label}%20LDC'] //@streams[name='master']/@setupTasks.5/@workingSets[name='${scope.project.label}%20LIC'] //@streams[name='master']/@setupTasks.5/@workingSets[name='${scope.project.label}%20LOC']"/>
+            excludedWorkingSet="//@streams[name='master']/@setupTasks.5/@workingSets[name='${scope.project.label}%20LDC'] //@streams[name='master']/@setupTasks.5/@workingSets[name='${scope.project.label}%20LIC']"/>
       </workingSet>
       <workingSet
           name="${scope.project.label} LIC">
         <predicate
             xsi:type="predicates:NamePredicate"
             pattern=".*\.lic\..*"/>
-      </workingSet>
-      <workingSet
-          name="${scope.project.label} LOC">
-        <predicate
-            xsi:type="predicates:NamePredicate"
-            pattern=".*\.loc\..*"/>
       </workingSet>
       <workingSet
           name="${scope.project.label} LDC">
