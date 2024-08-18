@@ -17,13 +17,9 @@ Export-Package: org.eclipse.passage.lic.equinox;x-internal:=true,
  org.eclipse.passage.lic.equinox.conditions;x-internal:=true,
  org.eclipse.passage.lic.equinox.io;x-internal:=true,
  org.eclipse.passage.lic.equinox.requirements;x-internal:=true,
- org.eclipse.passage.lic.internal.equinox;x-friends:="org.eclipse.passage.loc.licenses.core,org.eclipse.passage.lic.jetty",
+ org.eclipse.passage.lic.internal.equinox;x-internal:=true,
  org.eclipse.passage.lic.internal.equinox.access;x-internal:=true,
- org.eclipse.passage.lic.internal.equinox.events;
-  x-friends:="org.eclipse.passage.loc.features.core,
-   org.eclipse.passage.loc.products.core,
-   org.eclipse.passage.loc.licenses.core,
-   org.eclipse.passage.loc.users.core"
+ org.eclipse.passage.lic.internal.equinox.events;x-internal:=true
 Import-Package: org.osgi.service.component.runtime;version="1.0.0",
  org.osgi.service.component.runtime.dto;version="1.0.0",
  org.osgi.service.event;version="1.0.0",

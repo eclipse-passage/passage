@@ -34,7 +34,7 @@ Export-Package: org.eclipse.passage.lic.emf;x-internal:=true,
    org.eclipse.passage.lic.products.model,
    org.eclipse.passage.lic.users.model",
  org.eclipse.passage.lic.internal.emf;x-friends:="org.eclipse.passage.lic.net",
- org.eclipse.passage.lic.internal.emf.i18n;x-friends:="org.eclipse.passage.loc.equinox",
+ org.eclipse.passage.lic.internal.emf.i18n;x-internal:=true,
  org.eclipse.passage.lic.internal.emf.migration;
   x-friends:="org.eclipse.passage.lic.features.model,
    org.eclipse.passage.lic.keys.model,
