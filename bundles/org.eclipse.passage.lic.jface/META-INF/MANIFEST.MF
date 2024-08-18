@@ -13,24 +13,17 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0",
  org.eclipse.passage.lic.api;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.base;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.equinox;bundle-version="0.0.0"
-Export-Package: org.eclipse.passage.lic.internal.jface.dialogs.licensing;x-friends:="org.eclipse.passage.lic.e4.ui,org.eclipse.passage.loc.dashboard.ui,org.eclipse.passage.loc.licenses.ui",
- org.eclipse.passage.lic.jface;x-friends:="org.eclipse.passage.loc.workbench",
+Export-Package: org.eclipse.passage.lic.internal.jface.dialogs.licensing;x-friends:="org.eclipse.passage.lic.e4.ui",
+ org.eclipse.passage.lic.jface;x-internal:=true,
  org.eclipse.passage.lic.jface.actions;x-internal:=true,
  org.eclipse.passage.lic.jface.resource;
-  x-friends:="org.eclipse.passage.loc.dashboard.ui,
-   org.eclipse.passage.loc.workbench,
-   org.eclipse.passage.loc.users.ui,
-   org.eclipse.passage.lic.floating.e4.ui,
-   org.eclipse.passage.lic.licenses.e4.ui,
+  x-friends:="org.eclipse.passage.lic.agreements.e4.ui,
    org.eclipse.passage.lic.e4.ui,
    org.eclipse.passage.lic.features.e4.ui,
+   org.eclipse.passage.lic.floating.e4.ui,
+   org.eclipse.passage.lic.licenses.e4.ui,
    org.eclipse.passage.lic.products.e4.ui,
-   org.eclipse.passage.lic.users.e4.ui,
-   org.eclipse.passage.loc.workbench.emfforms,
-   org.eclipse.passage.loc.products.ui,
-   org.eclipse.passage.loc.licenses.ui,
-   org.eclipse.passage.loc.edit.ui,
-   org.eclipse.passage.lic.agreements.e4.ui",
- org.eclipse.passage.lic.jface.widgets;x-friends:="org.eclipse.passage.loc.workbench"
+   org.eclipse.passage.lic.users.e4.ui",
+ org.eclipse.passage.lic.jface.widgets;x-internal:=true
 Import-Package: org.slf4j;version="[1.7.0,3.0.0)"
 Bundle-ActivationPolicy: lazy

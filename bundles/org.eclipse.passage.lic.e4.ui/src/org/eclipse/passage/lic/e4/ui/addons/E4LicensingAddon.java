@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.e4.ui.addons;
 
-import javax.inject.Inject;
-
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UIEventTopic;
@@ -32,6 +30,8 @@ import org.eclipse.passage.lic.internal.e4.ui.restrictions.WorkbenchShutdown;
 import org.eclipse.passage.lic.jface.EquinoxPassageUI;
 import org.eclipse.swt.widgets.Shell;
 import org.osgi.service.event.Event;
+
+import jakarta.inject.Inject;
 
 /**
  * @since 2.1
