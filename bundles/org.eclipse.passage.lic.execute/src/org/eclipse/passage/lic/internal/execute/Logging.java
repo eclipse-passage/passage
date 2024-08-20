@@ -22,7 +22,6 @@ public final class Logging {
 		this.config = config;
 	}
 
-	@SuppressWarnings("resource")
 	public void configure() {
 		try (InputStream configuration = config.get()) {
 			// should be done by end-product framework

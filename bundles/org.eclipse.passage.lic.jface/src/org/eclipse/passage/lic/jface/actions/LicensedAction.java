@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2018, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation
+ *     ArSysOp - initial API and implementation, further support
  *******************************************************************************/
 package org.eclipse.passage.lic.jface.actions;
 
@@ -33,6 +33,7 @@ public abstract class LicensedAction extends Action {
 		runEverywhere(Display.getDefault());
 	}
 
+	@SuppressWarnings("restriction")
 	private void runEverywhere(Display display) {
 		new LicensedRunnableUI(display::getActiveShell, getId(), this::doAction).run();
 	}

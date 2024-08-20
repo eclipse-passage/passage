@@ -63,6 +63,7 @@ import org.osgi.framework.FrameworkUtil;
 /**
  * Integration test: demands OSGi running
  */
+@SuppressWarnings("restriction")
 public final class BaseLicenseReadingServiceTest {
 
 	private final String licence = "e121463c-309e-43a7-b199-189c84ffb753.licen"; //$NON-NLS-1$

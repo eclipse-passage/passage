@@ -83,6 +83,7 @@ final class BcEncodedStream {
 		return signer;
 	}
 
+	@SuppressWarnings("deprecation")
 	private void traceUser(PGPSecretKey key, PGPSignatureGenerator signer) {
 		Iterator<String> it = key.getPublicKey().getUserIDs();
 		if (!it.hasNext()) {

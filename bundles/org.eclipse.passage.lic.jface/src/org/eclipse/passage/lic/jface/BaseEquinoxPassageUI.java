@@ -34,6 +34,7 @@ import org.eclipse.passage.lic.internal.jface.dialogs.licensing.BaseLicenseStatu
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
 import org.eclipse.swt.widgets.Shell;
 
+@SuppressWarnings("restriction")
 public abstract class BaseEquinoxPassageUI implements PassageUI {
 
 	protected final Supplier<Shell> shell;
