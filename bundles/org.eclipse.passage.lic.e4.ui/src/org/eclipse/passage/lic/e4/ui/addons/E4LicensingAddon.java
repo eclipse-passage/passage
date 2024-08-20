@@ -52,8 +52,7 @@ public final class E4LicensingAddon {
 	@Inject
 	@Optional
 	public void applicationStarted(//
-			@SuppressWarnings("unused") //
-			@UIEventTopic(UIEvents.UILifeCycle.APP_STARTUP_COMPLETE) //
+			@SuppressWarnings("unused") @UIEventTopic(UIEvents.UILifeCycle.APP_STARTUP_COMPLETE) //
 			Event event) {
 		ServiceInvocationResult<GrantLockAttempt> response = //
 				new EquinoxPassageUI(this::shell).acquireLicense(product().identifier());
@@ -74,8 +73,7 @@ public final class E4LicensingAddon {
 	@Inject
 	@Optional
 	public void applicationFainted(//
-			@SuppressWarnings("unused") //
-			@UIEventTopic(UIEvents.UILifeCycle.APP_SHUTDOWN_STARTED) //
+			@SuppressWarnings("unused") @UIEventTopic(UIEvents.UILifeCycle.APP_SHUTDOWN_STARTED) //
 			Event event) {
 		releaseGrant();
 	}
