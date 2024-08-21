@@ -110,6 +110,19 @@
 		<module>../../features/org.eclipse.passage.lic.define.feature</module>
 
 		<module>../../releng/org.eclipse.passage.lic.repository</module>
+
+		<module>../../bundles/org.eclipse.passage.ldc.pde.core.templates</module>
+		<module>../../bundles/org.eclipse.passage.ldc.pde.ui.templates</module>
+		<module>../../bundles/org.eclipse.passage.ldc</module>
+		<module>../../features/org.eclipse.passage.ldc.feature</module>
+
+		<module>../../releng/org.eclipse.passage.ldc.repository</module>
+
+		<module>../../bundles/org.eclipse.passage.seal.demo</module>
+		<module>../../features/org.eclipse.passage.demo.feature</module>
+		<module>../../tests/org.eclipse.passage.seal.demo.tests</module>
+
+		<module>../../releng/org.eclipse.passage.demo.repository</module>
 	</modules>
 
 </project>
