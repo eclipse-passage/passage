@@ -31,10 +31,7 @@
 	<modules>
 		<module>./releng/org.eclipse.passage.target</module>
 		<module>./releng/org.eclipse.passage.aggregator</module>
-		<!-- enable and fix after 3.0.0 RC2 -->
-		<!--
 		<module>sites/org.eclipse.passage.repository</module>
-		-->
 	</modules>
 
 </project>
