@@ -41,6 +41,12 @@
    <feature id="org.eclipse.passage.ldc.feature.source">
       <category name="org.eclipse.passage.ldc.category.source"/>
    </feature>
+   <feature id="org.eclipse.passage.demo.feature">
+      <category name="org.eclipse.passage.demo.category"/>
+   </feature>
+   <feature id="org.eclipse.passage.demo.feature.source">
+      <category name="org.eclipse.passage.demo.category.source"/>
+   </feature>
    <bundle id="bcpg"/>
    <bundle id="bcpg.source"/>
    <bundle id="bcpkix"/>
@@ -79,6 +85,16 @@
       <description>
          Passage Licensing Definition Components Developer Resources: 
     Eclipse PDE integration&quot;
+      </description>
+   </category-def>
+   <category-def name="org.eclipse.passage.demo.category" label="Passage Demo">
+      <description>
+         Eclipse Passage Demo contains final licensing runtime assembly
+      </description>
+   </category-def>
+   <category-def name="org.eclipse.passage.demo.category.source" label="Passage Demo Developer Resources">
+      <description>
+         Eclipse Passage Demo  Developer Resources contains final licensing runtime assembly
       </description>
    </category-def>
 </site>
