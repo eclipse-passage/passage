@@ -83,30 +83,30 @@
 								<phase>package</phase>
 								<configuration>
 									<argLine></argLine>
-									<appArgLine>
-										-consoleLog
-										-application org.eclipse.justj.p2.manager
-										-data @None
-										-nosplash
-										${org.eclipse.justj.p2.manager.args}
-										-retain 5
-										-label "Passage"
-										-build-url ${org.eclipse.justj.p2.manager.build.url}
-										-root ${project.build.directory}/passage-sync
-										-relative ${org.eclipse.justj.p2.manager.relative}
-										-version-iu org.eclipse.passage.ldc.feature.
-										-iu-filter-pattern org.eclipse.passage.*
-										-excluded-categories-pattern .*\.Default
-										-commit https://github.com/eclipse-passage/passage/commit/${git.commit}
-										-target-url https://download.eclipse.org/passage
-										-promote ${project.build.directory}/repository
-										-timestamp ${build.timestamp}
-										-type ${build.type}
-										-breadcrumb "Passage https://www.eclipse.org/passage"
-										-favicon https://github.com/eclipse-passage/passage-images/blob/master/images/org.eclipse.passage.loc.operator/png/icons/48.png
-										-xtitle-image https://www.eclipse.org/jetty/common/images/jetty-logo.svg
-										-body-image https://github.com/eclipse-passage/passage-images/blob/master/images/org.eclipse.passage.loc.operator/png/icons/128.png
-										${org.eclipse.justj.p2.manager.extra.args}
+									<appArgLine><![CDATA[
+                                        -consoleLog
+                                        -application org.eclipse.justj.p2.manager
+                                        -data @None
+                                        -nosplash
+                                        ${org.eclipse.justj.p2.manager.args}
+                                        -retain 5
+                                        -label "Passage"
+                                        -build-url ${org.eclipse.justj.p2.manager.build.url}
+                                        -root ${project.build.directory}/passage-sync
+                                        -relative ${org.eclipse.justj.p2.manager.relative}
+                                        -version-iu org.eclipse.passage.ldc.feature.
+                                        -iu-filter-pattern org.eclipse.passage.*
+                                        -excluded-categories-pattern .*\.Default
+                                        -commit https://github.com/eclipse-passage/passage/commit/${git.commit}
+                                        -target-url https://download.eclipse.org/passage
+                                        -promote ${project.build.directory}/repository
+                                        -timestamp ${build.timestamp}
+                                        -type ${build.type}
+                                        -breadcrumb "Passage https://www.eclipse.org/passage"
+                                        -favicon https://github.com/eclipse-passage/passage-images/blob/master/images/org.eclipse.passage.loc.operator/png/icons/48.png
+                                        -xtitle-image https://www.eclipse.org/jetty/common/images/jetty-logo.svg
+                                        -body-image https://github.com/eclipse-passage/passage-images/blob/master/images/org.eclipse.passage.loc.operator/png/icons/128.png
+                                        ${org.eclipse.justj.p2.manager.extra.args}]]>
 									</appArgLine>
 								</configuration>
 							</execution>
