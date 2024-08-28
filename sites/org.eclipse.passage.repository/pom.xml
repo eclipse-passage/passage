@@ -103,9 +103,9 @@
                                         -timestamp ${build.timestamp}
                                         -type ${build.type}
                                         -breadcrumb "Passage https://www.eclipse.org/passage"
-                                        -favicon https://github.com/eclipse-passage/passage-images/blob/master/images/org.eclipse.passage.loc.operator/png/icons/48.png
+                                        -favicon https://raw.githubusercontent.com/eclipse-passage/passage-images/master/images/org.eclipse.passage.loc.operator/png/icons/48.png
                                         -xtitle-image https://www.eclipse.org/jetty/common/images/jetty-logo.svg
-                                        -body-image https://github.com/eclipse-passage/passage-images/blob/master/images/org.eclipse.passage.loc.operator/png/icons/128.png
+                                        -body-image https://raw.githubusercontent.com/eclipse-passage/passage-images/master/images/org.eclipse.passage.loc.operator/png/icons/128.png
                                         ${org.eclipse.justj.p2.manager.extra.args}]]>
 									</appArgLine>
 								</configuration>
