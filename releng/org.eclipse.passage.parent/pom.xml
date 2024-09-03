@@ -41,8 +41,8 @@
 		<cbi-snapshots-repo.url>https://repo.eclipse.org/content/repositories/cbi-snapshots/</cbi-snapshots-repo.url>
 
 		<eclipserun-repo>https://download.eclipse.org/eclipse/updates/4.32/R-4.32-202406010610/</eclipserun-repo>
-		<released.baseline>https://download.eclipse.org/passage/updates/release/3.0.0/</released.baseline>
-		<staging.baseline>https://download.eclipse.org/passage/drops/integration/latest/</staging.baseline>
+		<released.baseline>https://download.eclipse.org/passage/updates/release/3.1.0/</released.baseline>
+		<staging.baseline>https://download.eclipse.org/passage/updates/nightly/latest/</staging.baseline>
 
 		<compare-version-with-baselines.skip>true</compare-version-with-baselines.skip>
 		<replace-version-with-baselines.mode>disable</replace-version-with-baselines.mode>
