@@ -12,8 +12,11 @@ Copyright © 2018, 2024 ArSysOp and others
 [![Eclipse License](https://img.shields.io/badge/License-EPL--2.0-thistle.svg)](https://github.com/eclipse/passage/blob/master/LICENSE) 
 
 ###### Latest release [3.1.0](https://projects.eclipse.org/projects/technology.passage/releases/3.1.0) is part of [Eclipse 2024-09](https://projects.eclipse.org/releases/2024-09).
-[![Latest release](https://img.shields.io/badge/P2%20Components-3.0.0-lightblue.svg)](https://download.eclipse.org/passage/updates/release/3.1.0/)
+[![Latest release](https://img.shields.io/badge/P2%20Components-3.1.0-lightblue.svg)](https://download.eclipse.org/passage/updates/release/3.1.0/)
 
+[![Latest release](https://img.shields.io/badge/License%20Control%20Operator-3.1.0-lightgreen.svg)](https://arsysop.ru/cordon/ce/#lco)
+
+[![Latest release](https://img.shields.io/badge/Floating%20License%20Server-3.1.0-lightgreen.svg)](https://arsysop.ru/cordon/ce/#fls)
 
 [Eclipse Passage™](https://projects.eclipse.org/projects/technology.passage) helps to verify that the software has sufficient license grants in accordance with the specified licensing requirements.
 The Equinox-based implementation includes various validators for the time-limited, node-locked and other types of licenses.
