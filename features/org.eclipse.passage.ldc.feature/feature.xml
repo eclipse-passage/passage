@@ -33,9 +33,9 @@
    </license>
 
    <includes
-         id="org.eclipse.passage.lic.define.feature"
+         id="org.eclipse.passage.lic.execute.feature"
          version="0.0.0"
-         name="Passage LIC Define"/>
+         name="Passage LIC Execute"/>
 
    <plugin
          id="org.eclipse.passage.ldc"

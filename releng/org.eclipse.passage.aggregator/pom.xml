@@ -58,28 +58,6 @@
 		<module>../../features/org.eclipse.passage.lic.e4.ui.feature</module>
 		<module>../../tests/org.eclipse.passage.lic.jface.tests</module>
 
-		<module>../../bundles/org.eclipse.passage.lic.features</module>
-		<module>../../bundles/org.eclipse.passage.lic.features.ecore</module>
-		<module>../../bundles/org.eclipse.passage.lic.features.model</module>
-		<module>../../bundles/org.eclipse.passage.lic.features.edit</module>
-		<module>../../features/org.eclipse.passage.lic.features.feature</module>
-		<module>../../tests/org.eclipse.passage.lic.features.model.tests</module>
-
-		<module>../../bundles/org.eclipse.passage.lic.products</module>
-		<module>../../bundles/org.eclipse.passage.lic.products.ecore</module>
-		<module>../../bundles/org.eclipse.passage.lic.products.model</module>
-		<module>../../bundles/org.eclipse.passage.lic.products.edit</module>
-		<module>../../features/org.eclipse.passage.lic.products.feature</module>
-		<module>../../tests/org.eclipse.passage.lic.products.model.tests</module>
-
-
-		<module>../../bundles/org.eclipse.passage.lic.users</module>
-		<module>../../bundles/org.eclipse.passage.lic.users.ecore</module>
-		<module>../../bundles/org.eclipse.passage.lic.users.model</module>
-		<module>../../bundles/org.eclipse.passage.lic.users.edit</module>
-		<module>../../features/org.eclipse.passage.lic.users.feature</module>
-		<module>../../tests/org.eclipse.passage.lic.users.model.tests</module>
-
 		<module>../../bundles/org.eclipse.passage.lic.licenses</module>
 		<module>../../bundles/org.eclipse.passage.lic.licenses.ecore</module>
 		<module>../../bundles/org.eclipse.passage.lic.licenses.model</module>
@@ -87,17 +65,6 @@
 		<module>../../features/org.eclipse.passage.lic.licenses.feature</module>
 		<module>../../tests/org.eclipse.passage.lic.licenses.model.tests</module>
 
-		<module>../../bundles/org.eclipse.passage.lic.keys</module>
-		<module>../../bundles/org.eclipse.passage.lic.keys.ecore</module>
-		<module>../../bundles/org.eclipse.passage.lic.keys.model</module>
-		<module>../../bundles/org.eclipse.passage.lic.keys.edit</module>
-		<module>../../features/org.eclipse.passage.lic.keys.feature</module>
-
-		<module>../../bundles/org.eclipse.passage.lic.agreements</module>
-		<module>../../bundles/org.eclipse.passage.lic.agreements.ecore</module>
-		<module>../../bundles/org.eclipse.passage.lic.agreements.model</module>
-		<module>../../bundles/org.eclipse.passage.lic.agreements.edit</module>
-		<module>../../features/org.eclipse.passage.lic.agreements.feature</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.compile.branding</module>
 		<module>../../features/org.eclipse.passage.lic.compile.feature</module>
@@ -105,9 +72,6 @@
 		<module>../../bundles/org.eclipse.passage.lic.execute</module>
 		<module>../../bundles/org.eclipse.passage.lic.execute.branding</module>
 		<module>../../features/org.eclipse.passage.lic.execute.feature</module>
-
-		<module>../../bundles/org.eclipse.passage.lic.define.branding</module>
-		<module>../../features/org.eclipse.passage.lic.define.feature</module>
 
 		<module>../../bundles/org.eclipse.passage.ldc.pde.core.templates</module>
 		<module>../../bundles/org.eclipse.passage.ldc.pde.ui.templates</module>
