@@ -33,9 +33,7 @@
    </license>
 
    <requires>
-      <import feature="org.eclipse.passage.lic.equinox.feature" version="0.0.0" match="equivalent"/>
       <import feature="org.eclipse.passage.lic.emf.feature" version="0.0.0" match="equivalent"/>
-      <import feature="org.eclipse.passage.lic.e4.ui.feature" version="0.0.0" match="equivalent"/>
    </requires>
 
    <plugin
