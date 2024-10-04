@@ -41,6 +41,9 @@
    <feature id="org.eclipse.passage.demo.feature.source">
       <category name="org.eclipse.passage.demo.category.source"/>
    </feature>
+   <feature id="org.eclipse.passage.lic.api.tests.feature">
+      <category name="org.eclipse.passage.lic.category"/>
+   </feature>
    <bundle id="bcpg"/>
    <bundle id="bcpg.source"/>
    <bundle id="bcpkix"/>
