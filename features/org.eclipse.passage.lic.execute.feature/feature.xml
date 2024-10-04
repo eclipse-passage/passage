@@ -33,11 +33,11 @@
    </license>
 
    <includes
-         id="org.eclipse.passage.lic.compile.feature"
+         id="org.eclipse.passage.lic.bc.feature"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.passage.lic.oshi.feature"
+         id="org.eclipse.passage.lic.compile.feature"
          version="0.0.0"/>
 
    <includes
@@ -45,9 +45,16 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.passage.lic.bc.feature"
+         id="org.eclipse.passage.lic.oshi.feature"
          version="0.0.0"/>
-         
+
+   <plugin
+         id="org.eclipse.passage.lic.execute"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
    <plugin
          id="org.eclipse.passage.lic.execute.branding"
          download-size="0"
@@ -55,11 +62,5 @@
          version="0.0.0"
          unpack="false"/>
          
-   <plugin
-         id="org.eclipse.passage.lic.execute"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
 
 </feature>

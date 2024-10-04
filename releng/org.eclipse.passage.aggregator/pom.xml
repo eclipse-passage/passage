@@ -52,12 +52,6 @@
 		<module>../../features/org.eclipse.passage.lic.emf.feature</module>
 		<module>../../tests/org.eclipse.passage.lic.emf.tests</module>
 
-		<module>../../bundles/org.eclipse.passage.lic.jface</module>
-		<module>../../bundles/org.eclipse.passage.lic.e4.core</module>
-		<module>../../bundles/org.eclipse.passage.lic.e4.ui</module>
-		<module>../../features/org.eclipse.passage.lic.e4.ui.feature</module>
-		<module>../../tests/org.eclipse.passage.lic.jface.tests</module>
-
 		<module>../../bundles/org.eclipse.passage.lic.licenses</module>
 		<module>../../bundles/org.eclipse.passage.lic.licenses.ecore</module>
 		<module>../../bundles/org.eclipse.passage.lic.licenses.model</module>

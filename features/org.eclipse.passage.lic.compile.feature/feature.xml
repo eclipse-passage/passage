@@ -40,10 +40,6 @@
          id="org.eclipse.passage.lic.emf.feature"
          version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.passage.lic.e4.ui.feature"
-         version="0.0.0"/>
-
    <plugin
          id="org.eclipse.passage.lic.compile.branding"
          download-size="0"
