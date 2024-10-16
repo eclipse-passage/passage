@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.pde.FeatureNature</nature>
 	</natures>
+	<linkedResources>
+    	<link>
+            <name>.settings</name>
+            <type>2</type>
+            <locationURI>$%7BPARENT-2-PROJECT_LOC%7D/.settings</locationURI>
+        </link>
+	</linkedResources>
 </projectDescription>
