@@ -32,10 +32,10 @@
 		<nature>org.eclipse.pde.api.tools.apiAnalysisNature</nature>
 	</natures>
 	<linkedResources>
-     <link>
+    	<link>
             <name>.settings</name>
             <type>2</type>
             <locationURI>$%7BPARENT-2-PROJECT_LOC%7D/.settings</locationURI>
         </link>
- </linkedResources>
+	</linkedResources>
 </projectDescription>
