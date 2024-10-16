@@ -97,6 +97,7 @@ public abstract class RuntimeEnvironmentContractTest {
 				.collect(Collectors.toList());
 
 		// when: run all of the requesters simultaneously (latched by readySteadyGo)
+		@SuppressWarnings("resource")
 		Executor executor = Executors.newFixedThreadPool(threads);
 		demands.stream().forEach(executor::execute);
 		try {

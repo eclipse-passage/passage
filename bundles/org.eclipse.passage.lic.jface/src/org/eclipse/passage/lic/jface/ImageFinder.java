@@ -13,6 +13,8 @@
 package org.eclipse.passage.lic.jface;
 
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,6 +28,7 @@ import java.util.stream.Stream;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.ResourceLocator;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
@@ -36,9 +39,9 @@ public class ImageFinder {
 	public static URL getUrl(String value, Bundle definingBundle) {
 		try {
 			if (value != null) {
-				return new URL(value);
+				return new URI(value).toURL();
 			}
-		} catch (MalformedURLException e) {
+		} catch (MalformedURLException | URISyntaxException e) {
 			if (definingBundle != null) {
 				return FileLocator.find(definingBundle, new Path(value));
 			}
@@ -98,9 +101,9 @@ public class ImageFinder {
 	public static URL locate(Object container, String value) {
 		try {
 			if (value != null) {
-				return new URL(value);
+				return new URI(value).toURL();
 			}
-		} catch (MalformedURLException e) {
+		} catch (MalformedURLException | URISyntaxException e) {
 			Bundle bundle = null;
 			if (container instanceof Bundle) {
 				bundle = (Bundle) container;

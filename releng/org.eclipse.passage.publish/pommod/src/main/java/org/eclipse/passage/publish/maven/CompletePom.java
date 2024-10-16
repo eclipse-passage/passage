@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.net.URI;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -188,7 +189,7 @@ public final class CompletePom {
 				"https://oss.sonatype.org/service/local/lucene/search?g=%s&a=%s&v=%s&repositoryId=releases", //$NON-NLS-1$
 				group, artifact, version);
 		try {
-			URL url = new URL(spec);
+			URL url = new URI(spec).toURL();
 			try (InputStream in = url.openStream();
 					BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8))) {
 				String line;
@@ -198,7 +199,7 @@ public final class CompletePom {
 					}
 				}
 			}
-		} catch (IOException ex) {
+		} catch (Exception ex) {
 			// well, it does not exist for whatever reason
 		}
 		return false;

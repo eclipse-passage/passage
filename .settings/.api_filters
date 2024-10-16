@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.passage.lic.equinox.tests" version="2">
+    <resource path="src/org/eclipse/passage/lic/internal/equinox/tests/LicensedProductFromContextTest.java" type="org.eclipse.passage.lic.internal.equinox.tests.LicensedProductFromContextTest$Empty">
+        <filter id="574619656">
+            <message_arguments>
+                <message_argument value="IApplicationContext"/>
+                <message_argument value="Empty"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>
