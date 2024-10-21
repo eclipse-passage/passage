@@ -37,7 +37,6 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 	}
 
 	@Override
-	@Override
 	protected final void register() {
 		migrate033();
 		migrate040();
@@ -48,7 +47,6 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 		migrate300();
 	}
 
-	@Override
 	@Override
 	protected final MigrationRoutes attributes() {
 		MigrationRoutes routes = new SimpleMigrationRoutes();
