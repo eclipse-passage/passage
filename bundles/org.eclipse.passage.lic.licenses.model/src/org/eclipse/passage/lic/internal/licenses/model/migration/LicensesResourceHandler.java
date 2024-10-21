@@ -37,6 +37,7 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 	}
 
 	@Override
+	@Override
 	protected final void register() {
 		migrate033();
 		migrate040();
@@ -44,8 +45,10 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 		migrate100();
 		migrate110();
 		migrate200();
+		migrate300();
 	}
 
+	@Override
 	@Override
 	protected final MigrationRoutes attributes() {
 		MigrationRoutes routes = new SimpleMigrationRoutes();
@@ -142,6 +145,12 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 
 	private void migrate200() {
 		String uri = "http://www.eclipse.org/passage/lic/licenses/2.0.0"; //$NON-NLS-1$
+		LicensesPackage delegate = LicensesPackage.eINSTANCE;
+		EPackage.Registry.INSTANCE.computeIfAbsent(uri, ns -> delegate);
+	}
+
+	private void migrate300() {
+		String uri = "http://www.eclipse.org/passage/lic/licenses/3.0.0"; //$NON-NLS-1$
 		LicensesPackage delegate = LicensesPackage.eINSTANCE;
 		EPackage.Registry.INSTANCE.computeIfAbsent(uri, ns -> delegate);
 	}
