@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,9 +9,11 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.access;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
@@ -27,7 +29,6 @@ import org.eclipse.passage.lic.base.restrictions.CertificateIsRestrictive;
 /**
  * Top-level access cycle
  * 
- * @since 2.1
  */
 public final class Access {
 
@@ -37,7 +38,7 @@ public final class Access {
 		this.framework = framework;
 	}
 
-	public boolean canUse(String feature) {
+	public boolean canUse(FeatureIdentifier feature) {
 		return new Allow(framework, feature).apply();
 	}
 
@@ -45,7 +46,7 @@ public final class Access {
 		return new Assess(framework).apply();
 	}
 
-	public ServiceInvocationResult<GrantLockAttempt> acquire(String feature) {
+	public ServiceInvocationResult<GrantLockAttempt> acquire(FeatureIdentifier feature) {
 		ServiceInvocationResult<ExaminationCertificate> certificate = new Assess(framework, feature).apply();
 		if (new CertificateIsRestrictive().test(certificate.data())) {
 			return failOnAccess(certificate);
@@ -72,11 +73,11 @@ public final class Access {
 		return new BaseServiceInvocationResult<>(assessment.diagnostic());
 	}
 
-	private ServiceInvocationResult<GrantLockAttempt> unknownFeature(String feature, Diagnostic diagnostic) {
+	private ServiceInvocationResult<GrantLockAttempt> unknownFeature(FeatureIdentifier feature, Diagnostic diagnostic) {
 		return new BaseServiceInvocationResult<>(//
 				new SumOfDiagnostics().apply(//
 						diagnostic, //
-						new BaseDiagnostic(new Trouble(new NoRequirements(), feature))//
+						new BaseDiagnostic(new Trouble(new NoRequirements(), feature.identifier()))//
 				));
 	}
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.ldc.internal.pde.core.templates;
 
@@ -16,6 +17,7 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
+import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
 import org.eclipse.passage.lic.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.base.requirements.BaseRequirement;
 
@@ -38,7 +40,7 @@ public final class DefaultProductRequirement implements Supplier<Requirement> {
 	public Requirement get() {
 		return new BaseRequirement(//
 				new BaseFeature(//
-						product.get(), //
+						new BaseFeatureIdentifier(product.get()), //
 						version.get(), //
 						name.get(), //
 						provider.get()), //

@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.model.transport;
 
@@ -32,6 +33,7 @@ import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.IssuerSignature;
 import org.eclipse.passage.lic.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
 import org.eclipse.passage.lic.base.conditions.BaseCondition;
 import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
@@ -106,7 +108,7 @@ abstract class BaseXmiConditionTransport implements ConditionTransport {
 
 	private Condition condition(PersonalFeatureGrant grant) {
 		return new BaseCondition(grant.getIdentifier(), //
-				grant.getFeature().getIdentifier(), //
+				new BaseFeatureIdentifier(grant.getFeature().getIdentifier()), //
 				new PVersionMatch(grant.getFeature().getVersionMatch()).get(), //
 				new BaseValidityPeriodClosed(//
 						fromDate(((ValidityPeriodClosed) grant.getValid()).getFrom()), //

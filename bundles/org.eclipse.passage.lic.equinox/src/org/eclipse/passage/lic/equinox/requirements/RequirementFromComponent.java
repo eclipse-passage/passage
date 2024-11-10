@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.requirements;
 
@@ -17,6 +18,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.agreements.ResolvedAgreement;
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
@@ -52,7 +54,7 @@ final class RequirementFromComponent implements Supplier<Optional<Requirement>> 
 		if (!properties.isPresent()) { // it's just a foreign component without licensing requirement declared
 			return Optional.empty();
 		}
-		Optional<String> feature = new ComponentLicFeatureId(properties.get()).get();
+		Optional<FeatureIdentifier> feature = new ComponentLicFeatureId(properties.get()).get();
 		if (!feature.isPresent()) {
 			// it's a component without licensing requirement declared too
 			return Optional.empty();
@@ -60,12 +62,12 @@ final class RequirementFromComponent implements Supplier<Optional<Requirement>> 
 		return Optional.of(requirementFromProperties(feature.get(), properties.get()));
 	}
 
-	private Requirement requirementFromProperties(String feature, Map<String, Object> properties) {
+	private Requirement requirementFromProperties(FeatureIdentifier feature, Map<String, Object> properties) {
 		String version = new ComponentLicFeatureVersion(properties).get()//
 				.map(raw -> new SafeVersion(raw).value())//
 				.orElse(new DefaultVersion().value());
 		String name = new ComponentLicFeatureName(properties).get()//
-				.orElse(feature);
+				.orElse(feature.identifier());
 		Bundle bundle = context.getBundle(component.bundle.id);
 		String provider = new ComponentLicFeatureProvider(properties).get()//
 				.orElseGet(new BundleVendor(bundle));

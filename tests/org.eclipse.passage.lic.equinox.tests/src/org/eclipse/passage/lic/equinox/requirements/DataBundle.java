@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.requirements;
 
@@ -20,6 +21,7 @@ import java.util.Set;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
+import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
 import org.eclipse.passage.lic.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.base.requirements.BaseRequirement;
 import org.eclipse.passage.lic.internal.base.Cached;
@@ -52,7 +54,7 @@ final class DataBundle {
 	BaseRequirement e() {
 		return new BaseRequirement(//
 				new BaseFeature(//
-						"E", //$NON-NLS-1$
+						new BaseFeatureIdentifier("E"), //$NON-NLS-1$
 						"2.71.82", //$NON-NLS-1$
 						"Euler number", //$NON-NLS-1$
 						"Euler"), //$NON-NLS-1$
@@ -66,7 +68,7 @@ final class DataBundle {
 	BaseRequirement pi() {
 		return new BaseRequirement(//
 				new BaseFeature(//
-						"PI", //$NON-NLS-1$
+						new BaseFeatureIdentifier("PI"), //$NON-NLS-1$
 						"3.14.15", //$NON-NLS-1$
 						"PI of version PI", //$NON-NLS-1$
 						"Eclipse Passage"), //$NON-NLS-1$
@@ -77,7 +79,7 @@ final class DataBundle {
 	BaseRequirement incomplete() {
 		return new BaseRequirement(//
 				new BaseFeature(//
-						"Incomplete", //$NON-NLS-1$
+						new BaseFeatureIdentifier("Incomplete"), //$NON-NLS-1$
 						"0.0.0", //$NON-NLS-1$
 						"Incomplete", //$NON-NLS-1$
 						"Eclipse Passage"), //$NON-NLS-1$
@@ -88,7 +90,7 @@ final class DataBundle {
 	BaseRequirement evilWitch() {
 		return new BaseRequirement(//
 				new BaseFeature(//
-						"EvilWitch", //$NON-NLS-1$
+						new BaseFeatureIdentifier("EvilWitch"), //$NON-NLS-1$
 						"13.4.1", //$NON-NLS-1$
 						"Evil Witch", //$NON-NLS-1$
 						"Universe"), //$NON-NLS-1$
@@ -100,7 +102,7 @@ final class DataBundle {
 	BaseRequirement goodWitch() {
 		return new BaseRequirement(//
 				new BaseFeature(//
-						"GoodWitch", //$NON-NLS-1$
+						new BaseFeatureIdentifier("GoodWitch"), //$NON-NLS-1$
 						"0.0.0", //$NON-NLS-1$
 						"GoodWitch", //$NON-NLS-1$
 						"Eclipse Passage"), //$NON-NLS-1$

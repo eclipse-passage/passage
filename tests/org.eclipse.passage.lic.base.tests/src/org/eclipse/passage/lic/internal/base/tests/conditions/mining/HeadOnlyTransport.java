@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.conditions.mining;
 
@@ -27,6 +28,7 @@ import org.eclipse.passage.lic.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.api.conditions.VersionMatch;
 import org.eclipse.passage.lic.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
 import org.eclipse.passage.lic.base.conditions.BaseCondition;
 import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
@@ -55,7 +57,7 @@ final class HeadOnlyTransport implements ConditionTransport {
 				spy.transportLine();
 				conditions.add(new BaseCondition(//
 						String.valueOf(line.trim().hashCode()), //
-						line.trim(), //
+						new BaseFeatureIdentifier(line.trim()), //
 						commonVersion(), commonPeriod(), commonInstructions()));
 			}
 		}

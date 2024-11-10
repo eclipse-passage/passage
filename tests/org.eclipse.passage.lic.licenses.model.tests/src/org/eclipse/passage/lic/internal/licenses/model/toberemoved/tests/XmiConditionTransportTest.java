@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.licenses.model.toberemoved.tests;
 
@@ -20,6 +21,7 @@ import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.api.tests.conditions.mining.ConditionTransportContractTest;
+import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
 import org.eclipse.passage.lic.base.conditions.BaseCondition;
 import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
@@ -40,7 +42,7 @@ public class XmiConditionTransportTest extends ConditionTransportContractTest {
 	protected Collection<Condition> conditions() {
 		return Collections.singleton(new BaseCondition(//
 				"aaa", //$NON-NLS-1$
-				"doodle", //$NON-NLS-1$
+				new BaseFeatureIdentifier("doodle"), //$NON-NLS-1$
 				new BaseVersionMatch(//
 						"1.2.3", //$NON-NLS-1$
 						new MatchingRuleDefault()), //

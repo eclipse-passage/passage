@@ -9,7 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
- *     ArSysOp - further support
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.seal.demo.tests.condition.mining;
 
@@ -90,7 +90,7 @@ public final class BaseLicenseReadingServiceTest {
 	private void assertConditionState(Condition condition) {
 		assertEquals("0.1.0", condition.versionMatch().version()); //$NON-NLS-1$
 		assertEquals(new MatchingRuleCompatible(), condition.versionMatch().rule()); // $NON-NLS-1$
-		assertEquals("prince-to-frog", condition.feature()); //$NON-NLS-1$
+		assertEquals("prince-to-frog", condition.feature().identifier()); //$NON-NLS-1$
 		assertEquals("os=win", condition.evaluationInstructions().expression()); //$NON-NLS-1$
 		assertEquals(new EvaluationType.Hardware(), condition.evaluationInstructions().type());
 		// FIXME: check validity period legally after #566015 is fixed

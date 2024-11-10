@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.restrictions;
 
@@ -17,6 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.passage.lic.api.EvaluationType;
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
 import org.eclipse.passage.lic.api.diagnostic.TroubleCode;
@@ -24,6 +26,7 @@ import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.api.tests.fakes.agreements.FakeAgreementState;
 import org.eclipse.passage.lic.api.tests.fakes.agreements.FakeResolvedAgreement;
+import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.base.agreements.BaseAgreementToAccept;
 import org.eclipse.passage.lic.base.agreements.UnacceptedAgreementRestriction;
@@ -49,7 +52,7 @@ final class TestCertificates {
 				Collections.singletonMap(//
 						new BaseRequirement(//
 								new BaseFeature(//
-										"properly-licensed-feature", //$NON-NLS-1$
+										new BaseFeatureIdentifier("properly-licensed-feature"), //$NON-NLS-1$
 										"1.2.3", //$NON-NLS-1$
 										"Feature to Succeed", //$NON-NLS-1$
 										"This test"), //$NON-NLS-1$
@@ -59,7 +62,7 @@ final class TestCertificates {
 								product(), //
 								new BaseCondition(//
 										"condition-identifier", //$NON-NLS-1$
-										"properly-licensed-feature", //$NON-NLS-1$
+										new BaseFeatureIdentifier("properly-licensed-feature"), //$NON-NLS-1$
 										new BaseVersionMatch("1.2.3", new MatchingRuleCompatible()), //$NON-NLS-1$
 										new BaseValidityPeriodClosed(//
 												ZonedDateTime.now().minusDays(11), //
@@ -77,7 +80,7 @@ final class TestCertificates {
 								product(), //
 								new BaseRequirement(//
 										new BaseFeature(//
-												"failed-feature", //$NON-NLS-1$
+												new BaseFeatureIdentifier("failed-feature"), //$NON-NLS-1$
 												"17.2.1", //$NON-NLS-1$
 												"Feature to fail", //$NON-NLS-1$
 												"This test"), //$NON-NLS-1$
@@ -99,10 +102,10 @@ final class TestCertificates {
 	}
 
 	ExaminationCertificate withSevereRestrictions() {
-		return withSevereRestrictions("very-much-protected-feature"); //$NON-NLS-1$
+		return withSevereRestrictions(new BaseFeatureIdentifier("very-much-protected-feature")); //$NON-NLS-1$
 	}
 
-	ExaminationCertificate withSevereRestrictions(String feature) {
+	ExaminationCertificate withSevereRestrictions(FeatureIdentifier feature) {
 		return new BaseExaminationCertificate(//
 				Collections.emptyMap(), // no permissions
 				Collections.singleton(//
@@ -113,7 +116,7 @@ final class TestCertificates {
 				));
 	}
 
-	ExaminationCertificate withWarningRestrictions(String feature) {
+	ExaminationCertificate withWarningRestrictions(FeatureIdentifier feature) {
 		return new BaseExaminationCertificate(//
 				Collections.emptyMap(), // no permissions
 				Collections.singleton(//
@@ -125,10 +128,10 @@ final class TestCertificates {
 	}
 
 	ExaminationCertificate withAgreementRestrictions() {
-		return withAgreementRestrictions("not-very-much-protected-feature"); //$NON-NLS-1$
+		return withAgreementRestrictions(new BaseFeatureIdentifier("not-very-much-protected-feature")); //$NON-NLS-1$
 	}
 
-	ExaminationCertificate withAgreementRestrictions(String feature) {
+	ExaminationCertificate withAgreementRestrictions(FeatureIdentifier feature) {
 		AgreementToAccept agreement = new BaseAgreementToAccept(//
 				warningProtectedFeature(feature), //
 				new FakeResolvedAgreement(), //
@@ -157,10 +160,10 @@ final class TestCertificates {
 	}
 
 	private BaseRequirement warningProtectedFeature() {
-		return warningProtectedFeature("not-very-much-protected-feature"); //$NON-NLS-1$
+		return warningProtectedFeature(new BaseFeatureIdentifier("not-very-much-protected-feature")); //$NON-NLS-1$
 	}
 
-	private BaseRequirement warningProtectedFeature(String feature) {
+	private BaseRequirement warningProtectedFeature(FeatureIdentifier feature) {
 		return new BaseRequirement(//
 				new BaseFeature(//
 						feature, //
@@ -171,7 +174,7 @@ final class TestCertificates {
 				"Requirement is not mandatory to satisfy");//$NON-NLS-1$
 	}
 
-	private BaseRequirement errorProtectedFeature(String feature) {
+	private BaseRequirement errorProtectedFeature(FeatureIdentifier feature) {
 		return new BaseRequirement(//
 				new BaseFeature(//
 						feature, //

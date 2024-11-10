@@ -8,7 +8,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation, further support
+ *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.seal.demo.tests.access;
 
@@ -18,11 +19,13 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 import java.util.function.Consumer;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.api.diagnostic.TroubleCode;
+import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
@@ -46,7 +49,7 @@ public final class AccessAcquireTest {
 	public void acquireTentativeGrant() {
 		successfullyAcquireAndRelease(//
 				new TestFramework.Everlasting(), //
-				"frog-to-prince", //$NON-NLS-1$
+				new BaseFeatureIdentifier("frog-to-prince"), //$NON-NLS-1$
 				diagnostic -> {
 					assertTrue(diagnostic.bearable().size() > 0);
 					assertContainsCode(new TentativeAccess(), diagnostic.bearable());
@@ -60,7 +63,7 @@ public final class AccessAcquireTest {
 	public void acquireLicenseGrant() {
 		successfullyAcquireAndRelease(//
 				new TestFramework.Everlasting(), //
-				"prince-to-frog", //$NON-NLS-1$
+				new BaseFeatureIdentifier("prince-to-frog"), //$NON-NLS-1$
 				diagnostic -> System.out.println(new DiagnosticExplained(diagnostic).get()));
 	}
 
@@ -71,7 +74,7 @@ public final class AccessAcquireTest {
 	 */
 	public void denyUnknownFeatureAcquisition() {
 		ServiceInvocationResult<GrantLockAttempt> acquire = new Access(new TestFramework.Everlasting())
-				.acquire("unknown"); //$NON-NLS-1$
+				.acquire(new BaseFeatureIdentifier("unknown")); //$NON-NLS-1$
 		assertFalse(new NoSevereErrors().test(acquire.diagnostic()));
 		assertFalse(acquire.data().isPresent());
 		assertTrue(acquire.diagnostic().severe().size() > 0);
@@ -85,7 +88,7 @@ public final class AccessAcquireTest {
 	 */
 	public void denyFromExpiredLicense() {
 		ServiceInvocationResult<GrantLockAttempt> acquire = new Access(new TestFramework.Expired())
-				.acquire("anti-human-magic.product"); //$NON-NLS-1$
+				.acquire(new BaseFeatureIdentifier("anti-human-magic.product")); //$NON-NLS-1$
 		assertTrue(new NoSevereErrors().test(acquire.diagnostic()));
 		assertTrue(acquire.data().isPresent());
 		assertContainsCode(new LicenseExpired(), acquire.diagnostic().bearable());
@@ -98,7 +101,7 @@ public final class AccessAcquireTest {
 	 */
 	public void denyFromNotStartedLicense() {
 		ServiceInvocationResult<GrantLockAttempt> acquire = new Access(new TestFramework.NotStarted())
-				.acquire("anti-human-magic.product"); //$NON-NLS-1$
+				.acquire(new BaseFeatureIdentifier("anti-human-magic.product")); //$NON-NLS-1$
 		assertTrue(new NoSevereErrors().test(acquire.diagnostic()));
 		assertTrue(acquire.data().isPresent());
 		assertContainsCode(new LicenseNotStarted(), acquire.diagnostic().bearable());
@@ -117,7 +120,7 @@ public final class AccessAcquireTest {
 	 */
 	public void denyUnlicensedFeatureAcquisition() {
 		ServiceInvocationResult<GrantLockAttempt> acquire = new Access(new TestFramework.Everlasting())
-				.acquire("frog-firework"); //$NON-NLS-1$
+				.acquire(new BaseFeatureIdentifier("frog-firework")); //$NON-NLS-1$
 		assertTrue(//
 				new DiagnosticExplained(acquire.diagnostic()).get(), //
 				new NoSevereErrors().test(acquire.diagnostic()));
@@ -125,7 +128,8 @@ public final class AccessAcquireTest {
 		assertFalse(acquire.data().get().successful());
 	}
 
-	private void successfullyAcquireAndRelease(TestFramework framework, String feature, Consumer<Diagnostic> report) {
+	private void successfullyAcquireAndRelease(TestFramework framework, FeatureIdentifier feature,
+			Consumer<Diagnostic> report) {
 		Access access = new Access(framework);
 		GrantLockAttempt lock = successfullyAcquire(feature, access, report);
 		successfullyRelease(lock, access);
@@ -138,7 +142,8 @@ public final class AccessAcquireTest {
 		assertTrue(release.data().get());
 	}
 
-	private GrantLockAttempt successfullyAcquire(String feature, Access access, Consumer<Diagnostic> onDiagnostic) {
+	private GrantLockAttempt successfullyAcquire(FeatureIdentifier feature, Access access,
+			Consumer<Diagnostic> onDiagnostic) {
 		ServiceInvocationResult<GrantLockAttempt> acquire = access.acquire(feature);
 		assertTrue(//
 				new DiagnosticExplained(acquire.diagnostic()).get(), //

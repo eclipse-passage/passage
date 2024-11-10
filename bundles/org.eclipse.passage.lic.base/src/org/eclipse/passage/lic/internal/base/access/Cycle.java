@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.access;
 
@@ -19,6 +20,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
@@ -35,30 +37,29 @@ abstract class Cycle<T> {
 	private final Framework framework;
 	private final CycleFilter filter;
 	private final List<Diagnostic> diagnostics;
-	private final Optional<String> feature;
+	private final Optional<FeatureIdentifier> feature;
 
 	Cycle(Framework framework) {
 		this(framework, new CycleFilter(), Optional.empty());
 	}
 
-	Cycle(Framework framework, String feature) {
+	Cycle(Framework framework, FeatureIdentifier feature) {
 		this(framework, new CycleFilter(feature), Optional.of(feature));
 	}
 
-	private Cycle(Framework framework, CycleFilter filter, Optional<String> feature) {
-		Objects.requireNonNull(framework, "Cycle::framework"); //$NON-NLS-1$
+	private Cycle(Framework framework, CycleFilter filter, Optional<FeatureIdentifier> feature) {
 		Objects.requireNonNull(filter, "Cycle::filter"); //$NON-NLS-1$
-		this.framework = framework;
-		this.filter = filter;
+		this.framework = Objects.requireNonNull(framework);
+		this.filter = Objects.requireNonNull(filter);
 		this.diagnostics = new ArrayList<>();
-		this.feature = feature;
+		this.feature = Objects.requireNonNull(feature);
 	}
 
 	T apply() {
 		return examine(this::requirements, this::permissions);
 	}
 
-	protected Optional<String> feature() {
+	protected Optional<FeatureIdentifier> feature() {
 		return feature;
 	}
 

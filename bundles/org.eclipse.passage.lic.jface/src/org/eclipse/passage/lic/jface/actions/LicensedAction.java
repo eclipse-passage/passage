@@ -8,11 +8,13 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation, further support
+ *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.jface.actions;
 
 import org.eclipse.jface.action.Action;
+import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 
@@ -35,7 +37,7 @@ public abstract class LicensedAction extends Action {
 
 	@SuppressWarnings("restriction")
 	private void runEverywhere(Display display) {
-		new LicensedRunnableUI(display::getActiveShell, getId(), this::doAction).run();
+		new LicensedRunnableUI(display::getActiveShell, new BaseFeatureIdentifier(getId()), this::doAction).run();
 	}
 
 }

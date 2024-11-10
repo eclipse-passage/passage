@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2022 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,12 +9,14 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.access;
 
 import java.util.Collections;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
@@ -180,7 +182,7 @@ final class Lock {
 	 * Certificate is guaranteed to be not empty: either restrictions or
 	 * satisfactions are present
 	 */
-	private String feature(ExaminationCertificate certificate) {
+	private FeatureIdentifier feature(ExaminationCertificate certificate) {
 		return feature(//
 				certificate.restrictions().isEmpty() //
 						? certificate.satisfied().iterator().next()//
@@ -188,7 +190,7 @@ final class Lock {
 		);
 	}
 
-	private String feature(Requirement requirement) {
+	private FeatureIdentifier feature(Requirement requirement) {
 		return requirement.feature().identifier();
 	}
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.api;
 
@@ -53,8 +54,9 @@ public interface PassageUI {
 	 *         for the {@code feature} utilization. Returns {@code false} if
 	 *         existing coverage is not enough and the end user failed to improve
 	 *         it.
+	 * @since 4.0
 	 */
-	ServiceInvocationResult<GrantLockAttempt> acquireLicense(String feature);
+	ServiceInvocationResult<GrantLockAttempt> acquireLicense(FeatureIdentifier feature);
 
 	/**
 	 * Assess the whole product licensing coverage.

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,9 +9,11 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.fakes.requirements;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.requirements.Feature;
 
 public final class FakeFeature implements Feature {
@@ -37,8 +39,14 @@ public final class FakeFeature implements Feature {
 	}
 
 	@Override
-	public String identifier() {
-		return String.format("fake_%s ", identity); //$NON-NLS-1$
+	public FeatureIdentifier identifier() {
+		return new FeatureIdentifier() {
+
+			@Override
+			public String identifier() {
+				return String.format("fake_%s ", identity); //$NON-NLS-1$
+			}
+		};
 	}
 
 	@Override
