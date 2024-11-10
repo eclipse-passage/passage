@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.base.restrictions;
 
@@ -20,6 +21,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.restrictions.Restriction;
 import org.eclipse.passage.lic.api.restrictions.RestrictionComparator;
 
@@ -37,7 +39,7 @@ public final class WorstRestrictionsPerFeature implements Supplier<Collection<Re
 
 	@Override
 	public Collection<Restriction> get() {
-		Map<String, List<Restriction>> featured = restrictions.stream()//
+		Map<FeatureIdentifier, List<Restriction>> featured = restrictions.stream()//
 				.collect(Collectors.groupingBy(r -> r.unsatisfiedRequirement().feature().identifier()));
 		return featured.values().stream()//
 				.map(this::worst) //

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,12 +9,14 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox;
 
 import java.util.Optional;
 import java.util.function.Consumer;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
 
@@ -23,18 +25,18 @@ import org.eclipse.passage.lic.api.access.GrantLockAttempt;
  */
 public abstract class LicensedRunnable implements Runnable {
 
-	private final String feature;
+	private final FeatureIdentifier feature;
 	private final Runnable action;
 	private final Consumer<ServiceInvocationResult<GrantLockAttempt>> fallback;
 
-	protected LicensedRunnable(String feature, Runnable action,
+	protected LicensedRunnable(FeatureIdentifier feature, Runnable action,
 			Consumer<ServiceInvocationResult<GrantLockAttempt>> fallback) {
 		this.feature = feature;
 		this.action = action;
 		this.fallback = fallback;
 	}
 
-	public LicensedRunnable(String feature, Runnable action) {
+	public LicensedRunnable(FeatureIdentifier feature, Runnable action) {
 		this(feature, action, response -> {
 		});
 	}
@@ -63,20 +65,21 @@ public abstract class LicensedRunnable implements Runnable {
 	}
 
 	@SuppressWarnings("hiding")
-	protected abstract ServiceInvocationResult<GrantLockAttempt> acquireLicense(String feature);
+	protected abstract ServiceInvocationResult<GrantLockAttempt> acquireLicense(FeatureIdentifier feature);
 
 	public static final class Default extends LicensedRunnable {
 
-		public Default(String feature, Runnable action) {
+		public Default(FeatureIdentifier feature, Runnable action) {
 			super(feature, action);
 		}
 
-		public Default(String feature, Runnable action, Consumer<ServiceInvocationResult<GrantLockAttempt>> fallback) {
+		public Default(FeatureIdentifier feature, Runnable action,
+				Consumer<ServiceInvocationResult<GrantLockAttempt>> fallback) {
 			super(feature, action, fallback);
 		}
 
 		@Override
-		protected ServiceInvocationResult<GrantLockAttempt> acquireLicense(String feature) {
+		protected ServiceInvocationResult<GrantLockAttempt> acquireLicense(FeatureIdentifier feature) {
 			return new EquinoxPassage().acquireLicense(feature);
 		}
 

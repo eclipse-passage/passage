@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.restrictions;
 
@@ -21,6 +22,7 @@ import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.api.requirements.Feature;
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
+import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.base.conditions.BaseCondition;
 import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
@@ -49,11 +51,11 @@ final class TestState {
 
 	TestState() {
 		product = new BaseLicensedProduct("test-product", "4.3.18-hotfix"); //$NON-NLS-1$//$NON-NLS-2$
-		featureFirst = new BaseFeature("the-first-feature", //$NON-NLS-1$
+		featureFirst = new BaseFeature(new BaseFeatureIdentifier("the-first-feature"), //$NON-NLS-1$
 				"1.12.0", //$NON-NLS-1$
 				"Feature the first", //$NON-NLS-1$
 				getClass().getName());
-		featureSecond = new BaseFeature("the-second-feature", //$NON-NLS-1$
+		featureSecond = new BaseFeature(new BaseFeatureIdentifier("the-second-feature"), //$NON-NLS-1$
 				"6.4.37", //$NON-NLS-1$
 				"Feature the second", //$NON-NLS-1$
 				getClass().getName());

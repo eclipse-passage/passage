@@ -9,7 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
- *     ArSysOp - further support
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.jface;
 
@@ -19,6 +19,7 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import org.eclipse.jface.window.Window;
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.PassageUI;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
@@ -44,7 +45,7 @@ public abstract class BaseEquinoxPassageUI implements PassageUI {
 	}
 
 	@Override
-	public final ServiceInvocationResult<GrantLockAttempt> acquireLicense(String feature) {
+	public final ServiceInvocationResult<GrantLockAttempt> acquireLicense(FeatureIdentifier feature) {
 		return investigate(//
 				() -> acquire(feature), //
 				GrantLockAttempt::certificate, //
@@ -74,7 +75,7 @@ public abstract class BaseEquinoxPassageUI implements PassageUI {
 		return result;
 	}
 
-	private ServiceInvocationResult<GrantLockAttempt> acquire(String feature) {
+	private ServiceInvocationResult<GrantLockAttempt> acquire(FeatureIdentifier feature) {
 		return new EquinoxPassage().acquireLicense(feature);
 	}
 

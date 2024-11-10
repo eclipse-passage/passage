@@ -8,13 +8,15 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation, further support
+ *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.jface.actions;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.equinox.LicensedRunnable;
@@ -30,23 +32,23 @@ public final class LicensedRunnableUI extends LicensedRunnable {
 
 	private final Supplier<Shell> shell;
 
-	public LicensedRunnableUI(Supplier<Shell> shell, String feature, Runnable action,
+	public LicensedRunnableUI(Supplier<Shell> shell, FeatureIdentifier feature, Runnable action,
 			Consumer<ServiceInvocationResult<GrantLockAttempt>> fallback) {
 		super(feature, action, fallback);
 		this.shell = shell;
 	}
 
-	public LicensedRunnableUI(Supplier<Shell> shell, String feature, Runnable action) {
+	public LicensedRunnableUI(Supplier<Shell> shell, FeatureIdentifier feature, Runnable action) {
 		this(shell, feature, action, response -> {
 		});
 	}
 
-	public LicensedRunnableUI(String feature, Runnable action) {
+	public LicensedRunnableUI(FeatureIdentifier feature, Runnable action) {
 		this(Display.getDefault()::getActiveShell, feature, action);
 	}
 
 	@Override
-	protected ServiceInvocationResult<GrantLockAttempt> acquireLicense(String feature) {
+	protected ServiceInvocationResult<GrantLockAttempt> acquireLicense(FeatureIdentifier feature) {
 		return new EquinoxPassageUI(shell).acquireLicense(feature);
 	}
 

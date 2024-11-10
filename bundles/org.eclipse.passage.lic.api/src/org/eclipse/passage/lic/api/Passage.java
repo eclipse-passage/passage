@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.api;
 
@@ -46,12 +47,13 @@ public interface Passage {
 	 * {@code feature} code to let others use the license after you don't need it.
 	 * </p>
 	 * 
-	 * @param feature string identifier of the feature under licensing.
+	 * @param feature identifier of the feature under licensing.
 	 * 
 	 * @see org.eclipse.passage.lic.api
 	 * @see Passage#releaseLicense(ExaminationCertificate)
+	 * @since 4.0
 	 */
-	ServiceInvocationResult<GrantLockAttempt> acquireLicense(String feature);
+	ServiceInvocationResult<GrantLockAttempt> acquireLicense(FeatureIdentifier feature);
 
 	/**
 	 * <p>
@@ -101,7 +103,7 @@ public interface Passage {
 	 * control flow.
 	 * </p>
 	 * 
-	 * @param feature string identifier of the feature under licensing.
+	 * @param feature identifier of the feature under licensing.
 	 * @return {@code true} if the given {@code feature} can be used and
 	 *         {@code false} otherwise
 	 * 
@@ -109,8 +111,9 @@ public interface Passage {
 	 * @see Restriction
 	 * @see RestrictionLevel
 	 * @see org.eclipse.passage.lic.api
+	 * @since 4.0
 	 */
-	boolean canUse(String feature);
+	boolean canUse(FeatureIdentifier feature);
 
 	/**
 	 * Examines all the requirements against all the permissions and summarizes the

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.conditions.mining;
 
@@ -26,10 +27,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
+import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.base.conditions.mining.PathResidentConditions;
 import org.eclipse.passage.lic.base.conditions.mining.PersonalLicenseMiningEquipment;
@@ -47,7 +50,10 @@ public final class LocalConditionsTest {
 	@Test
 	public void minesConditions() throws IOException {
 		// given
-		List<String> features = Arrays.asList("A", "B", "C"); //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+		List<FeatureIdentifier> features = Arrays.asList(//
+				new BaseFeatureIdentifier("A"), //$NON-NLS-1$
+				new BaseFeatureIdentifier("B"), //$NON-NLS-1$
+				new BaseFeatureIdentifier("C")); //$NON-NLS-1$
 		writePseudoLicenseFile(features);
 		Spy spy = new Spy();
 		// when
@@ -69,7 +75,7 @@ public final class LocalConditionsTest {
 		new PathResidentConditions(Paths.get("."), null); //$NON-NLS-1$
 	}
 
-	private void assertMiningResultsAreOk(List<String> features,
+	private void assertMiningResultsAreOk(List<FeatureIdentifier> features,
 			ServiceInvocationResult<Collection<ConditionPack>> result) {
 		assertTrue(result.diagnostic().severe().isEmpty());
 		assertTrue(result.data().isPresent());
@@ -101,7 +107,7 @@ public final class LocalConditionsTest {
 		return new BaseLicensedProduct("test-local-condition-minder-product", "1.0.0"); //$NON-NLS-1$//$NON-NLS-2$
 	}
 
-	private void writePseudoLicenseFile(List<String> features) throws IOException {
+	private void writePseudoLicenseFile(List<FeatureIdentifier> features) throws IOException {
 		LicensedProduct product = product();
 		folder.newFolder(product.identifier());
 		folder.newFolder(Paths.get(product.identifier()).resolve(product.version()).toString());
@@ -111,7 +117,7 @@ public final class LocalConditionsTest {
 						.resolve("fake-license" + new PassageFileExtension.LicenseEncrypted().get()) //$NON-NLS-1$
 						.toString());
 		try (PrintWriter writer = new PrintWriter(new FileWriter(lic))) {
-			features.forEach(writer::println);
+			features.stream().map(FeatureIdentifier::identifier).forEach(writer::println);
 		}
 	}
 

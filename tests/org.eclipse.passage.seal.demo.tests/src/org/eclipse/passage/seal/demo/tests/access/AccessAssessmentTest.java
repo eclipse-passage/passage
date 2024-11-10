@@ -8,22 +8,24 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation, further support
+ *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.seal.demo.tests.access;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.requirements.Feature;
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
 import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.base.access.Access;
 import org.junit.Test;
@@ -38,9 +40,9 @@ public final class AccessAssessmentTest {
 	public void assessWithValidLicense() {
 		assess(//
 				new TestFramework.Everlasting(), //
-				new HashSet<>(Arrays.asList(//
-						"prince-to-frog", //$NON-NLS-1$
-						"anti-human-magic.product")) //$NON-NLS-1$
+				Set.of(//
+						new BaseFeatureIdentifier("prince-to-frog"), //$NON-NLS-1$
+						new BaseFeatureIdentifier("anti-human-magic.product")) //$NON-NLS-1$
 		);
 	}
 
@@ -58,7 +60,7 @@ public final class AccessAssessmentTest {
 				new HashSet<>());
 	}
 
-	private void assess(TestFramework framework, Set<String> expected) {
+	private void assess(TestFramework framework, Set<FeatureIdentifier> expected) {
 		ServiceInvocationResult<ExaminationCertificate> result = new Access(framework).assess();
 		assertTrue(new NoSevereErrors().test(result.diagnostic()));
 		assertTrue(result.data().isPresent());
@@ -67,7 +69,7 @@ public final class AccessAssessmentTest {
 				new HashSet<>(coveredFeatures(result.data().get())));
 	}
 
-	private Set<String> coveredFeatures(ExaminationCertificate certificate) {
+	private Set<FeatureIdentifier> coveredFeatures(ExaminationCertificate certificate) {
 		return certificate.satisfied().stream() //
 				.map(Requirement::feature)//
 				.map(Feature::identifier)//

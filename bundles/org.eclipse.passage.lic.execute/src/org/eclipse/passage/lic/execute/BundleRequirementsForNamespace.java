@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2022 ArSysOp
+ * Copyright (c) 2022, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.execute;
 
@@ -42,7 +43,7 @@ final class BundleRequirementsForNamespace implements ResolvedRequirementsRegist
 	}
 
 	private boolean declaredInNamespace(Requirement requirement) {
-		return requirement.feature().identifier().startsWith(namespace);
+		return requirement.feature().identifier().identifier().startsWith(namespace);
 	}
 
 }

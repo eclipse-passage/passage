@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,9 +9,11 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.Passage;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
@@ -36,7 +38,7 @@ public final class EquinoxPassage implements Passage {
 	}
 
 	@Override
-	public boolean canUse(String feature) {
+	public boolean canUse(FeatureIdentifier feature) {
 		return delegate.canUse(feature);
 	}
 
@@ -46,7 +48,7 @@ public final class EquinoxPassage implements Passage {
 	}
 
 	@Override
-	public ServiceInvocationResult<GrantLockAttempt> acquireLicense(String feature) {
+	public ServiceInvocationResult<GrantLockAttempt> acquireLicense(FeatureIdentifier feature) {
 		return delegate.acquireLicense(feature);
 	}
 

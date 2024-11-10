@@ -58,7 +58,7 @@ public class RequirementsFromManifestTest {
 
 	private void assertE(Collection<Requirement> requirements) {
 		Optional<Requirement> e = requirements.stream()//
-				.filter(r -> "E".equals(r.feature().identifier())) //$NON-NLS-1$
+				.filter(r -> "E".equals(r.feature().identifier().identifier())) //$NON-NLS-1$
 				.findAny();//
 		assertTrue(e.isPresent());
 		assertEquals(2, e.get().agreements().size());

@@ -8,7 +8,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation, further support
+ *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.cli;
 
@@ -18,6 +19,7 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
+import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.slf4j.Logger;
@@ -81,7 +83,8 @@ public final class LicenseProtection {
 	}
 
 	private Optional<GrantLockAttempt> acquireLicense(LicensedProduct product) {
-		ServiceInvocationResult<GrantLockAttempt> response = new EquinoxPassage().acquireLicense(product.identifier());
+		ServiceInvocationResult<GrantLockAttempt> response = new EquinoxPassage()
+				.acquireLicense(new BaseFeatureIdentifier(product.identifier()));
 		if (!successful(response)) {
 			log.error(String.format(//
 					"Failed to acquire license \nfor product %s:\n%s\n", //$NON-NLS-1$

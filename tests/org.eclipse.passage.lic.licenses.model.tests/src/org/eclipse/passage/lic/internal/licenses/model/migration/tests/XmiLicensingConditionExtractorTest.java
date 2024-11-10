@@ -9,7 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
- *     ArSysOp - further support
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.licenses.model.migration.tests;
 
@@ -104,12 +104,12 @@ public class XmiLicensingConditionExtractorTest {
 		}
 		assertEquals(2, actual.size());
 		Condition actual1 = actual.get(0);
-		assertEquals(COND1_FEATURE_ID, actual1.feature());
+		assertEquals(COND1_FEATURE_ID, actual1.feature().identifier());
 		assertEquals(COND1_FEATURE_VERSION, actual1.versionMatch().version());
 		assertEquals(COND1_CONDITION_TYPE, actual1.evaluationInstructions().type().identifier());
 		assertEquals(COND1_CONDITION_EXPRESSION, actual1.evaluationInstructions().expression());
 		Condition actual2 = actual.get(1);
-		assertEquals(COND2_FEATURE_ID, actual2.feature());
+		assertEquals(COND2_FEATURE_ID, actual2.feature().identifier());
 		assertEquals(COND2_FEATURE_VERSION, actual2.versionMatch().version());
 		assertEquals(COND2_CONDITION_TYPE, actual2.evaluationInstructions().type().identifier());
 		assertEquals(COND2_CONDITION_EXPRESSION, actual2.evaluationInstructions().expression());

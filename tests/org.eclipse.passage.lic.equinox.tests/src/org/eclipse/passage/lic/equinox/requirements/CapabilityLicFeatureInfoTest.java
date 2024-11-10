@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.requirements;
 
@@ -21,11 +22,11 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lic.base.StringNamedData;
+import org.eclipse.passage.lic.base.BaseNamedData;
 import org.junit.Test;
 import org.osgi.framework.wiring.BundleCapability;
 
-abstract class CapabilityLicFeatureInfoTest {
+abstract class CapabilityLicFeatureInfoTest<T> {
 
 	@Test
 	public void read() {
@@ -35,7 +36,7 @@ abstract class CapabilityLicFeatureInfoTest {
 				data.capabilities().stream()//
 						.map(BundleCapability::getAttributes) //
 						.map(this::infoSupplier) //
-						.map(StringNamedData::get) //
+						.map(BaseNamedData::get) //
 						.filter(Optional::isPresent)//
 						.map(Optional::get) //
 						.collect(Collectors.toSet())//
@@ -52,8 +53,8 @@ abstract class CapabilityLicFeatureInfoTest {
 		assertFalse(infoSupplier(Collections.emptyMap()).get().isPresent());
 	}
 
-	protected abstract StringNamedData infoSupplier(Map<String, Object> attributes);
+	protected abstract BaseNamedData<T> infoSupplier(Map<String, Object> attributes);
 
-	protected abstract Set<String> expectations();
+	protected abstract Set<T> expectations();
 
 }

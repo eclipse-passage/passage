@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.e4.ui.addons;
 
@@ -21,6 +22,7 @@ import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
+import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.base.restrictions.ExaminationExplained;
 import org.eclipse.passage.lic.equinox.EquinoxPassage;
@@ -55,7 +57,7 @@ public final class E4LicensingAddon {
 			@SuppressWarnings("unused") @UIEventTopic(UIEvents.UILifeCycle.APP_STARTUP_COMPLETE) //
 			Event event) {
 		ServiceInvocationResult<GrantLockAttempt> response = //
-				new EquinoxPassageUI(this::shell).acquireLicense(product().identifier());
+				new EquinoxPassageUI(this::shell).acquireLicense(new BaseFeatureIdentifier(product().identifier()));
 		if (grantAcquired(response)) {
 			grant = response.data();
 		} else {

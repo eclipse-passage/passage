@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,30 +9,31 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.requirements;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.passage.lic.base.StringNamedData;
+import org.eclipse.passage.lic.api.FeatureIdentifier;
+import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
+import org.eclipse.passage.lic.base.BaseNamedData;
 
-public final class CapabilityLicFeatureIdTest extends CapabilityLicFeatureInfoTest {
+public final class CapabilityLicFeatureIdTest extends CapabilityLicFeatureInfoTest<FeatureIdentifier> {
 
 	@Override
-	protected StringNamedData infoSupplier(Map<String, Object> attributes) {
+	protected BaseNamedData<FeatureIdentifier> infoSupplier(Map<String, Object> attributes) {
 		return new CapabilityLicFeatureId(attributes);
 	}
 
 	@Override
-	protected Set<String> expectations() {
-		return new HashSet<String>(Arrays.asList(//
-				"PI", //$NON-NLS-1$
-				"E", //$NON-NLS-1$
-				"Incomplete" //$NON-NLS-1$
-		));
+	protected Set<FeatureIdentifier> expectations() {
+		return Set.of(//
+				new BaseFeatureIdentifier("PI"), //$NON-NLS-1$
+				new BaseFeatureIdentifier("E"), //$NON-NLS-1$
+				new BaseFeatureIdentifier("Incomplete") //$NON-NLS-1$
+		);
 	}
 
 }

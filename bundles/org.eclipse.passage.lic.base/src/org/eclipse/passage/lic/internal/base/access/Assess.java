@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,11 +9,13 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.access;
 
 import java.util.Collections;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
@@ -23,7 +25,7 @@ import org.eclipse.passage.lic.base.restrictions.BaseExaminationCertificate;
 
 final class Assess extends Cycle<ServiceInvocationResult<ExaminationCertificate>> {
 
-	Assess(Framework framework, String feature) {
+	Assess(Framework framework, FeatureIdentifier feature) {
 		super(framework, feature);
 	}
 

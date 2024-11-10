@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.requirements;
 
@@ -19,8 +20,8 @@ import java.util.Objects;
 import java.util.Optional;
 
 import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.base.BaseNamedData;
 import org.eclipse.passage.lic.base.NamedData;
-import org.eclipse.passage.lic.base.StringNamedData;
 
 /**
  * <p>
@@ -55,11 +56,12 @@ public final class RequirementToCapability implements NamedData<Requirement> {
 		return new LicCapabilityNamespace().get();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public String printed(Requirement value) {
 		StringBuilder out = new StringBuilder();
 		attributes().stream() //
-				.map(NamedData.Writable<String>::new)//
+				.map(NamedData.Writable::new)//
 				.forEach(w -> w.write(out));
 		return out.toString();
 	}
@@ -74,8 +76,8 @@ public final class RequirementToCapability implements NamedData<Requirement> {
 		return ","; //$NON-NLS-1$
 	}
 
-	private List<StringNamedData> attributes() {
-		List<StringNamedData> mandatory = Arrays.asList(//
+	private List<BaseNamedData<?>> attributes() {
+		List<BaseNamedData<?>> mandatory = Arrays.asList(//
 				new CapabilityLicFeatureId(requirement), //
 				new CapabilityLicFeatureName(requirement), //
 				new CapabilityLicFeatureVersion(requirement), //
@@ -84,7 +86,7 @@ public final class RequirementToCapability implements NamedData<Requirement> {
 		if (requirement.agreements().isEmpty()) {
 			return mandatory;
 		}
-		List<StringNamedData> full = new ArrayList<>(mandatory);
+		List<BaseNamedData<?>> full = new ArrayList<>(mandatory);
 		full.add(new CapabilityLicFeatureAgreements(requirement));
 		return full;
 	}

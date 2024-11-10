@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.access;
 
@@ -20,6 +21,7 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.api.registry.Registry;
@@ -43,9 +45,9 @@ public final class Requirements implements Supplier<ServiceInvocationResult<Coll
 	private final Function<//
 			ServiceInvocationResult<Collection<Requirement>>, //
 			ServiceInvocationResult<Collection<Requirement>>> filter;
-	private final Optional<String> feature;
+	private final Optional<FeatureIdentifier> feature;
 
-	public Requirements(Registry<StringServiceId, ResolvedRequirements> registry, String feature) {
+	public Requirements(Registry<StringServiceId, ResolvedRequirements> registry, FeatureIdentifier feature) {
 		this(registry, new RequirementsFeatureFilter(feature).get(), Optional.of(feature));
 	}
 
@@ -55,7 +57,7 @@ public final class Requirements implements Supplier<ServiceInvocationResult<Coll
 
 	public Requirements(Registry<StringServiceId, ResolvedRequirements> registry,
 			Function<ServiceInvocationResult<Collection<Requirement>>, ServiceInvocationResult<Collection<Requirement>>> filter,
-			Optional<String> feature) {
+			Optional<FeatureIdentifier> feature) {
 		Objects.requireNonNull(registry, "Requirements::registry"); //$NON-NLS-1$
 		Objects.requireNonNull(filter, "Requirements::filter"); //$NON-NLS-1$
 		this.registry = registry;

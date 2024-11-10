@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.conditions;
 
@@ -19,9 +20,11 @@ import java.time.ZonedDateTime;
 
 import org.eclipse.passage.lic.api.EvaluationInstructions;
 import org.eclipse.passage.lic.api.EvaluationType;
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.api.conditions.VersionMatch;
+import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
 import org.eclipse.passage.lic.base.conditions.BaseCondition;
 import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
@@ -96,8 +99,8 @@ public final class BaseConditionTest {
 		return "aaa"; //$NON-NLS-1$
 	}
 
-	private String feature() {
-		return "test-feature"; //$NON-NLS-1$
+	private FeatureIdentifier feature() {
+		return new BaseFeatureIdentifier("test-feature"); //$NON-NLS-1$
 	}
 
 	private VersionMatch versionMatch() {

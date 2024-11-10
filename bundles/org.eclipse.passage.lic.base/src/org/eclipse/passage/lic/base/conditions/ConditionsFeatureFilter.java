@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,12 +9,14 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.base.conditions;
 
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.base.FeatureFilter;
 
@@ -23,9 +25,12 @@ import org.eclipse.passage.lic.base.FeatureFilter;
  */
 public final class ConditionsFeatureFilter implements Supplier<FeatureFilter<ConditionPack>> {
 
-	private final String feature;
+	private final FeatureIdentifier feature;
 
-	public ConditionsFeatureFilter(String feature) {
+	/**
+	 * @since 4.0
+	 */
+	public ConditionsFeatureFilter(FeatureIdentifier feature) {
 		this.feature = feature;
 	}
 
@@ -34,7 +39,7 @@ public final class ConditionsFeatureFilter implements Supplier<FeatureFilter<Con
 		return new FeatureFilter<ConditionPack>(feature, this::filtered);
 	}
 
-	private Optional<ConditionPack> filtered(ConditionPack pack, String incoming) {
+	private Optional<ConditionPack> filtered(ConditionPack pack, FeatureIdentifier incoming) {
 		ConditionPack filtered = new FeatureConditionPack(pack, incoming);
 		return filtered.conditions().isEmpty() ? Optional.empty() : Optional.of(filtered);
 	}

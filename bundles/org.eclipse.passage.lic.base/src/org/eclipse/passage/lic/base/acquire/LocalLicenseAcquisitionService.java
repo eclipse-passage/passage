@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,11 +9,13 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.base.acquire;
 
 import java.util.Date;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
@@ -28,7 +30,7 @@ import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 public abstract class LocalLicenseAcquisitionService implements LicenseAcquisitionService {
 
 	@Override
-	public final ServiceInvocationResult<GrantAcquisition> acquire(LicensedProduct product, String feature) {
+	public final ServiceInvocationResult<GrantAcquisition> acquire(LicensedProduct product, FeatureIdentifier feature) {
 		return new BaseServiceInvocationResult<>(//
 				new BaseGrantAcquisition(//
 						"local", //$NON-NLS-1$

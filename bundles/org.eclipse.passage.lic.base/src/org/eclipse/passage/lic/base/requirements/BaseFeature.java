@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,11 +9,13 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.base.requirements;
 
 import java.util.Objects;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.requirements.Feature;
 
 /**
@@ -23,20 +25,19 @@ import org.eclipse.passage.lic.api.requirements.Feature;
  */
 public final class BaseFeature implements Feature {
 
-	private final String id;
+	private final FeatureIdentifier id;
 	private final String version;
 	private final String name;
 	private final String provider;
 
-	public BaseFeature(String id, String version, String name, String provider) {
-		Objects.requireNonNull(id, "Identifier is mandatory for a feature"); //$NON-NLS-1$
-		Objects.requireNonNull(version, "Version is mandatory for a feature"); //$NON-NLS-1$
-		Objects.requireNonNull(name, "Name is mandatory for a feature"); //$NON-NLS-1$
-		Objects.requireNonNull(provider, "Provider is mandatory for a feature"); //$NON-NLS-1$
-		this.id = id;
-		this.version = version;
-		this.name = name;
-		this.provider = provider;
+	/**
+	 * @since 4.0
+	 */
+	public BaseFeature(FeatureIdentifier id, String version, String name, String provider) {
+		this.id = Objects.requireNonNull(id);
+		this.version = Objects.requireNonNull(version);
+		this.name = Objects.requireNonNull(name);
+		this.provider = Objects.requireNonNull(provider);
 	}
 
 	@Override
@@ -50,7 +51,7 @@ public final class BaseFeature implements Feature {
 	}
 
 	@Override
-	public String identifier() {
+	public FeatureIdentifier identifier() {
 		return id;
 	}
 

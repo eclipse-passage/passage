@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.base.restrictions;
 
@@ -16,6 +17,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
@@ -27,9 +29,12 @@ import org.eclipse.passage.lic.api.restrictions.Restriction;
  */
 public final class CertificateIsSufficient implements Predicate<Optional<ExaminationCertificate>> {
 
-	private final String feature;
+	private final FeatureIdentifier feature;
 
-	public CertificateIsSufficient(String feature) {
+	/**
+	 * @since 4.0
+	 */
+	public CertificateIsSufficient(FeatureIdentifier feature) {
 		this.feature = Objects.requireNonNull(feature);
 	}
 

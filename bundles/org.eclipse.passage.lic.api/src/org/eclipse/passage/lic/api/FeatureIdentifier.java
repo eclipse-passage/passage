@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,30 +9,19 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
- *     ArSysOp - further support and improvements
  *******************************************************************************/
-package org.eclipse.passage.lic.api.acquire;
-
-import java.util.Date;
-
-import org.eclipse.passage.lic.api.FeatureIdentifier;
+package org.eclipse.passage.lic.api;
 
 /**
+ * Identifies a feature under license protection
  * 
- * @since 2.1
+ * @see Passage#canUse(FeatureIdentifier)
+ * @see Passage#acquireLicense(FeatureIdentifier)
+ * 
+ * @since 4.0
  */
-public interface GrantAcquisition {
+public interface FeatureIdentifier {
 
 	String identifier();
 
-	String grant();
-
-	/**
-	 * @since 4.0
-	 */
-	FeatureIdentifier feature();
-
-	String user();
-
-	Date created();
 }

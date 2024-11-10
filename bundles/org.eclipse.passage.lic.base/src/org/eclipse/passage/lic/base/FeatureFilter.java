@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,23 +9,24 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.base;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 
 /**
  * 
- * @author afedorov3un
- *
  * @param <T>
  * 
  * @since 2.1
@@ -33,12 +34,15 @@ import org.eclipse.passage.lic.api.ServiceInvocationResult;
 public final class FeatureFilter<T>
 		implements Function<ServiceInvocationResult<Collection<T>>, ServiceInvocationResult<Collection<T>>> {
 
-	private final String feature;
-	private final BiFunction<T, String, Optional<T>> map;
+	private final FeatureIdentifier feature;
+	private final BiFunction<T, FeatureIdentifier, Optional<T>> map;
 
-	public FeatureFilter(String feature, BiFunction<T, String, Optional<T>> map) {
-		this.feature = feature;
-		this.map = map;
+	/**
+	 * @since 4.0
+	 */
+	public FeatureFilter(FeatureIdentifier feature, BiFunction<T, FeatureIdentifier, Optional<T>> map) {
+		this.feature = Objects.requireNonNull(feature);
+		this.map = Objects.requireNonNull(map);
 	}
 
 	@Override

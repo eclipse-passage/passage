@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,17 +9,16 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.requirements;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.passage.lic.base.StringNamedData;
 
-public final class CapabilityLicFeatureAgreementsTest extends CapabilityLicFeatureInfoTest {
+public final class CapabilityLicFeatureAgreementsTest extends CapabilityLicFeatureInfoTest<String> {
 
 	@Override
 	protected StringNamedData infoSupplier(Map<String, Object> attributes) {
@@ -28,9 +27,9 @@ public final class CapabilityLicFeatureAgreementsTest extends CapabilityLicFeatu
 
 	@Override
 	protected Set<String> expectations() {
-		return new HashSet<String>(Arrays.asList(//
+		return Set.of(//
 				"Honor Euler.txt::comp_lics/EULERS IDENTITY" //$NON-NLS-1$
-		));
+		);
 	}
 
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,12 +9,14 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.fakes.conditions;
 
 import java.util.Optional;
 
 import org.eclipse.passage.lic.api.EvaluationInstructions;
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.api.conditions.VersionMatch;
@@ -22,7 +24,7 @@ import org.eclipse.passage.lic.api.conditions.VersionMatch;
 public final class FakeCondition implements Condition {
 
 	private Optional<String> identifier = Optional.empty();
-	private Optional<String> feature = Optional.empty();
+	private Optional<FeatureIdentifier> feature = Optional.empty();
 	private Optional<VersionMatch> version = Optional.empty();
 	private Optional<ValidityPeriod> period = Optional.empty();
 	private Optional<EvaluationInstructions> evaluation = Optional.empty();
@@ -33,7 +35,7 @@ public final class FakeCondition implements Condition {
 	}
 
 	@Override
-	public String feature() {
+	public FeatureIdentifier feature() {
 		return getOrFail(feature);
 	}
 
@@ -69,7 +71,7 @@ public final class FakeCondition implements Condition {
 		return this;
 	}
 
-	public FakeCondition withFeature(String f) {
+	public FakeCondition withFeature(FeatureIdentifier f) {
 		this.feature = Optional.ofNullable(f);
 		return this;
 	}

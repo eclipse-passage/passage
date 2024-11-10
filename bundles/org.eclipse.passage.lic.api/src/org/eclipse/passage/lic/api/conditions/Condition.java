@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,10 +9,12 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.api.conditions;
 
 import org.eclipse.passage.lic.api.EvaluationInstructions;
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 
 /**
  * <p>
@@ -38,8 +40,9 @@ public interface Condition {
 
 	/**
 	 * @return unique identifier of a feature under licensing.
+	 * @since 4.0
 	 */
-	String feature();
+	FeatureIdentifier feature();
 
 	/**
 	 * Define the actual {@code version} representing string that has been mined in

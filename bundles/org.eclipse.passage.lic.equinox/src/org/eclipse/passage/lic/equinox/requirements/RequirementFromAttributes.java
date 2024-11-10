@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.requirements;
 
@@ -20,6 +21,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.agreements.ResolvedAgreement;
 import org.eclipse.passage.lic.api.diagnostic.Trouble;
@@ -54,7 +56,7 @@ final class RequirementFromAttributes implements Supplier<ServiceInvocationResul
 
 	@Override
 	public ServiceInvocationResult<Collection<Requirement>> get() {
-		Optional<String> feature = new CapabilityLicFeatureId(attributes).get();
+		Optional<FeatureIdentifier> feature = new CapabilityLicFeatureId(attributes).get();
 		if (!feature.isPresent()) {
 			return fail(NLS.bind(EquinoxMessages.RequirementsFromCapability_no_feature_id, //
 					new LicCapabilityNamespace().get(), new BundleName(bundle).get()));
@@ -62,12 +64,12 @@ final class RequirementFromAttributes implements Supplier<ServiceInvocationResul
 		return succeed(requirementFromAttributes(feature.get()));
 	}
 
-	private Requirement requirementFromAttributes(String feature) {
+	private Requirement requirementFromAttributes(FeatureIdentifier feature) {
 		String version = new CapabilityLicFeatureVersion(attributes).get()//
 				.map(value -> new SafeVersion(value).value())//
 				.orElse(new DefaultVersion().value());
 		String name = new CapabilityLicFeatureName(attributes).get()//
-				.orElse(feature);
+				.orElse(feature.identifier());
 		String provider = new CapabilityLicFeatureProvider(attributes).get()//
 				.orElseGet(new BundleVendor(bundle));
 		RestrictionLevel level = new CapabilityLicFeatureLevel(attributes).get()//

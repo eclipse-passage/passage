@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.base.conditions;
 
@@ -17,6 +18,7 @@ import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.agreements.GlobalAgreement;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ConditionOrigin;
@@ -31,13 +33,14 @@ import org.eclipse.passage.lic.api.conditions.ConditionPack;
 public final class FeatureConditionPack implements ConditionPack {
 
 	private final ConditionPack parent;
-	private final String feature;
+	private final FeatureIdentifier feature;
 
-	public FeatureConditionPack(ConditionPack parent, String feature) {
-		Objects.requireNonNull(parent, "FeatureConditionPack::parent"); //$NON-NLS-1$
-		Objects.requireNonNull(feature, "FeatureConditionPack::feature"); //$NON-NLS-1$
-		this.parent = parent;
-		this.feature = feature;
+	/**
+	 * @since 4.0
+	 */
+	public FeatureConditionPack(ConditionPack parent, FeatureIdentifier feature) {
+		this.parent = Objects.requireNonNull(parent);
+		this.feature = Objects.requireNonNull(feature);
 	}
 
 	@Override

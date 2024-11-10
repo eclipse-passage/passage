@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2022 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.base.acquire;
 
@@ -16,6 +17,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
 
 /**
@@ -27,21 +29,19 @@ public final class BaseGrantAcquisition implements GrantAcquisition, Serializabl
 	private static final long serialVersionUID = 2755031536488685673L;
 	private final String id;
 	private final String grant;
-	private final String feature;
+	private final FeatureIdentifier feature;
 	private final String user;
 	private final Date created;
 
-	public BaseGrantAcquisition(String id, String grant, String feature, String user, Date created) {
-		Objects.requireNonNull(id, "BaseGrantAcquisition::id"); //$NON-NLS-1$
-		Objects.requireNonNull(grant, "BaseGrantAcquisition::grant"); //$NON-NLS-1$
-		Objects.requireNonNull(feature, "BaseGrantAcquisition::feature"); //$NON-NLS-1$
-		Objects.requireNonNull(user, "BaseGrantAcquisition::user"); //$NON-NLS-1$
-		Objects.requireNonNull(created, "BaseGrantAcquisition::created"); //$NON-NLS-1$
-		this.id = id;
-		this.grant = grant;
-		this.feature = feature;
-		this.user = user;
-		this.created = created;
+	/**
+	 * @since 4.0
+	 */
+	public BaseGrantAcquisition(String id, String grant, FeatureIdentifier feature, String user, Date created) {
+		this.id = Objects.requireNonNull(id);
+		this.grant = Objects.requireNonNull(grant);
+		this.feature = Objects.requireNonNull(feature);
+		this.user = Objects.requireNonNull(user);
+		this.created = Objects.requireNonNull(created);
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public final class BaseGrantAcquisition implements GrantAcquisition, Serializabl
 	}
 
 	@Override
-	public String feature() {
+	public FeatureIdentifier feature() {
 		return feature;
 	}
 
