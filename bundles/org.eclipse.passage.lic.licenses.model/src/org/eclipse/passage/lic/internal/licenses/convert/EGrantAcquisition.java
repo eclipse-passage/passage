@@ -32,7 +32,7 @@ public final class EGrantAcquisition implements Supplier<GrantAcqisition> {
 		grant.setIdentifier(source.identifier());
 		grant.setGrant(source.grant().identifier());
 		grant.setFeature(source.feature().identifier());
-		grant.setUser(source.user());
+		grant.setUser(source.user().identifier());
 		grant.setCreated(source.created());
 		return grant;
 	}
