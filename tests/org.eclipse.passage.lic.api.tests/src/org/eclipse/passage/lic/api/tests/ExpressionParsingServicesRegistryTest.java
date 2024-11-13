@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests;
 
@@ -30,7 +31,7 @@ import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeExpress
  * and satisfy all the demands.
  * </p>
  */
-public abstract class ExpressionParsingServicesRegitryTest extends ReadOnlyCollectionTest<ExpressionParsingService> {
+public abstract class ExpressionParsingServicesRegistryTest extends ReadOnlyCollectionTest<ExpressionParsingService> {
 
 	@Override
 	protected final Supplier<Collection<ExpressionParsingService>> collection() {
