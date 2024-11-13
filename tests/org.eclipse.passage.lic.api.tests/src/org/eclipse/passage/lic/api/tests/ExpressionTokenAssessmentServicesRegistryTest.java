@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests;
 
@@ -17,29 +18,30 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.Framework;
-import org.eclipse.passage.lic.api.conditions.mining.MinedConditions;
-import org.eclipse.passage.lic.api.tests.fakes.conditions.mining.FakeMinedConditions;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessmentService;
+import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeExpressionTokenAssessmentService;
 
 /**
  * <p>
  * Check that {@linkplain Framework} instance in use supplies read only
- * collection of condition mining service.
+ * collection of condition expression token assessment services.
  * </p>
  * <p>
  * Each {@code Framework} implementation must supply a test extending this class
  * and satisfy all the demands.
  * </p>
  */
-public abstract class ConditionMiningServicesRegitryTest extends ReadOnlyCollectionTest<MinedConditions> {
+public abstract class ExpressionTokenAssessmentServicesRegistryTest
+		extends ReadOnlyCollectionTest<ExpressionTokenAssessmentService> {
 
 	@Override
-	protected final Supplier<Collection<MinedConditions>> collection() {
-		return () -> framework().get().accessCycleConfiguration().conditionMiners().get().services();
+	protected final Supplier<Collection<ExpressionTokenAssessmentService>> collection() {
+		return () -> framework().get().accessCycleConfiguration().expressionAssessors().get().services();
 	}
 
 	@Override
-	protected final MinedConditions single() {
-		return new FakeMinedConditions();
+	protected final ExpressionTokenAssessmentService single() {
+		return new FakeExpressionTokenAssessmentService();
 	}
 
 	protected abstract Optional<Framework> framework();

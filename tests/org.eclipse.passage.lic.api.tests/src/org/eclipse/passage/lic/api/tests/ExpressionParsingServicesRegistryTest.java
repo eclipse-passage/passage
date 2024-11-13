@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests;
 
@@ -17,29 +18,29 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.Framework;
-import org.eclipse.passage.lic.api.conditions.evaluation.PermissionEmittingService;
-import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakePermissionEmittingService;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionParsingService;
+import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeExpressionParsingService;
 
 /**
  * <p>
  * Check that {@linkplain Framework} instance in use supplies read only
- * collection of permission emitting services.
+ * collection of condition expression parsing services.
  * </p>
  * <p>
  * Each {@code Framework} implementation must supply a test extending this class
  * and satisfy all the demands.
  * </p>
  */
-public abstract class PermissionEmittingServicesRegitryTest extends ReadOnlyCollectionTest<PermissionEmittingService> {
+public abstract class ExpressionParsingServicesRegistryTest extends ReadOnlyCollectionTest<ExpressionParsingService> {
 
 	@Override
-	protected final Supplier<Collection<PermissionEmittingService>> collection() {
-		return () -> framework().get().accessCycleConfiguration().permissionEmitters().get().services();
+	protected final Supplier<Collection<ExpressionParsingService>> collection() {
+		return () -> framework().get().accessCycleConfiguration().expressionParsers().get().services();
 	}
 
 	@Override
-	protected final PermissionEmittingService single() {
-		return new FakePermissionEmittingService();
+	protected final ExpressionParsingService single() {
+		return new FakeExpressionParsingService();
 	}
 
 	protected abstract Optional<Framework> framework();

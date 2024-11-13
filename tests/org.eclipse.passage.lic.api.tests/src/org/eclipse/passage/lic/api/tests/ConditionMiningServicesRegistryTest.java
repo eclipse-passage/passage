@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests;
 
@@ -17,29 +18,29 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.Framework;
-import org.eclipse.passage.lic.api.conditions.mining.ConditionTransport;
-import org.eclipse.passage.lic.api.tests.fakes.io.FakeConditionTransport;
+import org.eclipse.passage.lic.api.conditions.mining.MinedConditions;
+import org.eclipse.passage.lic.api.tests.fakes.conditions.mining.FakeMinedConditions;
 
 /**
  * <p>
  * Check that {@linkplain Framework} instance in use supplies read only
- * collection of condition transport services.
+ * collection of condition mining service.
  * </p>
  * <p>
  * Each {@code Framework} implementation must supply a test extending this class
  * and satisfy all the demands.
  * </p>
  */
-public abstract class ConditionTransportServicesRegitryTest extends ReadOnlyCollectionTest<ConditionTransport> {
+public abstract class ConditionMiningServicesRegistryTest extends ReadOnlyCollectionTest<MinedConditions> {
 
 	@Override
-	protected final Supplier<Collection<ConditionTransport>> collection() {
-		return () -> framework().get().accessCycleConfiguration().transports().get().services();
+	protected final Supplier<Collection<MinedConditions>> collection() {
+		return () -> framework().get().accessCycleConfiguration().conditionMiners().get().services();
 	}
 
 	@Override
-	protected final ConditionTransport single() {
-		return new FakeConditionTransport();
+	protected final MinedConditions single() {
+		return new FakeMinedConditions();
 	}
 
 	protected abstract Optional<Framework> framework();

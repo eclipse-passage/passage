@@ -9,16 +9,17 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.seal.demo.tests.registries;
 
 import java.util.Optional;
 
 import org.eclipse.passage.lic.api.Framework;
-import org.eclipse.passage.lic.api.tests.RequirementResolutionServicesRegitryTest;
+import org.eclipse.passage.lic.api.tests.RequirementResolutionServicesRegistryTest;
 import org.eclipse.passage.seal.internal.demo.DemoFrameworkSupplier;
 
-public final class SealedConitionMiningServicesRegistryTest extends RequirementResolutionServicesRegitryTest {
+public final class SealedConitionMiningServicesRegistryTest extends RequirementResolutionServicesRegistryTest {
 
 	@Override
 	protected Optional<Framework> framework() {
