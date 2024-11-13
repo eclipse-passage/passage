@@ -18,6 +18,7 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
 import org.eclipse.passage.lic.base.BaseGrantIdentifier;
+import org.eclipse.passage.lic.base.BaseUserIdentifier;
 import org.eclipse.passage.lic.base.acquire.BaseGrantAcquisition;
 import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
 
@@ -35,7 +36,7 @@ public final class PGrantAcquisition implements Supplier<org.eclipse.passage.lic
 				source.getIdentifier(), //
 				new BaseGrantIdentifier(source.getGrant()), //
 				new BaseFeatureIdentifier(source.getFeature()), //
-				source.getUser(), //
+				new BaseUserIdentifier(source.getUser()), //
 				source.getCreated());
 	}
 

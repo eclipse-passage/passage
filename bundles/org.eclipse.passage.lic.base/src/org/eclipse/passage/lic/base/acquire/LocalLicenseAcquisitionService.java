@@ -22,6 +22,7 @@ import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.base.BaseGrantIdentifier;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.base.BaseUserIdentifier;
 
 // FIXME: just stub for now. Implement properly. #568791
 /**
@@ -37,7 +38,7 @@ public abstract class LocalLicenseAcquisitionService implements LicenseAcquisiti
 						"local", //$NON-NLS-1$
 						new BaseGrantIdentifier("temp"), //$NON-NLS-1$
 						feature, //
-						"user", //$NON-NLS-1$
+						new BaseUserIdentifier("user"), //$NON-NLS-1$
 						new Date())//
 		);
 	}

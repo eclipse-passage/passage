@@ -19,6 +19,7 @@ import java.util.Objects;
 
 import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.GrantIdentifier;
+import org.eclipse.passage.lic.api.UserIdentifier;
 import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
 
 /**
@@ -31,13 +32,13 @@ public final class BaseGrantAcquisition implements GrantAcquisition, Serializabl
 	private final String id;
 	private final GrantIdentifier grant;
 	private final FeatureIdentifier feature;
-	private final String user;
+	private final UserIdentifier user;
 	private final Date created;
 
 	/**
 	 * @since 4.0
 	 */
-	public BaseGrantAcquisition(String id, GrantIdentifier grant, FeatureIdentifier feature, String user,
+	public BaseGrantAcquisition(String id, GrantIdentifier grant, FeatureIdentifier feature, UserIdentifier user,
 			Date created) {
 		this.id = Objects.requireNonNull(id);
 		this.grant = Objects.requireNonNull(grant);
@@ -62,7 +63,7 @@ public final class BaseGrantAcquisition implements GrantAcquisition, Serializabl
 	}
 
 	@Override
-	public String user() {
+	public UserIdentifier user() {
 		return user;
 	}
 
