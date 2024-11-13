@@ -20,6 +20,7 @@ import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionService;
+import org.eclipse.passage.lic.base.BaseGrantIdentifier;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 
 // FIXME: just stub for now. Implement properly. #568791
@@ -34,7 +35,7 @@ public abstract class LocalLicenseAcquisitionService implements LicenseAcquisiti
 		return new BaseServiceInvocationResult<>(//
 				new BaseGrantAcquisition(//
 						"local", //$NON-NLS-1$
-						"temp", //$NON-NLS-1$
+						new BaseGrantIdentifier("temp"), //$NON-NLS-1$
 						feature, //
 						"user", //$NON-NLS-1$
 						new Date())//

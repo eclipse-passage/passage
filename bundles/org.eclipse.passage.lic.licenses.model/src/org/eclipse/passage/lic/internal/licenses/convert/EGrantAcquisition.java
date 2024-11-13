@@ -30,7 +30,7 @@ public final class EGrantAcquisition implements Supplier<GrantAcqisition> {
 	public GrantAcqisition get() {
 		GrantAcqisition grant = LicensesFactory.eINSTANCE.createGrantAcqisition();
 		grant.setIdentifier(source.identifier());
-		grant.setGrant(source.grant());
+		grant.setGrant(source.grant().identifier());
 		grant.setFeature(source.feature().identifier());
 		grant.setUser(source.user());
 		grant.setCreated(source.created());
