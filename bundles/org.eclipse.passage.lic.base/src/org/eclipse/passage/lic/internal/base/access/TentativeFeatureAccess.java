@@ -21,6 +21,7 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
+import org.eclipse.passage.lic.base.BaseGrantIdentifier;
 import org.eclipse.passage.lic.base.acquire.BaseGrantAcquisition;
 
 final class TentativeFeatureAccess implements Supplier<GrantAcquisition>, Predicate<GrantAcquisition> {
@@ -40,7 +41,7 @@ final class TentativeFeatureAccess implements Supplier<GrantAcquisition>, Predic
 	public GrantAcquisition get() {
 		return new BaseGrantAcquisition(//
 				String.format("%s-id", tentative), //$NON-NLS-1$
-				String.format("%s-grant", tentative), //$NON-NLS-1$
+				new BaseGrantIdentifier(String.format("%s-grant", tentative)), //$NON-NLS-1$
 				feature, //
 				String.format("%s-user", tentative), //$NON-NLS-1$
 				new Date());
@@ -49,7 +50,7 @@ final class TentativeFeatureAccess implements Supplier<GrantAcquisition>, Predic
 	@Override
 	public boolean test(GrantAcquisition grant) {
 		return grant.identifier().startsWith(tentative) //
-				&& grant.grant().startsWith(tentative) //
+				&& grant.grant().identifier().startsWith(tentative) //
 				&& grant.user().startsWith(tentative);
 	}
 

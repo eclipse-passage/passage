@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import org.eclipse.passage.lic.api.FeatureIdentifier;
+import org.eclipse.passage.lic.api.GrantIdentifier;
 import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
 
 /**
@@ -28,7 +29,7 @@ public final class BaseGrantAcquisition implements GrantAcquisition, Serializabl
 
 	private static final long serialVersionUID = 2755031536488685673L;
 	private final String id;
-	private final String grant;
+	private final GrantIdentifier grant;
 	private final FeatureIdentifier feature;
 	private final String user;
 	private final Date created;
@@ -36,7 +37,8 @@ public final class BaseGrantAcquisition implements GrantAcquisition, Serializabl
 	/**
 	 * @since 4.0
 	 */
-	public BaseGrantAcquisition(String id, String grant, FeatureIdentifier feature, String user, Date created) {
+	public BaseGrantAcquisition(String id, GrantIdentifier grant, FeatureIdentifier feature, String user,
+			Date created) {
 		this.id = Objects.requireNonNull(id);
 		this.grant = Objects.requireNonNull(grant);
 		this.feature = Objects.requireNonNull(feature);
@@ -50,7 +52,7 @@ public final class BaseGrantAcquisition implements GrantAcquisition, Serializabl
 	}
 
 	@Override
-	public String grant() {
+	public GrantIdentifier grant() {
 		return grant;
 	}
 
