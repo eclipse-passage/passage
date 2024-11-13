@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2024 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,16 +9,17 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.seal.demo.tests.registries;
 
 import java.util.Optional;
 
 import org.eclipse.passage.lic.api.Framework;
-import org.eclipse.passage.lic.api.tests.StreamCodecsRegitryTest;
+import org.eclipse.passage.lic.api.tests.StreamCodecsRegistryTest;
 import org.eclipse.passage.seal.internal.demo.DemoFrameworkSupplier;
 
-public final class SealedCodecsRegistryTest extends StreamCodecsRegitryTest {
+public final class SealedCodecsRegistryTest extends StreamCodecsRegistryTest {
 
 	@Override
 	protected Optional<Framework> framework() {
