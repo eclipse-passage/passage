@@ -58,14 +58,6 @@ public abstract class ExpressionProtocol implements ServiceId {
 
 	}
 
-	public static final class Munich extends ExpressionProtocol {
-
-		public Munich() {
-			super("munich"); //$NON-NLS-1$
-		}
-
-	}
-
 	public static final class Default extends ExpressionProtocol {
 
 		public Default() {
