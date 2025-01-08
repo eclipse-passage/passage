@@ -29,8 +29,6 @@ pipeline {
 	stages {
 		stage('Display Parameters') {
 				steps {
-						echo "BUILD_TYPE=${params.BUILD_TYPE}"
-						echo "PROMOTE=${params.PROMOTE}"
 						script {
 								env.BUILD_TYPE = params.BUILD_TYPE
 								if (env.BRANCH_NAME == 'master') {
@@ -42,6 +40,12 @@ pipeline {
 								} else {
 									env.MAVEN_PROFILES = "-P baseline-check,coverage"
 								}
+								def description = """
+BUILD_TYPE=${env.BUILD_TYPE}
+MAVEN_PROFILES=${env.MAVEN_PROFILES}
+""".trim()
+								echo description
+								currentBuild.description = description.replace("\n", "<br/>")
 						}
 				}
 		}
