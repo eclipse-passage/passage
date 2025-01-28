@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2025 ArSysOp
+ * Copyright (c) 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,7 +9,6 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
- *     ArSysOp - evolved to grow configurable in the place of actual files supplying (#1482)
  *******************************************************************************/
 package org.eclipse.passage.lic.base.conditions.mining;
 
@@ -18,34 +17,27 @@ import java.util.Collection;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.LicensingException;
-import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.api.conditions.mining.MiningEquipment;
-import org.eclipse.passage.lic.base.io.FileCollection;
+import org.eclipse.passage.lic.base.io.LenientFileCollection;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
 
 /**
- * <p>
- * Scans the configured part of the local file system for encrypted license
- * files, reads them and retrieves all the licensing {@linkplain Condition}s
- * they declare.
- * </p>
- * 
- * @since 2.1
+ * @since 4.1
  */
-public abstract class LocalConditions extends BaseLocalConditions {
+public abstract class LenientLocalConditions extends BaseLocalConditions {
 
-	protected LocalConditions(ConditionMiningTarget id, MiningEquipment equipment, PassageFileExtension scope) {
+	protected LenientLocalConditions(ConditionMiningTarget id, MiningEquipment equipment, PassageFileExtension scope) {
 		super(id, equipment, scope);
 	}
 
-	protected LocalConditions(ConditionMiningTarget id, MiningEquipment equipment) {
+	protected LenientLocalConditions(ConditionMiningTarget id, MiningEquipment equipment) {
 		this(id, equipment, new PassageFileExtension.LicenseEncrypted());
 	}
 
 	@Override
 	protected Collection<Path> licenses(LicensedProduct product) throws LicensingException {
-		return new FileCollection(base(product), scope).get();
+		return new LenientFileCollection(base(product), scope).get();
 	}
 
 }

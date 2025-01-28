@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2022 ArSysOp
+ * Copyright (c) 2020, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,6 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *     Hannes Wellmann (IILS mbH) - Simplify IO operations(#1071)
+ *     ArSysOp - evolved to be dispensable (#1482)
  *******************************************************************************/
 package org.eclipse.passage.lic.base.io;
 
@@ -27,26 +28,31 @@ import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 /**
- * Collects regular files of the given {@code extension} starting from the given
- * {@code base} path recursively. No particular order is guaranteed.
+ * <p>
+ * Does not tolerate {@code base} directory or file absence.
+ * </p>
+ * 
+ * <p>
+ * These is no obligations as to how many times {@code base} supplier to be
+ * called, so make sure your implementation is system-wide idempotent.
+ * </p>
  * 
  * @since 2.1
  */
-public final class FileCollection {
+public final class FileCollection implements CollectedFiles {
 
 	private final Supplier<Path> base;
 	private final PassageFileExtension extension;
 
 	/**
-	 * @param base expected to supply path to an existing directory
+	 * @param base expected to supply path to an existing directory or file
 	 */
 	public FileCollection(Supplier<Path> base, PassageFileExtension extension) {
-		Objects.requireNonNull(base, "FileCollection::base path"); //$NON-NLS-1$
-		Objects.requireNonNull(extension, "FileCollection::extension"); //$NON-NLS-1$
-		this.base = base;
-		this.extension = extension;
+		this.base = Objects.requireNonNull(base, "FileCollection::base path"); //$NON-NLS-1$
+		this.extension = Objects.requireNonNull(extension, "FileCollection::extension"); //$NON-NLS-1$
 	}
 
+	@Override
 	public Collection<Path> get() throws LicensingException {
 		try (Stream<Path> all = files(base.get())) {
 			return filtered(all);
