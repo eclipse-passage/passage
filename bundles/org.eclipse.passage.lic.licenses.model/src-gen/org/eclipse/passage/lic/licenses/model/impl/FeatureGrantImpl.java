@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2024 ArSysOp
+ * Copyright (c) 2018, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -28,9 +28,8 @@ import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Feature Grant</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature
+ * Grant</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -45,12 +44,12 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *
  * @since 2.0
  * @generated
+ * @noextend This class is not intended to be subclassed by clients.
  */
 public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements FeatureGrant {
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -59,8 +58,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -69,8 +67,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getFeature()
 	 * @generated
 	 * @ordered
@@ -79,8 +76,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * The cached value of the '{@link #getValid() <em>Valid</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getValid()
 	 * @generated
 	 * @ordered
@@ -88,9 +84,9 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	protected ValidityPeriod valid;
 
 	/**
-	 * The default value of the '{@link #getVivid() <em>Vivid</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getVivid() <em>Vivid</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getVivid()
 	 * @generated
 	 * @ordered
@@ -98,9 +94,9 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	protected static final long VIVID_EDEFAULT = 0L;
 
 	/**
-	 * The cached value of the '{@link #getVivid() <em>Vivid</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getVivid() <em>Vivid</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getVivid()
 	 * @generated
 	 * @ordered
@@ -109,8 +105,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * The default value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getCapacity()
 	 * @generated
 	 * @ordered
@@ -119,8 +114,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * The cached value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getCapacity()
 	 * @generated
 	 * @ordered
@@ -128,8 +122,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	private int capacity = CAPACITY_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected FeatureGrantImpl() {
@@ -137,8 +130,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -147,8 +139,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -157,8 +148,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -172,8 +162,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -182,27 +171,26 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetFeature(FeatureRef newFeature, NotificationChain msgs) {
+		NotificationChain msgs1 = msgs;
 		FeatureRef oldFeature = feature;
 		feature = newFeature;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.FEATURE_GRANT__FEATURE, oldFeature, newFeature);
-			if (msgs == null)
-				msgs = notification;
+			if (msgs1 == null)
+				msgs1 = notification;
 			else
-				msgs.add(notification);
+				msgs1.add(notification);
 		}
-		return msgs;
+		return msgs1;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -225,8 +213,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -235,27 +222,26 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetValid(ValidityPeriod newValid, NotificationChain msgs) {
+		NotificationChain msgs1 = msgs;
 		ValidityPeriod oldValid = valid;
 		valid = newValid;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.FEATURE_GRANT__VALID, oldValid, newValid);
-			if (msgs == null)
-				msgs = notification;
+			if (msgs1 == null)
+				msgs1 = notification;
 			else
-				msgs.add(notification);
+				msgs1.add(notification);
 		}
-		return msgs;
+		return msgs1;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -278,8 +264,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -288,8 +273,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -303,8 +287,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -313,8 +296,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -328,8 +310,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -341,18 +322,17 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetPack(FloatingLicensePack newPack, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newPack, LicensesPackage.FEATURE_GRANT__PACK, msgs);
-		return msgs;
+		NotificationChain msgs1 = msgs;
+		msgs1 = eBasicSetContainer((InternalEObject) newPack, LicensesPackage.FEATURE_GRANT__PACK, msgs);
+		return msgs1;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -379,26 +359,25 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		NotificationChain msgs1 = msgs;
 		switch (featureID) {
 		case LicensesPackage.FEATURE_GRANT__PACK:
 			if (eInternalContainer() != null) {
-				msgs = eBasicRemoveFromContainer(msgs);
+				msgs1 = eBasicRemoveFromContainer(msgs1);
 			}
-			return basicSetPack((FloatingLicensePack) otherEnd, msgs);
+			return basicSetPack((FloatingLicensePack) otherEnd, msgs1);
 		default:
 			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -416,8 +395,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -432,8 +410,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -457,8 +434,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -489,8 +465,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -521,8 +496,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -546,8 +520,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

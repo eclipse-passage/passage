@@ -63,6 +63,7 @@ public final class FileCollection implements CollectedFiles {
 		}
 	}
 
+	@SuppressWarnings("resource")
 	private Stream<Path> files(Path path) throws IOException {
 		return Files.walk(path) //
 				.filter(Files::isRegularFile);

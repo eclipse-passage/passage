@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2024 ArSysOp
+ * Copyright (c) 2018, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.licenses.model.meta;
 
 import org.eclipse.emf.ecore.EFactory;
+
 import org.eclipse.passage.lic.licenses.model.api.AgreementData;
 import org.eclipse.passage.lic.licenses.model.api.CompanyRef;
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
@@ -44,6 +45,8 @@ import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
  * <!-- end-user-doc -->
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage
  * @generated
+ * @noextend This interface is not intended to be extended by clients.
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface LicensesFactory extends EFactory {
 	/**
@@ -63,6 +66,106 @@ public interface LicensesFactory extends EFactory {
 	 * @generated
 	 */
 	AgreementData createAgreementData();
+
+	/**
+	 * Returns a new object of class '<em>Company Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Company Ref</em>'.
+	 * @since 2.0
+	 * @generated
+	 */
+	CompanyRef createCompanyRef();
+
+	/**
+	 * Returns a new object of class '<em>Evaluation Instructions</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Evaluation Instructions</em>'.
+	 * @since 2.0
+	 * @generated
+	 */
+	EvaluationInstructions createEvaluationInstructions();
+
+	/**
+	 * Returns a new object of class '<em>Feature Grant</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Feature Grant</em>'.
+	 * @since 2.0
+	 * @generated
+	 */
+	FeatureGrant createFeatureGrant();
+
+	/**
+	 * Returns a new object of class '<em>Feature Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Feature Ref</em>'.
+	 * @since 2.0
+	 * @generated
+	 */
+	FeatureRef createFeatureRef();
+
+	/**
+	 * Returns a new object of class '<em>Floating License Access</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Floating License Access</em>'.
+	 * @since 2.0
+	 * @generated
+	 */
+	FloatingLicenseAccess createFloatingLicenseAccess();
+
+	/**
+	 * Returns a new object of class '<em>Floating License Pack</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Floating License Pack</em>'.
+	 * @since 2.0
+	 * @generated
+	 */
+	FloatingLicensePack createFloatingLicensePack();
+
+	/**
+	 * Returns a new object of class '<em>Floating License Requisites</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Floating License Requisites</em>'.
+	 * @since 2.0
+	 * @generated
+	 */
+	FloatingLicenseRequisites createFloatingLicenseRequisites();
+
+	/**
+	 * Returns a new object of class '<em>Floating Server</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Floating Server</em>'.
+	 * @since 2.0
+	 * @generated
+	 */
+	FloatingServer createFloatingServer();
+
+	/**
+	 * Returns a new object of class '<em>Floating Server Connection</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Floating Server Connection</em>'.
+	 * @since 2.0
+	 * @generated
+	 */
+	FloatingServerConnection createFloatingServerConnection();
+
+	/**
+	 * Returns a new object of class '<em>Grant Acqisition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Grant Acqisition</em>'.
+	 * @since 2.0
+	 * @generated
+	 */
+	GrantAcqisition createGrantAcqisition();
 
 	/**
 	 * Returns a new object of class '<em>License Plan</em>'.
@@ -103,16 +206,6 @@ public interface LicensesFactory extends EFactory {
 	PersonalLicensePack createPersonalLicensePack();
 
 	/**
-	 * Returns a new object of class '<em>Floating License Pack</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Floating License Pack</em>'.
-	 * @since 2.0
-	 * @generated
-	 */
-	FloatingLicensePack createFloatingLicensePack();
-
-	/**
 	 * Returns a new object of class '<em>Personal License Requisites</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -123,16 +216,6 @@ public interface LicensesFactory extends EFactory {
 	PersonalLicenseRequisites createPersonalLicenseRequisites();
 
 	/**
-	 * Returns a new object of class '<em>Floating License Requisites</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Floating License Requisites</em>'.
-	 * @since 2.0
-	 * @generated
-	 */
-	FloatingLicenseRequisites createFloatingLicenseRequisites();
-
-	/**
 	 * Returns a new object of class '<em>Product Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -141,126 +224,6 @@ public interface LicensesFactory extends EFactory {
 	 * @generated
 	 */
 	ProductRef createProductRef();
-
-	/**
-	 * Returns a new object of class '<em>Feature Ref</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Feature Ref</em>'.
-	 * @since 2.0
-	 * @generated
-	 */
-	FeatureRef createFeatureRef();
-
-	/**
-	 * Returns a new object of class '<em>User Ref</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>User Ref</em>'.
-	 * @since 2.0
-	 * @generated
-	 */
-	UserRef createUserRef();
-
-	/**
-	 * Returns a new object of class '<em>Company Ref</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Company Ref</em>'.
-	 * @since 2.0
-	 * @generated
-	 */
-	CompanyRef createCompanyRef();
-
-	/**
-	 * Returns a new object of class '<em>Floating Server</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Floating Server</em>'.
-	 * @since 2.0
-	 * @generated
-	 */
-	FloatingServer createFloatingServer();
-
-	/**
-	 * Returns a new object of class '<em>User Grant</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>User Grant</em>'.
-	 * @since 2.0
-	 * @generated
-	 */
-	UserGrant createUserGrant();
-
-	/**
-	 * Returns a new object of class '<em>Feature Grant</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Feature Grant</em>'.
-	 * @since 2.0
-	 * @generated
-	 */
-	FeatureGrant createFeatureGrant();
-
-	/**
-	 * Returns a new object of class '<em>Validity Period Closed</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Validity Period Closed</em>'.
-	 * @since 2.0
-	 * @generated
-	 */
-	ValidityPeriodClosed createValidityPeriodClosed();
-
-	/**
-	 * Returns a new object of class '<em>Evaluation Instructions</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Evaluation Instructions</em>'.
-	 * @since 2.0
-	 * @generated
-	 */
-	EvaluationInstructions createEvaluationInstructions();
-
-	/**
-	 * Returns a new object of class '<em>Version Match</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Version Match</em>'.
-	 * @since 2.0
-	 * @generated
-	 */
-	VersionMatch createVersionMatch();
-
-	/**
-	 * Returns a new object of class '<em>Floating License Access</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Floating License Access</em>'.
-	 * @since 2.0
-	 * @generated
-	 */
-	FloatingLicenseAccess createFloatingLicenseAccess();
-
-	/**
-	 * Returns a new object of class '<em>Floating Server Connection</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Floating Server Connection</em>'.
-	 * @since 2.0
-	 * @generated
-	 */
-	FloatingServerConnection createFloatingServerConnection();
-
-	/**
-	 * Returns a new object of class '<em>Grant Acqisition</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Grant Acqisition</em>'.
-	 * @since 2.0
-	 * @generated
-	 */
-	GrantAcqisition createGrantAcqisition();
 
 	/**
 	 * Returns a new object of class '<em>Signature</em>'.
@@ -283,6 +246,46 @@ public interface LicensesFactory extends EFactory {
 	SignatureAttribute createSignatureAttribute();
 
 	/**
+	 * Returns a new object of class '<em>User Grant</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>User Grant</em>'.
+	 * @since 2.0
+	 * @generated
+	 */
+	UserGrant createUserGrant();
+
+	/**
+	 * Returns a new object of class '<em>User Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>User Ref</em>'.
+	 * @since 2.0
+	 * @generated
+	 */
+	UserRef createUserRef();
+
+	/**
+	 * Returns a new object of class '<em>Validity Period Closed</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Validity Period Closed</em>'.
+	 * @since 2.0
+	 * @generated
+	 */
+	ValidityPeriodClosed createValidityPeriodClosed();
+
+	/**
+	 * Returns a new object of class '<em>Version Match</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Version Match</em>'.
+	 * @since 2.0
+	 * @generated
+	 */
+	VersionMatch createVersionMatch();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -291,4 +294,4 @@ public interface LicensesFactory extends EFactory {
 	 */
 	LicensesPackage getLicensesPackage();
 
-} // LicensesFactory
+} //LicensesFactory

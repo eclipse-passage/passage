@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2024 ArSysOp
+ * Copyright (c) 2018, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,14 +14,19 @@ package org.eclipse.passage.lic.licenses.model.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EcoreUtil;
+
 import org.eclipse.passage.lic.licenses.model.api.FeatureRef;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
+
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
@@ -39,6 +44,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * </ul>
  *
  * @generated
+ * @noextend This class is not intended to be subclassed by clients.
  */
 public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container implements LicensePlanFeature {
 	/**
@@ -62,6 +68,7 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	protected static final long VIVID_EDEFAULT = 0L;
+
 	/**
 	 * The cached value of the '{@link #getVivid() <em>Vivid</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -72,6 +79,7 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	private long vivid = VIVID_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -82,6 +90,7 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	protected static final int CAPACITY_EDEFAULT = 0;
+
 	/**
 	 * The cached value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -130,17 +139,18 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	public NotificationChain basicSetFeature(FeatureRef newFeature, NotificationChain msgs) {
+		NotificationChain msgs1 = msgs;
 		FeatureRef oldFeature = feature;
 		feature = newFeature;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE, oldFeature, newFeature);
-			if (msgs == null)
-				msgs = notification;
+			if (msgs1 == null)
+				msgs1 = notification;
 			else
-				msgs.add(notification);
+				msgs1.add(notification);
 		}
-		return msgs;
+		return msgs1;
 	}
 
 	/**
@@ -189,8 +199,9 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	public NotificationChain basicSetPlan(LicensePlan newPlan, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newPlan, LicensesPackage.LICENSE_PLAN_FEATURE__PLAN, msgs);
-		return msgs;
+		NotificationChain msgs1 = msgs;
+		msgs1 = eBasicSetContainer((InternalEObject) newPlan, LicensesPackage.LICENSE_PLAN_FEATURE__PLAN, msgs);
+		return msgs1;
 	}
 
 	/**
@@ -283,12 +294,13 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		NotificationChain msgs1 = msgs;
 		switch (featureID) {
 		case LicensesPackage.LICENSE_PLAN_FEATURE__PLAN:
 			if (eInternalContainer() != null) {
-				msgs = eBasicRemoveFromContainer(msgs);
+				msgs1 = eBasicRemoveFromContainer(msgs1);
 			}
-			return basicSetPlan((LicensePlan) otherEnd, msgs);
+			return basicSetPlan((LicensePlan) otherEnd, msgs1);
 		default:
 			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
@@ -440,4 +452,4 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 		return result.toString();
 	}
 
-} // LicensePlanFeatureImpl
+} //LicensePlanFeatureImpl

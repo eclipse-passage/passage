@@ -75,6 +75,7 @@ final class BcEncodedStream {
 	}
 
 	private PGPSignatureGenerator signer(PGPSecretKey key, String password) throws PGPException {
+		@SuppressWarnings("deprecation")
 		PGPSignatureGenerator signer = new PGPSignatureGenerator(
 				new JcaPGPContentSignerBuilder(key.getPublicKey().getAlgorithm(), PGPUtil.SHA512));
 		PGPPrivateKey privateKey = privateKey(key, password);

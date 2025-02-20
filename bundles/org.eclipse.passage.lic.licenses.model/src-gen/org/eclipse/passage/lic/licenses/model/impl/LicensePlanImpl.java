@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2024 ArSysOp
+ * Copyright (c) 2018, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -17,19 +17,25 @@ import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
+
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
@@ -50,6 +56,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * </ul>
  *
  * @generated
+ * @noextend This class is not intended to be subclassed by clients.
  */
 public class LicensePlanImpl extends MinimalEObjectImpl.Container implements LicensePlan {
 	/**
@@ -316,9 +323,10 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		NotificationChain msgs1 = msgs;
 		switch (featureID) {
 		case LicensesPackage.LICENSE_PLAN__FEATURES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getFeatures()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getFeatures()).basicAdd(otherEnd, msgs1);
 		default:
 			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
@@ -495,4 +503,4 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 		return result.toString();
 	}
 
-} // LicensePlanImpl
+} //LicensePlanImpl

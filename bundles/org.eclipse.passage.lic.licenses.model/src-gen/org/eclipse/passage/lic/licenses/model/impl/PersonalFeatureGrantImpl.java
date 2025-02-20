@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2024 ArSysOp
+ * Copyright (c) 2018, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,21 +16,26 @@ import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EcoreUtil;
+
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.FeatureRef;
 import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
+
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>License Grant</b></em>'.
+ * An implementation of the model object '<em><b>Personal Feature Grant</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -47,6 +52,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *
  * @since 2.0
  * @generated
+ * @noextend This class is not intended to be subclassed by clients.
  */
 public class PersonalFeatureGrantImpl extends MinimalEObjectImpl.Container implements PersonalFeatureGrant {
 	/**
@@ -199,17 +205,18 @@ public class PersonalFeatureGrantImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	public NotificationChain basicSetFeature(FeatureRef newFeature, NotificationChain msgs) {
+		NotificationChain msgs1 = msgs;
 		FeatureRef oldFeature = feature;
 		feature = newFeature;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.PERSONAL_FEATURE_GRANT__FEATURE, oldFeature, newFeature);
-			if (msgs == null)
-				msgs = notification;
+			if (msgs1 == null)
+				msgs1 = notification;
 			else
-				msgs.add(notification);
+				msgs1.add(notification);
 		}
-		return msgs;
+		return msgs1;
 	}
 
 	/**
@@ -252,17 +259,18 @@ public class PersonalFeatureGrantImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	public NotificationChain basicSetValid(ValidityPeriod newValid, NotificationChain msgs) {
+		NotificationChain msgs1 = msgs;
 		ValidityPeriod oldValid = valid;
 		valid = newValid;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.PERSONAL_FEATURE_GRANT__VALID, oldValid, newValid);
-			if (msgs == null)
-				msgs = notification;
+			if (msgs1 == null)
+				msgs1 = notification;
 			else
-				msgs.add(notification);
+				msgs1.add(notification);
 		}
-		return msgs;
+		return msgs1;
 	}
 
 	/**
@@ -306,18 +314,19 @@ public class PersonalFeatureGrantImpl extends MinimalEObjectImpl.Container imple
 	 */
 	public NotificationChain basicSetUserAuthentication(EvaluationInstructions newUserAuthentication,
 			NotificationChain msgs) {
+		NotificationChain msgs1 = msgs;
 		EvaluationInstructions oldUserAuthentication = userAuthentication;
 		userAuthentication = newUserAuthentication;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.PERSONAL_FEATURE_GRANT__USER_AUTHENTICATION, oldUserAuthentication,
 					newUserAuthentication);
-			if (msgs == null)
-				msgs = notification;
+			if (msgs1 == null)
+				msgs1 = notification;
 			else
-				msgs.add(notification);
+				msgs1.add(notification);
 		}
-		return msgs;
+		return msgs1;
 	}
 
 	/**
@@ -416,8 +425,9 @@ public class PersonalFeatureGrantImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	public NotificationChain basicSetPack(PersonalLicensePack newPack, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newPack, LicensesPackage.PERSONAL_FEATURE_GRANT__PACK, msgs);
-		return msgs;
+		NotificationChain msgs1 = msgs;
+		msgs1 = eBasicSetContainer((InternalEObject) newPack, LicensesPackage.PERSONAL_FEATURE_GRANT__PACK, msgs);
+		return msgs1;
 	}
 
 	/**
@@ -455,12 +465,13 @@ public class PersonalFeatureGrantImpl extends MinimalEObjectImpl.Container imple
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		NotificationChain msgs1 = msgs;
 		switch (featureID) {
 		case LicensesPackage.PERSONAL_FEATURE_GRANT__PACK:
 			if (eInternalContainer() != null) {
-				msgs = eBasicRemoveFromContainer(msgs);
+				msgs1 = eBasicRemoveFromContainer(msgs1);
 			}
-			return basicSetPack((PersonalLicensePack) otherEnd, msgs);
+			return basicSetPack((PersonalLicensePack) otherEnd, msgs1);
 		default:
 			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
@@ -648,4 +659,4 @@ public class PersonalFeatureGrantImpl extends MinimalEObjectImpl.Container imple
 		return result.toString();
 	}
 
-} // LicenseGrantImpl
+} //PersonalFeatureGrantImpl

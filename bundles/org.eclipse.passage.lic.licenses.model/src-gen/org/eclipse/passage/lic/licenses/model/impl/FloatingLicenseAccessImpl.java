@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2024 ArSysOp
+ * Copyright (c) 2018, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,12 +16,16 @@ import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.licenses.model.api.FloatingServerConnection;
+
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
@@ -39,6 +43,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *
  * @since 2.0
  * @generated
+ * @noextend This class is not intended to be subclassed by clients.
  */
 public class FloatingLicenseAccessImpl extends MinimalEObjectImpl.Container implements FloatingLicenseAccess {
 	/**
@@ -151,17 +156,18 @@ public class FloatingLicenseAccessImpl extends MinimalEObjectImpl.Container impl
 	 * @generated
 	 */
 	public NotificationChain basicSetServer(FloatingServerConnection newServer, NotificationChain msgs) {
+		NotificationChain msgs1 = msgs;
 		FloatingServerConnection oldServer = server;
 		server = newServer;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.FLOATING_LICENSE_ACCESS__SERVER, oldServer, newServer);
-			if (msgs == null)
-				msgs = notification;
+			if (msgs1 == null)
+				msgs1 = notification;
 			else
-				msgs.add(notification);
+				msgs1.add(notification);
 		}
-		return msgs;
+		return msgs1;
 	}
 
 	/**
@@ -332,4 +338,4 @@ public class FloatingLicenseAccessImpl extends MinimalEObjectImpl.Container impl
 		return result.toString();
 	}
 
-} // FloatingLicenseAccessImpl
+} //FloatingLicenseAccessImpl

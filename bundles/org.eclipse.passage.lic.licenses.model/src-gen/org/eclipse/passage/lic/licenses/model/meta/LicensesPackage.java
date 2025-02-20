@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2024 ArSysOp
+ * Copyright (c) 2018, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -32,6 +32,8 @@ import org.eclipse.emf.ecore.EReference;
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesFactory
  * @model kind="package"
  * @generated
+ * @noextend This interface is not intended to be extended by clients.
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface LicensesPackage extends EPackage {
 	/**
@@ -48,7 +50,7 @@ public interface LicensesPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/passage/lic/licenses/4.1.0"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/passage/lic/licenses/4.1.0".intern(); //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -2521,101 +2523,6 @@ public interface LicensesPackage extends EPackage {
 	EAttribute getLicensePlanFeature_Capacity();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant <em>Personal Feature Grant</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Personal Feature Grant</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant
-	 * @since 2.0
-	 * @generated
-	 */
-	EClass getPersonalFeatureGrant();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getIdentifier <em>Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Identifier</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getIdentifier()
-	 * @see #getPersonalFeatureGrant()
-	 * @since 2.0
-	 * @generated
-	 */
-	EAttribute getPersonalFeatureGrant_Identifier();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getFeature <em>Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Feature</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getFeature()
-	 * @see #getPersonalFeatureGrant()
-	 * @since 2.0
-	 * @generated
-	 */
-	EReference getPersonalFeatureGrant_Feature();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getValid <em>Valid</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Valid</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getValid()
-	 * @see #getPersonalFeatureGrant()
-	 * @since 2.0
-	 * @generated
-	 */
-	EReference getPersonalFeatureGrant_Valid();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getUserAuthentication <em>User Authentication</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>User Authentication</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getUserAuthentication()
-	 * @see #getPersonalFeatureGrant()
-	 * @since 2.0
-	 * @generated
-	 */
-	EReference getPersonalFeatureGrant_UserAuthentication();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getCapacity <em>Capacity</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Capacity</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getCapacity()
-	 * @see #getPersonalFeatureGrant()
-	 * @since 2.0
-	 * @generated
-	 */
-	EAttribute getPersonalFeatureGrant_Capacity();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getVivid <em>Vivid</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Vivid</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getVivid()
-	 * @see #getPersonalFeatureGrant()
-	 * @since 2.0
-	 * @generated
-	 */
-	EAttribute getPersonalFeatureGrant_Vivid();
-
-	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getPack <em>Pack</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Pack</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getPack()
-	 * @see #getPersonalFeatureGrant()
-	 * @since 2.0
-	 * @generated
-	 */
-	EReference getPersonalFeatureGrant_Pack();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites <em>License Requisites</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2709,6 +2616,101 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getLicenseRequisites_Agreements();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant <em>Personal Feature Grant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Personal Feature Grant</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant
+	 * @since 2.0
+	 * @generated
+	 */
+	EClass getPersonalFeatureGrant();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getIdentifier()
+	 * @see #getPersonalFeatureGrant()
+	 * @since 2.0
+	 * @generated
+	 */
+	EAttribute getPersonalFeatureGrant_Identifier();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getFeature <em>Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Feature</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getFeature()
+	 * @see #getPersonalFeatureGrant()
+	 * @since 2.0
+	 * @generated
+	 */
+	EReference getPersonalFeatureGrant_Feature();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getValid <em>Valid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Valid</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getValid()
+	 * @see #getPersonalFeatureGrant()
+	 * @since 2.0
+	 * @generated
+	 */
+	EReference getPersonalFeatureGrant_Valid();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getUserAuthentication <em>User Authentication</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>User Authentication</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getUserAuthentication()
+	 * @see #getPersonalFeatureGrant()
+	 * @since 2.0
+	 * @generated
+	 */
+	EReference getPersonalFeatureGrant_UserAuthentication();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getCapacity <em>Capacity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Capacity</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getCapacity()
+	 * @see #getPersonalFeatureGrant()
+	 * @since 2.0
+	 * @generated
+	 */
+	EAttribute getPersonalFeatureGrant_Capacity();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getVivid <em>Vivid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Vivid</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getVivid()
+	 * @see #getPersonalFeatureGrant()
+	 * @since 2.0
+	 * @generated
+	 */
+	EAttribute getPersonalFeatureGrant_Vivid();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getPack <em>Pack</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Pack</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getPack()
+	 * @see #getPersonalFeatureGrant()
+	 * @since 2.0
+	 * @generated
+	 */
+	EReference getPersonalFeatureGrant_Pack();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack <em>Personal License Pack</em>}'.
@@ -3033,4 +3035,4 @@ public interface LicensesPackage extends EPackage {
 	 */
 	LicensesFactory getLicensesFactory();
 
-} // LicensesPackage
+} //LicensesPackage

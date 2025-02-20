@@ -82,6 +82,7 @@ final class BcKeyPair {
 
 	private PGPKeyRingGenerator keyRing(String username, String password) throws LicensingException {
 		try {
+			@SuppressWarnings("deprecation")
 			PGPKeyPair pair = new JcaPGPKeyPair(PGPPublicKey.RSA_GENERAL, pair(), new Date());
 			PGPDigestCalculator calculator = new JcaPGPDigestCalculatorProviderBuilder()//
 					.build().get(HashAlgorithmTags.SHA1);
