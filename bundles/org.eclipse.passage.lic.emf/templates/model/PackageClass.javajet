@@ -122,7 +122,7 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	<%=publicStaticFinalFlag%><%=genModel.getImportedName("java.lang.String")%> eNS_URI = "<%=genPackage.getNSURI()%>".intern();<%=genModel.getNonNLS()%>
+	<%=publicStaticFinalFlag%><%=genModel.getImportedName("java.lang.String")%> eNS_URI = "<%=genPackage.getNSURI()%>";<%=genModel.getNonNLS()%>
 
 	/**
 	 * The package namespace name.
