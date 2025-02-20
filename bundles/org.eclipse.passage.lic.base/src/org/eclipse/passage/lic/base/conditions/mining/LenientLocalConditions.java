@@ -36,7 +36,7 @@ public abstract class LenientLocalConditions extends BaseLocalConditions {
 	}
 
 	@Override
-	protected Collection<Path> licenses(LicensedProduct product) throws LicensingException {
+	protected final Collection<Path> licenses(LicensedProduct product) throws LicensingException {
 		return new LenientFileCollection(base(product), scope).get();
 	}
 
