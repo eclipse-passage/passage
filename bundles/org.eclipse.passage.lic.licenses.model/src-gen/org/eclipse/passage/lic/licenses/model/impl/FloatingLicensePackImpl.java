@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2024 ArSysOp
+ * Copyright (c) 2018, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,19 +16,25 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.FloatingServer;
 import org.eclipse.passage.lic.licenses.model.api.UserGrant;
+
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
@@ -47,6 +53,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *
  * @since 2.0
  * @generated
+ * @noextend This class is not intended to be subclassed by clients.
  */
 public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implements FloatingLicensePack {
 	/**
@@ -124,17 +131,18 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	public NotificationChain basicSetLicense(FloatingLicenseRequisites newLicense, NotificationChain msgs) {
+		NotificationChain msgs1 = msgs;
 		FloatingLicenseRequisites oldLicense = license;
 		license = newLicense;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.FLOATING_LICENSE_PACK__LICENSE, oldLicense, newLicense);
-			if (msgs == null)
-				msgs = notification;
+			if (msgs1 == null)
+				msgs1 = notification;
 			else
-				msgs.add(notification);
+				msgs1.add(notification);
 		}
-		return msgs;
+		return msgs1;
 	}
 
 	/**
@@ -177,17 +185,18 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	public NotificationChain basicSetHost(FloatingServer newHost, NotificationChain msgs) {
+		NotificationChain msgs1 = msgs;
 		FloatingServer oldHost = host;
 		host = newHost;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.FLOATING_LICENSE_PACK__HOST, oldHost, newHost);
-			if (msgs == null)
-				msgs = notification;
+			if (msgs1 == null)
+				msgs1 = notification;
 			else
-				msgs.add(notification);
+				msgs1.add(notification);
 		}
-		return msgs;
+		return msgs1;
 	}
 
 	/**
@@ -250,9 +259,10 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		NotificationChain msgs1 = msgs;
 		switch (featureID) {
 		case LicensesPackage.FLOATING_LICENSE_PACK__FEATURES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getFeatures()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getFeatures()).basicAdd(otherEnd, msgs1);
 		default:
 			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
@@ -376,4 +386,4 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 		}
 	}
 
-} // FloatingLicensePackImpl
+} //FloatingLicensePackImpl

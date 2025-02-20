@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2024 ArSysOp
+ * Copyright (c) 2018, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -18,18 +18,24 @@ import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.passage.lic.licenses.model.api.AgreementData;
 import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.api.Signature;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
+
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
@@ -51,6 +57,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *
  * @since 2.1
  * @generated
+ * @noextend This class is not intended to be subclassed by clients.
  */
 public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implements LicenseRequisites {
 	/**
@@ -263,17 +270,18 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	public NotificationChain basicSetProduct(ProductRef newProduct, NotificationChain msgs) {
+		NotificationChain msgs1 = msgs;
 		ProductRef oldProduct = product;
 		product = newProduct;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.LICENSE_REQUISITES__PRODUCT, oldProduct, newProduct);
-			if (msgs == null)
-				msgs = notification;
+			if (msgs1 == null)
+				msgs1 = notification;
 			else
-				msgs.add(notification);
+				msgs1.add(notification);
 		}
-		return msgs;
+		return msgs1;
 	}
 
 	/**
@@ -316,17 +324,18 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	public NotificationChain basicSetValid(ValidityPeriod newValid, NotificationChain msgs) {
+		NotificationChain msgs1 = msgs;
 		ValidityPeriod oldValid = valid;
 		valid = newValid;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.LICENSE_REQUISITES__VALID, oldValid, newValid);
-			if (msgs == null)
-				msgs = notification;
+			if (msgs1 == null)
+				msgs1 = notification;
 			else
-				msgs.add(notification);
+				msgs1.add(notification);
 		}
-		return msgs;
+		return msgs1;
 	}
 
 	/**
@@ -369,17 +378,18 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	public NotificationChain basicSetSignature(Signature newSignature, NotificationChain msgs) {
+		NotificationChain msgs1 = msgs;
 		Signature oldSignature = signature;
 		signature = newSignature;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.LICENSE_REQUISITES__SIGNATURE, oldSignature, newSignature);
-			if (msgs == null)
-				msgs = notification;
+			if (msgs1 == null)
+				msgs1 = notification;
 			else
-				msgs.add(notification);
+				msgs1.add(notification);
 		}
-		return msgs;
+		return msgs1;
 	}
 
 	/**
@@ -588,4 +598,4 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 		return result.toString();
 	}
 
-} // LicenseRequisitesImpl
+} //LicenseRequisitesImpl

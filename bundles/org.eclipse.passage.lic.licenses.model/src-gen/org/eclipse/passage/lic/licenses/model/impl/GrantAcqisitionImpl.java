@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2024 ArSysOp
+ * Copyright (c) 2018, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,10 +16,14 @@ import java.util.Date;
 import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
+
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
@@ -39,6 +43,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *
  * @since 2.0
  * @generated
+ * @noextend This class is not intended to be subclassed by clients.
  */
 public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements GrantAcqisition {
 	/**
@@ -414,4 +419,4 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 		return result.toString();
 	}
 
-} // GrantAcqisitionImpl
+} //GrantAcqisitionImpl

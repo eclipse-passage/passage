@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2024 ArSysOp
+ * Copyright (c) 2018, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,7 +16,9 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.eclipse.passage.lic.licenses.model.api.AgreementData;
 import org.eclipse.passage.lic.licenses.model.api.CompanyRef;
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
@@ -42,6 +44,7 @@ import org.eclipse.passage.lic.licenses.model.api.UserRef;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
+
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
@@ -50,6 +53,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
  * @generated
+ * @noextend This class is not intended to be subclassed by clients.
  */
 public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage {
 	/**
@@ -59,6 +63,86 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	private EClass agreementDataEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	private EClass companyRefEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	private EClass evaluationInstructionsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	private EClass featureGrantEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	private EClass featureRefEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	private EClass floatingLicenseAccessEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	private EClass floatingLicensePackEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	private EClass floatingLicenseRequisitesEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	private EClass floatingServerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	private EClass floatingServerConnectionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	private EClass grantAcqisitionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -73,6 +157,14 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	private EClass licensePlanFeatureEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	private EClass licenseRequisitesEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -96,31 +188,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @since 2.0
 	 * @generated
 	 */
-	private EClass floatingLicensePackEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.1
-	 * @generated
-	 */
-	private EClass licenseRequisitesEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
 	private EClass personalLicenseRequisitesEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass floatingLicenseRequisitesEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -136,7 +204,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @since 2.0
 	 * @generated
 	 */
-	private EClass featureRefEClass = null;
+	private EClass signatureEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -144,23 +212,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @since 2.0
 	 * @generated
 	 */
-	private EClass userRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass companyRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass floatingServerEClass = null;
+	private EClass signatureAttributeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -176,7 +228,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @since 2.0
 	 * @generated
 	 */
-	private EClass featureGrantEClass = null;
+	private EClass userRefEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -200,55 +252,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @since 2.0
 	 * @generated
 	 */
-	private EClass evaluationInstructionsEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
 	private EClass versionMatchEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass floatingLicenseAccessEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass floatingServerConnectionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass grantAcqisitionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass signatureEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	private EClass signatureAttributeEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -405,6 +409,468 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EClass getCompanyRef() {
+		return companyRefEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCompanyRef_Identifier() {
+		return (EAttribute) companyRefEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCompanyRef_Name() {
+		return (EAttribute) companyRefEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCompanyRef_Info() {
+		return (EAttribute) companyRefEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EClass getEvaluationInstructions() {
+		return evaluationInstructionsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getEvaluationInstructions_Type() {
+		return (EAttribute) evaluationInstructionsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getEvaluationInstructions_Expression() {
+		return (EAttribute) evaluationInstructionsEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EClass getFeatureGrant() {
+		return featureGrantEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFeatureGrant_Identifier() {
+		return (EAttribute) featureGrantEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EReference getFeatureGrant_Feature() {
+		return (EReference) featureGrantEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EReference getFeatureGrant_Valid() {
+		return (EReference) featureGrantEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFeatureGrant_Vivid() {
+		return (EAttribute) featureGrantEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFeatureGrant_Capacity() {
+		return (EAttribute) featureGrantEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EReference getFeatureGrant_Pack() {
+		return (EReference) featureGrantEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EClass getFeatureRef() {
+		return featureRefEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFeatureRef_Identifier() {
+		return (EAttribute) featureRefEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EReference getFeatureRef_VersionMatch() {
+		return (EReference) featureRefEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EClass getFloatingLicenseAccess() {
+		return floatingLicenseAccessEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFloatingLicenseAccess_User() {
+		return (EAttribute) floatingLicenseAccessEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EReference getFloatingLicenseAccess_Server() {
+		return (EReference) floatingLicenseAccessEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFloatingLicenseAccess_OriginLicensePack() {
+		return (EAttribute) floatingLicenseAccessEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EClass getFloatingLicensePack() {
+		return floatingLicensePackEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EReference getFloatingLicensePack_License() {
+		return (EReference) floatingLicensePackEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EReference getFloatingLicensePack_Host() {
+		return (EReference) floatingLicensePackEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EReference getFloatingLicensePack_Users() {
+		return (EReference) floatingLicensePackEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EReference getFloatingLicensePack_Features() {
+		return (EReference) floatingLicensePackEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EClass getFloatingLicenseRequisites() {
+		return floatingLicenseRequisitesEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EReference getFloatingLicenseRequisites_Company() {
+		return (EReference) floatingLicenseRequisitesEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFloatingLicenseRequisites_Group() {
+		return (EAttribute) floatingLicenseRequisitesEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EClass getFloatingServer() {
+		return floatingServerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFloatingServer_Identifier() {
+		return (EAttribute) floatingServerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EReference getFloatingServer_Authentication() {
+		return (EReference) floatingServerEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EClass getFloatingServerConnection() {
+		return floatingServerConnectionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFloatingServerConnection_Ip() {
+		return (EAttribute) floatingServerConnectionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFloatingServerConnection_Port() {
+		return (EAttribute) floatingServerConnectionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EReference getFloatingServerConnection_Authentication() {
+		return (EReference) floatingServerConnectionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EClass getGrantAcqisition() {
+		return grantAcqisitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGrantAcqisition_Identifier() {
+		return (EAttribute) grantAcqisitionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGrantAcqisition_Feature() {
+		return (EAttribute) grantAcqisitionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGrantAcqisition_Grant() {
+		return (EAttribute) grantAcqisitionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGrantAcqisition_User() {
+		return (EAttribute) grantAcqisitionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGrantAcqisition_Created() {
+		return (EAttribute) grantAcqisitionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -543,6 +1009,94 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EClass getLicenseRequisites() {
+		return licenseRequisitesEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EAttribute getLicenseRequisites_Identifier() {
+		return (EAttribute) licenseRequisitesEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EAttribute getLicenseRequisites_IssueDate() {
+		return (EAttribute) licenseRequisitesEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EAttribute getLicenseRequisites_Plan() {
+		return (EAttribute) licenseRequisitesEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EReference getLicenseRequisites_Product() {
+		return (EReference) licenseRequisitesEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EReference getLicenseRequisites_Valid() {
+		return (EReference) licenseRequisitesEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EReference getLicenseRequisites_Signature() {
+		return (EReference) licenseRequisitesEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.1
+	 * @generated
+	 */
+	@Override
+	public EReference getLicenseRequisites_Agreements() {
+		return (EReference) licenseRequisitesEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @since 2.0
 	 * @generated
 	 */
@@ -668,149 +1222,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getFloatingLicensePack() {
-		return floatingLicensePackEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EReference getFloatingLicensePack_License() {
-		return (EReference) floatingLicensePackEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EReference getFloatingLicensePack_Host() {
-		return (EReference) floatingLicensePackEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EReference getFloatingLicensePack_Users() {
-		return (EReference) floatingLicensePackEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EReference getFloatingLicensePack_Features() {
-		return (EReference) floatingLicensePackEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.1
-	 * @generated
-	 */
-	@Override
-	public EClass getLicenseRequisites() {
-		return licenseRequisitesEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.1
-	 * @generated
-	 */
-	@Override
-	public EAttribute getLicenseRequisites_Identifier() {
-		return (EAttribute) licenseRequisitesEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.1
-	 * @generated
-	 */
-	@Override
-	public EAttribute getLicenseRequisites_IssueDate() {
-		return (EAttribute) licenseRequisitesEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.1
-	 * @generated
-	 */
-	@Override
-	public EAttribute getLicenseRequisites_Plan() {
-		return (EAttribute) licenseRequisitesEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.1
-	 * @generated
-	 */
-	@Override
-	public EReference getLicenseRequisites_Product() {
-		return (EReference) licenseRequisitesEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.1
-	 * @generated
-	 */
-	@Override
-	public EReference getLicenseRequisites_Valid() {
-		return (EReference) licenseRequisitesEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.1
-	 * @generated
-	 */
-	@Override
-	public EReference getLicenseRequisites_Signature() {
-		return (EReference) licenseRequisitesEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.1
-	 * @generated
-	 */
-	@Override
-	public EReference getLicenseRequisites_Agreements() {
-		return (EReference) licenseRequisitesEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
 	public EClass getPersonalLicenseRequisites() {
 		return personalLicenseRequisitesEClass;
 	}
@@ -824,39 +1235,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	@Override
 	public EReference getPersonalLicenseRequisites_User() {
 		return (EReference) personalLicenseRequisitesEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getFloatingLicenseRequisites() {
-		return floatingLicenseRequisitesEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EReference getFloatingLicenseRequisites_Company() {
-		return (EReference) floatingLicenseRequisitesEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFloatingLicenseRequisites_Group() {
-		return (EAttribute) floatingLicenseRequisitesEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -890,523 +1268,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	@Override
 	public EAttribute getProductRef_Version() {
 		return (EAttribute) productRefEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getFeatureRef() {
-		return featureRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFeatureRef_Identifier() {
-		return (EAttribute) featureRefEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EReference getFeatureRef_VersionMatch() {
-		return (EReference) featureRefEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getUserRef() {
-		return userRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getUserRef_Identifier() {
-		return (EAttribute) userRefEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getUserRef_Name() {
-		return (EAttribute) userRefEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getCompanyRef() {
-		return companyRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getCompanyRef_Identifier() {
-		return (EAttribute) companyRefEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getCompanyRef_Name() {
-		return (EAttribute) companyRefEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getCompanyRef_Info() {
-		return (EAttribute) companyRefEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getFloatingServer() {
-		return floatingServerEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFloatingServer_Identifier() {
-		return (EAttribute) floatingServerEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EReference getFloatingServer_Authentication() {
-		return (EReference) floatingServerEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getUserGrant() {
-		return userGrantEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getUserGrant_User() {
-		return (EAttribute) userGrantEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EReference getUserGrant_Authentication() {
-		return (EReference) userGrantEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getFeatureGrant() {
-		return featureGrantEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFeatureGrant_Identifier() {
-		return (EAttribute) featureGrantEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EReference getFeatureGrant_Feature() {
-		return (EReference) featureGrantEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EReference getFeatureGrant_Valid() {
-		return (EReference) featureGrantEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFeatureGrant_Vivid() {
-		return (EAttribute) featureGrantEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFeatureGrant_Capacity() {
-		return (EAttribute) featureGrantEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EReference getFeatureGrant_Pack() {
-		return (EReference) featureGrantEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getValidityPeriod() {
-		return validityPeriodEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getValidityPeriodClosed() {
-		return validityPeriodClosedEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getValidityPeriodClosed_From() {
-		return (EAttribute) validityPeriodClosedEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getValidityPeriodClosed_Until() {
-		return (EAttribute) validityPeriodClosedEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getEvaluationInstructions() {
-		return evaluationInstructionsEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getEvaluationInstructions_Type() {
-		return (EAttribute) evaluationInstructionsEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getEvaluationInstructions_Expression() {
-		return (EAttribute) evaluationInstructionsEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getVersionMatch() {
-		return versionMatchEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getVersionMatch_Version() {
-		return (EAttribute) versionMatchEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getVersionMatch_Rule() {
-		return (EAttribute) versionMatchEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getFloatingLicenseAccess() {
-		return floatingLicenseAccessEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFloatingLicenseAccess_User() {
-		return (EAttribute) floatingLicenseAccessEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EReference getFloatingLicenseAccess_Server() {
-		return (EReference) floatingLicenseAccessEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFloatingLicenseAccess_OriginLicensePack() {
-		return (EAttribute) floatingLicenseAccessEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getFloatingServerConnection() {
-		return floatingServerConnectionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFloatingServerConnection_Ip() {
-		return (EAttribute) floatingServerConnectionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFloatingServerConnection_Port() {
-		return (EAttribute) floatingServerConnectionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EReference getFloatingServerConnection_Authentication() {
-		return (EReference) floatingServerConnectionEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EClass getGrantAcqisition() {
-		return grantAcqisitionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getGrantAcqisition_Identifier() {
-		return (EAttribute) grantAcqisitionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getGrantAcqisition_Feature() {
-		return (EAttribute) grantAcqisitionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getGrantAcqisition_Grant() {
-		return (EAttribute) grantAcqisitionEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getGrantAcqisition_User() {
-		return (EAttribute) grantAcqisitionEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @since 2.0
-	 * @generated
-	 */
-	@Override
-	public EAttribute getGrantAcqisition_Created() {
-		return (EAttribute) grantAcqisitionEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1473,6 +1334,149 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	@Override
 	public EAttribute getSignatureAttribute_Value() {
 		return (EAttribute) signatureAttributeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EClass getUserGrant() {
+		return userGrantEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUserGrant_User() {
+		return (EAttribute) userGrantEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EReference getUserGrant_Authentication() {
+		return (EReference) userGrantEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EClass getUserRef() {
+		return userRefEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUserRef_Identifier() {
+		return (EAttribute) userRefEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUserRef_Name() {
+		return (EAttribute) userRefEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EClass getValidityPeriod() {
+		return validityPeriodEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EClass getValidityPeriodClosed() {
+		return validityPeriodClosedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getValidityPeriodClosed_From() {
+		return (EAttribute) validityPeriodClosedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getValidityPeriodClosed_Until() {
+		return (EAttribute) validityPeriodClosedEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EClass getVersionMatch() {
+		return versionMatchEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getVersionMatch_Version() {
+		return (EAttribute) versionMatchEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public EAttribute getVersionMatch_Rule() {
+		return (EAttribute) versionMatchEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1979,4 +1983,4 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		createResource(eNS_URI);
 	}
 
-} // LicensesPackageImpl
+} //LicensesPackageImpl

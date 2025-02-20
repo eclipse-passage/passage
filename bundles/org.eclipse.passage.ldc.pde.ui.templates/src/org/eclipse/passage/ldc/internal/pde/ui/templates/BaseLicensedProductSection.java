@@ -115,7 +115,7 @@ public abstract class BaseLicensedProductSection extends BaseLicensingSection {
 		if (!(plugin instanceof IBundlePluginBase)) {
 			return;
 		}
-		ISharedPluginModel shared = ((IBundlePluginBase) plugin).getModel();
+		ISharedPluginModel shared = plugin.getModel();
 		if (!(shared instanceof IBundlePluginModelBase)) {
 			return;
 		}
