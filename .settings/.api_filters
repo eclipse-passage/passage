@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<component id="org.eclipse.passage.lic.licenses.model" version="2">
+<component id="org.eclipse.passage.lic.base" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter comment="Ignored, see https://github.com/eclipse-passage/passage/blob/master/POLICY.md" id="923795461">
+            <message_arguments>
+                <message_argument value="4.1.0"/>
+                <message_argument value="4.0.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
     <resource path="src-gen/org/eclipse/passage/lic/licenses/model/meta/LicensesPackage.java" type="org.eclipse.passage.lic.licenses.model.meta.LicensesPackage">
-        <filter comment="See https://github.com/eclipse-passage/passage/blob/master/POLICY.md" id="388194388">
+        <filter comment="Ignored, see https://github.com/eclipse-passage/passage/blob/master/POLICY.md" id="388194388">
             <message_arguments>
                 <message_argument value="org.eclipse.passage.lic.licenses.model.meta.LicensesPackage"/>
                 <message_argument value="eNS_URI"/>
