@@ -43,6 +43,9 @@ public abstract class LocalConditions extends BaseLocalConditions {
 		this(id, equipment, new PassageFileExtension.LicenseEncrypted());
 	}
 
+	/**
+	 * @since 4.1
+	 */
 	@Override
 	protected final Collection<Path> licenses(LicensedProduct product) throws LicensingException {
 		return new FileCollection(base(product), scope).get();
