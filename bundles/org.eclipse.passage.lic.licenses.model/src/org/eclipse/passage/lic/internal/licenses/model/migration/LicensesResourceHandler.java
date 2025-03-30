@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2020, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation
+ *     ArSysOp - initial API and implementation, further support
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.licenses.model.migration;
 
@@ -26,10 +26,10 @@ import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
-public class LicensesResourceHandler extends MigratingResourceHandler {
+public final class LicensesResourceHandler extends MigratingResourceHandler {
 
 	@Override
-	protected final void complete(XMLResource resource) {
+	protected void complete(XMLResource resource) {
 		resource.getContents().stream()//
 				.filter(PersonalLicensePack.class::isInstance)//
 				.map(PersonalLicensePack.class::cast)//
@@ -37,7 +37,7 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 	}
 
 	@Override
-	protected final void register() {
+	protected void register() {
 		migrate033();
 		migrate040();
 		migrate050();
@@ -49,7 +49,7 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 	}
 
 	@Override
-	protected final MigrationRoutes attributes() {
+	protected MigrationRoutes attributes() {
 		MigrationRoutes routes = new SimpleMigrationRoutes();
 		LicensesPackage licenses = LicensesPackage.eINSTANCE;
 
@@ -144,20 +144,17 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 
 	private void migrate200() {
 		String uri = "http://www.eclipse.org/passage/lic/licenses/2.0.0"; //$NON-NLS-1$
-		LicensesPackage delegate = LicensesPackage.eINSTANCE;
-		EPackage.Registry.INSTANCE.computeIfAbsent(uri, ns -> delegate);
+		EPackage.Registry.INSTANCE.computeIfAbsent(uri, ns -> LicensesPackage.eINSTANCE);
 	}
 
 	private void migrate300() {
 		String uri = "http://www.eclipse.org/passage/lic/licenses/3.0.0"; //$NON-NLS-1$
-		LicensesPackage delegate = LicensesPackage.eINSTANCE;
-		EPackage.Registry.INSTANCE.computeIfAbsent(uri, ns -> delegate);
+		EPackage.Registry.INSTANCE.computeIfAbsent(uri, ns -> LicensesPackage.eINSTANCE);
 	}
 
 	private void migrate400() {
 		String uri = "http://www.eclipse.org/passage/lic/licenses/4.0.0"; //$NON-NLS-1$
-		LicensesPackage delegate = LicensesPackage.eINSTANCE;
-		EPackage.Registry.INSTANCE.computeIfAbsent(uri, ns -> delegate);
+		EPackage.Registry.INSTANCE.computeIfAbsent(uri, ns -> LicensesPackage.eINSTANCE);
 	}
 
 }
