@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -8,12 +8,10 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation
+ *     ArSysOp - initial API and implementation, further support
  *******************************************************************************/
 package org.eclipse.passage.lic.emf.migration;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EClass;
@@ -34,17 +32,16 @@ public final class DelegateClassifiers {
 	}
 
 	public void delegate(EClassRoutes routes) {
-		DelegatingEPackage delegating = new DelegateEPackage().apply(uri);
-		DelegatingEFactory factory = delegating.getDelegatingEFactory();
-		Map<EClass, EClass> delegated = new HashMap<>();
-		Map<String, EClass> defined = routes.defined();
-		for (Entry<String, EClass> entry : defined.entrySet()) {
-			EClass to = entry.getValue();
-			EClass from = EcoreUtil.copy(to);
-			from.setName(entry.getKey());
-			delegated.put(from, to);
-			delegating.getEClassifiers().add(from);
-			factory.delegateEClass(to.getEPackage().getEFactoryInstance(), from, to);
+		synchronized (DelegateClassifiers.class) {
+			DelegatingEPackage delegating = new DelegateEPackage().apply(uri);
+			DelegatingEFactory factory = delegating.getDelegatingEFactory();
+			for (Entry<String, EClass> entry : routes.defined().entrySet()) {
+				EClass to = entry.getValue();
+				EClass from = EcoreUtil.copy(to);
+				from.setName(entry.getKey());
+				delegating.getEClassifiers().add(from);
+				factory.delegateEClass(to.getEPackage().getEFactoryInstance(), from, to);
+			}
 		}
 	}
 
