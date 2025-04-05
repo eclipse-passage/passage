@@ -10,6 +10,7 @@
 
 	Contributors:
 		ArSysOp - initial API and implementation
+		ArSysOp - further support
 -->
 <project
 	xmlns="http://maven.apache.org/POM/4.0.0"
@@ -20,7 +21,7 @@
 
 	<groupId>org.eclipse.passage</groupId>
 	<artifactId>org.eclipse.passage.parent</artifactId>
-	<version>4.1.0-SNAPSHOT</version>
+	<version>4.2.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<prerequisites>
