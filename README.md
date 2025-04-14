@@ -14,9 +14,11 @@ Copyright © 2018, 2025 ArSysOp and others
 ###### Latest release [4.1.0](https://projects.eclipse.org/projects/technology.passage/releases/4.1.0) is part of [Eclipse 2025-03](https://projects.eclipse.org/releases/2025-03).
 [![Latest release](https://img.shields.io/badge/P2%20Components-4.1.0-lightblue.svg)](https://download.eclipse.org/passage/updates/release/4.1.0/)
 
-[![Latest release](https://img.shields.io/badge/License%20Control%20Operator-lightgreen.svg)](https://arsysop.ru/cordon/ce/#lco)
+###### Auxiliary Products
+[![Latest release](https://img.shields.io/badge/License%20Control%20Operator%20CE%203.1.0-azure.svg)](https://arsysop.ru/cordon/ce/#lco)
+[![Latest release](https://img.shields.io/badge/License%20Control%20Operator%204.1.0-khaki.svg)](https://arsysop.ru/cordon/lco)
+[![Latest release](https://img.shields.io/badge/Floating%20License%20Server%20CE%203.1.0-azure.svg)](https://arsysop.ru/cordon/ce/#fls)
 
-[![Latest release](https://img.shields.io/badge/Floating%20License%20Server-lightgreen.svg)](https://arsysop.ru/cordon/ce/#fls)
 
 [Eclipse Passage™](https://projects.eclipse.org/projects/technology.passage) helps to verify that the software has sufficient license grants in accordance with the specified licensing requirements.
 The Equinox-based implementation includes various validators for the time-limited, node-locked and other types of licenses.
