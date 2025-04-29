@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -43,7 +44,7 @@ final class HereTable<T> {
 		this.background = background;
 	}
 
-	public TableViewer viewer() {
+	TableViewer viewer() {
 		table.setContentProvider(new ArrayContentProvider());
 		table.setLabelProvider(new HereLabelProvider<T>(texts, cls, background));
 		table.getTable().setHeaderVisible(true);
@@ -52,14 +53,25 @@ final class HereTable<T> {
 		return table;
 	}
 
-	public HereTable<T> withColumn(String name, int width, Function<T, String> text) {
+	HereTable<T> withColumns(List<SimpleViewerColumn<T>> configs) {
+		for (SimpleViewerColumn<T> config : configs) {
+			withColumn(config);
+		}
+		return this;
+	}
+
+	HereTable<T> withColumn(SimpleViewerColumn<T> config) {
+		return withColumn(config.name(), config.width(), config.value());
+	}
+
+	HereTable<T> withColumn(String name, int width, Function<T, String> text) {
 		TableViewerColumn column = new TableViewerColumn(table, SWT.NONE);
 		setupColumn(column.getColumn(), name, width);
 		texts.put(table.getTable().getColumnCount() - 1, text);
 		return this;
 	}
 
-	public HereTable<T> withColumn(String name, int width, int index, Function<T, String> text) {
+	HereTable<T> withColumn(String name, int width, int index, Function<T, String> text) {
 		TableViewerColumn column = new TableViewerColumn(table, SWT.NONE, index);
 		setupColumn(column.getColumn(), name, width);
 		texts.put(index, text);

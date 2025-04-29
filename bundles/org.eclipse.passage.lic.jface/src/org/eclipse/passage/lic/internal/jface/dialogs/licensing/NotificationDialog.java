@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation
+ *     ArSysOp - initial API and implementation; further support
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
@@ -18,8 +18,6 @@ import java.util.TreeMap;
 
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.swt.SWT;
@@ -85,13 +83,7 @@ abstract class NotificationDialog extends TitleAreaDialog {
 	}
 
 	private void installBehaviour() {
-		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
-
-			@Override
-			public void selectionChanged(SelectionChangedEvent event) {
-				updateButtonsEnablement();
-			}
-		});
+		viewer.addSelectionChangedListener(event -> updateButtonsEnablement());
 	}
 
 	protected abstract void buildUI(Composite parent);
