@@ -18,24 +18,20 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
-import org.eclipse.passage.lic.base.diagnostic.SumOfLists;
 import org.eclipse.passage.lic.base.diagnostic.TroubleHasException;
 import org.eclipse.passage.lic.internal.jface.i18n.DiagnosticDialogMessages;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 public final class DiagnosticDialog extends NotificationDialog {
 
 	private final Diagnostic diagnostic;
-	private final DiagnosticColors colors;
+	private TroublesViewer troubles;
 	private ButtonConfig error;
 
 	public DiagnosticDialog(Shell shell, Diagnostic diagnostic) {
 		super(shell);
 		this.diagnostic = diagnostic;
-		this.colors = new DiagnosticColors(shell == null ? Display.getCurrent() : shell.getDisplay());
 	}
 
 	@Override
@@ -55,23 +51,19 @@ public final class DiagnosticDialog extends NotificationDialog {
 		new ButtonConfig(2, new CopyToClipboard(this::getShell, new DiagnosticExplained(diagnostic)), //
 				DiagnosticDialogMessages.DiagnosticDialog_action_copy, //
 				DiagnosticDialogMessages.DiagnosticDialog_action_copy_tooltip, "") //$NON-NLS-1$
-						.reside(buttons);
+				.reside(buttons);
 	}
 
 	@Override
 	protected void buildUI(Composite parent) {
-		viewer = new HereTable<Trouble>(parent, Trouble.class, this::backdround) //
-				.withColumn(DiagnosticDialogMessages.DiagnosticDialog_column_details, 900, Trouble::details)
-				.withColumn(DiagnosticDialogMessages.DiagnosticDialog_column_code, 50,
-						trouble -> Integer.toString(trouble.code().code()))//
-				.withColumn(DiagnosticDialogMessages.DiagnosticDialog_column_type, 250,
-						trouble -> trouble.code().explanation())//
-				.viewer();
+		troubles = new TroublesViewer(getShell(), diagnostic);
+		troubles.installControl(parent);
+		viewer = troubles.viewer();
 	}
 
 	@Override
 	protected void inplaceData() {
-		viewer.setInput(new SumOfLists<Trouble>().apply(diagnostic.severe(), diagnostic.bearable()));
+		troubles.installInput();
 	}
 
 	@Override
@@ -100,15 +92,6 @@ public final class DiagnosticDialog extends NotificationDialog {
 
 	private Optional<Trouble> selectedTrouble() {
 		return new FirstSelected<Trouble>(viewer.getSelection(), Trouble.class).get();
-	}
-
-	private Color backdround(Object element, int column) {
-		if (column != 1) {
-			return null; // framework driven null
-		}
-		boolean failure = ((Trouble) element).exception().isPresent();
-		boolean severe = diagnostic.severe().contains(element);
-		return colors.get(severe, failure);
 	}
 
 }

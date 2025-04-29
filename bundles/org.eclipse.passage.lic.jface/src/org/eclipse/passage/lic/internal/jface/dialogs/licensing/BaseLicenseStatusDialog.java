@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2020, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
- *     ArSysOp - further support
+ *     ArSysOp - further support and evolution
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
@@ -21,8 +21,6 @@ import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.base.diagnostic.NoErrors;
-import org.eclipse.passage.lic.base.diagnostic.RequirementStatus;
-import org.eclipse.passage.lic.base.diagnostic.RequirementsCoverage;
 import org.eclipse.passage.lic.base.restrictions.ExaminationExplained;
 import org.eclipse.passage.lic.internal.jface.i18n.LicenseStatusDialogMessages;
 import org.eclipse.swt.SWT;
@@ -36,12 +34,14 @@ public abstract class BaseLicenseStatusDialog extends NotificationDialog {
 	protected final ExaminationCertificate certificate;
 	protected final Diagnostic diagnostic;
 	private GoodIntention intention = new GoodIntention.Nope(); // truly mutable ^:(
+	private RequirementsStatusViewer statuses;
 	private StyledText notice;
 
 	protected BaseLicenseStatusDialog(Shell shell, ExaminationCertificate certificate, Diagnostic diagnostic) {
 		super(shell);
 		this.certificate = certificate;
 		this.diagnostic = diagnostic;
+
 	}
 
 	public final GoodIntention goodIntention() {
@@ -58,19 +58,16 @@ public abstract class BaseLicenseStatusDialog extends NotificationDialog {
 
 	@Override
 	protected final void buildUI(Composite parent) {
-		viewer = new HereTable<RequirementStatus>(parent, RequirementStatus.class) //
-				.withColumn(LicenseStatusDialogMessages.LicenseStatusDialog_column_id, //
-						600, RequirementStatus::feature)
-				.withColumn(LicenseStatusDialogMessages.LicenseStatusDialog_column_status, //
-						500, RequirementStatus::status)
-				.viewer();
+		statuses = new RequirementsStatusViewer(certificate);
+		statuses.installControl(parent);
+		viewer = statuses.viewer();
 		notice = new StyledText(parent, SWT.BORDER | SWT.READ_ONLY);
 		notice.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 	}
 
 	@Override
 	protected final void inplaceData() {
-		viewer.setInput(new RequirementsCoverage(certificate).get());
+		statuses.installInput();
 		notice.setText(new ProductContacts().get());
 	}
 
