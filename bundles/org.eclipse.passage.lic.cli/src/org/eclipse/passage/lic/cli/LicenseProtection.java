@@ -22,13 +22,10 @@ import org.eclipse.passage.lic.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.equinox.EquinoxPassage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("restriction")
 public final class LicenseProtection {
 
-	private final Logger log = LoggerFactory.getLogger(getClass());
 	private Optional<GrantLockAttempt> lock = Optional.empty();
 	private final Supplier<Interaction> interaction;
 
@@ -74,10 +71,8 @@ public final class LicenseProtection {
 	private Optional<LicensedProduct> product() {
 		ServiceInvocationResult<LicensedProduct> product = new EquinoxPassage().product();
 		if (!product.data().isPresent()) {
-			log.error(String.format(//
-					"Failed to read product credentials:%s", //$NON-NLS-1$
-					new DiagnosticExplained(product.diagnostic()).get()));
-
+			System.err.printf("Failed to read product credentials:%s\n", //$NON-NLS-1$
+					new DiagnosticExplained(product.diagnostic()).get());
 		}
 		return product.data();
 	}
@@ -86,10 +81,9 @@ public final class LicenseProtection {
 		ServiceInvocationResult<GrantLockAttempt> response = new EquinoxPassage()
 				.acquireLicense(new BaseFeatureIdentifier(product.identifier()));
 		if (!successful(response)) {
-			log.error(String.format(//
-					"Failed to acquire license \nfor product %s:\n%s\n", //$NON-NLS-1$
+			System.err.printf("Failed to acquire license \nfor product %s:\n%s\n", //$NON-NLS-1$
 					product, //
-					new DiagnosticExplained(response.diagnostic()).get()));
+					new DiagnosticExplained(response.diagnostic()).get());
 			return Optional.empty();
 		}
 		return Optional.of(response.data().get());

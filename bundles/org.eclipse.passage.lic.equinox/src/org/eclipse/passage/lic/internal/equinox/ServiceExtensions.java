@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2022, 2024 ArSysOp
+ * Copyright (c) 2022, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -23,8 +23,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.RegistryFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * <p>
@@ -41,7 +39,6 @@ public final class ServiceExtensions<S> implements Supplier<List<S>> {
 	private final String namespace;
 	private final String point;
 	private final Class<S> service;
-	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	public ServiceExtensions(String namespace, String point, Class<S> service) {
 		Objects.requireNonNull(namespace, "ServiceExtensions::namespace"); //$NON-NLS-1$
@@ -72,7 +69,8 @@ public final class ServiceExtensions<S> implements Supplier<List<S>> {
 			Object executable = config.createExecutableExtension("class"); //$NON-NLS-1$
 			return Optional.of(service.cast(executable));
 		} catch (CoreException e) {
-			log.error("failed to instanciate a service ", e); //$NON-NLS-1$
+			System.err.println("failed to instanciate a service ");//$NON-NLS-1$
+			e.printStackTrace();
 			return Optional.empty();
 		}
 	}

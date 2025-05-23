@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021, 2024 ArSysOp
+ * Copyright (c) 2021, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -23,28 +23,22 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @since 2.1
  */
 public abstract class GearAware<G, S extends Supplier<G>> {
 
-	private final Logger log = LoggerFactory.getLogger(getClass());
-
 	public final <T> Optional<T> withGear(Unsafe<G, T> with) throws LicensingException {
 		BundleContext context = FrameworkUtil.getBundle(getClass()).getBundleContext();
 		Collection<ServiceReference<S>> references = Collections.emptyList();
 		try {
-			references = context.getServiceReferences(supplier(), null);
+			references = context.getServiceReferences(supplier(), null); // OSGi-designed null
 		} catch (InvalidSyntaxException e) {
-			log.error("Failed to resolve service references", e); //$NON-NLS-1$
-			return Optional.empty();
+			throw new LicensingException("Failed to resolve service references", e); //$NON-NLS-1$
 		}
 		if (references.isEmpty()) {
-			log.error("No reference of service " + supplier().getName()); //$NON-NLS-1$
-			return Optional.empty();
+			throw new LicensingException("No reference of service " + supplier().getName()); //$NON-NLS-1$
 		}
 		ServiceReference<S> any = references.iterator().next();
 		try {

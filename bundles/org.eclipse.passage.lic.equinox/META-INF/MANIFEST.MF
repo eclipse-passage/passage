@@ -22,8 +22,7 @@ Export-Package: org.eclipse.passage.lic.equinox;x-internal:=true,
  org.eclipse.passage.lic.internal.equinox.events;x-internal:=true
 Import-Package: org.osgi.service.component.runtime;version="1.0.0",
  org.osgi.service.component.runtime.dto;version="1.0.0",
- org.osgi.service.event;version="1.0.0",
- org.slf4j;version="1.7.36"
+ org.osgi.service.event;version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Provide-Capability: licensing.management;licensing.management="equinox";version="1.0.0"
 
