@@ -61,10 +61,6 @@
    <bundle id="com.sun.jna.source"/>
    <bundle id="com.sun.jna.platform"/>
    <bundle id="com.sun.jna.platform.source"/>
-   <bundle id="slf4j.api"/>
-   <bundle id="slf4j.api.source"/>
-   <bundle id="slf4j.nop"/>
-   <bundle id="slf4j.nop.source"/>
    <category-def name="org.eclipse.passage.lic.category" label="Passage LIC">
       <description>
          Passage Licensing Integration Components includes: Licensing Runtime API and its implementation for Eclipse Equinox, Licensing JFace components, Licensing Metadata EMF API, License Management Integrations
