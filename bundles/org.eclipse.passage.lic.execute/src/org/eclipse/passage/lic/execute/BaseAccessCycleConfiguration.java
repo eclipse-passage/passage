@@ -59,7 +59,7 @@ import org.eclipse.passage.lic.bc.BcStreamCodec;
 import org.eclipse.passage.lic.equinox.io.BundleKeyKeeper;
 import org.eclipse.passage.lic.equinox.requirements.BundleRequirements;
 import org.eclipse.passage.lic.equinox.requirements.ComponentRequirements;
-import org.eclipse.passage.lic.internal.base.access.storage.StoringGrantTraceService;
+import org.eclipse.passage.lic.internal.base.access.storage.InMemoryGrants;
 import org.eclipse.passage.lic.licenses.model.transport.XmiConditionTransport;
 import org.eclipse.passage.lic.oshi.HardwareAssessmentService;
 import org.eclipse.passage.lic.oshi.HardwareEnvironment;
@@ -117,7 +117,7 @@ public abstract class BaseAccessCycleConfiguration implements AccessCycleConfigu
 		));
 		acceptance = new BaseAgreementAcceptanceService(hashes(), product);
 		examinators = new ReadOnlyRegistry<>(new BasePermissionsExaminationService(acceptance, product));
-		forsakenGrants = new StoringGrantTraceService(product, new ConfigurationPath(), this::acquirers);
+		forsakenGrants = new InMemoryGrants();
 	}
 
 	@Override

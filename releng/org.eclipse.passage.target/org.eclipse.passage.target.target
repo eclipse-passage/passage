@@ -38,8 +38,6 @@
 			<unit id="com.sun.jna.platform" version="0.0.0"/>
 			<unit id="jakarta.inject.jakarta.inject-api" version="0.0.0"/>
 			<unit id="org.junit" version="0.0.0"/>
-			<unit id="slf4j.api" version="0.0.0"/>
-			<unit id="slf4j.nop" version="0.0.0"/>
 		</location>
 	</locations>
 </target>

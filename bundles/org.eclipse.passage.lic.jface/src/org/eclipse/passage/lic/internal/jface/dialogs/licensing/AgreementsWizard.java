@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021, 2022 ArSysOp
+ * Copyright (c) 2021, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -26,13 +26,9 @@ import org.eclipse.passage.lic.internal.base.access.Libraries;
 import org.eclipse.passage.lic.internal.equinox.access.AgreementAcceptanceDelegate;
 import org.eclipse.passage.lic.internal.equinox.access.RegisteredLibraries;
 import org.eclipse.passage.lic.internal.jface.i18n.AgreementsDialogMessages;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("restriction")
 final class AgreementsWizard extends Wizard {
-
-	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	private final Collection<AgreementToAccept> agreements;
 	private final Libraries libraries;
@@ -41,7 +37,6 @@ final class AgreementsWizard extends Wizard {
 		this.agreements = agreements;
 		this.libraries = new Libraries(new RegisteredLibraries(), product()::get);
 		setWindowTitle(AgreementsDialogMessages.AgreementsWizard_description);
-
 	}
 
 	@Override
@@ -73,8 +68,8 @@ final class AgreementsWizard extends Wizard {
 				service.accept(agreement);
 			} catch (Exception e) {
 				success = false;
+				System.err.println("Agreement acceptance failed"); //$NON-NLS-1$
 				e.printStackTrace();
-				log.error("Agreement acceptance failed", e); //$NON-NLS-1$
 			}
 		}
 		return success;
