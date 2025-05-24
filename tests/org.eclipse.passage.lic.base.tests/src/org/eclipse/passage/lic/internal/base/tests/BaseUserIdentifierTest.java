@@ -10,24 +10,24 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.base;
+
+package org.eclipse.passage.lic.internal.base.tests;
 
 import org.eclipse.passage.lic.api.UserIdentifier;
+import org.eclipse.passage.lic.api.tests.IdentifierContractTest;
+import org.eclipse.passage.lic.base.BaseUserIdentifier;
 
-/**
- * Base implementation for {@link UserIdentifier}
- * 
- * @since 4.0
- */
-public final class BaseUserIdentifier extends BaseIdentifier implements UserIdentifier {
+@SuppressWarnings("restriction")
+public final class BaseUserIdentifierTest extends IdentifierContractTest.User {
 
-	public BaseUserIdentifier(String identifier) {
-		super(identifier);
+	@Override
+	protected UserIdentifier identifierForInput(String input) {
+		return new BaseUserIdentifier(input);
 	}
 
 	@Override
-	public String identifier() {
-		return value();
+	protected UserIdentifier theMostInvalidIdentifier() {
+		return new BaseUserIdentifier("invalid"); //$NON-NLS-1$
 	}
 
 }

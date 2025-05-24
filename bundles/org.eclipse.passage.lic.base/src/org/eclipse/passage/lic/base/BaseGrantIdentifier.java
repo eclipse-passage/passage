@@ -19,6 +19,15 @@ import org.eclipse.passage.lic.api.GrantIdentifier;
  * 
  * @since 4.0
  */
-public record BaseGrantIdentifier(String identifier) implements GrantIdentifier {
+public final class BaseGrantIdentifier extends BaseIdentifier implements GrantIdentifier {
+
+	public BaseGrantIdentifier(String identifier) {
+		super(identifier);
+	}
+
+	@Override
+	public String identifier() {
+		return value();
+	}
 
 }
