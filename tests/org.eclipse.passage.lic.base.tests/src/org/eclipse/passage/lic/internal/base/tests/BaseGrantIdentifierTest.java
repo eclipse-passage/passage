@@ -13,21 +13,21 @@
 
 package org.eclipse.passage.lic.internal.base.tests;
 
-import org.eclipse.passage.lic.api.FeatureIdentifier;
+import org.eclipse.passage.lic.api.GrantIdentifier;
 import org.eclipse.passage.lic.api.tests.IdentifierContractTest;
-import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
+import org.eclipse.passage.lic.base.BaseGrantIdentifier;
 
 @SuppressWarnings("restriction")
-public final class BaseFeatureIdentifierTest extends IdentifierContractTest.Feature {
+public final class BaseGrantIdentifierTest extends IdentifierContractTest.Grant {
 
 	@Override
-	protected FeatureIdentifier identifierForInput(String input) {
-		return new BaseFeatureIdentifier(input);
+	protected GrantIdentifier identifierForInput(String input) {
+		return new BaseGrantIdentifier(input);
 	}
 
 	@Override
-	protected FeatureIdentifier theMostInvalidIdentifier() {
-		return new BaseFeatureIdentifier("invalid"); //$NON-NLS-1$
+	protected GrantIdentifier theMostInvalidIdentifier() {
+		return new BaseGrantIdentifier("invalid"); //$NON-NLS-1$
 	}
 
 }

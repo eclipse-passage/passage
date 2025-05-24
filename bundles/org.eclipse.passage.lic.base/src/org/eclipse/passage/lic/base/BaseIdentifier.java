@@ -12,22 +12,36 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base;
 
-import org.eclipse.passage.lic.api.FeatureIdentifier;
+import java.util.Objects;
 
-/**
- * Base implementation for {@link FeatureIdentifier}
- * 
- * @since 4.0
- */
-public final class BaseFeatureIdentifier extends BaseIdentifier implements FeatureIdentifier {
+abstract class BaseIdentifier {
 
-	public BaseFeatureIdentifier(String identifier) {
-		super(identifier);
+	private final String identifier;
+
+	protected BaseIdentifier(String identifier) {
+		this.identifier = Objects.requireNonNull(identifier);
+	}
+
+	protected final String value() {
+		return identifier;
 	}
 
 	@Override
-	public String identifier() {
-		return value();
+	public final int hashCode() {
+		return identifier.hashCode();
+	}
+
+	@Override
+	public final boolean equals(Object obj) {
+		if (!(obj instanceof BaseIdentifier id)) {
+			return false;
+		}
+		return id.value().equals(identifier);
+	}
+
+	@Override
+	public final String toString() {
+		return identifier;
 	}
 
 }
