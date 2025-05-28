@@ -26,10 +26,30 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
 	<linkedResources>
-     <link>
-            <name>.settings</name>
-            <type>2</type>
-            <locationURI>$%7BPARENT-2-PROJECT_LOC%7D/.settings</locationURI>
-        </link>
- </linkedResources>
+		<link>
+			<name>.settings/org.eclipse.jdt.core.prefs</name>
+			<type>1</type>
+			<location>$%7BPARENT-2-PROJECT_LOC%7D/.settings/org.eclipse.jdt.core.prefs</location>
+		</link>
+		<link>
+			<name>.settings/org.eclipse.jdt.ui.prefs</name>
+			<type>1</type>
+			<location>$%7BPARENT-2-PROJECT_LOC%7D/.settings/org.eclipse.jdt.ui.prefs</location>
+		</link>
+		<link>
+			<name>.settings/org.eclipse.pde.api.tools.prefs</name>
+			<type>1</type>
+			<location>$%7BPARENT-2-PROJECT_LOC%7D/.settings/org.eclipse.pde.api.tools.prefs</location>
+		</link>
+		<link>
+			<name>.settings/org.eclipse.pde.ds.annotations.prefs</name>
+			<type>1</type>
+			<location>$%7BPARENT-2-PROJECT_LOC%7D/.settings/org.eclipse.pde.ds.annotations.prefs</location>
+		</link>
+		<link>
+			<name>.settings/org.eclipse.pde.prefs</name>
+			<type>1</type>
+			<location>$%7BPARENT-2-PROJECT_LOC%7D/.settings/org.eclipse.pde.prefs</location>
+		</link>
+	</linkedResources>
 </projectDescription>
