@@ -25,7 +25,6 @@ Export-Package: org.eclipse.passage.lic.emf;x-internal:=true,
    org.eclipse.passage.lic.products.model,
    org.eclipse.passage.lic.users.model",
  org.eclipse.passage.lic.emf.resource;x-internal:=true,
- org.eclipse.passage.lic.emf.validation;x-internal:=true,
  org.eclipse.passage.lic.emf.xmi;
   x-friends:="org.eclipse.passage.lic.agreements.model,
    org.eclipse.passage.lic.features.model,
