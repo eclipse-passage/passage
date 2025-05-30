@@ -141,7 +141,7 @@ public final class ExaminationExplained implements Supplier<String> {
 					.append(accepted ? "accepted" : "not accepted") //$NON-NLS-1$//$NON-NLS-2$
 					.append("] state.\r\n"); //$NON-NLS-1$
 			if (!accepted) {
-				out.append("\tThis is FATAL!11. Product cannot proceed without the agreement been accepted.\r\n"); //$NON-NLS-1$
+				out.append("\tThis is FATAL. Product cannot proceed without the agreement been accepted.\r\n"); //$NON-NLS-1$
 			}
 			if (agreement.acceptance().error().isPresent()) {
 				out.append("\terror:\r\n\t") //$NON-NLS-1$
@@ -166,7 +166,7 @@ public final class ExaminationExplained implements Supplier<String> {
 
 	private String feature(Permission permission) {
 		return String.format(ExaminationExplanedMessages.getString("ExaminationExplained.feature_format"), //$NON-NLS-1$
-				permission.condition().feature(), //
+				permission.condition().feature().identifier(), //
 				permission.condition().versionMatch().version());
 	}
 

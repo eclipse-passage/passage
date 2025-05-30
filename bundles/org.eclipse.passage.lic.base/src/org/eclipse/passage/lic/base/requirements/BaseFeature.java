@@ -79,7 +79,7 @@ public final class BaseFeature implements Feature {
 
 	@Override
 	public String toString() {
-		return "BaseFeature [id=" + id + // //$NON-NLS-1$
+		return "BaseFeature [id=" + id.identifier() + // //$NON-NLS-1$
 				", version=" + version + // //$NON-NLS-1$
 				", name=" + name + // //$NON-NLS-1$
 				", provider=" + provider + // //$NON-NLS-1$
