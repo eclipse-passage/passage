@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2020, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -48,17 +48,17 @@ public final class RequirementsTest {
 	}
 
 	@Test
-	public void noRequirementsIsSuspicious() {
+	public void noRequirementsMeansNoAccess() {
 		ServiceInvocationResult<Collection<Requirement>> result = new Requirements(//
 				new ReadOnlyRegistry<StringServiceId, ResolvedRequirements>(new FakeResolvedRequirements()),
 				new BaseFeatureIdentifier("feature0") //$NON-NLS-1$
 		).get();
-		assertTrue(result.diagnostic().severe().isEmpty());
-		assertFalse(result.diagnostic().bearable().isEmpty());
+		assertTrue(result.diagnostic().bearable().isEmpty());
+		assertFalse(result.diagnostic().severe().isEmpty());
 		assertTrue(result.data().isPresent());
 		assertEquals(//
 				new NoRequirements(), //
-				result.diagnostic().bearable().get(0).code());
+				result.diagnostic().severe().get(0).code());
 	}
 
 }
