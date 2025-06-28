@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2020, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -72,7 +72,7 @@ public final class Requirements implements Supplier<ServiceInvocationResult<Coll
 		}
 		ServiceInvocationResult<Collection<Requirement>> result = filtered();
 		if (empty(result)) {
-			return withNoRequirementsWarning(result);
+			return withNoRequirementsError(result);
 		}
 		return result;
 
@@ -97,17 +97,17 @@ public final class Requirements implements Supplier<ServiceInvocationResult<Coll
 		return result.data().map(Collection::isEmpty).orElse(false);
 	}
 
-	private ServiceInvocationResult<Collection<Requirement>> withNoRequirementsWarning(
+	private ServiceInvocationResult<Collection<Requirement>> withNoRequirementsError(
 			ServiceInvocationResult<Collection<Requirement>> original) {
 		return new BaseServiceInvocationResult<>(//
 				new BaseDiagnostic(//
-						original.diagnostic().severe(), //
-						withNoRequirementsWarning(original.diagnostic().bearable())), //
+						withNoRequirementsError(original.diagnostic().severe()), //
+						original.diagnostic().bearable()), //
 				original.data()//
 		);
 	}
 
-	private List<Trouble> withNoRequirementsWarning(List<Trouble> original) {
+	private List<Trouble> withNoRequirementsError(List<Trouble> original) {
 		List<Trouble> more = new ArrayList<>(original);
 		more.add(new Trouble(//
 				new NoRequirements(), //

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2020, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -27,8 +27,8 @@ import org.junit.Test;
 public final class AccessCanUseTest {
 
 	@Test
-	public void allowUnknownFeature() {
-		assertTrue(new Access(new TestFramework.Expired()).canUse(new BaseFeatureIdentifier("unkonwn-feature"))); //$NON-NLS-1$
+	public void forbidUnknownFeature() {
+		assertFalse(new Access(new TestFramework.Expired()).canUse(new BaseFeatureIdentifier("unkonwn-feature"))); //$NON-NLS-1$
 	}
 
 	@Test
