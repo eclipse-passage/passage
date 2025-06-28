@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2020, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -35,11 +35,6 @@ final class Allow extends Cycle<Boolean> {
 	protected Boolean stopOnCertificate(ExaminationCertificate certificate, Diagnostic diagnostic) {
 		return new NoSevereErrors().test(diagnostic) && //
 				new NoSevereRestrictions().test(certificate);
-	}
-
-	@Override
-	protected Boolean freeWayOut() {
-		return true;
 	}
 
 }
