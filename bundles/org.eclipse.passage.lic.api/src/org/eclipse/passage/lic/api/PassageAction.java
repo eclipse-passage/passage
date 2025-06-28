@@ -17,7 +17,7 @@ import java.util.Objects;
 /**
  * 
  * @since 2.1
- * @Deprecated (forRemoval = true, since = "4.3.0")
+ * @Deprecated (forRemoval = true, since = "4.3")
  */
 public abstract class PassageAction {
 
