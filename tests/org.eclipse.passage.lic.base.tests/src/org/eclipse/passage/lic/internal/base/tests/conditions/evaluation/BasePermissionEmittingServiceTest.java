@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation
+ *     ArSysOp - initial API and implementation; further evolution
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.conditions.evaluation;
 
@@ -64,7 +64,7 @@ public final class BasePermissionEmittingServiceTest {
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void demandsEvluators() {
+	public void demandsEvaluators() {
 		new BasePermissionEmittingService(parsers(), assessors(), null);
 	}
 

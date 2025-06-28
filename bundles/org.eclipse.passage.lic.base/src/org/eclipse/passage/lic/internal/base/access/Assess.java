@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2020, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,15 +13,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.access;
 
-import java.util.Collections;
-
 import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
-import org.eclipse.passage.lic.base.restrictions.BaseExaminationCertificate;
 
 final class Assess extends Cycle<ServiceInvocationResult<ExaminationCertificate>> {
 
@@ -35,7 +32,7 @@ final class Assess extends Cycle<ServiceInvocationResult<ExaminationCertificate>
 
 	@Override
 	protected ServiceInvocationResult<ExaminationCertificate> stopOnError(Diagnostic diagnostic) {
-		return new BaseServiceInvocationResult<ExaminationCertificate>(diagnostic);
+		return new BaseServiceInvocationResult<>(diagnostic);
 	}
 
 	@Override
@@ -44,22 +41,13 @@ final class Assess extends Cycle<ServiceInvocationResult<ExaminationCertificate>
 		if (feature().isPresent()) {
 			return acquire(certificate, diagnostic);
 		}
-		return new BaseServiceInvocationResult<ExaminationCertificate>(diagnostic, certificate);
-	}
-
-	@Override
-	protected ServiceInvocationResult<ExaminationCertificate> freeWayOut() {
-		return new BaseServiceInvocationResult<ExaminationCertificate>(//
-				new BaseExaminationCertificate(//
-						Collections.emptyMap(), //
-						Collections.emptySet()));
+		return new BaseServiceInvocationResult<>(diagnostic, certificate);
 	}
 
 	private ServiceInvocationResult<ExaminationCertificate> acquire(ExaminationCertificate certificate,
 			Diagnostic diagnostic) {
-
 		// TODO: YTBD
-		return new BaseServiceInvocationResult<ExaminationCertificate>(diagnostic, certificate);
+		return new BaseServiceInvocationResult<>(diagnostic, certificate);
 	}
 
 }

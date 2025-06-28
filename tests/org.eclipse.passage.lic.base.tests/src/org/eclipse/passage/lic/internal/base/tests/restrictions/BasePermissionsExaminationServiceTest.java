@@ -14,6 +14,7 @@
 package org.eclipse.passage.lic.internal.base.tests.restrictions;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -29,10 +30,12 @@ import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.api.restrictions.PermissionsExaminationService;
 import org.eclipse.passage.lic.api.restrictions.Restriction;
+import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeLicensedProduct;
 import org.eclipse.passage.lic.api.tests.resrictions.PermissionsExaminationServiceContractTest;
 import org.eclipse.passage.lic.base.agreements.BaseAgreementAcceptanceService;
 import org.eclipse.passage.lic.base.diagnostic.code.InsufficientLicenseCoverage;
+import org.eclipse.passage.lic.base.diagnostic.code.NoRequirements;
 import org.eclipse.passage.lic.base.io.MD5Hashes;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.base.restrictions.BasePermissionsExaminationService;
@@ -102,14 +105,13 @@ public final class BasePermissionsExaminationServiceTest extends PermissionsExam
 
 	@Test
 	public void restrictsNothingOnEmptyRequest() {
-		testSuccess(Collections.emptyList(), Collections.emptyList(), new FakeLicensedProduct());
+		testSabotage(Collections.emptyList(), new FakeLicensedProduct());
 	}
 
 	@Test
 	public void restrictsNothingOnEmptyRequirements() {
 		TestState state = new TestState();
-		testSuccess(//
-				Collections.emptyList(), //
+		testSabotage(//
 				Collections.singleton(state.permissionFirst()), //
 				state.product());
 	}
@@ -136,4 +138,16 @@ public final class BasePermissionsExaminationServiceTest extends PermissionsExam
 		assertNotNull(certificate);
 		assertTrue(certificate.restrictions().isEmpty());
 	}
+
+	private void testSabotage(//
+			Collection<Permission> permissions, //
+			LicensedProduct product) {
+		ExaminationCertificate certificate = examiner(() -> product).examine(Collections.emptyList(), permissions);
+		assertNotNull(certificate);
+		assertFalse(certificate.restrictions().isEmpty());
+		Restriction restriction = certificate.restrictions().iterator().next();
+		assertEquals(new NoRequirements().code(), restriction.reason().code());
+		assertEquals(new RestrictionLevel.Error(), restriction.unsatisfiedRequirement().restrictionLevel());
+	}
+
 }

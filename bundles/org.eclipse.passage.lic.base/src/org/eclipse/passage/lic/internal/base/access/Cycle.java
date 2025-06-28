@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2020, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -55,11 +55,11 @@ abstract class Cycle<T> {
 		this.feature = Objects.requireNonNull(feature);
 	}
 
-	T apply() {
+	final T apply() {
 		return examine(this::requirements, this::permissions);
 	}
 
-	protected Optional<FeatureIdentifier> feature() {
+	protected final Optional<FeatureIdentifier> feature() {
 		return feature;
 	}
 
@@ -68,11 +68,6 @@ abstract class Cycle<T> {
 		ServiceInvocationResult<Collection<Requirement>> reqs = requirements.get();
 		if (failed(reqs)) {
 			return stop();
-		}
-		if (empty(reqs)) {
-			// no requirements means no restrictions anyway, which is always green light,
-			// we just want to avoid heavy operations below
-			return freeWayOut();
 		}
 		ServiceInvocationResult<AppliedLicenses> perms = permissions.get();
 		if (failed(perms)) {
@@ -106,8 +101,6 @@ abstract class Cycle<T> {
 	 * certificate!
 	 */
 	protected abstract T stopOnCertificate(ExaminationCertificate certificate, Diagnostic diagnostic);
-
-	protected abstract T freeWayOut();
 
 	private Diagnostic diagnostic() {
 		return diagnostics.stream().reduce(new BaseDiagnostic(), new SumOfDiagnostics());

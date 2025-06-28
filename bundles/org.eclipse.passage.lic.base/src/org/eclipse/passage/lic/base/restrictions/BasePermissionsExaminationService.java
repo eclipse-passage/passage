@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2025 ArSysOp
 
  *
  * This program and the accompanying materials are made available under the
@@ -9,11 +9,12 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation
+ *     ArSysOp - initial API and implementation; further evolution
  *******************************************************************************/
 package org.eclipse.passage.lic.base.restrictions;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,7 @@ import org.eclipse.passage.lic.api.restrictions.Restriction;
 import org.eclipse.passage.lic.base.agreements.AgreementAssessmentService;
 import org.eclipse.passage.lic.base.agreements.UnacceptedAgreementRestriction;
 import org.eclipse.passage.lic.base.diagnostic.code.InsufficientLicenseCoverage;
+import org.eclipse.passage.lic.base.diagnostic.code.NoRequirements;
 
 /**
  * 
@@ -74,12 +76,20 @@ public final class BasePermissionsExaminationService implements PermissionsExami
 
 	private List<Restriction> assessFeature(Collection<Requirement> requirements, Collection<Permission> permissions,
 			Collection<AgreementToAccept> agreements, Map<Requirement, Permission> active) {
+		List<Restriction> sabotaged = sabotagedConfiguration(requirements);
 		List<Restriction> uncovered = insufficientCoverage(requirements, permissions, active);
 		List<Restriction> unaccepted = unacceptedAgreements(agreements);
-		return Stream.of(uncovered, unaccepted) //
+		return Stream.of(sabotaged, uncovered, unaccepted) //
 				.flatMap(List::stream)//
 				.collect(Collectors.toList());
 
+	}
+
+	private List<Restriction> sabotagedConfiguration(Collection<Requirement> requirements) {
+		if (!requirements.isEmpty()) {
+			return Collections.emptyList();
+		}
+		return List.of(noRequirementRegistered());
 	}
 
 	private List<Restriction> insufficientCoverage(Collection<Requirement> requirements,
@@ -123,6 +133,10 @@ public final class BasePermissionsExaminationService implements PermissionsExami
 
 	private Restriction insufficientLicenseCoverage(Requirement requirement) {
 		return new BaseRestriction(product, requirement, new InsufficientLicenseCoverage());
+	}
+
+	private Restriction noRequirementRegistered() {
+		return new BaseRestriction(product, new MissingRequirement(), new NoRequirements());
 	}
 
 	private List<Restriction> unacceptedAgreements(Collection<AgreementToAccept> agreements) {
