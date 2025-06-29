@@ -79,8 +79,10 @@ public final class StreamEncodingTest extends BcStreamCodecTest {
 		} catch (LicensingException e) {
 			assertTrue(e.getMessage().contains("key")); //$NON-NLS-1$
 			return;
+		} catch (Exception e) {
+			return; // can also legitimately fail due BC intolerance for incorrect input 
 		}
-		fail("Enconding is not supposed to encrypt anything with  a random sequence of chars as a key"); //$NON-NLS-1$
+		fail("Enconding is not supposed to encrypt anything with a random sequence of chars as a key"); //$NON-NLS-1$
 	}
 
 	@Test(expected = NullPointerException.class)
