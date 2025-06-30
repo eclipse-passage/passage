@@ -47,12 +47,6 @@ JNA (5.13.0)
  * Project: https://github.com/java-native-access/jna
  * Source: https://github.com/java-native-access/jna
 
-SLF4J (1.7.10)
-
- * License: MIT, https://www.slf4j.org/license.html
- * Project: https://www.slf4j.org/
- * Source: https://github.com/qos-ch/slf4j
-
 ## Cryptography
 
 Content may contain encryption software. The country in which you are currently
