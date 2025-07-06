@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -8,19 +8,19 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation
+ *     ArSysOp - initial API and implementation; further evolution
  *******************************************************************************/
 package org.eclipse.passage.lic.cli;
 
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 
-final class OptionDiagnostic extends BaseOption<CoverageCheckOptionDecision> {
+final class OptionDiagnostic extends BaseOption<LicenseCoverageCheckOption, CoverageCheckOptionDecision> {
 
 	private final Diagnostic diagnostic;
 
-	public OptionDiagnostic(Interaction.Smart interaction, Diagnostic diagnostic) {
-		super('d', //
+	OptionDiagnostic(Interaction interaction, Diagnostic diagnostic) {
+		super(new LicenseCoverageCheckOption.Choise().showDiagnostic(), //
 				"Diagnostic", //$NON-NLS-1$
 				"View diagnostic of the latest license status assessment", //$NON-NLS-1$
 				interaction);

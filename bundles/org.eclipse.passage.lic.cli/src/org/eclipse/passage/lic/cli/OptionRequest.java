@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021, 2024 ArSysOp
+ * Copyright (c) 2021, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -20,10 +20,10 @@ import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.lic.equinox.Environments;
 
 @SuppressWarnings("restriction")
-final class OptionRequest extends BaseOption<CoverageCheckOptionDecision> {
+final class OptionRequest extends BaseOption<LicenseCoverageCheckOption, CoverageCheckOptionDecision> {
 
-	OptionRequest(Interaction.Smart interaction) {
-		super('r', //
+	OptionRequest(Interaction interaction) {
+		super(new LicenseCoverageCheckOption.Choise().licenseRequest(), //
 				"Request License", //$NON-NLS-1$
 				"Collect information necessary for a license issuing", //$NON-NLS-1$
 				interaction);
@@ -31,7 +31,7 @@ final class OptionRequest extends BaseOption<CoverageCheckOptionDecision> {
 
 	@Override
 	public CoverageCheckOptionDecision run() {
-		interaction.head("gather environment information"); //$NON-NLS-1$
+		new DecoratedPrompt(interaction).head("gather environment information"); //$NON-NLS-1$
 		Collection<RuntimeEnvironment> envs = new Environments().get();
 		reportEnvironmentsDiscovered(envs);
 		for (RuntimeEnvironment env : envs) {

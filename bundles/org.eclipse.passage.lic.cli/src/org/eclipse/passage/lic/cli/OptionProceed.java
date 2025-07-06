@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -8,22 +8,22 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation
+ *     ArSysOp - initial API and implementation; further evolution
  *******************************************************************************/
 package org.eclipse.passage.lic.cli;
 
-final class OptionProceed extends BaseOption<CoverageCheckOptionDecision> {
+final class OptionProceed extends BaseOption<LicenseCoverageCheckOption, CoverageCheckOptionDecision> {
 
-	OptionProceed(Interaction.Smart interaction) {
-		super('p', //
+	OptionProceed(String name, Interaction interaction) {
+		super(new LicenseCoverageCheckOption.Choise().proceed(), //
 				"Proceed", //$NON-NLS-1$
-				"Proceed with the application", //$NON-NLS-1$
+				"Proceed with " + name, //$NON-NLS-1$
 				interaction);
 	}
 
 	@Override
 	public CoverageCheckOptionDecision run() {
-		interaction.prompt("Proceeding with the server launching..."); //$NON-NLS-1$
+		interaction.prompt("Proceeding with the launching..."); //$NON-NLS-1$
 		return CoverageCheckOptionDecision.proceed;
 	}
 }

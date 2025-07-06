@@ -27,14 +27,19 @@ import org.eclipse.passage.lic.base.restrictions.CertificateWorthAttention;
 import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.equinox.EquinoxPassageLicenseCoverage;
 
-//TODO i18n
 @SuppressWarnings("restriction")
 public final class LicenseCoverageCheck {
 
-	private final Interaction.Smart interaction;
+	private final TheOtherSide communication;
+	private final String name;
+
+	public LicenseCoverageCheck(String name, TheOtherSide communication) {
+		this.name = name;
+		this.communication = communication;
+	}
 
 	public LicenseCoverageCheck(Interaction interaction) {
-		this.interaction = new Interaction.Smart(interaction);
+		this("application", new TheOtherSide.Blind(interaction)); //$NON-NLS-1$
 	}
 
 	public Result run() {
@@ -46,7 +51,10 @@ public final class LicenseCoverageCheck {
 		while (CoverageCheckOptionDecision.reassess.equals(intention)) {
 			ServiceInvocationResult<ExaminationCertificate> assessment = new EquinoxPassageLicenseCoverage().assess();
 			reportAssessment(assessment.data());
-			intention = options(assessment, product.get()).promptAndPick().run();
+			Options<LicenseCoverageCheckOption, CoverageCheckOptionDecision> options = options(assessment,
+					product.get());
+			communication.withContext(assessment, keys(options.options()));
+			intention = options.promptAndPick().run();
 		}
 		return CoverageCheckOptionDecision.proceed.equals(intention) ? Result.proceed : Result.exit;
 	}
@@ -54,31 +62,30 @@ public final class LicenseCoverageCheck {
 	private Optional<LicensedProduct> product() {
 		ServiceInvocationResult<LicensedProduct> product = new EquinoxPassage().product();
 		if (!product.data().isPresent()) {
-			interaction.prompt(
+			communication.prompt(
 					"Product configuration lacks product under licenseing definition. Contact the product vendor."); //$NON-NLS-1$
 		}
 		return product.data();
 	}
 
-	private Options<CoverageCheckOptionDecision> options(ServiceInvocationResult<ExaminationCertificate> assessment,
-			LicensedProduct product) {
-		List<Option<CoverageCheckOptionDecision>> options = new ArrayList<>();
+	private Options<LicenseCoverageCheckOption, CoverageCheckOptionDecision> options(
+			ServiceInvocationResult<ExaminationCertificate> assessment, LicensedProduct product) {
+		List<Option<LicenseCoverageCheckOption, CoverageCheckOptionDecision>> options = new ArrayList<>();
 		if (new CertificateIsRestrictive().test(assessment.data())) {
-			options.add(new OptionImport(interaction, product));
-			options.add(new OptionRequest(interaction));
+			options.add(new OptionImport(communication, product));
+			options.add(new OptionRequest(communication));
 			agreements(assessment)
-					.ifPresent(agreements -> options.add(new OptionAccept(interaction, agreements, product)));
-			options.add(new OptionDiagnostic(interaction, assessment.diagnostic()));
-			options.add(new OptionQuit(interaction));
-			options.add(new OptionProceed(interaction));
+					.ifPresent(agreements -> options.add(new OptionAccept(communication, agreements, product)));
+			options.add(new OptionDiagnostic(communication, assessment.diagnostic()));
+			options.add(new OptionQuit(communication));
 		} else {
-			options.add(new OptionImport(interaction, product));
-			options.add(new OptionRequest(interaction));
-			options.add(new OptionDiagnostic(interaction, assessment.diagnostic()));
-			options.add(new OptionProceed(interaction));
-			options.add(new OptionQuit(interaction));
+			options.add(new OptionImport(communication, product));
+			options.add(new OptionRequest(communication));
+			options.add(new OptionDiagnostic(communication, assessment.diagnostic()));
+			options.add(new OptionProceed(name, communication));
+			options.add(new OptionQuit(communication));
 		}
-		return new Options<>(interaction, options);
+		return new Options<>(options, communication);
 	}
 
 	private Optional<Collection<AgreementToAccept>> agreements(
@@ -94,19 +101,26 @@ public final class LicenseCoverageCheck {
 	}
 
 	private void reportAssessment(Optional<ExaminationCertificate> certificate) {
-		interaction.head("License coverage assessment"); //$NON-NLS-1$
+		new DecoratedPrompt(communication).head(name + " license coverage assessment"); //$NON-NLS-1$
 		if (certificate.isPresent()) {
 			if (new CertificateIsRestrictive().test(certificate)) {
-				interaction.prompt("License coverage for the product or its features is not sufficient"); //$NON-NLS-1$
+				communication.prompt("License coverage for the product or its features is not sufficient"); //$NON-NLS-1$
 			} else if (new CertificateWorthAttention().test(certificate)) {
-				interaction.prompt("License coverage for the product or its features worth your attention"); //$NON-NLS-1$
+				communication.prompt("License coverage for the product or its features worth your attention"); //$NON-NLS-1$
 			} else {
-				interaction.prompt("License coverage for the product and all its feature is sufficient"); //$NON-NLS-1$
+				communication.prompt("License coverage for the product and all its features is sufficient"); //$NON-NLS-1$
 			}
-			interaction.prompt(String.format("\n%s", new RequirementsCoverageExplained(certificate.get()).get())); //$NON-NLS-1$
+			communication.prompt(String.format("\n%s", new RequirementsCoverageExplained(certificate.get()).get())); //$NON-NLS-1$
 		} else {
-			interaction.prompt("License status assessment failed"); //$NON-NLS-1$
+			communication.prompt(name + " license status assessment failed"); //$NON-NLS-1$
 		}
+	}
+
+	private List<? extends Option.Key> keys(
+			List<Option<LicenseCoverageCheckOption, CoverageCheckOptionDecision>> options) {
+		return options.stream()//
+				.map(Option::key)//
+				.toList();
 	}
 
 	public static enum Result {

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021, 2022 ArSysOp
+ * Copyright (c) 2021, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation
+ *     ArSysOp - initial API and implementation; further evolution
  *******************************************************************************/
 package org.eclipse.passage.lic.cli;
 
@@ -19,36 +19,34 @@ import java.util.Optional;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.agreements.AgreementAcceptanceService;
 import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
-import org.eclipse.passage.lic.cli.Interaction.Smart;
 import org.eclipse.passage.lic.equinox.SuppliedFrameworkAware;
 import org.eclipse.passage.lic.internal.base.access.Libraries;
 import org.eclipse.passage.lic.internal.equinox.access.AgreementAcceptanceDelegate;
 import org.eclipse.passage.lic.internal.equinox.access.RegisteredLibraries;
 
 @SuppressWarnings("restriction")
-final class OptionAccept extends BaseOption<CoverageCheckOptionDecision> {
+final class OptionAccept extends BaseOption<LicenseCoverageCheckOption, CoverageCheckOptionDecision> {
 
 	private final Collection<AgreementToAccept> agreements;
-	private final Options<AcceptanceDecision> options;
+	private final Options<AgreementAcceptanceOption, AcceptanceDecision> options;
 	private final Libraries libraries;
 
-	public OptionAccept(Interaction.Smart interaction, Collection<AgreementToAccept> agreements,
-			LicensedProduct product) {
-		super('a', //
+	OptionAccept(TheOtherSide interaction, Collection<AgreementToAccept> agreements, LicensedProduct product) {
+		super(new LicenseCoverageCheckOption.Choise().acceptAgreement(), //
 				"Accept", //$NON-NLS-1$
 				"Read and accept license agreements", //$NON-NLS-1$
 				interaction);
 		this.agreements = agreements;
-		this.options = new Options<>(interaction, //
-				Arrays.asList(//
-						new OptionAccepted(interaction), //
-						new OptionDenied(interaction)));
+		this.options = new Options<>(Arrays.asList(//
+				new OptionAccepted(interaction), //
+				new OptionDenied(interaction)), //
+				interaction);
 		this.libraries = new Libraries(new RegisteredLibraries(), () -> product);
 	}
 
 	@Override
 	public CoverageCheckOptionDecision run() {
-		interaction.head(String.format("accept license agreements: %d", agreements.size()), //$NON-NLS-1$
+		new DecoratedPrompt(interaction).head(String.format("accept license agreements: %d", agreements.size()), //$NON-NLS-1$
 				"Please read the agreement(s) carefully prior pressing 'I agree'"); //$NON-NLS-1$
 		Optional<AgreementAcceptanceService> root = acceptanceService();
 		if (!root.isPresent()) {
@@ -91,10 +89,10 @@ final class OptionAccept extends BaseOption<CoverageCheckOptionDecision> {
 		accepted, denied
 	}
 
-	private static final class OptionAccepted extends BaseOption<AcceptanceDecision> {
+	private static final class OptionAccepted extends BaseOption<AgreementAcceptanceOption, AcceptanceDecision> {
 
-		OptionAccepted(Smart interaction) {
-			super('a', //
+		OptionAccepted(Interaction interaction) {
+			super(new AgreementAcceptanceOption.Choise().accept(), //
 					"Accept", //$NON-NLS-1$
 					"I have read the text of the agreement carefully and ACCEPT all its terms", //$NON-NLS-1$
 					interaction);
@@ -108,10 +106,10 @@ final class OptionAccept extends BaseOption<CoverageCheckOptionDecision> {
 
 	}
 
-	private static final class OptionDenied extends BaseOption<AcceptanceDecision> {
+	private static final class OptionDenied extends BaseOption<AgreementAcceptanceOption, AcceptanceDecision> {
 
-		OptionDenied(Smart interaction) {
-			super('n', //
+		OptionDenied(Interaction interaction) {
+			super(new AgreementAcceptanceOption.Choise().decline(), //
 					"Do not accept", //$NON-NLS-1$
 					"I DO NOT ACCEPT the agreement", //$NON-NLS-1$
 					interaction);
@@ -125,4 +123,23 @@ final class OptionAccept extends BaseOption<CoverageCheckOptionDecision> {
 
 	}
 
+	private static final class AgreementAcceptanceOption extends Option.Key.Base {
+
+		private AgreementAcceptanceOption(char key) {
+			super(key);
+		}
+
+		private static final class Choise {
+
+			AgreementAcceptanceOption accept() {
+				return new AgreementAcceptanceOption('a');
+			}
+
+			AgreementAcceptanceOption decline() {
+				return new AgreementAcceptanceOption('n');
+			}
+
+		}
+
+	}
 }

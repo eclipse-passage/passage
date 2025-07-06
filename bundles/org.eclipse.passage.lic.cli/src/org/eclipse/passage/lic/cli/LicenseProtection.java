@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021, 2024 ArSysOp
+ * Copyright (c) 2021, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -27,14 +27,24 @@ import org.eclipse.passage.lic.equinox.EquinoxPassage;
 public final class LicenseProtection {
 
 	private Optional<GrantLockAttempt> lock = Optional.empty();
-	private final Supplier<Interaction> interaction;
+	private final TheOtherSide communication;
+	private final String name;
 
 	public LicenseProtection() {
 		this(ConsoleInteraction::new);
 	}
 
 	public LicenseProtection(Supplier<Interaction> interaction) {
-		this.interaction = interaction;
+		this(new TheOtherSide.Blind(interaction.get()));
+	}
+
+	public LicenseProtection(TheOtherSide communication) {
+		this("application", communication); //$NON-NLS-1$
+	}
+
+	public LicenseProtection(String name, TheOtherSide communication) {
+		this.name = name;
+		this.communication = communication;
 	}
 
 	public boolean check() {
@@ -61,7 +71,7 @@ public final class LicenseProtection {
 	}
 
 	private boolean licenseCoverageIsNotSufficient() {
-		return !LicenseCoverageCheck.Result.proceed.equals(new LicenseCoverageCheck(interaction.get()).run());
+		return !LicenseCoverageCheck.Result.proceed.equals(new LicenseCoverageCheck(name, communication).run());
 	}
 
 	private Optional<GrantLockAttempt> acquireLicense() {
