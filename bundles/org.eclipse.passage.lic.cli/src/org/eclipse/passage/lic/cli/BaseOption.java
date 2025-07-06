@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -8,18 +8,18 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation
+ *     ArSysOp - initial API and implementation; further evolution
  *******************************************************************************/
 package org.eclipse.passage.lic.cli;
 
-abstract class BaseOption<D extends Enum<?>> implements Option<D> {
+abstract class BaseOption<K extends Option.Key, D extends Enum<?>> implements Option<K, D> {
 
-	private final char key;
+	private final K key;
 	private final String name;
 	private final String description;
-	protected final Interaction.Smart interaction;
+	protected final Interaction interaction;
 
-	BaseOption(char key, String name, String description, Interaction.Smart interaction) {
+	protected BaseOption(K key, String name, String description, Interaction interaction) {
 		this.key = key;
 		this.name = name;
 		this.description = description;
@@ -28,11 +28,11 @@ abstract class BaseOption<D extends Enum<?>> implements Option<D> {
 
 	@Override
 	public String documentation() {
-		return String.format("%s (%s): %s", key, name, description); //$NON-NLS-1$
+		return String.format("%s (%s): %s", key.symbol(), name, description); //$NON-NLS-1$
 	}
 
 	@Override
-	public char key() {
+	public K key() {
 		return key;
 	}
 

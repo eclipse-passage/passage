@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2025 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *     ArSysOp - initial API and implementation
+ *     ArSysOp - initial API and implementation; further evolution
  *******************************************************************************/
 package org.eclipse.passage.lic.cli;
 
@@ -21,12 +21,12 @@ import java.util.Optional;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.base.io.ExternalLicense;
 
-final class OptionImport extends BaseOption<CoverageCheckOptionDecision> {
+final class OptionImport extends BaseOption<LicenseCoverageCheckOption, CoverageCheckOptionDecision> {
 
 	private final LicensedProduct product;
 
-	OptionImport(Interaction.Smart interaction, LicensedProduct product) {
-		super('i', //
+	OptionImport(Interaction interaction, LicensedProduct product) {
+		super(new LicenseCoverageCheckOption.Choise().licenseImport(), //
 				"Import", //$NON-NLS-1$
 				"Import a license for this application", //$NON-NLS-1$
 				interaction);
@@ -35,7 +35,7 @@ final class OptionImport extends BaseOption<CoverageCheckOptionDecision> {
 
 	@Override
 	public CoverageCheckOptionDecision run() {
-		interaction.head("import license"); //$NON-NLS-1$
+		new DecoratedPrompt(interaction).head("import license"); //$NON-NLS-1$
 		interaction.prompt("Please enter the path to a license file"); //$NON-NLS-1$
 		readPath().ifPresent(this::install);
 		return CoverageCheckOptionDecision.reassess;

@@ -12,15 +12,36 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.cli;
 
-public interface Option<D extends Enum<?>> {
+public interface Option<K extends Option.Key, D extends Enum<?>> {
 
-	/**
-	 * a letter, not-localizable
-	 */
-	char key();
+	K key();
 
 	String documentation();
 
 	D run();
+
+	public static interface Key {
+
+		/**
+		 * a letter, not-localizable
+		 */
+		public char symbol();
+
+		public static abstract class Base implements Key {
+
+			private final char key;
+
+			Base(char key) {
+				this.key = key;
+			}
+
+			@Override
+			public char symbol() {
+				return key;
+			}
+
+		}
+
+	}
 
 }
