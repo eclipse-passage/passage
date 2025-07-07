@@ -12,10 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-abstract class BaseIdentifier {
+abstract class BaseIdentifier implements Serializable {
 
+	private static final long serialVersionUID = -3651140617983127071L;
 	private final String identifier;
 
 	protected BaseIdentifier(String identifier) {

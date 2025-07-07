@@ -19,6 +19,7 @@ import org.eclipse.passage.lic.api.GrantIdentifier;
  * 
  * @since 4.0
  */
+@SuppressWarnings("serial")
 public final class BaseGrantIdentifier extends BaseIdentifier implements GrantIdentifier {
 
 	public BaseGrantIdentifier(String identifier) {

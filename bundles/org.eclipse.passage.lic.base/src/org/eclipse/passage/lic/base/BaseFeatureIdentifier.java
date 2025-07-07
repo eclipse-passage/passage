@@ -19,6 +19,7 @@ import org.eclipse.passage.lic.api.FeatureIdentifier;
  * 
  * @since 4.0
  */
+@SuppressWarnings("serial")
 public final class BaseFeatureIdentifier extends BaseIdentifier implements FeatureIdentifier {
 
 	public BaseFeatureIdentifier(String identifier) {

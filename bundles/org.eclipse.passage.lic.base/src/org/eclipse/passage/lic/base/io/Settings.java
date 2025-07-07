@@ -54,6 +54,7 @@ public final class Settings {
 	/**
 	 * Load all settings files located under the given {@code base} directory
 	 */
+	@SuppressWarnings("unused")
 	public Settings(Supplier<Path> base) {
 		this(base, map -> false);
 	}

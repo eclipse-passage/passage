@@ -19,6 +19,7 @@ import org.eclipse.passage.lic.api.UserIdentifier;
  * 
  * @since 4.0
  */
+@SuppressWarnings("serial")
 public final class BaseUserIdentifier extends BaseIdentifier implements UserIdentifier {
 
 	public BaseUserIdentifier(String identifier) {
