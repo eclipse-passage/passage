@@ -38,10 +38,12 @@ public final class SecurityKeyAlgorithm extends BaseNamedData<EncryptionAlgorith
 				.orElseGet(EncryptionAlgorithm.Default::new));
 	}
 
+	@SuppressWarnings("unused")
 	public SecurityKeyAlgorithm(EncryptionAlgorithm value) {
 		super(key -> value);
 	}
 
+	@SuppressWarnings("unused")
 	public SecurityKeyAlgorithm(String algorithm) {
 		super(key -> new EncryptionAlgorithm.Of(algorithm));
 	}

@@ -26,6 +26,7 @@ import java.util.function.Function;
  */
 public abstract class StringNamedData extends BaseNamedData<String> {
 
+	@SuppressWarnings("unused")
 	protected StringNamedData(String value) {
 		super(key -> value);
 	}
