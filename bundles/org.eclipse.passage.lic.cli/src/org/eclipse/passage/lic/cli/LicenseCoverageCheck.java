@@ -17,73 +17,57 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.diagnostic.RequirementsCoverageExplained;
 import org.eclipse.passage.lic.base.restrictions.CertificateIsRestrictive;
 import org.eclipse.passage.lic.base.restrictions.CertificateWorthAttention;
-import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.equinox.EquinoxPassageLicenseCoverage;
 
 @SuppressWarnings("restriction")
 public final class LicenseCoverageCheck {
 
-	private final TheOtherSide communication;
 	private final String name;
+	private final TheOtherSide communication;
+	private final OptionDefinitions opts;
 
-	public LicenseCoverageCheck(String name, TheOtherSide communication) {
+	public LicenseCoverageCheck(String name, TheOtherSide communication, OptionDefinitions opts) {
 		this.name = name;
 		this.communication = communication;
-	}
-
-	public LicenseCoverageCheck(Interaction interaction) {
-		this("application", new TheOtherSide.Blind(interaction)); //$NON-NLS-1$
+		this.opts = opts;
 	}
 
 	public Result run() {
-		Optional<LicensedProduct> product = product();
-		if (!product.isPresent()) {
-			return Result.exit;
-		}
+
 		CoverageCheckOptionDecision intention = CoverageCheckOptionDecision.reassess;
 		while (CoverageCheckOptionDecision.reassess.equals(intention)) {
 			ServiceInvocationResult<ExaminationCertificate> assessment = new EquinoxPassageLicenseCoverage().assess();
 			reportAssessment(assessment.data());
-			Options<LicenseCoverageCheckOption, CoverageCheckOptionDecision> options = options(assessment,
-					product.get());
+			Options<LicenseCoverageCheckOption, CoverageCheckOptionDecision> options = options(assessment);
 			communication.withContext(assessment, keys(options.options()));
 			intention = options.promptAndPick().run();
 		}
 		return CoverageCheckOptionDecision.proceed.equals(intention) ? Result.proceed : Result.exit;
 	}
 
-	private Optional<LicensedProduct> product() {
-		ServiceInvocationResult<LicensedProduct> product = new EquinoxPassage().product();
-		if (!product.data().isPresent()) {
-			communication.prompt(
-					"Product configuration lacks product under licenseing definition. Contact the product vendor."); //$NON-NLS-1$
-		}
-		return product.data();
-	}
-
 	private Options<LicenseCoverageCheckOption, CoverageCheckOptionDecision> options(
-			ServiceInvocationResult<ExaminationCertificate> assessment, LicensedProduct product) {
+			ServiceInvocationResult<ExaminationCertificate> assessment) {
 		List<Option<LicenseCoverageCheckOption, CoverageCheckOptionDecision>> options = new ArrayList<>();
 		if (new CertificateIsRestrictive().test(assessment.data())) {
-			options.add(new OptionImport(communication, product));
-			options.add(new OptionRequest(communication));
-			agreements(assessment)
-					.ifPresent(agreements -> options.add(new OptionAccept(communication, agreements, product)));
-			options.add(new OptionDiagnostic(communication, assessment.diagnostic()));
-			options.add(new OptionQuit(communication));
+			options.add(opts.licenseImport());
+			options.add(opts.licenseRequest());
+			agreements(assessment)//
+					.map(opts::accept)//
+					.ifPresent(options::add);
+			options.add(opts.diagnostic(assessment.diagnostic()));
+			options.add(opts.quit());
 		} else {
-			options.add(new OptionImport(communication, product));
-			options.add(new OptionRequest(communication));
-			options.add(new OptionDiagnostic(communication, assessment.diagnostic()));
+			options.add(opts.licenseImport());
+			options.add(opts.licenseRequest());
+			options.add(opts.diagnostic(assessment.diagnostic()));
 			options.add(new OptionProceed(name, communication));
-			options.add(new OptionQuit(communication));
+			options.add(opts.quit());
 		}
 		return new Options<>(options, communication);
 	}

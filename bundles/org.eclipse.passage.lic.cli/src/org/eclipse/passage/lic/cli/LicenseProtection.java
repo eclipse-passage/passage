@@ -27,8 +27,9 @@ import org.eclipse.passage.lic.equinox.EquinoxPassage;
 public final class LicenseProtection {
 
 	private Optional<GrantLockAttempt> lock = Optional.empty();
-	private final TheOtherSide communication;
 	private final String name;
+	private final TheOtherSide communication;
+	private final OptionDefinitions opts;
 
 	public LicenseProtection() {
 		this(ConsoleInteraction::new);
@@ -43,8 +44,13 @@ public final class LicenseProtection {
 	}
 
 	public LicenseProtection(String name, TheOtherSide communication) {
+		this(name, communication, new OptionDefinitions.Default(communication));
+	}
+
+	public LicenseProtection(String name, TheOtherSide communication, OptionDefinitions opts) {
 		this.name = name;
 		this.communication = communication;
+		this.opts = opts;
 	}
 
 	public boolean check() {
@@ -71,20 +77,11 @@ public final class LicenseProtection {
 	}
 
 	private boolean licenseCoverageIsNotSufficient() {
-		return !LicenseCoverageCheck.Result.proceed.equals(new LicenseCoverageCheck(name, communication).run());
+		return !LicenseCoverageCheck.Result.proceed.equals(new LicenseCoverageCheck(name, communication, opts).run());
 	}
 
 	private Optional<GrantLockAttempt> acquireLicense() {
-		return product().flatMap(this::acquireLicense);
-	}
-
-	private Optional<LicensedProduct> product() {
-		ServiceInvocationResult<LicensedProduct> product = new EquinoxPassage().product();
-		if (!product.data().isPresent()) {
-			System.err.printf("Failed to read product credentials:%s\n", //$NON-NLS-1$
-					new DiagnosticExplained(product.diagnostic()).get());
-		}
-		return product.data();
+		return acquireLicense(new Product().get());
 	}
 
 	private Optional<GrantLockAttempt> acquireLicense(LicensedProduct product) {

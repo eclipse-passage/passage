@@ -12,11 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.cli;
 
-abstract class BaseOption<K extends Option.Key, D extends Enum<?>> implements Option<K, D> {
+public abstract class BaseOption<K extends Option.Key, D extends Enum<?>> implements Option<K, D> {
 
 	private final K key;
-	private final String name;
-	private final String description;
+	protected final String name;
+	protected final String description;
 	protected final Interaction interaction;
 
 	protected BaseOption(K key, String name, String description, Interaction interaction) {
