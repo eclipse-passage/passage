@@ -75,8 +75,6 @@
       xsi:type="setup.p2:P2Task"
       label="Passage">
     <requirement
-        name="org.eclipse.emf.ecp.emfforms.sdk.feature.feature.group"/>
-    <requirement
         name="org.eclipse.emf.sdk.feature.group"/>
     <requirement
         name="org.eclipse.sirius.specifier.feature.group"/>
@@ -88,7 +86,7 @@
     <setupTask
         xsi:type="jdt:JRETask"
         version="JavaSE-21"
-        location="${jre.location-17}"
+        location="${jre.location-21}"
         name="JRE for JavaSE-21">
       <description>Define the JRE needed to compile and run the Java projects of ${scope.project.label}</description>
     </setupTask>
