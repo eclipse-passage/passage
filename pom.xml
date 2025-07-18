@@ -29,17 +29,11 @@
 	</parent>
 
 	<modules>
-		<module>./releng/org.eclipse.passage.target</module>
-
-		<module>./releng/org.eclipse.passage.lic.aggregator</module>
-		<module>./releng/org.eclipse.passage.loc.aggregator</module>
-		<module>./releng/org.eclipse.passage.lbc.aggregator</module>
-		<module>./releng/org.eclipse.passage.ldc.aggregator</module>
-		<module>./releng/org.eclipse.passage.demo.aggregator</module>
-		<!-- enable and fix after 3.0.0 RC2 -->
-		<!--
-		<module>sites/org.eclipse.passage.repository</module>
-		-->
+		<module>releng</module>
+		<module>bundles</module>
+		<module>tests</module>
+		<module>features</module>
+		<module>products</module>
 	</modules>
 
 </project>
