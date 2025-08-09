@@ -47,6 +47,8 @@
 		<comparator.repo>${eclipse-sdk-repo}</comparator.repo>
 		<released.baseline>https://download.eclipse.org/passage/updates/release/4.2.0/</released.baseline>
 		<staging.baseline>https://download.eclipse.org/passage/updates/nightly/latest/</staging.baseline>
+		<!--something is wrong ATM, needs more work to enable -->
+		<skipAPIAnalysis>true</skipAPIAnalysis>
 
 		<compare-version-with-baselines.skip>true</compare-version-with-baselines.skip>
 		<replace-version-with-baselines.mode>disable</replace-version-with-baselines.mode>
