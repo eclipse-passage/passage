@@ -64,7 +64,7 @@
 		<!-- system specific JVM args; if needed provided by system properties to 
 			the build command -->
 		<surefire.systemProperties></surefire.systemProperties>
-
+		<previous-release.baseline>https://download.eclipse.org/passage/updates/release/4.2.0/</previous-release.baseline>
 	</properties>
 
 	<organization>
@@ -134,6 +134,25 @@
 	</distributionManagement>
 
 	<profiles>
+		<profile>
+			<id>build-individual-bundles</id>
+			<activation>
+				<property>
+					<!-- Enable if aggregatorBuild system-property is not set -->
+					<name>!aggregatorBuild</name>
+				</property>
+			</activation>
+			<properties>
+				<passage-p2-repo.url>${staging.baseline}</passage-p2-repo.url>
+			</properties>
+			<repositories>
+				<repository>
+					<id>passage</id>
+					<url>${passage-p2-repo.url}</url>
+					<layout>p2</layout>
+				</repository>
+			</repositories>
+		</profile>
 		<!-- Automatic profile for features that shouldn't generate sources -->
 		<profile>
 			<id>feature-no-source</id>
@@ -199,7 +218,7 @@
               <artifactId>tycho-compiler-plugin</artifactId>
               <version>${tycho.version}</version>
               <configuration>
-                <!--
+								<!--
                   this tells Tycho to use JRE libraries that match bundle runtime execution environment see:
                   https://tycho.eclipseprojects.io/doc/latest/tycho-compiler-plugin/compile-mojo.html#useJDK
                 -->
@@ -297,7 +316,7 @@
 			<properties>
 				<!-- Since we append output of various tests, write to a common folder besides tests -->
 				<!-- it's recommended to override that to an absolute value in specific Jenkins configurations and Sonar integration -->
-<!-- 
+				<!-- 
 				<jacoco.destFile>${project.basedir}/../target/jacoco.exec</jacoco.destFile>
 				<jacoco.dataFile>${jacoco.destFile}</jacoco.dataFile>
 				<sonar.jacoco.reportPath>${jacoco.destFile}</sonar.jacoco.reportPath>
@@ -541,6 +560,105 @@
 							<pattern>about.mappings</pattern>
 						</ignoredPatterns>
 						<generateDownloadStatsProperty>true</generateDownloadStatsProperty>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-cleancode-plugin</artifactId>
+					<version>${tycho.version}</version>
+					<executions>
+						<execution>
+							<id>cleanups</id>
+							<configuration>
+								<cleanUpProfile>
+									<!-- Make inner classes static where
+									possible-->
+									<cleanup.static_inner_class>true</cleanup.static_inner_class>
+									<!-- Add missing annotations -->
+									<cleanup.add_missing_annotations>true</cleanup.add_missing_annotations>
+									<!-- Add missing '@Deprecated'
+									annotations-->
+									<cleanup.add_missing_deprecated_annotations>
+										true</cleanup.add_missing_deprecated_annotations>
+									<!-- Add missing '@Override' annotations to
+									implementations of interface methods -->
+									<cleanup.add_missing_override_annotations>
+										true</cleanup.add_missing_override_annotations>
+									<!-- Add missing '@Override' annotations to
+									implementations of interface methods -->
+									<cleanup.add_missing_override_annotations_interface_methods>
+										true</cleanup.add_missing_override_annotations_interface_methods>
+									<!-- Use 'final' where possible -->
+									<cleanup.make_variable_declarations_final>
+										true</cleanup.make_variable_declarations_final>
+									<!-- Add final modifier to private fields -->
+									<cleanup.make_private_fields_final>true</cleanup.make_private_fields_final>
+									<!-- Replace deprecated calls with inlined
+									content where possible -->
+									<cleanup.replace_deprecated_calls>true</cleanup.replace_deprecated_calls>
+									<!-- Convert control statement bodies to
+									block -->
+									<cleanup.use_blocks>true</cleanup.use_blocks>
+									<cleanup.always_use_blocks>true</cleanup.always_use_blocks>
+									<!-- Use pattern matching for instanceof -->
+									<cleanup.instanceof>true</cleanup.instanceof>
+									<!-- Remove unnecessary array creation -->
+									<cleanup.remove_unnecessary_array_creation>
+										true</cleanup.remove_unnecessary_array_creation>
+									<!-- Remove unnecessary suppress warning
+									tokens -->
+									<cleanup.remove_unnecessary_suppress_warnings>
+										true</cleanup.remove_unnecessary_suppress_warnings>
+									<!-- Remove unnecessary whitespace-->
+									<cleanup.remove_trailing_whitespaces>true</cleanup.remove_trailing_whitespaces>
+									<cleanup.remove_trailing_whitespaces_all>
+										true</cleanup.remove_trailing_whitespaces_all>
+									<cleanup.remove_trailing_whitespaces_ignore_empty>
+										false</cleanup.remove_trailing_whitespaces_ignore_empty>
+									<!-- Removes unused imports -->
+									<cleanup.remove_unused_imports>true</cleanup.remove_unused_imports>
+									<cleanup.organize_imports>false</cleanup.organize_imports>
+									<!-- Remove unused private members -->
+									<cleanup.remove_unused_private_members>true</cleanup.remove_unused_private_members>
+									<!-- Remove unused private types -->
+									<cleanup.remove_unused_private_types>true</cleanup.remove_unused_private_types>
+									<!-- Remove unused private constructors -->
+									<cleanup.remove_private_constructors>true</cleanup.remove_private_constructors>
+									<!-- Remove unused private fields -->
+									<cleanup.remove_unused_private_fields>true</cleanup.remove_unused_private_fields>
+									<!-- Remove unused private methods -->
+									<cleanup.remove_unused_private_methods>true</cleanup.remove_unused_private_methods>
+								</cleanUpProfile>
+							</configuration>
+						</execution>
+						<execution>
+							<id>quickfixes</id>
+							<configuration>
+								<baselines>
+									<repository>
+										<url>${previous-release.baseline}</url>
+									</repository>
+								</baselines>
+								<bundles>
+									<bundle>org.eclipse.ui.ide.application</bundle>
+								</bundles>
+								<application>org.eclipse.ui.ide.workbench</application>
+								<quickfixes>
+									<quickfix>org.eclipse.jdt.ui</quickfix>
+									<quickfix>org.eclipse.pde.api.tools.ui</quickfix>
+								</quickfixes>
+							</configuration>
+						</execution>
+						<execution>
+							<id>manifest</id>
+							<configuration>
+								<calculateUses>true</calculateUses>
+								<removeUnusedDependencies>true</removeUnusedDependencies>
+							</configuration>
+						</execution>
+					</executions>
+					<configuration>
+						<local>true</local>
 					</configuration>
 				</plugin>
 				<plugin>
