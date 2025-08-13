@@ -368,11 +368,7 @@
 				<version>${tycho.version}</version>
 				<configuration>
 					<target>
-						<artifact>
-							<groupId>org.eclipse.passage</groupId>
-							<artifactId>org.eclipse.passage.target</artifactId>
-							<version>${project.parent.version}</version>
-						</artifact>
+						<file>${maven.multiModuleProjectDirectory}/releng/org.eclipse.passage.target/org.eclipse.passage.target.target</file>
 					</target>
 					<environments>
 						<environment>

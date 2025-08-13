@@ -30,7 +30,6 @@
 	</parent>
 
 	<modules>
-		<module>./releng/org.eclipse.passage.target</module>
 		<module>./releng/org.eclipse.passage.aggregator</module>
 		<module>sites/org.eclipse.passage.repository</module>
 	</modules>
