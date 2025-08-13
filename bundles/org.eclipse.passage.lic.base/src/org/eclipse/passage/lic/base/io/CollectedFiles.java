@@ -20,7 +20,7 @@ import org.eclipse.passage.lic.api.LicensingException;
 /**
  * Collects regular files of the given {@code extension} starting from the given
  * {@code base} path recursively. No particular order is guaranteed.
- * 
+ *
  * @since 4.1
  */
 public interface CollectedFiles {

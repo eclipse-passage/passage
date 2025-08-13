@@ -16,7 +16,7 @@ import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.base.conditions.mining.UserHomeMiningTarget;
 
 /**
- * 
+ *
  * @since 2.1
  */
 public final class UserHomeLicenseAcquisitionService extends LocalLicenseAcquisitionService {

@@ -37,12 +37,10 @@ public final class SecurityKeySize extends BaseNamedData<EncryptionKeySize> {
 				.orElseGet(EncryptionKeySize.Default::new));
 	}
 
-	@SuppressWarnings("unused")
 	public SecurityKeySize(EncryptionKeySize value) {
 		super(key -> value);
 	}
 
-	@SuppressWarnings("unused")
 	public SecurityKeySize(int size) {
 		super(key -> new EncryptionKeySize.Of(size));
 	}

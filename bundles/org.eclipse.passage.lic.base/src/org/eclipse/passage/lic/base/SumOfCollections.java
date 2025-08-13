@@ -17,7 +17,7 @@ import java.util.Collection;
 import java.util.function.BinaryOperator;
 
 /**
- * 
+ *
  * @since 2.1
  */
 public final class SumOfCollections<E> implements BinaryOperator<Collection<E>> {

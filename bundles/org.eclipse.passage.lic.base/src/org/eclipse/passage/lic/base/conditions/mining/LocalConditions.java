@@ -30,7 +30,7 @@ import org.eclipse.passage.lic.base.io.PassageFileExtension;
  * files, reads them and retrieves all the licensing {@linkplain Condition}s
  * they declare.
  * </p>
- * 
+ *
  * @since 2.1
  */
 public abstract class LocalConditions extends BaseLocalConditions {

@@ -23,7 +23,7 @@ import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 
 /**
  * Base <i>data-driven</i> implementation of a {@linkplain Requirement}.
- * 
+ *
  * @since 2.1
  */
 public final class BaseRequirement implements Requirement {

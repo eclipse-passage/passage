@@ -31,12 +31,12 @@ import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
  * <p>
  * Does not tolerate {@code base} directory or file absence.
  * </p>
- * 
+ *
  * <p>
  * These is no obligations as to how many times {@code base} supplier to be
  * called, so make sure your implementation is system-wide idempotent.
  * </p>
- * 
+ *
  * @since 2.1
  */
 public final class FileCollection implements CollectedFiles {

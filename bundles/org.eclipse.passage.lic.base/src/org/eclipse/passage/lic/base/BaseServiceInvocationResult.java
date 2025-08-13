@@ -23,11 +23,11 @@ import org.eclipse.passage.lic.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.base.diagnostic.SumOfDiagnostics;
 
 /**
- * 
+ *
  * @author afedorov3un
  *
  * @param <T>
- * 
+ *
  * @since 2.1
  */
 public final class BaseServiceInvocationResult<T> implements ServiceInvocationResult<T> {

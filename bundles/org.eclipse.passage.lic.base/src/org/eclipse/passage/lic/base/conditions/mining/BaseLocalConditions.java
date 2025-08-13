@@ -46,7 +46,7 @@ import org.eclipse.passage.lic.internal.base.i18n.ConditionMiningMessages;
  * <p>
  * Severe (infrastructure denial) error leased in case of any mining error.
  * </p>
- * 
+ *
  * @since 4.1
  */
 abstract class BaseLocalConditions implements MinedConditions {

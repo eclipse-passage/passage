@@ -28,14 +28,14 @@ import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
  * {@linkplain Registry} implementation that is filled and managed at runtime
  * programmatically.
  * </p>
- * 
+ *
  * <p>
  * Not thread safe (yet)
  * </p>
  * <p>
  * Null free zone.
  * </p>
- * 
+ *
  * @param <S> type of {@linkplain Service} to keep
  * @since 2.1
  */
@@ -45,7 +45,7 @@ public abstract class BaseRegistry<I extends ServiceId, S extends Service<I>> im
 
 	/**
 	 * Convenience constructor
-	 * 
+	 *
 	 * @param service {@linkplain Collection} list of actual services to be owned by
 	 *                the registry
 	 */
@@ -64,7 +64,7 @@ public abstract class BaseRegistry<I extends ServiceId, S extends Service<I>> im
 	 * either be sure the service has been registered or to check
 	 * {@linkplain #hasService(ServiceId)} first.
 	 * </p>
-	 * 
+	 *
 	 * @throws IllegalStateException if not yet registered service is requested
 	 */
 	@Override

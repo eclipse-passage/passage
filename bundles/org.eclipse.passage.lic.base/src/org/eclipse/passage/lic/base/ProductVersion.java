@@ -21,9 +21,9 @@ import org.eclipse.passage.lic.api.LicensedProduct;
  * On a {@code licensing configuration declaration} we expect
  * {@code product version} to be stored under a precise key, which is
  * encapsulated here.
- * 
+ *
  * @see NamedData
- * 
+ *
  * @since 2.1
  */
 public final class ProductVersion extends StringNamedData {

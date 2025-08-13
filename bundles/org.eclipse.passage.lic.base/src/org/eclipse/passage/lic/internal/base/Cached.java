@@ -20,7 +20,7 @@ import java.util.function.Supplier;
 
 /**
  * To be removed after arsysop.lang is approved
- * 
+ *
  */
 public final class Cached<S, T> implements Supplier<T> {
 
@@ -31,7 +31,7 @@ public final class Cached<S, T> implements Supplier<T> {
 	/**
 	 * To create a <i>late init</i> value, you should specify a {@code source} for
 	 * initialization and a {@code way} to perform it.
-	 * 
+	 *
 	 * @param source   original data sufficient to build the <i>late init-ed
 	 *                 value</i> from it
 	 * @param retrieve a function that builds <i>the late init value</i> from a
@@ -49,7 +49,7 @@ public final class Cached<S, T> implements Supplier<T> {
 	/**
 	 * Returns cashed value. The first call begets {@code the value retrieval} and
 	 * cashing.
-	 * 
+	 *
 	 * @since 0.1
 	 */
 	@Override

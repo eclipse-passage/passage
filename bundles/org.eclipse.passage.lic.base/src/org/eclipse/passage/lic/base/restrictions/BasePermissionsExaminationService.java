@@ -39,7 +39,7 @@ import org.eclipse.passage.lic.base.diagnostic.code.InsufficientLicenseCoverage;
 import org.eclipse.passage.lic.base.diagnostic.code.NoRequirements;
 
 /**
- * 
+ *
  * @since 2.1
  */
 public final class BasePermissionsExaminationService implements PermissionsExaminationService {

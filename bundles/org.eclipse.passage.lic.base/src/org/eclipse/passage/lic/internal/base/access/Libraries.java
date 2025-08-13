@@ -34,7 +34,7 @@ import org.eclipse.passage.lic.base.diagnostic.SumOfLists;
 
 /**
  * Set of libraries registered for the the product
- * 
+ *
  * @see Library
  */
 public final class Libraries {

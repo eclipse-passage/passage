@@ -16,7 +16,7 @@ import org.eclipse.passage.lic.api.UserIdentifier;
 
 /**
  * Base implementation for {@link UserIdentifier}
- * 
+ *
  * @since 4.0
  */
 @SuppressWarnings("serial")

@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 
 /**
- * 
+ *
  * @since 2.1
  */
 public final class DefaultRestrictionLevel implements Supplier<RestrictionLevel> {

@@ -21,7 +21,7 @@ import org.eclipse.passage.lic.api.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.base.io.PathFromLicensedProduct;
 
 /**
- * 
+ *
  * @since 2.1
  */
 public final class PathResidentConditions extends LocalConditions {

@@ -106,7 +106,7 @@ public final class BaseAgreementAcceptanceService implements AgreementAcceptance
 	/**
 	 * Not sure of the hash-string length, but most operating systems prohibit file
 	 * names longer than 255 symbols.
-	 * 
+	 *
 	 * @return normalized file name, to fit, with the extension added, with 255
 	 *         symbols length
 	 */

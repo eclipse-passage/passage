@@ -26,9 +26,9 @@ import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 
 /**
- * 
+ *
  * @param <T>
- * 
+ *
  * @since 2.1
  */
 public final class FeatureFilter<T>

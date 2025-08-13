@@ -23,7 +23,7 @@ import org.eclipse.passage.lic.api.UserIdentifier;
 import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
 
 /**
- * 
+ *
  * @since 2.1
  */
 public final class BaseGrantAcquisition implements GrantAcquisition, Serializable {

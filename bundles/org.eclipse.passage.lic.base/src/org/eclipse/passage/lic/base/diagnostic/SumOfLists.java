@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.function.BinaryOperator;
 
 /**
- * 
+ *
  * @since 2.1
  */
 public final class SumOfLists<E> implements BinaryOperator<List<E>> {

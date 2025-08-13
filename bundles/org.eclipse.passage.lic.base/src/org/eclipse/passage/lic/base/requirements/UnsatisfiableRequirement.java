@@ -33,7 +33,7 @@ import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
  * publish either a system failure or a sabotage attempt - to prevent access
  * cycle from successful completion.
  * </p>
- * 
+ *
  * @since 2.1
  */
 public final class UnsatisfiableRequirement implements Supplier<Requirement> {
