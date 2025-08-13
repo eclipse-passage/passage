@@ -100,8 +100,9 @@ public class LicensedE4ProductTemplateSection extends BaseLicensedProductSection
 
 		extension.add(element);
 
-		if (!extension.isInTheModel())
+		if (!extension.isInTheModel()) {
 			plugin.add(extension);
+		}
 	}
 
 	@Override

@@ -70,11 +70,13 @@ public abstract class BaseLicensingSection extends OptionTemplateSection {
 		for (int i = 0; i < id.length(); i++) {
 			char ch = id.charAt(i);
 			if (buffer.length() == 0) {
-				if (Character.isJavaIdentifierStart(ch))
+				if (Character.isJavaIdentifierStart(ch)) {
 					buffer.append(Character.toLowerCase(ch));
+				}
 			} else {
-				if (Character.isJavaIdentifierPart(ch) || ch == '.')
+				if (Character.isJavaIdentifierPart(ch) || ch == '.') {
 					buffer.append(ch);
+				}
 			}
 		}
 		return buffer.toString().toLowerCase(Locale.ENGLISH);
