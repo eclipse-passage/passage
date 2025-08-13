@@ -82,182 +82,210 @@ public class LicensesSwitch<T> extends Switch<T> {
 		case LicensesPackage.AGREEMENT_DATA: {
 			AgreementData agreementData = (AgreementData) theEObject;
 			T result = caseAgreementData(agreementData);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.COMPANY_REF: {
 			CompanyRef companyRef = (CompanyRef) theEObject;
 			T result = caseCompanyRef(companyRef);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.EVALUATION_INSTRUCTIONS: {
 			EvaluationInstructions evaluationInstructions = (EvaluationInstructions) theEObject;
 			T result = caseEvaluationInstructions(evaluationInstructions);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.FEATURE_GRANT: {
 			FeatureGrant featureGrant = (FeatureGrant) theEObject;
 			T result = caseFeatureGrant(featureGrant);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.FEATURE_REF: {
 			FeatureRef featureRef = (FeatureRef) theEObject;
 			T result = caseFeatureRef(featureRef);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.FLOATING_LICENSE_ACCESS: {
 			FloatingLicenseAccess floatingLicenseAccess = (FloatingLicenseAccess) theEObject;
 			T result = caseFloatingLicenseAccess(floatingLicenseAccess);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.FLOATING_LICENSE_PACK: {
 			FloatingLicensePack floatingLicensePack = (FloatingLicensePack) theEObject;
 			T result = caseFloatingLicensePack(floatingLicensePack);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.FLOATING_LICENSE_REQUISITES: {
 			FloatingLicenseRequisites floatingLicenseRequisites = (FloatingLicenseRequisites) theEObject;
 			T result = caseFloatingLicenseRequisites(floatingLicenseRequisites);
-			if (result == null)
+			if (result == null) {
 				result = caseLicenseRequisites(floatingLicenseRequisites);
-			if (result == null)
+			}
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.FLOATING_SERVER: {
 			FloatingServer floatingServer = (FloatingServer) theEObject;
 			T result = caseFloatingServer(floatingServer);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.FLOATING_SERVER_CONNECTION: {
 			FloatingServerConnection floatingServerConnection = (FloatingServerConnection) theEObject;
 			T result = caseFloatingServerConnection(floatingServerConnection);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.GRANT_ACQISITION: {
 			GrantAcqisition grantAcqisition = (GrantAcqisition) theEObject;
 			T result = caseGrantAcqisition(grantAcqisition);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.LICENSE_PLAN: {
 			LicensePlan licensePlan = (LicensePlan) theEObject;
 			T result = caseLicensePlan(licensePlan);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.LICENSE_PLAN_FEATURE: {
 			LicensePlanFeature licensePlanFeature = (LicensePlanFeature) theEObject;
 			T result = caseLicensePlanFeature(licensePlanFeature);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.LICENSE_REQUISITES: {
 			LicenseRequisites licenseRequisites = (LicenseRequisites) theEObject;
 			T result = caseLicenseRequisites(licenseRequisites);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.PERSONAL_FEATURE_GRANT: {
 			PersonalFeatureGrant personalFeatureGrant = (PersonalFeatureGrant) theEObject;
 			T result = casePersonalFeatureGrant(personalFeatureGrant);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.PERSONAL_LICENSE_PACK: {
 			PersonalLicensePack personalLicensePack = (PersonalLicensePack) theEObject;
 			T result = casePersonalLicensePack(personalLicensePack);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.PERSONAL_LICENSE_REQUISITES: {
 			PersonalLicenseRequisites personalLicenseRequisites = (PersonalLicenseRequisites) theEObject;
 			T result = casePersonalLicenseRequisites(personalLicenseRequisites);
-			if (result == null)
+			if (result == null) {
 				result = caseLicenseRequisites(personalLicenseRequisites);
-			if (result == null)
+			}
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.PRODUCT_REF: {
 			ProductRef productRef = (ProductRef) theEObject;
 			T result = caseProductRef(productRef);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.SIGNATURE: {
 			Signature signature = (Signature) theEObject;
 			T result = caseSignature(signature);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.SIGNATURE_ATTRIBUTE: {
 			SignatureAttribute signatureAttribute = (SignatureAttribute) theEObject;
 			T result = caseSignatureAttribute(signatureAttribute);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.USER_GRANT: {
 			UserGrant userGrant = (UserGrant) theEObject;
 			T result = caseUserGrant(userGrant);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.USER_REF: {
 			UserRef userRef = (UserRef) theEObject;
 			T result = caseUserRef(userRef);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.VALIDITY_PERIOD: {
 			ValidityPeriod validityPeriod = (ValidityPeriod) theEObject;
 			T result = caseValidityPeriod(validityPeriod);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.VALIDITY_PERIOD_CLOSED: {
 			ValidityPeriodClosed validityPeriodClosed = (ValidityPeriodClosed) theEObject;
 			T result = caseValidityPeriodClosed(validityPeriodClosed);
-			if (result == null)
+			if (result == null) {
 				result = caseValidityPeriod(validityPeriodClosed);
-			if (result == null)
+			}
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		case LicensesPackage.VERSION_MATCH: {
 			VersionMatch versionMatch = (VersionMatch) theEObject;
 			T result = caseVersionMatch(versionMatch);
-			if (result == null)
+			if (result == null) {
 				result = defaultCase(theEObject);
+			}
 			return result;
 		}
 		default:

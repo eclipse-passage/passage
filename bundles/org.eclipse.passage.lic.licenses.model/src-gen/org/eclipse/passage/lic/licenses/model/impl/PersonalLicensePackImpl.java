@@ -112,10 +112,11 @@ public class PersonalLicensePackImpl extends MinimalEObjectImpl.Container implem
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.PERSONAL_LICENSE_PACK__LICENSE, oldLicense, newLicense);
-			if (msgs1 == null)
+			if (msgs1 == null) {
 				msgs1 = notification;
-			else
+			} else {
 				msgs1.add(notification);
+			}
 		}
 		return msgs1;
 	}
@@ -129,15 +130,18 @@ public class PersonalLicensePackImpl extends MinimalEObjectImpl.Container implem
 	public void setLicense(PersonalLicenseRequisites newLicense) {
 		if (newLicense != license) {
 			NotificationChain msgs = null;
-			if (license != null)
+			if (license != null) {
 				msgs = ((InternalEObject) license).eInverseRemove(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.PERSONAL_LICENSE_PACK__LICENSE, null, msgs);
-			if (newLicense != null)
+			}
+			if (newLicense != null) {
 				msgs = ((InternalEObject) newLicense).eInverseAdd(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.PERSONAL_LICENSE_PACK__LICENSE, null, msgs);
+			}
 			msgs = basicSetLicense(newLicense, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
+			}
 		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.PERSONAL_LICENSE_PACK__LICENSE,
 					newLicense, newLicense));

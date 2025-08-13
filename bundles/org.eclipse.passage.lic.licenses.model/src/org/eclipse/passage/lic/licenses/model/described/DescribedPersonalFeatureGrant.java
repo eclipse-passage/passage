@@ -17,7 +17,7 @@ import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 
 public final class DescribedPersonalFeatureGrant extends Described {
 
-	private PersonalFeatureGrant grant;
+	private final PersonalFeatureGrant grant;
 
 	public DescribedPersonalFeatureGrant(PersonalFeatureGrant grant) {
 		this.grant = grant;

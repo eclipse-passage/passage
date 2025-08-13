@@ -17,7 +17,7 @@ import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 
 public final class DescribedFloatingFeatureGrant extends Described {
 
-	private FeatureGrant grant;
+	private final FeatureGrant grant;
 
 	public DescribedFloatingFeatureGrant(FeatureGrant grant) {
 		this.grant = grant;

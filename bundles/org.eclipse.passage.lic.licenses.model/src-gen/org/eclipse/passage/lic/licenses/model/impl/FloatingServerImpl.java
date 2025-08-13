@@ -141,10 +141,11 @@ public class FloatingServerImpl extends MinimalEObjectImpl.Container implements 
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.FLOATING_SERVER__AUTHENTICATION, oldAuthentication, newAuthentication);
-			if (msgs1 == null)
+			if (msgs1 == null) {
 				msgs1 = notification;
-			else
+			} else {
 				msgs1.add(notification);
+			}
 		}
 		return msgs1;
 	}
@@ -158,15 +159,18 @@ public class FloatingServerImpl extends MinimalEObjectImpl.Container implements 
 	public void setAuthentication(EvaluationInstructions newAuthentication) {
 		if (newAuthentication != authentication) {
 			NotificationChain msgs = null;
-			if (authentication != null)
+			if (authentication != null) {
 				msgs = ((InternalEObject) authentication).eInverseRemove(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.FLOATING_SERVER__AUTHENTICATION, null, msgs);
-			if (newAuthentication != null)
+			}
+			if (newAuthentication != null) {
 				msgs = ((InternalEObject) newAuthentication).eInverseAdd(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.FLOATING_SERVER__AUTHENTICATION, null, msgs);
+			}
 			msgs = basicSetAuthentication(newAuthentication, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
+			}
 		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.FLOATING_SERVER__AUTHENTICATION,
 					newAuthentication, newAuthentication));

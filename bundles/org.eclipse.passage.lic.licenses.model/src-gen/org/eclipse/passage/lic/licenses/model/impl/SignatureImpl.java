@@ -125,10 +125,11 @@ public class SignatureImpl extends MinimalEObjectImpl.Container implements Signa
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.SIGNATURE__PARENT, oldParent, newParent);
-			if (msgs1 == null)
+			if (msgs1 == null) {
 				msgs1 = notification;
-			else
+			} else {
 				msgs1.add(notification);
+			}
 		}
 		return msgs1;
 	}
@@ -142,15 +143,18 @@ public class SignatureImpl extends MinimalEObjectImpl.Container implements Signa
 	public void setParent(Signature newParent) {
 		if (newParent != parent) {
 			NotificationChain msgs = null;
-			if (parent != null)
+			if (parent != null) {
 				msgs = ((InternalEObject) parent).eInverseRemove(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.SIGNATURE__PARENT, null, msgs);
-			if (newParent != null)
+			}
+			if (newParent != null) {
 				msgs = ((InternalEObject) newParent).eInverseAdd(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.SIGNATURE__PARENT, null, msgs);
+			}
 			msgs = basicSetParent(newParent, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
+			}
 		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.SIGNATURE__PARENT, newParent,
 					newParent));

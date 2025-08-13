@@ -276,10 +276,11 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.LICENSE_REQUISITES__PRODUCT, oldProduct, newProduct);
-			if (msgs1 == null)
+			if (msgs1 == null) {
 				msgs1 = notification;
-			else
+			} else {
 				msgs1.add(notification);
+			}
 		}
 		return msgs1;
 	}
@@ -293,15 +294,18 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 	public void setProduct(ProductRef newProduct) {
 		if (newProduct != product) {
 			NotificationChain msgs = null;
-			if (product != null)
+			if (product != null) {
 				msgs = ((InternalEObject) product).eInverseRemove(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_REQUISITES__PRODUCT, null, msgs);
-			if (newProduct != null)
+			}
+			if (newProduct != null) {
 				msgs = ((InternalEObject) newProduct).eInverseAdd(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_REQUISITES__PRODUCT, null, msgs);
+			}
 			msgs = basicSetProduct(newProduct, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
+			}
 		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_REQUISITES__PRODUCT,
 					newProduct, newProduct));
@@ -330,10 +334,11 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.LICENSE_REQUISITES__VALID, oldValid, newValid);
-			if (msgs1 == null)
+			if (msgs1 == null) {
 				msgs1 = notification;
-			else
+			} else {
 				msgs1.add(notification);
+			}
 		}
 		return msgs1;
 	}
@@ -347,15 +352,18 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 	public void setValid(ValidityPeriod newValid) {
 		if (newValid != valid) {
 			NotificationChain msgs = null;
-			if (valid != null)
+			if (valid != null) {
 				msgs = ((InternalEObject) valid).eInverseRemove(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_REQUISITES__VALID, null, msgs);
-			if (newValid != null)
+			}
+			if (newValid != null) {
 				msgs = ((InternalEObject) newValid).eInverseAdd(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_REQUISITES__VALID, null, msgs);
+			}
 			msgs = basicSetValid(newValid, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
+			}
 		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_REQUISITES__VALID, newValid,
 					newValid));
@@ -384,10 +392,11 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.LICENSE_REQUISITES__SIGNATURE, oldSignature, newSignature);
-			if (msgs1 == null)
+			if (msgs1 == null) {
 				msgs1 = notification;
-			else
+			} else {
 				msgs1.add(notification);
+			}
 		}
 		return msgs1;
 	}
@@ -401,15 +410,18 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 	public void setSignature(Signature newSignature) {
 		if (newSignature != signature) {
 			NotificationChain msgs = null;
-			if (signature != null)
+			if (signature != null) {
 				msgs = ((InternalEObject) signature).eInverseRemove(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_REQUISITES__SIGNATURE, null, msgs);
-			if (newSignature != null)
+			}
+			if (newSignature != null) {
 				msgs = ((InternalEObject) newSignature).eInverseAdd(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_REQUISITES__SIGNATURE, null, msgs);
+			}
 			msgs = basicSetSignature(newSignature, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
+			}
 		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_REQUISITES__SIGNATURE,
 					newSignature, newSignature));

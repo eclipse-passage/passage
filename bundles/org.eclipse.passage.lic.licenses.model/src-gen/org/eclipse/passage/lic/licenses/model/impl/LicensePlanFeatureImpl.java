@@ -145,10 +145,11 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE, oldFeature, newFeature);
-			if (msgs1 == null)
+			if (msgs1 == null) {
 				msgs1 = notification;
-			else
+			} else {
 				msgs1.add(notification);
+			}
 		}
 		return msgs1;
 	}
@@ -163,15 +164,18 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	public void setFeature(FeatureRef newFeature) {
 		if (newFeature != feature) {
 			NotificationChain msgs = null;
-			if (feature != null)
+			if (feature != null) {
 				msgs = ((InternalEObject) feature).eInverseRemove(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE, null, msgs);
-			if (newFeature != null)
+			}
+			if (newFeature != null) {
 				msgs = ((InternalEObject) newFeature).eInverseAdd(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE, null, msgs);
+			}
 			msgs = basicSetFeature(newFeature, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
+			}
 		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE,
 					newFeature, newFeature));
@@ -221,12 +225,14 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
 			}
-			if (newPlan != null)
+			if (newPlan != null) {
 				msgs = ((InternalEObject) newPlan).eInverseAdd(this, LicensesPackage.LICENSE_PLAN__FEATURES,
 						LicensePlan.class, msgs);
+			}
 			msgs = basicSetPlan(newPlan, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
+			}
 		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PLAN_FEATURE__PLAN, newPlan,
 					newPlan));

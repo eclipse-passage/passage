@@ -293,13 +293,14 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	public static LicensesPackage init() {
-		if (isInited)
+		if (isInited) {
 			return (LicensesPackage) EPackage.Registry.INSTANCE.getEPackage(LicensesPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
 		Object registeredLicensesPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-		LicensesPackageImpl theLicensesPackage = registeredLicensesPackage instanceof LicensesPackageImpl
-				? (LicensesPackageImpl) registeredLicensesPackage
+		LicensesPackageImpl theLicensesPackage = registeredLicensesPackage instanceof LicensesPackageImpl l
+				? l
 				: new LicensesPackageImpl();
 
 		isInited = true;
@@ -1504,8 +1505,9 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated)
+		if (isCreated) {
 			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -1656,8 +1658,9 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized)
+		if (isInitialized) {
 			return;
+		}
 		isInitialized = true;
 
 		// Initialize package

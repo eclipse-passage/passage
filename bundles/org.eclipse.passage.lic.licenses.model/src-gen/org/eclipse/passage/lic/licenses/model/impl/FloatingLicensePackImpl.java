@@ -137,10 +137,11 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.FLOATING_LICENSE_PACK__LICENSE, oldLicense, newLicense);
-			if (msgs1 == null)
+			if (msgs1 == null) {
 				msgs1 = notification;
-			else
+			} else {
 				msgs1.add(notification);
+			}
 		}
 		return msgs1;
 	}
@@ -154,15 +155,18 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	public void setLicense(FloatingLicenseRequisites newLicense) {
 		if (newLicense != license) {
 			NotificationChain msgs = null;
-			if (license != null)
+			if (license != null) {
 				msgs = ((InternalEObject) license).eInverseRemove(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.FLOATING_LICENSE_PACK__LICENSE, null, msgs);
-			if (newLicense != null)
+			}
+			if (newLicense != null) {
 				msgs = ((InternalEObject) newLicense).eInverseAdd(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.FLOATING_LICENSE_PACK__LICENSE, null, msgs);
+			}
 			msgs = basicSetLicense(newLicense, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
+			}
 		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.FLOATING_LICENSE_PACK__LICENSE,
 					newLicense, newLicense));
@@ -191,10 +195,11 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.FLOATING_LICENSE_PACK__HOST, oldHost, newHost);
-			if (msgs1 == null)
+			if (msgs1 == null) {
 				msgs1 = notification;
-			else
+			} else {
 				msgs1.add(notification);
+			}
 		}
 		return msgs1;
 	}
@@ -208,15 +213,18 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	public void setHost(FloatingServer newHost) {
 		if (newHost != host) {
 			NotificationChain msgs = null;
-			if (host != null)
+			if (host != null) {
 				msgs = ((InternalEObject) host).eInverseRemove(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.FLOATING_LICENSE_PACK__HOST, null, msgs);
-			if (newHost != null)
+			}
+			if (newHost != null) {
 				msgs = ((InternalEObject) newHost).eInverseAdd(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.FLOATING_LICENSE_PACK__HOST, null, msgs);
+			}
 			msgs = basicSetHost(newHost, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
+			}
 		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.FLOATING_LICENSE_PACK__HOST, newHost,
 					newHost));
