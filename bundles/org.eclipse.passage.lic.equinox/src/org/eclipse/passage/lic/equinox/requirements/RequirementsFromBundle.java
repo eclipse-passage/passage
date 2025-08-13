@@ -33,7 +33,7 @@ import org.osgi.framework.wiring.BundleWiring;
 /**
  * Looks for {@linkplain Requirement} declarations among all the
  * licensing-namespaced {@code Capabilities} in the given {@code Bundle}
- * 
+ *
  * @see RequirementFromCapability
  * @see BundleRequirements
  */

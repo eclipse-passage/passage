@@ -33,7 +33,7 @@ import org.osgi.framework.Bundle;
 /**
  * Look for the product's public key into OSGI-INF folder of the configured
  * bundle.
- * 
+ *
  * @since 2.1
  */
 public final class BundleKeyKeeper implements KeyKeeper {

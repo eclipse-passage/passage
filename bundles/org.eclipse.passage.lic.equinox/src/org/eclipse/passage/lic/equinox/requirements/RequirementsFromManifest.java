@@ -33,7 +33,7 @@ import org.osgi.framework.Bundle;
  * {@linkplain Requirement}s in these bundles too. Thus, we try to read
  * MANIFEST.MF manually and scan the content for licensing requirement
  * declarations.
- * 
+ *
  * @see RequirementsFromBundle
  */
 final class RequirementsFromManifest implements Supplier<ServiceInvocationResult<Collection<Requirement>>> {

@@ -21,7 +21,7 @@ import org.eclipse.passage.lic.base.StringNamedData;
 /**
  * Encapsulate reading of a raw {@linkplain RestrictionLevel} identifier from
  * {@code OSGi component}'s properties for the requirement under construction.
- * 
+ *
  * @see NamedData
  * @since 2.1
  */

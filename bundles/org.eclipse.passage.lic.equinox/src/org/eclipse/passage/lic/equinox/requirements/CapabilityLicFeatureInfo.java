@@ -27,7 +27,7 @@ import org.eclipse.passage.lic.base.StringNamedData;
  * and</li>
  * <li>provides writing <i>name-value</i> pair to a selected target</li>
  * </ul>
- * 
+ *
  * @see NamedData
  * @see NamedData.Writable
  */

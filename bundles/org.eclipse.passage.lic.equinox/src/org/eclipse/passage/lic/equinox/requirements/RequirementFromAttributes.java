@@ -40,7 +40,7 @@ import org.osgi.framework.Bundle;
 /**
  * Looks for {@linkplain Requirement} declaration in a single
  * {@code Capability}.
- * 
+ *
  * @see RequirementsFromBundle
  * @see BundleRequirements
  */

@@ -30,7 +30,7 @@ import org.osgi.framework.wiring.BundleCapability;
 /**
  * Looks for {@linkplain Requirement} declaration in a single
  * {@code Capability}.
- * 
+ *
  * @see RequirementsFromBundle
  * @see BundleRequirements
  */

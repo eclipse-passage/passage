@@ -20,7 +20,7 @@ import org.eclipse.passage.lic.base.StringNamedData;
 /**
  * Encapsulate reading of {@code name} of a feature under licensing from a
  * {@code OSGi component}'s properties.
- * 
+ *
  * @see NamedData
  * @since 2.1
  */

@@ -20,7 +20,7 @@ import org.eclipse.passage.lic.base.NamedData;
 /**
  * Encapsulate reading of a {@code name} of a feature under licensing from a
  * {@code Capability}'s attributes.
- * 
+ *
  * @see NamedData
  * @since 2.1
  */
