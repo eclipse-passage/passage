@@ -30,7 +30,7 @@ import org.eclipse.passage.lic.base.io.PathFromLocalUrl;
  * or with {@link LicensingFolder} to get Passage settings host directory under
  * the general installation folder.
  * </p>
- * 
+ *
  * @since 2.1
  */
 public final class InstallationPath implements Supplier<Path> {
