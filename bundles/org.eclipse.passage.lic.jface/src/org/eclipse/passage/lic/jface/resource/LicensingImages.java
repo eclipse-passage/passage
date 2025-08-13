@@ -121,10 +121,10 @@ public class LicensingImages {
 	 * Note that the static convenience methods <code>getImage</code> and
 	 * <code>getImageDescriptor</code> are also provided on this class.
 	 * </p>
-	 * 
+	 *
 	 * @see LicensingImages#getImage(String)
 	 * @see LicensingImages#getImageDescriptor(String)
-	 * 
+	 *
 	 * @return the Licensing image registry
 	 */
 	public static ImageRegistry getImageRegistry() {
@@ -157,11 +157,11 @@ public class LicensingImages {
 	/**
 	 * Declares a Licensing images for the key-> path {@link Map}. May only be
 	 * called from a UI thread.
-	 * 
+	 *
 	 * @param location the {@link Class} where the image is relative to
 	 * @param paths    the the key-> path {@link Map} (the path is relative to
 	 *                 location)
-	 * 
+	 *
 	 * @return the status of the operation
 	 */
 	public static IStatus declareImages(Class<?> location, Map<String, String> paths) {
