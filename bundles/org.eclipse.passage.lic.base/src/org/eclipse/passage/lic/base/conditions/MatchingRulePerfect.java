@@ -18,7 +18,7 @@ import java.util.Objects;
  * Does not event tries to parse the given strings. Matching is successful iff
  * {@code required} string representing version is absolutely equal to
  * {@code allowed}. Comparison is case sensitive.
- * 
+ *
  * @author user
  * @since 2.1
  *

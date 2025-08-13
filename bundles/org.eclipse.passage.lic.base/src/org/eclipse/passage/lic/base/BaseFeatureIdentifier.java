@@ -16,7 +16,7 @@ import org.eclipse.passage.lic.api.FeatureIdentifier;
 
 /**
  * Base implementation for {@link FeatureIdentifier}
- * 
+ *
  * @since 4.0
  */
 @SuppressWarnings("serial")

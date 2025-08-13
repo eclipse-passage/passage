@@ -26,19 +26,19 @@ import org.eclipse.passage.lic.api.LicensingException;
  * Tolerant to base directory or file absence. Designed to return empty
  * collection in this case.
  * </p>
- * 
+ *
  * <p>
  * Otherwise functionally identical to {@linkplain FileCollection}. Literally.
  * Meaning if the {@code base} is a directory without <i>execute</i> permission
  * for a current user, or operating system denies the traversal due to any other
  * reason, the collecting process will actively fail.
  * </p>
- * 
+ *
  * <p>
  * These is no obligations as to how many times {@code base} supplier to be
  * called, so make sure your implementation is system-wide idempotent.
  * </p>
- * 
+ *
  * @since 4.1
  */
 public final class LenientFileCollection implements CollectedFiles {

@@ -27,9 +27,9 @@ import java.util.function.Supplier;
  * actual value reading at all cost - to make it reasonable to construct such a
  * data just to get the {@code key}. Yet debatable.
  * </p>
- * 
+ *
  * @param <T> type of a value to be supplied
- * 
+ *
  * @since 2.1
  */
 public interface NamedData<T> extends Supplier<Optional<T>> {

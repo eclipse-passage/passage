@@ -19,11 +19,11 @@ import org.eclipse.passage.lic.api.LicensedProduct;
 /**
  * Default data-driven implementation of {@code LicensedProduct} represents
  * configuration of the running product. True {@code data-class}.
- * 
+ *
  * @see LicensedProduct
  * @see ProductIdentifier
  * @see ProductVersion
- * 
+ *
  * @since 2.1
  */
 public final class BaseLicensedProduct implements LicensedProduct {

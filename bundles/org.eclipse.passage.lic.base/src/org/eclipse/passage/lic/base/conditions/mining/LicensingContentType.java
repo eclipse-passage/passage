@@ -26,7 +26,6 @@ public final class LicensingContentType extends BaseNamedData<ContentType> {
 		super(retrieve);
 	}
 
-	@SuppressWarnings("unused")
 	public LicensingContentType(ContentType type) {
 		super(key -> type);
 	}

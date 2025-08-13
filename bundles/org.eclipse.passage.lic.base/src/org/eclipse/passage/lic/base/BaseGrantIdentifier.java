@@ -16,7 +16,7 @@ import org.eclipse.passage.lic.api.GrantIdentifier;
 
 /**
  * Base implementation for {@link GrantIdentifier}
- * 
+ *
  * @since 4.0
  */
 @SuppressWarnings("serial")

@@ -21,7 +21,7 @@ import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 /**
- * 
+ *
  * @since 2.1
  */
 public final class KeyValuePairs {

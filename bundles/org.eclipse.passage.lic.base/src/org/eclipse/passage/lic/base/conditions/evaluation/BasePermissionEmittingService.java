@@ -45,7 +45,7 @@ import org.eclipse.passage.lic.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.base.i18n.ConditionsEvaluationMessages;
 
 /**
- * 
+ *
  * @since 2.1
  */
 public final class BasePermissionEmittingService implements PermissionEmittingService {

@@ -39,38 +39,38 @@ import org.eclipse.passage.lic.base.diagnostic.code.ForeignLicense;
  * <p>
  * However, a library should participate in
  * </p>
- * 
+ *
  * <ul>
- * 
+ *
  * <li>1. the owning product license coverage assessment</li>
- * 
+ *
  * <li>2. bulk license import (prevent end user from dealing with all the
  * product-libraries relations)</li>
- * 
+ *
  * </ul>
- * 
+ *
  * <p>
  * smoothly, so it should
  * </p>
- * 
+ *
  * <ul>
- * 
+ *
  * <li>1.1. supply it's own assessment results when asked: {@code access()}</li>
- * 
+ *
  * <li>1.2. facilitate acceptance of a license agreement, in case it demands
  * some for acceptance:
  * {@code agreementsService(AgreementToAccept agreement)}</li>
- * 
+ *
  * <li>2.1. supply a {@linkplain LicenseReadingService} that will read licensing
  * {@linkplain Condition}s from a license file, in case it can be treated a this
  * library's license</li>
- * 
+ *
  * <li>2.2. provide a way to install a license (it defined to be this library's
  * license) to path configured for the library as <i>license residence</i>:
  * {@code installLicense(Path license)}.</li>
- * 
+ *
  * </ul>
- * 
+ *
  */
 public interface Library extends PassageLicenseCoverage {
 
@@ -110,7 +110,7 @@ public interface Library extends PassageLicenseCoverage {
 	 * license residence, configured for this library's
 	 * {@code access cycle configuration}
 	 * </p>
-	 * 
+	 *
 	 * <p>
 	 * If the {@code license} file does not belong to the library, report negative
 	 * result with bearable diagnostic of {@linkplain ForeignLicense} trouble code.
@@ -123,7 +123,7 @@ public interface Library extends PassageLicenseCoverage {
 	 * In case the {@code license} has been actually installed, report positive
 	 * result, optionally with whatever informative diagnostic.
 	 * </p>
-	 * 
+	 *
 	 * @return diagnosed result of installation: whether installation of the
 	 *         {@code license} has been actually performed or not
 	 */

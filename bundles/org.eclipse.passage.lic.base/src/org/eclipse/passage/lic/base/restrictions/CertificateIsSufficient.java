@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.api.restrictions.Restriction;
 
 /**
- * 
+ *
  * @since 2.11
  */
 public final class CertificateIsSufficient implements Predicate<Optional<ExaminationCertificate>> {

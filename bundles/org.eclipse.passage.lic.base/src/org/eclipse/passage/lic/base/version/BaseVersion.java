@@ -17,7 +17,7 @@ import java.util.Objects;
 import org.eclipse.passage.lic.api.version.Version;
 
 /**
- * 
+ *
  * @since 2.1
  */
 public abstract class BaseVersion implements Version {

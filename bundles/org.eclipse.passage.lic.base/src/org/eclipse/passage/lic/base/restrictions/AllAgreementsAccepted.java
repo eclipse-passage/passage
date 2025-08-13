@@ -18,7 +18,7 @@ import org.eclipse.passage.lic.api.agreements.AgreementToAccept;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 
 /**
- * 
+ *
  * @since 2.1
  */
 public final class AllAgreementsAccepted implements Predicate<ExaminationCertificate> {

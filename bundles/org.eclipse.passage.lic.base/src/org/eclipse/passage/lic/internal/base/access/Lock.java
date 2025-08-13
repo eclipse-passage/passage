@@ -58,7 +58,7 @@ final class Lock {
 	/**
 	 * Appeals to a LicenseAcquisitionService in order to lock an actual grant for a
 	 * requested feature
-	 * 
+	 *
 	 * @param valid, positive, not-restrictive certificate
 	 * @see ExaminationCertificate
 	 * @see CertificateIsRestrictive

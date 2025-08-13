@@ -34,7 +34,7 @@ import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
  * merged into the final map of properties, until {@code enough} predicate (if
  * any) says these is no need to proceed.
  * </p>
- * 
+ *
  * @see PassageFileExtension.Settings
  * @since 2.1
  */
@@ -54,7 +54,6 @@ public final class Settings {
 	/**
 	 * Load all settings files located under the given {@code base} directory
 	 */
-	@SuppressWarnings("unused")
 	public Settings(Supplier<Path> base) {
 		this(base, map -> false);
 	}

@@ -26,7 +26,7 @@ import org.eclipse.passage.lic.api.restrictions.Restriction;
 import org.eclipse.passage.lic.api.restrictions.RestrictionComparator;
 
 /**
- * 
+ *
  * @since 2.1
  */
 public final class WorstRestrictionsPerFeature implements Supplier<Collection<Restriction>> {

@@ -26,7 +26,7 @@ import org.eclipse.passage.lic.base.BaseUserIdentifier;
 
 // FIXME: just stub for now. Implement properly. #568791
 /**
- * 
+ *
  * @since 2.1
  */
 public abstract class LocalLicenseAcquisitionService implements LicenseAcquisitionService {

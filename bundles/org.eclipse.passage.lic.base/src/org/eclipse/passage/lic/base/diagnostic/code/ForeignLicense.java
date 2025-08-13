@@ -16,7 +16,7 @@ import org.eclipse.passage.lic.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
 
 /**
- * 
+ *
  * @since 2.3
  */
 public final class ForeignLicense extends TroubleCode {

@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.base.version.SafeVersion;
  * Define if the {@code actual} version (that originates in declared
  * {@linkplain Requirement}s) fits to the {@code expected} version (which comes
  * from license by means of licensing {@linkplain Condition}s.
- * 
+ *
  * @since 2.1
  */
 public final class RequiredVersionVsAllowedVersion {
@@ -56,7 +56,7 @@ public final class RequiredVersionVsAllowedVersion {
 	 * <p>
 	 * The rest of the segments, if any, are skipped.
 	 * </p>
-	 * 
+	 *
 	 * @param equals number of version segments that are demanded to be equal before
 	 *               the next pair is analyzed for the final result. The rest of the
 	 *               version is skipped.

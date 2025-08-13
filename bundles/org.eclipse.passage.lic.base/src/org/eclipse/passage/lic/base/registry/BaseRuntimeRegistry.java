@@ -28,14 +28,14 @@ import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
  * {@linkplain Registry} implementation that is filled and managed at runtime
  * programmatically.
  * </p>
- * 
+ *
  * <p>
  * Not thread safe (yet)
  * </p>
  * <p>
  * Null free zone.
  * </p>
- * 
+ *
  * @param <S> type of {@linkplain Service} to keep
  * @since 2.1
  */

@@ -18,7 +18,7 @@ import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.api.diagnostic.Trouble;
 
 /**
- * 
+ *
  * @since 2.1
  */
 public final class SumOfDiagnostics implements BinaryOperator<Diagnostic> {

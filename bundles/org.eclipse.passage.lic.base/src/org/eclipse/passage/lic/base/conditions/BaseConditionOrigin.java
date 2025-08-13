@@ -20,7 +20,7 @@ import org.eclipse.passage.lic.api.conditions.ConditionOrigin;
 import org.eclipse.passage.lic.api.conditions.IssuerSignature;
 
 /**
- * 
+ *
  * @since 2.1
  */
 public final class BaseConditionOrigin implements ConditionOrigin {

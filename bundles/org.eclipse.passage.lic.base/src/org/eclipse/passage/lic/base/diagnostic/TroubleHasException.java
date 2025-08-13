@@ -18,7 +18,7 @@ import java.util.function.Predicate;
 import org.eclipse.passage.lic.api.diagnostic.Trouble;
 
 /**
- * 
+ *
  * @since 2.1
  */
 public final class TroubleHasException implements Predicate<Optional<Trouble>> {

@@ -32,7 +32,7 @@ import org.eclipse.passage.lic.internal.base.i18n.ExaminationExplanedMessages;
 
 //FIXME: work for CachingSupplier
 /**
- * 
+ *
  * @since 2.1
  */
 public final class ExaminationExplained implements Supplier<String> {

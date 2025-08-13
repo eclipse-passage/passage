@@ -35,7 +35,7 @@ import org.eclipse.passage.lic.internal.base.access.Permissions.AppliedLicenses;
 
 /**
  * FIXME: Has public visibility only for testing.
- * 
+ *
  * @since 2.1
  */
 public final class Permissions implements Supplier<ServiceInvocationResult<AppliedLicenses>> {

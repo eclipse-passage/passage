@@ -19,14 +19,13 @@ import java.util.function.Function;
 /**
  * Auxiliary implementation for string valued data, as in the most cases we are
  * interested in retrieving string data.
- * 
+ *
  * @see NamedData
- * 
+ *
  * @since 2.1
  */
 public abstract class StringNamedData extends BaseNamedData<String> {
 
-	@SuppressWarnings("unused")
 	protected StringNamedData(String value) {
 		super(key -> value);
 	}
