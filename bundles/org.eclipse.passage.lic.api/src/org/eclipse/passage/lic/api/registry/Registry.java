@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.api.registry;
 import java.util.Collection;
 
 /**
- * 
+ *
  * @param <S> sub type of {@linkplain Service}
  * @since 2.1
  */

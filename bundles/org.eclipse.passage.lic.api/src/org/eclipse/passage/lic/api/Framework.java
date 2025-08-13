@@ -28,7 +28,7 @@ package org.eclipse.passage.lic.api;
  * <li>event bus</li>
  * </ul>
  * <p>
- * 
+ *
  * @since 2.1
  */
 public interface Framework {

@@ -21,7 +21,7 @@ package org.eclipse.passage.lic.api.version;
  * Instance of this interface that survived the construction must always be
  * valid. That means eager parsing.
  * </p>
- * 
+ *
  * @since 2.1
  */
 public interface Version {

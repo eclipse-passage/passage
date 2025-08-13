@@ -16,7 +16,7 @@ package org.eclipse.passage.lic.api.version;
  * <p>
  * Well structured representation of a version.
  * </p>
- * 
+ *
  * @since 2.1
  */
 public interface SemanticVersion {
@@ -29,7 +29,7 @@ public interface SemanticVersion {
 
 	/**
 	 * Qualifier structure is not formalized (raw string) and it is optional.
-	 * 
+	 *
 	 * @return {@code true} is qualification is defined for the version and
 	 *         {@code false} otherwise.
 	 */

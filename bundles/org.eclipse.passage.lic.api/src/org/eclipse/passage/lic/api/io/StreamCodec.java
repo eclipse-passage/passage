@@ -27,7 +27,7 @@ import org.eclipse.passage.lic.api.registry.Service;
 /**
  * Coder and decoder for licensing data, used by {@link MinedConditions} to read
  * licensing conditions data from encoded streams (like license text)
- * 
+ *
  * @since 2.1
  */
 public interface StreamCodec extends Service<LicensedProduct> {

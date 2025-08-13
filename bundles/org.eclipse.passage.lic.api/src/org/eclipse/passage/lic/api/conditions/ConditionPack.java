@@ -26,7 +26,7 @@ import org.eclipse.passage.lic.api.agreements.GlobalAgreement;
  * conditions of the same origin means this origin compromising, but does not
  * affect fates of conditions from other origins.
  * </p>
- * 
+ *
  * @since 2.1
  */
 public interface ConditionPack {

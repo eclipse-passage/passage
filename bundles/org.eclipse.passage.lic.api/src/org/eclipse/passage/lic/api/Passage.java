@@ -25,9 +25,9 @@ import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
  * Main entry point for a code base under license protection.
  * </p>
  * FIXME: explain exhaustively how to use, with code examples
- * 
+ *
  * @see org.eclipse.passage.lic.api
- * 
+ *
  * @since 2.1
  */
 public interface Passage {
@@ -39,16 +39,16 @@ public interface Passage {
 	 * {@link Condition} to be in use until released. Potentially long running
 	 * operation.
 	 * <p>
-	 * 
+	 *
 	 * <p>
 	 * Call this method before starting your {@code feature} code to ensure it is
 	 * not used without proper license. Be cooperative and don't forget to call
 	 * {@link Passage#releaseLicense(ServiceInvocationResult)} at the end of you
 	 * {@code feature} code to let others use the license after you don't need it.
 	 * </p>
-	 * 
+	 *
 	 * @param feature identifier of the feature under licensing.
-	 * 
+	 *
 	 * @see org.eclipse.passage.lic.api
 	 * @see Passage#releaseLicense(ExaminationCertificate)
 	 * @since 4.0
@@ -60,16 +60,16 @@ public interface Passage {
 	 * The command to release the acquired license represented by
 	 * {@link ExaminationCertificate} when it is not needed anymore.
 	 * <p>
-	 * 
+	 *
 	 * <p>
 	 * Call this at the <code>finally</code> block of your {@code feature} code to
 	 * ensure the license is released for the future use. Potentially long running
 	 * operation.
 	 * </p>
-	 * 
+	 *
 	 * @param certificate the examination certificate to be released.
 	 * @return the result of command invocation, <code>true</code> for success
-	 * 
+	 *
 	 * @see org.eclipse.passage.lic.api
 	 * @see Passage#acquireLicense(String)
 	 */
@@ -102,11 +102,11 @@ public interface Passage {
 	 * Like to implement {@code action::isEnabled} of sorts or to guide simple
 	 * control flow.
 	 * </p>
-	 * 
+	 *
 	 * @param feature identifier of the feature under licensing.
 	 * @return {@code true} if the given {@code feature} can be used and
 	 *         {@code false} otherwise
-	 * 
+	 *
 	 * @see Requirement
 	 * @see Restriction
 	 * @see RestrictionLevel

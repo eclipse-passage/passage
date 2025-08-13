@@ -27,7 +27,7 @@ import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
  * Which inevitably means end user involvement through dialogs exposing current
  * licensing status, failures diagnostic, import license facilities, etc
  * </p>
- * 
+ *
  * @since 2.1
  */
 public interface PassageUI {
@@ -47,7 +47,7 @@ public interface PassageUI {
 	 * {@code feature} demanded or the end user declines to improve the license
 	 * coverage.
 	 * </p>
-	 * 
+	 *
 	 * @param feature identifier of a feature desired to be checked for license
 	 *                coverage
 	 * @return {@code true} if, at the end of the day, the coverage is sufficient

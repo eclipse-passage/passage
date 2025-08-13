@@ -18,9 +18,9 @@ import org.eclipse.passage.lic.api.registry.ServiceId;
 
 /**
  * FIXME: move to upper package
- * 
+ *
  * String-valued {@linkplain ServiceId} with mime content type semantics
- * 
+ *
  * @since 2.1
  */
 public abstract class ContentType implements ServiceId {

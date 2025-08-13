@@ -22,7 +22,7 @@ import org.eclipse.passage.lic.api.FeatureIdentifier;
  * <p>
  * Intended to be implemented as a <i>data-class</i>.
  * </p>
- * 
+ *
  * @see Requirement
  * @see org.eclipse.passage.lic.api
  * @since 2.1
@@ -41,7 +41,7 @@ public interface Feature {
 
 	/**
 	 * Identifier of the feature under licensing
-	 * 
+	 *
 	 * @since 4.0
 	 */
 	FeatureIdentifier identifier();

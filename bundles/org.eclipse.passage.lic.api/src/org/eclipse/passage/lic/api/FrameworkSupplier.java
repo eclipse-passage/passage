@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 /**
- * 
+ *
  * @since 2.1
  *
  */

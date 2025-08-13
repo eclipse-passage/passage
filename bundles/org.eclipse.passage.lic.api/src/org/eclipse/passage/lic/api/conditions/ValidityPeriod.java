@@ -22,14 +22,14 @@ import java.time.ZonedDateTime;
  * <p>
  * Examples: 'from 1st of May, 2020 for two months' or 'each Friday ever'.
  * </p>
- * 
+ *
  * @since 2.1
  */
 public interface ValidityPeriod {
 
 	/**
 	 * Check if the given {@code date} belongs to the validity period.
-	 * 
+	 *
 	 * @param not null date to be checked if it belongs to the period of validity or
 	 *            not
 	 * @return {@code true} if date is valid and {@code false} otherwise

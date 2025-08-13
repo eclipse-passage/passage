@@ -20,7 +20,7 @@ import org.eclipse.passage.lic.api.GrantIdentifier;
 import org.eclipse.passage.lic.api.UserIdentifier;
 
 /**
- * 
+ *
  * @since 2.1
  */
 public interface GrantAcquisition {

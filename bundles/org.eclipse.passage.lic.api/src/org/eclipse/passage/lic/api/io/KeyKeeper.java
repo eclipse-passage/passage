@@ -27,7 +27,7 @@ import org.eclipse.passage.lic.api.registry.Service;
  * This interface covers the service that supplies access to the product's
  * public key content.
  * </p>
- * 
+ *
  * @since 2.1
  */
 public interface KeyKeeper extends Service<LicensedProduct> {
@@ -39,7 +39,7 @@ public interface KeyKeeper extends Service<LicensedProduct> {
 	 * <p>
 	 * Ones get the stream, a burden of closing it lies on one's shoulders as well.
 	 * </p>
-	 * 
+	 *
 	 * @return never {@code null}, fresh and ready to be used input stream from
 	 *         content of the public key file
 	 * @throws LicensingException in case of any infrastructure misbehavior or

@@ -16,9 +16,9 @@ import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
 
 /**
  * Identifies a user granted to use a feature under license protection
- * 
+ *
  * @see GrantAcquisition#user()
- * 
+ *
  * @since 4.0
  */
 public interface UserIdentifier {

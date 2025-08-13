@@ -20,7 +20,7 @@ import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.api.registry.Service;
 
 /**
- * 
+ *
  * @since 2.1
  */
 public interface LicenseAcquisitionService extends Service<ConditionMiningTarget> {

@@ -38,7 +38,7 @@ import org.eclipse.passage.lic.api.registry.Service;
  * <p>
  * The service is intended to implement the third phase of <i>access cycle</i>.
  * </p>
- * 
+ *
  * @since 2.1
  */
 public interface MinedConditions extends Service<ConditionMiningTarget> {
@@ -60,7 +60,7 @@ public interface MinedConditions extends Service<ConditionMiningTarget> {
 	 * (logged or listened in other way the particular implementation provides). No
 	 * exception is thrown in this case to make other sources scanning possible.
 	 * </p>
-	 * 
+	 *
 	 * @return all the conditions gained during the mining for the given
 	 *         {@code product}.
 	 */

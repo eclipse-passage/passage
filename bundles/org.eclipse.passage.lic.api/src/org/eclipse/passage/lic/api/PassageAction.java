@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.api;
 import java.util.Objects;
 
 /**
- * 
+ *
  * @since 2.1
  * @Deprecated (forRemoval = true, since = "4.3")
  */

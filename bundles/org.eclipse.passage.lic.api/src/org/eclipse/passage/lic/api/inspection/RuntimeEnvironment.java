@@ -28,7 +28,7 @@ import org.eclipse.passage.lic.api.registry.Service;
  * It is used by condition expression evaluation services in order to define if
  * an expression is met by the supplied environment or not.
  * </p>
- * 
+ *
  * @since 2.1
  */
 public interface RuntimeEnvironment extends Service<EvaluationType> {

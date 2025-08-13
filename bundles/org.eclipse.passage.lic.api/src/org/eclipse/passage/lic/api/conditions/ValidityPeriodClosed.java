@@ -23,7 +23,7 @@ import java.time.ZonedDateTime;
  * Guarantees that if an instance survived creation, it is consistent:
  * {@code from < to}
  * </p>
- * 
+ *
  * @since 2.1
  */
 public interface ValidityPeriodClosed extends ValidityPeriodOpen {

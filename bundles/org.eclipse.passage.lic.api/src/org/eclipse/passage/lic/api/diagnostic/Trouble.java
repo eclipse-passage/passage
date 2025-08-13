@@ -16,7 +16,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * 
+ *
  * @since 2.1
  */
 public final class Trouble {

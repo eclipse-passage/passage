@@ -28,7 +28,7 @@ import org.eclipse.passage.lic.api.FeatureIdentifier;
  * years starting from the 1st of May, 2020." {@code Condition} represents such
  * a bundle of demands.
  * </p>
- * 
+ *
  * @since 2.1
  */
 public interface Condition {
@@ -47,14 +47,14 @@ public interface Condition {
 	/**
 	 * Define the actual {@code version} representing string that has been mined in
 	 * the scope of this condition (typically from license of sorts).
-	 * 
+	 *
 	 * @see VersionMatch
 	 */
 	VersionMatch versionMatch();
 
 	/**
 	 * Period of this condition applicability.
-	 * 
+	 *
 	 * @see ValidityPeriod
 	 */
 	ValidityPeriod validityPeriod();
@@ -68,7 +68,7 @@ public interface Condition {
 	 * all it's demands are met). For example, "hardware" license requires examining
 	 * of the actual workstation hardware.
 	 * </p>
-	 * 
+	 *
 	 * @see EvaluationInstructions
 	 */
 	EvaluationInstructions evaluationInstructions();

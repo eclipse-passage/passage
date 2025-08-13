@@ -18,7 +18,7 @@ package org.eclipse.passage.lic.api.registry;
  * multiple implementations that need to be somehow <i>collected and managed
  * together</i>.
  * </p>
- * 
+ *
  * @param <I> sub type of {@linkplain ServiceId}
  * @since 2.1
  */
