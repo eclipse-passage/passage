@@ -19,7 +19,7 @@ import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.widgets.Composite;
 
 public class StatusLine extends CLabel {
-	
+
 	public StatusLine(Composite parent) {
 		super(parent, SWT.LEFT);
 	}

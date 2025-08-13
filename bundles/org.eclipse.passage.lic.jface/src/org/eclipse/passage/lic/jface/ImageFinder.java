@@ -95,7 +95,7 @@ public class ImageFinder {
 	 *                  to parse the {@link URL} from
 	 * @return a URL for the given path or null. The actual form of the returned URL
 	 *         is not specified.
-	 * 
+	 *
 	 * @since 0.6
 	 */
 	public static URL locate(Object container, String value) {
@@ -127,7 +127,7 @@ public class ImageFinder {
 	 * @param value     the string that contains delimited paths or URL strings
 	 * @param delimeter the delimiting regular expression
 	 * @return a list of URLs
-	 * 
+	 *
 	 * @since 0.6
 	 */
 	public static List<URL> locate(Object container, String value, String delimeter) {
@@ -148,7 +148,7 @@ public class ImageFinder {
 	 * @param value     the path of the image file in the given bundle or the string
 	 *                  to parse the {@link URL} from
 	 * @return a new image descriptor
-	 * 
+	 *
 	 * @since 0.6
 	 */
 	public static Optional<ImageDescriptor> createImageDescriptor(Object container, String value) {
@@ -167,7 +167,7 @@ public class ImageFinder {
 	 * @param value     the string that contains delimited paths or URL strings
 	 * @param delimeter the delimiting regular expression
 	 * @return a list of new image descriptor
-	 * 
+	 *
 	 * @since 0.6
 	 */
 	public static List<ImageDescriptor> createImageDescriptors(Object container, String value, String delimeter) {
