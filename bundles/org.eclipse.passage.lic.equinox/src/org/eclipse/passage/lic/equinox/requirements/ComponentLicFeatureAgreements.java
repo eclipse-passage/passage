@@ -26,7 +26,7 @@ import org.eclipse.passage.lic.base.StringNamedData;
  * <p>
  * Sample value: "LICENSE::terms of use.txt::thirdparty/license.html"
  * </p>
- * 
+ *
  * @see NamedData
  * @since 2.1
  */

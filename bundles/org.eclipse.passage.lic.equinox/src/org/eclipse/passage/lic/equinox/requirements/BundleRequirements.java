@@ -35,7 +35,7 @@ import org.osgi.framework.FrameworkUtil;
  * {@linkplain Requirement} declarations in an OSGi-bundles meta information:
  * among <i>Provide-Capability</i> declarations.
  * </p>
- * 
+ *
  * @see Requirement
  * @see ResolvedRequirements
  * @since 2.1

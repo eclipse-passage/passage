@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.base.NamedData;
 /**
  * Encapsulate reading of a {@code feature identifier} from an
  * {@code OSGi component}'s properties.
- * 
+ *
  * @see NamedData
  * @since 2.1
  */

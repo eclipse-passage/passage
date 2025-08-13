@@ -29,7 +29,7 @@ import org.eclipse.passage.lic.base.NamedData;
  * </p>
  * <span> new NamedData.Writable&lt;List&lt;Requirement&gt;&gt;(new
  * RequirementsToBundle(requirements)).write(target); </span>
- * 
+ *
  * @see NamedData.Writable
  * @since 2.1
  */

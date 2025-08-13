@@ -31,7 +31,7 @@ import org.osgi.service.component.runtime.ServiceComponentRuntime;
 /**
  * Looks for licensing {@linkplain Requirement} declarations among
  * {@code OSGi-component}s.
- * 
+ *
  * @see Requirement
  * @see ResolvedRequirements
  * @since 2.1
