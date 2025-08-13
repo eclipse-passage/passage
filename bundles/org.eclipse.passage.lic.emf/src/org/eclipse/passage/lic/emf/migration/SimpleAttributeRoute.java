@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 
 /**
- * 
+ *
  * @since 2.0
  *
  */

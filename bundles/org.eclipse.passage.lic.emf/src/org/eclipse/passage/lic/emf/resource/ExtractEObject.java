@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * Extracts {@link EObject} from the given object
- * 
+ *
  * @since 2.0
  *
  */
@@ -32,8 +32,7 @@ public final class ExtractEObject implements Function<Object, Optional<EObject>>
 		if (object instanceof EObject) {
 			return Optional.of((EObject) object);
 		}
-		if (object instanceof Resource) {
-			Resource resource = (Resource) object;
+		if (object instanceof Resource resource) {
 			EList<EObject> contents = resource.getContents();
 			if (!contents.isEmpty()) {
 				return Optional.of(contents.get(0));

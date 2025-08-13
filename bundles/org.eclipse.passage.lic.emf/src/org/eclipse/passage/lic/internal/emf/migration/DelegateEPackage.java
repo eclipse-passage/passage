@@ -24,8 +24,7 @@ public final class DelegateEPackage implements Function<String, DelegatingEPacka
 			if (existing != null) {
 				EList<EClassifier> classifiers = existing.getEClassifiers();
 				for (EClassifier eClassifier : classifiers) {
-					if (eClassifier instanceof EClass) {
-						EClass to = (EClass) eClassifier;
+					if (eClassifier instanceof EClass to) {
 						EClass from = EcoreUtil.copy(to);
 						delegating.getEClassifiers().add(from);
 						factory.delegateEClass(existing.getEFactoryInstance(), from, to);

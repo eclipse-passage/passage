@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * Extracts {@link Resource} from the given object
- * 
+ *
  * @since 2.0
  *
  */
@@ -28,8 +28,7 @@ public final class ExtractResource implements Function<Object, Optional<Resource
 
 	@Override
 	public Optional<Resource> apply(Object object) {
-		if (object instanceof EObject) {
-			EObject eObject = (EObject) object;
+		if (object instanceof EObject eObject) {
 			return Optional.ofNullable(eObject.eResource());
 		}
 		if (object instanceof Resource) {

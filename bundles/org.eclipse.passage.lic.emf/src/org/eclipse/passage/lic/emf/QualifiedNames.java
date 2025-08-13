@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EDataType;
 
 /**
  * Provides qualified names for cross-EPackage operations
- * 
+ *
  * @since 2.0
  */
 public interface QualifiedNames {

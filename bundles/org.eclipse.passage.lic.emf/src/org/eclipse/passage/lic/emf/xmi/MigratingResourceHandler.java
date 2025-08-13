@@ -29,7 +29,7 @@ import org.eclipse.passage.lic.internal.emf.migration.RecognizeFeatures;
 
 /**
  * Adds hooks for migrating legacy data
- * 
+ *
  * @since 2.1
  */
 public abstract class MigratingResourceHandler extends BasicResourceHandler {

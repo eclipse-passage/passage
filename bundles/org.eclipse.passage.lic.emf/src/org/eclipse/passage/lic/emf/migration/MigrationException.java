@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.util.FeatureMap.Entry;
 
 /**
  * Indicates failure to recognize and migrate the data entry
- * 
+ *
  * @since 2.0
  */
 public class MigrationException extends Exception {

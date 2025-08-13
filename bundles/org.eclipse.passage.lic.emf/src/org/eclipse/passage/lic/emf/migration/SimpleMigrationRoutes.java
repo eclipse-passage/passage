@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
- * 
+ *
  * @since 2.0
  *
  */

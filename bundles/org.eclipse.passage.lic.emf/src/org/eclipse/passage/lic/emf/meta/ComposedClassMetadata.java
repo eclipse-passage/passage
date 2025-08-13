@@ -19,7 +19,7 @@ import java.util.Set;
 
 /**
  * Creates composed class metadata to suitable for dynamic environment
- * 
+ *
  * @since 2.0
  */
 public final class ComposedClassMetadata implements ComposableClassMetadata {
