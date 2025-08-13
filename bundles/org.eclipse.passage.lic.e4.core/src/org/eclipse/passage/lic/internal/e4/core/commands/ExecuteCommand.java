@@ -22,12 +22,12 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 
 /**
  * Execute the command with the given id and parameters using the given context
- * 
+ *
  */
 public class ExecuteCommand implements Function<Map<String, Object>, Object> {
 
-	private String id;
-	private IEclipseContext context;
+	private final String id;
+	private final IEclipseContext context;
 
 	public ExecuteCommand(String id, IEclipseContext context) {
 		this.id = id;
