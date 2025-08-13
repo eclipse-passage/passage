@@ -37,7 +37,7 @@ public interface Requirement {
 	 * The default restriction level, as defined by component vendor, may be
 	 * redefined by specific configuration. Used as a hint for
 	 * <code>RestrictionExaminer</code>>
-	 * 
+	 *
 	 * @return restriction level, <code>warn</code> by default
 	 */
 	RestrictionLevel restrictionLevel();

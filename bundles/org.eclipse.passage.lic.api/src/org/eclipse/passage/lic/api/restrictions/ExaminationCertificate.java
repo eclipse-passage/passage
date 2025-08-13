@@ -40,11 +40,11 @@ import org.eclipse.passage.lic.api.requirements.Requirement;
  * If the examination produced no severe {@linkplain Restriction}s, then it is
  * treated as successful.
  * </p>
- * 
+ *
  * @see Requirement
  * @see Permission
  * @see Restriction
- * 
+ *
  * @since 2.1
  */
 public interface ExaminationCertificate {

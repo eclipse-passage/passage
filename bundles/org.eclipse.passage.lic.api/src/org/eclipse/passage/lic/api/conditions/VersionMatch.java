@@ -13,7 +13,7 @@
 package org.eclipse.passage.lic.api.conditions;
 
 /**
- * 
+ *
  * <p>
  * Part of licensing {@linkplain Condition} that declares license demands
  * regarding the feature version.
@@ -28,7 +28,7 @@ package org.eclipse.passage.lic.api.conditions;
  * and <i>algorithmic</i> (knowing how to match couple of version-supplying
  * strings) parts.
  * </p>
- * 
+ *
  * @see Condition
  * @see MatchingRule
  * @since 2.1

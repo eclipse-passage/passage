@@ -18,7 +18,7 @@ import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.api.registry.Registry;
 
 /**
- * 
+ *
  * @since 2.1
  */
 public interface LicenseAcquisitionServicesRegistry

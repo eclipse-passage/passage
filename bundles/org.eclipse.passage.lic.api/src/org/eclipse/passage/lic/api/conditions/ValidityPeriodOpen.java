@@ -17,7 +17,7 @@ import java.time.ZonedDateTime;
 /**
  * {@linkplain ValidityPeriod} with a defined start. Is <i>open</i>, meaning has
  * no predefined end date.
- * 
+ *
  * @since 2.1
  */
 public interface ValidityPeriodOpen extends ValidityPeriod {

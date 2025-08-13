@@ -14,10 +14,10 @@ package org.eclipse.passage.lic.api;
 
 /**
  * Identifies a feature under license protection
- * 
+ *
  * @see Passage#canUse(FeatureIdentifier)
  * @see Passage#acquireLicense(FeatureIdentifier)
- * 
+ *
  * @since 4.0
  */
 public interface FeatureIdentifier {

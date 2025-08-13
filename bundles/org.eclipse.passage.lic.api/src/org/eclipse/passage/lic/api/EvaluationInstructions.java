@@ -22,14 +22,14 @@ package org.eclipse.passage.lic.api;
  * hardware evaluation and assessing it against condition's expectations. These
  * ones can demand particular hardware part of have predefined serial id.
  * </p>
- * 
+ *
  * @since 2.1
  */
 public interface EvaluationInstructions {
 
 	/**
 	 * Meta classifier of the way this condition can be evaluated
-	 * 
+	 *
 	 * @see EvaluationType
 	 */
 	EvaluationType type();
@@ -43,7 +43,7 @@ public interface EvaluationInstructions {
 	 * {@code null} is prohibited. Use empty string to denote there is no
 	 * expression.
 	 * </p>
-	 * 
+	 *
 	 * @return raw string mined from a license, can be blank, cannot be
 	 *         {@code null}.
 	 */

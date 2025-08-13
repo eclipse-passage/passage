@@ -13,9 +13,9 @@
 package org.eclipse.passage.lic.api;
 
 /**
- * 
+ *
  * Resolves a service instance for a given type if present
- * 
+ *
  * @since 2.1
  *
  */
@@ -24,7 +24,7 @@ public interface MandatoryService {
 
 	/**
 	 * Resolve a service instance by a given type class
-	 * 
+	 *
 	 * @param <T>  a type of a service to resolve
 	 * @param type a class of a service to resolve
 	 * @return a resolved service instance

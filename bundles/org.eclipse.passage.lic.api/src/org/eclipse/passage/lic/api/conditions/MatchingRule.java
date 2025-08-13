@@ -27,7 +27,7 @@ import org.eclipse.passage.lic.api.requirements.Requirement;
  * <p>
  * For example {@code perfect match} match rule would mean absolute equality.
  * </p>
- * 
+ *
  * @see VersionMatch
  * @see Condition
  * @since 2.1
@@ -36,7 +36,7 @@ public abstract interface MatchingRule {
 
 	/**
 	 * Descriptive identifier of a rule.
-	 * 
+	 *
 	 * @return
 	 */
 	String identifier();

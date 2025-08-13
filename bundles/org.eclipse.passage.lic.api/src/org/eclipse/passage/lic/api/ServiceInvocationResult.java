@@ -19,7 +19,7 @@ import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 /**
  *
  * @param <T>
- * 
+ *
  * @since 2.1
  */
 public interface ServiceInvocationResult<T> {

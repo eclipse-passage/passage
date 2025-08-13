@@ -17,14 +17,14 @@ import org.eclipse.passage.lic.api.registry.Service;
 /**
  * Any implementation must follow the contract defined in
  * {@code ExpressionEvaluationServiceContractTest}
- * 
+ *
  * @since 2.1
  */
 public interface ExpressionEvaluationService extends Service<ExpressionProtocol> {
 
 	/**
 	 * Assess the {@code expression} tokens with the given {@code assessor}.
-	 * 
+	 *
 	 * @throws ExpressionEvaluationException in case of infrastructure denial or
 	 *                                       assessment failure
 	 */

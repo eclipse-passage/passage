@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.api.registry;
 /**
  * Implementation is expected to represent <i>data class</i>: with
  * {@code hashCode} and {@code equals} overloaded basing on enclosed data.
- * 
+ *
  * @since 2.1
  */
 public interface ServiceId {

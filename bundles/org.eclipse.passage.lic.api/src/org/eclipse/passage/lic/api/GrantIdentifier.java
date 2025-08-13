@@ -16,9 +16,9 @@ import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
 
 /**
  * Identifies a grant acquired to use a feature under license protection
- * 
+ *
  * @see GrantAcquisition#grant()
- * 
+ *
  * @since 4.0
  */
 public interface GrantIdentifier {
