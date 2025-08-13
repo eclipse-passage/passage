@@ -15,9 +15,9 @@ package org.eclipse.passage.lic.emf.meta;
 import java.util.Optional;
 
 /**
- * 
+ *
  * Searches for EMF metadata for a given java type
- * 
+ *
  * @since 2.0
  *
  */

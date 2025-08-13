@@ -60,8 +60,7 @@ public final class RecognizeFeatures implements MigrateFeatures {
 			EReference feature = route.get().destination();
 			EClass type = feature.getEReferenceType();
 			Object value = entry.getValue();
-			if (value instanceof AnyType) {
-				AnyType child = (AnyType) value;
+			if (value instanceof AnyType child) {
 				EObject created = type.getEPackage().getEFactoryInstance().create(type);
 				RecognizeFeatures restore = new RecognizeFeatures(child, routes);
 				restore.apply(created);

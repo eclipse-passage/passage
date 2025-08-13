@@ -21,7 +21,7 @@ import java.util.Objects;
 import org.eclipse.emf.ecore.EReference;
 
 /**
- * 
+ *
  * @since 2.0
  *
  */

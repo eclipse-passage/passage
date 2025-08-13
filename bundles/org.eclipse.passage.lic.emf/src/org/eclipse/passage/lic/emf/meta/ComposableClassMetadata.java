@@ -21,14 +21,14 @@ public interface ComposableClassMetadata extends ClassMetadata {
 
 	/**
 	 * Adds domain-specific metadata fragment to consider during search
-	 * 
+	 *
 	 * @param fragment the domain-specific metadata, must not be <code>null</code>
 	 */
 	void consider(ClassMetadata fragment);
 
 	/**
 	 * Removes domain-specific metadata fragment from consideration
-	 * 
+	 *
 	 * @param fragment the domain-specific metadata, must not be <code>null</code>
 	 */
 	void forget(ClassMetadata fragment);

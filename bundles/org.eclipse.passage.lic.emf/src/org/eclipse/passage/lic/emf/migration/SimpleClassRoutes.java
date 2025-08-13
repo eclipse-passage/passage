@@ -19,7 +19,7 @@ import java.util.Optional;
 import org.eclipse.emf.ecore.EClass;
 
 /**
- * 
+ *
  * @since 2.0
  *
  */
