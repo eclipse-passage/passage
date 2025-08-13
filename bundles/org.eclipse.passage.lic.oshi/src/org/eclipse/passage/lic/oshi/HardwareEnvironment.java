@@ -26,7 +26,7 @@ import oshi.SystemInfo;
  * It's extremely important to have not more then one instance of this service
  * at runtime (guaranteed by {@code Framework}).
  * </p>
- * 
+ *
  * @see State
  * @since 1.1
  */
