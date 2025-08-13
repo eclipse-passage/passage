@@ -86,7 +86,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	/**
 	 * The default value of the '{@link #getVivid() <em>Vivid</em>}' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getVivid()
 	 * @generated
 	 * @ordered
@@ -96,7 +96,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	/**
 	 * The cached value of the '{@link #getVivid() <em>Vivid</em>}' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getVivid()
 	 * @generated
 	 * @ordered
@@ -181,10 +181,11 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.FEATURE_GRANT__FEATURE, oldFeature, newFeature);
-			if (msgs1 == null)
+			if (msgs1 == null) {
 				msgs1 = notification;
-			else
+			} else {
 				msgs1.add(notification);
+			}
 		}
 		return msgs1;
 	}
@@ -197,15 +198,18 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	public void setFeature(FeatureRef newFeature) {
 		if (newFeature != feature) {
 			NotificationChain msgs = null;
-			if (feature != null)
+			if (feature != null) {
 				msgs = ((InternalEObject) feature).eInverseRemove(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.FEATURE_GRANT__FEATURE, null, msgs);
-			if (newFeature != null)
+			}
+			if (newFeature != null) {
 				msgs = ((InternalEObject) newFeature).eInverseAdd(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.FEATURE_GRANT__FEATURE, null, msgs);
+			}
 			msgs = basicSetFeature(newFeature, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
+			}
 		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.FEATURE_GRANT__FEATURE, newFeature,
 					newFeature));
@@ -232,10 +236,11 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.FEATURE_GRANT__VALID, oldValid, newValid);
-			if (msgs1 == null)
+			if (msgs1 == null) {
 				msgs1 = notification;
-			else
+			} else {
 				msgs1.add(notification);
+			}
 		}
 		return msgs1;
 	}
@@ -248,15 +253,18 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	public void setValid(ValidityPeriod newValid) {
 		if (newValid != valid) {
 			NotificationChain msgs = null;
-			if (valid != null)
+			if (valid != null) {
 				msgs = ((InternalEObject) valid).eInverseRemove(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.FEATURE_GRANT__VALID, null, msgs);
-			if (newValid != null)
+			}
+			if (newValid != null) {
 				msgs = ((InternalEObject) newValid).eInverseAdd(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.FEATURE_GRANT__VALID, null, msgs);
+			}
 			msgs = basicSetValid(newValid, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
+			}
 		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.FEATURE_GRANT__VALID, newValid,
 					newValid));
@@ -346,12 +354,14 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
 			}
-			if (newPack != null)
+			if (newPack != null) {
 				msgs = ((InternalEObject) newPack).eInverseAdd(this, LicensesPackage.FLOATING_LICENSE_PACK__FEATURES,
 						FloatingLicensePack.class, msgs);
+			}
 			msgs = basicSetPack(newPack, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
+			}
 		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.FEATURE_GRANT__PACK, newPack,
 					newPack));

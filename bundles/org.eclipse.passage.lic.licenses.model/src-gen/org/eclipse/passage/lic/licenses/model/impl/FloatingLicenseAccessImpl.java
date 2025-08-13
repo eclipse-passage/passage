@@ -162,10 +162,11 @@ public class FloatingLicenseAccessImpl extends MinimalEObjectImpl.Container impl
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.FLOATING_LICENSE_ACCESS__SERVER, oldServer, newServer);
-			if (msgs1 == null)
+			if (msgs1 == null) {
 				msgs1 = notification;
-			else
+			} else {
 				msgs1.add(notification);
+			}
 		}
 		return msgs1;
 	}
@@ -179,15 +180,18 @@ public class FloatingLicenseAccessImpl extends MinimalEObjectImpl.Container impl
 	public void setServer(FloatingServerConnection newServer) {
 		if (newServer != server) {
 			NotificationChain msgs = null;
-			if (server != null)
+			if (server != null) {
 				msgs = ((InternalEObject) server).eInverseRemove(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.FLOATING_LICENSE_ACCESS__SERVER, null, msgs);
-			if (newServer != null)
+			}
+			if (newServer != null) {
 				msgs = ((InternalEObject) newServer).eInverseAdd(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.FLOATING_LICENSE_ACCESS__SERVER, null, msgs);
+			}
 			msgs = basicSetServer(newServer, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
+			}
 		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.FLOATING_LICENSE_ACCESS__SERVER,
 					newServer, newServer));

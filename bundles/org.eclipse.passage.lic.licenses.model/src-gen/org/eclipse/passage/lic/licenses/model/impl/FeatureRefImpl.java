@@ -141,10 +141,11 @@ public class FeatureRefImpl extends MinimalEObjectImpl.Container implements Feat
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.FEATURE_REF__VERSION_MATCH, oldVersionMatch, newVersionMatch);
-			if (msgs1 == null)
+			if (msgs1 == null) {
 				msgs1 = notification;
-			else
+			} else {
 				msgs1.add(notification);
+			}
 		}
 		return msgs1;
 	}
@@ -158,15 +159,18 @@ public class FeatureRefImpl extends MinimalEObjectImpl.Container implements Feat
 	public void setVersionMatch(VersionMatch newVersionMatch) {
 		if (newVersionMatch != versionMatch) {
 			NotificationChain msgs = null;
-			if (versionMatch != null)
+			if (versionMatch != null) {
 				msgs = ((InternalEObject) versionMatch).eInverseRemove(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.FEATURE_REF__VERSION_MATCH, null, msgs);
-			if (newVersionMatch != null)
+			}
+			if (newVersionMatch != null) {
 				msgs = ((InternalEObject) newVersionMatch).eInverseAdd(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.FEATURE_REF__VERSION_MATCH, null, msgs);
+			}
 			msgs = basicSetVersionMatch(newVersionMatch, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
+			}
 		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.FEATURE_REF__VERSION_MATCH,
 					newVersionMatch, newVersionMatch));

@@ -140,10 +140,11 @@ public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserG
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.USER_GRANT__AUTHENTICATION, oldAuthentication, newAuthentication);
-			if (msgs1 == null)
+			if (msgs1 == null) {
 				msgs1 = notification;
-			else
+			} else {
 				msgs1.add(notification);
+			}
 		}
 		return msgs1;
 	}
@@ -157,15 +158,18 @@ public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserG
 	public void setAuthentication(EvaluationInstructions newAuthentication) {
 		if (newAuthentication != authentication) {
 			NotificationChain msgs = null;
-			if (authentication != null)
+			if (authentication != null) {
 				msgs = ((InternalEObject) authentication).eInverseRemove(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.USER_GRANT__AUTHENTICATION, null, msgs);
-			if (newAuthentication != null)
+			}
+			if (newAuthentication != null) {
 				msgs = ((InternalEObject) newAuthentication).eInverseAdd(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.USER_GRANT__AUTHENTICATION, null, msgs);
+			}
 			msgs = basicSetAuthentication(newAuthentication, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
+			}
 		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.USER_GRANT__AUTHENTICATION,
 					newAuthentication, newAuthentication));

@@ -17,7 +17,7 @@ import org.eclipse.passage.lic.licenses.model.api.UserGrant;
 
 public final class DescribedUserGrant extends Described {
 
-	private UserGrant grant;
+	private final UserGrant grant;
 
 	public DescribedUserGrant(UserGrant grant) {
 		this.grant = grant;

@@ -115,10 +115,11 @@ public class FloatingLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.FLOATING_LICENSE_REQUISITES__COMPANY, oldCompany, newCompany);
-			if (msgs1 == null)
+			if (msgs1 == null) {
 				msgs1 = notification;
-			else
+			} else {
 				msgs1.add(notification);
+			}
 		}
 		return msgs1;
 	}
@@ -132,15 +133,18 @@ public class FloatingLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 	public void setCompany(CompanyRef newCompany) {
 		if (newCompany != company) {
 			NotificationChain msgs = null;
-			if (company != null)
+			if (company != null) {
 				msgs = ((InternalEObject) company).eInverseRemove(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.FLOATING_LICENSE_REQUISITES__COMPANY, null, msgs);
-			if (newCompany != null)
+			}
+			if (newCompany != null) {
 				msgs = ((InternalEObject) newCompany).eInverseAdd(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.FLOATING_LICENSE_REQUISITES__COMPANY, null, msgs);
+			}
 			msgs = basicSetCompany(newCompany, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
+			}
 		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.FLOATING_LICENSE_REQUISITES__COMPANY,
 					newCompany, newCompany));

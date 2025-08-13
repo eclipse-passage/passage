@@ -92,10 +92,11 @@ public class PersonalLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.PERSONAL_LICENSE_REQUISITES__USER, oldUser, newUser);
-			if (msgs1 == null)
+			if (msgs1 == null) {
 				msgs1 = notification;
-			else
+			} else {
 				msgs1.add(notification);
+			}
 		}
 		return msgs1;
 	}
@@ -109,15 +110,18 @@ public class PersonalLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 	public void setUser(UserRef newUser) {
 		if (newUser != user) {
 			NotificationChain msgs = null;
-			if (user != null)
+			if (user != null) {
 				msgs = ((InternalEObject) user).eInverseRemove(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.PERSONAL_LICENSE_REQUISITES__USER, null, msgs);
-			if (newUser != null)
+			}
+			if (newUser != null) {
 				msgs = ((InternalEObject) newUser).eInverseAdd(this,
 						EOPPOSITE_FEATURE_BASE - LicensesPackage.PERSONAL_LICENSE_REQUISITES__USER, null, msgs);
+			}
 			msgs = basicSetUser(newUser, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
+			}
 		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.PERSONAL_LICENSE_REQUISITES__USER,
 					newUser, newUser));

@@ -21,7 +21,7 @@ import org.eclipse.passage.lic.internal.licenses.model.migration.LicensesResourc
 /**
  * <!-- begin-user-doc --> The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
- * 
+ *
  * @see org.eclipse.passage.lic.internal.licenses.model.util.LicensesResourceFactoryImpl
  * @since 2.1
  * @generated NOT
@@ -30,7 +30,7 @@ public class LicensesResourceImpl extends XMIResourceImpl {
 	/**
 	 * Creates an instance of the resource. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
+	 *
 	 * @param uri the URI of the new resource.
 	 * @generated
 	 */
@@ -41,7 +41,7 @@ public class LicensesResourceImpl extends XMIResourceImpl {
 	/**
 	 * Creates an instance of the resource. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	public LicensesResourceImpl() {
