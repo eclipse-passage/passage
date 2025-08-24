@@ -23,7 +23,6 @@ final class OptionQuit extends BaseOption<LicenseCoverageCheckOption, CoverageCh
 
 	@Override
 	public CoverageCheckOptionDecision run() {
-		interaction.prompt("Quitting server launching...\nRun 'fls:start' to repeat the attempt."); //$NON-NLS-1$
 		return CoverageCheckOptionDecision.quit;
 	}
 

@@ -47,7 +47,7 @@ final class OptionAccept extends BaseOption<LicenseCoverageCheckOption, Coverage
 	@Override
 	public CoverageCheckOptionDecision run() {
 		new DecoratedPrompt(interaction).head(String.format("accept license agreements: %d", agreements.size()), //$NON-NLS-1$
-				"Please read the agreement(s) carefully prior pressing 'I agree'"); //$NON-NLS-1$
+				"Please read the agreement(s) carefully prior accepting"); //$NON-NLS-1$
 		Optional<AgreementAcceptanceService> root = acceptanceService();
 		if (!root.isPresent()) {
 			reportInsufficientConfiguration();
