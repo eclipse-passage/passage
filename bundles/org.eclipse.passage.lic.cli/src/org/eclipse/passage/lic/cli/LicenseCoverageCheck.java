@@ -66,7 +66,7 @@ public final class LicenseCoverageCheck {
 			options.add(opts.licenseImport());
 			options.add(opts.licenseRequest());
 			options.add(opts.diagnostic(assessment.diagnostic()));
-			options.add(new OptionProceed(name, communication));
+			options.add(opts.proceed(name));
 			options.add(opts.quit());
 		}
 		return new Options<>(options, communication);
