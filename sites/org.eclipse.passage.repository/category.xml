@@ -17,26 +17,11 @@
    <feature id="org.eclipse.passage.lic.execute.feature">
       <category name="org.eclipse.passage.lic.category"/>
    </feature>
-   <feature id="org.eclipse.passage.lic.compile.feature.source">
-      <category name="org.eclipse.passage.lic.category.source"/>
-   </feature>
-   <feature id="org.eclipse.passage.lic.execute.feature.source">
-      <category name="org.eclipse.passage.lic.category.source"/>
-   </feature>
-   <feature id="org.eclipse.passage.lic.bc.feature.source">
-      <category name="org.eclipse.passage.lic.category.source"/>
-   </feature>
    <feature id="org.eclipse.passage.ldc.feature">
       <category name="org.eclipse.passage.ldc.category"/>
    </feature>
-   <feature id="org.eclipse.passage.ldc.feature.source">
-      <category name="org.eclipse.passage.ldc.category.source"/>
-   </feature>
    <feature id="org.eclipse.passage.demo.feature">
       <category name="org.eclipse.passage.demo.category"/>
-   </feature>
-   <feature id="org.eclipse.passage.demo.feature.source">
-      <category name="org.eclipse.passage.demo.category.source"/>
    </feature>
    <feature id="org.eclipse.passage.lic.api.tests.feature">
       <category name="org.eclipse.passage.lic.category"/>
@@ -48,27 +33,15 @@
       <category name="org.eclipse.passage.lic.category"/>
    </feature>
    <bundle id="bcpg"/>
-   <bundle id="bcpg.source"/>
    <bundle id="bcpkix"/>
-   <bundle id="bcpkix.source"/>
    <bundle id="bcprov"/>
-   <bundle id="bcprov.source"/>
    <bundle id="bcutil"/>
-   <bundle id="bcutil.source"/>
    <bundle id="com.github.oshi.oshi-core"/>
-   <bundle id="com.github.oshi.oshi-core.source"/>
    <bundle id="com.sun.jna"/>
-   <bundle id="com.sun.jna.source"/>
    <bundle id="com.sun.jna.platform"/>
-   <bundle id="com.sun.jna.platform.source"/>
    <category-def name="org.eclipse.passage.lic.category" label="Passage LIC">
       <description>
          Passage Licensing Integration Components includes: Licensing Runtime API and its implementation for Eclipse Equinox, Licensing JFace components, Licensing Metadata EMF API, License Management Integrations
-      </description>
-   </category-def>
-   <category-def name="org.eclipse.passage.lic.category.source" label="Passage LIC Developer Resources">
-      <description>
-         Passage Licensing Integration Components Developer Resources includes: Licensing Runtime API and its implementation for Eclipse Equinox, Licensing JFace components, Licensing Metadata EMF API, License Management Integrations
       </description>
    </category-def>
    <category-def name="org.eclipse.passage.ldc.category" label="Passage LDC">
@@ -77,20 +50,9 @@
     Eclipse PDE integration&quot;
       </description>
    </category-def>
-   <category-def name="org.eclipse.passage.ldc.category.source" label="Passage LDC Developer Resources">
-      <description>
-         Passage Licensing Definition Components Developer Resources: 
-    Eclipse PDE integration&quot;
-      </description>
-   </category-def>
    <category-def name="org.eclipse.passage.demo.category" label="Passage Demo">
       <description>
          Eclipse Passage Demo contains final licensing runtime assembly
-      </description>
-   </category-def>
-   <category-def name="org.eclipse.passage.demo.category.source" label="Passage Demo Developer Resources">
-      <description>
-         Eclipse Passage Demo  Developer Resources contains final licensing runtime assembly
       </description>
    </category-def>
 </site>
