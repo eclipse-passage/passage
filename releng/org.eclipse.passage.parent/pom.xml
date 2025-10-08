@@ -510,8 +510,8 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
-					<groupId>org.eclipse.tycho.extras</groupId>
-					<artifactId>tycho-eclipserun-plugin</artifactId>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-eclipse-plugin</artifactId>
 					<version>${tycho.version}</version>
 					<configuration>
 						<executionEnvironment>JavaSE-21</executionEnvironment>
@@ -688,7 +688,5 @@
 		</resources>
 
 	</build>
-
-	
 
 </project>
