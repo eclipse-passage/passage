@@ -35,7 +35,6 @@ public abstract class LicensedAction extends Action {
 		runEverywhere(Display.getDefault());
 	}
 
-	@SuppressWarnings("restriction")
 	private void runEverywhere(Display display) {
 		new LicensedRunnableUI(display::getActiveShell, new BaseFeatureIdentifier(getId()), this::doAction).run();
 	}
