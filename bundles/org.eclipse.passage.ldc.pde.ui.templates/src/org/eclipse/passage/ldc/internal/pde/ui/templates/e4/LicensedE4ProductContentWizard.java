@@ -18,6 +18,7 @@ import org.eclipse.pde.ui.templates.NewPluginTemplateWizard;
 @Deprecated
 public class LicensedE4ProductContentWizard extends NewPluginTemplateWizard {
 
+	@Deprecated
 	@Override
 	public ITemplateSection[] createTemplateSections() {
 		return new ITemplateSection[] { //
@@ -25,6 +26,7 @@ public class LicensedE4ProductContentWizard extends NewPluginTemplateWizard {
 		};
 	}
 
+	@Deprecated
 	@Override
 	public String[] getImportPackages() {
 		return new String[] { "javax.inject;version=\"[1.0.0,2.0.0)\"" }; //$NON-NLS-1$

@@ -37,11 +37,13 @@ public class LicensedE4ProductTemplateSection extends BaseLicensedProductSection
 	private static final String LICENSED_E4_PRODUCT = "LicensedE4Product"; //$NON-NLS-1$
 	private static final String E4_SWT_APPLICATION_ID = "org.eclipse.e4.ui.workbench.swt.E4Application"; //$NON-NLS-1$
 
+	@Deprecated
 	public LicensedE4ProductTemplateSection() {
 		setPageCount(1);
 		createOptions();
 	}
 
+	@Deprecated
 	@Override
 	public void addPages(Wizard wizard) {
 		WizardPage page = createPage(0, HelpContexts.TEMPLATE_E4_PRODUCT);
@@ -58,16 +60,19 @@ public class LicensedE4ProductTemplateSection extends BaseLicensedProductSection
 				(String) null, 0);
 	}
 
+	@Deprecated
 	@Override
 	public String getSectionId() {
 		return LICENSED_E4_PRODUCT;
 	}
 
+	@Deprecated
 	@Override
 	protected TemplateId getDevTemplate() {
 		return new DevMinimalTemplateId();
 	}
 
+	@Deprecated
 	@Override
 	protected void updateModel(IProgressMonitor monitor) throws CoreException {
 		setManifestHeader("Bundle-ActivationPolicy", "lazy"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -75,6 +80,7 @@ public class LicensedE4ProductTemplateSection extends BaseLicensedProductSection
 		createProductExtension();
 	}
 
+	@Deprecated
 	@Override
 	protected List<Requirement> requirements(String product) {
 		return Arrays.asList(createProductRequirement(product));
@@ -105,11 +111,13 @@ public class LicensedE4ProductTemplateSection extends BaseLicensedProductSection
 		}
 	}
 
+	@Deprecated
 	@Override
 	public IPluginReference[] getDependencies(String schemaVersion) {
 		return getDependencies(getRCP4xDependencies());
 	}
 
+	@Deprecated
 	@Override
 	public String[] getNewFiles() {
 		return new String[] { "css/default.css", "Application.e4xmi" }; //$NON-NLS-1$ //$NON-NLS-2$
