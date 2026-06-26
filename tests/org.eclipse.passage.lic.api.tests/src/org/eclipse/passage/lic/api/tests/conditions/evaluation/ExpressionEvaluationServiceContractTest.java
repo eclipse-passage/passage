@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,10 +9,12 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.conditions.evaluation;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationException;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationService;
@@ -20,24 +22,25 @@ import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessme
 import org.eclipse.passage.lic.api.conditions.evaluation.ParsedExpression;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeExpressionTokenAssessmentService;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeParsedExpression;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public abstract class ExpressionEvaluationServiceContractTest {
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public final void prohibitsNullExpression() {
-		prohibitsNullArgument(null, new FakeExpressionTokenAssessmentService());
+		assertThrows(NullPointerException.class,
+				() -> prohibitsNullArgument(null, new FakeExpressionTokenAssessmentService()));
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public final void prohibitsNullAssessor() {
-		prohibitsNullArgument(new FakeParsedExpression(), null);
+		assertThrows(NullPointerException.class, () -> prohibitsNullArgument(new FakeParsedExpression(), null));
 	}
 
-	@Test(expected = ExpressionEvaluationException.class)
+	@Test
 	public final void canOnlyEvaluateExpressionOfSameProtocl() throws ExpressionEvaluationException {
-		evaluator().evaluate(new FakeParsedExpression("fake"), //$NON-NLS-1$
-				new FakeExpressionTokenAssessmentService());
+		assertThrows(ExpressionEvaluationException.class, () -> evaluator().evaluate(new FakeParsedExpression("fake"), //$NON-NLS-1$
+				new FakeExpressionTokenAssessmentService()));
 	}
 
 	private void prohibitsNullArgument(ParsedExpression expression, ExpressionTokenAssessmentService assessor) {

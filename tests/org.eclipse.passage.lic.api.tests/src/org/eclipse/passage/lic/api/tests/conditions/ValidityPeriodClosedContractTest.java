@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,15 +9,17 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.conditions;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.ZonedDateTime;
 
 import org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * <p>
@@ -35,17 +37,17 @@ public abstract class ValidityPeriodClosedContractTest extends ValidityPeriodOpe
 	 * Attempt to construct a period on reversed dates must fail, type of failure is
 	 * on an implementor.
 	 */
-	@Test(expected = Exception.class)
+	@Test
 	public final void doNotReverseIncorectBounds() {
-		forTwoDates(movedNow(10), movedNow(-10));
+		assertThrows(Exception.class, () -> forTwoDates(movedNow(10), movedNow(-10)));
 	}
 
 	/**
 	 * Implementation must rise NPE if there is no data for ending date definition.
 	 */
-	@Test(expected = NullPointerException.class)
+	@Test
 	public final void doNotInventTo() {
-		forTwoDates(ZonedDateTime.now(), null);
+		assertThrows(NullPointerException.class, () -> forTwoDates(ZonedDateTime.now(), null));
 	}
 
 	@Test

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,13 +9,14 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
- *     ArSysOp - further support
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.bc.tests;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -32,7 +33,7 @@ import org.eclipse.passage.lic.api.io.StreamCodec.Smart;
 import org.eclipse.passage.lic.base.io.FileContent;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("restriction")
 public final class KeyPairGenerationTest extends BcStreamCodecTest {
@@ -108,40 +109,40 @@ public final class KeyPairGenerationTest extends BcStreamCodecTest {
 
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void publicKeyPathIsMandatory() throws LicensingException, IOException {
-		codec().createKeyPair(//
+		assertThrows(NullPointerException.class, () -> codec().createKeyPair(//
 				null, //
 				new TmpFile(root).keyFile(new PassageFileExtension.PrivateKey()), //
 				"u", //$NON-NLS-1$
-				"p"); //$NON-NLS-1$
+				"p")); //$NON-NLS-1$
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void privateKeyPathIsMandatory() throws LicensingException, IOException {
-		codec().createKeyPair(//
+		assertThrows(NullPointerException.class, () -> codec().createKeyPair(//
 				new TmpFile(root).keyFile(new PassageFileExtension.PublicKey()), //
 				null, //
 				"u", //$NON-NLS-1$
-				"p"); //$NON-NLS-1$
+				"p")); //$NON-NLS-1$
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void usernameIsMandatory() throws LicensingException, IOException {
-		codec().createKeyPair(//
+		assertThrows(NullPointerException.class, () -> codec().createKeyPair(//
 				new TmpFile(root).keyFile(new PassageFileExtension.PublicKey()), //
 				new TmpFile(root).keyFile(new PassageFileExtension.PrivateKey()), //
 				null, //
-				"p"); //$NON-NLS-1$
+				"p")); //$NON-NLS-1$
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void passwordIsMandatory() throws LicensingException, IOException {
-		codec().createKeyPair(//
+		assertThrows(NullPointerException.class, () -> codec().createKeyPair(//
 				new TmpFile(root).keyFile(new PassageFileExtension.PublicKey()), //
 				new TmpFile(root).keyFile(new PassageFileExtension.PrivateKey()), //
 				"u", //$NON-NLS-1$
-				null);
+				null));
 	}
 
 	@Test

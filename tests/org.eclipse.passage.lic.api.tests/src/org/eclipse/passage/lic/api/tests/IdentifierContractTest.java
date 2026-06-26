@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2025 ArSysOp
+ * Copyright (c) 2025, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,24 +9,26 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - ongoing support
  *******************************************************************************/
 
 package org.eclipse.passage.lic.api.tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.GrantIdentifier;
 import org.eclipse.passage.lic.api.UserIdentifier;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public abstract class IdentifierContractTest<T> {
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public final void doesNotTolerateNullInput() {
-		identifierForInput(null);
+		assertThrows(NullPointerException.class, () -> identifierForInput(null));
 	}
 
 	@Test

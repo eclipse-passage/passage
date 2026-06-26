@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,19 +9,21 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.conditions;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.eclipse.passage.lic.api.EvaluationType;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public abstract class EvaluationTypeContractTest {
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public final void nullIdentifierIsProhibited() {
-		forIdentifier(null);
+		assertThrows(NullPointerException.class, () -> forIdentifier(null));
 	}
 
 	@Test

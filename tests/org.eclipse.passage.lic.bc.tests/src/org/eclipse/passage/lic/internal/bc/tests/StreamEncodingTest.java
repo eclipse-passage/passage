@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,14 +9,15 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
- *     ArSysOp - further support
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.bc.tests;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.junit.Assume.assumeTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -32,7 +33,7 @@ import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.base.io.FileContent;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("restriction")
 public final class StreamEncodingTest extends BcStreamCodecTest {
@@ -80,41 +81,61 @@ public final class StreamEncodingTest extends BcStreamCodecTest {
 			assertTrue(e.getMessage().contains("key")); //$NON-NLS-1$
 			return;
 		} catch (Exception e) {
-			return; // can also legitimately fail due BC intolerance for incorrect input 
+			return; // can also legitimately fail due BC intolerance for incorrect input
 		}
 		fail("Enconding is not supposed to encrypt anything with a random sequence of chars as a key"); //$NON-NLS-1$
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void sourceIsMandatory() throws IOException {
+	@Test
+	public void sourceIsMandatory() {
+		assertThrows(NullPointerException.class, () -> innerSource());
+	}
+
+	private void innerSource() throws IOException {
 		try (OutputStream destination = anOutput(); InputStream key = anInput()) {
 			encodeNull(null, destination, key);
 		}
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void destinationIsMandatory() throws IOException {
+	@Test
+	public void destinationIsMandatory() {
+		assertThrows(NullPointerException.class, () -> innerDestination());
+	}
+
+	private void innerDestination() throws IOException {
 		try (InputStream input = anInput(); InputStream key = anInput()) {
 			encodeNull(input, null, key);
 		}
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void keyIsMandatory() throws IOException {
+	@Test
+	public void keyIsMandatory() {
+		assertThrows(NullPointerException.class, () -> innerKey());
+	}
+
+	private void innerKey() throws IOException {
 		try (InputStream input = anInput(); OutputStream destination = anOutput()) {
 			encodeNull(input, destination, null);
 		}
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void ownerIsMandatory() throws IOException {
+	@Test
+	public void ownerIsMandatory() {
+		assertThrows(NullPointerException.class, () -> innerOwner());
+	}
+
+	private void innerOwner() throws IOException {
 		try (InputStream input = anInput(); OutputStream destination = anOutput(); InputStream key = anInput()) {
 			encodeNull(input, destination, key, null, "pass"); //$NON-NLS-1$
 		}
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void passwordIsMandatory() throws IOException {
+	@Test
+	public void passwordIsMandatory() {
+		assertThrows(NullPointerException.class, () -> innerPassword());
+	}
+
+	private void innerPassword() throws IOException {
 		try (InputStream input = anInput(); OutputStream destination = anOutput(); InputStream key = anInput()) {
 			encodeNull(input, destination, key, "owner", null); //$NON-NLS-1$
 		}

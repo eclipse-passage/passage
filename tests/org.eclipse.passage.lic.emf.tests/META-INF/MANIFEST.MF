@@ -8,5 +8,6 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-21
 Fragment-Host: org.eclipse.passage.lic.emf
-Import-Package: org.junit
+Import-Package: org.junit.jupiter.api;version="[6.1.0,7.0.0)",
+ org.junit.jupiter.api.function;version="[6.1.0,7.0.0)"
 Export-Package: org.eclipse.passage.lic.emf.meta;x-internal:=true

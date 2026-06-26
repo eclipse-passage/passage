@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,12 +9,14 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.conditions.mining;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assume.assumeTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -26,7 +28,7 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed;
 import org.eclipse.passage.lic.api.conditions.mining.ConditionTransport;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public abstract class ConditionTransportContractTest {
 
@@ -39,7 +41,7 @@ public abstract class ConditionTransportContractTest {
 	public final void readYourOwnWritings() throws IOException {
 		// given
 		Collection<Condition> sedentaries = conditions();
-		assumeTrue("Too few: supply at least two test conditions for transportation", sedentaries.size() > 1); //$NON-NLS-1$
+		assumeTrue(sedentaries.size() > 1, "Too few: supply at least two test conditions for transportation"); //$NON-NLS-1$
 		ConditionTransport transport = transport();
 		// when
 		Collection<Condition> nomads = read(transport, serialized(sedentaries));
@@ -47,14 +49,14 @@ public abstract class ConditionTransportContractTest {
 		assertEquals(new HashSet<>(textual(sedentaries)), new HashSet<>(textual(nomads)));
 	}
 
-	@Test(expected = IOException.class)
-	public final void failOnNotSufficientData() throws IOException {
-		read(transport(), serializedInvalid()); // $NON-NLS-1$
+	@Test
+	public final void failOnNotSufficientData() {
+		assertThrows(IOException.class, () -> read(transport(), serializedInvalid()));
 	}
 
-	@Test(expected = IOException.class)
-	public final void failOnEmptySource() throws IOException {
-		read(transport(), ""); //$NON-NLS-1$
+	@Test
+	public final void failOnEmptySource() {
+		assertThrows(IOException.class, () -> read(transport(), "")); //$NON-NLS-1$
 	}
 
 	private Collection<Condition> read(ConditionTransport transport, String source) throws IOException {

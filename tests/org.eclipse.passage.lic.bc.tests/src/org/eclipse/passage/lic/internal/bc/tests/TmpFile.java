@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,22 +9,24 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.bc.tests;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.stream.IntStream;
 
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
-import org.junit.rules.TemporaryFolder;
 
 final class TmpFile {
 
-	private final TemporaryFolder folder;
+	private final File folder;
 
-	TmpFile(TemporaryFolder folder) {
+	TmpFile(File folder) {
 		this.folder = folder;
 	}
 
@@ -39,14 +41,14 @@ final class TmpFile {
 	 * Physically creates an empty file with an arbitrary extension
 	 */
 	Path file(String extension) throws IOException {
-		return folder.newFile(Long.toHexString(System.nanoTime()) + extension).toPath();
+		return Files.createFile(new File(folder, Long.toHexString(System.nanoTime()) + extension).toPath());
 	}
 
 	/**
 	 * Creates a reference for not yet existing file
 	 */
 	Path keyPath(PassageFileExtension extension) throws IOException {
-		return folder.getRoot().toPath().resolve(Long.toHexString(System.nanoTime()) + extension.get());
+		return folder.toPath().resolve(Long.toHexString(System.nanoTime()) + extension.get());
 	}
 
 	Path fileWithContent() throws IOException {

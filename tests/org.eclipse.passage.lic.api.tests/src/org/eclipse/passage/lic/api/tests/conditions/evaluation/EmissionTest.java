@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,11 +9,13 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.conditions.evaluation;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Collection;
 
@@ -21,23 +23,24 @@ import org.eclipse.passage.lic.api.conditions.evaluation.Emission;
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeConditionPack;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakePermission;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class EmissionTest {
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void conditionPackIsMandatory() {
-		new Emission(null);
+		assertThrows(NullPointerException.class, () -> new Emission(null));
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void doesNotTolerateNullPermission() {
-		new Emission(new FakeConditionPack(), (Permission) null);
+		assertThrows(RuntimeException.class, () -> new Emission(new FakeConditionPack(), (Permission) null));
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void doesNotTolerateNullPermissions() {
-		new Emission(new FakeConditionPack(), (Collection<Permission>) null);
+		assertThrows(NullPointerException.class,
+				() -> new Emission(new FakeConditionPack(), (Collection<Permission>) null));
 	}
 
 	@Test
