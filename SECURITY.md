@@ -9,11 +9,7 @@ This project implements the Eclipse Foundation Security Policy
 These versions of Eclipse Passage are currently being supported with security
 updates.
 
-| Version  | Released   | Supported | 
-| -------- | ---------- | --------- | 
-| 3.11.0   | 2024-09-11 | Yes       | 
-| 3.0.0    | 2024-06-12 | Yes       | 
-| < 2.11.0 | 2024-03-13 | No        | 
+* [4.x](https://download.eclipse.org/passage/updates/)
 
 ## Reporting a Vulnerability
 

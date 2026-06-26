@@ -11,8 +11,8 @@ Copyright © 2018, 2026 ArSysOp and others
 
 [![Eclipse License](https://img.shields.io/badge/License-EPL--2.0-thistle.svg)](https://github.com/eclipse/passage/blob/master/LICENSE) 
 
-###### Latest release [4.5.0](https://projects.eclipse.org/projects/technology.passage/releases/4.5.0) is part of [Eclipse 2026-03](https://www.eclipse.org/downloads/packages/release/2026-03/r).
-[![Latest release](https://img.shields.io/badge/P2%20Components-4.5.0-lightblue.svg)](https://download.eclipse.org/passage/updates/release/4.5.0/)
+###### Latest release [4.6.0](https://projects.eclipse.org/projects/technology.passage/releases/4.6.0) is part of [Eclipse 2026-06](https://www.eclipse.org/downloads/packages/release/2026-06/r).
+[![Latest release](https://img.shields.io/badge/P2%20Components-4.6.0-lightblue.svg)](https://download.eclipse.org/passage/updates/release/4.6.0/)
 
 ###### Auxiliary Products
 [![Latest release](https://img.shields.io/badge/License%20Control%20Operator%20CE%203.1.0-azure.svg)](https://arsysop.ru/cordon/ce/#lco)
