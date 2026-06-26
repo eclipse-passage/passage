@@ -16,7 +16,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-@SuppressWarnings("restriction")
 public abstract class ComparingMatchingRuleContractTest extends BaseMatchingRuleContractTest {
 
 	@Test
