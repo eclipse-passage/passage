@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,11 +9,12 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - ongoing support
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
 
@@ -26,7 +27,7 @@ import org.eclipse.passage.lic.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.api.registry.Registry;
 import org.eclipse.passage.lic.api.registry.Service;
 import org.eclipse.passage.lic.api.registry.ServiceId;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * <p>

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,20 +9,26 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.version;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assume.assumeFalse;
-import static org.junit.Assume.assumeTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import org.eclipse.passage.lic.api.version.SemanticVersion;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public abstract class SemanticVersionContractTest {
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void notExistingQualifierRetrievalMustFail() {
+		assertThrows(RuntimeException.class, () -> mustFail());
+	}
+
+	private void mustFail() {
 		SemanticVersion version = withoutQualifier();
 		assumeFalse(version.hasQualifier());
 		version.qualifier();

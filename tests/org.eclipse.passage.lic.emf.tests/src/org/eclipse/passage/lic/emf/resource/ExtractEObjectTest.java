@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2021, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,17 +9,18 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.emf.resource;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class ExtractEObjectTest {
 

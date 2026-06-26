@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,14 +9,15 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
- *     ArSysOp - further support
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.bc.tests;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.junit.Assume.assumeTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -34,7 +35,7 @@ import org.eclipse.passage.lic.base.io.BaseDigestExpectation;
 import org.eclipse.passage.lic.base.io.FileContent;
 import org.eclipse.passage.lic.bc.BcDigest;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("restriction")
 public final class StreamDecodingTest extends BcStreamCodecTest {
@@ -107,29 +108,45 @@ public final class StreamDecodingTest extends BcStreamCodecTest {
 		return encoded;
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void sourceIsMandatory() throws IOException {
+	@Test
+	public void sourceIsMandatory() {
+		assertThrows(NullPointerException.class, () -> innerSource());
+	}
+
+	private void innerSource() throws IOException {
 		try (OutputStream output = anOutput(); InputStream key = anInput()) {
 			decodeNull(null, output, key, new DigestExpectation.None());
 		}
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void targetIsMandatory() throws IOException {
+	@Test
+	public void targetIsMandatory() {
+		assertThrows(NullPointerException.class, () -> innerTarget());
+	}
+
+	private void innerTarget() throws IOException {
 		try (InputStream input = anInput(); InputStream key = anInput()) {
 			decodeNull(input, null, key, new DigestExpectation.None());
 		}
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void keyIsMandatory() throws IOException {
+	@Test
+	public void keyIsMandatory() {
+		assertThrows(NullPointerException.class, () -> innerKey());
+	}
+
+	private void innerKey() throws IOException {
 		try (InputStream input = anInput(); OutputStream output = anOutput()) {
 			decodeNull(input, output, null, new DigestExpectation.None());
 		}
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void digestIsMandatory() throws IOException {
+		assertThrows(NullPointerException.class, () -> innerDigest());
+	}
+
+	private void innerDigest() throws IOException {
 		try (InputStream input = anInput(); OutputStream output = anOutput(); InputStream key = anInput()) {
 			decodeNull(input, output, key, null);
 		}

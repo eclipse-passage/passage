@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,16 +9,18 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.conditions;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.ZonedDateTime;
 import java.util.function.Function;
 
 import org.eclipse.passage.lic.api.conditions.ValidityPeriodOpen;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * <p>
@@ -37,9 +39,9 @@ public abstract class ValidityPeriodOpenContractTest<V extends ValidityPeriodOpe
 	 * Implementation must rise NPE if there is no data for starting date
 	 * definition.
 	 */
-	@Test(expected = NullPointerException.class)
+	@Test
 	public final void doNotInventFrom() {
-		atLeastMonthLongFrom(null);
+		assertThrows(NullPointerException.class, () -> atLeastMonthLongFrom(null));
 	}
 
 	@Test

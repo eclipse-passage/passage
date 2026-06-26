@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2019, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,14 +9,15 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.jface.tests;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.passage.lic.jface.resource.LicensingColors;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class LicensingColorTest {
 

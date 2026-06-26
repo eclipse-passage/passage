@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,18 +9,21 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.registry;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.eclipse.passage.lic.api.registry.ServiceId;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class StringServiceIdTest extends ServiceIdContractTest {
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void idIsMandatory() {
-		new StringServiceId(null);
+		assertThrows(NullPointerException.class, () -> new StringServiceId(null));
 	}
 
 	@Override

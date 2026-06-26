@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,28 +9,30 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.conditions.evaluation;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionParsingException;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionParsingService;
 import org.eclipse.passage.lic.api.conditions.evaluation.ParsedExpression;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public abstract class ExpressionParsingServiceContractTest {
 
-	@Test(expected = ExpressionParsingException.class)
+	@Test
 	public final void blankExpressionCausesFailure() throws ExpressionParsingException {
-		parser().parsed("\t"); //$NON-NLS-1$
+		assertThrows(ExpressionParsingException.class, () -> parser().parsed("\t")); //$NON-NLS-1$
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public final void prohibitsNullExpression() throws ExpressionParsingException {
-		parser().parsed(null);
+		assertThrows(NullPointerException.class, () -> parser().parsed(null));
 	}
 
 	@Test

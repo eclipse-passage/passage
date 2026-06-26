@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,15 +9,16 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
- *     ArSysOp - further support
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.bc.tests;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -30,14 +31,13 @@ import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
-import org.junit.Rule;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.io.TempDir;
 
 @SuppressWarnings("restriction")
 abstract class BcStreamCodecTest {
 
-	@Rule
-	public final TemporaryFolder root = new TemporaryFolder();
+	@TempDir
+	public File root;
 
 	protected final void assertFileExists(Path file) {
 		assertTrue(Files.exists(file));

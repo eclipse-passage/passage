@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,15 +9,16 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.inspection;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.junit.Assume.assumeNoException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -30,7 +31,8 @@ import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.inspection.EnvironmentProperty;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
-import org.junit.Test;
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.Test;
 
 public abstract class RuntimeEnvironmentContractTest {
 	@Test
@@ -43,12 +45,16 @@ public abstract class RuntimeEnvironmentContractTest {
 		try {
 			assertFalse(environment().isAssuptionTrue(property(), invalidPropertyValue()));
 		} catch (LicensingException e) {
-			assumeNoException(e); // skip the test in the case of environment denial
+			Assumptions.abort("environment denial"); //$NON-NLS-1$
 		}
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void doesNotInspectNullProperty() {
+		assertThrows(NullPointerException.class, () -> withNullProperty());
+	}
+
+	private void withNullProperty() {
 		try {
 			environment().isAssuptionTrue(null, "none"); //$NON-NLS-1$
 		} catch (LicensingException e) {
@@ -56,8 +62,12 @@ public abstract class RuntimeEnvironmentContractTest {
 		}
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void doesNotInspectForNullValue() {
+		assertThrows(NullPointerException.class, () -> withNullValue());
+	}
+
+	private void withNullValue() {
 		try {
 			environment().isAssuptionTrue(property(), null); // $NON-NLS-1$
 		} catch (LicensingException e) {
@@ -70,7 +80,7 @@ public abstract class RuntimeEnvironmentContractTest {
 		try {
 			assertTrue(environment().isAssuptionTrue(property(), "*"));//$NON-NLS-1$
 		} catch (LicensingException e) {
-			assumeNoException(e); // skip the test in the case of environment denial
+			Assumptions.abort("environment denial"); //$NON-NLS-1$
 		}
 	}
 
@@ -81,7 +91,7 @@ public abstract class RuntimeEnvironmentContractTest {
 			assertNotNull(state);
 			assertFalse(state.trim().isEmpty());
 		} catch (LicensingException e) {
-			assumeNoException(e); // skip the test in the case of environment denial
+			Assumptions.abort("environment denial"); //$NON-NLS-1$
 		}
 	}
 
@@ -105,7 +115,7 @@ public abstract class RuntimeEnvironmentContractTest {
 			readySteadyGo.countDown(); // and now trigger'em all to ddos the env
 			done.await(); // and just wait until each of'em finish
 		} catch (InterruptedException e) {
-			assumeNoException(e); // skip the test then: further checks will fail
+			Assumptions.abort("further checks will fail"); //$NON-NLS-1$
 		}
 
 		// then: all of'em succeed
