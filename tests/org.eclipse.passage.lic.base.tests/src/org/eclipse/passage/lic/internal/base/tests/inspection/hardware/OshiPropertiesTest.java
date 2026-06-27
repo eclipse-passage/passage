@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2022 ArSysOp
+ * Copyright (c) 2022, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.inspection.hardware;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -27,7 +28,7 @@ import org.eclipse.passage.lic.internal.base.inspection.hardware.Disk;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.Firmware;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.NetworkInterface;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.OS;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("restriction")
 public final class OshiPropertiesTest {

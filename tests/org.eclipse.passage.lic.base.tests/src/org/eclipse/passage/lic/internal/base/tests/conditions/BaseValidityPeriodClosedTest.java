@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,24 +9,27 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.conditions;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.ZonedDateTime;
 
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class BaseValidityPeriodClosedTest {
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void fromIsMandatory() {
-		new BaseValidityPeriodClosed(null, ZonedDateTime.now());
+		assertThrows(NullPointerException.class, () -> new BaseValidityPeriodClosed(null, ZonedDateTime.now()));
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void toIsMandatory() {
-		new BaseValidityPeriodClosed(ZonedDateTime.now(), null);
+		assertThrows(NullPointerException.class, () -> new BaseValidityPeriodClosed(ZonedDateTime.now(), null));
 	}
 
 }

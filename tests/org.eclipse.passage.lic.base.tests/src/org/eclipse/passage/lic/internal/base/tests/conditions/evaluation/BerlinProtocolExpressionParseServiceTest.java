@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,11 +9,13 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.conditions.evaluation;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionParsingException;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionParsingService;
@@ -21,7 +23,7 @@ import org.eclipse.passage.lic.api.conditions.evaluation.ParsedExpression;
 import org.eclipse.passage.lic.api.tests.conditions.evaluation.ExpressionParsingServiceContractTest;
 import org.eclipse.passage.lic.base.conditions.evaluation.BerlinProtocolExpressionParseService;
 import org.eclipse.passage.lic.base.conditions.evaluation.SimpleMapExpression;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("restriction")
 public final class BerlinProtocolExpressionParseServiceTest extends ExpressionParsingServiceContractTest {
@@ -42,19 +44,19 @@ public final class BerlinProtocolExpressionParseServiceTest extends ExpressionPa
 		assertEquals("*", parsed.expected("k2")); //$NON-NLS-1$//$NON-NLS-2$
 	}
 
-	@Test(expected = ExpressionParsingException.class)
+	@Test
 	public void evenSingleCorruptedSegmentFailsParsing() throws ExpressionParsingException {
-		parser().parsed("k1=v1;k2;k3=v3"); //$NON-NLS-1$
+		assertThrows(ExpressionParsingException.class, () -> parser().parsed("k1=v1;k2;k3=v3")); //$NON-NLS-1$
 	}
 
-	@Test(expected = ExpressionParsingException.class)
+	@Test
 	public void valueOnlySegmentIsCorrupted() throws ExpressionParsingException {
-		parser().parsed("k1=v1;=v2;k3=v3"); //$NON-NLS-1$
+		assertThrows(ExpressionParsingException.class, () -> parser().parsed("k1=v1;=v2;k3=v3")); //$NON-NLS-1$
 	}
 
-	@Test(expected = ExpressionParsingException.class)
+	@Test
 	public void mediatorOnlySegmentIsCorrupted() throws ExpressionParsingException {
-		parser().parsed("k1=v1;=;k3=v3"); //$NON-NLS-1$
+		assertThrows(ExpressionParsingException.class, () -> parser().parsed("k1=v1;=;k3=v3")); //$NON-NLS-1$
 	}
 
 	@Test

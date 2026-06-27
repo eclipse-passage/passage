@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,8 +13,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.conditions;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.ZonedDateTime;
 
@@ -30,7 +31,7 @@ import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.base.conditions.MatchingRulePerfect;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class BaseConditionTest {
 
@@ -38,45 +39,50 @@ public final class BaseConditionTest {
 	 * Constructing a condition with {@code null} {@code identifier} must cause a
 	 * failure.
 	 */
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void identifierIsMandatory() {
-		new BaseCondition(null, feature(), versionMatch(), validityPeriod(), evaluationInstructions());
+		assertThrows(NullPointerException.class,
+				() -> new BaseCondition(null, feature(), versionMatch(), validityPeriod(), evaluationInstructions()));
 	}
 
 	/**
 	 * Constructing a condition with {@code null} {@code feature} must cause a
 	 * failure.
 	 */
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void featureIsMandatory() {
-		new BaseCondition(identifier(), null, versionMatch(), validityPeriod(), evaluationInstructions());
+		assertThrows(NullPointerException.class, () -> new BaseCondition(identifier(), null, versionMatch(),
+				validityPeriod(), evaluationInstructions()));
 	}
 
 	/**
 	 * Constructing a condition with {@code null} {@code validity period} must cause
 	 * a failure.
 	 */
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void versionMatchDefinitionIsMandatory() {
-		new BaseCondition(identifier(), feature(), null, validityPeriod(), evaluationInstructions());
+		assertThrows(NullPointerException.class,
+				() -> new BaseCondition(identifier(), feature(), null, validityPeriod(), evaluationInstructions()));
 	}
 
 	/**
 	 * Constructing a condition with {@code null} {@code version match} must cause a
 	 * failure.
 	 */
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void validityPeriodIsMandatory() {
-		new BaseCondition(identifier(), feature(), versionMatch(), null, evaluationInstructions());
+		assertThrows(NullPointerException.class,
+				() -> new BaseCondition(identifier(), feature(), versionMatch(), null, evaluationInstructions()));
 	}
 
 	/**
 	 * Constructing a condition with {@code null} {@code evaluation instructions}
 	 * must cause a failure.
 	 */
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void evaluationInstructionsAreMandatory() {
-		new BaseCondition(identifier(), feature(), versionMatch(), validityPeriod(), null);
+		assertThrows(NullPointerException.class,
+				() -> new BaseCondition(identifier(), feature(), versionMatch(), validityPeriod(), null));
 	}
 
 	@Test

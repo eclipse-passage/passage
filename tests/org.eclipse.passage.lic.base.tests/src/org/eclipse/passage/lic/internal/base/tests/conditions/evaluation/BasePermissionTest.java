@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,8 +9,11 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.conditions.evaluation;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.ZonedDateTime;
 
@@ -20,37 +23,39 @@ import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeCondition;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.base.conditions.UnknownConditionOrigin;
 import org.eclipse.passage.lic.base.conditions.evaluation.BasePermission;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("restriction")
 public final class BasePermissionTest {
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void productIsMandatory() {
-		new BasePermission(null, condition(), ZonedDateTime.now(), ZonedDateTime.now().plusDays(1),
-				new UnknownConditionOrigin());
+		assertThrows(NullPointerException.class, () -> new BasePermission(null, condition(), ZonedDateTime.now(),
+				ZonedDateTime.now().plusDays(1), new UnknownConditionOrigin()));
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void conditionIsMandatory() {
-		new BasePermission(product(), null, ZonedDateTime.now(), ZonedDateTime.now().plusDays(1),
-				new UnknownConditionOrigin());
+		assertThrows(NullPointerException.class, () -> new BasePermission(product(), null, ZonedDateTime.now(),
+				ZonedDateTime.now().plusDays(1), new UnknownConditionOrigin()));
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void leaseDateIsMandatory() {
-		new BasePermission(product(), condition(), null, ZonedDateTime.now(), new UnknownConditionOrigin());
+		assertThrows(NullPointerException.class, () -> new BasePermission(product(), condition(), null,
+				ZonedDateTime.now(), new UnknownConditionOrigin()));
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void expirationDateIsMandatory() {
-		new BasePermission(product(), condition(), ZonedDateTime.now(), null, new UnknownConditionOrigin());
+		assertThrows(NullPointerException.class, () -> new BasePermission(product(), condition(), ZonedDateTime.now(),
+				null, new UnknownConditionOrigin()));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void expiredAfterLeasing() {
-		new BasePermission(product(), condition(), ZonedDateTime.now().plusDays(1), ZonedDateTime.now(),
-				new UnknownConditionOrigin());
+		assertThrows(IllegalArgumentException.class, () -> new BasePermission(product(), condition(),
+				ZonedDateTime.now().plusDays(1), ZonedDateTime.now(), new UnknownConditionOrigin()));
 	}
 
 	private LicensedProduct product() {

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,11 +9,12 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.io;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,14 +25,13 @@ import java.util.Map;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.base.io.Settings;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 public final class SettingsTest {
 
-	@Rule
-	public TemporaryFolder folder = new TemporaryFolder();
+	@TempDir
+	public File folder;
 
 	@Test
 	public void enoughStopsSearching() throws IOException, LicensingException {
@@ -40,7 +40,7 @@ public final class SettingsTest {
 		writeOverlappingSettings(key + " = some_value", new PassageFileExtension.Settings()); //$NON-NLS-1$
 		// when
 		Map<String, Object> properties = new Settings(//
-				folder.getRoot()::toPath, //
+				folder::toPath, //
 				m -> m.containsKey(key)).get();
 		// then
 		assertTrue(properties.containsKey(key));
@@ -52,7 +52,7 @@ public final class SettingsTest {
 		// given
 		writeOverlappingSettings("x=X", new PassageFileExtension.Settings()); //$NON-NLS-1$
 		// when
-		Map<String, Object> properties = new Settings(folder.getRoot()::toPath).get();
+		Map<String, Object> properties = new Settings(folder::toPath).get();
 		// then
 		assertEquals(7, properties.size()); // all files are loaded
 	}
@@ -62,7 +62,7 @@ public final class SettingsTest {
 		// given
 		writeOverlappingSettings("s=S", new PassageFileExtension.LicenseDecrypted()); //$NON-NLS-1$
 		// when
-		Map<String, Object> properties = new Settings(folder.getRoot()::toPath).get();
+		Map<String, Object> properties = new Settings(folder::toPath).get();
 		// then
 		assertEquals(0, properties.size()); // all files are loaded
 	}
@@ -74,7 +74,7 @@ public final class SettingsTest {
 	}
 
 	private void writeOneMoreFile(PassageFileExtension extension, String... extras) throws IOException {
-		File file = folder.newFile(Long.toHexString(System.nanoTime()) + extension.get());
+		File file = new File(folder, Long.toHexString(System.nanoTime()) + extension.get());
 		try (PrintWriter writer = new PrintWriter(file)) {
 			Arrays.stream(extras).forEach(writer::println);
 		}
