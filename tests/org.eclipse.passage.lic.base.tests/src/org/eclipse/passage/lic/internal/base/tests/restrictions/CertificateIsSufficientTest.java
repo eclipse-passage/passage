@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2024 ArSysOp
+ * Copyright (c) 2024, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,8 +13,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.restrictions;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
 
@@ -22,7 +22,7 @@ import org.eclipse.passage.lic.api.FeatureIdentifier;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.BaseFeatureIdentifier;
 import org.eclipse.passage.lic.base.restrictions.CertificateIsSufficient;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class CertificateIsSufficientTest {
 

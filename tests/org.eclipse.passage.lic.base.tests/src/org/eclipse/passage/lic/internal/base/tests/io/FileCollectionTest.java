@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2025 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,9 +9,11 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
- *     ArSysOp - further evolution 
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.io;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.nio.file.Path;
 import java.util.function.Supplier;
@@ -20,16 +22,16 @@ import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.base.io.CollectedFiles;
 import org.eclipse.passage.lic.base.io.FileCollection;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class FileCollectionTest extends LocalFileCollectionTest {
 
-	@Test(expected = LicensingException.class)
+	@Test
 	public final void failsToTraverseAbsentPath() throws LicensingException {
-		service(//
-				new NotExistingFolder(folder.getRoot().toPath()), //
+		assertThrows(LicensingException.class, () -> service(//
+				new NotExistingFolder(folder.toPath()), //
 				new PassageFileExtension.PublicKey()//
-		).get();
+		).get());
 	}
 
 	@Override

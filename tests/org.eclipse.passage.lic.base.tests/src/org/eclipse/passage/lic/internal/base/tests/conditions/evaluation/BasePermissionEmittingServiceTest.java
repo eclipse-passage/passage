@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2025 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,12 +9,14 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation; further evolution
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.conditions.evaluation;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.ZonedDateTime;
 import java.util.Arrays;
@@ -48,24 +50,26 @@ import org.eclipse.passage.lic.base.diagnostic.code.LicenseExpired;
 import org.eclipse.passage.lic.base.diagnostic.code.LicenseInvalid;
 import org.eclipse.passage.lic.base.diagnostic.code.LicenseNotStarted;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("restriction")
 public final class BasePermissionEmittingServiceTest {
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void demandsParsers() {
-		new BasePermissionEmittingService(null, assessors(), evaluators());
+		assertThrows(NullPointerException.class,
+				() -> new BasePermissionEmittingService(null, assessors(), evaluators()));
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void demandsAssessors() {
-		new BasePermissionEmittingService(parsers(), null, evaluators());
+		assertThrows(NullPointerException.class,
+				() -> new BasePermissionEmittingService(parsers(), null, evaluators()));
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void demandsEvaluators() {
-		new BasePermissionEmittingService(parsers(), assessors(), null);
+		assertThrows(NullPointerException.class, () -> new BasePermissionEmittingService(parsers(), assessors(), null));
 	}
 
 	@Test

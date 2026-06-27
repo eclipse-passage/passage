@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020. 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,10 +9,12 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.conditions.evaluation;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Collections;
 
@@ -21,19 +23,21 @@ import org.eclipse.passage.lic.api.conditions.evaluation.Emission;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeConditionPack;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakePermission;
 import org.eclipse.passage.lic.base.conditions.evaluation.SumOfEmissions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("restriction")
 public final class SumOfEmissionsTest {
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void prohibitsNullFirstOperand() {
-		new SumOfEmissions().apply(null, empty(new FakeConditionPack()));
+		assertThrows(NullPointerException.class,
+				() -> new SumOfEmissions().apply(null, empty(new FakeConditionPack())));
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void prohibitsNullSecondOperand() {
-		new SumOfEmissions().apply(empty(new FakeConditionPack()), null);
+		assertThrows(NullPointerException.class,
+				() -> new SumOfEmissions().apply(empty(new FakeConditionPack()), null));
 	}
 
 	@Test
@@ -53,11 +57,11 @@ public final class SumOfEmissionsTest {
 				new SumOfEmissions().apply(empty(common), empty(common)).conditionPack());
 	}
 
-	@Test(expected = Exception.class)
+	@Test
 	public void doesNotSumDifferentPacks() {
-		new SumOfEmissions().apply(//
+		assertThrows(Exception.class, () -> new SumOfEmissions().apply(//
 				new Emission(new FakeConditionPack(), new FakePermission()), //
-				new Emission(new FakeConditionPack(), new FakePermission()));
+				new Emission(new FakeConditionPack(), new FakePermission())));
 	}
 
 	private Emission empty(ConditionPack pack) {

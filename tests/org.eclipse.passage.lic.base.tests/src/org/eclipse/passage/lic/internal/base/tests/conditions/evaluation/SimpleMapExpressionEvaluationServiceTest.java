@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,12 +9,14 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.conditions.evaluation;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -27,7 +29,7 @@ import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeExpress
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeParsedExpression;
 import org.eclipse.passage.lic.base.conditions.evaluation.SimpleMapExpression;
 import org.eclipse.passage.lic.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("restriction")
 public final class SimpleMapExpressionEvaluationServiceTest extends ExpressionEvaluationServiceContractTest {
@@ -37,14 +39,18 @@ public final class SimpleMapExpressionEvaluationServiceTest extends ExpressionEv
 		return new SimpleMapExpressionEvaluationService();
 	}
 
-	@Test(expected = ExpressionEvaluationException.class)
+	@Test
 	public void failureOnUnexpectedExpression() throws ExpressionEvaluationException {
-		evaluator().evaluate(new FakeParsedExpression(), new FakeExpressionTokenAssessmentService());
-
+		assertThrows(ExpressionEvaluationException.class,
+				() -> evaluator().evaluate(new FakeParsedExpression(), new FakeExpressionTokenAssessmentService()));
 	}
 
-	@Test(expected = ExpressionEvaluationException.class)
+	@Test
 	public void segmantFailureIsContagious() throws ExpressionEvaluationException {
+		assertThrows(ExpressionEvaluationException.class, () -> contagious());
+	}
+
+	private void contagious() throws ExpressionEvaluationException {
 		BiasedAssessor assessor = new BiasedAssessor()//
 				.withAnswer("ok", "1") //$NON-NLS-1$//$NON-NLS-2$
 				.withAnswer("nok", "not-2"); //$NON-NLS-1$//$NON-NLS-2$
@@ -62,9 +68,10 @@ public final class SimpleMapExpressionEvaluationServiceTest extends ExpressionEv
 		}
 	}
 
-	@Test(expected = ExpressionEvaluationException.class)
+	@Test
 	public void failOnEmptyExpression() throws ExpressionEvaluationException {
-		evaluator().evaluate(expression(), new FakeExpressionTokenAssessmentService());
+		assertThrows(ExpressionEvaluationException.class,
+				() -> evaluator().evaluate(expression(), new FakeExpressionTokenAssessmentService()));
 	}
 
 	@Test

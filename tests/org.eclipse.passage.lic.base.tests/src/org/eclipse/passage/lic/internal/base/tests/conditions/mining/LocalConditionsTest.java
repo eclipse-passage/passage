@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,8 +13,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.conditions.mining;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -38,14 +39,13 @@ import org.eclipse.passage.lic.base.conditions.mining.PathResidentConditions;
 import org.eclipse.passage.lic.base.conditions.mining.PersonalLicenseMiningEquipment;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 public final class LocalConditionsTest {
 
-	@Rule
-	public TemporaryFolder folder = new TemporaryFolder();
+	@TempDir
+	public File folder;
 
 	@Test
 	public void minesConditions() throws IOException {
@@ -59,20 +59,21 @@ public final class LocalConditionsTest {
 		// when
 		ServiceInvocationResult<Collection<ConditionPack>> conditions = //
 				new PathResidentConditions(//
-						folder.getRoot().toPath(), equipment(spy)).all(product());
+						folder.toPath(), equipment(spy)).all(product());
 		// then
 		assertCrutialServicesHaveBeenProperlyInvolved(spy);
 		assertMiningResultsAreOk(features, conditions);
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void miningPathIsMandatoryOnRuntime() {
-		new PathResidentConditions(null, equipment(new Spy())).all(product());
+		assertThrows(NullPointerException.class,
+				() -> new PathResidentConditions(null, equipment(new Spy())).all(product()));
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void miningEquipmentIsMandatory() {
-		new PathResidentConditions(Paths.get("."), null); //$NON-NLS-1$
+		assertThrows(NullPointerException.class, () -> new PathResidentConditions(Paths.get("."), null)); //$NON-NLS-1$
 	}
 
 	private void assertMiningResultsAreOk(List<FeatureIdentifier> features,
@@ -91,9 +92,9 @@ public final class LocalConditionsTest {
 	}
 
 	private void assertCrutialServicesHaveBeenProperlyInvolved(Spy spy) {
-		assertTrue("Product public key has not been asked", spy.keyAsked); //$NON-NLS-1$
-		assertEquals("License has been decoded incorrectly", 3, spy.decoded); //$NON-NLS-1$
-		assertEquals("Conditions has been transported incorrectly", 3, spy.transported); //$NON-NLS-1$
+		assertTrue(spy.keyAsked, "Product public key has not been asked"); //$NON-NLS-1$
+		assertEquals(3, spy.decoded, "License has been decoded incorrectly"); //$NON-NLS-1$
+		assertEquals(3, spy.transported, "Conditions has been transported incorrectly"); //$NON-NLS-1$
 	}
 
 	private PersonalLicenseMiningEquipment equipment(Spy spy) {
@@ -109,9 +110,9 @@ public final class LocalConditionsTest {
 
 	private void writePseudoLicenseFile(List<FeatureIdentifier> features) throws IOException {
 		LicensedProduct product = product();
-		folder.newFolder(product.identifier());
-		folder.newFolder(Paths.get(product.identifier()).resolve(product.version()).toString());
-		File lic = folder.newFile(//
+		new File(folder, product.identifier()).mkdir();
+		new File(folder, Paths.get(product.identifier()).resolve(product.version()).toString()).mkdir();
+		File lic = new File(folder, //
 				Paths.get(product.identifier())//
 						.resolve(product.version())//
 						.resolve("fake-license" + new PassageFileExtension.LicenseEncrypted().get()) //$NON-NLS-1$
