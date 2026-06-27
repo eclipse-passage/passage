@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,8 +13,8 @@
  *******************************************************************************/
 package org.eclipse.passage.seal.demo.tests.access;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -34,7 +34,7 @@ import org.eclipse.passage.lic.base.diagnostic.code.LicenseNotStarted;
 import org.eclipse.passage.lic.base.diagnostic.code.NoRequirements;
 import org.eclipse.passage.lic.base.diagnostic.code.TentativeAccess;
 import org.eclipse.passage.lic.internal.base.access.Access;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Integration test: demands OSGi running
@@ -122,8 +122,8 @@ public final class AccessAcquireTest {
 		ServiceInvocationResult<GrantLockAttempt> acquire = new Access(new TestFramework.Everlasting())
 				.acquire(new BaseFeatureIdentifier("frog-firework")); //$NON-NLS-1$
 		assertTrue(//
-				new DiagnosticExplained(acquire.diagnostic()).get(), //
-				new NoSevereErrors().test(acquire.diagnostic()));
+				new NoSevereErrors().test(acquire.diagnostic()),//
+				new DiagnosticExplained(acquire.diagnostic()).get());
 		assertTrue(acquire.data().isPresent());
 		assertFalse(acquire.data().get().successful());
 	}
@@ -146,8 +146,8 @@ public final class AccessAcquireTest {
 			Consumer<Diagnostic> onDiagnostic) {
 		ServiceInvocationResult<GrantLockAttempt> acquire = access.acquire(feature);
 		assertTrue(//
-				new DiagnosticExplained(acquire.diagnostic()).get(), //
-				new NoSevereErrors().test(acquire.diagnostic()));
+				new NoSevereErrors().test(acquire.diagnostic()), //
+				new DiagnosticExplained(acquire.diagnostic()).get());
 		onDiagnostic.accept(acquire.diagnostic());
 		assertTrue(acquire.data().isPresent());
 		assertTrue(acquire.data().get().successful());

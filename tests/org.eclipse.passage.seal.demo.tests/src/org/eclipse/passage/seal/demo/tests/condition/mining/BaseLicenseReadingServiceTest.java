@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,8 +13,8 @@
  *******************************************************************************/
 package org.eclipse.passage.seal.demo.tests.condition.mining;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -54,9 +55,8 @@ import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
 import org.eclipse.passage.lic.equinox.io.BundleKeyKeeper;
 import org.eclipse.passage.lic.licenses.model.transport.XmiConditionTransport;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
@@ -68,15 +68,12 @@ public final class BaseLicenseReadingServiceTest {
 
 	private final String licence = "e121463c-309e-43a7-b199-189c84ffb753.licen"; //$NON-NLS-1$
 
-	@Rule
-	public TemporaryFolder folder = new TemporaryFolder();
-
 	@Test
-	public void test() throws Exception {
-		ServiceInvocationResult<Collection<ConditionPack>> result = service().read(license());
-		assertTrue(new DiagnosticExplained(result.diagnostic()).get(), result.diagnostic().severe().isEmpty());
-		assertTrue(new DiagnosticExplained(result.diagnostic()).get(), result.diagnostic().bearable().isEmpty());
-		assertTrue(new DiagnosticExplained(result.diagnostic()).get(), result.data().isPresent());
+	public void test(@TempDir Path folder) throws Exception {
+		ServiceInvocationResult<Collection<ConditionPack>> result = service().read(license(folder));
+		assertTrue(result.diagnostic().severe().isEmpty(), new DiagnosticExplained(result.diagnostic()).get());
+		assertTrue(result.diagnostic().bearable().isEmpty(), new DiagnosticExplained(result.diagnostic()).get());
+		assertTrue(result.data().isPresent(), new DiagnosticExplained(result.diagnostic()).get());
 		assertEquals(1, result.data().get().size());
 		assertPackState(result.data().get().iterator().next());
 	}
@@ -132,11 +129,11 @@ public final class BaseLicenseReadingServiceTest {
 		return () -> new ReadOnlyRegistry<>(Collections.singleton(new XmiConditionTransport()));
 	}
 
-	private Path license() throws URISyntaxException, IOException {
+	private Path license(Path folder) throws URISyntaxException, IOException {
 		Path license = licensePath();
 		LicensedProduct product = product();
-		File dir = folder.newFolder(product.identifier(), product.version());
-		File target = new File(dir, license.getFileName().toString());
+		Path dir = Files.createDirectories(folder.resolve(product.identifier()).resolve(product.version()));
+		File target = new File(dir.toFile(), license.getFileName().toString());
 		try (InputStream input = bundle().getResource(license.toString()).openStream();
 				OutputStream output = new FileOutputStream(target)) {
 			output.write(input.readAllBytes());
