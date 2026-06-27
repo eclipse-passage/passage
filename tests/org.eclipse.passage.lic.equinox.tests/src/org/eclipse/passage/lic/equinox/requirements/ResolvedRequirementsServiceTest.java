@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,8 +13,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.requirements;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -26,7 +26,7 @@ import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.tests.ResolvedRequirementsContractTest;
 import org.eclipse.passage.lic.base.requirements.RequirementsFeatureFilter;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.osgi.framework.InvalidSyntaxException;
 
 @SuppressWarnings("restriction")

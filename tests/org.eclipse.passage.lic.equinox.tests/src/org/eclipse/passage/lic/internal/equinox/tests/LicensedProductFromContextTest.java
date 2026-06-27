@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,11 +9,13 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,14 +27,14 @@ import org.eclipse.passage.lic.base.ProductIdentifier;
 import org.eclipse.passage.lic.base.ProductVersion;
 import org.eclipse.passage.lic.base.version.DefaultVersion;
 import org.eclipse.passage.lic.equinox.LicensedProductFromContext;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.osgi.framework.Bundle;
 
 public final class LicensedProductFromContextTest {
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void nullCOntextIsProhibited() {
-		new LicensedProductFromContext(null);
+		assertThrows(NullPointerException.class, () -> new LicensedProductFromContext(null));
 	}
 
 	@Test

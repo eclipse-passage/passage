@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,12 +9,14 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.requirements;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -22,7 +24,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.eclipse.passage.lic.api.LicensingException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class LicCapabilityAttributesFromDeclarationTest {
 
@@ -61,9 +63,9 @@ public final class LicCapabilityAttributesFromDeclarationTest {
 		assertEquals("Honor Euler.txt::comp_lics/EULERS IDENTITY", e.get().get("agreements")); //$NON-NLS-1$//$NON-NLS-2$
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void sourceIsMandatory() {
-		new LicCapabilityAttributesFromDeclaration(null);
+		assertThrows(NullPointerException.class, () -> new LicCapabilityAttributesFromDeclaration(null));
 	}
 
 	private Collection<Map<String, Object>> packs(String source) {

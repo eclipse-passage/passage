@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,17 +9,18 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.requirements;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.base.NamedData;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class WriteLicCapablitiesTest {
 	private final String expectation = "Provide-Capability: " //$NON-NLS-1$
@@ -36,7 +37,7 @@ public final class WriteLicCapablitiesTest {
 						data.e(), //
 						data.pi(), //
 						data.incomplete())))//
-								.write(target); //
+				.write(target); //
 		assertEquals(expectation, target.toString());
 
 	}
