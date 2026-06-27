@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,23 +9,25 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.requirements;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Optional;
 
 import org.eclipse.passage.lic.api.LicensingException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class ProvidedCapabilitiesFromManifestTest {
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void sourceIsMandatory() {
-		new ProvidedCapabilitiesFromManifest(null);
+		assertThrows(NullPointerException.class, () -> new ProvidedCapabilitiesFromManifest(null));
 	}
 
 	@Test

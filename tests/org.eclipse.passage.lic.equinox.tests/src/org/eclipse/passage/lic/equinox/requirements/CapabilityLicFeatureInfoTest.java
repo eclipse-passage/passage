@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,8 +13,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.requirements;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Collections;
 import java.util.Map;
@@ -23,7 +24,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.base.BaseNamedData;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.osgi.framework.wiring.BundleCapability;
 
 abstract class CapabilityLicFeatureInfoTest<T> {
@@ -43,9 +44,9 @@ abstract class CapabilityLicFeatureInfoTest<T> {
 		);
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void nullInputMap() {
-		infoSupplier(null).get();
+		assertThrows(NullPointerException.class, () -> infoSupplier(null).get());
 	}
 
 	@Test

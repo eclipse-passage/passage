@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,12 +9,14 @@
  *
  * Contributors:
  *     ArSysOp - initial API and implementation
+ *     ArSysOp - further support and improvements
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.io;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,7 +25,7 @@ import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.equinox.io.BundleKeyKeeper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
@@ -56,14 +58,14 @@ public final class BundleKeyKeeperTest {
 		fail("Public key for the foreign product is not supposed to fit"); //$NON-NLS-1$
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void productIsMandatory() {
-		new BundleKeyKeeper(null, bundle());
+		assertThrows(NullPointerException.class, () -> new BundleKeyKeeper(null, bundle()));
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void bundleIsMandatory() {
-		new BundleKeyKeeper(this::productWithKey, (Bundle) null);
+		assertThrows(NullPointerException.class, () -> new BundleKeyKeeper(this::productWithKey, (Bundle) null));
 	}
 
 	private Bundle bundle() {
