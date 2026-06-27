@@ -7,7 +7,7 @@ Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Fragment-Host: org.eclipse.passage.lic.licenses.model
-Import-Package: org.junit,
- org.junit.rules
+Import-Package: org.junit.jupiter.api;version="[6.1.0,7.0.0)",
+ org.junit.jupiter.api.io;version="[6.1.0,7.0.0)"
 Bundle-RequiredExecutionEnvironment: JavaSE-21
 Require-Bundle: org.eclipse.passage.lic.api.tests;bundle-version="0.0.0"

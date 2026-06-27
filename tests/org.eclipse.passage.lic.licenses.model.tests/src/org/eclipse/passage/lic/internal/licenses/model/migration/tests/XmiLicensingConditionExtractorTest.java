@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2024 ArSysOp
+ * Copyright (c) 2018, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,7 +13,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.licenses.model.migration.tests;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,9 +33,8 @@ import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.licenses.model.transport.XmiConditionTransport;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 @SuppressWarnings("restriction")
 public class XmiLicensingConditionExtractorTest {
@@ -50,27 +49,9 @@ public class XmiLicensingConditionExtractorTest {
 	private static final String COND2_CONDITION_TYPE = "hardware"; //$NON-NLS-1$
 	private static final String COND2_CONDITION_EXPRESSION = "hdd=*"; //$NON-NLS-1$
 
-	/**
-	 * Passed through maven-surefire-plugin configuration
-	 */
-	private static final String MVN_PROJECT_OUTPUT_PROPERTY = "project.build.directory"; //$NON-NLS-1$
-
-	private static final String MVN_PROJECT_OUTPUT_VALUE = "target"; //$NON-NLS-1$
-
-	@Rule
-	public TemporaryFolder baseFolder = new TemporaryFolder(new File(resolveOutputDirName()));
-
-	public static String resolveOutputDirName() {
-		String userDir = System.getProperty("user.dir"); //$NON-NLS-1$
-		String defaultValue = userDir + File.separator + MVN_PROJECT_OUTPUT_VALUE;
-		String outDir = System.getProperty(MVN_PROJECT_OUTPUT_PROPERTY, defaultValue);
-		return outDir;
-	}
-
 	@Test
-	public void testExtractorPositive() throws Exception {
+	public void testExtractorPositive(@TempDir File base) throws Exception {
 		XmiConditionTransport extractor = new XmiConditionTransport();
-
 		PersonalLicensePack license = new EmptyPersonalLicensePack().get();
 		EList<PersonalFeatureGrant> licenseGrants = license.getGrants();
 		PersonalFeatureGrant cond1 = new EmptyPersonalFeatureGrant().get();
@@ -89,15 +70,13 @@ public class XmiLicensingConditionExtractorTest {
 		((ValidityPeriodClosed) cond2.getValid()).setFrom(new Date());
 		((ValidityPeriodClosed) cond2.getValid()).setUntil(new Date(System.currentTimeMillis() + 1));
 		licenseGrants.add(cond2);
-
-		File file = baseFolder.newFile("some.lic"); //$NON-NLS-1$
+		File file = new File(base, "some.lic"); //$NON-NLS-1$
 		try (FileOutputStream fos = new FileOutputStream(file)) {
 			// FIXME:AF: should be done via factory
 			Resource saved = new BlindResource(license).get();
 			saved.getContents().add(license);
 			saved.save(fos, new HashMap<>());
 		}
-
 		List<Condition> actual = new ArrayList<>();
 		try (FileInputStream fis = new FileInputStream(file)) {
 			extractor.read(fis).conditions().forEach(actual::add);

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2024 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -28,9 +28,9 @@ import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.base.conditions.MatchingRuleDefault;
 import org.eclipse.passage.lic.licenses.model.transport.XmiConditionTransport;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 
-@Ignore // fix TODOs to make it test something reasonable
+@Disabled // fix TODOs to make it test something reasonable
 @SuppressWarnings("restriction")
 public class XmiConditionTransportTest extends ConditionTransportContractTest {
 	@Override
