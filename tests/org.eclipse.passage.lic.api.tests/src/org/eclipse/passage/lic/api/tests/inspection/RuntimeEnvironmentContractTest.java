@@ -34,12 +34,15 @@ import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 
+@Deprecated(forRemoval = true)
 public abstract class RuntimeEnvironmentContractTest {
+	@Deprecated(forRemoval = true)
 	@Test
 	public void isDedicatedToProperEvaluationType() {
 		assertEquals(expectedEvaluationType(), environment().id());
 	}
 
+	@Deprecated(forRemoval = true)
 	@Test
 	public void inspects() {
 		try {
@@ -49,6 +52,7 @@ public abstract class RuntimeEnvironmentContractTest {
 		}
 	}
 
+	@Deprecated(forRemoval = true)
 	@Test
 	public void doesNotInspectNullProperty() {
 		assertThrows(NullPointerException.class, () -> withNullProperty());
@@ -62,6 +66,7 @@ public abstract class RuntimeEnvironmentContractTest {
 		}
 	}
 
+	@Deprecated(forRemoval = true)
 	@Test
 	public void doesNotInspectForNullValue() {
 		assertThrows(NullPointerException.class, () -> withNullValue());
@@ -75,6 +80,7 @@ public abstract class RuntimeEnvironmentContractTest {
 		}
 	}
 
+	@Deprecated(forRemoval = true)
 	@Test
 	public void knowsSimpleRegexp() {
 		try {
@@ -84,9 +90,11 @@ public abstract class RuntimeEnvironmentContractTest {
 		}
 	}
 
+	@Deprecated(forRemoval = true)
 	@Test
 	public void depictsState() {
 		try {
+			@SuppressWarnings("removal")
 			String state = environment().state();
 			assertNotNull(state);
 			assertFalse(state.trim().isEmpty());
@@ -95,6 +103,7 @@ public abstract class RuntimeEnvironmentContractTest {
 		}
 	}
 
+	@Deprecated(forRemoval = true)
 	@Test
 	public void standsSimultaneousRequests() {
 		// given: single instance of the env and lots of requesters
@@ -165,12 +174,16 @@ public abstract class RuntimeEnvironmentContractTest {
 		}
 	}
 
+	@Deprecated(forRemoval = true)
 	protected abstract RuntimeEnvironment environment();
 
+	@Deprecated(forRemoval = true)
 	protected abstract EvaluationType expectedEvaluationType();
 
+	@Deprecated(forRemoval = true)
 	protected abstract String invalidPropertyValue();
 
+	@Deprecated(forRemoval = true)
 	protected abstract EnvironmentProperty property();
 
 }

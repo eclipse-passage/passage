@@ -33,6 +33,7 @@ import org.eclipse.passage.lic.api.registry.Service;
  */
 public interface RuntimeEnvironment extends Service<EvaluationType> {
 
+	@Deprecated(forRemoval = true)
 	String state() throws LicensingException;
 
 	boolean isAssuptionTrue(EnvironmentProperty property, String value) throws LicensingException;
