@@ -85,9 +85,9 @@
   <stream name="master">
     <setupTask
         xsi:type="jdt:JRETask"
-        version="JavaSE-21"
-        location="${jre.location-21}"
-        name="JRE for JavaSE-21">
+        version="JavaSE-25"
+        location="${jre.location-25}"
+        name="JRE for JavaSE-25">
       <description>Define the JRE needed to compile and run the Java projects of ${scope.project.label}</description>
     </setupTask>
     <setupTask
