@@ -12,6 +12,6 @@ Require-Bundle: org.eclipse.passage.lic.api;bundle-version="0.0.0",
 Export-Package: org.eclipse.passage.lic.oshi;x-internal:=true
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.osgi.util;version="1.0.0",
- oshi;version="[6.2.2,7.0.0)",
- oshi.hardware;version="[6.2.2,7.0.0)",
- oshi.software.os;version="[6.2.2,7.0.0)"
+ oshi;version="[7.0.0,8.0.0)",
+ oshi.hardware;version="[7.0.0,8.0.0)",
+ oshi.software.os;version="[7.0.0,8.0.0)"
