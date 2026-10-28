@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- Copyright (c) 2019, 2024 ArSysOp and others
+ Copyright (c) 2019, 2026 ArSysOp and others
  This program and the accompanying materials are made available under the
  terms of the Eclipse Public License 2.0 which is available at
  https://www.eclipse.org/legal/epl-2.0/.
@@ -36,6 +36,7 @@
    <bundle id="bcpkix"/>
    <bundle id="bcprov"/>
    <bundle id="bcutil"/>
+   <bundle id="com.github.oshi.oshi-common"/>
    <bundle id="com.github.oshi.oshi-core"/>
    <bundle id="com.sun.jna"/>
    <bundle id="com.sun.jna.platform"/>

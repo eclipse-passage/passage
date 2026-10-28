@@ -20,6 +20,7 @@
       <plugin id="com.fasterxml.jackson.core.jackson-annotations"/>
       <plugin id="com.fasterxml.jackson.core.jackson-core"/>
       <plugin id="com.fasterxml.jackson.core.jackson-databind"/>
+      <plugin id="com.github.oshi.oshi-common"/>
       <plugin id="com.github.oshi.oshi-core"/>
       <plugin id="org.apache.batik.constants"/>
       <plugin id="org.apache.batik.css"/>
