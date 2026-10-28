@@ -33,6 +33,7 @@
 			<unit id="bcpkix" version="0.0.0"/>
 			<unit id="bcprov" version="0.0.0"/>
 			<unit id="bcutil" version="0.0.0"/>
+			<unit id="com.github.oshi.oshi-common" version="0.0.0"/>
 			<unit id="com.github.oshi.oshi-core" version="0.0.0"/>
 			<unit id="com.sun.jna" version="0.0.0"/>
 			<unit id="com.sun.jna.platform" version="0.0.0"/>
