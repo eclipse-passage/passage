@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -28,10 +28,8 @@ public abstract class BaseEnvironmentProperty implements EnvironmentProperty {
 	private final String family;
 
 	protected BaseEnvironmentProperty(String family, String name) {
-		Objects.requireNonNull(family);
-		Objects.requireNonNull(name);
-		this.family = family;
-		this.name = name;
+		this.family = Objects.requireNonNull(family);
+		this.name = Objects.requireNonNull(name);
 	}
 
 	protected BaseEnvironmentProperty(FullyQualifiedName fqn) {
