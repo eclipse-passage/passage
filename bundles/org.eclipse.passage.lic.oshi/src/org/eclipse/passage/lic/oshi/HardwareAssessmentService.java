@@ -23,7 +23,7 @@ import org.eclipse.passage.lic.internal.oshi.i18n.AssessmentMessages;
 
 /**
  * @since 1.1
- * 
+ *
  * @Deprecated(forRemoval = true) Assessment through environment's own
  *                        facilities is common solution and does not have any
  *                        OSHI specific. See TrustedAssessmentService for
