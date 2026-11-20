@@ -20,11 +20,11 @@
 			<unit id="org.eclipse.license.feature.group" version="0.0.0"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/eclipse/updates/4.42-I-builds/I20261112-2300/"/>
+			<repository location="https://download.eclipse.org/eclipse/updates/4.42-I-builds/I20261118-2300/"/>
 			<unit id="org.eclipse.sdk.feature.group" version="0.0.0"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/modeling/emf/emf/builds/milestone/S202611091621/"/>
+			<repository location="https://download.eclipse.org/modeling/emf/emf/builds/milestone/S202611201226/"/>
 			<unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
