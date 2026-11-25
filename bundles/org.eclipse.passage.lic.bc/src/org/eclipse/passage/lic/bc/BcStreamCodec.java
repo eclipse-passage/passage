@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2025 ArSysOp
+ * Copyright (c) 2020, 2026 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,11 +14,9 @@ package org.eclipse.passage.lic.bc;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.security.Security;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.io.DigestExpectation;
@@ -30,10 +28,6 @@ import org.eclipse.passage.lic.api.io.StreamCodec;
  * @since 1.1
  */
 public final class BcStreamCodec implements StreamCodec {
-
-	static {
-		Security.addProvider(new BouncyCastleProvider());
-	}
 
 	private final Supplier<LicensedProduct> product;
 	private final EncryptionAlgorithm algorithm;
@@ -72,10 +66,7 @@ public final class BcStreamCodec implements StreamCodec {
 		Objects.requireNonNull(privateKey, "BcStreamCodec::createKeyPair::privateKey"); //$NON-NLS-1$
 		Objects.requireNonNull(username, "BcStreamCodec::createKeyPair::username"); //$NON-NLS-1$
 		Objects.requireNonNull(password, "BcStreamCodec::createKeyPair::password"); //$NON-NLS-1$
-		new BcKeyPair( //
-				new BcKeyPair.Targets(publicKey, privateKey), //
-				new BcKeyPair.EncryptionParameters(algorithm, keySize) //
-		).generate(username, password);
+		new NativeKeys(product, algorithm, keySize).generateKeys(publicKey, privateKey);
 	}
 
 	@SuppressWarnings("resource")
@@ -87,8 +78,7 @@ public final class BcStreamCodec implements StreamCodec {
 		Objects.requireNonNull(key, "BcStreamCodec::encode::key"); //$NON-NLS-1$ ;
 		Objects.requireNonNull(username, "BcStreamCodec::encode::username"); //$NON-NLS-1$
 		Objects.requireNonNull(password, "BcStreamCodec::encode::password"); //$NON-NLS-1$
-		new BcEncodedStream(product.get(), input, output)//
-				.produce(new BcResidentSecretKey(key, username).get(), password);
+		new NativeKeys(product, algorithm, keySize).encode(input, output, key);
 	}
 
 	@SuppressWarnings("resource")
@@ -99,8 +89,7 @@ public final class BcStreamCodec implements StreamCodec {
 		Objects.requireNonNull(output, "BcStreamCodec::decode::output"); //$NON-NLS-1$
 		Objects.requireNonNull(key, "BcStreamCodec::decode::key"); //$NON-NLS-1$ ;
 		Objects.requireNonNull(digest, "BcStreamCodec::decode::digest"); //$NON-NLS-1$
-		new BcDecodedStream(product.get(), input, output)//
-				.produce(key, digest);
+		new NativeKeys(product, algorithm, keySize).decode(input, output, key, digest);
 	}
 
 }
