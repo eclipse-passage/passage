@@ -80,9 +80,7 @@
 
 		<module>../../bundles/org.eclipse.passage.seal.demo</module>
 		<module>../../features/org.eclipse.passage.demo.feature</module>
-<!-- FIXME: AF: requires passage metadata update
 		<module>../../tests/org.eclipse.passage.seal.demo.tests</module>
--->
 	</modules>
 
 </project>
